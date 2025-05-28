@@ -3,21 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up | SafetyHelp</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <title data-i18n="page_title.signup">Sign Up | SafetyHelp</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
     <link
       rel="stylesheet"
       as="style"
       onload="this.rel='stylesheet'"
-      href="https://fonts.googleapis.com/css2?display=swap&family=Inter%3Awght%40400%3B500%3B700%3B900&family=Noto+Sans%3Awght%40400%3B500%3B700%3B900"
+      href="https://fonts.googleapis.com/css2?display=swap&family=Inter%3Awght%40400%3B500%3B700%3B900&family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&family=Montserrat:wght@500;700"
     />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://unpkg.com/i18next@23.15.2/dist/umd/i18next.min.js"></script>
+    <script src="https://unpkg.com/i18next-browser-languagedetector@8.0.0/dist/i18nextBrowserLanguageDetector.min.js"></script>
     <style>
-        /* Global Styles - adapted from your original site's styles for consistency */
+        /* Global Styles */
         body {
-            font-family: 'Inter', "Noto Sans", sans-serif; /* Using new font from design code */
-            background-color: #E8F0FE; /* Original background color */
+            font-family: 'Inter', "Noto Sans", sans-serif;
+            background-color: #E8F0FE;
             color: #333;
             margin: 0;
             padding-top: 100px; /* Space for fixed header */
@@ -26,9 +28,9 @@
             min-height: 100vh;
         }
         h1, h2, h3 {
-            font-family: 'Montserrat', sans-serif; /* Keeping Montserrat for headings if preferred, or change to Inter */
+            font-family: 'Montserrat', sans-serif;
         }
-        /* Header styles from your original site */
+        /* Header styles */
         header {
             background-color: #007BFF;
             color: white;
@@ -71,6 +73,7 @@
             padding: 4px;
             border-radius: 4px;
             font-size: 14px;
+            color: #333;
         }
         .nav-links {
             text-align: center;
@@ -90,16 +93,17 @@
             flex-direction: column;
             align-items: flex-end;
         }
-        .logo-container img {
+        .logo-container img { /* Assuming .logo-container is within .header-left */
             height: 50px;
         }
-        .tagline {
+        .tagline { /* Assuming .tagline is within .logo-container or .header-left */
             font-size: 14px;
             margin-top: 5px;
         }
 
-        /* Main Content & Form Specific Styles - adapted from new design code */
-        main {
+
+        /* Main Content & Form Specific Styles */
+        main { /* Changed from .main-content for semantic correctness */
             flex-grow: 1;
             padding: 1.5rem;
             display: flex;
@@ -112,13 +116,13 @@
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            margin: 0 auto;
-            max-width: 480px; /* Max width from new design */
-            width: 100%; /* Ensure it takes full width up to max */
+            margin: 20px auto;
+            max-width: 480px;
+            width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px; /* Spacing between elements */
+            gap: 20px;
         }
         .signup-container h2 {
             font-family: 'Montserrat', sans-serif;
@@ -136,6 +140,7 @@
             font-size: 16px;
             font-weight: 500;
             padding-bottom: 8px;
+            margin-bottom: 0;
         }
         .form-input {
             width: 100%;
@@ -146,15 +151,16 @@
             border-radius: 8px;
             color: #0d141c;
             outline: 0;
-            ring: 0;
-            border: none;
-            background-color: #e7edf4;
+            border: 1px solid #cbd5e1;
+            background-color: #f8fafc;
             height: 56px;
             padding: 16px;
             font-size: 16px;
             font-weight: normal;
             line-height: normal;
-            placeholder-color: #49739c;
+        }
+         .form-input::placeholder {
+            color: #94a3b8;
         }
         .signup-button {
             display: flex;
@@ -176,6 +182,7 @@
             letter-spacing: 0.015em;
             transition: background-color 0.3s ease;
             width: 100%;
+            border: none;
         }
         .signup-button:hover {
             background-color: #0a6bd0;
@@ -199,7 +206,7 @@
         .social-button {
             display: flex;
             min-w: 84px;
-            max-w: 480px;
+            max-width: 480px;
             cursor: pointer;
             align-items: center;
             justify-content: center;
@@ -216,18 +223,31 @@
             letter-spacing: 0.015em;
             flex-grow: 1;
             transition: background-color 0.3s ease;
+            border: 1px solid #cbd5e1;
         }
         .social-button:hover {
             background-color: #d0d6e0;
         }
         #auth-message {
-            display: none; /* Hidden by default, shown by JavaScript */
+            /* display: none; */ /* JavaScript will handle display */
             width: 100%;
+            padding: 0.75rem; /* p-3 */
+            margin-top: 1rem; /* mt-4 */
+            border-radius: 0.375rem; /* rounded-md */
+            text-align: center;
+        }
+        .message-success {
+            background-color: #d1fae5; /* bg-green-100 */
+            color: #065f46; /* text-green-800 */
+        }
+        .message-error {
+            background-color: #fee2e2; /* bg-red-100 */
+            color: #991b1b; /* text-red-800 */
         }
 
-        /* Footer styles from your original site */
+        /* Footer styles */
         footer {
-            background-color: #007BFF; /* Changed to match header */
+            background-color: #007BFF;
             color: white;
             padding: 15px;
             text-align: center;
@@ -238,14 +258,15 @@
             font-size: 14px;
             margin: 5px 0;
         }
-        footer a {
+        .footer-links a { /* Target footer links specifically */
             color: #FD7E14;
             text-decoration: none;
+            margin: 0 5px;
         }
-        footer a:hover {
+        .footer-links a:hover {
             color: #e06b00;
         }
-        .newsletter h3 {
+         .newsletter h3 {
             font-size: 14px;
             margin-bottom: 8px;
         }
@@ -256,6 +277,7 @@
             margin-right: 10px;
             font-size: 14px;
             width: 150px;
+            color: #333;
         }
         .newsletter button {
             padding: 8px 16px;
@@ -270,6 +292,7 @@
             background-color: #e06b00;
         }
 
+
         /* Responsive adjustments */
         @media (max-width: 768px) {
             body {
@@ -278,28 +301,38 @@
             header {
                 position: relative;
             }
-            .header-container {
+             .header-container, .header-left, .header-right, .search-language-container, .nav-links {
                 flex-direction: column;
                 align-items: center;
+                width: 100%;
             }
-            .header-left {
-                align-items: center;
-                margin-bottom: 10px;
-            }
-            .nav-links {
-                margin: 10px 0;
-            }
-            .nav-links a {
-                margin: 5px 10px;
-            }
-            .header-right {
-                align-items: center;
-            }
+            .nav-links a { margin: 5px 0; }
+            .logo-container { text-align: center; }
+            .tagline { text-align: center; }
+            .header-left, .header-right { margin-bottom: 10px; }
             main {
                 padding: 1rem;
             }
             .signup-container {
                 padding: 15px;
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
+            .social-buttons-container {
+                flex-direction: column;
+            }
+            .social-button {
+                width: 100%;
+            }
+            .newsletter form {
+                flex-direction: column;
+            }
+            .newsletter input {
+                margin-bottom: 10px;
+                width: 80%;
+            }
+            .newsletter button {
+                width: 50%;
             }
         }
     </style>
@@ -307,41 +340,69 @@
 <body>
     <header>
         <div class="header-container">
-            <div class="logo">
-                <img src="/safetyhelp/assets/images/logo.png" alt="SafetyHelp Logo">
-                <h1 data-i18n="header.title">SafetyHelp OHS Tools</h1>
+            <div class="header-left">
+                <div class="logo-container">
+                    <img src="/SafetyHelp/assets/images/logo.png" alt="SafetyHelp Logo">
+                    <p class="tagline" data-i18n="header.tagline">Safety Personalized, Compliance Simplified—Anytime, Anywhere</p>
+                </div>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="/safetyhelp/index.html" data-i18n="header.nav.home">Home</a></li>
-                    <li><a href="/safetyhelp/resources.html" data-i18n="header.nav.resources">Resources</a></li>
-                    <li><a href="/safetyhelp/services.html" data-i18n="header.nav.services">Services</a></li>
-                    <li><a href="/safetyhelp/community.html" data-i18n="header.nav.community">Community</a></li>
-                    <li><a href="/safetyhelp/about.html" data-i18n="header.nav.about">About</a></li>
-                    <li><a href="/safetyhelp/contact.html" data-i18n="header.nav.contact">Contact</a></li>
-                    <li><a href="/safetyhelp/login.html" id="login-link" data-i18n="header.nav.login">Login</a></li>
-                    <li><a href="#" id="logout-link" data-i18n="header.nav.logout" style="display: none;">Logout</a></li>
-                </ul>
+            <nav class="nav-links"> <a href="/SafetyHelp/index.html" data-i18n="header.nav.home">Home</a>
+                <a href="/SafetyHelp/resources.html" data-i18n="header.nav.resources">Resources</a>
+                <a href="/SafetyHelp/services.html" data-i18n="header.nav.services">Services</a>
+                <a href="/SafetyHelp/community.html" data-i18n="header.nav.community">Community</a>
+                <a href="/SafetyHelp/about.html" data-i18n="header.nav.about">About</a>
+                <a href="/SafetyHelp/contact.html" data-i18n="header.nav.contact">Contact</a>
+                <a href="/SafetyHelp/login.html" id="login-link" data-i18n="header.nav.login">Login</a>
+                <a href="#" id="logout-link" data-i18n="header.nav.logout" style="display: none;">Logout</a>
             </nav>
+            <div class="header-right">
+                <div class="search-language-container">
+                    <div class="language-selector">
+                        <select id="language-select" aria-label="Select language">
+                            <option value="en" data-i18n="language_selector.en">English</option>
+                            <option value="af" data-i18n="language_selector.af">Afrikaans</option>
+                            <option value="zu" data-i18n="language_selector.zu">isiZulu</option>
+                            <option value="xh" data-i18n="language_selector.xh">isiXhosa</option>
+                            <option value="st" data-i18n="language_selector.st">Sesotho</option>
+                            <option value="tn" data-i18n="language_selector.tn">Setswana</option>
+                            <option value="nso" data-i18n="language_selector.nso">Sepedi</option>
+                            <option value="ts" data-i18n="language_selector.ts">Xitsonga</option>
+                            <option value="ss" data-i18n="language_selector.ss">siSwati</option>
+                            <option value="ve" data-i18n="language_selector.ve">Tshivenda</option>
+                            <option value="nr" data-i18n="language_selector.nr">isiNdebele</option>
+                            <option value="es" data-i18n="language_selector.es">Español</option>
+                            <option value="fr" data-i18n="language_selector.fr">French</option>
+                            <option value="sn" data-i18n="language_selector.sn">Shona</option>
+                            <option value="sw" data-i18n="language_selector.sw">Swahili</option>
+                            <option value="zh" data-i18n="language_selector.zh">Mandarin</option>
+                        </select>
+                    </div>
+                    <div class="search-bar">
+                        <form role="search" class="flex">
+                            <input type="text" data-i18n="[placeholder]header.search.placeholder" placeholder="Search OHS Tools..." aria-label="Search OHS Tools" class="px-3 py-1 border border-gray-300 rounded-l text-gray-800">
+                            <button type="submit" aria-label="Search" data-i18n="header.search.button" class="px-4 py-1 bg-blue-500 hover:bg-blue-600 text-white rounded-r">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
     <main>
         <div class="signup-container">
-            <h2 class="text-[#0d141c] text-2xl font-bold leading-tight tracking-[-0.015em]">Sign Up for SafetyHelp</h2>
-            <div id="auth-message" class="hidden p-3 mt-4 rounded-md text-center"></div>
-
-            <p class="text-[#49739c] text-base font-normal leading-normal text-center">
-                Join as a **Registered User (Free)** to get started with SafetyHelp!
+            <h2 data-i18n="signup.title" class="text-[#0d141c] text-2xl font-bold leading-tight tracking-[-0.015em]">Sign Up for SafetyHelp</h2>
+            <div id="auth-message" style="display:none;"></div> <p class="text-[#49739c] text-base font-normal leading-normal text-center" data-i18n="signup.intro_text">
+                Join as a Registered User (Free) to get started with SafetyHelp!
             </p>
 
             <form id="signup-form" class="flex flex-col w-full gap-4">
                 <div class="form-group">
                     <label class="flex flex-col min-w-40 flex-1">
-                        <p class="text-[#0d141c] text-base font-medium leading-normal pb-2">Email</p>
+                        <p data-i18n="signup.email_label" class="text-[#0d141c] text-base font-medium leading-normal pb-2">Email</p>
                         <input
                             type="email"
                             id="signup-email"
+                            data-i18n="[placeholder]signup.email_placeholder"
                             placeholder="Enter your email"
                             class="form-input"
                             required
@@ -350,10 +411,11 @@
                 </div>
                 <div class="form-group">
                     <label class="flex flex-col min-w-40 flex-1">
-                        <p class="text-[#0d141c] text-base font-medium leading-normal pb-2">Password</p>
+                        <p data-i18n="signup.password_label" class="text-[#0d141c] text-base font-medium leading-normal pb-2">Password</p>
                         <input
                             type="password"
                             id="signup-password"
+                            data-i18n="[placeholder]signup.password_placeholder"
                             placeholder="Create a password"
                             class="form-input"
                             required
@@ -362,29 +424,29 @@
                 </div>
                 <div class="form-group">
                     <label class="flex flex-col min-w-40 flex-1">
-                        <p class="text-[#0d141c] text-base font-medium leading-normal pb-2">Company Name (Optional)</p>
+                        <p data-i18n="signup.company_label" class="text-[#0d141c] text-base font-medium leading-normal pb-2">Company Name (Optional)</p>
                         <input
                             type="text"
                             id="signup-company"
+                            data-i18n="[placeholder]signup.company_placeholder"
                             placeholder="Enter your company name"
                             class="form-input"
                         />
                     </label>
                 </div>
                 <button type="submit" class="signup-button">
-                    <span class="truncate">Sign Up</span>
+                    <span class="truncate" data-i18n="signup.submit_button">Sign Up</span>
                 </button>
             </form>
 
-            <p class="social-login-text">Or sign up with</p>
+            <p class="social-login-text" data-i18n="signup.social_text">Or sign up with</p>
             <div class="social-buttons-container">
-                <button id="google-login-btn" class="social-button">
-                    <i class="fab fa-google mr-2"></i> <span class="truncate">Continue with Google</span>
+                <button id="google-login-btn" class="social-button"> <i class="fab fa-google mr-2"></i> <span class="truncate" data-i18n="signup.google_button">Continue with Google</span>
                 </button>
-                </div>
+            </div>
 
             <p class="text-[#49739c] text-sm font-normal leading-normal text-center mt-4">
-                Already have an account? <a href="/safetyhelp/login.html" class="text-[#0c7ff2] hover:underline font-bold">Login</a>
+                <span data-i18n="signup.already_account">Already have an account?</span> <a href="/SafetyHelp/login.html" class="text-[#0c7ff2] hover:underline font-bold" data-i18n="signup.login_link">Login</a>
             </p>
         </div>
     </main>
@@ -392,12 +454,113 @@
     <footer>
         <p data-i18n="footer.copyright">© 2025 SafetyHelp. All Rights Reserved.</p>
         <div class="footer-links">
-            <a href="/safetyhelp/privacy.html" data-i18n="footer.links.privacy">Privacy Policy</a>
-            <a href="/safetyhelp/terms.html" data-i18n="footer.links.terms">Terms of Service</a>
-            <a href="/safetyhelp/contact.html" data-i18n="footer.links.contact">Contact Us</a>
+            <a href="/SafetyHelp/privacy.html" data-i18n="footer.links.privacy">Privacy Policy</a>
+            <a href="/SafetyHelp/terms.html" data-i18n="footer.links.terms">Terms of Service</a>
+            <a href="/SafetyHelp/contact.html" data-i18n="footer.links.contact">Contact Us</a>
+        </div>
+         <div class="newsletter mt-6">
+            <h3 class="text-lg font-semibold mb-3" data-i18n="footer.newsletter.title">Stay Updated</h3>
+            <form class="flex justify-center">
+                <input type="email" data-i18n="[placeholder]footer.newsletter.placeholder" placeholder="Enter your email" aria-label="Email for newsletter" class="px-3 py-2 border border-gray-300 rounded-l text-gray-800 w-64">
+                <button type="submit" data-i18n="footer.newsletter.button" class="px-4 py-2 bg-orange-500 text-white rounded-r hover:bg-orange-600">Subscribe</button>
+            </form>
         </div>
     </footer>
 
-    <script type="module" src="/safetyhelp/assets/js/scripts.js"></script>
+    <script type="module" src="/SafetyHelp/assets/js/scripts.js"></script>
+    <script>
+        // i18next initialization specific to signup.html
+        document.addEventListener('DOMContentLoaded', async () => {
+            const translations = {
+                 "page_title.signup": "Sign Up | SafetyHelp",
+                "header.tagline": "Safety Personalized, Compliance Simplified—Anytime, Anywhere",
+                "header.nav.home": "Home",
+                "header.nav.resources": "Resources",
+                "header.nav.services": "Services",
+                "header.nav.community": "Community",
+                "header.nav.about": "About",
+                "header.nav.contact": "Contact",
+                "header.nav.login": "Login",
+                "header.nav.logout": "Logout",
+                "header.search.placeholder": "Search OHS Tools...",
+                "header.search.button": "Search",
+                "language_selector.en": "English",
+                "language_selector.af": "Afrikaans",
+                "language_selector.zu": "isiZulu",
+                "language_selector.xh": "isiXhosa",
+                "language_selector.st": "Sesotho",
+                "language_selector.tn": "Setswana",
+                "language_selector.nso": "Sepedi",
+                "language_selector.ts": "Xitsonga",
+                "language_selector.ss": "siSwati",
+                "language_selector.ve": "Tshivenda",
+                "language_selector.nr": "isiNdebele",
+                "language_selector.es": "Español",
+                "language_selector.fr": "French",
+                "language_selector.sn": "Shona",
+                "language_selector.sw": "Swahili",
+                "language_selector.zh": "Mandarin",
+                "signup.title": "Sign Up for SafetyHelp",
+                "signup.intro_text": "Join as a Registered User (Free) to get started with SafetyHelp!",
+                "signup.email_label": "Email",
+                "signup.email_placeholder": "Enter your email",
+                "signup.password_label": "Password",
+                "signup.password_placeholder": "Create a password",
+                "signup.company_label": "Company Name (Optional)",
+                "signup.company_placeholder": "Enter your company name",
+                "signup.submit_button": "Sign Up",
+                "signup.social_text": "Or sign up with",
+                "signup.google_button": "Continue with Google",
+                "signup.already_account": "Already have an account?",
+                "signup.login_link": "Login",
+                "footer.copyright": "© 2025 SafetyHelp. All Rights Reserved.",
+                "footer.links.privacy": "Privacy Policy",
+                "footer.links.terms": "Terms of Service",
+                "footer.links.contact": "Contact Us",
+                "footer.newsletter.title": "Stay Updated",
+                "footer.newsletter.placeholder": "Enter your email",
+                "footer.newsletter.button": "Subscribe"
+            };
+
+             if (typeof i18next !== 'undefined') {
+                await i18next
+                    .use(i18nextBrowserLanguageDetector)
+                    .init({
+                        lng: 'en',
+                        fallbackLng: 'en',
+                        resources: {
+                            en: { translation: translations }
+                        },
+                        debug: true
+                    });
+                updateContent();
+            } else {
+                console.error("i18next is not loaded on signup.html");
+            }
+
+            document.getElementById('language-select')?.addEventListener('change', (e) => {
+                 if (typeof i18next !== 'undefined') {
+                    i18next.changeLanguage(e.target.value, (err) => {
+                        if (err) { console.error('Error changing language:', err); return; }
+                        updateContent();
+                    });
+                }
+            });
+
+            function updateContent() {
+                document.querySelectorAll('[data-i18n]').forEach(element => {
+                    const key = element.getAttribute('data-i18n');
+                    if (element.hasAttribute('[placeholder]')) {
+                        element.setAttribute('placeholder', i18next.t(key.replace('[placeholder]','')));
+                    } else if (element.tagName === 'TITLE') {
+                        document.title = i18next.t(key);
+                    }
+                     else {
+                        element.innerHTML = i18next.t(key);
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
