@@ -1,0 +1,78 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{noto}
+
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalsize\itshape}{\thesubsubsection}{1em}{}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    {\LARGE\bfseries Permit to Work (General) for {{COMPANY_NAME}}\par}
+    \vspace{1cm}
+    {\large\itshape Document Reference: PTW-001\par}
+    \vspace{0.5cm}
+    {\normalsize Revision: {{REVISION}}\par}
+    \vspace{0.5cm}
+    {\normalsize Date: {{DATE}}\par}
+    \vspace{2cm}
+    {\normalsize Approved by: {{CEO_NAME}}\par}
+\end{titlepage}
+
+\section{Purpose}
+This Permit to Work ensures safe execution of high-risk tasks at {{COMPANY_NAME}}, in compliance with OHS regulations.
+
+\section{Scope}
+This permit applies to high-risk activities at {{COMPANY_NAME}}'s premises located at {{COMPANY_ADDRESS}}.
+
+\section{Permit Details}
+\begin{itemize}
+    \item \textbf{Task Description}: To be filled by permit issuer.
+    \item \textbf{Hazards Identified}: To be filled based on risk assessment.
+    \item \textbf{Controls Implemented}: To be specified (e.g., PPE, isolation).
+    \item \textbf{Permit Issuer}: {{COMPILED_BY_NAME}}
+    \item \textbf{Date Issued}: {{DATE}}
+\end{itemize}
+
+\section{Additional Details}
+{{CUSTOM_CONTENT}}
+
+\section{Contact Information}
+For inquiries, contact:
+\begin{itemize}
+    \item Phone: {{COMPANY_CONTACT}}
+    \item Email: {{COMPANY_EMAIL}}
+\end{itemize}
+
+\section{Document Control}
+\begin{table}[h]
+    \centering
+    \begin{tabular}{p{3cm}p{3cm}p{6cm}}
+        \toprule
+        \textbf{Version} & \textbf{Date} & \textbf{Changes} \\
+        \midrule
+        {{REVISION}} & {{DATE}} & Initial version \\
+        \bottomrule
+    \end{tabular}
+    \caption{Revision History}
+\end{table}
+
+\section{Compiled By}
+\begin{itemize}
+    \item \textbf{Name}: {{COMPILED_BY_NAME}}
+    \item \textbf{Contact}: {{COMPILED_BY_CONTACT}}
+    \item \textbf{Email}: {{COMPILED_BY_EMAIL}}
+    \item \textbf{Role}: {{COMPILED_BY_ROLE}}
+\end{itemize}
+
+\end{document}
