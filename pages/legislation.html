@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Access comprehensive OHS legislation, standards, and updates with SafetyHelp. Generate OHS legal registers and explore laws interactively.">
+    <meta name="keywords" content="OHS legislation, legal register, South Africa OHS laws, international standards, SafetyHelp">
+    <meta name="author" content="SafetyHelp Team">
+    <title data-i18n="page_title.legislation">SafetyHelp - Legislation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/i18next@23.15.2/dist/umd/i18next.min.js"></script>
+    <script src="https://unpkg.com/i18next-browser-languagedetector@8.0.0/dist/i18nextBrowserLanguageDetector.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #E8F0FE;
+            color: #333;
+            margin: 0;
+            padding-top: 100px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header h1, .sidebar h2, .sidebar h3, .intro h2, footer h3, .legislation-section h3, .cart-container h3 {
+            font-family: 'Montserrat', sans-serif;
+        }
+        /* Header */
+        header {
+            background-color: #007BFF;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            width: 100%;
+        }
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+        .header-left {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .search-language-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .search-bar button {
+            background-color: #FD7E14;
+            color: white;
+        }
+        .search-bar button:hover {
+            background-color: #e06b00;
+        }
+        .language-selector {
+            margin-bottom: 5px;
+        }
+        .language-selector select {
+            padding: 4px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .nav-links {
+            text-align: center;
+            flex: 1;
+        }
+        .nav-links a {
+            color: white;
+            margin: 0 15px;
+            font-family: 'Montserrat', sans-serif;
+            text-decoration: none;
+        }
+        .nav-links a:hover {
+            color: #FD7E14;
+        }
+        .header-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        .logo-container img {
+            height: 50px;
+        }
+        .tagline {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 100px;
+            left: 0;
+            bottom: 0;
+            width: 250px;
+            background-color: #F4F4F4;
+            overflow-y: auto;
+            z-index: 40;
+            padding: 15px;
+        }
+        .sidebar h2 {
+            color: #007BFF;
+            font-size: 24px;
+            margin-bottom: 15px;
+            text-align: right;
+        }
+        .sidebar a {
+            color: white;
+            background-color: #007BFF;
+            padding: 8px;
+            border-radius: 4px;
+            margin-bottom: 5px;
+            display: block;
+            text-decoration: none;
+            font-size: 14px;
+            transition: font-weight 0.3s;
+        }
+        .sidebar a:hover {
+            font-weight: bold;
+            background-color: #0056b3;
+        }
+        .sidebar a.active {
+            background-color: #28A745;
+        }
+        .step-info {
+            background-color: #E8F0FE;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .step-info h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            color: #007BFF;
+            margin-bottom: 10px;
+        }
+        .step-info p {
+            font-size: 14px;
+        }
+        .fun-fact {
+            color: #28A745;
+        }
+        /* Main Content */
+        .main-content {
+            margin-left: 250px;
+            flex-grow: 1;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .intro, .legislation-section, .cart-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+        .intro h2, .legislation-section h2, .cart-container h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .intro p, .legislation-section p, .cart-container p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .intro button, .legislation-section button, .cart-container button {
+            background-color: #FD7E14;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+        .intro button:hover, .legislation-section button:hover, .cart-container button:hover {
+            background-color: #e06b00;
+        }
+        /* Legislation Library Styles */
+        .law-item {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+        .law-item h4 {
+            font-size: 16px;
+            color: #007BFF;
+            margin-bottom: 5px;
+        }
+        .law-item p {
+            font-size: 14px;
+            color: #666;
+        }
+        .law-item a {
+            color: #28A745;
+            text-decoration: underline;
+        }
+        .law-item a:hover {
+            color: #1e7e34;
+        }
+        /* Footer */
+        footer {
+            background-color: #007BFF;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            width: 100%;
+            margin-top: auto;
+        }
+        footer p {
+            font-size: 14px;
+            margin: 5px 0;
+        }
+        footer a {
+            color: #FD7E14;
+            text-decoration: none;
+        }
+        footer a:hover {
+            color: #e06b00;
+        }
+        .newsletter h3 {
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        .newsletter input {
+            padding: 8px;
+            border: none;
+            border-radius: 2px;
+            margin-right: 10px;
+            font-size: 14px;
+            width: 150px;
+        }
+        .newsletter button {
+            padding: 8px 16px;
+            background-color: #FD7E14;
+            color: white;
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .newsletter button:hover {
+            background-color: #e06b00;
+        }
+        /* Chatbot */
+        .chatbot-container {
+            position: fixed;
+            bottom: 1.25rem;
+            right: 1.25rem;
+            z-index: 1000;
+        }
+        #chat-window {
+            width: 300px;
+            max-height: 400px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-hidden {
+            display: none;
+        }
+        #chat-output {
+            flex-grow: 1;
+        }
+        #chat-input-container {
+            display: flex;
+            border-top-width: 1px;
+        }
+        #chat-input {
+            flex-grow: 1;
+            border: none;
+            padding: 0.5rem;
+        }
+        #chat-send {
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+        }
+        #chat-send:hover {
+            background-color: #0056b3;
+        }
+        .chat-toggle-btn {
+            background-color: #FD7E14;
+        }
+        .chat-toggle-btn:hover {
+            background-color: #e06b00;
+        }
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 0;
+                flex-direction: column;
+            }
+            header {
+                position: relative;
+            }
+            .header-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .header-left {
+                align-items: center;
+                margin-bottom: 10px;
+            }
+            .nav-links {
+                margin: 10px 0;
+            }
+            .nav-links a {
+                margin: 5px 10px;
+            }
+            .header-right {
+                align-items: center;
+            }
+            .sidebar {
+                position: relative;
+                top: 0;
+                width: 100%;
+                height: auto;
+                bottom: auto;
+                z-index: 1;
+            }
+            .sidebar h2 {
+                text-align: center;
+            }
+            .main-content {
+                margin-left: 0;
+                flex-direction: column;
+            }
+            .intro, .legislation-section, .cart-container {
+                margin: 1rem 0;
+            }
+        }
+        /* Chatbot */
+    .chatbot-container {
+        position: fixed;
+        bottom: 1.25rem;
+        right: 1.25rem;
+        z-index: 1000;
+    }
+    #chat-window {
+        width: 300px;
+        max-height: 400px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        transition: all 0.3s ease;
+    }
+    .chat-hidden {
+        display: none;
+    }
+    .chat-expanded {
+        display: flex;
+    }
+    #chat-output {
+        flex-grow: 1;
+    }
+    #chat-input-container {
+        display: flex;
+        border-top-width: 1px;
+    }
+    #chat-input {
+        flex-grow: 1;
+        border: none;
+        padding: 0.5rem;
+    }
+    #chat-send {
+        border: none;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        background-color: #007BFF;
+        color: white;
+    }
+    #chat-send:hover {
+        background-color: #0056b3;
+    }
+    .chat-toggle-btn {
+        background-color: #FD7E14;
+    }
+    .chat-toggle-btn:hover {
+        background-color: #e06b00;
+    }
+    .chat-toggle-btn.collapsed {
+        padding: 0.75rem;
+        font-size: 0.875rem;
+    }
+    .chat-toggle-btn.collapsed #chat-toggle-text {
+        display: none;
+    }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container mx-auto header-container">
+            <div class="header-left">
+                <div class="logo-container">
+                    <img src="/safety-plans/assets/images/logo.png" alt="SafetyHelp Logo">
+                    <p class="tagline" data-i18n="header.tagline">Safety Personalized, Compliance Simplified—Anytime, Anywhere</p>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="/safety-plans/index.html" data-i18n="header.nav.home">Home</a>
+                <a href="/safety-plans/resources.html" data-i18n="header.nav.resources">Resources</a>
+                <a href="/safety-plans/services.html" data-i18n="header.nav.services">Services</a>
+                <a href="/safety-plans/community.html" data-i18n="header.nav.community">Community</a>
+                <a href="/safety-plans/about.html" data-i18n="header.nav.about">About</a>
+                <a href="/safety-plans/contact.html" data-i18n="header.nav.contact">Contact</a>
+                <a href="/safety-plans/login.html" id="login-link" data-i18n="header.nav.login">Login</a>
+            </div>
+            <div class="header-right">
+                <div class="search-language-container">
+                    <div class="language-selector">
+                        <select id="language-select" aria-label="Select language">
+                            <option value="en" data-i18n="language_selector.en">English</option>
+                            <option value="af" data-i18n="language_selector.af">Afrikaans</option>
+                            <option value="zu" data-i18n="language_selector.zu">isiZulu</option>
+                            <option value="xh" data-i18n="language_selector.xh">isiXhosa</option>
+                            <option value="st" data-i18n="language_selector.st">Sesotho</option>
+                            <option value="tn" data-i18n="language_selector.tn">Setswana</option>
+                            <option value="nso" data-i18n="language_selector.nso">Sepedi</option>
+                            <option value="ts" data-i18n="language_selector.ts">Xitsonga</option>
+                            <option value="ss" data-i18n="language_selector.ss">siSwati</option>
+                            <option value="ve" data-i18n="language_selector.ve">Tshivenda</option>
+                            <option value="nr" data-i18n="language_selector.nr">isiNdebele</option>
+                            <option value="es" data-i18n="language_selector.es">Español</option>
+                            <option value="fr" data-i18n="language_selector.fr">French</option>
+                            <option value="sn" data-i18n="language_selector.sn">Shona</option>
+                            <option value="sw" data-i18n="language_selector.sw">Swahili</option>
+                            <option value="zh" data-i18n="language_selector.zh">Mandarin</option>
+                        </select>
+                    </div>
+                    <div class="search-bar">
+                        <form role="search" class="flex">
+                            <input type="text" data-i18n="[placeholder]header.search.placeholder" placeholder="Search OHS Tools..." aria-label="Search OHS Tools" class="px-3 py-1 border border-gray-300 rounded-l text-gray-800">
+                            <button type="submit" aria-label="Search" data-i18n="header.search.button" class="px-4 py-1 bg-blue-500 hover:bg-blue-600 text-white rounded-r">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h2 data-i18n="sidebar.ohs_tools">SafetyHelp OHS Tools</h2>
+        <ul class="space-y-2">
+            <li><a href="/safety-plans/pages/construction-compliance.html" data-i18n="sidebar.construction_safety">Construction Safety</a></li>
+            <li><a href="/safety-plans/pages/emergency-response-plan.html" data-i18n="sidebar.emergency_planning">Emergency Planning</a></li>
+            <li><a href="/safety-plans/pages/risk-assessment.html" data-i18n="sidebar.risk_assessment">Risk Assessment</a></li>
+            <li><a href="/safety-plans/pages/legal-appointments.html" data-i18n="sidebar.legal_appointments">Legal Appointments</a></li>
+            <li><a href="/safety-plans/pages/incident-management.html" data-i18n="sidebar.incident_management">Incident Management</a></li>
+            <li><a href="/safety-plans/pages/training.html" data-i18n="sidebar.training">Training</a></li>
+            <li><a href="/safety-plans/pages/inspections-audits.html" data-i18n="sidebar.inspections_audits">Inspections & Audits</a></li>
+            <li><a href="/safety-plans/pages/suppliers.html" data-i18n="sidebar.suppliers">Suppliers</a></li>
+            <li><a href="/safety-plans/pages/legislation.html" data-i18n="sidebar.legislation" class="active">Legislation</a></li>
+            <li><a href="/safety-plans/pages/community-tools.html" data-i18n="sidebar.community_tools">Community Tools</a></li>
+            <li><a href="/safety-plans/pages/member-dashboard.html" data-i18n="sidebar.member_dashboard">Member Dashboard</a></li>
+            <li><a href="/safety-plans/pages/ohs-system.html" data-i18n="sidebar.ohs_system">OHS System</a></li>
+        </ul>
+        <div id="sidebar-step-info" class="step-info">
+            <h3 data-i18n="sidebar.step_0.title">📜 Welcome to SafetyHelp</h3>
+            <p data-i18n="sidebar.step_0.description" class="text-sm mb-3">Explore our comprehensive tools and resources to enhance occupational health and safety in your workplace.</p>
+            <p class="fun-fact text-sm" data-i18n="sidebar.step_0.fun_fact">⚡ Did you know using reputable ethical suppliers can reduce workplace hazards by ensuring work is done on time and to the highest quality and safety standards?</p>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Intro Section -->
+        <section class="intro">
+            <h2 class="text-2xl font-bold mb-4" data-i18n="intro.title">Legislation</h2>
+            <p class="text-gray-600 mb-4" data-i18n="intro.description">Access a comprehensive library of OHS legislation, standards, and updates. Generate OHS legal registers, search for specific laws, and explore relationships between regulations. Simplified interpretations are available for purchase to make complex legal texts more accessible.</p>
+            <div class="action-buttons mt-6 flex flex-wrap gap-3">
+                <button onclick="searchLaws()" data-i18n="action_buttons.search_laws" class="bg-blue-500 hover:bg-blue-600 text-white text-sm px-4 py-2 rounded shadow transition duration-300">Search OHS Laws</button>
+                <button onclick="generateRMP()" data-i18n="action_buttons.generate_rmp" class="bg-blue-500 hover:bg-blue-600 text-white text-sm px-4 py-2 rounded shadow transition duration-300">Generate RMP</button>
+                <button onclick="generateLegalRegister()" data-i18n="action_buttons.generate_legal_register" class="bg-blue-500 hover:bg-blue-600 text-white text-sm px-4 py-2 rounded shadow transition duration-300">Generate OHS Legal Register</button>
+            </div>
+        </section>
+
+        <!-- Legislation Tools Section -->
+        <section class="legislation-section">
+            <h2 class="text-2xl font-bold mb-4" data-i18n="legislation.tools.title">Legislation Tools</h2>
+            <div id="search-laws" class="mb-6">
+                <input type="text" id="law-search-input" class="w-full px-3 py-2 border rounded mb-2" placeholder="Search for laws (e.g., OHSA Section 8)" data-i18n="[placeholder]legislation.tools.search_placeholder">
+                <button onclick="searchLaws()" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" data-i18n="legislation.tools.search_button">Search</button>
+                <div id="search-results" class="mt-4"></div>
+            </div>
+            <div id="law-details" class="hidden">
+                <h3 class="text-lg font-semibold mb-3" id="law-title"></h3>
+                <p id="law-content" class="text-gray-600 mb-4"></p>
+                <p id="law-relationships" class="text-gray-600 mb-4"></p>
+                <button id="buy-simplified-btn" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600" data-i18n="legislation.tools.buy_simplified">Buy Simplified Interpretation (R50)</button>
+            </div>
+        </section>
+
+        <!-- Legislation Updates Section -->
+        <section class="legislation-section">
+            <h2 class="text-2xl font-bold mb-4" data-i18n="legislation.updates.title">Legislation Updates and Bills</h2>
+            <div id="updates-list" class="space-y-4"></div>
+        </section>
+
+        <!-- Standards Section -->
+        <section class="legislation-section">
+            <h2 class="text-2xl font-bold mb-4" data-i18n="legislation.standards.title">OHS Standards</h2>
+            <div id="standards-list" class="space-y-4"></div>
+        </section>
+
+        <!-- Cart and Checkout Section -->
+        <section id="cart-checkout-section" class="cart-container hidden">
+            <h2 class="text-2xl font-bold mb-4" data-i18n="cart.title">Your Cart</h2>
+            <div id="cart-items" class="space-y-4"></div>
+            <p id="cart-total" class="text-lg font-semibold mt-4"></p>
+            <button id="checkout-btn" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" data-i18n="cart.checkout.button">Proceed to Checkout</button>
+            <button id="subscribe-btn" class="mt-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 ml-2" data-i18n="cart.subscribe.button">Subscribe for Full Access</button>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 mt-auto">
+        <div class="container mx-auto px-6 text-center">
+            <p class="mb-2" data-i18n="footer.copyright">© 2025 SafetyHelp. All rights reserved.</p>
+            <p class="mb-4">
+                <a href="/safety-plans/privacy.html" data-i18n="footer.links.privacy" class="mx-2 hover:text-blue-400">Privacy Policy</a> |
+                <a href="/safety-plans/terms.html" data-i18n="footer.links.terms" class="mx-2 hover:text-blue-400">Terms of Service</a> |
+                <a href="/safety-plans/contact.html" data-i18n="footer.links.contact" class="mx-2 hover:text-blue-400">Contact Us</a>
+            </p>
+            <div class="newsletter mt-6">
+                <h3 class="text-lg font-semibold mb-3" data-i18n="footer.newsletter.title">Stay Updated</h3>
+                <form class="flex justify-center">
+                    <input type="email" data-i18n="[placeholder]footer.newsletter.placeholder" placeholder="Enter your email" aria-label="Email for newsletter" class="px-3 py-2 border border-gray-300 rounded-l text-gray-800 w-64">
+                    <button type="submit" data-i18n="footer.newsletter.button" class="px-4 py-2 rounded-r">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot Container -->
+    <div class="chatbot-container fixed bottom-5 right-5 z-50">
+        <button id="chat-toggle" class="chat-toggle-btn p-3 rounded-full shadow-lg flex items-center justify-center bg-orange-500 text-white hover:bg-orange-600 transition duration-300">
+            <span class="chat-icon text-2xl mr-1">⛑️</span> 
+            <span id="chat-toggle-text" data-i18n="chatbot.button">Ask Salatiso</span>
+        </button>
+        <div id="chat-window" class="chat-hidden bg-white border border-gray-300 rounded-lg shadow-xl mt-2">
+            <div id="chat-output" class="p-3 text-sm h-80 overflow-y-scroll">
+                <p><strong>Salatiso:</strong> <span data-i18n="chatbot.welcome">Hello! How can I help you with OHS today?</span></p>
+            </div>
+            <div id="chat-input-container" class="flex border-t border-gray-200">
+                <input id="chat-input" type="text" data-i18n="[placeholder]chatbot.input_placeholder" placeholder="Ask about OHS..." aria-label="Ask about OHS" class="flex-grow p-2 border-none focus:outline-none">
+                <button id="chat-send" aria-label="Send message" data-i18n="chatbot.send" class="px-4 py-2 bg-blue-500 text-white hover:bg-blue-600">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script>
+        // Translation Initialization with Debugging
+        document.addEventListener('DOMContentLoaded', async () => {
+            const languages = ['en', 'af', 'zu', 'xh', 'st', 'tn', 'nso', 'ts', 'ss', 've', 'nr', 'es', 'fr', 'sn', 'sw'];
+            const resources = {};
+
+            // Load English translations as a fallback
+            const defaultTranslations = {
+                "header.tagline": "Safety Personalized, Compliance Simplified—Anytime, Anywhere",
+                "header.nav.home": "Home",
+                "header.nav.resources": "Resources",
+                "header.nav.services": "Services",
+                "header.nav.community": "Community",
+                "header.nav.about": "About",
+                "header.nav.contact": "Contact",
+                "header.nav.login": "Login",
+                "header.search.placeholder": "Search OHS Tools...",
+                "header.search.button": "Search",
+                "language_selector.en": "English",
+                "language_selector.af": "Afrikaans",
+                "language_selector.zu": "isiZulu",
+                "language_selector.xh": "isiXhosa",
+                "language_selector.st": "Sesotho",
+                "language_selector.tn": "Setswana",
+                "language_selector.nso": "Sepedi",
+                "language_selector.ts": "Xitsonga",
+                "language_selector.ss": "siSwati",
+                "language_selector.ve": "Tshivenda",
+                "language_selector.nr": "isiNdebele",
+                "language_selector.es": "Español",
+                "language_selector.fr": "French",
+                "language_selector.sn": "Shona",
+                "language_selector.sw": "Swahili",
+                "language_selector.zh": "Mandarin",
+                "sidebar.ohs_tools": "SafetyHelp OHS Tools",
+                "sidebar.construction_safety": "Construction Safety",
+                "sidebar.emergency_planning": "Emergency Planning",
+                "sidebar.risk_assessment": "Risk Assessment",
+                "sidebar.legal_appointments": "Legal Appointments",
+                "sidebar.incident_management": "Incident Management",
+                "sidebar.training": "Training",
+                "sidebar.inspections_audits": "Inspections & Audits",
+                "sidebar.suppliers": "Suppliers",
+                "sidebar.legislation": "Legislation",
+                "sidebar.community_tools": "Community Tools",
+                "sidebar.member_dashboard": "Member Dashboard",
+                "sidebar.ohs_system": "OHS System",
+                "sidebar.step_0.title": "📜 Welcome to SafetyHelp",
+                "sidebar.step_0.description": "Explore our comprehensive tools and resources to enhance occupational health and safety in your workplace.",
+                "sidebar.step_0.fun_fact": "⚡ Did you know using reputable ethical suppliers can reduce workplace hazards by ensuring work is done on time and to the highest quality and safety standards?",
+                "intro.title": "Legislation",
+                "intro.description": "Access a comprehensive library of OHS legislation, standards, and updates. Generate OHS legal registers, search for specific laws, and explore relationships between regulations. Simplified interpretations are available for purchase to make complex legal texts more accessible.",
+                "action_buttons.search_laws": "Search OHS Laws",
+                "action_buttons.generate_rmp": "Generate RMP",
+                "action_buttons.generate_legal_register": "Generate OHS Legal Register",
+                "legislation.tools.title": "Legislation Tools",
+                "legislation.tools.search_placeholder": "Search for laws (e.g., OHSA Section 8)",
+                "legislation.tools.search_button": "Search",
+                "legislation.tools.buy_simplified": "Buy Simplified Interpretation (R50)",
+                "legislation.updates.title": "Legislation Updates and Bills",
+                "legislation.standards.title": "OHS Standards",
+                "cart.title": "Your Cart",
+                "cart.checkout.button": "Proceed to Checkout",
+                "cart.subscribe.button": "Subscribe for Full Access",
+                "footer.copyright": "© 2025 SafetyHelp. All rights reserved.",
+                "footer.links.privacy": "Privacy Policy",
+                "footer.links.terms": "Terms of Service",
+                "footer.links.contact": "Contact Us",
+                "footer.newsletter.title": "Stay Updated",
+                "footer.newsletter.placeholder": "Enter your email",
+                "footer.newsletter.button": "Subscribe",
+                "chatbot.button": "Ask Me",
+                "chatbot.input_placeholder": "Ask about OHS...",
+                "chatbot.send": "Send",
+                "chatbot.welcome": "Hello! How can I help you with OHS today?"
+            };
+            resources['en'] = { translation: defaultTranslations };
+
+            // Attempt to load translations for all languages
+            for (const lang of languages) {
+                if (lang === 'en') continue;
+                try {
+                    const response = await fetch(`/safety-plans/assets/locales/${lang}/translation.json`);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    const data = await response.json();
+                    resources[lang] = { translation: data };
+                    console.log(`Loaded translations for ${lang}:`, data);
+                } catch (error) {
+                    console.error(`Failed to load translations for ${lang}:`, error);
+                    resources[lang] = { translation: defaultTranslations };
+                }
+            }
+
+            if (Object.keys(resources).length === 0) {
+                console.error("No translation files loaded. Using default English translations.");
+            }
+
+            await i18next.init({
+                lng: 'en',
+                resources,
+                fallbackLng: 'en',
+                debug: true
+            });
+
+            updateContent();
+
+            document.getElementById('language-select').addEventListener('change', (e) => {
+                i18next.changeLanguage(e.target.value, (err) => {
+                    if (err) {
+                        console.error('Error changing language:', err);
+                        return;
+                    }
+                    updateContent();
+                });
+            });
+
+            function updateContent() {
+                document.querySelectorAll('[data-i18n]').forEach(element => {
+                    const key = element.getAttribute('data-i18n');
+                    const translation = i18next.t(key);
+                    if (translation === key) {
+                        console.warn(`Translation missing for key: ${key}`);
+                    }
+                    if (element.hasAttribute('placeholder')) {
+                        element.setAttribute('placeholder', translation);
+                    } else {
+                        element.innerHTML = translation;
+                    }
+                    console.log(`Translating ${key} to ${translation}`);
+                });
+            }
+
+            // Firebase Initialization
+            const firebaseConfig = {
+                apiKey: "AIzaSyDASGZnUyav23Mte5Q96H0j-T3LlGzVK-k",
+                authDomain: "safetyfirst2025-aea34.firebaseapp.com",
+                projectId: "safetyfirst2025-aea34",
+                storageBucket: "safetyfirst2025-aea34.firebasestorage.app",
+                messagingSenderId: "620306944192",
+                appId: "1:620306944192:web:ddadeef6825901068a9d25",
+                measurementId: "G-VQL1FCD8NN"
+            };
+            firebase.initializeApp(firebaseConfig);
+            const db = firebase.firestore();
+
+            // Legislation Data
+            const legislationData = [
+                {
+                    title: "Constitution of South Africa",
+                    content: "The Constitution is the supreme law of South Africa. Section 24 ensures the right to an environment that is not harmful to health or well-being, mandating a safe working environment.",
+                    relationships: "Underpins OHSA Section 8 (Duty to provide a safe working environment).",
+                    simplified: "The Constitution guarantees everyone a safe workplace, requiring employers to protect workers' health and safety."
+                },
+                {
+                    title: "Occupational Health and Safety Act (OHSA) 85 of 1993 - Section 8",
+                    content: "Section 8 mandates employers to provide a safe working environment free from health risks.",
+                    relationships: "Linked to Construction Regulation 9 (Risk Assessments) and General Safety Regulation 3 (First Aiders).",
+                    simplified: "Employers must ensure workplaces are safe and healthy, including providing first aiders and conducting risk assessments."
+                },
+                {
+                    title: "COIDA 130 of 1993 - Section 22",
+                    content: "Requires medical surveillance for employees exposed to hazardous substances.",
+                    relationships: "Linked to Hazardous Chemical Substances Regulation 10.",
+                    simplified: "Workers exposed to dangerous chemicals must have regular health check-ups."
+                },
+                {
+                    title: "National Building Regulations - SANS 10400",
+                    content: "Specifies safety standards for buildings, including fire safety and structural integrity.",
+                    relationships: "Linked to OHSA Section 8 for workplace safety.",
+                    simplified: "Buildings must be safe to work in, with proper fire exits and strong structures."
+                },
+                {
+                    title: "City of Johannesburg Fire Safety By-Laws",
+                    content: "Requires fire evacuation plans and regular equipment maintenance.",
+                    relationships: "Linked to General Safety Regulation 29 (Fire Fighters).",
+                    simplified: "Workplaces in Johannesburg must have fire escape plans and working fire equipment."
+                },
+                {
+                    title: "National Environmental Management Act (NEMA) - Air Quality",
+                    content: "Regulates air quality to protect worker health from pollutants like dust.",
+                    relationships: "Linked to OHSA Section 8.",
+                    simplified: "Workplaces must control dust and fumes to keep the air safe for workers."
+                },
+                {
+                    title: "Companies Act 71 of 2008 - Section 76",
+                    content: "Directors must ensure OHS compliance as part of their duties.",
+                    relationships: "Linked to OHSA Section 16(1) (CEO responsibility).",
+                    simplified: "Company leaders must make sure OHS rules are followed."
+                },
+                {
+                    title: "King IV Report - Principle 13",
+                    content: "Organizations must manage OHS as part of governance and ESG frameworks.",
+                    relationships: "Linked to ISO 45001 (OHS Management Systems).",
+                    simplified: "Companies should treat safety as a key part of how they run their business."
+                }
+            ];
+
+            const updatesData = [
+                {
+                    title: "Draft Amendment to OHSA Section 24",
+                    content: "Proposed changes to incident reporting requirements, effective 2026.",
+                    date: "2025-03-15",
+                    source: "Government Gazette No. 12345"
+                },
+                {
+                    title: "COIDA Medical Surveillance Update",
+                    content: "New guidelines for medical check-ups for workers exposed to silica dust.",
+                    date: "2025-04-01",
+                    source: "Department of Employment and Labour"
+                }
+            ];
+
+            const standardsData = [
+                {
+                    title: "SANS 10400",
+                    summary: "Building safety standards, including fire safety and structural integrity.",
+                    purchaseLink: "https://www.sabs.co.za"
+                },
+                {
+                    title: "SANS 083",
+                    summary: "Noise measurement standards for hearing conservation.",
+                    purchaseLink: "https://www.sabs.co.za"
+                },
+                {
+                    title: "ISO 45001",
+                    summary: "OHS management systems to improve employee safety.",
+                    purchaseLink: "https://www.iso.org"
+                },
+                {
+                    title: "ISO 14001",
+                    summary: "Environmental management standards impacting OHS.",
+                    purchaseLink: "https://www.iso.org"
+                },
+                {
+                    title: "ILO C155",
+                    summary: "OHS Convention for workplace safety policies.",
+                    purchaseLink: "https://www.ilo.org"
+                },
+                {
+                    title: "ILO C187",
+                    summary: "Promotes a global framework for OHS.",
+                    purchaseLink: "https://www.ilo.org"
+                }
+            ];
+
+            // Load Updates and Standards
+            function loadUpdatesAndStandards() {
+                const updatesList = document.getElementById('updates-list');
+                updatesData.forEach(update => {
+                    const div = document.createElement('div');
+                    div.classList.add('law-item');
+                    div.innerHTML = `
+                        <h4>${update.title}</h4>
+                        <p>${update.content}</p>
+                        <p>Date: ${update.date} | Source: ${update.source}</p>
+                    `;
+                    updatesList.appendChild(div);
+                });
+
+                const standardsList = document.getElementById('standards-list');
+                standardsData.forEach(standard => {
+                    const div = document.createElement('div');
+                    div.classList.add('law-item');
+                    div.innerHTML = `
+                        <h4>${standard.title}</h4>
+                        <p>${standard.summary}</p>
+                        <p><a href="${standard.purchaseLink}" target="_blank">Purchase Here</a></p>
+                    `;
+                    standardsList.appendChild(div);
+                });
+            }
+            loadUpdatesAndStandards();
+
+            // Search Laws
+            function searchLaws() {
+                const query = document.getElementById('law-search-input').value.toLowerCase();
+                const results = legislationData.filter(law => 
+                    law.title.toLowerCase().includes(query) || law.content.toLowerCase().includes(query)
+                );
+                const searchResults = document.getElementById('search-results');
+                searchResults.innerHTML = '';
+                if (results.length === 0) {
+                    searchResults.innerHTML = '<p>No results found.</p>';
+                    document.getElementById('law-details').classList.add('hidden');
+                } else {
+                    results.forEach(law => {
+                        const div = document.createElement('div');
+                        div.classList.add('law-item');
+                        div.innerHTML = `<h4>${law.title}</h4><p>${law.content.substring(0, 100)}...</p>`;
+                        div.addEventListener('click', () => {
+                            document.getElementById('law-details').classList.remove('hidden');
+                            document.getElementById('law-title').textContent = law.title;
+                            document.getElementById('law-content').textContent = law.content;
+                            document.getElementById('law-relationships').textContent = `Relationships: ${law.relationships}`;
+                            document.getElementById('buy-simplified-btn').onclick = () => buySimplified(law);
+                        });
+                        searchResults.appendChild(div);
+                    });
+                }
+            }
+
+            // Buy Simplified Interpretation
+            function buySimplified(law) {
+                const simplifiedDoc = {
+                    name: `Simplified Interpretation - ${law.title}`,
+                    price: 50,
+                    type: 'simplified-law',
+                    content: law.simplified
+                };
+                cart.push(simplifiedDoc);
+                db.collection('tempDocuments').add({
+                    ...simplifiedDoc,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                updateCart();
+                alert(`Added Simplified Interpretation of ${law.title} to cart for R50.`);
+            }
+
+            // Generate OHS Legal Register
+            function generateLegalRegister() {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+                let yOffset = 10;
+
+                doc.setFontSize(16);
+                doc.text("SafetyHelp OHS Legal Register", 10, yOffset);
+                yOffset += 10;
+
+                legislationData.forEach(law => {
+                    doc.setFontSize(12);
+                    doc.text(law.title, 10, yOffset);
+                    yOffset += 5;
+                    doc.setFontSize(10);
+                    doc.text(law.content, 10, yOffset);
+                    yOffset += 5;
+                    doc.text(`Relationships: ${law.relationships}`, 10, yOffset);
+                    yOffset += 10;
+                    if (yOffset > 280) {
+                        doc.addPage();
+                        yOffset = 10;
+                    }
+                });
+
+                const docData = {
+                    name: "OHS Legal Register",
+                    price: 100,
+                    type: 'legal-register',
+                    content: legislationData
+                };
+                cart.push(docData);
+                db.collection('tempDocuments').add({
+                    ...docData,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                updateCart();
+                doc.save("ohs-legal-register.pdf");
+            }
+
+            // Placeholder for Generate RMP
+            function generateRMP() {
+                alert("Generate RMP functionality to be implemented.");
+            }
+
+            // Cart Management
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            function updateCart() {
+                const cartItems = document.getElementById('cart-items');
+                const cartTotal = document.getElementById('cart-total');
+                cartItems.innerHTML = '';
+                let total = 0;
+                cart.forEach(item => {
+                    const div = document.createElement('div');
+                    div.classList.add('flex', 'justify-between', 'bg-gray-50', 'p-4', 'rounded-lg', 'shadow');
+                    div.innerHTML = `<p>${item.name}</p><p>R${item.price}</p>`;
+                    cartItems.appendChild(div);
+                    total += item.price;
+                });
+                cartTotal.textContent = `Total: R${total}`;
+                localStorage.setItem('cart', JSON.stringify(cart));
+                if (cart.length > 0) {
+                    document.getElementById('cart-checkout-section').classList.remove('hidden');
+                }
+            }
+
+            // Checkout
+            document.getElementById('checkout-btn').addEventListener('click', async () => {
+                const accessCode = 'ACCESS-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+                alert(`Checkout successful! Your access code is: ${accessCode}. Documents will be available for 7 days.`);
+                await db.collection('invoices').add({
+                    accessCode: accessCode,
+                    cart: cart,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                cart = [];
+                localStorage.setItem('cart', JSON.stringify(cart));
+                document.getElementById('cart-checkout-section').classList.add('hidden');
+            });
+
+            document.getElementById('subscribe-btn').addEventListener('click', () => {
+                alert('Redirecting to subscription page... (Monthly: R200, Annual: R2000)');
+            });
+
+            // Chatbot Functionality
+    const chatToggle = document.getElementById('chat-toggle');
+    const chatWindow = document.getElementById('chat-window');
+    const chatOutput = document.getElementById('chat-output');
+    const chatInput = document.getElementById('chat-input');
+    const chatSend = document.getElementById('chat-send');
+    let isExpanded = false;
+
+    chatToggle.addEventListener('click', () => {
+        isExpanded = !isExpanded;
+        chatWindow.classList.toggle('chat-hidden', !isExpanded);
+        chatWindow.classList.toggle('chat-expanded', isExpanded);
+        chatToggle.classList.toggle('collapsed', !isExpanded);
+        if (isExpanded) {
+            chatInput.focus();
+        }
+    });
+
+    async function sendQuery() {
+        if (!db) {
+            addChatMessage('Salatiso', 'Sorry, I am currently unavailable.');
+            return;
+        }
+        const input = chatInput.value.trim();
+        if (!input) return;
+        addChatMessage('You', input);
+        chatInput.value = '';
+        addChatMessage('Salatiso', 'Searching...');
+        const query = input.toLowerCase();
+
+        try {
+            const snapshot = await db.collection('ohs-knowledge')
+                                     .where('keywords', 'array-contains', query)
+                                     .limit(1)
+                                     .get();
+            let responseFound = false;
+            let response = "Sorry, I couldn’t find specific information on that topic. Please try rephrasing or ask a different question.";
+
+            if (!snapshot.empty) {
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    response = `Based on information from ${data.book || 'our resources'} (Chapter ${data.chapter || 'N/A'}), here's a summary: <br>${data.content.substring(0, 250)}...`;
+                    if (data.file) {
+                        response += ` (See <a href="/safety-plans/resources/${data.file}" target="_blank" class="text-blue-500 hover:underline">full chapter</a>)`;
+                    }
+                    responseFound = true;
+                });
+            }
+            const searchingMessage = chatOutput.querySelector('p:last-child');
+            if (searchingMessage && searchingMessage.textContent.includes('Searching...')) {
+                searchingMessage.innerHTML = `<strong>Salatiso:</strong> ${response}`;
+            } else {
+                addChatMessage('Salatiso', response);
+            }
+        } catch (error) {
+            console.error("Firestore query failed:", error);
+            const searchingMessage = chatOutput.querySelector('p:last-child');
+            if (searchingMessage && searchingMessage.textContent.includes('Searching...')) {
+                searchingMessage.innerHTML = `<strong>Salatiso:</strong> Oops, something went wrong while searching. Please try again!`;
+            } else {
+                addChatMessage('Salatiso', 'Oops, something went wrong while searching. Please try again!');
+            }
+        }
+    }
+
+    function addChatMessage(sender, message) {
+        if (chatOutput) {
+            const messageElement = document.createElement('p');
+            messageElement.classList.add('mb-2');
+            messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
+            chatOutput.appendChild(messageElement);
+            chatOutput.scrollTop = chatOutput.scrollHeight;
+        }
+    }
+
+    chatSend.addEventListener('click', sendQuery);
+    chatInput.addEventListener('keypress', (event) => {
+        if (event.key === 'Enter') sendQuery();
+    });
+
+            // Verify Login Link Navigation
+            const loginLink = document.getElementById('login-link');
+            if (loginLink) {
+                loginLink.addEventListener('click', (event) => {
+                    console.log("Login link clicked, navigating to /safety-plans/login.html");
+                });
+            }
+        });
+    </script>
+</body>
+</html>

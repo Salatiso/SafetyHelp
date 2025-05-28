@@ -1,0 +1,746 @@
+Workplace Training: A Comprehensive Guide to Legal Obligations and Best Practices in Johannesburg South, Gauteng
+1. Executive Summary
+This report provides a comprehensive overview of workplace training obligations and best practices pertinent to employers in Johannesburg South, Gauteng. It underscores the critical role of Occupational Health and Safety (OHS) training in ensuring legal compliance, mitigating workplace risks, and fostering a robust safety culture. The South African legislative framework, encompassing the Constitution, the Occupational Health and Safety Act 85 of 1993 (OHS Act), and various labour laws, collectively establishes a non-negotiable imperative for employers to train their workforce. This report navigates this complex legal terrain, elucidates the value of international standards such as ISO 45001, and offers practical tools, including a detailed list of essential training programs and a comprehensive training matrix. The successful implementation of a structured training program is presented not merely as a statutory duty but as a cornerstone of responsible business operation and a key contributor to employee well-being and productivity. The multifaceted nature of these legal requirements demands a systematic and integrated approach to training, moving beyond ad-hoc interventions to a strategically planned and continuously managed system.
+2. Foundations of Workplace Training in South Africa
+The requirement for comprehensive workplace training in South Africa is rooted in its highest laws and further detailed in specific statutes governing occupational health, safety, and labour relations. Employers must understand these foundations to build compliant and effective training programs.
+2.1. The Constitutional Mandate: Fair Labour Practices and a Safe Working Environment
+The Constitution of the Republic of South Africa, 1996, serves as the supreme law and provides the foundational principles for all labour and safety legislation. Section 23(1) of the Constitution explicitly guarantees everyone the right to fair labour practices.1 This fundamental right inherently encompasses the provision of a safe working environment, a condition that cannot be realistically achieved or maintained without adequate information, instruction, training, and supervision of employees. Labour legislation, including the OHS Act, is designed to give practical effect to these constitutional rights.1
+The constitutional rights to fair labour practices and a safe environment establish an implicit, yet powerful, high-level duty on employers. This duty compels employers to ensure that their employees possess the necessary competence and awareness to perform their work without undue risk to themselves or others. This obligation is primarily fulfilled through comprehensive training programs. It is a duty that transcends the specific clauses within individual Acts, setting a broad standard of care. For instance, if an employer fails to train an employee on a critical safety procedure, resulting in an incident, this could be viewed not only as a contravention of the OHS Act but also as an infringement of the employee's constitutional right to a safe working environment and fair labour practices, as they were unfairly exposed to unmanaged risk.
+Furthermore, Section 23 of the Constitution also enshrines the right for every worker to form and join a trade union and to participate in the activities and programs of a trade union.1 This provision implies a need for training or awareness programs for employees regarding these rights and for management on how to engage constructively and lawfully with trade unions. Such engagement may indeed cover consultations on training needs and programs, thereby promoting the constitutional and legislative aims of labour peace and the democratisation of the workplace, as envisioned by the Labour Relations Act.1
+2.2. The Occupational Health and Safety Act (OHS Act 85 of 1993)
+The OHS Act is the principal legislation governing the health and safety of persons at work and in connection with the use of plant and machinery. It outlines clear expectations for employers concerning training.
+2.2.1. General Duties of Employers (Section 8) regarding Information, Instruction, Training, and Supervision
+Section 8(1) of the OHS Act places a general, overarching duty on every employer to provide and maintain, as far as is reasonably practicable, a working environment that is safe and without risk to the health of their employees.3 This is the cornerstone of an employer's OHS responsibilities.
+More specifically, Section 8(2)(e) of the Act mandates that employers must provide "such information, instructions, training and supervision as may be necessary to ensure, as far as is reasonably practicable, the health and safety at work of his employees".3 This clause establishes a direct and explicit legal requirement for training. Regular safety training, tailored to workplace-specific risks, is a central obligation under this section.4
+The OHS Act's emphasis on "information, instruction, training, and supervision" as per Section 8 represents a four-pillared approach to ensuring workplace safety.3 Training, while crucial, is insufficient in isolation. It must be supported by:
+Information: Providing employees with relevant details about workplace hazards, risks, and control measures (e.g., safety data sheets for chemicals, information on new equipment).
+Instruction: Giving clear, unambiguous directions on how to perform tasks safely, operate machinery correctly, and follow established safe work procedures.
+Supervision: Overseeing work activities, especially for new or inexperienced employees or during high-risk tasks, to ensure that information is understood, instructions are followed, and training is being applied correctly. These four elements are interdependent; a deficiency in one can undermine the effectiveness of the others.
+Furthermore, Section 8(2)(i) requires employers to ensure that work is performed and plant or machinery is used under the general supervision of a person who has been "trained to understand the hazards associated with it" and who possesses the authority to ensure that precautionary measures implemented by the employer are adhered to.3 This directly links the competency of supervisors to their own training. Section 8(2)(j) adds that employers must ensure all employees are informed about the scope of their authority, which itself is a form of information dissemination and training.3
+The phrase "as far as is reasonably practicable," used throughout Section 8, signifies that the required level of information, instruction, training, and supervision is not static. It implies a dynamic, risk-based approach. Employers must conduct thorough risk assessments to identify hazards 5 and then implement training and other measures that are proportionate to those risks. What is "reasonably practicable" will differ significantly between, for example, a low-risk office environment and a high-risk chemical manufacturing plant or construction site. As workplace conditions, equipment, substances, or processes change, so too does the risk profile, necessitating a review and potential update of training programs to maintain compliance with this dynamic duty.
+2.2.2. Specific Training Mandates within the OHS Act and its Regulations
+Beyond the general duties in Section 8, the OHS Act and its various regulations contain specific mandates for training:
+Health and Safety Representatives (SHE Reps): Section 18(3) of the OHS Act unequivocally states that "An employer shall provide such facilities, assistance and training as a health and safety representative may reasonably require and as have been agreed upon for the carrying out of his functions".6 This is a direct and non-negotiable training requirement. Workplaces with more than 20 employees are generally required to appoint at least one SHE Rep.4 The effectiveness of SHE Reps in fulfilling their statutory functions—such as conducting inspections, identifying hazards, investigating complaints, and participating in health and safety committee meetings—is heavily reliant on them receiving appropriate training.7
+Regulations: Section 43 of the OHS Act empowers the Minister of Employment and Labour to make regulations concerning, among other things, "the training, safety equipment or facilities to be provided by employers or users" (Section 43(1)(b)(iii)) and "as to the designation and functions of health and safety representatives and health and safety committees and the training of health and safety representatives" (Section 43(1)(i)).6 This means that many detailed, legally binding training requirements for specific tasks, equipment, substances, or hazards are found within the various sets of regulations promulgated under the OHS Act. These include, but are not limited to, the General Safety Regulations, General Machinery Regulations, Driven Machinery Regulations, Electrical Installation Regulations, Electrical Machinery Regulations, Hazardous Chemical Agents Regulations, and Construction Regulations. These specific regulatory requirements will be explored in detail in Section 4 of this report.
+2.3. Key Labour Legislation and Training Implications
+Several other pieces of labour legislation in South Africa have significant, direct or indirect, implications for workplace training.
+2.3.1. Labour Relations Act (LRA) 66 of 1995: Training and Unfair Labour Practices
+The LRA governs the relationship between employers, employees, and trade unions. Crucially, Section 186(2)(a) of the LRA defines an "unfair labour practice" to include "any unfair act or omission that arises between an employer and an employee involving... unfair conduct by the employer relating to the promotion, demotion, probation (excluding disputes about dismissals for a reason relating to probation) or training of an employee or relating to the provision of benefits to an employee".9
+This provision means that employers have a legal duty to act fairly and equitably when it comes to providing training opportunities to their employees. Decisions regarding who receives training, the type of training offered, the selection criteria used, and how training is delivered can be challenged at the Commission for Conciliation, Mediation and Arbitration (CCMA) or a relevant bargaining council if an employee believes the employer's conduct was unfair.9 Examples of unfair conduct related to training include the unjust denial of training opportunities necessary for an employee's role or career progression, biased selection processes for training, using training as a punitive measure, or failing to provide training that was agreed upon in an employment contract or policy.9
+The LRA's provisions on unfair labour practices concerning training create a direct legal risk for employers if training opportunities are not managed with fairness, equity, and transparency. This risk exists even if the specific training in question is not explicitly mandated by the OHS Act for a particular role. An employee denied access to training that colleagues received, which could lead to promotion, enhanced skills, or better job security, might have grounds for an unfair labour practice claim. Consequently, training plans must consider not only OHS compliance but also the principles of fairness and equity in employee development, which also aligns with the objectives of the Employment Equity Act.10 It is important for employers to note that there have been proposed amendments to labour legislation that might remove disputes related to training from the definition of unfair labour practices.12 However, until such amendments are formally enacted and come into effect, the current provisions of the LRA remain applicable.
+The LRA's definition of an "employee" is broad and, in certain circumstances, can include trainees, particularly if they assist in carrying on or conducting the business of the employer.13 Section 198(4)(c) of the LRA further implies that students or recent graduates employed for the purpose of being trained or gaining experience are considered employees, thus granting them the protections of the LRA, including those related to unfair labour practices concerning training.13
+2.3.2. Basic Conditions of Employment Act (BCEA) 75 of 1997: General Implications
+The BCEA establishes a floor of minimum terms and conditions of employment for workers in South Africa.1 While it does not directly mandate specific OHS training programs, it underpins the principle of fair treatment of employees. This broad principle of fairness can be interpreted to include providing employees with the necessary skills and knowledge, through training, to perform their jobs safely and competently. If an employee is required to perform a task for which they are inadequately trained, and this leads to excessively long working hours due to inefficiency or creates unsafe working conditions, it could indirectly contravene the spirit and principles of the BCEA. The BCEA's protections also extend to trainees, unless their terms and conditions of employment are specifically regulated by other laws.13
+2.3.3. Skills Development Act (SDA) 97 of 1998: Framework for Skills Enhancement
+The primary purpose of the Skills Development Act is to develop the skills of the South African workforce. This includes improving the quality of life of workers, their prospects of work and labour mobility, enhancing productivity in the workplace, promoting self-employment, and redressing the disadvantages in employment experienced by designated groups due to past unfair discrimination, through education and training.14
+The SDA encourages employers to utilize the workplace as an active learning environment and to provide employees with opportunities to acquire new skills.14 It establishes an institutional and financial framework to achieve its objectives, which includes the National Skills Authority, the National Skills Fund, Sector Education and Training Authorities (SETAs), and a skills development levy-grant scheme.15
+A key component of this framework is the Skills Development Levies Act, 1999. This Act mandates employers who are registered with the South African Revenue Service (SARS) and have an annual payroll exceeding a specified threshold (currently R500,000) to pay a skills development levy, which is 1% of their total payroll, to SARS.14 These levies are channeled to the National Skills Fund and the various SETAs, which then disburse grants to employers who comply with the requirements for skills development planning and reporting. Employers can claim back a significant portion of their levies by appointing a Skills Development Facilitator (SDF), preparing and submitting a Workplace Skills Plan (WSP) outlining their planned training for the year, and an Annual Training Report (ATR) detailing the training implemented.14
+The Skills Development Act and its associated levy/grant system provide a direct financial incentive and a structured framework that employers can, and should, strategically leverage to fund a wide range of training initiatives, including OHS-related training. Since OHS training is a critical form of skills development that enhances safety, productivity, and compliance, including such training within WSPs and ATRs can enable employers to recover part of their training expenses. This effectively transforms a statutory OHS training obligation into a partially recoverable investment, building a stronger business case for comprehensive training programs that go beyond minimum compliance.
+2.3.4. Employment Equity Act (EEA) 55 of 1998: Training for Equity and Advancement
+The Employment Equity Act aims to achieve equity in the workplace by promoting equal opportunity and fair treatment in employment through the elimination of unfair discrimination, and by implementing affirmative action measures to redress the disadvantages in employment experienced by designated groups (black people, women, and people with disabilities).1
+Training and development are explicitly recognized as crucial affirmative action measures under the EEA.11 The Act is intended to provide workers from designated groups with access to training, new opportunities, and promotion.11 Employers, particularly "designated employers" (generally those employing 50 or more workers, or those with a total annual turnover above the thresholds stipulated in Schedule 4 of the Act), are legally obliged to consult with their employees, conduct an analysis to identify barriers and underrepresentation, and then prepare and implement an employment equity plan to address these issues.11 These plans must include affirmative action measures related to skills development, including training, learnerships, and mentorship programs, to ensure the equitable representation of suitably qualified people from designated groups at all occupational levels in the workforce.10
+The EEA and the SDA are designed to complement each other.10 By integrating skills development funding and initiatives into their employment equity plans, businesses can maximize the impact of their training programs, address skills gaps within designated groups, and facilitate their progression into more senior and leadership roles, while also ensuring compliance with Broad-Based Black Economic Empowerment (B-BBEE) codes and Skills Development Act requirements.10
+2.3.5. Compensation for Occupational Injuries and Diseases Act (COIDA) 130 of 1993: Training-Related Incidents
+The Compensation for Occupational Injuries and Diseases Act establishes a system of no-fault compensation for employees who are injured on duty or contract occupational diseases in the course of their employment.17 This means employees covered by COIDA generally cannot sue their employers for damages in such instances, provided the employer has met their COIDA obligations.
+Of particular relevance to workplace training is Section 25 of COIDA (as amended). This section provides for compensation for employees who meet with an accident resulting in disablement or death if the accident occurs while the employee is "undergoing any training for or performance of emergency services" or "while undergoing any work-related training in the furtherance and pursuance of the employer's business".18
+This provision is a critical protection for employees. It signifies that if an employee is injured while participating in employer-mandated or approved training activities, they are entitled to compensation under COIDA. This underscores the employer's responsibility to ensure that the training itself is conducted in a safe manner. The employer's general duties under Section 8 of the OHS Act to provide a safe working environment extend to the training environment, regardless of whether the training is conducted in-house or by an external service provider. For example, if an employee is injured during a poorly managed fire-fighting drill due to an unsafe training environment or faulty equipment used for training purposes, COIDA would apply. This necessitates that employers carefully vet external training providers, review training methodologies for safety, and ensure that all practical training exercises are conducted under conditions that minimize risk to the trainees.
+3. International Benchmarks for OHS Training
+While South African legislation provides a strong framework for OHS training, international standards and guidelines offer valuable benchmarks for achieving best practice and developing comprehensive OHS management systems.
+3.1. ISO 45001:2018 – Occupational Health and Safety Management Systems
+ISO 45001:2018 is an international standard that specifies requirements for an occupational health and safety (OH&S) management system, with guidance for its use, to enable organizations to proactively improve their OH&S performance in preventing injury and ill-health.19 It provides a robust framework for managing OHS risks, emphasizing leadership commitment, worker participation and consultation, hazard identification and risk assessment, determination of legal and other requirements, operational planning and control, emergency preparedness and response, performance monitoring and measurement, and continual improvement.19
+Several clauses within ISO 45001 are particularly pertinent to training and competence:
+Clause 7.2 Competence: This clause requires the organization to:
+Determine the necessary competence for workers that affects or can affect its OH&S performance.
+Ensure that workers are competent on the basis of appropriate education, training, or experience.
+Where applicable, take actions to acquire and maintain the necessary competence (e.g., through training, mentoring, or reassignment of currently employed persons; or the hiring or contracting of competent persons), and evaluate the effectiveness of these actions.
+Retain appropriate documented information as evidence of competence.20
+Clause 7.3 Awareness: This clause mandates that the organization ensure workers are made aware of:
+The OH&S policy and OH&S objectives.
+Their contribution to the effectiveness of the...source to their life or health, as well as the arrangements for protecting them from undue consequences for doing so.20
+Clause 7.4 Communication: While not directly a training clause, it requires the organization to establish, implement, and maintain processes for internal and external communication relevant to the OH&S management system. This includes determining what, when, how, and with whom to communicate.20 Effective communication of OHS information, procedures, and changes is a vital supportive element to training and awareness.
+Adopting ISO 45001 is not a legal requirement in South Africa, but it represents international best practice. The standard's systematic approach to determining competence needs, delivering training, ensuring awareness, and documenting these processes provides a more structured and auditable framework than the general duties outlined in Section 8 of the OHS Act. Implementing an ISO 45001-aligned system can therefore serve as a robust methodology for fulfilling these OHS Act requirements more effectively and demonstrably. The standard's emphasis on a Plan-Do-Check-Act (PDCA) cycle ensures that OHS training is not a static event but part of a continually improving system.
+3.2. International Labour Organization (ILO) Guidelines on OHS Training
+The International Labour Organization (ILO) has been instrumental in promoting occupational safety and health globally through conventions, recommendations, codes of practice, and guidelines. Key principles underpinning ILO's approach to OHS include the primacy of prevention, the adoption of risk management strategies, the importance of building a strong preventative safety and health culture within organizations, active worker involvement and participation, and the fundamental responsibility of employers to ensure a safe and healthy working environment.22
+The ILO develops a wide range of practical and user-friendly training materials and methodologies designed to build OHS capacities.22 These materials often focus on introducing the concepts of hazard identification, risk assessment, and prevention as effective means to foster a strong and sustained preventative safety culture.22 A common strategy in ILO training initiatives is the "train-the-trainer" approach, which aims to develop a cadre of local trainers who can then disseminate OHS knowledge and skills more widely within their enterprises or sectors.22
+The target audience for ILO OHS training materials is broad, encompassing management, supervisors, workers and their representatives, and government officials involved in OHS regulation and enforcement.22 The ILO's "Guidelines on Occupational Safety and Health Management Systems" (ILO-OSH 2001) provide a framework that includes elements such as policy, organizing (which covers competence and training), planning and implementation, evaluation, and action for improvement.25
+Both ISO 45001 and ILO guidelines strongly emphasize "worker participation" and "consultation" as integral components of effective OHS management. This international best practice directly aligns with and reinforces the South African legal requirements for the establishment and functioning of Health and Safety Representatives (SHE Reps) under Sections 17 and 18 of the OHS Act, and Health and Safety Committees under Sections 19 and 20 of the OHS Act. The international emphasis on participation underscores the critical importance of providing comprehensive training to these representatives and committee members to enable them to contribute meaningfully to workplace safety.4
+4. Essential Workplace Training Programs for a Johannesburg South Workplace
+Based on South African legal requirements and best practices, the following training programs are essential for a workplace in Johannesburg South, Gauteng. The specific applicability and depth of some specialized training will depend on the nature of the employer's operations and the hazards identified through risk assessments.
+4.A. General Foundational Training (All Employees)
+These programs form the baseline of OHS knowledge for everyone in the workplace.
+4.A.1. OHS Induction Training
+Legal Status: Mandated by the general duty to inform, instruct, and train under OHS Act, Section 8(2)(e). Specifically required by Construction Regulations, 2014, Regulation 7(5) for entry to construction sites. The principle of informing new personnel of risks before they commence work is universally applicable.
+Target Audience: All new employees (permanent, temporary, contract), and, with adjusted content, contractors and site visitors.
+Key Content: Based on guidance from sources 4, induction training should cover:
+The company's health and safety policy and objectives.
+Specific workplace or site rules and safety protocols.
+Emergency procedures, including fire alarms, evacuation routes, assembly points, and emergency contact details.
+An overview of the key hazards relevant to the specific workplace or site and general risk awareness.
+The employee's OHS responsibilities, including their duties under Section 14 of the OHS Act (e.g., to take reasonable care for their own health and safety and that of others, obey lawful OHS instructions, report unsafe conditions).
+Procedures for reporting hazards, incidents, accidents, and near misses.
+The names and locations of key OHS personnel, such as First Aiders, SHE Representatives, and Supervisors.
+Information on the use, care, storage, and limitations of any general Personal Protective Equipment (PPE) required.
+Site maps, local area rules, and the meaning of safety signage used in the workplace.
+Housekeeping standards and expectations.
+Procedures for specific high-risk areas if applicable (e.g., awareness of asbestos-containing materials if present on site 26).
+Confirmation of understanding, typically through a signed and dated record of attendance and comprehension.26
+Notes: Induction is critically important as new employees, contractors, and visitors are often at a higher risk of incidents due to unfamiliarity with the environment and its hazards.26 The content must be tailored to the specific industry and operational context of the Johannesburg South workplace.
+4.A.2. Toolbox Talks
+Legal Status: While not explicitly mandated by name in the OHS Act, toolbox talks are a highly effective method of fulfilling the continuous duty under Section 8(2)(e) to provide ongoing information, instruction, and supervision, and to maintain a safe system of work. They are widely considered an industry best practice for reinforcing safety messages.
+Target Audience: Relevant work teams, site personnel, particularly those involved in operational or site-based tasks.
+Purpose & Content: Drawing from best practices 4, toolbox talks are:
+Short, regular (e.g., daily or weekly before shifts) safety meetings.
+Focused on specific job-related hazards, safe work procedures for current or upcoming tasks, reminders about PPE, lessons learned from recent incidents or near misses (internal or industry-wide), changes in site conditions, or specific safety campaigns.
+Topics can be diverse and relevant to the immediate work, such as: use and inspection of specific protective equipment, electrical safety precautions, managing slips, trips, and falls, ladder safety, safe use of hand tools, emergency preparedness for specific scenarios, etc..29
+Designed to be interactive, encouraging questions, discussion, and feedback from employees.30
+Conduct & Documentation:
+Brevity is key; typically 10 to 15 minutes to maintain engagement.29
+Should be organized and led by supervisors, site managers, or team leaders to demonstrate management commitment to safety.29
+It is essential to document these talks, recording the date, topic(s) discussed, names of attendees, and any key points, agreements, or actions arising from the discussion.28 These records serve as evidence of ongoing safety communication and consultation.
+Notes: Toolbox talks are a vital, practical tool for maintaining safety awareness at the operational level. They bridge the gap between formal, periodic training sessions and the realities of daily work, helping to embed safety into the workplace culture.
+4.B. Legally Mandated and Best Practice Role-Specific Training
+This category covers training required for individuals in specific roles or those performing particular hazardous tasks.
+4.B.1. Leadership & Management
+CEO & Section 16 Appointee Legal Obligations (OHS Act Section 16(1) & 16(2))
+Legal Mandate: OHS Act, Section 16.
+Target Audience: The Chief Executive Officer (or the person deemed to be the CEO for OHS Act purposes) and any person(s) formally appointed under Section 16(2) to assist the CEO.
+Key Content: Based on legislative requirements and guidance 31:
+A thorough understanding of the OHS Act 85 of 1993, its objectives, and its general requirements.
+The specific duties, responsibilities, and ultimate accountability of the CEO as stipulated in Section 16(1). It is critical to understand that accountability cannot be delegated, only duties.32
+The legal provisions, powers, and limitations related to the delegation of duties to a Section 16(2) appointee, and the ongoing control and direction the CEO must exercise over such appointees.
+A clear understanding of legal liability principles, including the distinction between corporate liability and personal liability, and the roles of the "accountable person" (CEO) versus the "responsible person" (16(2) appointee).31
+Practical knowledge on how to ensure that all the employer's duties under the OHS Act are properly discharged throughout the organization.32
+Requirements for establishing, implementing, and maintaining an effective OHS management system.
+Ensuring that comprehensive risk assessments are conducted, appropriate precautionary measures are identified and implemented, and adequate information, instruction, training, and supervision are provided to all employees.32
+The role, establishment, and functioning of health and safety committees.32
+Notes: This training is of paramount importance. The CEO holds the ultimate legal responsibility for OHS compliance. Ignorance of these extensive duties is not a defense in the event of a contravention or incident. Any person appointed under Section 16(2) must also be competent and fully understand the duties they are accepting. While specific legal liability training for CEOs is not explicitly mandated as a stand-alone course in the Act, it is highly recommended to ensure a full appreciation of these responsibilities.33
+General Management & Supervisory OHS Responsibilities
+Legal Mandate: OHS Act, Section 8(2)(i) (requiring work to be supervised by a person trained to understand the associated hazards). Various specific regulations (e.g., Construction Regulations) also place explicit duties on supervisors.
+Target Audience: All levels of management, departmental heads, supervisors, foremen, and team leaders.
+Key Content:
+A clear understanding of their specific role in implementing the company's OHS policy, procedures, and management system within their areas of control.
+Competency in hazard identification, risk assessment methodologies, and the implementation of appropriate control measures relevant to their operational areas.
+Procedures for conducting regular workplace safety inspections and ensuring corrective actions are taken.
+Knowledge of incident investigation and reporting procedures, including their role in preliminary investigations.
+Ensuring that employees under their supervision are provided with, and correctly use, necessary PPE and adhere to all safe work procedures and instructions.
+Effective communication and consultation techniques for engaging with employees and SHE Representatives on OHS matters.
+A working knowledge of the relevant sections of the OHS Act and applicable regulations pertaining to their work environment and responsibilities.
+Notes: Supervisors are the frontline of OHS management. Their daily actions, or lack thereof, have a direct and significant impact on workplace safety. Training must equip them with the knowledge and skills to proactively manage OHS within their teams and to enforce safety measures effectively.4
+4.B.2. Safety, Health, and Environment (SHE) Representatives
+Legal Mandate: OHS Act, Section 18(3) explicitly requires employers to provide training to SHE Representatives.
+Target Audience: All employees formally designated (nominated or elected) as SHE Representatives.
+Key Content: Based on typical accredited course outlines and statutory functions 4:
+The legal framework of the OHS Act and its relevant regulations, including definitions, terminology, and objectives.
+The specific roles, responsibilities, statutory functions, and rights of a SHE Representative as detailed in Section 17 (Designation) and Section 18 (Functions) of the OHS Act.
+Understanding their rights to conduct workplace inspections, investigate the causes of incidents, investigate employee complaints regarding OHS, make representations to the employer or health and safety committee (and to an inspector if representations are unsuccessful), accompany inspectors during inspections, participate in consultations with inspectors, and receive information from inspectors.
+Principles and methodologies of Hazard Identification and Risk Assessment (HIRA).
+Practical procedures for conducting effective workplace inspections and reporting findings.
+Understanding their role in supporting incident investigations.
+The establishment, constitution, and functions of Health and Safety Committees (as per Sections 19 and 20 of the OHS Act) and their role as committee members.
+An overview of employer and employee legal responsibilities under the OHS Act.
+Basic principles of emergency preparedness and response.
+Techniques for promoting a positive safety culture among fellow employees.
+Notes: Well-trained SHE Representatives are a significant asset to any organization, facilitating effective communication between employees and management on OHS matters and contributing to proactive hazard management. Training should ideally be accredited by a relevant SETA to ensure quality and recognition.
+4.B.3. Emergency Preparedness
+First Aiders (Accredited Levels 1, 2, 3)
+Legal Mandate: General Safety Regulations (GSR) promulgated under the OHS Act. Specifically, GSR 3 requires employers to provide adequate first aid facilities, equipment, and trained first aid personnel. In workplaces with more than ten employees, having a certified first aider on-site is a legal requirement.5 The general guideline is to have at least one first aider for every 50 employees in general industrial environments, and one for every 100 in offices and shops, though this should be confirmed by a risk assessment.37
+Target Audience: Employees designated by the employer to act as first aiders.
+Key Content: Based on SAQA-aligned unit standards and DoEL requirements 5:
+Training must be accredited and cover First Aid Levels 1, 2, and 3, as determined by the workplace risk assessment. Higher-risk environments will necessitate more advanced training (e.g., Level 3).
+Core skills include Cardiopulmonary Resuscitation (CPR), managing bleeding (haemorrhage control), treating burns, fractures, shock, choking, and other common workplace injuries and medical emergencies.
+Emergency scene management, including assessing the situation for safety, prioritizing casualties, and calling for professional medical help.
+Proper record-keeping of all first aid treatment provided.
+An understanding of the OHS Act requirements related to first aid in the workplace.
+Regular refresher courses are essential to maintain skills and certification validity (typically every 2-3 years for full certification, with annual CPR refreshers often recommended).4
+Accreditation: First aid training providers must be accredited by a relevant Sector Education and Training Authority (SETA), such as the Health and Welfare SETA (HWSETA), and their programs must be approved by the Department of Employment and Labour (DoEL) or the Quality Council for Trades and Occupations (QCTO) for the certificates to be legally recognized.5
+Notes: Prompt and effective first aid can significantly reduce the severity of injuries and save lives. The level of training and the number of first aiders required must be determined by a thorough workplace-specific risk assessment. Maintaining valid certifications for all appointed first aiders is crucial for compliance.
+Basic Fire Fighting and Prevention
+Legal Mandate: OHS Act Section 8 (general duty to provide a safe workplace and safe systems of work). More specifically, the Environmental Regulations for Workplaces (ERW), Regulation 9, addresses fire precautions and equipment, implying the need for personnel trained to use such equipment and implement procedures.39
+Target Audience: Designated fire team members or fire marshals; general fire safety and prevention awareness for all employees.
+Key Content: Based on typical fire safety training programs 4:
+Understanding the fire triangle/tetrahedron (fuel, oxygen, heat, chemical reaction).
+Different classes of fire (e.g., Class A: solid combustibles; Class B: flammable liquids/gases; Class C: electrical; Class D: combustible metals; Class F/K: cooking oils/fats) and the appropriate extinguishing agents and methods for each class.39
+Proper selection and use of various types of fire extinguishers (e.g., water, foam, CO2, dry chemical powder, wet chemical), including the PASS (Pull, Aim, Squeeze, Sweep) technique.39
+Use of other fire-fighting equipment such as fire blankets and hose reels, if available.
+Fire prevention measures, including good housekeeping, safe storage and handling of flammable substances, regular maintenance of electrical equipment, and control of ignition sources.39
+Understanding fire safety signage (e.g., exit routes, fire extinguisher locations, assembly points) and emergency evacuation procedures.39
+The role of fire wardens/marshals.
+Practical, hands-on sessions with fire-fighting equipment are highly recommended.39
+Notes: Essential for preventing fires and for ensuring an effective initial response if a fire does occur, potentially preventing a small incident from escalating. Training should be tailored to the specific fire risks present in the workplace.
+Evacuation Procedures
+Legal Mandate: OHS Act Section 8 (general duty). This is an integral part of any emergency preparedness plan.
+Target Audience: All employees; more detailed training for designated emergency coordinators, fire wardens, or evacuation marshals.
+Key Content:
+Knowledge of site-specific emergency exits, evacuation routes, and designated safe assembly points.
+Understanding different alarm signals (if applicable) and their meanings.
+Procedures for a calm and orderly evacuation.
+Specific procedures for assisting visitors, individuals with disabilities, or injured persons during an evacuation.
+The roles and responsibilities of emergency wardens/marshals in guiding personnel and conducting headcounts.
+The importance of regular evacuation drills to test procedures and ensure familiarity.
+Notes: Ensures that all personnel can evacuate the premises safely and efficiently during any type of emergency, not limited to fires (e.g., bomb threats, chemical spills, structural issues). Drills are crucial for reinforcing this training.4
+4.B.4. Hazard-Specific Training
+This training is directed at employees who may be exposed to specific significant hazards as part of their work.
+Hazard Identification and Risk Assessment (HIRA)
+Legal Mandate: OHS Act Section 8(2)(d) requires employers to establish what hazards to health or safety are attached to any work performed. Various regulations, such as Construction Regulation 9, explicitly require risk assessments to be conducted by competent persons.
+Target Audience: Managers, supervisors, SHE Representatives, safety officers, and any employees who will be involved in the process of conducting formal risk assessments.
+Key Content: Based on standard HIRA training principles 5:
+Understanding the legal requirements and purpose of HIRA.
+Principles and methodologies of hazard identification (e.g., recognizing physical, chemical, biological, ergonomic, and psychosocial hazards).
+Risk evaluation techniques, including assessing the likelihood and severity of potential harm.
+The hierarchy of controls (elimination, substitution, engineering controls, administrative controls, PPE) and how to apply it to develop effective risk mitigation strategies.
+Procedures for documenting risk assessments and developing safe work procedures (SWPs) or method statements.
+Requirements for reviewing and updating risk assessments periodically or when changes occur.
+Notes: HIRA is the cornerstone of a proactive OHS management system. Training ensures that this critical process is carried out competently and systematically, leading to more effective hazard control.
+Working with Hazardous Chemical Substances (HCS) / Hazardous Chemical Agents (HCA)
+Legal Mandate: OHS Act and the Hazardous Chemical Agents Regulations, 2021 (which replaced the Hazardous Chemical Substances Regulations of 1995). Regulation 3A of the HCA Regulations specifically requires employers to provide employees with suitable and sufficient information, instruction, and training before they are exposed or may be exposed to an HCA.
+Target Audience: All employees who handle, use, store, transport, decant, or dispose of hazardous chemical agents, or who may be exposed to them in the course of their work. This includes laboratory staff, cleaning personnel using industrial chemicals, manufacturing operatives, maintenance staff, etc.
+Key Content: Based on regulatory requirements and best practice training material outlines 4:
+An understanding of the HCA Regulations, including Occupational Exposure Limits (OELs), and the duties of persons who are likely to be exposed to an HCA.40
+Detailed information on the specific HCAs to which the employee is likely to be exposed, including their names, where they are found in the workplace, their physical and health hazards (potential harmfulness), and routes of exposure.40
+How to access and interpret Safety Data Sheets (SDS) for each HCA, understanding the information provided in each section of an SDS.40
+Understanding Globally Harmonized System (GHS) classification and labelling of chemicals, and the information conveyed by labels on containers.40
+Safe work practices and procedures for the use, handling, storage, transportation, decanting, and disposal of HCAs, including good housekeeping and personal hygiene measures.34
+Emergency procedures to be followed in the event of spillages, leakages, accidental exposure, or other similar emergency situations involving HCAs.40
+The correct selection, use, fitting, cleaning, maintenance, and storage of required Personal Protective Equipment (PPE), such as respirators, chemical-resistant gloves, eye protection, and protective clothing.34
+Information on the necessity and procedures for personal air sampling, biological monitoring (if applicable), and medical surveillance programs related to HCA exposure.34
+Notes: This training is critical for preventing chemical burns, poisoning, respiratory illnesses, fires, explosions, and environmental contamination. Training must be specific to the actual chemicals present in the workplace and their associated risks. Refresher training is essential, especially when new chemicals are introduced or procedures change.
+Confined Space Entry
+Legal Mandate: OHS Act and specifically General Safety Regulations (GSR), Regulation 5 ("Work in confined spaces"). Construction Regulations may also contain relevant provisions if the confined space work is part of construction.
+Target Audience: Employees who are required to enter confined spaces (entrants), those who act as standby persons (attendants) outside the confined space, entry supervisors, and personnel responsible for issuing confined space entry permits and conducting atmospheric testing.
+Key Content: Based on regulatory requirements and best practice training 4:
+Definition of a confined space and identification of typical confined spaces in the workplace.
+Understanding the potential hazards associated with confined spaces, including:
+Atmospheric hazards: oxygen deficiency or enrichment, flammable or explosive atmospheres, toxic gases, vapours, or dusts.42
+Physical hazards: entrapment, engulfment (e.g., by grain, sand, liquids), mechanical hazards from equipment, falls, slips, trips, temperature extremes, noise, poor visibility.42
+Relevant legal requirements, particularly GSR 5, and company-specific confined space entry procedures.
+The importance and process of conducting a thorough risk assessment before any confined space entry.41
+Permit-to-work systems for confined space entry: understanding the permit, conditions for entry, authorization, and cancellation.41
+Atmospheric testing and monitoring: procedures for testing for oxygen levels, flammable gases/vapours, and toxic contaminants before entry and continuously or periodically during entry, using calibrated gas detection equipment.41
+Ventilation methods (natural and mechanical) to ensure a safe atmosphere.41
+Isolation procedures for energy sources (e.g., lock-out/tag-out for electrical, mechanical, hydraulic, pneumatic systems) and pipelines.
+Selection, use, fitting, inspection, and maintenance of appropriate PPE, including respirators (e.g., self-contained breathing apparatus or airline respirators), harnesses, lifelines, and communication devices.42
+The specific duties and responsibilities of entrants, attendants (standby persons), and entry supervisors.41
+Emergency preparedness and rescue procedures, including communication with the rescue team, use of rescue equipment, and basic rescue techniques (non-entry rescue where possible).41
+Notes: Work in confined spaces is inherently high-risk and is a leading cause of multiple fatalities in single incidents (often involving would-be rescuers). Untrained personnel must NEVER be allowed to enter a confined space. Training must include practical exercises and drills, especially for emergency rescue. Competency must be verified before authorizing entry.41
+Working at Heights (Fall Protection)
+Legal Mandate: OHS Act (Section 8 general duty), General Safety Regulations, and particularly Construction Regulations, 2014, Regulation 10 (Fall Protection), which is very detailed.
+Target Audience: All employees whose work requires them to be in a position where there is a risk of falling from one level to another (e.g., working on roofs, scaffolds, ladders, near unprotected edges, on elevated platforms), as well as supervisors of such work, individuals responsible for developing fall protection plans, and those who inspect fall protection equipment.
+Key Content: Based on regulatory requirements and best practice training 4:
+Understanding the relevant legislation pertaining to working at heights, especially OHS Act duties and Construction Regulation 10.44
+Hazard identification and risk assessment specific to working at heights in various situations.43
+The legal requirement for and components of a site-specific Fall Protection Plan (FPP), which must be prepared by a competent person before work at height commences.45 This includes risk assessments, procedures to eliminate/mitigate fall risks, and a rescue plan.
+The hierarchy of controls as applied to working at heights:
+Elimination (e.g., doing the work from the ground).
+Fall Prevention (passive systems like guardrails, barriers, screens, safety netting).48
+Fall Arrest (active systems like full-body harnesses, lanyards, energy absorbers, anchor points, lifelines).43
+Correct selection, pre-use inspection, fitting, adjustment, use, care, maintenance, and storage of fall protection equipment (both fall prevention and fall arrest systems).43 Understanding equipment limitations and SANS standards.48
+Understanding concepts like fall factors, clearance distances required to prevent impact with lower levels, and the risks of suspension trauma (orthostatic intolerance) following a fall arrest.44
+Safe use of ladders (portable ladder training is often a specific module or course).43
+Awareness of scaffolding safety (for general users); specialized training is required for scaffold erectors and inspectors (see Section 4.B.6).
+Emergency rescue procedures for a person who has fallen and is suspended in a harness, as outlined in the FPP.47 This must include drills and simulations.46
+The importance of medical fitness for employees working at height.46
+Notes: Falls from height remain a leading cause of serious injuries and fatalities in many industries, particularly construction. Comprehensive training, including practical components, is non-negotiable. The role of the "competent person" in developing the Fall Protection Plan and supervising height work is critical.45 Refresher training is essential.
+4.B.5. Equipment and Machinery-Specific Training
+This covers training for legally appointed persons responsible for machinery and for operators of specific types of machinery.
+GMR 2.1 Appointee (General Machinery Regulations)
+Legal Mandate: OHS Act, General Machinery Regulations (GMR), Regulation 2(1) requires the appointment of a competent person to be responsible for machinery.
+Target Audience: The specific individual(s) appointed in writing as the GMR 2.1 (and any GMR 2.7 assistants).
+Competency Requirements 49: The competency requirements for a GMR 2.1 appointee vary significantly based on the sum of the power generated by machinery on the premises (measured in kW) or, for electricity distribution, the maximum demand (measured in kVA).
+Qualifications: Can range from a served engineering trade apprenticeship or extensive practical experience (for <1200 kW) to a T3 or N5 in mechanical or electrical engineering (for 1200 kW to <3000 kW), up to a Bachelor's degree in mechanical or electrical engineering plus a Government Certificate of Competency (GCC Factories) or being a Certificated Engineer (for >3000 kW or >10000 kVA).49
+Experience: Relevant post-qualification practical experience in the operation and maintenance of the class of machinery the appointee will be required to supervise is crucial.49
+Certification: A GCC (Factories) is typically required for installations exceeding 3000 kW of generated power or 10000 kVA maximum demand for electricity generation.49 A wireman's license may be required for smaller electricity distribution setups (<3000 kVA).49
+Knowledge: A thorough understanding of the OHS Act and all relevant regulations, particularly the General Machinery Regulations. Graduate engineers appointed to supervise machinery >3000kW must have passed the OHS Act exam held by the Commission of Examiners.50
+Key Content for Understanding Role: The GMR 2.1's legal duties and responsibilities, including ensuring machinery is suitable, installed correctly, operated safely, maintained properly, and that all safety devices are functional and used. Supervision of machinery operations and maintenance personnel. Ensuring compliance with all GMR provisions.49
+Notes: The GMR 2.1 appointee holds significant legal responsibility for the safety of all machinery under their charge. Their competency, established through specific qualifications, extensive experience, and potentially formal certification (like GCC), is paramount. Specialized courses are available to ensure GMR 2.1 appointees fully understand their extensive legal role and responsibilities.49
+Driven Machinery Operators (e.g., Lifting Equipment such as Forklifts, Cranes, Hoists)
+Legal Mandate: OHS Act, Driven Machinery Regulations (DMR). DMR 18 ("Lifting machines and lifting tackle") implies that operators must be competent and that equipment must be operated safely. The "Incorporated LME Code of Practice for Lifting Machine Operators" (often referenced with DMR) requires operators to be trained by accredited providers.51
+Target Audience: All employees who operate any form of lifting machine (e.g., forklifts, mobile cranes, overhead cranes, hoists, vehicle lifts).
+Key Content 50:
+Training must be specific to the type, make, model, and capacity of the lifting machine the operator will use.
+Safe operating procedures, including pre-use operational checks and inspections.
+Hazard identification related to lifting operations (e.g., unstable loads, overhead obstructions, ground conditions, proximity to people).
+Understanding load charts, rated capacities, principles of stability, and factors affecting lifting capacity (e.g., sling angles, reach).
+Correct slinging techniques and use of lifting tackle (chains, slings, hooks, shackles), including inspection of tackle.
+Standard hand signals for crane operations (if applicable).
+Relevant provisions of the Driven Machinery Regulations and other applicable safety rules.
+Practical operating instruction under direct supervision (minimum 50% of training time for novice operators).51
+Minimum training duration for first-time learners is typically 40 hours.51
+Assessment of physical and psychological fitness to operate machinery; vision tests may be required.52
+Regular refresher training and re-certification are required, as certificates of competence are typically valid for 24 months.51
+Accreditation: Training should be conducted by providers accredited by a relevant SETA and/or recognized by the Department of Employment and Labour for the specific type of lifting machine.51
+Notes: The operation of driven machinery, particularly lifting equipment, by untrained or incompetent individuals poses severe risks of injury, death, and property damage. Formal, accredited training and certification are industry standard and a legal expectation. Employers have a general duty to ensure operators are aware of dangers and precautions.50
+Electrical Installations & Machinery (Competent Persons for Electrical Work)
+Legal Mandate: OHS Act, Electrical Installation Regulations (EIR), and Electrical Machinery Regulations (EMR). These regulations define various categories of "competent persons" for electrical work.
+Target Audience: Persons performing electrical installation work, testing of electrical installations, issuing Certificates of Compliance (CoC), or acting as "competent persons" or "appointed persons" for the control and supervision of electrical systems and machinery.
+Key Content/Competency 53: Competency for electrical work is strictly defined and typically requires a combination of formal qualifications, practical experience, and specific knowledge of regulations and standards. Examples include:
+Electrical Tester for Single Phase: Requires a trade test as an Electrician (Construction) plus relevant experience, or an alternative recognized trade test plus successful completion of the "Installation Rules" subject (based on SANS 10142-1) and experience, or a recommendation from the Electrical Contracting Board of South Africa (ECB) plus experience.53
+Installation Electrician (IE): Requires a minimum theoretical qualification (e.g., N2/N3 certificate with specific subjects like Electrical Trade Theory, Mathematics, Engineering Science/Industrial Electronics, or a National Senior Certificate with relevant technical subjects), plus proof of practical proficiency (e.g., a passed trade test as an Electrician, Millwright, etc.), and successful completion of the "Installation Rules" subject.53 Alternative routes via EWSETA unit standards or higher diplomas/degrees in electrical engineering combined with Installation Rules are also possible.54
+Master Installation Electrician (MIE): Requires registration as an Installation Electrician, at least two years of practical experience post-IE registration, a minimum N3 theoretical qualification (including Electrical Trade Theory N3), and successful completion of the "Specialised Electrical Installation Codes" subject (covering standards like SABS 051, 086, 089, 0108).53
+A thorough knowledge of relevant SANS standards, particularly SANS 10142-1 ("The wiring of premises"), is fundamental for all electrical installation work.54
+Notes: Electrical work is highly specialized and carries significant risks of electrocution, burns, and fire if not performed correctly by competent individuals. Only appropriately qualified, and where required, registered persons (e.g., with the Department of Labour as an IE or MIE) may perform certain electrical tasks, such as issuing Certificates of Compliance.
+Operators of Construction Vehicles and Mobile Plant (Construction Regulations, 2014, Reg 23)
+Legal Mandate: Construction Regulations, 2014, Regulation 23(1)(d)(i).
+Target Audience: Operators of construction vehicles (e.g., tipper trucks on site) and mobile plant (e.g., excavators, bulldozers, graders, loaders, mobile cranes used on construction sites).
+Key Content/Competency 56:
+Must have received "appropriate training" specific to the type of vehicle or mobile plant they are to operate.
+Must be "certified competent" and be in possession of proof of such competency (e.g., a valid operator's certificate from an accredited training provider).
+Must be "authorized in writing" by the contractor to operate the specific vehicle(s) or plant.
+Must have a valid medical certificate of fitness specific to the construction work to be performed and for operating such machinery, as per Annexure 3 of the Construction Regulations.
+Notes: Similar to other driven machinery, the safe operation of heavy construction vehicles and mobile plant is critical on dynamic and often congested construction sites. Training must cover safe operating procedures, pre-use checks, awareness of site hazards, and interaction with other plant and personnel.
+Crane Operators (Construction Regulations, 2014, Reg 22 for Tower Cranes; other cranes may fall under Reg 23)
+Legal Mandate: Construction Regulations, 2014, Regulation 22(e) specifically for tower crane operators. Operators of other types of cranes used in construction (e.g., mobile cranes) would typically fall under the general requirements for operators of mobile plant in Construction Regulation 23(1)(d).
+Target Audience: Operators of tower cranes, mobile cranes, crawler cranes, and other lifting appliances used in construction.
+Key Content/Competency 55:
+Tower Crane Operators (Reg 22(e) & (f)): Must be "competent to carry out the work safely." This includes specific training on tower crane principles, safety rules, operating functions, erection considerations (awareness), use of hand signals, understanding lifting gear and slinging operations, safe load handling, and maintaining a professional operator's attitude.55 They must also have a medical certificate of fitness to work in such an environment (Annexure 3 of Construction Regulations).56 Training often aligns with SAQA Unit Standard 116255.55
+Mobile Crane Operators (Reg 23): Training typically covers definitions of crane terminology, understanding capacity ratings and load charts, factors affecting stability (e.g., ground conditions, wind), effects of dynamic loading, proper setup (outriggers), pre-operational inspections, safe operating practices (smooth control movements, avoiding side-loading), load balancing, sling angle calculations and their effect on sling tension, standard hand signals, procedures for pick-and-carry operations (if applicable), and emergency procedures.57 An appropriate class of heavy vehicle driver's license is usually a prerequisite.57 Training often aligns with SAQA Unit Standard 116254.57
+Notes: Crane operation is a high-risk activity requiring significant skill and judgment. Competency involves extensive theoretical knowledge, practical operating skill, and a thorough understanding of the specific type of crane being operated, its limitations, and all associated safety protocols.
+Explosive Actuated Fastening Device Operators (Construction Regulations, 2014, Reg 21)
+Legal Mandate: Construction Regulations, 2014, Regulation 21(1)(b).
+Target Audience: Persons who operate powder-actuated or gas-actuated tools (e.g., Hilti guns, Ramset tools) for driving fasteners into materials like concrete or steel.
+Key Content/Competency 56:
+The user must be "trained in the operation, maintenance and use of such a device."
+Training should cover selection of the correct tool, power load, and fastener for the application; inspection of the tool before use; safe handling procedures; understanding potential hazards (e.g., ricochet, through-shots, unintended firing); proper cleaning and maintenance; and required PPE (e.g., safety glasses, hearing protection).
+Notes: While these tools can improve efficiency, they are potentially dangerous if misused or if the operator is untrained. Training ensures awareness of the hazards and correct, safe operating procedures.
+4.B.6. Specialized Work & Industry-Specific Training (Primarily from Construction Regulations, 2014)
+The Construction Regulations, 2014, are notably detailed in requiring "competent persons" for a multitude of specific roles and tasks on a construction project. The definition of a "competent person" in Regulation 1 itself hinges on the individual possessing "the required knowledge, training and experience and, where applicable, qualifications, specific to that work or task" and being "familiar with the Act and with the applicable regulations".56 This creates a significant and layered training and competency assurance burden for employers in the construction sector. For each of an extensive list of roles, the employer must ensure, and be able to demonstrate, that the appointed individual meets this definition, which invariably involves specific training and often formal qualifications or registrations.
+The following roles, among others detailed in the Construction Regulations (GN R84 of 2014) 56, require such competency, with specific training implications:
+Client Agent (Reg 5(5), 5(6), 5(7)(b)): Must be a competent person, acting as the client's representative, and if performing certain functions, must be registered with a relevant statutory body (e.g., SACPCMP as a Pr.CHSA).56
+Designer (of permanent and temporary works) (Reg 6): Must be a competent person with the specific knowledge, training, and experience relevant to the design work being undertaken.56
+Construction Manager (Reg 8(1)): A principal contractor must appoint a full-time competent person as a construction manager responsible for managing all construction work, including OHS compliance.56 Competency often implies significant experience and qualifications, potentially including registration with the SACPCMP as a Pr.CM.
+Construction Health and Safety Officer (CHSO) (Reg 8(5), 8(6)): A contractor must appoint a CHSO (full-time or part-time based on project risk profile). The contractor must be reasonably satisfied that the CHSO has the necessary competencies and resources and is registered with a statutory body approved by the Chief Inspector (e.g., SACPCMP as a CHSO, CHSM, or Pr.CHSA).56
+Construction Supervisor (Reg 8(7)): A construction manager must appoint competent construction supervisors responsible for supervising specific construction activities and ensuring OHS compliance for those activities.56
+Person Performing Risk Assessments (Reg 9(1)): Must be a competent person.56 (Also covered in 4.B.4).
+Scaffold Erectors, Team Leaders, and Inspectors (Reg 16(1)): A contractor must appoint a competent person in writing to supervise all scaffolding operations. This supervisor must ensure that all scaffold erectors, team leaders, and inspectors are competent to carry out their work.56 This requires specific training in scaffold design principles (as per SANS 10085), erection, modification, dismantling, and inspection procedures for various types of scaffolds.59
+Suspended Platform Erectors, Operators, and Inspectors (Reg 17(1)): Similar to scaffolding, a competent person must supervise suspended platform operations, ensuring erectors, operators, and inspectors are competent.56 Regulation 17(12) further specifies that employees working on suspended platforms must be medically fit, competent in the work, and trained in safe access/egress, operation of controls and safety devices, dangers of misuse, emergency procedures, and use of body harnesses.56
+Rope Access Supervisor / Person Supervising Rope Access Work (Reg 18(1)): Must be a competent person with specific training and certification in industrial rope access techniques (e.g., through recognized bodies like IRATA or SAIOHRA).56
+Material Hoist Inspector (Reg 19(8)(a)): Must be a competent person to inspect material hoists.56
+Bulk Mixing Plant Supervisor (Reg 20(1)): Must be a competent person to supervise the erection and operation of a bulk mixing plant.56
+Person Handling Explosives for Blasting (Excavation - Reg 13(2)(k); Demolition - Reg 14(11)): Must be a competent person in the use of explosives for the specific task (excavation or demolition), knowledgeable about applicable explosives legislation, and responsible for developing the method statement.56 This typically requires formal blaster certification.
+Person Supervising/Controlling Demolition Work (Reg 14(1)): Must be a competent person appointed in writing.56
+Person Conducting Detailed Structural Engineering Survey for Demolition (Reg 14(2)): Must be a competent person who also develops the demolition method statement.56
+Person Supervising Excavation Work (Reg 13(1)(a)): Must be a competent person appointed in writing to supervise all excavation work.56
+Temporary Works Designer, Supervisor, Erector, Inspector (Reg 12): Various roles related to temporary works (e.g., formwork, falsework, shoring) require competent persons for design, supervision of erection and dismantling, and inspection.56
+Person Controlling/Inspecting Temporary Electrical Installations on Construction Sites (Reg 24(c), (d)): Must be a competent person (often a qualified electrician or installation electrician) designated to control and inspect temporary electrical installations.56
+4.B.7. Incident Investigation
+Legal Mandate: General Administrative Regulations (GAR), Regulation 9(2) (under the OHS Act) requires prescribed incidents to be investigated by the employer, or a person appointed by the employer, or by a health and safety representative, or a member of a health and safety committee. While "training" isn't explicitly stated in GAR 9 for investigators, effective investigation to identify root causes and prevent recurrence inherently requires skill and knowledge, thus implying a need for competency.
+Target Audience: Managers, supervisors, SHE Representatives, safety officers, and any personnel formally appointed to lead or participate in incident investigations.
+Key Content: Based on standard incident investigation training 5:
+Understanding the legal requirements for incident reporting (OHS Act Section 24, GAR 8) and investigation (GAR 9).
+The purpose of incident investigation: primarily to identify systemic failures and root causes to prevent recurrence, not merely to assign blame.
+The incident investigation process: immediate response and securing the scene, gathering factual information and evidence (physical evidence, witness statements, documentation), analyzing the information.
+Root cause analysis techniques (e.g., 5 Whys, Fishbone diagram, Fault Tree Analysis).
+Developing effective corrective and preventive action (CAPA) plans.
+Writing comprehensive incident investigation reports.
+Understanding the hierarchy of controls in recommending remedial actions.
+Notes: Proper incident investigation is a critical component of a learning OHS management system. Trained investigators are more likely to uncover underlying systemic issues rather than focusing solely on individual actions, leading to more sustainable safety improvements.4
+4.C. Other Important Training Areas
+These areas, while perhaps not always having explicit "training" mandates in the same way as some specialized tasks, are crucial for a holistic OHS program.
+4.C.1. Facilities Regulations: General Awareness
+Legal Status: OHS Act and the Facilities Regulations, 1990. The Facilities Regulations themselves 61 primarily detail the physical requirements for workplace facilities such as sanitation (toilets, washbasins, showers), change-rooms, dining areas, drinking water, seating, lighting, and ventilation. They do not contain explicit clauses mandating specific training on these facilities.61 However, the employer's general duty under OHS Act Section 8(2)(e) to provide information and instruction supports the need for general awareness.
+Target Audience: All employees (for general awareness of proper use and hygiene); maintenance staff (for specific maintenance requirements).
+Key Content:
+Information on the location of provided facilities (toilets, washrooms, change-rooms, eating areas, drinking water points).
+Instruction on the proper and hygienic use of these facilities.
+The importance of maintaining cleanliness and order in common facility areas.
+Procedures for reporting any defects, malfunctions, or inadequate conditions of facilities to management or maintenance.
+Notes: While not a direct training mandate within the Facilities Regulations, ensuring employees are aware of, and correctly use, the provided facilities contributes significantly to overall workplace health, hygiene, and welfare. This is often covered during induction and reinforced through general safety communications.5
+4.C.2. Mental Health and Fatigue Management Awareness
+Legal Status: OHS Act Section 8(1) places a general duty on employers to provide and maintain, as far as is reasonably practicable, a working environment that is safe and without risk to health. "Health" is increasingly understood to include psychological health. While there isn't explicit "mental health training" mandated by name, managing psychosocial risks (which include stress, burnout, and fatigue) falls under this broad duty.
+Target Audience: All employees (for general awareness and self-care); managers and supervisors (for recognizing signs in their teams and knowing how to provide support or direct employees to resources).
+Key Content: Based on emerging best practices 4:
+Understanding what constitutes workplace stress, burnout, and fatigue.
+Recognizing common signs and symptoms in oneself and others.
+Awareness of the company's support systems, such as Employee Assistance Programs (EAPs), counseling services, or internal support structures.
+The importance of rest breaks, adequate sleep, good nutrition, and maintaining a healthy work-life balance.
+Strategies for managing common workplace stressors (e.g., workload management, communication techniques, conflict resolution).
+Promoting a supportive and destigmatizing workplace culture regarding mental health.
+Notes: There is growing recognition that mental strain and fatigue can significantly compromise judgment, slow reaction times, and increase the likelihood of errors and accidents, thereby impacting physical safety outcomes.4 Integrating mental health awareness and fatigue management principles into the overall OHS program is becoming a critical aspect of ensuring a truly safe and healthy work environment.
+Many of the specialized training areas outlined, particularly those involving high-risk work or legal appointments, necessitate external accreditation or specific qualifications and certifications. For example, First Aid training must be from SETA/DoEL/QCTO accredited providers.5 Lifting Machine Operator training also requires accredited providers, and certificates often have an expiry date, mandating re-certification.51 Electrical work competency is tied to formal qualifications and registration.53 GMR 2.1 appointees may need specific certifications like a GCC.49 Construction Health and Safety Officers often require registration with a statutory body like the SACPCMP.56 Employers cannot simply conduct all training in-house without ensuring these external validation requirements are met where applicable. This reliance on a framework of accreditation serves as a quality control mechanism but also places a due diligence responsibility on employers to select legitimate and appropriately accredited training partners.
+Furthermore, the concept of "refresher training" is either explicitly stated or strongly implied for many critical safety roles and competencies. For instance, first aid certificates have expiry dates requiring renewal 37, and lifting machine operator certificates are typically valid for 24 months, necessitating re-certification training.51 General safety skills also benefit from regular refreshers to combat skills degradation and ensure awareness of any changes in legislation, standards, or workplace procedures.4 This highlights that OHS training is not a one-off event but an ongoing process that requires a system for tracking training needs, scheduling refreshers, and maintaining records of competency.
+5. Workplace Training Matrix (Johannesburg South, Gauteng)
+The following matrix provides a structured overview of essential training programs, their target audiences, legal basis or best practice status, recommended frequency, key content focus, and important notes relevant to a workplace in Johannesburg South, Gauteng. This matrix should be adapted based on the specific industry and risk profile of the employer's operations.
+
+Training Program
+Target Employees/Roles
+Legal Requirement (Act/Regulation) or Best Practice
+Recommended Frequency/Trigger
+Key Content / Competency Focus
+Notes (e.g., Accreditation, Duration)
+A. GENERAL FOUNDATIONAL TRAINING
+
+
+
+
+
+
+
+
+
+
+OHS Induction Training
+All new employees, contractors, visitors (adapted)
+OHS Act S8(2)(e); Construction Reg 7(5) (for sites)
+On hire/first site entry; Refresher as needed
+Company OHS policy, site rules, emergency procedures, key hazards, OHS responsibilities, reporting, PPE basics, housekeeping.
+Record of attendance/understanding.26 Tailor to site/role.
+Toolbox Talks
+Relevant work teams, site personnel
+Best Practice (supports OHS Act S8(2)(e) continuous duty)
+Daily/Weekly (as per risk/task)
+Specific job hazards, SWPs, incident lessons, PPE reminders, current site conditions. Interactive.
+Short (10-15 mins). Document topics & attendance.28
+B. LEADERSHIP & MANAGEMENT
+
+
+
+
+
+
+
+
+
+
+CEO & Section 16 Appointee Legal Obligations
+CEO, S16(1) & S16(2) Appointees
+OHS Act S16
+On appointment; Refresher on legislative changes
+OHS Act duties, accountability vs. responsibility, legal liability, OHSMS implementation, risk management oversight.31
+Highly recommended. May be covered in broader OHS Management courses.
+General Management & Supervisory OHS Responsibilities
+All managers, supervisors, team leaders
+OHS Act S8(2)(i); Specific Regs (e.g., Construction)
+On appointment/promotion; Refresher every 2-3 years
+Role in OHS policy, HIRA, inspections, incident investigation, ensuring compliance, communication.4
+Crucial for frontline OHS.
+C. SAFETY, HEALTH & ENVIRONMENT (SHE) REPRESENTATIVES
+
+
+
+
+
+
+
+
+
+
+SHE Representative Training
+Appointed SHE Representatives
+OHS Act S18(3)
+On appointment; Refresher as needed/legislated
+OHS Act/Regs, SHE Rep functions/rights, HIRA, inspections, incident investigation support, H&S Committees.7
+SETA Accredited recommended. Typically 1-2 days.
+D. EMERGENCY PREPAREDNESS
+
+
+
+
+
+
+
+
+
+
+First Aid (Level 1, 2, or 3)
+Designated First Aiders
+OHS Act, General Safety Regulation 3
+On appointment; Refresher/Re-certification every 2-3 years (CPR annually)
+CPR, bleeding, burns, fractures, shock, scene management, record-keeping. Level depends on risk assessment.5
+SETA/DoEL/QCTO Accredited. Level 1 (min 2 days), Level 2/3 longer. Min 1 per 50 (industry) / 100 (office).38
+Basic Fire Fighting & Prevention
+Designated fire team/wardens; General awareness for all
+OHS Act S8; Environmental Regs for Workplaces (ERW) Reg 9
+On appointment (team); Refresher annually. General awareness periodically.
+Fire classes, extinguishers (PASS), prevention, equipment use, safety signs, evacuation support.39
+Practical component essential. Typically 1 day for basic.
+Emergency Evacuation Procedures
+All employees; Designated wardens
+OHS Act S8 (as part of emergency planning)
+Induction; Annually; Drills quarterly/bi-annually
+Evacuation routes, assembly points, alarm signals, assisting others, warden duties.26
+Site-specific. Drills essential.
+E. HAZARD-SPECIFIC TRAINING
+
+
+
+
+
+
+
+
+
+
+Hazard Identification & Risk Assessment (HIRA)
+Managers, supervisors, SHE Reps, risk assessment team members
+OHS Act S8(2)(d); Specific Regs (e.g. Construction Reg 9)
+On appointment to role; Refresher every 2-3 years or with process changes
+HIRA principles, hazard types, risk evaluation, control hierarchy, documentation.5
+Typically 1-2 days.
+Working with Hazardous Chemical Agents (HCA)
+Employees handling/exposed to HCAs
+OHS Act; Hazardous Chemical Agents Regulations (Reg 3A)
+Before exposure; Refresher annually or with new chemicals/processes
+HCA Regs, OELs, SDS interpretation, GHS labels, safe handling/storage/disposal, PPE, emergency response.34
+Chemical-specific. Documented.
+Confined Space Entry (Entrant, Attendant, Supervisor, Permit Issuer)
+Personnel involved in confined space work
+OHS Act; General Safety Regulation 5; Construction Regs (if applicable)
+Before undertaking duties; Refresher annually/bi-annually
+Hazards, legal requirements, risk assessment, permits, atmospheric testing, ventilation, isolation, PPE, rescue.41
+Practical drills essential. Competency based. Typically 1-3 days depending on role.
+Working at Heights / Fall Protection
+Persons working at height, supervisors, FPP developers, equipment inspectors
+OHS Act S8; Construction Regulation 10
+Before working at height; Refresher annually/bi-annually
+Legislation, HIRA for height, Fall Protection Plan (FPP), fall prevention/arrest systems, PPE inspection/use, ladder/scaffold safety, rescue.43
+Competency based. Practical essential. Duration varies (1-3 days). Medical fitness.46
+F. EQUIPMENT & MACHINERY-SPECIFIC
+
+
+
+
+
+
+
+
+
+
+GMR 2.1 Appointee Role & Responsibilities
+Appointed GMR 2.1 person(s)
+OHS Act; General Machinery Regulation 2(1)
+On appointment; Refresher on legislative changes
+GMR provisions, legal duties, machinery safety, supervision, specific qualifications/experience/certifications (GCC) as per kW/kVA thresholds.49
+Competency based on specific criteria in GMR.
+Driven Machinery / Lifting Machine Operator (e.g., Forklift, Crane, Hoist)
+Operators of specific machinery
+OHS Act; Driven Machinery Regulations (Reg 18); LME Code of Practice
+Before operation; Re-certification every 24 months 51
+Machine-specific operation, pre-use checks, load charts, safety devices, hazards, practical skills.51
+Accredited provider. Certificate of competence. Min 40 hrs (novice).52 Physical/vision fitness.52
+Electrical Competency (e.g., Tester, Installation Electrician, Master IE)
+Persons performing electrical work
+OHS Act; Electrical Installation Regs; Electrical Machinery Regs
+As per qualification/ registration requirements; Ongoing CPD
+Specific qualifications (NQF levels, trade tests), Installation Rules (SANS 10142-1), specialized codes, practical experience.53
+Formal qualifications & DoEL registration for certain roles.
+Construction Vehicle & Mobile Plant Operator
+Operators of specific construction plant
+Construction Regulation 23(1)(d)(i)
+Before operation; Refresher as per company policy/risk
+Appropriate training, certified competent, authorized in writing, medical fitness (Annexure 3).56
+Proof of competency required.
+Crane Operator (Construction - Tower/Mobile)
+Operators of specific cranes on construction sites
+Construction Reg 22(e) (Tower); Reg 23 (Mobile)
+Before operation; Refresher as per company policy/risk
+Competent for safe operation, medical fitness (Annexure 3). Specifics for tower/mobile cranes.55
+SAQA US 116255 (Tower), 116254 (Mobile) often cited.
+Explosive Actuated Fastening Device Operator
+Users of such tools
+Construction Regulation 21(1)(b)
+Before use; Refresher as needed
+Trained in operation, maintenance, and safe use of the specific device.56
+Tool-specific.
+G. SPECIALIZED CONSTRUCTION ROLES 56
+
+
+
+
+
+
+
+
+
+
+Construction Manager
+Appointed Construction Manager
+Construction Regulation 8(1)
+On appointment; Ongoing CPD
+Competent person for managing all construction work & OHS. Often requires formal qualification/registration (e.g. Pr.CM).56
+
+
+Construction Health & Safety Officer (CHSO)
+Appointed CHSO
+Construction Regulation 8(5), 8(6)
+On appointment; Ongoing CPD
+Registered with statutory body (e.g. SACPCMP), necessary competencies for assisting contractor with OHS.56
+
+
+Construction Supervisor
+Appointed Construction Supervisor(s)
+Construction Regulation 8(7)
+On appointment; Refresher as needed
+Competent person for supervising specific construction activities & OHS compliance.56
+
+
+Scaffold Erector / Inspector / Supervisor
+Personnel involved in scaffolding work
+Construction Regulation 16(1)
+Before undertaking duties; Refresher/CPD
+Competent in scaffold design (SANS 10085), erection, inspection, modification, dismantling for specific scaffold types.56
+
+
+Person Handling Explosives (Blasting)
+Personnel using explosives for excavation/demolition
+Construction Reg 13(2)(k); Reg 14(11)
+Before undertaking duties; As per explosives legislation
+Competent in use of explosives for specific task, knowledge of explosives legislation, method statement development.56
+Formal blaster certification required.
+H. OTHER IMPORTANT TRAINING
+
+
+
+
+
+
+
+
+
+
+Incident Investigation
+Managers, supervisors, SHE Reps, appointed investigators
+General Admin Regulation 9 (implies competency)
+On appointment to role; Refresher every 2-3 years
+Legal requirements, investigation process, root cause analysis, CAPA development, report writing.5
+Typically 1-2 days.
+Facilities Regulations Awareness
+All employees (general); Maintenance staff (specific)
+Best Practice (supports OHS Act S8)
+Induction; Periodically
+Proper use/hygiene of facilities, reporting defects.61
+Brief, often part of induction.
+Mental Health & Fatigue Management Awareness
+All employees; Managers/Supervisors (enhanced)
+Best Practice (supports OHS Act S8 general duty for "health")
+Periodically; As part of wellness programs
+Recognizing stress/fatigue, company support, self-care, managing stressors.4
+
+
+
+Note: This matrix is a guideline. The employer must conduct a thorough Training Needs Analysis (TNA) based on their specific workplace activities, identified hazards, risk assessments, and applicable legislation to determine the full scope and depth of training required. "CPD" refers to Continuing Professional Development. "SWP" refers to Safe Work Procedures.
+6. Implementing and Managing an Effective Training Program
+Developing a list of required training is only the first step. Successfully implementing and managing an OHS training program involves careful planning, selection of providers, meticulous record-keeping, and a commitment to continuous improvement.
+6.1. Choosing Accredited Training Providers
+For many legally mandated or specialized OHS training courses in South Africa, the choice of a training provider is critical. It is not sufficient for training merely to be conducted; it must often be delivered by providers who hold appropriate accreditation from relevant bodies. This ensures that the training meets national standards for quality, content, and assessment.
+Importance of Accreditation: Accreditation by Sector Education and Training Authorities (SETAs), such as the HWSETA for first aid or MERSETA for manufacturing and engineering skills, and approval by the Department of Employment and Labour (DoEL) or the Quality Council for Trades and Occupations (QCTO), is mandatory for the legal recognition of many OHS-related certificates.5 For example, first aid certificates will only be considered valid if issued by such accredited and approved providers.38 Similarly, training for operators of lifting machines should be conducted by accredited providers to ensure compliance with the Driven Machinery Regulations and associated codes of practice.51
+Due Diligence in Selection: When selecting a training provider, employers should:
+Verify the provider's current accreditation status with the relevant SETA and/or QCTO for the specific courses being offered.
+Inquire about the qualifications, experience, and accreditation of the individual trainers/facilitators and assessors.
+Review the proposed course content to ensure it aligns with legal requirements, relevant SAQA unit standards (if applicable), and the employer's specific workplace needs.
+Assess the practical components of the training, as hands-on experience is crucial for many OHS skills (e.g., fire fighting, first aid, equipment operation).
+Consider obtaining references or testimonials from other businesses that have used the provider's services.
+The broader OHS training ecosystem in South Africa relies heavily on this framework of accreditation. This includes SETAs, the QCTO, the DoEL, and various statutory bodies for professional registrations (e.g., the South African Council for the Project and Construction Management Professions - SACPCMP - for certain construction roles like CHSOs 56, or the Engineering Council of South Africa - ECSA - for Certificated Engineers involved in GMR appointments 49). This system provides a degree of quality control but also places a significant responsibility on employers to conduct due diligence. Using a non-accredited provider for legally mandated, accredited training (like First Aid Level 1) would render the training non-compliant, even if the content itself was adequate. This necessitates a careful vetting process when engaging external training partners.
+6.2. Record Keeping and Documentation
+Maintaining comprehensive and accurate records of all OHS training activities is essential for several reasons:
+Legal Compliance: It provides evidence that the employer is fulfilling their statutory duties regarding information, instruction, and training under the OHS Act and its regulations.
+ISO 45001 Compliance: If the organization is pursuing or maintaining ISO 45001 certification, Clause 7.2 (Competence) explicitly requires retaining appropriate documented information as evidence of competence.20
+Skills Development Levy Claims: Accurate training records are necessary for completing Workplace Skills Plans (WSPs) and Annual Training Reports (ATRs), which are required to claim grants from the relevant SETA.14
+Incident Investigation: Training records can be crucial during incident investigations to verify that affected employees had received appropriate training for the tasks they were performing.
+Performance Management & Planning: Records help track employee competencies, identify future training needs, and plan refresher training schedules.
+What to Keep: Essential training records include 4:
+A comprehensive training matrix or plan for the organization.
+Attendance registers for all training sessions (induction, toolbox talks, formal courses), signed by attendees.
+Copies of certificates of completion or competence issued to employees.
+Outlines or summaries of the content covered in each training program.
+Results of any assessments or tests conducted as part of the training.
+Records of on-the-job training and competency assessments.
+Signed H&S induction records for all new employees, contractors, and visitors.26
+Minutes or records of toolbox talks, including topics and attendees.28
+Records of any training needs analyses conducted.
+Copies of WSPs and ATRs submitted to SETAs.
+These records should be kept in an organized manner, easily accessible for review or audit, and retained for a period as specified by legislation or company policy. A well-maintained Health and Safety File will typically include a section dedicated to training records.28
+6.3. Refresher Training and Continuous Improvement
+OHS training is not a one-time event. The workplace is dynamic, with potential changes in personnel, processes, equipment, substances, and legislation. Furthermore, skills and knowledge can degrade over time if not reinforced. Therefore, a system for refresher training and continuous improvement is vital.
+Importance of Refresher Training:
+Maintains and enhances existing skills and knowledge.
+Updates employees on any changes to legislation, standards, safe work procedures, or identified hazards.
+Reinforces good safety practices and addresses any complacency that may have developed.
+Required for maintaining the validity of certain certifications (e.g., first aid certificates typically expire after 2-3 years 37; lifting machine operator certificates are often valid for 24 months 51).
+Process for Continuous Improvement:
+Scheduling: Establish a schedule for refresher training based on legal or accreditation body requirements, risk assessment findings (high-risk tasks may need more frequent refreshers), and industry best practices.4
+Needs Analysis: Regularly review training needs. This can be triggered by:
+Introduction of new equipment, technologies, or processes.
+Changes in job roles or responsibilities.
+Findings from incident investigations, near-miss reports, or safety audits that indicate gaps in knowledge or performance.
+Changes in legislation or applicable standards.
+Employee feedback or requests.
+Evaluation: Evaluate the effectiveness of training programs. This can be done through post-training assessments, observation of work practices, feedback from trainees and supervisors, and by monitoring OHS performance indicators (e.g., incident rates).
+Adaptation: Use the results of evaluations and needs analyses to update and improve training content, delivery methods, and frequency.
+The OHS Act's principle of "reasonably practicable" implies an ongoing effort. Regular refresher training 4 and adaptation of the training program in response to new information or identified deficiencies are key components of this ongoing duty.
+7. Conclusion and Key Recommendations
+Ensuring a safe and healthy working environment through comprehensive and effective training is a fundamental legal and ethical obligation for every employer in Johannesburg South, Gauteng. The legislative landscape, spearheaded by the Constitution and the Occupational Health and Safety Act, and supported by various labour laws and specific regulations, unequivocally mandates that employees are equipped with the necessary information, instruction, training, and supervision to perform their work safely. International standards like ISO 45001 and ILO guidelines further reinforce these principles, offering frameworks for achieving excellence in OHS management.
+Training should not be viewed as a mere compliance checkbox or an unwelcome expense. Instead, it is a critical investment in the organization's most valuable asset—its people. A well-trained workforce is not only safer but also more competent, confident, and productive. Effective OHS training contributes directly to reducing workplace incidents, minimizing associated costs (such as medical expenses, equipment damage, lost productivity, and potential legal penalties), enhancing employee morale, and building a positive organizational safety culture and reputation.
+The complexity of the requirements, particularly with detailed regulations such as the Construction Regulations, underscores the need for a systematic, risk-based, and continuously managed approach to training.
+Key Recommendations for the Employer:
+Conduct a Comprehensive Training Needs Analysis (TNA): Based on the specific activities, processes, equipment, substances, and overall risk profile of your Johannesburg South workplace, conduct a thorough TNA. This will identify all specific training requirements beyond the general guidance provided in this report.
+Prioritize Legally Mandated Training: Ensure all training explicitly required by the OHS Act and its regulations (including general duties and specific requirements for appointed persons and hazardous tasks) is implemented as a priority.
+Utilize the Training Matrix: Adapt and use the training matrix provided in Section 5 of this report as a dynamic planning and tracking tool. Regularly review and update it based on your TNA, changes in operations, and legislative updates.
+Ensure Rigorous Record-Keeping: Implement a robust system for documenting all training activities, including attendance, content, assessments, and certifications. This is crucial for demonstrating compliance and managing competencies.
+Select Accredited Providers: For training that requires external accreditation (e.g., First Aid, specialized equipment operation), diligently verify the credentials of training providers with the relevant SETAs, QCTO, or other authorizing bodies.
+Integrate Toolbox Talks: Make regular, relevant, and engaging toolbox talks an integral part of your daily or weekly operational safety communication.
+Schedule and Implement Refresher Training: Establish a system for tracking when refresher training is due for various competencies and ensure it is conducted in a timely manner to maintain skills and awareness.
+Foster a Culture of Continuous OHS Learning: Promote OHS as an ongoing journey of learning and improvement. Encourage employee participation and feedback on training programs and safety matters.
+Stay Informed of Legislative Changes: South African OHS and labour laws are subject to amendment. Establish a mechanism to stay updated on any changes that may impact your training obligations.
+Seek Expert Advice: Where there is uncertainty regarding specific legal obligations, competency requirements, or the interpretation of regulations, do not hesitate to seek advice from qualified OHS legal consultants or safety professionals.
+By embracing these recommendations and committing to a proactive and comprehensive approach to workplace training, employers in Johannesburg South can significantly enhance the health, safety, and well-being of their employees, ensure legal compliance, and contribute to a more productive and resilient business.
+Works cited
+Labour legislation that regulates the employment relationship - SME ..., accessed on May 7, 2025, https://smelaboursupport.org.za/download/labour-legislation-that-regulates-the-employment-relationship/
+Employment Laws in South Africa: A Guide for US Companies - Plane, accessed on May 7, 2025, https://plane.com/blog/south-africa-employment-laws-for-us-companies
+Occupational Health and Safety Act, 1993 8. General duties of employers to their employees, accessed on May 7, 2025, https://vula.uct.ac.za/access/content/group/c7716642-ada7-42a0-acee-0434c085df90/Electronic%20Resources/CD3/sow/Legislation/OHSA/8_general_duties_of_employers_to_their_employees.htm
+OCCUPATIONAL HEALTH AND SAFETY ACT 85 OF 1993 ..., accessed on May 7, 2025, https://accesspd.co.za/blog/occupational-health-and-safety-act-85-of-1993-understanding-your-responsibilities-as-an-employer
+Health and Safety Training Requirements in the Workplace, accessed on May 7, 2025, https://absolutehealth.co.za/blog/health-and-safety-training-requirements/
+Occupational Health and Safety Act 85 of 1993 - South African Government, accessed on May 7, 2025, https://www.gov.za/sites/default/files/gcis_document/201409/act85of1993.pdf
+SHE Rep Training Courses South Africa | DDi Safety Training, accessed on May 7, 2025, https://www.ddigroup.co.za/she-rep-training
+SHE Rep Training - Hazard ID, Compliance & Certification - Kasolwazi, accessed on May 7, 2025, https://kasolwazi.co.za/courses/she-rep-training-and-certification/
+Unfair Labour Practices and Training - MPA - Centurion, PTA, JHB, accessed on May 7, 2025, https://meyerattorneys.co.za/2024/11/01/unfair-labour-practices-and-training/
+How Does Employment Equity Impact Skills Development in South ..., accessed on May 7, 2025, https://ycconsulting.co.za/employment-equity-impact/
+Employment Equity Act, accessed on May 7, 2025, https://www.labour.gov.za/DocumentCenter/Publications/Employment%20Equity/What%20employers%20and%20workers%20need%20to%20know%20about%20Employment%20Equity/EE%20pamphlet%20opt%20red.pdf
+Navigating Proposed Amendments to South Africa's Labour Legislation: Part III, accessed on May 7, 2025, https://www.globalworkplaceinsider.com/2025/04/navigating-proposed-amendments-to-south-africas-labour-legislation-part-iii/
+ARE TRAINEES EMPLOYEES FOR THE PURPOSES OF LABOUR LAW?, accessed on May 7, 2025, https://www.labourlawadvice.co.za/forums/topic/are-trainees-employees-for-the-purposes-of-labour-law/
+Training Legalisation in South Africa | Ensure Valid Certifications, accessed on May 7, 2025, https://www.boti.co.za/10-reasons-why-training-legislation-in-south-africa-is-important/
+SKILLS DEVELOPMENT ACT - Department of Employment and Labour, accessed on May 7, 2025, https://www.labour.gov.za/DocumentCenter/Acts/Skils%20Development%20Act/Act%20-%20Skills%20Development%20Act.doc
+Amended Skills Development Act - HWSETA, accessed on May 7, 2025, http://www.hwseta.org.za/wp-content/uploads/2019/12/Skills-Development-Act.pdf
+Understanding COIDA | Sena Blog, accessed on May 7, 2025, https://senafs.co.za/understanding-coida-protecting-workers-employers-in-the-workplace/
+www.cliffedekkerhofmeyr.com, accessed on May 7, 2025, https://www.cliffedekkerhofmeyr.com/practice-areas/guides/downloads/Introduction-to-COIDA-Guideline.pdf
+ISO 45001: Occupational Health & Safety Management System - Induction Course - DNV, accessed on May 7, 2025, https://www.dnv.com/training/iso-45001-induction-course/
+ISO 45001 Training Requirements, accessed on May 7, 2025, https://45001store.com/iso-45001-requirements/iso-45001-supporting-sms/iso-45001-training-requirements/
+ISO 45001 Clauses: Support Clause 7 - Smithers, accessed on May 7, 2025, https://www.smithers.com/resources/2023/november/iso-45001-clauses-support-clause-7
+Training materials | International Labour Organization, accessed on May 7, 2025, https://www.ilo.org/training-materials
+Guidance for employers on Occupational safety and health, accessed on May 7, 2025, https://www.ilo.org/resource/other/guidance-employers-occupational-safety-and-health
+Occupational safety and health - International Labour Organization, accessed on May 7, 2025, https://www.ilo.org/bureau-employers-activities/areas-work/occupational-safety-and-health
+ILO-OSH - GUIDELINES ON OCCUPATIONAL SAFETY AND HEALTH - KEN INSTITUTE, accessed on May 7, 2025, https://keninstitute.com/ilo-osh-guidelines-on-occupational-safety-and-health/
+Health and Safety Induction Standard Requirements for South Africa - SafetyWallet, accessed on May 7, 2025, https://www.safetywallet.co.za/Blog/Does-your-Health-and-Safety-Induction-meet-the-Standard-Requirements-for-South-Africa
+Health safety training courses offered in South Africa - Global Learning Services, accessed on May 7, 2025, https://www.globaltraining.co.za/health-and-safety-training/
+What Should Be Included in a Workplace Health and Safety File?, accessed on May 7, 2025, https://firstaidfiresafety.co.za/blog/workplace-health-and-safety-file/
+What is a Toolbox Meeting? Tips & Best Practices - Deltek, accessed on May 7, 2025, https://www.deltek.com/en/architecture-and-engineering/archisnapper/safety-inspection/toolbox-meeting
+Practical Ideas for Effective Toolbox Talks and Safety Meetings - EHS Insight, accessed on May 7, 2025, https://www.ehsinsight.com/blog/practical-examples-and-ideas-for-effective-toolbox-talks-and-safety-meetings
+Legal Liability Occupational Health and Safety (OHSA) - CESA, accessed on May 7, 2025, https://www.cesa.co.za/sce/school-course/?id=5158
+Legal Appointments of 16.1 & 16.2 – ohsaconsultant.co.za, accessed on May 7, 2025, https://ohsaconsultant.co.za/legal-requirement-information/legal-appointments-of-16-1-16-2/
+Legal Liability Training: Key Information - Health and Safety Courses, accessed on May 7, 2025, https://absolutehealth.co.za/blog/legal-liability-training-everything-you-need-to-know/
+HAZCHEM - Working with Hazardous Chemical Agents Training Material - Intra-Safe, accessed on May 7, 2025, https://intrasafe.co.za/product/working-with-hazardous-chemical-agents-training-material/
+THE ROLE OF A SHE REPRESENTATIVE IN THE WORKPLACE - eohcb, accessed on May 7, 2025, https://www.eohcb.co.za/post/the-role-of-a-she-representative-in-the-workplace
+Functions of a Health and Safety Representative, accessed on May 7, 2025, https://absolutehealth.co.za/blog/the-functions-of-a-health-safety-representative/
+First Aid Training: Ensuring Safety Compliance with the South African OHS Act, accessed on May 7, 2025, https://accesspd.co.za/blog/first-aid-training-ensuring-safety-compliance-with-the-south-african-ohs-act
+Department of Labour First Aid Training Requirements - Health and Safety Courses, accessed on May 7, 2025, https://absolutehealth.co.za/blog/department-of-labour-first-aid-training-requirements/
+Why Your Employees Need Fire Fighting Training - DDi OHS, accessed on May 7, 2025, https://www.ddigroup.co.za/blog/why-employees-need-fire-fighting-training
+REGULATIONS FOR HAZARDOUS CHEMICAL AGENTS, 2021 - National Institute for Occupational Health, accessed on May 7, 2025, https://www.nioh.ac.za/wp-content/uploads/2021/04/RHCA-E-Lourens-PP-Launch-20-April.pdf
+Confined Space Entry: Managing Risks With Smart Permit Systems - IntelliPERMIT, accessed on May 7, 2025, https://www.intellipermit.com/blog/confined-space-entry/
+CONFINED SPACE SAFETY IN SOUTH AFRICA: A CRITICAL APPROACH TO PROTECTING WORKERS - Access Professional Development, accessed on May 7, 2025, https://accesspd.co.za/blog/confined-space-safety-in-south-africa-a-critical-approach-to-protecting-workers
+Working At Heights Training Explained | Emcare Training Academy - Fire Fighting Courses, accessed on May 7, 2025, https://emcare.org/working-at-heights-training-explained
+Working at heights training | Emcare Training Academy - Fire Fighting Courses, accessed on May 7, 2025, https://emcare.org/working-at-heights-training/
+THE LEGAL RESPONSIBILITIES OF EMPLOYERS FOR WORKING AT HEIGHTS, accessed on May 7, 2025, https://accesspd.co.za/blog/the-legal-responsibilities-of-employers-for-working-at-heights
+Construction Regulation 10: Fall Protection - Zenith Safety Consultants, accessed on May 7, 2025, https://www.zsc-group.co.za/construction-regulation-10
+A Guide to Compiling a Comprehensive Fall Protection Plan in South Africa or just Save Time and Effort and Download Our Pre-Set Fall Protection Plan Templates, accessed on May 7, 2025, https://www.grisk.co.za/a-guide-to-compiling-a-comprehensive-fall-protection-plan-in-south-africa-or-just-save-time-and-effort-and-download-our-pre-set-fall-protection-plan-templates/
+Fall Protection - The Institute For Work At Height, accessed on May 7, 2025, https://ifwh.co.za/fall-protection/
+What is a GMR 2.1 appointment? - Palucraft GCC Study, accessed on May 7, 2025, https://www.palucraft-gccstudy.com/post/what-is-a-gmr-2-1-appointment
+GENERAL MACHINERY REGULATIONS - SAFLII, accessed on May 7, 2025, https://www.saflii.org/za/legis/consol_reg/gmr272/
+Driven Machinery Regulations, 1988 - Occupational Health and Safety Act, accessed on May 7, 2025, https://vula.uct.ac.za/access/content/group/9c29ba04-b1ee-49b9-8c85-9a468b556ce2/doh/Variety/Legislation/OHSAchm2web/source/MachineryCOP.htm
+What does Driven Machinery Regulations say? - Makrosafe, accessed on May 7, 2025, https://www.makrosafe.co.za/blog/driven-machinery-regulations
+Electrical Installation Brochure - KZN Department of Health, accessed on May 7, 2025, https://www2.kznhealth.gov.za/occhealth/electrical2.pdf
+How to become an Installation Electrician in South Africa, accessed on May 7, 2025, https://electrical-compliance-certificate.co.za/electrician-courses/how-to-become-an-installation-electrician/
+ACCREDITED TOWER CRANE TRAINING COURSES - HRETD, accessed on May 7, 2025, https://www.hretd.co.za/tc.html
+Occupational Health and Safety Act (85/1993) » Construction ..., accessed on May 7, 2025, https://www.greengazette.co.za/notices/occupational-health-and-safety-act-85-1993-construction-regulations-2014_20140207-GGR-37305-00084.pdf
+ACCREDITED MOBILE CRANE OPERATOR TRAINING - HRETD, accessed on May 7, 2025, https://www.hretd.co.za/mc.html
+Construction-Regulation-2014-Comparison-Document-with-Comments-3.pdf - MBA Boland, accessed on May 7, 2025, http://mbaboland.org.za/site/wp-content/uploads/2014/01/Construction-Regulation-2014-Comparison-Document-with-Comments-3.pdf
+Scaffolding Safety - Master Builders KwaZulu-Natal, accessed on May 7, 2025, https://www.masterbuilders.co.za/news/632752/Scaffolding-Safety.htm
+SCAFFOLDING HEALTH AND SAFETY: A MULTI- STAKEHOLDER ISSUE - ARCOM, accessed on May 7, 2025, https://www.arcom.ac.uk/-docs/proceedings/ar2006-0283-0293_Smallwood.pdf
+science.uct.ac.za, accessed on May 7, 2025, https://science.uct.ac.za/sites/default/files/media/documents/facilities_regulations_1990.pdf

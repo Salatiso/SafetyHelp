@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ensure construction compliance with Salatiso OHS Tools by compiling safety documents.">
+    <meta name="keywords" content="OHS tools, construction compliance, health and safety, safety plans, South Africa OHS, Salatiso">
+    <meta name="author" content="SafetyHelp Team">
+    <title data-i18n="page_title.construction_compliance">Salatiso OHS Tools - Construction Compliance</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/safety-plans/assets/css/tailwind.css">
+    <link rel="stylesheet" href="/safety-plans/assets/css/construction-compliance.css">
+    <script src="https://unpkg.com/i18next@23.15.2/dist/umd/i18next.min.js"></script>
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="header-left">
+                <div class="logo-container">
+                    <img src="/safety-plans/assets/images/logo.png" alt="SafetyHelp Logo">
+                    <p class="tagline" data-i18n="header.tagline">Safety Personalized, Compliance Simplified—Anytime, Anywhere</p>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="/safety-plans/index.html" data-i18n="header.nav.home">Home</a>
+                <a href="/safety-plans/resources.html" data-i18n="header.nav.resources">Resources</a>
+                <a href="/safety-plans/services.html" data-i18n="header.nav.services">Services</a>
+                <a href="/safety-plans/community.html" data-i18n="header.nav.community">Community</a>
+                <a href="/safety-plans/about.html" data-i18n="header.nav.about">About</a>
+                <a href="/safety-plans/contact.html" data-i18n="header.nav.contact">Contact</a>
+                <a href="/safety-plans/login.html" id="login-link" data-i18n="header.nav.login">Login</a>
+            </div>
+            <div class="header-right">
+                <div class="search-language-container">
+                    <div class="language-selector">
+                        <select id="language-switcher" aria-label="Select language">
+                            <option value="en" data-i18n="language_selector.en">English</option>
+                            <option value="af" data-i18n="language_selector.af">Afrikaans</option>
+                            <option value="zu" data-i18n="language_selector.zu">isiZulu</option>
+                            <option value="xh" data-i18n="language_selector.xh">isiXhosa</option>
+                            <option value="st" data-i18n="language_selector.st">Sesotho</option>
+                            <option value="tn" data-i18n="language_selector.tn">Setswana</option>
+                            <option value="nso" data-i18n="language_selector.nso">Sepedi</option>
+                            <option value="ts" data-i18n="language_selector.ts">Xitsonga</option>
+                            <option value="ss" data-i18n="language_selector.ss">siSwati</option>
+                            <option value="ve" data-i18n="language_selector.ve">Tshivenda</option>
+                            <option value="nr" data-i18n="language_selector.nr">isiNdebele</option>
+                            <option value="es" data-i18n="language_selector.es">Español</option>
+                            <option value="fr" data-i18n="language_selector.fr">French</option>
+                            <option value="sn" data-i18n="language_selector.sn">Shona</option>
+                            <option value="sw" data-i18n="language_selector.sw">Swahili</option>
+                            <option value="zh" data-i18n="language_selector.zh">Mandarin</option>
+                        </select>
+                    </div>
+                    <div class="search-bar">
+                        <form role="search">
+                            <input type="text" data-i18n="[placeholder]header.search.placeholder" placeholder="Search OHS Tools..." aria-label="Search OHS Tools">
+                            <button type="submit" data-i18n="header.search.button">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h2 data-i18n="sidebar.ohs_tools">SafetyHelp OHS Tools</h2>
+        <ul>
+            <li><a href="/safety-plans/pages/construction-compliance.html" data-i18n="sidebar.construction_safety" class="active">Construction Safety</a></li>
+            <li><a href="/safety-plans/pages/emergency-response-plan.html" data-i18n="sidebar.emergency_planning">Emergency Planning</a></li>
+            <li><a href="/safety-plans/pages/risk-assessment.html" data-i18n="sidebar.risk_assessment">Risk Assessment</a></li>
+            <li><a href="/safety-plans/pages/legal-appointments.html" data-i18n="sidebar.legal_appointments">Legal Appointments</a></li>
+            <li><a href="/safety-plans/pages/incident-management.html" data-i18n="sidebar.incident_management">Incident Management</a></li>
+            <li><a href="/safety-plans/pages/training.html" data-i18n="sidebar.training">Training</a></li>
+            <li><a href="/safety-plans/pages/inspections-audits.html" data-i18n="sidebar.inspections_audits">Inspections & Audits</a></li>
+            <li><a href="/safety-plans/pages/suppliers.html" data-i18n="sidebar.suppliers">Suppliers</a></li>
+            <li><a href="/safety-plans/pages/legislation.html" data-i18n="sidebar.legislation">Legislation</a></li>
+            <li><a href="/safety-plans/pages/community-tools.html" data-i18n="sidebar.community_tools">Community Tools</a></li>
+            <li><a href="/safety-plans/pages/member-dashboard.html" data-i18n="sidebar.member_dashboard">Member Dashboard</a></li>
+            <li><a href="/safety-plans/pages/ohs-system.html" data-i18n="sidebar.ohs_system">OHS System</a></li>
+        </ul>
+        <div class="step-info" id="wizard-sidebar">
+            <h3 data-i18n="sidebar.step_0.title">📜 Welcome to SafetyHelp</h3>
+            <p data-i18n="sidebar.step_0.description">Explore our comprehensive tools and resources to enhance occupational health and safety in your workplace.</p>
+            <p class="fun-fact" data-i18n="sidebar.step_0.fun_fact">⚡ Did you know using reputable ethical suppliers can reduce workplace hazards by ensuring work is done on time and to the highest quality and safety standards?</p>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <section class="wizard-container">
+            <h2 data-i18n="constructionCompliance.title">Construction Compliance</h2>
+            <p data-i18n="constructionCompliance.description">Compile safety documents to ensure compliance with occupational health and safety regulations.</p>
+            <div id="wizard-content" class="wizard-step"></div>
+            <div id="cart-container" class="cart-container hidden">
+                <h3 data-i18n="cart.title">Cart</h3>
+                <table class="cart-table">
+                    <thead>
+                        <tr>
+                            <th data-i18n="cart.document">Document</th>
+                            <th data-i18n="cart.price">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart-items"></tbody>
+                </table>
+                <div class="promo-checkout">
+                    <div class="form-group">
+                        <label for="promo-code" data-i18n="cart.promo">Promo Code</label>
+                        <input type="text" id="promo-code" placeholder="Enter promo code" aria-label="Promo code">
+                    </div>
+                    <button id="checkout-btn" data-i18n="cart.checkout">Checkout</button>
+                </div>
+                <p id="invoice-reference" class="hidden" data-i18n="cart.invoice_ref">Invoice Reference: <span id="invoice-ref-number"></span></p>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container mx-auto">
+                <p data-i18n="footer.copyright">© 2025 SafetyHelp. All rights reserved.</p>
+                <p>
+                    <a href="/safety-plans/privacy.html" data-i18n="footer.privacy">Privacy Policy</a> |
+                    <a href="/safety-plans/terms.html" data-i18n="footer.terms">Terms of Service</a> |
+                    <a href="/safety-plans/contact.html" data-i18n="footer.contact">Contact Us</a>
+                </p>
+                <div class="newsletter">
+                    <h3 data-i18n="footer.stayUpdated">Stay Updated</h3>
+                    <form>
+                        <input type="email" data-i18n="[placeholder]footer.emailPlaceholder" placeholder="Enter your email" aria-label="Email for newsletter">
+                        <button type="submit" data-i18n="footer.subscribe">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Chatbot -->
+    <div class="chatbot">
+        <button class="chat-toggle-btn" id="chat-toggle">
+            <span class="chat-icon">⛑️</span>
+            <span data-i18n="chatbot.title">Ask Salatiso</span>
+        </button>
+        <div class="chatbot-window hidden" id="chat-window">
+            <div class="chatbot-header">
+                <span data-i18n="chatbot.title">Ask Salatiso</span>
+                <button class="chat-close-btn">−</button>
+            </div>
+            <div class="chatbot-body" id="chat-output">
+                <p data-i18n="chatbot.greeting">Salatiso: Hello! How can I help you with OHS today?</p>
+            </div>
+            <div class="chatbot-footer">
+                <input type="text" id="chat-input" data-i18n="[placeholder]chatbot.placeholder" placeholder="Type your question..." aria-label="Chatbot input">
+                <button id="chat-send" data-i18n="chatbot.send">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/safety-plans/assets/js/common.js" type="module"></script>
+    <script src="/safety-plans/assets/js/chatbot.js"></script>
+    <script src="/safety-plans/assets/js/construction-compliance.js"></script>
+</body>
+</html>

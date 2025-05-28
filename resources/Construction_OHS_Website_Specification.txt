@@ -1,0 +1,249 @@
+Technical Specification: Salatiso OHS Tools Website
+Front Matter  
+
+Title: Technical Specification for Salatiso OHS Tools Website  
+Author: Grok 3, Built by xAI  
+Team: Salatiso Development Team  
+Reviewer(s): Salatiso Lonwabo Mdeni (Project Owner)  
+Creation Date: 07 May 2025  
+Last Updated Date: 07 May 2025  
+Reference Link: N/A
+
+
+Introduction
+The Salatiso OHS Tools website is a digital platform designed to streamline occupational health and safety (OHS) compliance for construction projects in South Africa. It provides tools for creating, managing, and downloading critical OHS documents, ensuring compliance with local regulations such as the Occupational Health and Safety Act and Construction Regulations. The website aims to serve construction professionals, including clients, contractors, and health and safety officers, by offering a user-friendly interface to compile documents like Health and Safety Specifications, Risk Assessments, and Compliance Reports.
+This technical specification outlines the detailed requirements, design, and functionality of the website, providing a blueprint for developers to continue development, while also serving as a reference for investors and stakeholders to understand the project's scope and technical direction.
+
+Purpose and Scope
+Purpose
+The primary goal of the Salatiso OHS Tools website is to facilitate compliance with South African construction safety regulations by providing a digital solution for document compilation and management. The platform aims to:  
+
+Reduce the administrative burden of OHS compliance through a step-by-step wizard interface.  
+Ensure transparency and accountability by generating professional PDF documents with a "golden thread" of information (as per the Building Safety Act concepts).  
+Enhance user experience with intuitive navigation, educational content (legislation and fun facts), and real-time cart updates.
+
+Scope
+This specification covers the development of the Salatiso OHS Tools website, focusing on:  
+
+The front-end interface for users to interact with the wizard and other features.  
+The back-end logic for form validation, PDF generation, and cart management.  
+Integration of third-party libraries (e.g., jsPDF for PDF generation).  
+Compliance with accessibility standards (WCAG 2.1).The scope excludes:  
+Development of a mobile app (though the website will be responsive).  
+Integration with external payment gateways (mock checkout is implemented).  
+Real-time collaboration features for multiple users.
+
+
+Functional Requirements
+1. User Interface and Navigation
+
+Wizard Interface: A 9-step wizard to guide users through document compilation, starting with document selection and ending with a review and cart addition.
+Action Buttons: Buttons to initiate the wizard for specific documents (e.g., "Compile Health and Safety Specification").
+Cart Display: A real-time cart showing selected documents, updated immediately after Step 1.
+Legislation Sidebar: A right-hand sidebar displaying step-specific legislation and fun facts with emojis for engagement.
+Responsive Design: The website must be fully responsive across devices (desktop, tablet, mobile).
+
+2. Document Compilation
+
+Step-by-Step Process:
+Step 1: Select documents (e.g., Health and Safety Specification, Compliance Reports).
+Step 2: Enter client details (company name, address, contact info, COIDA number).
+Step 3: Indicate if a contractor is appointed.
+Step 4: Enter contractor details (if applicable).
+Step 5: Enter project details (name, site address, supervisor info, reference number in format client/projectname/DDdate/MMmonth/YYyear/).
+Step 6: Define project scope (type of work, CIDB grading, cost, duration, activities).
+Step 7: Enter details of the person compiling the document (name, contact, role, SACPCMP number if applicable).
+Step 8: Specify who the document is compiled for (client, contractor, or other).
+Step 9: Review selections and add to cart.
+
+
+Validation: Client-side validation for all inputs (e.g., email format, phone number format, required fields).
+Dynamic Fields:
+SACPCMP registration field is required and editable only for CHSO and PrCHSA roles.
+"Specify Role" field is editable only if "Other" role is selected.
+"Specify" field in Step 8 is editable only if "Other" is selected.
+
+
+
+3. Cart and Checkout
+
+Immediate Cart Update: Add selected documents to the cart after Step 1, with prices (e.g., R50 for H&S Specification, R0 for reports).
+Checkout Process:
+Apply a mock promo code ("SAFETYFIRST25" for 25% discount).
+Generate an invoice PDF.
+Generate PDFs for applicable documents (H&S Specification, H&S Plan, H&S File).
+Redirect to external pages for other documents (e.g., Risk Assessment).
+Clear the cart after checkout.
+
+
+
+4. PDF Generation
+
+PDF Content:
+Cover page with compiled by, compiled for, and project details.
+Metadata and disclaimer section.
+Detailed content section (client, contractor, project scope).
+Signature page with placeholders.
+Services page listing additional SafetyHelp offerings.
+
+
+Libraries: Use jsPDF and jspdf-autotable for PDF generation.
+
+5. Accessibility and Compliance
+
+WCAG 2.1 Compliance: Ensure all interactive elements have ARIA labels, focus states, and keyboard navigation support.
+Data Privacy: Store user data (e.g., cart, form data) in localStorage with a 7-day expiry, ensuring no sensitive data is exposed.
+
+
+Design Requirements
+1. Visual Design
+
+Typography:
+Headers: Montserrat (500, 700 weights).
+Body: Open Sans (400, 600 weights).
+
+
+Color Scheme:
+Primary: #ff6f61 (coral for buttons, accents).
+Secondary: #1a2526 (dark teal for headers, footer).
+Background: #f5f6f5 (light gray for main content).
+Sidebar: #fafafa (off-white for legislation sidebar).
+
+
+Layout:
+Fixed sidebar on the left for navigation (200px wide).
+Main content area with a max-width of 1200px.
+Right-hand legislation sidebar (300px wide) in the wizard.
+
+
+Icons and Emojis: Use emojis in the sidebar and document table (e.g., 📋 for H&S Specification, 🛡️ for H&S Plan).
+
+2. User Experience
+
+Progress Bar: Display a progress bar at the top of each wizard step (e.g., 11% for Step 1, 100% for Step 9).
+Error Handling: Show inline error messages below inputs in red (#ff6f61) when validation fails.
+Interactivity: Use <details> and <summary> for collapsible activity categories in Step 6.
+
+3. Responsive Design
+
+Mobile:
+Stack the wizard and sidebar vertically.
+Adjust font sizes (e.g., h3 from 18px to 16px).
+Ensure buttons are full-width.
+
+
+Tablet: Maintain the sidebar layout but reduce padding (e.g., from 20px to 15px).
+
+
+Technical Details
+1. Front-End
+
+HTML/CSS:
+Use semantic HTML5 elements (e.g., <header>, <nav>, <section>).
+CSS flexbox for layout (e.g., wizard container, sidebar).
+
+
+JavaScript:
+Vanilla JavaScript for DOM manipulation and event handling.
+Client-side validation using regex (e.g., email: [a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$).
+
+
+Libraries:
+jsPDF (v2.5.1) for PDF generation.
+jspdf-autotable (v3.8.3) for table rendering in PDFs.
+
+
+
+2. Back-End (Mock)
+
+Storage: Use localStorage for cart and form data with a 7-day expiry.
+API: No server-side API; mock checkout process with alerts for non-PDF documents (e.g., "Report compilation coming soon!").
+
+3. File Structure
+
+HTML: pages/construction-compliance.html
+CSS: Embedded in <style> tag within HTML for simplicity.
+JavaScript: assets/js/construction-compliance.js
+Dependencies:
+Firebase (v9.22.0) for future database integration (not implemented).
+jsPDF and jspdf-autotable via CDN.
+
+
+
+4. Performance and Security
+
+Performance:
+Minimize DOM updates by re-rendering only the wizard content.
+Use CDN-hosted libraries to reduce load time.
+
+
+Security:
+Sanitize user inputs to prevent XSS (not implemented but recommended for production).
+Ensure no sensitive data (e.g., COIDA numbers) is logged or exposed.
+
+
+
+
+Development Guidelines
+1. For Developers
+
+Code Structure:
+Organize JavaScript into sections: utility functions, cart management, PDF generation, wizard state, and event listeners.
+Use template literals for HTML generation in the wizard steps.
+
+
+Testing:
+Test navigation through all 9 steps with sample data.
+Verify cart updates after Step 1 (e.g., selecting "Health and Safety Specification" should add it with R50).
+Ensure PDF generation works for H&S Specification, H&S Plan, and H&S File.
+
+
+Version Control:
+Use Git for version control, with commits for each major feature (e.g., "Add wizard navigation", "Implement cart updates").
+
+
+
+2. For Investors and Stakeholders
+
+Project Goals:
+Deliver a Minimum Viable Product (MVP) by Q3 2025, focusing on document compilation and PDF generation.
+Future phases will include user accounts, payment integration, and real-time collaboration.
+
+
+Market Impact:
+Targets South African construction professionals, addressing a gap in digital OHS compliance tools.
+Potential to reduce workplace accidents by 30% through proper documentation (inspired by industry insights).
+
+
+Compliance:
+Aligns with South African OHS Act and Construction Regulations.
+Incorporates "golden thread" principles for transparency and accountability.
+
+
+
+
+Version History
+
+
+
+Version
+Date
+Changes
+Author
+
+
+
+1.0
+07 May 2025
+Initial draft of specification
+Grok 3, xAI
+
+
+
+Review and Approval
+To be completed by stakeholders:  
+
+Reviewer: Salatiso Lonwabo Mdeni  
+Approval Date: TBD  
+Comments: TBD
+

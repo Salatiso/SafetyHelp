@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Comprehensive workplace training programs with Salatiso OHS Tools. Select training manually, by category, or use our wizard for personalized recommendations.">
+    <meta name="keywords" content="OHS training, workplace safety training, induction training, toolbox talks, South Africa OHS, Salatiso">
+    <meta name="author" content="SafetyHelp Team">
+    <title data-i18n="page_title.training">Salatiso OHS Tools - Training</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/i18next@23.15.2/dist/umd/i18next.min.js"></script>
+    <script src="https://unpkg.com/i18next-browser-languagedetector@8.0.0/dist/i18nextBrowserLanguageDetector.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #E8F0FE;
+            color: #333;
+            margin: 0;
+            padding-top: 100px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header h1, .sidebar h2, .sidebar h3, .intro h2, footer h3, .selection-method h3, .training-wizard h3, .wizard-step h3, .category-selection h3, .manual-selection h3, .manual-purchase h3, .training-cart h3, .checkout-result h3, .training-providers h3 {
+            font-family: 'Montserrat', sans-serif;
+        }
+        /* Header */
+        header {
+            background-color: #007BFF;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            width: 100%;
+        }
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+        .header-left {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .search-language-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .search-bar button {
+            background-color: #FD7E14;
+            color: white;
+        }
+        .search-bar button:hover {
+            background-color: #e06b00;
+        }
+        .language-selector {
+            margin-bottom: 5px;
+        }
+        .language-selector select {
+            padding: 4px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .nav-links {
+            text-align: center;
+            flex: 1;
+        }
+        .nav-links a {
+            color: white;
+            margin: 0 15px;
+            font-family: 'Montserrat', sans-serif;
+            text-decoration: none;
+        }
+        .nav-links a:hover {
+            color: #FD7E14;
+        }
+        .header-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        .logo-container img {
+            height: 50px;
+        }
+        .tagline {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 100px;
+            left: 0;
+            bottom: 0;
+            width: 250px;
+            background-color: #F4F4F4;
+            overflow-y: auto;
+            z-index: 40;
+            padding: 15px;
+        }
+        .sidebar h2 {
+            color: #007BFF;
+            font-size: 24px;
+            margin-bottom: 15px;
+            text-align: right;
+        }
+        .sidebar a {
+            color: white;
+            background-color: #007BFF;
+            padding: 8px;
+            border-radius: 4px;
+            margin-bottom: 5px;
+            display: block;
+            text-decoration: none;
+            font-size: 14px;
+            transition: font-weight 0.3s;
+        }
+        .sidebar a:hover {
+            font-weight: bold;
+            background-color: #0056b3;
+        }
+        .sidebar a.active {
+            background-color: #28A745;
+        }
+        .step-info {
+            background-color: #E8F0FE;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .step-info h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            color: #007BFF;
+            margin-bottom: 10px;
+        }
+        .step-info p {
+            font-size: 14px;
+        }
+        .fun-fact {
+            color: #28A745;
+        }
+        /* Main Content */
+        .main-content {
+            margin-left: 250px;
+            flex-grow: 1;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .intro {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+        .intro h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .intro p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        /* Selection Method */
+        .selection-method {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+        .selection-method h3 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .action-buttons button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .action-buttons button:hover {
+            background-color: #0056b3;
+        }
+        /* Training Wizard */
+        .training-wizard {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+        .wizard-step {
+            display: none;
+        }
+        .wizard-step.active {
+            display: block;
+        }
+        .wizard-step h3 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .wizard-step label {
+            font-weight: 500;
+            margin-bottom: 5px;
+            display: block;
+            font-size: 14px;
+        }
+        .wizard-step input, .wizard-step select, .wizard-step textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .wizard-step input[type="checkbox"] {
+            width: auto;
+            margin-right: 5px;
+        }
+        .error-message {
+            color: #e3342f;
+            display: none;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+        .error {
+            border: 1px solid #e3342f;
+        }
+        .legal-fact, .fun-fact {
+            background-color: #E8F0FE;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 15px;
+        }
+        .legal-fact p, .fun-fact p {
+            font-size: 14px;
+        }
+        .wizard-navigation {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        .wizard-navigation button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .wizard-navigation button:hover {
+            background-color: #0056b3;
+        }
+        #recommended-training {
+            margin-top: 15px;
+        }
+        #recommended-training input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        /* Category Selection */
+        .category-selection {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+        .category-selection h3 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .category {
+            margin-bottom: 15px;
+            border-bottom: 1px solid #d1d5db;
+            padding-bottom: 10px;
+        }
+        .category h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            display: inline;
+            color: #333;
+        }
+        .category-toggle {
+            float: right;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .category-toggle:hover {
+            background-color: #0056b3;
+        }
+        .category-content {
+            display: none;
+            margin-top: 10px;
+        }
+        .category-content input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        #category-add-to-cart {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        #category-add-to-cart:hover {
+            background-color: #0056b3;
+        }
+        /* Manual Selection */
+        .manual-selection {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+        .manual-selection h3 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        #training-search {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        #training-options {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        #training-options input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        #manual-add-to-cart {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        #manual-add-to-cart:hover {
+            background-color: #0056b3;
+        }
+        /* Manual Purchase */
+        .manual-purchase {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+        .manual-purchase h3, .manual-purchase h4 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .manual-purchase label {
+            font-weight: 500;
+            margin-bottom: 5px;
+            display: block;
+            font-size: 14px;
+        }
+        .manual-purchase select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        #manual-purchase-add-to-cart {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        #manual-purchase-add-to-cart:hover {
+            background-color: #0056b3;
+        }
+        /* Training Cart */
+        .training-cart {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+        .training-cart h3, .training-cart h4 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        #training-cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        #training-cart-table th, #training-cart-table td {
+            border: 1px solid #d1d5db;
+            padding: 8px;
+            text-align: left;
+            font-size: 14px;
+        }
+        #training-cart-table th {
+            background-color: #f4f4f4;
+            font-weight: 600;
+        }
+        .training-cart label {
+            font-weight: 500;
+            margin-bottom: 5px;
+            display: block;
+            font-size: 14px;
+        }
+        .training-cart input, .training-cart select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .checkout p {
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        #training-checkout {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        #training-checkout:hover {
+            background-color: #0056b3;
+        }
+        /* Checkout Result */
+        .checkout-result {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        .checkout-result h3 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .checkout-result a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        .checkout-result a:hover {
+            background-color: #0056b3;
+        }
+        .checkout-result p {
+            font-size: 14px;
+            margin: 10px 0;
+        }
+        /* Training Providers */
+        .training-providers {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+        .training-providers h3 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .training-providers p {
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        .training-providers a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        .training-providers a:hover {
+            text-decoration: underline;
+        }
+        /* Footer */
+        footer {
+            background-color: #007BFF;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            width: 100%;
+            margin-top: auto;
+        }
+        footer p {
+            font-size: 14px;
+            margin: 5px 0;
+        }
+        footer a {
+            color: #FD7E14;
+            text-decoration: none;
+        }
+        footer a:hover {
+            color: #e06b00;
+        }
+        .newsletter h3 {
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        .newsletter input {
+            padding: 8px;
+            border: none;
+            border-radius: 2px;
+            margin-right: 10px;
+            font-size: 14px;
+            width: 150px;
+        }
+        .newsletter button {
+            padding: 8px 16px;
+            background-color: #FD7E14;
+            color: white;
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .newsletter button:hover {
+            background-color: #e06b00;
+        }
+        /* Chatbot */
+        .chatbot-container {
+            position: fixed;
+            bottom: 1.25rem;
+            right: 1.25rem;
+            z-index: 1000;
+        }
+        #chat-window {
+            width: 300px;
+            max-height: 400px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-hidden {
+            display: none;
+        }
+        #chat-output {
+            flex-grow: 1;
+        }
+        #chat-input-container {
+            display: flex;
+            border-top-width: 1px;
+        }
+        #chat-input {
+            flex-grow: 1;
+            border: none;
+            padding: 0.5rem;
+        }
+        #chat-send {
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+        }
+        #chat-send:hover {
+            background-color: #0056b3;
+        }
+        .chat-toggle-btn {
+            background-color: #FD7E14;
+        }
+        .chat-toggle-btn:hover {
+            background-color: #e06b00;
+        }
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 0;
+                flex-direction: column;
+            }
+            header {
+                position: relative;
+            }
+            .header-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .header-left {
+                align-items: center;
+                margin-bottom: 10px;
+            }
+            .nav-links {
+                margin: 10px 0;
+            }
+            .nav-links a {
+                margin: 5px 10px;
+            }
+            .header-right {
+                align-items: center;
+            }
+            .sidebar {
+                position: relative;
+                top: 0;
+                width: 100%;
+                height: auto;
+                bottom: auto;
+                z-index: 1;
+            }
+            .sidebar h2 {
+                text-align: center;
+            }
+            .main-content {
+                margin-left: 0;
+                flex-direction: column;
+            }
+            .intro, .selection-method, .training-wizard, .category-selection, .manual-selection, .manual-purchase, .training-cart, .checkout-result, .training-providers {
+                margin: 1rem;
+            }
+            .action-buttons {
+                flex-direction: column;
+            }
+            .action-buttons button {
+                width: 100%;
+            }
+            #training-cart-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+        /* Chatbot */
+    .chatbot-container {
+        position: fixed;
+        bottom: 1.25rem;
+        right: 1.25rem;
+        z-index: 1000;
+    }
+    #chat-window {
+        width: 300px;
+        max-height: 400px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        transition: all 0.3s ease;
+    }
+    .chat-hidden {
+        display: none;
+    }
+    .chat-expanded {
+        display: flex;
+    }
+    #chat-output {
+        flex-grow: 1;
+    }
+    #chat-input-container {
+        display: flex;
+        border-top-width: 1px;
+    }
+    #chat-input {
+        flex-grow: 1;
+        border: none;
+        padding: 0.5rem;
+    }
+    #chat-send {
+        border: none;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        background-color: #007BFF;
+        color: white;
+    }
+    #chat-send:hover {
+        background-color: #0056b3;
+    }
+    .chat-toggle-btn {
+        background-color: #FD7E14;
+    }
+    .chat-toggle-btn:hover {
+        background-color: #e06b00;
+    }
+    .chat-toggle-btn.collapsed {
+        padding: 0.75rem;
+        font-size: 0.875rem;
+    }
+    .chat-toggle-btn.collapsed #chat-toggle-text {
+        display: none;
+    }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container mx-auto header-container">
+            <div class="header-left">
+                <div class="logo-container">
+                    <img src="/safety-plans/assets/images/logo.png" alt="SafetyHelp Logo">
+                    <p class="tagline" data-i18n="header.tagline">Safety Personalized, Compliance Simplified—Anytime, Anywhere</p>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="/safety-plans/index.html" data-i18n="header.nav.home">Home</a>
+                <a href="/safety-plans/resources.html" data-i18n="header.nav.resources">Resources</a>
+                <a href="/safety-plans/services.html" data-i18n="header.nav.services">Services</a>
+                <a href="/safety-plans/community.html" data-i18n="header.nav.community">Community</a>
+                <a href="/safety-plans/about.html" data-i18n="header.nav.about">About</a>
+                <a href="/safety-plans/contact.html" data-i18n="header.nav.contact">Contact</a>
+                <a href="/safety-plans/login.html" id="login-link" data-i18n="header.nav.login">Login</a>
+            </div>
+            <div class="header-right">
+                <div class="search-language-container">
+                    <div class="language-selector">
+                        <select id="language-select" aria-label="Select language">
+                            <option value="en" data-i18n="language_selector.en">English</option>
+                            <option value="af" data-i18n="language_selector.af">Afrikaans</option>
+                            <option value="zu" data-i18n="language_selector.zu">isiZulu</option>
+                            <option value="xh" data-i18n="language_selector.xh">isiXhosa</option>
+                            <option value="st" data-i18n="language_selector.st">Sesotho</option>
+                            <option value="tn" data-i18n="language_selector.tn">Setswana</option>
+                            <option value="nso" data-i18n="language_selector.nso">Sepedi</option>
+                            <option value="ts" data-i18n="language_selector.ts">Xitsonga</option>
+                            <option value="ss" data-i18n="language_selector.ss">siSwati</option>
+                            <option value="ve" data-i18n="language_selector.ve">Tshivenda</option>
+                            <option value="nr" data-i18n="language_selector.nr">isiNdebele</option>
+                            <option value="es" data-i18n="language_selector.es">Español</option>
+                            <option value="fr" data-i18n="language_selector.fr">French</option>
+                            <option value="sn" data-i18n="language_selector.sn">Shona</option>
+                            <option value="sw" data-i18n="language_selector.sw">Swahili</option>
+                            <option value="zh" data-i18n="language_selector.zh">Mandarin</option>
+                        </select>
+                    </div>
+                    <div class="search-bar">
+                        <form role="search" class="flex">
+                            <input type="text" data-i18n="[placeholder]header.search.placeholder" placeholder="Search OHS Tools..." aria-label="Search OHS Tools" class="px-3 py-1 border border-gray-300 rounded-l text-gray-800">
+                            <button type="submit" aria-label="Search" data-i18n="header.search.button" class="px-4 py-1 bg-blue-500 hover:bg-blue-600 text-white rounded-r">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h2 data-i18n="sidebar.ohs_tools">SafetyHelp OHS Tools</h2>
+        <ul class="space-y-2">
+            <li><a href="/safety-plans/pages/construction-compliance.html" data-i18n="sidebar.construction_safety">Construction Safety</a></li>
+            <li><a href="/safety-plans/pages/emergency-response-plan.html" data-i18n="sidebar.emergency_planning">Emergency Planning</a></li>
+            <li><a href="/safety-plans/pages/risk-assessment.html" data-i18n="sidebar.risk_assessment">Risk Assessment</a></li>
+            <li><a href="/safety-plans/pages/legal-appointments.html" data-i18n="sidebar.legal_appointments">Legal Appointments</a></li>
+            <li><a href="/safety-plans/pages/incident-management.html" data-i18n="sidebar.incident_management">Incident Management</a></li>
+            <li><a href="/safety-plans/pages/training.html" data-i18n="sidebar.training" class="active">Training</a></li>
+            <li><a href="/safety-plans/pages/inspections-audits.html" data-i18n="sidebar.inspections_audits">Inspections & Audits</a></li>
+            <li><a href="/safety-plans/pages/suppliers.html" data-i18n="sidebar.suppliers">Suppliers</a></li>
+            <li><a href="/safety-plans/pages/legislation.html" data-i18n="sidebar.legislation">Legislation</a></li>
+            <li><a href="/safety-plans/pages/community-tools.html" data-i18n="sidebar.community_tools">Community Tools</a></li>
+            <li><a href="/safety-plans/pages/member-dashboard.html" data-i18n="sidebar.member_dashboard">Member Dashboard</a></li>
+            <li><a href="/safety-plans/pages/ohs-system.html" data-i18n="sidebar.ohs_system">OHS System</a></li>
+        </ul>
+        <div id="sidebar-step-info" class="step-info">
+            <h3 data-i18n="sidebar.step_0.title">📜 Welcome to SafetyHelp</h3>
+            <p data-i18n="sidebar.step_0.description" class="text-sm mb-3">Explore our comprehensive tools and resources to enhance occupational health and safety in your workplace.</p>
+            <p class="fun-fact text-sm" data-i18n="sidebar.step_0.fun_fact">⚡ Did you know using reputable ethical suppliers can reduce workplace hazards by ensuring work is done on time and to the highest quality and safety standards?</p>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <section class="intro">
+            <h2 data-i18n="training.title">Comprehensive Workplace Training</h2>
+            <p data-i18n="training.description">Explore our comprehensive workplace training programs to ensure compliance with South African OHS regulations and foster a safe working environment. Select training manually or use our wizard to get personalized recommendations based on your industry, target audience, and location.</p>
+        </section>
+
+        <section class="selection-method">
+            <h3 data-i18n="training.selection_method.title">Select Your Training Method</h3>
+            <div class="action-buttons">
+                <button id="start-wizard" data-i18n="training.action_buttons.start_wizard">Start Training Wizard</button>
+                <button id="select-by-category" data-i18n="training.action_buttons.select_by_category">Select by Category</button>
+                <button id="select-manually" data-i18n="training.action_buttons.select_manually">Select Manually</button>
+                <button id="purchase-manual" data-i18n="training.action_buttons.view_manual">Purchase Customizable Training Manual</button>
+            </div>
+        </section>
+
+        <section class="training-wizard" style="display: none;">
+            <div class="wizard-content">
+                <div class="wizard-step active" id="training-step-0">
+                    <p data-i18n="training.wizard.start">Please select an option to begin the training recommendation process.</p>
+                </div>
+
+                <div class="wizard-step" id="training-step-1">
+                    <h3 data-i18n="training.wizard.step_1.title">Step 1 of 5: Select Your Industry</h3>
+                    <label data-i18n="training.wizard.step_1.label">Industry:</label><br>
+                    <select id="industry" required>
+                        <option value="" disabled selected data-i18n="training.wizard.step_1.error">Please select an industry.</option>
+                        <option value="construction" data-i18n="training.wizard.step_1.option_construction">Construction</option>
+                        <option value="manufacturing" data-i18n="training.wizard.step_1.option_manufacturing">Manufacturing</option>
+                        <option value="office" data-i18n="training.wizard.step_1.option_office">Office/Administrative</option>
+                        <option value="chemical" data-i18n="training.wizard.step_1.option_chemical">Chemical Industry</option>
+                        <option value="other" data-i18n="training.wizard.step_1.option_other">Other</option>
+                    </select>
+                    <div class="error-message" id="industry-error" data-i18n="training.wizard.step_1.error">Please select an industry.</div>
+                    <div class="legal-fact">
+                        <p><strong data-i18n="training.wizard.step_1.legal_fact_label">Legal Fact:</strong> <span data-i18n="training.wizard.step_1.legal_fact">The OHS Act Section 8 requires employers to provide training tailored to workplace-specific risks.</span></p>
+                    </div>
+                </div>
+
+                <div class="wizard-step" id="training-step-2">
+                    <h3 data-i18n="training.wizard.step_2.title">Step 2 of 5: Select Target Audience</h3>
+                    <label data-i18n="training.wizard.step_2.label">Target Audience (Select all that apply):</label><br>
+                    <input type="checkbox" name="target-audience" value="all_employees" required> <span data-i18n="training.wizard.step_2.option_all_employees">All Employees</span><br>
+                    <input type="checkbox" name="target-audience" value="new_employees"> <span data-i18n="training.wizard.step_2.option_new_employees">New Employees</span><br>
+                    <input type="checkbox" name="target-audience" value="managers"> <span data-i18n="training.wizard.step_2.option_managers">Managers/Supervisors</span><br>
+                    <input type="checkbox" name="target-audience" value="she_reps"> <span data-i18n="training.wizard.step_2.option_she_reps">SHE Representatives</span><br>
+                    <input type="checkbox" name="target-audience" value="emergency_team"> <span data-i18n="training.wizard.step_2.option_emergency_team">Emergency Team (First Aiders, Fire Fighters)</span><br>
+                    <input type="checkbox" name="target-audience" value="hazard_workers"> <span data-i18n="training.wizard.step_2.option_hazard_workers">Workers Exposed to Specific Hazards</span><br>
+                    <input type="checkbox" name="target-audience" value="equipment_operators"> <span data-i18n="training.wizard.step_2.option_equipment_operators">Equipment/Machinery Operators</span><br>
+                    <input type="checkbox" name="target-audience" value="construction_roles"> <span data-i18n="training.wizard.step_2.option_construction_roles">Specialized Construction Roles</span><br>
+                    <div class="error-message" id="target-audience-error" data-i18n="training.wizard.step_2.error">Please select at least one target audience.</div>
+                    <div class="fun-fact">
+                        <p><strong data-i18n="training.wizard.step_2.fun_fact_label">Fun Fact:</strong> <span data-i18n="training.wizard.step_2.fun_fact">Did you know that regular training can reduce workplace incidents by up to 30%?</span></p>
+                    </div>
+                </div>
+
+                <div class="wizard-step" id="training-step-3">
+                    <h3 data-i18n="training.wizard.step_3.title">Step 3 of 5: Specify Your Location</h3>
+                    <label data-i18n="training.wizard.step_3.municipality_label">Municipality:</label><br>
+                    <select id="municipality" required>
+                        <option value="" disabled selected data-i18n="training.wizard.step_3.municipality_error">Please select a municipality.</option>
+                        <option value="johannesburg_south" data-i18n="training.wizard.step_3.option_johannesburg_south">Johannesburg South, Gauteng</option>
+                        <option value="other" data-i18n="training.wizard.step_3.option_other">Other</option>
+                    </select>
+                    <div class="error-message" id="municipality-error" data-i18n="training.wizard.step_3.municipality_error">Please select a municipality.</div>
+                    <div class="legal-fact">
+                        <p><strong data-i18n="training.wizard.step_3.legal_fact_label">Legal Fact:</strong> <span data-i18n="training.wizard.step_3.legal_fact">Local municipalities may have specific OHS by-laws that impact training requirements.</span></p>
+                    </div>
+                </div>
+
+                <div class="wizard-step" id="training-step-4">
+                    <h3 data-i18n="training.wizard.step_4.title">Step 4 of 5: Additional Criteria</h3>
+                    <label data-i18n="training.wizard.step_4.risk_profile_label">Risk Profile of Your Workplace:</label><br>
+                    <select id="risk-profile" required>
+                        <option value="" disabled selected data-i18n="training.wizard.step_4.risk_profile_error">Please select a risk profile.</option>
+                        <option value="low" data-i18n="training.wizard.step_4.option_low">Low Risk (e.g., Office)</option>
+                        <option value="medium" data-i18n="training.wizard.step_4.option_medium">Medium Risk (e.g., Manufacturing)</option>
+                        <option value="high" data-i18n="training.wizard.step_4.option_high">High Risk (e.g., Construction, Chemicals)</option>
+                    </select>
+                    <div class="error-message" id="risk-profile-error" data-i18n="training.wizard.step_4.risk_profile_error">Please select a risk profile.</div>
+                    <div class="fun-fact">
+                        <p><strong data-i18n="training.wizard.step_4.fun_fact_label">Fun Fact:</strong> <span data-i18n="training.wizard.step_4.fun_fact">High-risk workplaces like construction sites require more frequent training to maintain safety standards.</span></p>
+                    </div>
+                </div>
+
+                <div class="wizard-step" id="training-step-5">
+                    <h3 data-i18n="training.wizard.step_5.title">Step 5 of 5: Review Recommended Training</h3>
+                    <p data-i18n="training.wizard.step_5.description">Based on your inputs, here are the recommended training programs. Select the ones you want to add to your cart.</p>
+                    <strong data-i18n="training.wizard.step_5.selected_training_label">Recommended Training Programs:</strong>
+                    <div id="recommended-training"></div>
+                    <div class="legal-fact">
+                        <p><strong data-i18n="training.wizard.step_5.legal_fact_label">Legal Fact:</strong> <span data-i18n="training.wizard.step_5.legal_fact">The OHS Act mandates training for specific roles like SHE Representatives to ensure compliance.</span></p>
+                    </div>
+                </div>
+
+                <div class="wizard-navigation">
+                    <button id="training-wizard-back" data-i18n="training.wizard.nav.back">Back</button>
+                    <button id="training-wizard-next" data-i18n="training.wizard.nav.next">Next</button>
+                    <button id="training-wizard-add-to-cart" style="display: none;" data-i18n="training.wizard.nav.add_to_cart">Add to Cart</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="category-selection" style="display: none;">
+            <h3 data-i18n="training.category_selection.title">Select Training by Category</h3>
+            <div class="category-list">
+                <div class="category">
+                    <h4 data-i18n="training.category_selection.induction.title">Induction Training</h4>
+                    <button class="category-toggle" data-i18n="training.category_selection.toggle">Toggle</button>
+                    <div class="category-content">
+                        <input type="checkbox" name="training" value="general_site_induction"> <span data-i18n="training.category_selection.induction.general_site">General Site Induction</span><br>
+                        <input type="checkbox" name="training" value="site_specific_induction"> <span data-i18n="training.category_selection.induction.site_specific">Site-Specific Induction</span><br>
+                        <input type="checkbox" name="training" value="job_specific_induction"> <span data-i18n="training.category_selection.induction.job_specific">Job-Specific Induction</span><br>
+                    </div>
+                </div>
+                <div class="category">
+                    <h4 data-i18n="training.category_selection.awareness.title">Awareness Training</h4>
+                    <button class="category-toggle" data-i18n="training.category_selection.toggle">Toggle</button>
+                    <div class="category-content">
+                        <input type="checkbox" name="training" value="manual_handling_awareness"> <span data-i18n="training.category_selection.awareness.manual_handling">Manual Handling Awareness</span><br>
+                        <input type="checkbox" name="training" value="fire_safety_awareness"> <span data-i18n="training.category_selection.awareness.fire_safety">Fire Safety Awareness</span><br>
+                        <input type="checkbox" name="training" value="dse_awareness"> <span data-i18n="training.category_selection.awareness.dse">DSE (Display Screen Equipment) Awareness</span><br>
+                        <input type="checkbox" name="training" value="general_hse_awareness"> <span data-i18n="training.category_selection.awareness.general_hse">General HSE Awareness</span><br>
+                        <input type="checkbox" name="training" value="ergonomics"> <span data-i18n="training.category_selection.awareness.ergonomics">Ergonomics Training</span><br>
+                        <input type="checkbox" name="training" value="noise_induced_hearing"> <span data-i18n="training.category_selection.awareness.noise_induced">Noise-Induced Hearing Loss (NIHL) Awareness</span><br>
+                        <input type="checkbox" name="training" value="asbestos_awareness"> <span data-i18n="training.category_selection.awareness.asbestos">Asbestos Awareness Training</span><br>
+                    </div>
+                </div>
+                <div class="category">
+                    <h4 data-i18n="training.category_selection.statutory.title">Statutory / Mandatory Training</h4>
+                    <button class="category-toggle" data-i18n="training.category_selection.toggle">Toggle</button>
+                    <div class="category-content">
+                        <input type="checkbox" name="training" value="fire_warden"> <span data-i18n="training.category_selection.statutory.fire_warden">Fire Warden/Marshal</span><br>
+                        <input type="checkbox" name="training" value="first_aid"> <span data-i18n="training.category_selection.statutory.first_aid">First Aid (Levels 1, 2, 3)</span><br>
+                        <input type="checkbox" name="training" value="asbestos_awareness_statutory"> <span data-i18n="training.category_selection.statutory.asbestos">Asbestos Awareness (Statutory)</span><br>
+                        <input type="checkbox" name="training" value="working_at_heights"> <span data-i18n="training.category_selection.statutory.working_at_heights">Working at Heights</span><br>
+                        <input type="checkbox" name="training" value="confined_space_entry"> <span data-i18n="training.category_selection.statutory.confined_space">Confined Space Entry</span><br>
+                        <input type="checkbox" name="training" value="hazardous_chemicals"> <span data-i18n="training.category_selection.statutory.hazardous_chemicals">COSHH (Hazardous Substances)</span><br>
+                    </div>
+                </div>
+                <div class="category">
+                    <h4 data-i18n="training.category_selection.task_specific.title">Task- or Risk-Specific Training</h4>
+                    <button class="category-toggle" data-i18n="training.category_selection.toggle">Toggle</button>
+                    <div class="category-content">
+                        <input type="checkbox" name="training" value="permit_to_work"> <span data-i18n="training.category_selection.task_specific.permit_to_work">Permit to Work Training</span><br>
+                        <input type="checkbox" name="training" value="lockout_tagout"> <span data-i18n="training.category_selection.task_specific.lockout_tagout">Lockout/Tagout (LOTO)</span><br>
+                        <input type="checkbox" name="training" value="machinery_operation"> <span data-i18n="training.category_selection.task_specific.machinery_operation">Machinery Operation (e.g., Forklift, Crane)</span><br>
+                        <input type="checkbox" name="training" value="ppe_use"> <span data-i18n="training.category_selection.task_specific.ppe_use">PPE Use and Selection</span><br>
+                        <input type="checkbox" name="training" value="hot_work"> <span data-i18n="training.category_selection.task_specific.hot_work">Hot Work</span><br>
+                    </div>
+                </div>
+                <div class="category">
+                    <h4 data-i18n="training.category_selection.role_specific.title">Role-Specific / Competency Training</h4>
+                    <button class="category-toggle" data-i18n="training.category_selection.toggle">Toggle</button>
+                    <div class="category-content">
+                        <input type="checkbox" name="training" value="safety_officer"> <span data-i18n="training.category_selection.role_specific.safety_officer">Safety Officer/Advisor Training</span><br>
+                        <input type="checkbox" name="training" value="line_manager_hse"> <span data-i18n="training.category_selection.role_specific.line_manager_hse">Line Manager HSE Responsibilities</span><br>
+                        <input type="checkbox" name="training" value="contractor_safety"> <span data-i18n="training.category_selection.role_specific.contractor_safety">Contractor Safety Management</span><br>
+                        <input type="checkbox" name="training" value="hse_committee"> <span data-i18n="training.category_selection.role_specific.hse_committee">HSE Committee Member Training</span><br>
+                    </div>
+                </div>
+                <div class="category">
+                    <h4 data-i18n="training.category_selection.refresher.title">Refresher Training</h4>
+                    <button class="category-toggle" data-i18n="training.category_selection.toggle">Toggle</button>
+                    <div class="category-content">
+                        <input type="checkbox" name="training" value="annual_hse_refresher"> <span data-i18n="training.category_selection.refresher.annual_hse">Annual HSE Refresher</span><br>
+                        <input type="checkbox" name="training" value="first_aid_refresher"> <span data-i18n="training.category_selection.refresher.first_aid">First Aid Refresher</span><br>
+                        <input type="checkbox" name="training" value="fire_marshal_refresher"> <span data-i18n="training.category_selection.refresher.fire_marshal">Fire Marshal Refresher</span><br>
+                        <input type="checkbox" name="training" value="policy_updates"> <span data-i18n="training.category_selection.refresher.policy_updates">Policy or Procedure Updates</span><br>
+                    </div>
+                </div>
+                <div class="category">
+                    <h4 data-i18n="training.category_selection.toolbox_talks.title">Toolbox Talks / Safety Briefings</h4>
+                    <button class="category-toggle" data-i18n="training.category_selection.toggle">Toggle</button>
+                    <div class="category-content">
+                        <input type="checkbox" name="training" value="weekly_toolbox_talk"> <span data-i18n="training.category_selection.toolbox_talks.weekly">Weekly Toolbox Talk</span><br>
+                        <input type="checkbox" name="training" value="pre_task_briefing"> <span data-i18n="training.category_selection.toolbox_talks.pre_task">Pre-Task Briefing</span><br>
+                        <input type="checkbox" name="training" value="incident_learning"> <span data-i18n="training.category_selection.toolbox_talks.incident_learning">Incident Learning Sessions</span><br>
+                    </div>
+                </div>
+            </div>
+            <button id="category-add-to-cart" data-i18n="training.category_selection.add_to_cart">Add Selected to Cart</button>
+        </section>
+
+        <section class="manual-selection" style="display: none;">
+            <h3 data-i18n="training.manual_selection.title">All Available Training Programs</h3>
+            <div class="training-list">
+                <input type="text" id="training-search" data-i18n="[placeholder]training.manual_selection.search_placeholder" placeholder="Search Training Programs..." aria-label="Search Training Programs">
+                <div id="training-options">
+                    <!-- Training options will be dynamically populated -->
+                </div>
+            </div>
+            <button id="manual-add-to-cart" data-i18n="training.manual_selection.add_to_cart">Add Selected to Cart</button>
+        </section>
+
+        <section class="manual-purchase" style="display: none;">
+            <h3 data-i18n="training.manual.purchase.title">Purchase Customizable Training Manual</h3>
+            <p data-i18n="training.manual.purchase.description">Get a comprehensive training manual customized for your company, including legal requirements, company-specific content based on your risk profile, and quotes from accredited training providers.</p>
+            <h4 data-i18n="training.manual.risk_profile.title">Specify Your Risk Profile for the Training Manual</h4>
+            <label data-i18n="training.manual.risk_profile.label">Risk Profile:</label><br>
+            <select id="manual-risk-profile" required>
+                <option value="" disabled selected data-i18n="training.manual.risk_profile.error">Please select a risk profile.</option>
+                <option value="low" data-i18n="training.manual.risk_profile.option_low">Low Risk (e.g., Office)</option>
+                <option value="medium" data-i18n="training.manual.risk_profile.option_medium">Medium Risk (e.g., Manufacturing)</option>
+                <option value="high" data-i18n="training.manual.risk_profile.option_high">High Risk (e.g., Construction, Chemicals)</option>
+            </select>
+            <div class="error-message" id="manual-risk-profile-error" data-i18n="training.manual.risk_profile.error">Please select a risk profile.</div>
+            <button id="manual-purchase-add-to-cart" data-i18n="training.manual.purchase.button">Add Manual to Cart</button>
+        </section>
+
+        <section class="training-cart" style="display: none;">
+            <h3 data-i18n="training.cart.title">Your Training Cart</h3>
+            <table id="training-cart-table">
+                <thead>
+                    <tr>
+                        <th data-i18n="training.cart.table.training">Training Program</th>
+                        <th data-i18n="training.cart.table.price">Price</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <h4 data-i18n="training.cart.customization.title">Customize Your Training Materials</h4>
+            <label data-i18n="training.cart.customization.company_name_label">Company Name:</label><br>
+            <input type="text" id="company-name" required>
+            <div class="error-message" id="company-name-error" data-i18n="training.cart.customization.company_name_error">Please enter your company name.</div><br>
+
+            <label data-i18n="training.cart.customization.location_label">Company Location:</label><br>
+            <input type="text" id="company-location" required>
+            <div class="error-message" id="company-location-error" data-i18n="training.cart.customization.location_error">Please enter your company location.</div><br>
+
+            <label data-i18n="training.cart.customization.first_aider_label">First Aider Name:</label><br>
+            <input type="text" id="first-aider" required>
+            <div class="error-message" id="first-aider-error" data-i18n="training.cart.customization.first_aider_error">Please enter the name of the first aider.</div><br>
+
+            <label data-i18n="training.cart.customization.fire_fighter_label">Fire Fighter Name:</label><br>
+            <input type="text" id="fire-fighter" required>
+            <div class="error-message" id="fire-fighter-error" data-i18n="training.cart.customization.fire_fighter_error">Please enter the name of the fire fighter.</div><br>
+
+            <label data-i18n="training.cart.customization.ohs_rep_label">OHS Representative Name:</label><br>
+            <input type="text" id="ohs-rep" required>
+            <div class="error-message" id="ohs-rep-error" data-i18n="training.cart.customization.ohs_rep_error">Please enter the name of the OHS representative.</div><br>
+
+            <label data-i18n="training.cart.customization.supervisor_label">Supervisor Name:</label><br>
+            <input type="text" id="supervisor" required>
+            <div class="error-message" id="supervisor-error" data-i18n="training.cart.customization.supervisor_error">Please enter the name of the supervisor.</div><br>
+
+            <label data-i18n="training.cart.customization.emergency_line_label">Emergency Contact Number:</label><br>
+            <input type="tel" id="emergency-line" required>
+            <div class="error-message" id="emergency-line-error" data-i18n="training.cart.customization.emergency_line_error">Please enter a valid emergency contact number (e.g., +27123456789).</div><br>
+
+            <h4 data-i18n="training.cart.compiled_by.title">Compiled By</h4>
+            <label data-i18n="training.cart.compiled_by.name_label">Name:</label><br>
+            <input type="text" id="compiled-by-name" required>
+            <div class="error-message" id="compiled-by-name-error" data-i18n="training.cart.compiled_by.name_error">Please enter your name.</div><br>
+
+            <label data-i18n="training.cart.compiled_by.role_label">Role:</label><br>
+            <input type="text" id="compiled-by-role" required>
+            <div class="error-message" id="compiled-by-role-error" data-i18n="training.cart.compiled_by.role_error">Please enter your role.</div><br>
+
+            <label data-i18n="training.cart.compiled_by.contact_label">Contact Number:</label><br>
+            <input type="tel" id="compiled-by-contact" required>
+            <div class="error-message" id="compiled-by-contact-error" data-i18n="training.cart.compiled_by.contact_error">Please enter a valid contact number (e.g., +27123456789).</div><br>
+
+            <h4 data-i18n="training.cart.training_type.title">Training Delivery Method</h4>
+            <label data-i18n="training.cart.training_type.label">Select Delivery Method:</label><br>
+            <select id="training-type" required>
+                <option value="" disabled selected data-i18n="training.cart.training_type.error">Please select a delivery method.</option>
+                <option value="pdf" data-i18n="training.cart.training_type.option_pdf">PDF Training Manuals Only</option>
+                <option value="online" data-i18n="training.cart.training_type.option_online">Online Video Training (Coming Soon)</option>
+            </select>
+            <div class="error-message" id="training-type-error" data-i18n="training.cart.training_type.error">Please select a delivery method.</div><br>
+
+            <div id="online-training-details" style="display: none;">
+                <label data-i18n="training.cart.training_type.online_num_people_label">Number of People to Train:</label><br>
+                <input type="number" id="num-people" min="1">
+                <div class="error-message" id="num-people-error" data-i18n="training.cart.training_type.online_num_people_error">Please enter the number of people (minimum 1).</div><br>
+            </div>
+
+            <div class="checkout">
+                <p data-i18n="training.cart.checkout.disclaimer">SafetyHelp Disclaimer: The training materials provided are for informational purposes only and do not constitute professional advice. For tailored OHS solutions, contact SafetyHelp at <a href='mailto:support@safetyhelp.co.za'>support@safetyhelp.co.za</a> or visit our <a href='/safety-plans/contact.html'>Contact Page</a>.</p>
+                <button id="training-checkout" data-i18n="training.cart.checkout.button">Proceed to Checkout</button>
+            </div>
+        </section>
+
+        <section class="checkout-result" style="display: none;">
+            <h3 data-i18n="training.checkout.success">Checkout successful! Your training materials have been generated. Download your PDF(s) below. For online training, access codes have been emailed to you.</h3>
+            <a href="#" id="download-pdf" data-i18n="training.checkout.download_pdf">Download Training PDF</a>
+            <p id="online-codes-section" style="display: none;" data-i18n="training.checkout.online_codes">Online Training Access Codes: <span id="access-codes"></span></p>
+        </section>
+
+        <section class="training-providers">
+            <h3 data-i18n="training.providers.title">Accredited Training Providers</h3>
+            <p data-i18n="training.providers.description">Need in-person training? Contact accredited training providers for your needs.</p>
+            <p data-i18n="training.providers.provider_1"><strong>ABC Training Solutions</strong> - SETA Accredited - Specializes in First Aid, Fire Fighting - Contact: info@abctraining.co.za</p>
+            <p data-i18n="training.providers.provider_2"><strong>SafeSkills Academy</strong> - SACPCMP Registered - Specializes in Construction Safety - Contact: training@safeskills.co.za</p>
+            <p data-i18n="training.providers.provider_3"><strong>SafetyHelp Training</strong> - Comprehensive OHS Training - Contact: <a href='mailto:support@safetyhelp.co.za'>support@safetyhelp.co.za</a></p>
+        </section>
+
+        <footer>
+            <div class="container mx-auto px-6 text-center">
+                <p class="mb-2" data-i18n="footer.copyright">© 2025 SafetyHelp. All rights reserved.</p>
+                <p class="mb-4">
+                    <a href="/safety-plans/privacy.html" data-i18n="footer.links.privacy" class="mx-2">Privacy Policy</a> |
+                    <a href="/safety-plans/terms.html" data-i18n="footer.links.terms" class="mx-2">Terms of Service</a> |
+                    <a href="/safety-plans/contact.html" data-i18n="footer.links.contact" class="mx-2">Contact Us</a>
+                </p>
+                <div class="newsletter mt-6">
+                    <h3 class="text-lg font-semibold mb-3" data-i18n="footer.newsletter.title">Stay Updated</h3>
+                    <form class="flex justify-center">
+                        <input type="email" data-i18n="[placeholder]footer.newsletter.placeholder" placeholder="Enter your email" aria-label="Email for newsletter" class="px-3 py-2 border border-gray-300 rounded-l text-gray-800 w-64">
+                        <button type="submit" data-i18n="footer.newsletter.button" class="px-4 py-2 rounded-r">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Chatbot Container -->
+    <div class="chatbot-container fixed bottom-5 right-5 z-50">
+        <button id="chat-toggle" class="chat-toggle-btn p-3 rounded-full shadow-lg flex items-center justify-center bg-orange-500 text-white hover:bg-orange-600 transition duration-300">
+            <span class="chat-icon text-2xl mr-1">⛑️</span> 
+            <span id="chat-toggle-text" data-i18n="chatbot.button">Ask Salatiso</span>
+        </button>
+        <div id="chat-window" class="chat-hidden bg-white border border-gray-300 rounded-lg shadow-xl mt-2">
+            <div id="chat-output" class="p-3 text-sm h-80 overflow-y-scroll">
+                <p><strong>Salatiso:</strong> <span data-i18n="chatbot.welcome">Hello! How can I help you with OHS today?</span></p>
+            </div>
+            <div id="chat-input-container" class="flex border-t border-gray-200">
+                <input id="chat-input" type="text" data-i18n="[placeholder]chatbot.input_placeholder" placeholder="Ask about OHS..." aria-label="Ask about OHS" class="flex-grow p-2 border-none focus:outline-none">
+                <button id="chat-send" aria-label="Send message" data-i18n="chatbot.send" class="px-4 py-2 bg-blue-500 text-white hover:bg-blue-600">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script>
+        // Translation Initialization with Debugging
+        document.addEventListener('DOMContentLoaded', async () => {
+            const languages = ['en', 'af', 'zu', 'xh', 'st', 'tn', 'nso', 'ts', 'ss', 've', 'nr', 'es', 'fr', 'sn', 'sw'];
+            const resources = {};
+
+            // Load English translations as a fallback
+            const defaultTranslations = {
+                "header.nav.home": "Home",
+                "header.nav.resources": "Resources",
+                "header.nav.services": "Services",
+                "header.nav.community": "Community",
+                "header.nav.about": "About",
+                "header.nav.contact": "Contact",
+                "header.nav.login": "Login",
+                "header.search.placeholder": "Search OHS Tools...",
+                "header.search.button": "Search",
+                "language_selector.en": "English",
+                "language_selector.af": "Afrikaans",
+                "language_selector.zu": "isiZulu",
+                "language_selector.xh": "isiXhosa",
+                "language_selector.st": "Sesotho",
+                "language_selector.tn": "Setswana",
+                "language_selector.nso": "Sepedi",
+                "language_selector.ts": "Xitsonga",
+                "language_selector.ss": "siSwati",
+                "language_selector.ve": "Tshivenda",
+                "language_selector.nr": "isiNdebele",
+                "language_selector.es": "Español",
+                "language_selector.fr": "French",
+                "language_selector.sn": "Shona",
+                "language_selector.sw": "Swahili",
+                "language_selector.zh": "Mandarin",
+                "sidebar.ohs_tools": "SafetyHelp OHS Tools",
+                "sidebar.construction_safety": "Construction Safety",
+                "sidebar.emergency_planning": "Emergency Planning",
+                "sidebar.risk_assessment": "Risk Assessment",
+                "sidebar.legal_appointments": "Legal Appointments",
+                "sidebar.incident_management": "Incident Management",
+                "sidebar.training": "Training",
+                "sidebar.inspections_audits": "Inspections & Audits",
+                "sidebar.suppliers": "Suppliers",
+                "sidebar.legislation": "Legislation",
+                "sidebar.community_tools": "Community Tools",
+                "sidebar.member_dashboard": "Member Dashboard",
+                "sidebar.ohs_system": "OHS System",
+                "sidebar.step_0.title": "📜 Welcome to SafetyHelp",
+                "sidebar.step_0.description": "Explore our comprehensive tools and resources to enhance occupational health and safety in your workplace.",
+                "sidebar.step_0.fun_fact": "⚡ Did you know using reputable ethical suppliers can reduce workplace hazards by ensuring work is done on time and to the highest quality and safety standards?",
+                "training.title": "Comprehensive Workplace Training",
+                "training.description": "Explore our comprehensive workplace training programs to ensure compliance with South African OHS regulations and foster a safe working environment. Select training manually or use our wizard to get personalized recommendations based on your industry, target audience, and location.",
+                "training.selection_method.title": "Select Your Training Method",
+                "training.action_buttons.start_wizard": "Start Training Wizard",
+                "training.action_buttons.select_by_category": "Select by Category",
+                "training.action_buttons.select_manually": "Select Manually",
+                "training.action_buttons.view_manual": "Purchase Customizable Training Manual",
+                "training.wizard.start": "Please select an option to begin the training recommendation process.",
+                "training.wizard.step_1.title": "Step 1 of 5: Select Your Industry",
+                "training.wizard.step_1.label": "Industry:",
+                "training.wizard.step_1.error": "Please select an industry.",
+                "training.wizard.step_1.option_construction": "Construction",
+                "training.wizard.step_1.option_manufacturing": "Manufacturing",
+                "training.wizard.step_1.option_office": "Office/Administrative",
+                "training.wizard.step_1.option_chemical": "Chemical Industry",
+                "training.wizard.step_1.option_other": "Other",
+                "training.wizard.step_1.legal_fact_label": "Legal Fact:",
+                "training.wizard.step_1.legal_fact": "The OHS Act Section 8 requires employers to provide training tailored to workplace-specific risks.",
+                "training.wizard.step_2.title": "Step 2 of 5: Select Target Audience",
+                "training.wizard.step_2.label": "Target Audience (Select all that apply):",
+                "training.wizard.step_2.option_all_employees": "All Employees",
+                "training.wizard.step_2.option_new_employees": "New Employees",
+                "training.wizard.step_2.option_managers": "Managers/Supervisors",
+                "training.wizard.step_2.option_she_reps": "SHE Representatives",
+                "training.wizard.step_2.option_emergency_team": "Emergency Team (First Aiders, Fire Fighters)",
+                "training.wizard.step_2.option_hazard_workers": "Workers Exposed to Specific Hazards",
+                "training.wizard.step_2.option_equipment_operators": "Equipment/Machinery Operators",
+                "training.wizard.step_2.option_construction_roles": "Specialized Construction Roles",
+                "training.wizard.step_2.error": "Please select at least one target audience.",
+                "training.wizard.step_2.fun_fact_label": "Fun Fact:",
+                "training.wizard.step_2.fun_fact": "Did you know that regular training can reduce workplace incidents by up to 30%?",
+                "training.wizard.step_3.title": "Step 3 of 5: Specify Your Location",
+                "training.wizard.step_3.municipality_label": "Municipality:",
+                "training.wizard.step_3.municipality_error": "Please select a municipality.",
+                "training.wizard.step_3.option_johannesburg_south": "Johannesburg South, Gauteng",
+                "training.wizard.step_3.option_other": "Other",
+                "training.wizard.step_3.legal_fact_label": "Legal Fact:",
+                "training.wizard.step_3.legal_fact": "Local municipalities may have specific OHS by-laws that impact training requirements.",
+                "training.wizard.step_4.title": "Step 4 of 5: Additional Criteria",
+                "training.wizard.step_4.risk_profile_label": "Risk Profile of Your Workplace:",
+                "training.wizard.step_4.risk_profile_error": "Please select a risk profile.",
+                "training.wizard.step_4.option_low": "Low Risk (e.g., Office)",
+                "training.wizard.step_4.option_medium": "Medium Risk (e.g., Manufacturing)",
+                "training.wizard.step_4.option_high": "High Risk (e.g., Construction, Chemicals)",
+                "training.wizard.step_4.fun_fact_label": "Fun Fact:",
+                "training.wizard.step_4.fun_fact": "High-risk workplaces like construction sites require more frequent training to maintain safety standards.",
+                "training.wizard.step_5.title": "Step 5 of 5: Review Recommended Training",
+                "training.wizard.step_5.description": "Based on your inputs, here are the recommended training programs. Select the ones you want to add to your cart.",
+                "training.wizard.step_5.selected_training_label": "Recommended Training Programs:",
+                "training.wizard.step_5.legal_fact_label": "Legal Fact:",
+                "training.wizard.step_5.legal_fact": "The OHS Act mandates training for specific roles like SHE Representatives to ensure compliance.",
+                "training.wizard.nav.back": "Back",
+                "training.wizard.nav.next": "Next",
+                "training.wizard.nav.add_to_cart": "Add to Cart",
+                "training.category_selection.title": "Select Training by Category",
+                "training.category_selection.toggle": "Toggle",
+                "training.category_selection.induction.title": "Induction Training",
+                "training.category_selection.induction.general_site": "General Site Induction",
+                "training.category_selection.induction.site_specific": "Site-Specific Induction",
+                "training.category_selection.induction.job_specific": "Job-Specific Induction",
+                "training.category_selection.awareness.title": "Awareness Training",
+                "training.category_selection.awareness.manual_handling": "Manual Handling Awareness",
+                "training.category_selection.awareness.fire_safety": "Fire Safety Awareness",
+                "training.category_selection.awareness.dse": "DSE (Display Screen Equipment) Awareness",
+                "training.category_selection.awareness.general_hse": "General HSE Awareness",
+                "training.category_selection.awareness.ergonomics": "Ergonomics Training",
+                "training.category_selection.awareness.noise_induced": "Noise-Induced Hearing Loss (NIHL) Awareness",
+                "training.category_selection.awareness.asbestos": "Asbestos Awareness Training",
+                "training.category_selection.statutory.title": "Statutory / Mandatory Training",
+                "training.category_selection.statutory.fire_warden": "Fire Warden/Marshal",
+                "training.category_selection.statutory.first_aid": "First Aid (Levels 1, 2, 3)",
+                "training.category_selection.statutory.asbestos": "Asbestos Awareness (Statutory)",
+                "training.category_selection.statutory.working_at_heights": "Working at Heights",
+                "training.category_selection.statutory.confined_space": "Confined Space Entry",
+                "training.category_selection.statutory.hazardous_chemicals": "COSHH (Hazardous Substances)",
+                "training.category_selection.task_specific.title": "Task- or Risk-Specific Training",
+                "training.category_selection.task_specific.permit_to_work": "Permit to Work Training",
+                "training.category_selection.task_specific.lockout_tagout": "Lockout/Tagout (LOTO)",
+                "training.category_selection.task_specific.machinery_operation": "Machinery Operation (e.g., Forklift, Crane)",
+                "training.category_selection.task_specific.ppe_use": "PPE Use and Selection",
+                "training.category_selection.task_specific.hot_work": "Hot Work",
+                "training.category_selection.role_specific.title": "Role-Specific / Competency Training",
+                "training.category_selection.role_specific.safety_officer": "Safety Officer/Advisor Training",
+                "training.category_selection.role_specific.line_manager_hse": "Line Manager HSE Responsibilities",
+                "training.category_selection.role_specific.contractor_safety": "Contractor Safety Management",
+                "training.category_selection.role_specific.hse_committee": "HSE Committee Member Training",
+                "training.category_selection.refresher.title": "Refresher Training",
+                "training.category_selection.refresher.annual_hse": "Annual HSE Refresher",
+                "training.category_selection.refresher.first_aid": "First Aid Refresher",
+                "training.category_selection.refresher.fire_marshal": "Fire Marshal Refresher",
+                "training.category_selection.refresher.policy_updates": "Policy or Procedure Updates",
+                "training.category_selection.toolbox_talks.title": "Toolbox Talks / Safety Briefings",
+                "training.category_selection.toolbox_talks.weekly": "Weekly Toolbox Talk",
+                "training.category_selection.toolbox_talks.pre_task": "Pre-Task Briefing",
+                "training.category_selection.toolbox_talks.incident_learning": "Incident Learning Sessions",
+                "training.category_selection.add_to_cart": "Add Selected to Cart",
+                "training.manual_selection.title": "All Available Training Programs",
+                "training.manual_selection.search_placeholder": "Search Training Programs...",
+                "training.manual_selection.add_to_cart": "Add Selected to Cart",
+                "training.manual.purchase.title": "Purchase Customizable Training Manual",
+                "training.manual.purchase.description": "Get a comprehensive training manual customized for your company, including legal requirements, company-specific content based on your risk profile, and quotes from accredited training providers.",
+                "training.manual.risk_profile.title": "Specify Your Risk Profile for the Training Manual",
+                "training.manual.risk_profile.label": "Risk Profile:",
+                "training.manual.risk_profile.error": "Please select a risk profile.",
+                "training.manual.risk_profile.option_low": "Low Risk (e.g., Office)",
+                "training.manual.risk_profile.option_medium": "Medium Risk (e.g., Manufacturing)",
+                "training.manual.risk_profile.option_high": "High Risk (e.g., Construction, Chemicals)",
+                "training.manual.purchase.button": "Add Manual to Cart",
+                "training.cart.title": "Your Training Cart",
+                "training.cart.table.training": "Training Program",
+                "training.cart.table.price": "Price",
+                "training.cart.customization.title": "Customize Your Training Materials",
+                "training.cart.customization.company_name_label": "Company Name:",
+                "training.cart.customization.company_name_error": "Please enter your company name.",
+                "training.cart.customization.location
+
+        // Chatbot Functionality
+    const chatToggle = document.getElementById('chat-toggle');
+    const chatWindow = document.getElementById('chat-window');
+    const chatOutput = document.getElementById('chat-output');
+    const chatInput = document.getElementById('chat-input');
+    const chatSend = document.getElementById('chat-send');
+    let isExpanded = false;
+
+    chatToggle.addEventListener('click', () => {
+        isExpanded = !isExpanded;
+        chatWindow.classList.toggle('chat-hidden', !isExpanded);
+        chatWindow.classList.toggle('chat-expanded', isExpanded);
+        chatToggle.classList.toggle('collapsed', !isExpanded);
+        if (isExpanded) {
+            chatInput.focus();
+        }
+    });
+
+    async function sendQuery() {
+        if (!db) {
+            addChatMessage('Salatiso', 'Sorry, I am currently unavailable.');
+            return;
+        }
+        const input = chatInput.value.trim();
+        if (!input) return;
+        addChatMessage('You', input);
+        chatInput.value = '';
+        addChatMessage('Salatiso', 'Searching...');
+        const query = input.toLowerCase();
+
+        try {
+            const snapshot = await db.collection('ohs-knowledge')
+                                     .where('keywords', 'array-contains', query)
+                                     .limit(1)
+                                     .get();
+            let responseFound = false;
+            let response = "Sorry, I couldn’t find specific information on that topic. Please try rephrasing or ask a different question.";
+
+            if (!snapshot.empty) {
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    response = `Based on information from ${data.book || 'our resources'} (Chapter ${data.chapter || 'N/A'}), here's a summary: <br>${data.content.substring(0, 250)}...`;
+                    if (data.file) {
+                        response += ` (See <a href="/safety-plans/resources/${data.file}" target="_blank" class="text-blue-500 hover:underline">full chapter</a>)`;
+                    }
+                    responseFound = true;
+                });
+            }
+            const searchingMessage = chatOutput.querySelector('p:last-child');
+            if (searchingMessage && searchingMessage.textContent.includes('Searching...')) {
+                searchingMessage.innerHTML = `<strong>Salatiso:</strong> ${response}`;
+            } else {
+                addChatMessage('Salatiso', response);
+            }
+        } catch (error) {
+            console.error("Firestore query failed:", error);
+            const searchingMessage = chatOutput.querySelector('p:last-child');
+            if (searchingMessage && searchingMessage.textContent.includes('Searching...')) {
+                searchingMessage.innerHTML = `<strong>Salatiso:</strong> Oops, something went wrong while searching. Please try again!`;
+            } else {
+                addChatMessage('Salatiso', 'Oops, something went wrong while searching. Please try again!');
+            }
+        }
+    }
+
+    function addChatMessage(sender, message) {
+        if (chatOutput) {
+            const messageElement = document.createElement('p');
+            messageElement.classList.add('mb-2');
+            messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
+            chatOutput.appendChild(messageElement);
+            chatOutput.scrollTop = chatOutput.scrollHeight;
+        }
+    }
+
+    chatSend.addEventListener('click', sendQuery);
+    chatInput.addEventListener('keypress', (event) => {
+        if (event.key === 'Enter') sendQuery();
+    });

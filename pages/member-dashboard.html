@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Manage your OHS compliance, RMPs, supplier reviews, and community reports with SafetyHelp's Member Dashboard.">
+    <meta name="keywords" content="member dashboard, OHS compliance, risk management plans, supplier reviews, community reports, SafetyHelp">
+    <meta name="author" content="SafetyHelp Team">
+    <title data-i18n="page_title.member_dashboard">SafetyHelp - Member Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/i18next@23.15.2/dist/umd/i18next.min.js"></script>
+    <script src="https://unpkg.com/i18next-browser-languagedetector@8.0.0/dist/i18nextBrowserLanguageDetector.min.js"></script>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #E8F0FE;
+            color: #333;
+            margin: 0;
+            padding-top: 100px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header h1, .sidebar h2, .sidebar h3, .dashboard h2, footer h3, .dashboard-section h3 {
+            font-family: 'Montserrat', sans-serif;
+        }
+        /* Header */
+        header {
+            background-color: #007BFF;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            width: 100%;
+        }
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+        .header-left {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .search-language-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .search-bar button {
+            background-color: #FD7E14;
+            color: white;
+        }
+        .search-bar button:hover {
+            background-color: #e06b00;
+        }
+        .language-selector {
+            margin-bottom: 5px;
+        }
+        .language-selector select {
+            padding: 4px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .nav-links {
+            text-align: center;
+            flex: 1;
+        }
+        .nav-links a {
+            color: white;
+            margin: 0 15px;
+            font-family: 'Montserrat', sans-serif;
+            text-decoration: none;
+        }
+        .nav-links a:hover {
+            color: #FD7E14;
+        }
+        .header-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        .logo-container img {
+            height: 50px;
+        }
+        .tagline {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 100px;
+            left: 0;
+            bottom: 0;
+            width: 250px;
+            background-color: #F4F4F4;
+            overflow-y: auto;
+            z-index: 40;
+            padding: 15px;
+        }
+        .sidebar h2 {
+            color: #007BFF;
+            font-size: 24px;
+            margin-bottom: 15px;
+            text-align: right;
+        }
+        .sidebar a {
+            color: white;
+            background-color: #007BFF;
+            padding: 8px;
+            border-radius: 4px;
+            margin-bottom: 5px;
+            display: block;
+            text-decoration: none;
+            font-size: 14px;
+            transition: font-weight 0.3s;
+        }
+        .sidebar a:hover {
+            font-weight: bold;
+            background-color: #0056b3;
+        }
+        .sidebar a.active {
+            background-color: #28A745;
+        }
+        .step-info {
+            background-color: #E8F0FE;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .step-info h3 {
+            font-size: 18px;
+            color: #007BFF;
+            margin-bottom: 10px;
+        }
+        .step-info p {
+            font-size: 14px;
+        }
+        .fun-fact {
+            color: #28A745;
+        }
+        /* Main Content */
+        .main-content {
+            margin-left: 250px;
+            flex-grow: 1;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container mx-auto header-container">
+            <div class="header-left">
+                <div class="logo-container">
+                    <img src="/safety-plans/assets/images/logo.png" alt="SafetyHelp Logo">
+                    <p class="tagline" data-i18n="header.tagline">Safety Personalized, Compliance Simplified—Anytime, Anywhere</p>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="/safety-plans/index.html" data-i18n="header.nav.home">Home</a>
+                <a href="/safety-plans/resources.html" data-i18n="header.nav.resources">Resources</a>
+                <a href="/safety-plans/services.html" data-i18n="header.nav.services">Services</a>
+                <a href="/safety-plans/community.html" data-i18n="header.nav.community">Community</a>
+                <a href="/safety-plans/about.html" data-i18n="header.nav.about">About</a>
+                <a href="/safety-plans/contact.html" data-i18n="header.nav.contact">Contact</a>
+                <a href="/safety-plans/login.html" id="login-link" data-i18n="header.nav.login">Login</a>
+            </div>
+            <div class="header-right">
+                <div class="search-language-container">
+                    <div class="language-selector">
+                        <select id="language-select" aria-label="Select language">
+                            <option value="en" data-i18n="language_selector.en">English</option>
+                            <option value="af" data-i18n="language_selector.af">Afrikaans</option>
+                            <option value="zu" data-i18n="language_selector.zu">isiZulu</option>
+                            <option value="xh" data-i18n="language_selector.xh">isiXhosa</option>
+                            <option value="st" data-i18n="language_selector.st">Sesotho</option>
+                            <option value="tn" data-i18n="language_selector.tn">Setswana</option>
+                            <option value="nso" data-i18n="language_selector.nso">Sepedi</option>
+                            <option value="ts" data-i18n="language_selector.ts">Xitsonga</option>
+                            <option value="ss" data-i18n="language_selector.ss">siSwati</option>
+                            <option value="ve" data-i18n="language_selector.ve">Tshivenda</option>
+                            <option value="nr" data-i18n="language_selector.nr">isiNdebele</option>
+                            <option value="es" data-i18n="language_selector.es">Español</option>
+                            <option value="fr" data-i18n="language_selector.fr">French</option>
+                            <option value="sn" data-i18n="language_selector.sn">Shona</option>
+                            <option value="sw" data-i18n="language_selector.sw">Swahili</option>
+                            <option value="zh" data-i18n="language_selector.zh">Mandarin</option>
+                        </select>
+                    </div>
+                    <div class="search-bar">
+                        <form role="search" class="flex">
+                            <input type="text" data-i18n="[placeholder]header.search.placeholder" placeholder="Search OHS Tools..." aria-label="Search OHS Tools" class="px-3 py-1 border border-gray-300 rounded-l text-gray-800">
+                            <button type="submit" aria-label="Search" data-i18n="header.search.button" class="px-4 py-1 bg-blue-500 hover:bg-blue-600 text-white rounded-r">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h2 data-i18n="sidebar.ohs_tools">SafetyHelp OHS Tools</h2>
+        <ul class="space-y-2">
+            <li><a href="/safety-plans/pages/construction-compliance.html" data-i18n="sidebar.construction_safety">Construction Safety</a></li>
+            <li><a href="/safety-plans/pages/emergency-response-plan.html" data-i18n="sidebar.emergency_planning">Emergency Planning</a></li>
+            <li><a href="/safety-plans/pages/risk-assessment.html" data-i18n="sidebar.risk_assessment">Risk Assessment</a></li>
+            <li><a href="/safety-plans/pages/legal-appointments.html" data-i18n="sidebar.legal_appointments">Legal Appointments</a></li>
+            <li><a href="/safety-plans/pages/incident-management.html" data-i18n="sidebar.incident_management">Incident Management</a></li>
+            <li><a href="/safety-plans/pages/training.html" data-i18n="sidebar.training">Training</a></li>
+            <li><a href="/safety-plans/pages/inspections-audits.html" data-i18n="sidebar.inspections_audits">Inspections & Audits</a></li>
+            <li><a href="/safety-plans/pages/suppliers.html" data-i18n="sidebar.suppliers">Suppliers</a></li>
+            <li><a href="/safety-plans/pages/legislation.html" data-i18n="sidebar.legislation">Legislation</a></li>
+            <li><a href="/safety-plans/pages/community-tools.html" data-i18n="sidebar.community_tools">Community Tools</a></li>
+            <li><a href="/safety-plans/pages/member-dashboard.html" data-i18n="sidebar.member_dashboard" class="active">Member Dashboard</a></li>
+            <li><a href="/safety-plans/pages/ohs-system.html" data-i18n="sidebar.ohs_system">OHS System</a></li>
+        </ul>
+        <div id="sidebar-step-info" class="step-info">
+            <h3 data-i18n="sidebar.step_0.title">📜 Welcome to SafetyHelp</h3>
+            <p data-i18n="sidebar.step_0.description" class="text-sm mb-3">Explore our comprehensive tools and resources to enhance occupational health and safety in your workplace.</p>
+            <p class="fun-fact text-sm" data-i18n="sidebar.step_0.fun_fact">⚡ Did you know using reputable ethical suppliers can reduce workplace hazards by ensuring work is done on time and to the highest quality and safety standards?</p>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <section class="dashboard">
+            <h2 data-i18n="dashboard.title">Member Dashboard</h2>
+            <p data-i18n="dashboard.welcome">Welcome, [User Name]! Manage your OHS compliance, RMPs, supplier reviews, and community reports here.</p>
+
+            <div class="dashboard-section">
+                <h3 data-i18n="dashboard.company_profile.title">Company Profile</h3>
+                <p data-i18n="dashboard.company_profile.name">Company Name: [User Input]</p>
+                <p data-i18n="dashboard.company_profile.industry">Industry: [User Input]</p>
+                <p data-i18n="dashboard.company_profile.location">Location: [User Input]</p>
+                <button onclick="editProfile()" data-i18n="dashboard.company_profile.edit" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 text-sm">Edit Profile</button>
+            </div>
+
+            <div class="dashboard-section">
+                <h3 data-i18n="dashboard.saved_rmps.title">Saved RMPs</h3>
+                <table class="w-full border-collapse">
+                    <thead>
+                        <tr class="bg-gray-100">
+                            <th class="border border-gray-200 p-2 text-left text-sm font-semibold text-gray-700" data-i18n="dashboard.saved_rmps.date">Date</th>
+                            <th class="border border-gray-200 p-2 text-left text-sm font-semibold text-gray-700" data-i18n="dashboard.saved_rmps.title_header">Title</th>
+                            <th class="border border-gray-200 p-2 text-left text-sm font-semibold text-gray-700" data-i18n="dashboard.saved_rmps.actions">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="border border-gray-200 p-2 text-sm">2025-05-07</td>
+                            <td class="border border-gray-200 p-2 text-sm">Construction RMP</td>
+                            <td class="border border-gray-200 p-2 text-sm">
+                                <button class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 mr-2" data-i18n="dashboard.saved_rmps.view">View</button>
+                                <button class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600" data-i18n="dashboard.saved_rmps.edit">Edit</button>
+                            </td>
+                        </tr>
+                        <!-- More rows populated dynamically -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="dashboard-section">
+                <h3 data-i18n="dashboard.supplier_reviews.title">Supplier Reviews</h3>
+                <table class="w-full border-collapse">
+                    <thead>
+                        <tr class="bg-gray-100">
+                            <th class="border border-gray-200 p-2 text-left text-sm font-semibold text-gray-700" data-i18n="dashboard.supplier_reviews.supplier">Supplier</th>
+                            <th class="border border-gray-200 p-2 text-left text-sm font-semibold text-gray-700" data-i18n="dashboard.supplier_reviews.rating">Rating</th>
+                            <th class="border border-gray-200 p-2 text-left text-sm font-semibold text-gray-700" data-i18n="dashboard.supplier_reviews.review">Review</th>
+                            <th class="border border-gray-200 p-2 text-left text-sm font-semibold text-gray-700" data-i18n="dashboard.supplier_reviews.actions">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="border border-gray-200 p-2 text-sm">ALCO-Safe</td>
+                            <td class="border border-gray-200 p-2 text-sm">4.5/5</td>
+                            <td class="border border-gray-200 p-2 text-sm">Great service!</td>
+                            <td class="border border-gray-200 p-2 text-sm">
+                                <button class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600" data-i18n="dashboard.supplier_reviews.edit">Edit</button>
+                            </td>
+                        </tr>
+                        <!-- More rows populated dynamically -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="dashboard-section">
+                <h3 data-i18n="dashboard.community_reports.title">Community Reports</h3>
+                <table class="w-full border-collapse">
+                    <thead>
+                        <tr class="bg-gray-100">
+                            <th class="border border-gray-200 p-2 text-left text-sm font-semibold text-gray-700" data-i18n="dashboard.community_reports.date">Date</th>
+                            <th class="border border-gray-200 p-2 text-left text-sm font-semibold text-gray-700" data-i18n="dashboard.community_reports.setting">Setting</th>
+                            <th class="border border-gray-200 p-2 text-left text-sm font-semibold text-gray-700" data-i18n="dashboard.community_reports.issue">Issue</th>
+                            <th class="border border-gray-200 p-2 text-left text-sm font-semibold text-gray-700" data-i18n="dashboard.community_reports.status">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="border border-gray-200 p-2 text-sm">2025-05-07</td>
+                            <td class="border border-gray-200 p-2 text-sm">Spaza Shop</td>
+                            <td class="border border-gray-200 p-2 text-sm">No Fire Extinguisher</td>
+                            <td class="border border-gray-200 p-2 text-sm">Submitted</td>
+                        </tr>
+                        <!-- More rows populated dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container mx-auto px-6 text-center">
+            <p class="mb-2" data-i18n="footer.copyright">© 2025 SafetyHelp. All rights reserved.</p>
+            <p class="mb-4">
+                <a href="/safety-plans/privacy.html" data-i18n="footer.links.privacy" class="mx-2">Privacy Policy</a> |
+                <a href="/safety-plans/terms.html" data-i18n="footer.links.terms" class="mx-2">Terms of Service</a> |
+                <a href="/safety-plans/contact.html" data-i18n="footer.links.contact" class="mx-2">Contact Us</a>
+            </p>
+            <div class="newsletter mt-6">
+                <h3 class="text-lg font-semibold mb-3" data-i18n="footer.newsletter.title">Stay Updated</h3>
+                <form class="flex justify-center">
+                    <input type="email" data-i18n="[placeholder]footer.newsletter.placeholder" placeholder="Enter your email" aria-label="Email for newsletter" class="px-3 py-2 border border-gray-300 rounded-l text-gray-800 w-64">
+                    <button type="submit" data-i18n="footer.newsletter.button" class="px-4 py-2 rounded-r">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot Container -->
+    <div class="chatbot-container fixed bottom-5 right-5 z-50">
+        <button id="chat-toggle" class="chat-toggle-btn p-3 rounded-full shadow-lg flex items-center justify-center bg-orange-500 text-white hover:bg-orange-600 transition duration-300">
+            <span class="chat-icon text-2xl mr-1">⛑️</span> 
+            <span id="chat-toggle-text" data-i18n="chatbot.button">Ask Salatiso</span>
+        </button>
+        <div id="chat-window" class="chat-hidden bg-white border border-gray-300 rounded-lg shadow-xl mt-2">
+            <div id="chat-output" class="p-3 text-sm h-80 overflow-y-scroll">
+                <p><strong>Salatiso:</strong> <span data-i18n="chatbot.welcome">Hello! How can I help you with OHS today?</span></p>
+            </div>
+            <div id="chat-input-container" class="flex border-t border-gray-200">
+                <input id="chat-input" type="text" data-i18n="[placeholder]chatbot.input_placeholder" placeholder="Ask about OHS..." aria-label="Ask about OHS" class="flex-grow p-2 border-none focus:outline-none">
+                <button id="chat-send" aria-label="Send message" data-i18n="chatbot.send" class="px-4 py-2 bg-blue-500 text-white hover:bg-blue-600">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script>
+        // Translation Initialization with Embedded English Translations
+        document.addEventListener('DOMContentLoaded', async () => {
+            const translations = {
+                "header.nav.home": "Home",
+                "header.nav.resources": "Resources",
+                "header.nav.services": "Services",
+                "header.nav.community": "Community",
+                "header.nav.about": "About",
+                "header.nav.contact": "Contact",
+                "header.nav.login": "Login",
+                "header.search.placeholder": "Search OHS Tools...",
+                "header.search.button": "Search",
+                "language_selector.en": "English",
+                "language_selector.af": "Afrikaans",
+                "language_selector.zu": "isiZulu",
+                "language_selector.xh": "isiXhosa",
+                "language_selector.st": "Sesotho",
+                "language_selector.tn": "Setswana",
+                "language_selector.nso": "Sepedi",
+                "language_selector.ts": "Xitsonga",
+                "language_selector.ss": "siSwati",
+                "language_selector.ve": "Tshivenda",
+                "language_selector.nr": "isiNdebele",
+                "language_selector.es": "Español",
+                "language_selector.fr": "French",
+                "language_selector.sn": "Shona",
+                "language_selector.sw": "Swahili",
+                "language_selector.zh": "Mandarin",
+                "sidebar.ohs_tools": "SafetyHelp OHS Tools",
+                "sidebar.construction_safety": "Construction Safety",
+                "sidebar.emergency_planning": "Emergency Planning",
+                "sidebar.risk_assessment": "Risk Assessment",
+                "sidebar.legal_appointments": "Legal Appointments",
+                "sidebar.incident_management": "Incident Management",
+                "sidebar.training": "Training",
+                "sidebar.inspections_audits": "Inspections & Audits",
+                "sidebar.suppliers": "Suppliers",
+                "sidebar.legislation": "Legislation",
+                "sidebar.community_tools": "Community Tools",
+                "sidebar.member_dashboard": "Member Dashboard",
+                "sidebar.ohs_system": "OHS System",
+                "sidebar.step_0.title": "📜 Welcome to SafetyHelp",
+                "sidebar.step_0.description": "Explore our comprehensive tools and resources to enhance occupational health and safety in your workplace.",
+                "sidebar.step_0.fun_fact": "⚡ Did you know using reputable ethical suppliers can reduce workplace hazards by ensuring work is done on time and to the highest quality and safety standards?",
+                "dashboard.title": "Member Dashboard",
+                "dashboard.welcome": "Welcome, [User Name]! Manage your OHS compliance, RMPs, supplier reviews, and community reports here.",
+                "dashboard.company_profile.title": "Company Profile",
+                "dashboard.company_profile.name": "Company Name: [User Input]",
+                "dashboard.company_profile.industry": "Industry: [User Input]",
+                "dashboard.company_profile.location": "Location: [User Input]",
+                "dashboard.company_profile.edit": "Edit Profile",
+                "dashboard.saved_rmps.title": "Saved RMPs",
+                "dashboard.saved_rmps.date": "Date",
+                "dashboard.saved_rmps.title_header": "Title",
+                "dashboard.saved_rmps.actions": "Actions",
+                "dashboard.saved_rmps.view": "View",
+                "dashboard.saved_rmps.edit": "Edit",
+                "dashboard.supplier_reviews.title": "Supplier Reviews",
+                "dashboard.supplier_reviews.supplier": "Supplier",
+                "dashboard.supplier_reviews.rating": "Rating",
+                "dashboard.supplier_reviews.review": "Review",
+                "dashboard.supplier_reviews.actions": "Actions",
+                "dashboard.supplier_reviews.edit": "Edit",
+                "dashboard.community_reports.title": "Community Reports",
+                "dashboard.community_reports.date": "Date",
+                "dashboard.community_reports.setting": "Setting",
+                "dashboard.community_reports.issue": "Issue",
+                "dashboard.community_reports.status": "Status",
+                "footer.copyright": "© 2025 SafetyHelp. All rights reserved.",
+                "footer.links.privacy": "Privacy Policy",
+                "footer.links.terms": "Terms of Service",
+                "footer.links.contact": "Contact Us",
+                "footer.newsletter.title": "Stay Updated",
+                "footer.newsletter.placeholder": "Enter your email",
+                "footer.newsletter.button": "Subscribe",
+                "chatbot.button": "Ask Salatiso",
+                "chatbot.input_placeholder": "Ask about OHS...",
+                "chatbot.send": "Send"
+            };
+
+            await i18next.init({
+                lng: 'en',
+                resources: {
+                    en: { translation: translations }
+                },
+                debug: true
+            });
+
+            updateContent();
+
+            document.getElementById('language-select').addEventListener('change', (e) => {
+                i18next.changeLanguage(e.target.value, (err) => {
+                    if (err) {
+                        console.error('Error changing language:', err);
+                        return;
+                    }
+                    updateContent();
+                });
+            });
+
+            function updateContent() {
+                document.querySelectorAll('[data-i18n]').forEach(element => {
+                    const key = element.getAttribute('data-i18n');
+                    if (element.hasAttribute('placeholder')) {
+                        element.setAttribute('placeholder', i18next.t(key));
+                    } else {
+                        element.innerHTML = i18next.t(key);
+                    }
+                });
+            }
+
+            // Placeholder Function
+            function editProfile() {
+                console.log("Editing profile...");
+                // Implement in member-dashboard.js
+            }
+
+            // Chatbot Functionality
+    const chatToggle = document.getElementById('chat-toggle');
+    const chatWindow = document.getElementById('chat-window');
+    const chatOutput = document.getElementById('chat-output');
+    const chatInput = document.getElementById('chat-input');
+    const chatSend = document.getElementById('chat-send');
+    let isExpanded = false;
+
+    chatToggle.addEventListener('click', () => {
+        isExpanded = !isExpanded;
+        chatWindow.classList.toggle('chat-hidden', !isExpanded);
+        chatWindow.classList.toggle('chat-expanded', isExpanded);
+        chatToggle.classList.toggle('collapsed', !isExpanded);
+        if (isExpanded) {
+            chatInput.focus();
+        }
+    });
+
+    async function sendQuery() {
+        if (!db) {
+            addChatMessage('Salatiso', 'Sorry, I am currently unavailable.');
+            return;
+        }
+        const input = chatInput.value.trim();
+        if (!input) return;
+        addChatMessage('You', input);
+        chatInput.value = '';
+        addChatMessage('Salatiso', 'Searching...');
+        const query = input.toLowerCase();
+
+        try {
+            const snapshot = await db.collection('ohs-knowledge')
+                                     .where('keywords', 'array-contains', query)
+                                     .limit(1)
+                                     .get();
+            let responseFound = false;
+            let response = "Sorry, I couldn’t find specific information on that topic. Please try rephrasing or ask a different question.";
+
+            if (!snapshot.empty) {
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    response = `Based on information from ${data.book || 'our resources'} (Chapter ${data.chapter || 'N/A'}), here's a summary: <br>${data.content.substring(0, 250)}...`;
+                    if (data.file) {
+                        response += ` (See <a href="/safety-plans/resources/${data.file}" target="_blank" class="text-blue-500 hover:underline">full chapter</a>)`;
+                    }
+                    responseFound = true;
+                });
+            }
+            const searchingMessage = chatOutput.querySelector('p:last-child');
+            if (searchingMessage && searchingMessage.textContent.includes('Searching...')) {
+                searchingMessage.innerHTML = `<strong>Salatiso:</strong> ${response}`;
+            } else {
+                addChatMessage('Salatiso', response);
+            }
+        } catch (error) {
+            console.error("Firestore query failed:", error);
+            const searchingMessage = chatOutput.querySelector('p:last-child');
+            if (searchingMessage && searchingMessage.textContent.includes('Searching...')) {
+                searchingMessage.innerHTML = `<strong>Salatiso:</strong> Oops, something went wrong while searching. Please try again!`;
+            } else {
+                addChatMessage('Salatiso', 'Oops, something went wrong while searching. Please try again!');
+            }
+        }
+    }
+
+    function addChatMessage(sender, message) {
+        if (chatOutput) {
+            const messageElement = document.createElement('p');
+            messageElement.classList.add('mb-2');
+            messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
+            chatOutput.appendChild(messageElement);
+            chatOutput.scrollTop = chatOutput.scrollHeight;
+        }
+    }
+
+    chatSend.addEventListener('click', sendQuery);
+    chatInput.addEventListener('keypress', (event) => {
+        if (event.key === 'Enter') sendQuery();
+    });
+
+            // Firebase Initialization (Placeholder - Replace with actual config)
+            const firebaseConfig = {
+                apiKey: "AIzaSyDASGZnUyav23Mte5Q96H0j-T3LlGzVK-k",
+                authDomain: "safetyfirst2025-aea34.firebaseapp.com",
+                projectId: "safetyfirst2025-aea34",
+                storageBucket: "safetyfirst2025-aea34.firebasestorage.app",
+                messagingSenderId: "620306944192",
+                appId: "1:620306944192:web:ddadeef6825901068a9d25",
+                measurementId: "G-VQL1FCD8NN"
+            };
+            firebase.initializeApp(firebaseConfig);
+            const db = firebase.firestore();
+        });
+    </script>
+
+    <style>
+        /* Dashboard Section */
+        .dashboard {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+        .dashboard h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .dashboard p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .dashboard-section {
+            margin-bottom: 30px;
+        }
+        .dashboard-section h3 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .dashboard-section p {
+            font-size: 14px;
+            color: #666;
+            margin: 5px 0;
+        }
+        .dashboard-section table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        .dashboard-section th, .dashboard-section td {
+            border: 1px solid #d1d5db;
+            padding: 8px;
+            text-align: left;
+            font-size: 14px;
+        }
+        .dashboard-section th {
+            background-color: #f4f4f4;
+            font-weight: 600;
+            color: #333;
+        }
+        /* Footer */
+        footer {
+            background-color: #007BFF;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            width: 100%;
+            margin-top: auto;
+        }
+        footer p {
+            font-size: 14px;
+            margin: 5px 0;
+        }
+        footer a {
+            color: #FD7E14;
+            text-decoration: none;
+        }
+        footer a:hover {
+            color: #e06b00;
+        }
+        .newsletter h3 {
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        .newsletter input {
+            padding: 8px;
+            border: none;
+            border-radius: 2px;
+            margin-right: 10px;
+            font-size: 14px;
+            width: 150px;
+        }
+        .newsletter button {
+            padding: 8px 16px;
+            background-color: #FD7E14;
+            color: white;
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .newsletter button:hover {
+            background-color: #e06b00;
+        }
+        /* Chatbot */
+        .chatbot-container {
+            position: fixed;
+            bottom: 1.25rem;
+            right: 1.25rem;
+            z-index: 1000;
+        }
+        #chat-window {
+            width: 300px;
+            max-height: 400px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-hidden {
+            display: none;
+        }
+        #chat-output {
+            flex-grow: 1;
+        }
+        #chat-input-container {
+            display: flex;
+            border-top-width: 1px;
+        }
+        #chat-input {
+            flex-grow: 1;
+            border: none;
+            padding: 0.5rem;
+        }
+        #chat-send {
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+        }
+        #chat-send:hover {
+            background-color: #0056b3;
+        }
+        .chat-toggle-btn {
+            background-color: #FD7E14;
+        }
+        .chat-toggle-btn:hover {
+            background-color: #e06b00;
+        }
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 0;
+                flex-direction: column;
+            }
+            header {
+                position: relative;
+            }
+            .header-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .header-left {
+                align-items: center;
+                margin-bottom: 10px;
+            }
+            .nav-links {
+                margin: 10px 0;
+            }
+            .nav-links a {
+                margin: 5px 10px;
+            }
+            .header-right {
+                align-items: center;
+            }
+            .sidebar {
+                position: relative;
+                top: 0;
+                width: 100%;
+                height: auto;
+                bottom: auto;
+                z-index: 1;
+            }
+            .sidebar h2 {
+                text-align: center;
+            }
+            .main-content {
+                margin-left: 0;
+                flex-direction: column;
+            }
+            .dashboard {
+                margin: 1rem;
+            }
+            .dashboard-section table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+        /* Chatbot */
+    .chatbot-container {
+        position: fixed;
+        bottom: 1.25rem;
+        right: 1.25rem;
+        z-index: 1000;
+    }
+    #chat-window {
+        width: 300px;
+        max-height: 400px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        transition: all 0.3s ease;
+    }
+    .chat-hidden {
+        display: none;
+    }
+    .chat-expanded {
+        display: flex;
+    }
+    #chat-output {
+        flex-grow: 1;
+    }
+    #chat-input-container {
+        display: flex;
+        border-top-width: 1px;
+    }
+    #chat-input {
+        flex-grow: 1;
+        border: none;
+        padding: 0.5rem;
+    }
+    #chat-send {
+        border: none;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        background-color: #007BFF;
+        color: white;
+    }
+    #chat-send:hover {
+        background-color: #0056b3;
+    }
+    .chat-toggle-btn {
+        background-color: #FD7E14;
+    }
+    .chat-toggle-btn:hover {
+        background-color: #e06b00;
+    }
+    .chat-toggle-btn.collapsed {
+        padding: 0.75rem;
+        font-size: 0.875rem;
+    }
+    .chat-toggle-btn.collapsed #chat-toggle-text {
+        display: none;
+    }
+    </style>
+</body>
+</html>
