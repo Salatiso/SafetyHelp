@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | SafetyHelp</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&family=Inter%3Awght%40400%3B500%3B700%3B900&family=Noto+Sans%3Awght%40400%3B500%3B700%3B900"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global Styles - adapted from your original site's styles for consistency */
+        body {
+            font-family: 'Inter', "Noto Sans", sans-serif; /* Using new font from design code */
+            background-color: #E8F0FE; /* Original background color */
+            color: #333;
+            margin: 0;
+            padding-top: 100px; /* Space for fixed header */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif; /* Keeping Montserrat for headings if preferred, or change to Inter */
+        }
+        /* Header styles from your original site */
+        header {
+            background-color: #007BFF;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            width: 100%;
+        }
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+        .header-left {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .search-language-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .search-bar button {
+            background-color: #FD7E14;
+            color: white;
+        }
+        .search-bar button:hover {
+            background-color: #e06b00;
+        }
+        .language-selector {
+            margin-bottom: 5px;
+        }
+        .language-selector select {
+            padding: 4px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .nav-links {
+            text-align: center;
+            flex: 1;
+        }
+        .nav-links a {
+            color: white;
+            margin: 0 15px;
+            font-family: 'Montserrat', sans-serif;
+            text-decoration: none;
+        }
+        .nav-links a:hover {
+            color: #FD7E14;
+        }
+        .header-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        .logo-container img {
+            height: 50px;
+        }
+        .tagline {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        /* Main Content & Form Specific Styles - adapted from new design code */
+        main {
+            flex-grow: 1;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .signup-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 0 auto;
+            max-width: 480px; /* Max width from new design */
+            width: 100%; /* Ensure it takes full width up to max */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px; /* Spacing between elements */
+        }
+        .signup-container h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            color: #0d141c;
+            margin-bottom: 0;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+        .form-group label p {
+            color: #0d141c;
+            font-size: 16px;
+            font-weight: 500;
+            padding-bottom: 8px;
+        }
+        .form-input {
+            width: 100%;
+            min-width: 0;
+            flex: 1;
+            resize: none;
+            overflow: hidden;
+            border-radius: 8px;
+            color: #0d141c;
+            outline: 0;
+            ring: 0;
+            border: none;
+            background-color: #e7edf4;
+            height: 56px;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: normal;
+            line-height: normal;
+            placeholder-color: #49739c;
+        }
+        .signup-button {
+            display: flex;
+            min-w: 84px;
+            max-width: 480px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: 8px;
+            height: 40px;
+            padding-left: 16px;
+            padding-right: 16px;
+            background-color: #0c7ff2;
+            color: #f8fafc;
+            font-size: 14px;
+            font-weight: bold;
+            line-height: normal;
+            letter-spacing: 0.015em;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+        .signup-button:hover {
+            background-color: #0a6bd0;
+        }
+        .social-login-text {
+            color: #49739c;
+            font-size: 14px;
+            font-weight: normal;
+            line-height: normal;
+            padding-top: 4px;
+            padding-bottom: 12px;
+            text-align: center;
+        }
+        .social-buttons-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            width: 100%;
+            justify-content: center;
+        }
+        .social-button {
+            display: flex;
+            min-w: 84px;
+            max-w: 480px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: 8px;
+            height: 40px;
+            padding-left: 16px;
+            padding-right: 16px;
+            background-color: #e7edf4;
+            color: #0d141c;
+            font-size: 14px;
+            font-weight: bold;
+            line-height: normal;
+            letter-spacing: 0.015em;
+            flex-grow: 1;
+            transition: background-color 0.3s ease;
+        }
+        .social-button:hover {
+            background-color: #d0d6e0;
+        }
+        #auth-message {
+            display: none; /* Hidden by default, shown by JavaScript */
+            width: 100%;
+        }
+
+        /* Footer styles from your original site */
+        footer {
+            background-color: #007BFF; /* Changed to match header */
+            color: white;
+            padding: 15px;
+            text-align: center;
+            width: 100%;
+            margin-top: auto;
+        }
+        footer p {
+            font-size: 14px;
+            margin: 5px 0;
+        }
+        footer a {
+            color: #FD7E14;
+            text-decoration: none;
+        }
+        footer a:hover {
+            color: #e06b00;
+        }
+        .newsletter h3 {
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        .newsletter input {
+            padding: 8px;
+            border: none;
+            border-radius: 2px;
+            margin-right: 10px;
+            font-size: 14px;
+            width: 150px;
+        }
+        .newsletter button {
+            padding: 8px 16px;
+            background-color: #FD7E14;
+            color: white;
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .newsletter button:hover {
+            background-color: #e06b00;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 0;
+            }
+            header {
+                position: relative;
+            }
+            .header-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .header-left {
+                align-items: center;
+                margin-bottom: 10px;
+            }
+            .nav-links {
+                margin: 10px 0;
+            }
+            .nav-links a {
+                margin: 5px 10px;
+            }
+            .header-right {
+                align-items: center;
+            }
+            main {
+                padding: 1rem;
+            }
+            .signup-container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="/safetyhelp/assets/images/logo.png" alt="SafetyHelp Logo">
+                <h1 data-i18n="header.title">SafetyHelp OHS Tools</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/safetyhelp/index.html" data-i18n="header.nav.home">Home</a></li>
+                    <li><a href="/safetyhelp/resources.html" data-i18n="header.nav.resources">Resources</a></li>
+                    <li><a href="/safetyhelp/services.html" data-i18n="header.nav.services">Services</a></li>
+                    <li><a href="/safetyhelp/community.html" data-i18n="header.nav.community">Community</a></li>
+                    <li><a href="/safetyhelp/about.html" data-i18n="header.nav.about">About</a></li>
+                    <li><a href="/safetyhelp/contact.html" data-i18n="header.nav.contact">Contact</a></li>
+                    <li><a href="/safetyhelp/login.html" id="login-link" data-i18n="header.nav.login">Login</a></li>
+                    <li><a href="#" id="logout-link" data-i18n="header.nav.logout" style="display: none;">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="signup-container">
+            <h2 class="text-[#0d141c] text-2xl font-bold leading-tight tracking-[-0.015em]">Sign Up for SafetyHelp</h2>
+            <div id="auth-message" class="hidden p-3 mt-4 rounded-md text-center"></div>
+
+            <p class="text-[#49739c] text-base font-normal leading-normal text-center">
+                Join as a **Registered User (Free)** to get started with SafetyHelp!
+            </p>
+
+            <form id="signup-form" class="flex flex-col w-full gap-4">
+                <div class="form-group">
+                    <label class="flex flex-col min-w-40 flex-1">
+                        <p class="text-[#0d141c] text-base font-medium leading-normal pb-2">Email</p>
+                        <input
+                            type="email"
+                            id="signup-email"
+                            placeholder="Enter your email"
+                            class="form-input"
+                            required
+                        />
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="flex flex-col min-w-40 flex-1">
+                        <p class="text-[#0d141c] text-base font-medium leading-normal pb-2">Password</p>
+                        <input
+                            type="password"
+                            id="signup-password"
+                            placeholder="Create a password"
+                            class="form-input"
+                            required
+                        />
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="flex flex-col min-w-40 flex-1">
+                        <p class="text-[#0d141c] text-base font-medium leading-normal pb-2">Company Name (Optional)</p>
+                        <input
+                            type="text"
+                            id="signup-company"
+                            placeholder="Enter your company name"
+                            class="form-input"
+                        />
+                    </label>
+                </div>
+                <button type="submit" class="signup-button">
+                    <span class="truncate">Sign Up</span>
+                </button>
+            </form>
+
+            <p class="social-login-text">Or sign up with</p>
+            <div class="social-buttons-container">
+                <button id="google-login-btn" class="social-button">
+                    <i class="fab fa-google mr-2"></i> <span class="truncate">Continue with Google</span>
+                </button>
+                </div>
+
+            <p class="text-[#49739c] text-sm font-normal leading-normal text-center mt-4">
+                Already have an account? <a href="/safetyhelp/login.html" class="text-[#0c7ff2] hover:underline font-bold">Login</a>
+            </p>
+        </div>
+    </main>
+
+    <footer>
+        <p data-i18n="footer.copyright">© 2025 SafetyHelp. All Rights Reserved.</p>
+        <div class="footer-links">
+            <a href="/safetyhelp/privacy.html" data-i18n="footer.links.privacy">Privacy Policy</a>
+            <a href="/safetyhelp/terms.html" data-i18n="footer.links.terms">Terms of Service</a>
+            <a href="/safetyhelp/contact.html" data-i18n="footer.links.contact">Contact Us</a>
+        </div>
+    </footer>
+
+    <script type="module" src="/safetyhelp/assets/js/scripts.js"></script>
+</body>
+</html>
