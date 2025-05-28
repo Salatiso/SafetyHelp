@@ -1,11 +1,11 @@
 // assets/js/chatbot.js
 
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
-import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp, where, getDocs } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp, where, getDocs, limit } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
 
-// Firebase configuration for the Chatbot
-const firebaseConfig = {
-    apiKey: "AIzaSyDlzylJ0WF_WMZQA2bJeqbzkEMhihYcZW0",
+// Firebase configuration for the Chatbot (Separate Project)
+const chatbotFirebaseConfig = { // Renamed to avoid conflict if scripts.js also defines firebaseConfig
+    apiKey: "AIzaSyDlzylJ0WF_WMZQA2bJeqbzkEMhihYcZW0", // Ensure this is your correct API key for the chatbot project
     authDomain: "safety-first-chatbot.firebaseapp.com",
     projectId: "safety-first-chatbot",
     storageBucket: "safety-first-chatbot.firebasestorage.app",
@@ -18,44 +18,44 @@ const firebaseConfig = {
 const predefinedResponses = {
     'health and safety specification': {
         response: 'wizard.chatbot.responses.hs_spec',
-        link: '/safety-plans/resources/ohs-act-construction-regulations.pdf',
-        keywords: ['health and safety specification', 'hs spec', 'safety specification']
+        link: '/SafetyHelp/resources/ohs-act-construction-regulations.pdf', // Corrected path
+        keywords: ['health and safety specification', 'hs spec', 'safety specification', 'specification']
     },
     'health and safety plan': {
         response: 'wizard.chatbot.responses.hs_plan',
-        link: '/safety-plans/resources/ohs-act-construction-regulations.pdf',
-        keywords: ['health and safety plan', 'hs plan', 'safety plan']
+        link: '/SafetyHelp/resources/ohs-act-construction-regulations.pdf', // Corrected path
+        keywords: ['health and safety plan', 'hs plan', 'safety plan', 'plan']
     },
     'risk assessment': {
         response: 'wizard.chatbot.responses.risk_assessment',
-        link: '/safety-plans/resources/risk-assessment-guide.pdf',
-        keywords: ['risk assessment', 'hazard identification', 'risk evaluation']
+        link: '/SafetyHelp/pages/risk-assessment.html', // Link to the page instead of a direct PDF
+        keywords: ['risk assessment', 'hazard identification', 'risk evaluation', 'assessment']
     },
     'sacpcmp': {
         response: 'wizard.chatbot.responses.sacpcmp',
         link: 'https://www.sacpcmp.org.za',
-        keywords: ['sacpcmp', 'construction management professionals']
+        keywords: ['sacpcmp', 'construction management professionals', 'council']
     },
     'coida': {
         response: 'wizard.chatbot.responses.coida',
-        link: '/safety-plans/resources/coida-guide.pdf',
-        keywords: ['coida', 'compensation for occupational injuries and diseases act']
+        link: '/SafetyHelp/resources/coida-guide.pdf', // Corrected path
+        keywords: ['coida', 'compensation for occupational injuries and diseases act', 'compensation']
     }
+    // Add more predefined responses as needed
 };
 
-// Initialize Firebase
-let db;
+// Initialize Firebase for Chatbot
+let chatbotDbInstance; // Renamed to be specific
 try {
-    const app = initializeApp(firebaseConfig);
-    db = getFirestore(app);
-    console.log("Firebase initialized successfully for chatbot");
-    // Make db globally accessible if other scripts need it directly (e.g., testimonials in index.html)
-    window.db = db;
+    const chatbotApp = initializeApp(chatbotFirebaseConfig, "chatbotApp"); // Give a unique name to this Firebase app instance
+    chatbotDbInstance = getFirestore(chatbotApp);
+    console.log("Firebase initialized successfully for chatbotApp (safety-first-chatbot project)");
+    window.chatbotDbInstance = chatbotDbInstance; // Make it globally accessible if needed elsewhere
 } catch (error) {
-    console.error("Firebase initialization failed for chatbot:", error);
-    const chatOutput = document.getElementById('chat-output');
-    if (chatOutput) {
-        chatOutput.innerHTML = `<p><strong>Salatiso:</strong> Chatbot unavailable. Please try again later.</p>`;
+    console.error("Firebase initialization failed for chatbotApp:", error);
+    const chatOutputElement = document.getElementById('chat-output');
+    if (chatOutputElement) {
+        addChatMessage('Salatiso', i18next.t('wizard.chatbot.unavailable'), chatOutputElement);
     }
 }
 
@@ -70,44 +70,64 @@ const sanitizeInput = (input) => {
 let unrecognizedCount = 0;
 const MAX_UNRECOGNIZED = 3;
 
+// Add a message to the chat output
+function addChatMessage(sender, message, chatOutputElement) {
+    if (chatOutputElement) {
+        const messageElement = document.createElement('p');
+        messageElement.classList.add('mb-2'); // Tailwind margin bottom
+        // Sanitize sender and message before setting innerHTML
+        const sanitizedSender = sanitizeInput(sender);
+        // Message might contain HTML (like links), so only sanitize parts that are pure text
+        messageElement.innerHTML = `<strong>${sanitizedSender}:</strong> ${message}`; // Message already contains HTML from bot
+        chatOutputElement.appendChild(messageElement);
+        chatOutputElement.scrollTop = chatOutputElement.scrollHeight; // Scroll to the bottom
+    }
+}
+
+
 // Send and display messages
-async function sendMessage(input) {
-    const chatOutput = document.getElementById('chat-output');
-    const chatInput = document.getElementById('chat-input'); // Get chatInput here for clearing
-    if (!input || !chatOutput || !chatInput) {
-        console.error("Chat input or output not found");
+async function handleSendMessage() {
+    const chatInputElement = document.getElementById('chat-input');
+    const chatOutputElement = document.getElementById('chat-output');
+
+    if (!chatInputElement || !chatOutputElement) {
+        console.error("Chat input or output element not found.");
         return;
     }
+    const rawInput = chatInputElement.value.trim();
+    if (!rawInput) return;
 
-    const sanitizedInput = sanitizeInput(input);
-    chatOutput.innerHTML += `<p><strong>You:</strong> ${sanitizedInput}</p>`;
-    chatInput.value = ''; // Clear input immediately after sending
+    const sanitizedInput = sanitizeInput(rawInput); // Sanitize user input before displaying
+    addChatMessage(i18next.t('wizard.chatbot.you'), sanitizedInput, chatOutputElement);
+    chatInputElement.value = ''; // Clear input
+
+    // Display "Searching..." message
+    addChatMessage('Salatiso', 'Searching...', chatOutputElement);
+    const searchingMessageElement = chatOutputElement.lastElementChild; // Get the "Searching..." p element
+
 
     try {
-        if (!db) throw new Error("Firestore not initialized");
+        if (!chatbotDbInstance) throw new Error("Chatbot Firestore not initialized");
 
-        // Store message in Firestore
-        // Using a public collection for messages, but could be user-specific if needed
-        await addDoc(collection(db, 'chat_messages'), { // Changed collection name to avoid conflict/clarity
-            userId: window.currentUser?.uid || 'anonymous', // Use uid from scripts.js
-            email: window.currentUser?.email || 'anonymous',
-            message: sanitizedInput,
+        // Log message to Firestore (in safety-first-chatbot project)
+        await addDoc(collection(chatbotDbInstance, 'chat_messages'), {
+            userId: window.currentUser?.uid || 'anonymous_SafetyHelp', // Get UID from main SafetyHelp auth if available
+            email: window.currentUser?.email || 'anonymous_SafetyHelp',
+            site: 'SafetyHelp', // Indicate the message is from this site
+            message: sanitizedInput, // Log the sanitized input
             timestamp: serverTimestamp()
         });
 
-        // Add a "Searching..." message
-        addChatMessage('Salatiso', 'Searching...');
-
         const queryText = sanitizedInput.toLowerCase();
-        let response = null;
+        let responseText = null;
         let responseFound = false;
 
         // 1. Check predefined responses
-        for (const [key, data] of Object.entries(predefinedResponses)) {
-            if (data.keywords.some(keyword => queryText.includes(keyword))) {
-                response = i18next.t(data.response);
-                if (data.link) {
-                    response += ` <a href="${data.link}" target="_blank" class="text-blue-500 hover:underline">${i18next.t('wizard.chatbot.see_more')}</a>`;
+        for (const key in predefinedResponses) {
+            if (predefinedResponses[key].keywords.some(keyword => queryText.includes(keyword))) {
+                responseText = i18next.t(predefinedResponses[key].response);
+                if (predefinedResponses[key].link) {
+                    responseText += ` <a href="${predefinedResponses[key].link}" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:underline">${i18next.t('wizard.chatbot.see_more')}</a>`;
                 }
                 responseFound = true;
                 unrecognizedCount = 0;
@@ -115,180 +135,166 @@ async function sendMessage(input) {
             }
         }
 
-        // 2. Fallback to Firestore 'ohs-knowledge' collection search if no predefined response
+        // 2. Fallback to Firestore 'ohs-knowledge' collection search
         if (!responseFound) {
-            // Query by keywords array or content
-            const knowledgeSnapshot = await getDocs(
-                query(collection(db, 'ohs-knowledge'), where('keywords', 'array-contains-any', queryText.split(' ')))
-            );
-
-            if (!knowledgeSnapshot.empty) {
-                knowledgeSnapshot.forEach(doc => {
-                    const data = doc.data();
-                    // Prioritize exact keyword matches or more relevant content if possible
-                    if (data.content && data.content.toLowerCase().includes(queryText)) {
-                        response = `${i18next.t('wizard.chatbot.from', { book: data.book || 'our resources', chapter: data.chapter || 'N/A' })}<br>${data.content.substring(0, 250)}... `;
-                        if (data.file) {
-                            response += `<a href="/safety-plans/resources/${data.file}" target="_blank" class="text-blue-500 hover:underline">${i18next.t('wizard.chatbot.full_chapter')}</a>`;
-                        }
-                        responseFound = true;
-                        unrecognizedCount = 0;
-                        return; // Found a match, exit forEach
-                    }
-                });
+            const keywordsInQuery = queryText.split(' ').filter(kw => kw.length > 2); // Simple keyword extraction
+            let querySnapshot;
+            if (keywordsInQuery.length > 0) {
+                 querySnapshot = await getDocs(
+                    query(collection(chatbotDbInstance, 'ohs-knowledge'), where('keywords', 'array-contains-any', keywordsInQuery), limit(5))
+                );
             }
 
-            // If still no response, try a broader search on content
-            if (!responseFound) {
-                const broaderKnowledgeSnapshot = await getDocs(collection(db, 'ohs-knowledge'));
-                broaderKnowledgeSnapshot.forEach(doc => {
+
+            if (querySnapshot && !querySnapshot.empty) {
+                // Basic relevance: prefer documents that contain the full query text or more keywords
+                let bestMatch = null;
+                let highestScore = 0;
+
+                querySnapshot.forEach(doc => {
                     const data = doc.data();
+                    let currentScore = 0;
                     if (data.content && data.content.toLowerCase().includes(queryText)) {
-                        response = `${i18next.t('wizard.chatbot.from', { book: data.book || 'our resources', chapter: data.chapter || 'N/A' })}<br>${data.content.substring(0, 250)}... `;
-                        if (data.file) {
-                            response += `<a href="/safety-plans/resources/${data.file}" target="_blank" class="text-blue-500 hover:underline">${i18next.t('wizard.chatbot.full_chapter')}</a>`;
-                        }
-                        responseFound = true;
-                        unrecognizedCount = 0;
-                        return; // Found a match, exit forEach
+                        currentScore += 10; // High score for full phrase match
+                    }
+                    keywordsInQuery.forEach(kw => {
+                        if (data.keywords && data.keywords.includes(kw)) currentScore++;
+                        if (data.content && data.content.toLowerCase().includes(kw)) currentScore++;
+                    });
+
+                    if (currentScore > highestScore) {
+                        highestScore = currentScore;
+                        bestMatch = data;
                     }
                 });
+
+                if (bestMatch) {
+                    responseText = `${i18next.t('wizard.chatbot.from', { book: bestMatch.book || 'our resources', chapter: bestMatch.chapter || 'N/A' })}<br>${sanitizeInput(bestMatch.content.substring(0, 250))}... `;
+                    if (bestMatch.file) {
+                        responseText += `<a href="/SafetyHelp/resources/${bestMatch.file}" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:underline">${i18next.t('wizard.chatbot.full_chapter')}</a>`;
+                    }
+                    responseFound = true;
+                    unrecognizedCount = 0;
+                }
             }
         }
 
-        // Handle unrecognized queries
         if (!responseFound) {
             unrecognizedCount++;
-            response = i18next.t('wizard.chatbot.no_match');
+            responseText = i18next.t('wizard.chatbot.no_match');
             if (unrecognizedCount >= MAX_UNRECOGNIZED) {
-                response += ` ${i18next.t('wizard.chatbot.escalate')} <a href="/safety-plans/contact.html" target="_blank" class="text-blue-500 hover:underline">${i18next.t('wizard.chatbot.contact_support')}</a>`;
-                unrecognizedCount = 0; // Reset after escalation
+                responseText += ` ${i18next.t('wizard.chatbot.escalate')} <a href="/SafetyHelp/contact.html" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:underline">${i18next.t('wizard.chatbot.contact_support')}</a>`;
+                unrecognizedCount = 0;
             }
         }
-
         // Update the "Searching..." message with the actual response
-        const searchingMessage = chatOutput.querySelector('p:last-child');
-        if (searchingMessage && searchingMessage.textContent.includes('Searching...')) {
-            searchingMessage.innerHTML = `<strong>Salatiso:</strong> ${response}`;
-        } else {
-            addChatMessage('Salatiso', response);
+        if (searchingMessageElement) {
+            searchingMessageElement.innerHTML = `<strong>Salatiso:</strong> ${responseText}`;
+        } else { // Fallback if somehow the searching message wasn't found
+            addChatMessage('Salatiso', responseText, chatOutputElement);
         }
+
 
     } catch (error) {
-        console.error("Firestore operation failed:", error);
-        const searchingMessage = chatOutput.querySelector('p:last-child');
-        if (searchingMessage && searchingMessage.textContent.includes('Searching...')) {
-            searchingMessage.innerHTML = `<strong>Salatiso:</strong> ${i18next.t('wizard.chatbot.error_generic')}`;
+        console.error("Chatbot operation failed:", error);
+         if (searchingMessageElement) {
+            searchingMessageElement.innerHTML = `<strong>Salatiso:</strong> ${i18next.t('wizard.chatbot.error_generic')}`;
         } else {
-            addChatMessage('Salatiso', i18next.t('wizard.chatbot.error_generic'));
+            addChatMessage('Salatiso', i18next.t('wizard.chatbot.error_generic'), chatOutputElement);
         }
     }
-
-    chatOutput.scrollTop = chatOutput.scrollHeight;
+    if (chatOutputElement) chatOutputElement.scrollTop = chatOutputElement.scrollHeight;
 }
 
-function addChatMessage(sender, message) {
-    if (chatOutput) {
-        const messageElement = document.createElement('p');
-        messageElement.classList.add('mb-2');
-        messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
-        chatOutput.appendChild(messageElement);
-        chatOutput.scrollTop = chatOutput.scrollHeight;
-    }
-}
 
 // Expose openChatbot function globally
 function openChatbot() {
     const chatbotWindow = document.getElementById('chat-window');
     const chatToggleBtn = document.getElementById('chat-toggle');
-    if (chatbotWindow && chatToggleBtn) {
+    const chatInput = document.getElementById('chat-input');
+
+    if (chatbotWindow && chatToggleBtn && chatInput) {
         chatbotWindow.classList.remove('chat-hidden');
         chatbotWindow.classList.add('chat-expanded');
-        chatToggleBtn.classList.remove('collapsed');
+        chatToggleBtn.classList.remove('collapsed'); // Assuming 'collapsed' is a class for the minimized button icon
+        chatInput.focus();
         // Reset inactivity timer if it exists and chatbot is opened directly
-        if (window.chatbotInactivityTimer) {
+        if (window.chatbotInactivityTimer) { // Check if timer is defined
             clearTimeout(window.chatbotInactivityTimer);
-            window.chatbotInactivityTimer = setTimeout(() => {
-                chatbotWindow.classList.add('minimized'); // Or chat-hidden
-            }, 30000); // 30 seconds
+            // Restart timer (logic should be in DOMContentLoaded)
         }
-        document.getElementById('chat-input').focus();
     }
 }
-window.openChatbot = openChatbot; // Make it globally accessible
+window.openChatbot = openChatbot;
 
 // Main DOM Content Loaded Listener
 document.addEventListener('DOMContentLoaded', () => {
     const chatToggleBtn = document.getElementById('chat-toggle');
     const chatWindow = document.getElementById('chat-window');
     const chatInput = document.getElementById('chat-input');
-    const chatSend = document.getElementById('chat-send');
+    const chatSendBtn = document.getElementById('chat-send'); // Corrected ID
+    const chatOutput = document.getElementById('chat-output'); // Define for initial message
 
-    // Initial state: chatbot minimized
-    chatWindow.classList.add('chat-hidden'); // Ensure it starts hidden
+    // Add initial welcome message if i18next is ready
+    if (typeof i18next !== 'undefined' && i18next.isInitialized) {
+        const welcomeMsg = i18next.t('chatbot.welcome'); // Ensure this key exists in translations
+        if (chatOutput && chatOutput.children.length === 1 && chatOutput.firstElementChild.textContent.includes("Hello! How can I help you with OHS today?")) {
+             // Update existing placeholder if it's the default one
+            chatOutput.firstElementChild.innerHTML = `<strong>Salatiso:</strong> ${welcomeMsg}`;
+        }
+    } else {
+        // Fallback or wait for i18next to initialize
+        // The welcome message might be set by i18next in index.html's own script
+    }
 
-    // Chatbot UI Toggle Logic
-    let inactivityTimer; // Local timer variable
+
+    let inactivityTimer;
+    window.chatbotInactivityTimer = inactivityTimer; // Make timer accessible globally if needed
 
     const resetInactivityTimer = () => {
-        clearTimeout(inactivityTimer);
-        inactivityTimer = setTimeout(() => {
-            chatWindow.classList.add('chat-hidden'); // Hide after inactivity
-            chatWindow.classList.remove('chat-expanded');
-            chatToggleBtn.classList.remove('collapsed'); // Ensure button state is correct
-        }, 30000); // 30 seconds
+        clearTimeout(window.chatbotInactivityTimer);
+        window.chatbotInactivityTimer = setTimeout(() => {
+            if (chatWindow && !chatWindow.classList.contains('chat-hidden')) {
+                chatWindow.classList.add('chat-hidden');
+                chatWindow.classList.remove('chat-expanded');
+                if(chatToggleBtn) chatToggleBtn.classList.add('collapsed'); // Show minimized icon/text
+            }
+        }, 60000); // 60 seconds of inactivity
     };
 
     chatToggleBtn?.addEventListener('click', () => {
+        if (!chatWindow) return;
         const isHidden = chatWindow.classList.contains('chat-hidden');
         if (isHidden) {
             chatWindow.classList.remove('chat-hidden');
             chatWindow.classList.add('chat-expanded');
             chatToggleBtn.classList.remove('collapsed');
-            chatInput.focus();
+            chatInput?.focus();
             resetInactivityTimer();
         } else {
             chatWindow.classList.add('chat-hidden');
             chatWindow.classList.remove('chat-expanded');
             chatToggleBtn.classList.add('collapsed');
-            clearTimeout(inactivityTimer);
+            clearTimeout(window.chatbotInactivityTimer);
         }
     });
 
-    // Event listeners for sending messages
-    chatSend?.addEventListener('click', sendMessage);
+    chatSendBtn?.addEventListener('click', handleSendMessage);
     chatInput?.addEventListener('keypress', (e) => {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
-            sendMessage(chatInput.value.trim());
+            handleSendMessage();
         }
+        resetInactivityTimer(); // Reset timer on typing
     });
 
-    // Reset timer on user interaction within the chat window
-    chatWindow.addEventListener('click', resetInactivityTimer);
-    chatWindow.addEventListener('keydown', resetInactivityTimer);
+    chatWindow?.addEventListener('click', resetInactivityTimer); // Reset on click within window
+    chatWindow?.addEventListener('scroll', resetInactivityTimer); // Reset on scroll within window
 
-    // Start listening for messages (real-time updates)
-    // This should only start after Firebase is initialized and db is available
-    if (db) {
-        const q = query(collection(db, 'chat_messages'), orderBy('timestamp', 'asc'));
-        onSnapshot(q, (snapshot) => {
-            snapshot.docChanges().forEach(change => {
-                if (change.type === 'added') {
-                    const data = change.doc.data();
-                    // Only display messages for the current user's session or if it's a bot response
-                    // For simplicity, we'll display all messages added to the collection
-                    // In a multi-user chat, you'd filter by userId. For a chatbot, it's simpler.
-                    // Removed filtering by userId as it's a chatbot, not a multi-user chat.
-                    // We only display the user's message when they send it, and bot's response.
-                    // The onSnapshot here is more for debugging/monitoring if needed,
-                    // or for more complex chat history loading.
-                    // For a simple chatbot, you might not need real-time listener for ALL messages.
-                    // The `sendMessage` function already adds the message to the UI.
-                    // This onSnapshot might be redundant for a single-user chatbot.
-                    // Keeping it for now as it was in original, but consider if truly needed.
-                }
-            });
-        });
-    }
+    // Initial state: chatbot hidden and button collapsed
+    if(chatWindow) chatWindow.classList.add('chat-hidden');
+    if(chatToggleBtn) chatToggleBtn.classList.add('collapsed'); // Start with collapsed button if chat is hidden
+
+    // No real-time listener for 'chat_messages' here as it's a single user interaction model.
+    // Messages are added to UI directly by `addChatMessage`.
 });
