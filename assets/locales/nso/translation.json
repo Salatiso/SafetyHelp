@@ -1,0 +1,535 @@
+{
+  "header": {
+    "title": "SafetyHelp",
+    "tagline": "Tšhireletšo ye e kgethegilego, ye e rulagantšwego—ka nako efe goba efe, kae goba kae",
+    "nav": {
+      "home": "Gae",
+      "resources": "Dithuši",
+      "services": "Ditirelo",
+      "community": "Setšhaba",
+      "about": "Ka rena",
+      "contact": "Ikopanye le Rena",
+      "login": "Tsena",
+      "logout": "Tšwa"
+    },
+    "search": {
+      "placeholder": "Nyaka Dithuši tša OHS...",
+      "button": "Nyaka"
+    }
+  },
+  "language_selector": {
+    "en": "Seisemane",
+    "af": "Seafrikanse",
+    "zu": "Sezulu",
+    "st": "Sesotho",
+    "tn": "Setswana",
+    "nso": "Sepedi"
+  },
+  "sidebar": {
+    "ohs_tools": "Dithuši tša OHS tša SafetyHelp",
+    "construction_safety": "Tšhireletšo ya Kago",
+    "emergency_planning": "Peakanyo ya Tšhoganetšo",
+    "risk_assessment": "Tekolo ya Kotsi",
+    "legal_appointments": "Dikgetho tša Molao",
+    "incident_management": "Taolo ya Ditiragalo",
+    "training": "Kweletšo",
+    "inspections_audits": "Ditekolo le Dihlahlobo",
+    "suppliers": "Bafani ba Ditirelo",
+    "legislation": "Melao",
+    "community_tools": "Dithuši tša Setšhaba",
+    "member_dashboard": "Boto ya Ditho",
+    "ohs_system": "Tshepedišo ya OHS",
+    "step_0": {
+      "title": "📜 O amogetšwe mo SafetyHelp",
+      "description": "Nyaka dithuši le ditirelo tša rena tše di tletšego go kaonafatša tšhireletšo le bophelo bja mošomo lefelong la gago la mošomo.",
+      "fun_fact": "⚡ Na o be o tseba gore go šomiša bafani ba ba nang le maitshwaro a matle go ka fokotša dikotsi lefelong la mošomo ka go netefatša gore mošomo o dirwa ka nako le ka maemo a godimo a tšhireletšo?"
+    }
+  },
+  "intro": {
+    "title": "O amogetšwe mo SafetyHelp",
+    "description": "Nyaka dithuši le ditirelo tša rena tše di tletšego go kaonafatša tšhireletšo le bophelo bja mošomo lefelong la gago la mošomo."
+  },
+  "welcome": {
+    "title": "O amogetšwe mo SafetyHelp",
+    "description": "Kgokagano ya gago ye e ka tšepiwago ya bophelo bja mošomo le tšhireletšo ya mošomo (OHS) mo Afrika Borwa. Re fana ka dithuši tše di šomago, tše di kaonafaditšwego ke AI go netefatša tšhireletšo le go latela melao bakeng sa dikolo, dikereke le dihlogo tše di sa tlwaelegago. Kopana le setšhaba sa rena go hwetša tšhomišo ya dithuši, ditirelo le tshegetšo ye e kgethegilego go ditlhokego tša gago."
+  },
+  "why_choose": {
+    "title": "Ke Eng o Kgetha SafetyHelp go Latela OHS?",
+    "content": "SafetyHelp ke mphato wa gago o ka tšepiwago go latela bophelo bja mošomo le tšhireletšo ya mošomo mo Afrika Borwa. Setlamo sa rena se fana ka sehlopha se se tletšego sa dithuši tše di rulagantšwego go fihlelela ditlhokego tše di kgethegilego tša diindasteri tše bjalo ka kago, merafo le tlhabollo. Go tloga go go dira direkhoto tša molao go ya go tekolo ya kotsi, SafetyHelp e nolofatša ditlhokego tše di raraganego tša OHS ka di-wizard tše di bonolo go šomiša le tshegetšo ya nako ya nnete ka chatbot ya rena ye e hlohleletšwago ke AI. E tshegetšwa ke melao ya Afrika Borwa le mekgwa ye e nepagetšego, re matlafatša dikgwebo go aga mafelo a mošomo a a šireletšegilego ge re ntše re netefatša go latela OHSA le COIDA. Kopana le batho ba dikete ba ditsebi ba ba itšepilego SafetyHelp go šireletša dihlopha tša bona le go nolofatša ditshepedišo tša tšhireletšo."
+  },
+  "legal_obligations": {
+    "client": {
+      "title": "Mediro ya Mokganni",
+      "reg_5_1_a": "<strong>Molao wa Kago 5(1)(a):</strong> Lokišetša Tekolo ya Kotsi ya Motheo (BRA) ye e laetšago dikotsi tša projeke.",
+      "reg_5_1_b": "<strong>Molao wa Kago 5(1)(b):</strong> Fana ka Peakanyo ya Bophelo le Tšhireletšo ye e hlalošago ditlhokego tše di kgethegilego tša projeke.",
+      "reg_5_1_l": "<strong>Molao wa Kago 5(1)(l):</strong> Amogela Leano la Bophelo le Tšhireletšo la Mokonteraka pele mošomo o thoma."
+    },
+    "contractor": {
+      "title": "Mediro ya Mokonteraka",
+      "reg_7_1_a": "<strong>Molao wa Kago 7(1)(a):</strong> Fana ka Leano la Bophelo le Tšhireletšo le le theilwego peakanyong ya mokganni.",
+      "reg_7_1_b": "<strong>Molao wa Kago 7(1)(b):</strong> Boloka Faele ya Bophelo le Tšhireletšo lefelong la kago ye e nang le ditokomane tšohle tše di hlokegago.",
+      "reg_9": "<strong>Molao wa Kago 9:</strong> Dira Tekolo ya Kotsi ye e kgethegilego ya mošomo le Tekolo ya Kotsi ye e Rulagantšwego ya Dikotsi (HIRAs)."
+    },
+    "professional": {
+      "title": "Mediro ya Setsebi sa Bophelo le Tšhireletšo",
+      "reg_5_5": "<strong>Molao wa Kago 5(5):</strong> Baemedi (PrCHSA) ba laola bophelo le tšhireletšo lefelong la mokganni, ba netefatša go latela melao.",
+      "reg_8_5": "<strong>Molao wa Kago 8(5):</strong> Baofisiri (CHSO) ba thuša bakonteraka ka go dira le go lekola ditshepedišo tša OHS.",
+      "sacpcmp": "<strong>Melao ya SACPCMP:</strong> E swanetše go boloka ngwadišo le ditlhokego tša CPD bakeng sa maemo a botsebi."
+    }
+  },
+  "action_buttons": {
+    "hs_spec": "Hlahla Peakanyo ya Bophelo le Tšhireletšo",
+    "hs_plan": "Hlahla Leano la Bophelo le Tšhireletšo",
+    "risk_assessment": "Hlahla Tekolo ya Kotsi",
+    "training": "Dira Kweletšo",
+    "appointments": "Dira Dikgetho tša Molao",
+    "inspections": "Dira Ditekolo/Hlahlobo",
+    "incidents": "Laola Ditiragalo",
+    "reports": "Hlahla Ditaba tša go Latela",
+    "hs_file": "Hlahla Faele ya Bophelo le Tšhireletšo",
+    "search_laws": "Nyaka Melao ya OHS",
+    "generate_rmp": "Hlahla RMP",
+    "generate_legal_register": "Hlahla Ngwadišo ya Molao ya OHS"
+  },
+  "wizard": {
+    "step_0": "Ka kgopelo kgetha tsebo go thoma tshepedišo.",
+    "step_1": {
+      "title": "Mohato 1 wa 9: O Nyaka go Dira Eng?",
+      "label": "Kgetha Ditokomane tše o tla di Hlahla (Kgetha tšohle tše di šomago):",
+      "error": "Ka kgopelo kgetha bonyane tokomaneng e le nngwe go e hlahla.",
+      "hs_spec": "<span class='emoji'>📋</span> Peakanyo ya Bophelo le Tšhireletšo",
+      "hs_plan": "<span class='emoji'>📑</span> Leano la Bophelo le Tšhireletšo",
+      "risk_assessment": "<span class='emoji'>⚠️</span> Tekolo ya Kotsi",
+      "training": "<span class='emoji'>🎓</span> Dira Kweletšo",
+      "appointments": "<span class='emoji'>📜</span> Dira Dikgetho tša Molao",
+      "inspections": "<span class='emoji'>🔍</span> Dira Ditekolo/Hlahlobo",
+      "incidents": "<span class='emoji'>🚑</span> Laola Ditiragalo",
+      "reports": "<span class='emoji'>📊</span> Ditaba tša go Latela",
+      "hs_file": "<span class='emoji'>📂</span> Faele ya Bophelo le Tšhireletšo",
+      "health_safety_specification_template": "<span class='emoji'>📋</span> Peakanyo ya Bophelo le Tšhireletšo",
+      "construction_health_safety_plan_template": "<span class='emoji'>📑</span> Leano la Bophelo le Tšhireletšo la Kago",
+      "baseline_risk_assessment_template": "<span class='emoji'>⚠️</span> Tekolo ya Kotsi ya Motheo",
+      "risk_assessment_plan_template": "<span class='emoji'>⚠️</span> Leano la Tekolo ya Kotsi",
+      "ohs_training_competency_policy_template": "<span class='emoji'>🎓</span> Leano la Kweletšo",
+      "section_16_1_appointment_template": "<span class='emoji'>📜</span> Kgetho ya Karolo 16(1)",
+      "ohs_audit_inspection_standard_template": "<span class='emoji'>🔍</span> Maemo a Ditekolo/Hlahlobo",
+      "ohs_incident_management_standard_template": "<span class='emoji'>🚑</span> Maemo a Taolo ya Ditiragalo",
+      "ohs_contractor_management_policy_template": "<span class='emoji'>🤝</span> Leano la Taolo ya Mokonteraka"
+    },
+    "step_2": {
+      "title": "Mohato 2 wa 9: Dintlha tša Mokganni",
+      "client_name_label": "Leina la Khampani ya Mokganni:",
+      "client_name_error": "Ka kgopelo tsenya leina la khampani ya mokganni.",
+      "client_address_label": "Aterese ya Mokganni:",
+      "client_address_error": "Ka kgopelo tsenya aterese ya mokganni.",
+      "client_contact_person_label": "Motho wa go Ikopanya le Mokganni:",
+      "client_contact_person_error": "Ka kgopelo tsenya motho wa go ikopanya le mokganni.",
+      "client_contact_role_label": "Maemo a Motho wa go Ikopanya le Mokganni:",
+      "client_contact_role_error": "Ka kgopelo tsenya maemo a motho wa go ikopanya le mokganni.",
+      "client_contact_number_label": "Nomoro ya Motho wa go Ikopanya le Mokganni:",
+      "client_contact_number_error": "Ka kgopelo tsenya nomoro ya mogala ye e nepagetšego (mohl., +27123456789).",
+      "client_email_label": "E-poso ya Mokganni:",
+      "client_email_error": "Ka kgopelo tsenya aterese ya e-poso ye e nepagetšego.",
+      "client_coida_label": "Nomoro ya Ngwadišo ya COIDA:",
+      "client_coida_error": "Ka kgopelo tsenya nomoro ya ngwadišo ya COIDA."
+    },
+    "step_3": {
+      "title": "Mohato 3 wa 9: Na Mokonteraka o Kgethilwe?",
+      "contractor_appointed_label": "Mokonteraka o Kgethilwe:",
+      "contractor_appointed_error": "Ka kgopelo kgetha kgetho.",
+      "option_yes": "Ee",
+      "option_no": "Aowa",
+      "option_not_applicable": "Ga e Šome"
+    },
+    "step_4": {
+      "title": "Mohato 4 wa 9: Dintlha tša Mokonteraka",
+      "contractor_name_label": "Leina la Khampani ya Mokonteraka:",
+      "contractor_name_error": "Ka kgopelo tsenya leina la khampani ya mokonteraka.",
+      "contractor_address_label": "Aterese ya Mokonteraka:",
+      "contractar_address_error": "Ka kgopelo tsenya aterese ya mokonteraka.",
+      "contractor_contact_person_label": "Motho wa go Ikopanya le Mokonteraka:",
+      "contractor_contact_person_error": "Ka kgopelo tsenya motho wa go ikopanya le mokonteraka.",
+      "contractor_contact_role_label": "Maemo a Motho wa go Ikopanya le Mokonteraka:",
+      "contractor_contact_role_error": "Ka kgopelo tsenya maemo a motho wa go ikopanya le mokonteraka.",
+      "contractor_contact_number_label": "Nomoro ya Motho wa go Ikopanya le Mokonteraka:",
+      "contractor_contact_number_error": "Ka kgopelo tsenya nomoro ya mogala ye e nepagetšego (mohl., +27123456789).",
+      "contractor_email_label": "E-poso ya Mokonteraka:",
+      "contractor_email_error": "Ka kgopelo tsenya aterese ya e-poso ye e nepagetšego.",
+      "contractor_coida_label": "Nomoro ya Ngwadišo ya COIDA:",
+      "contractor_coida_error": "Ka kgopelo tsenya nomoro ya ngwadišo ya COIDA."
+    },
+    "step_5": {
+      "title": "Mohato 5 wa 9: Dintlha tša Projeke",
+      "project_reference_label": "Nomoro ya Tshedimošo ya Projeke:",
+      "project_name_label": "Leina la Projeke:",
+      "project_name_error": "Ka kgopelo tsenya leina la projeke.",
+      "site_address_label": "Aterese ya Lefelo:",
+      "site_address_error": "Ka kgopelo tsenya aterese ya lefelo.",
+      "site_supervisor_name_label": "Leina la Molawana wa Lefelo:",
+      "site_supervisor_name_error": "Ka kgopelo tsenya leina la molawana wa lefelo.",
+      "site_supervisor_number_label": "Nomoro ya Molawana wa Lefelo:",
+      "site_supervisor_number_error": "Ka kgopelo tsenya nomoro ya mogala ye e nepagetšego (mohl., +27123456789).",
+      "site_supervisor_email_label": "E-poso ya Molawana wa Lefelo:",
+      "site_supervisor_email_error": "Ka kgopelo tsenya aterese ya e-poso ye e nepagetšego."
+    },
+    "step_6": {
+      "title": "Mohato 6 wa 9: Boemo bja Projeke",
+      "type_of_work_label": "Mohuta wa Mošomo o tla Dirwago:",
+      "type_of_work_error": "Ka kgopelo tsenya mohuta wa mošomo.",
+      "cidb_grade_label": "Boemo bja CIDB:",
+      "cidb_grade_error": "Ka kgopelo kgetha boemo bja CIDB.",
+      "cidb_grade_not_applicable": "Ga e Šome",
+      "cidb_grade_1": "Boemo 1",
+      "cost_label": "Ditshenyegelo (R):",
+      "cost_error": "Ka kgopelo tsenya ditshenyegelo tša projeke tše di nepagetšego (R).",
+      "duration_label": "Nako (Matsatsi):",
+      "duration_error": "Ka kgopelo tsenya nako ye e nepagetšego (matsatsi).",
+      "activities_label": "Mediro ye e Amago (Kgetha tšohle tše di šomago):",
+      "activities": {
+        "security_guards": "Balebeli ba Tšhireletšo",
+        "night_work": "Mošomo wa Bošego",
+        "moving_traffic": "Mošomo wa Sephethephethe se se Sepelago",
+        "vibration_exposure": "Go Bonwa ke Thothomelo",
+        "noise_exposure": "Go Bonwa ke Lerata",
+        "welders": "Batswedi",
+        "welding": "Go Tswalela ka Motlakase",
+        "hot_work": "Mošomo o Mofsa (mohl., go sega, go sila)",
+        "combustible_materials": "Dithuši tše di Čhago",
+        "hazardous_substances": "Go Tshwara Dithuši tše di Kotsi",
+        "office_fit_out": "Go Lokisa Ofisi",
+        "sensitive_it_equipment": "Dithuši tša IT tše di Bohloko",
+        "manual refining": "Go Tshwara ka Matsogo",
+        "working_electricity": "Mošomo wa Motlakase",
+        "dust_exposure": "Go Bonwa ke Lerole",
+        "civil_contractors": "Bakonteraka ba Setšhaba",
+        "excavation": "Go Epa",
+        "crane_operations": "Tshepedišo ya Kreine",
+        "working_near_water": "Mošomo wa Kgauswi le Meetse",
+        "pile_driving": "Go Kganna Dithupa",
+        "working_tunnels": "Mošomo wa Ditonopo",
+        "general_construction": "Kago ye e Akaretšago",
+        "working_from_heights": "Mošomo go tšwa Godimo",
+        "scaffolding": "Sefahlo",
+        "multi_storey": "Kago ya Mealo e Mengwe",
+        "asbestos": "Go Tloša Asbestos",
+        "confined_space": "Go Tsena mo Lefelong le le Lekanyeditšwego",
+        "demolition": "Go Senya",
+        "roof_work": "Mošomo wa Marulelo",
+        "temporary_works": "Mediro ya Nakwana",
+        "live_voltage": "Mošomo wa Motlakase o o Phelago"
+      },
+      "scope_details_label": "Dintlha tša Boemo:",
+      "scope_details_error": "Ka kgopelo tsenya dintlha tša boemo."
+    },
+    "step_7": {
+      "title": "Mohato 7 wa 9: E Hlahlišitšwe Ke",
+      "name_label": "Leina:",
+      "name_error": "Ka kgopelo tsenya leina la gago.",
+      "number_label": "Nomoro ya Mogala:",
+      "number_error": "Ka kgopelo tsenya nomoro ya mogala ye e nepagetšego (mohl., +27123456789).",
+      "email_label": "E-poso:",
+      "email_error": "Ka kgopelo tsenya aterese ya e-poso ye e nepagetšego.",
+      "role_label": "Maemo:",
+      "role_error": "Ka kgopelo kgetha maemo.",
+      "role_trainee": "Mokwetliši wa OHS",
+      "role_ohs_rep": "Moemedi wa OHS",
+      "role_sacpcmp_officer": "Ofisiri ya SACPCMP (CHSO)",
+      "role_sacpcmp_agent": "Moemedi wa SACPCMP (PrCHSA)",
+      "role_other": "E Nngwe",
+      "sacpcmp_reg_label": "Nomoro ya Ngwadišo ya SACPCMP:",
+      "sacpcmp_reg_error": "Ka kgopelo tsenya nomoro ya ngwadišo ya SACPCMP.",
+      "specify_role_label": "Hlalosa Maemo:",
+      "specify_role_error": "Ka kgopelo hlalosa maemo a gago."
+    },
+    "step_8": {
+      "title": "Mohato 8 wa 9: E Hlahlišitšwe Bakeng sa",
+      "compiled_for_label": "E Hlahlišitšwe Bakeng sa:",
+      "compiled_for_error": "Ka kgopelo kgetha kgetho.",
+      "option_client": "Mokganni",
+      "option_contractor": "Mokonteraka",
+      "option_other": "E Nngwe",
+      "specify_label": "Hlalosa:",
+      "specify_error": "Ka kgopelo hlalosa gore tokomaneng e hlahlišitšwe bakeng sa mang."
+    },
+    "step_9": {
+      "title": "Mohato 9 wa 9: Lekola le go Kenya mo Sesekeng",
+      "description": "Lekola dikgetho tša gago le go kenya ditokomane mo sesekeng sa gago go tšwela pele.",
+      "selected_documents_label": "Ditokomane tše di Kgethilwego:"
+    },
+    "nav": {
+      "back": "Boela Morago",
+      "next": "Ye e Latelago",
+      "add_to_cart": "Kenya mo Sesekeng"
+    }
+  },
+  "cart": {
+    "title": "Seseke sa Gago",
+    "invoice_reference": "Nomoro ya Tshedimošo ya Invoice: <span id=\"invoice-ref-number\" class=\"font-medium\"></span> (E šoma matsatsi a 7. Ngwadiša go boloka ka mehla!)",
+    "table": {
+      "document": "Tokomane",
+      "price": "Theko"
+    },
+    "checkout": {
+      "promo_label": "Khoutu ya Pholo:",
+      "promo_placeholder": "Tsenya SAFETYFIRST25",
+      "button": "Tšwela Pele go Tefa"
+    },
+    "subscribe": {
+      "button": "Ngwadiša bakeng sa Tšhomišo ye e Tletšego"
+    }
+  },
+  "resources": {
+    "title": "Ikopanye le Ditsebi tša Bophelo le Tšhireletšo tše di Netefaditšwego",
+    "description": "Na o nyaka thušo ya ditsebi? Ikopanye le ditsebi tše di netefaditšwego bakeng sa ditlhokego tša projeke ya gago.",
+    "jane_doe": "<strong>Jane Doe, Moemedi wa SACPCMP (PrCHSA)</strong> - Nomoro ya Ngwadišo: PR12345 - Ikopanye: <a href='mailto:jane.doe@example.com' class='text-blue-500 hover:underline'>jane.doe@example.com</a>"
+  },
+  "footer": {
+    "copyright": "© 2025 SafetyHelp. Ditokelo tšohle di bolokilwe.",
+    "links": {
+      "privacy": "Leano la Sephiri",
+      "terms": "Melao ya Ditirelo",
+      "contact": "Ikopanye le Rena"
+    },
+    "newsletter": {
+      "title": "Nna o le Morao",
+      "placeholder": "Tsenya e-poso ya gago",
+      "button": "Ngwadiša"
+    }
+  },
+  "chatbot": {
+    "button": "Botšiša Salatiso",
+    "input_placeholder": "Botšiša ka OHS...",
+    "send": "Romela",
+    "welcome": "Thobela! Nka go thuša bjang lehono ka OHS?",
+    "response": "Ke gona go thuša! Bakeng sa kgopolo ya OHS ye e kgethegilego, ka kgopelo ikopanye le setsebi."
+  },
+  "page_title": {
+    "construction": "SafetyHelp - Bophelo le Tšhireletšo ya Kago",
+    "legal_appointments": "SafetyHelp - Dikgetho tša Molao",
+    "legislation": "SafetyHelp - Melao",
+    "services": "SafetyHelp - Ditirelo"
+  },
+  "construction": {
+    "title": "Bophelo le Tšhireletšo ya Kago",
+    "description": "Netefatša go latela melao ya bophelo le tšhireletšo ya kago ka Dithuši tša OHS tša SafetyHelp. Dithuši tša rena di go thuša go laola dikotsi, go fihlelela ditlhokego tša molao, le go šireletša bašomi lefelong la kago, ka tshedimošo ya mekgwa ye e nepagetšego bjalo ka ge e hlalositšwe mo 'Tšhireletšo Pele: Dintlha tša Bohlokwa tša Merero ya OHS.'",
+    "download_link": "Laolla Leano la OHS la Kago: "
+  },
+  "legal_appointments": {
+    "title": "Dikgetho tša Molao",
+    "description": "Laola dikgetho tša molao bakeng sa bophelo bja mošomo le tšhireletšo ya mošomo bjalo ka ge go nyakwa ke melao ya OHS ya Afrika Borwa. Šomiša organogram go abela maemo, tlatša dintlha tša mogweledi, le go hlahla tokomaneng ye e tletšego ye e nago le mangwalo a dikgetho, direkhoto tša kweletšo, le tše dingwe."
+  },
+  "organogram": {
+    "title": "Organogram bakeng sa Dikgetho tša Molao tša OHS",
+    "form": {
+      "name": "Leina la Motho yo o Kgethilwego",
+      "name_error": "Ka kgopelo tsenya leina la motho yo o kgethilwego.",
+      "email": "E-poso",
+      "email_error": "Ka kgopelo tsenya aterese ya e-poso ye e nepagetšego.",
+      "phone": "Nomoro ya Mogala",
+      "phone_error": "Ka kgopelo tsenya nomoro ya mogala ye e nepagetšego (mohl., +27123456789).",
+      "start_date": "Letšatši la go Thoma",
+      "start_date_error": "Ka kgopelo tsenya letšatši la go thoma.",
+      "end_date": "Letšatši la go Fela",
+      "training": "Kweletšo/Bokgoni",
+      "training_error": "Ka kgopelo tsenya dintlha tša kweletšo/bokgoni.",
+      "notes": "Dintlha tše di Okeditšwego",
+      "save": "Boloka Motho yo o Kgethilwego"
+    },
+    "generate_document": "Hlahla Tokomane ya Dikgetho"
+  },
+  "legislation": {
+    "title": "Melao",
+    "description": "Fihlelela laeborari ye e tletšego ya melao ya OHS, maemo, le dikaonafatšo. Hlahla direkhoto tša molao tša OHS, nyaka melao ye e itšego, le go lekola dikamano magareng ga melaoana. Dihlaloso tše di nolofaditšwego di gona go reka go dira gore ditokomane tša molao tše di raraganego di fihlelehege.",
+    "tools": {
+      "title": "Dithuši tša Molao",
+      "search_placeholder": "Nyaka melao (mohl., OHSA Karolo 8)",
+      "search_button": "Nyaka",
+      "buy_simplified": "Reka Hlaloso ye e Nolofaditšwego (R50)"
+    },
+    "updates": {
+      "title": "Dikaonafatšo tša Melao le Merero ya Melaoana"
+    },
+    "standards": {
+      "title": "Maemo a OHS"
+    }
+  },
+  "services": {
+    "title": "Ditirelo tša SafetyHelp",
+    "description": "Hwetša mefuta ye e fapafapanego ya ditirelo tša bophelo bja mošomo le tšhireletšo ya mošomo tše di rulagantšwego go tshegetša mafelo a mošomo, dikolo, dikereke, le dihlogo tše di sa tlwaelegago mo Afrika Borwa ka moka. Go tloga go go ngangišana go ya go kweletšo, SafetyHelp e fana ka ditharollo tše di rulagantšwego go netefatša go latela le tšhireletšo.",
+    "consulting": {
+      "title": "Ngangišo ya OHS",
+      "description": "Hwetša kgopolo ya ditsebi mabapi le go latela OHS, taolo ya dikotsi, le dikgetho tša molao go tšwa go ditsebi tša rena tše di netefaditšwego. Re šomile le mekgatlo bjalo ka Anglo Platinum, ABSA, le Metrorail go fana ka ditharollo tše di rulagantšwego."
+    },
+    "training": {
+      "title": "Mananeo a Kweletšo",
+      "description": "Fihlelela mananeo a kweletšo a a tletšego a diindasteri tšohle, go akaretša kago, tlhabollo, le thuto. Kgetha go tšwa mo kweletšo ya go thoma, dithuto tše di rulagantšwego tša karolo, le tše dingwe, tšohle di tsamayana le melao ya OHS ya Afrika Borwa."
+    },
+    "audits": {
+      "title": "Ditekolo le Hlahlobo",
+      "description": "Netefatša gore lefelo la gago la mošomo le fihlelela maemo a OHS ka ditirelo tša rena tša ditekolo le hlahlobo. Dithuši tša rena di go thuša go dira ditekolo tše di tletšego, go hlahla ditaba, le go dira dikaonafatšo."
+    },
+    "risk_management": {
+      "title": "Merero ya Taolo ya Dikotsi",
+      "description": "Hlahla merero ya taolo ya dikotsi ye e rulagantšwego (RMPs) ye e akaretšago melao ya Afrika Borwa, melaoana ya bommasepala, le maemo a lefase ka bophara bjalo ka ISO 45001, go netefatša gore kgwebo ya gago e lokišeditše kotsi efe goba efe."
+    },
+    "support": {
+      "title": "Tshegetšo le Dithuši tša Setšhaba",
+      "description": "Kopana le setšhaba sa rena go tlaleha ditiragalo, go hwetša manane a tšhireletšo bakeng sa mabenkele a manyane, dikolo, le ditaverna, le go kgokagana le ditsebi tše dingwe tša OHS bakeng sa tshegetšo le tšhomišano."
+    }
+  },
+  "training": {
+    "title": "Kweletšo ye e Tletšego ya Lefelo la Mošomo",
+    "description": "Nyaka mananeo a rena a kweletšo a a tletšego a lefelo la mošomo go netefatša go latela melao ya OHS ya Afrika Borwa le go kgothaletša lefelo la mošomo le le šireletšegilego. Kgetha go tšwa mo kweletšo ya go dira ka matsogo, kweletšo ya sehlopha, goba šomiša wizard ya rena bakeng sa dikgakololo tše di rulagantšwego tše di theilwego mo indastering ya gago, bamameli ba gago, le lefelo.",
+    "action_buttons": {
+      "start_wizard": "Thoma Wizard ya Kweletšo",
+      "select_by_category": "Kgetha ka Sehlopha",
+      "select_manually": "Kgetha ka Matsogo",
+      "view_manual": "Reka Bukana ya Kweletšo ye e Fetolegago"
+    },
+    "wizard": {
+      "start": "Ka kgopelo kgetha kgetho go thoma tshepedišo ya dikgakololo tša kweletšo.",
+      "step_1": {
+        "title": "Mohato 1 wa 5: Kgetha Indasteri ya Gago",
+        "label": "Indasteri:",
+        "error": "Ka kgopelo kgetha indasteri.",
+        "option_construction": "Kago",
+        "option_manufacturing": "Tlhabollo",
+        "option_office": "Ofisi/Taolo",
+        "option_chemical": "Indasteri ya Dikhemikhale",
+        "option_other": "E Nngwe"
+      },
+      "step_2": {
+        "title": "Mohato 2 wa 5: Kgetha Bamameli ba Gago",
+        "label": "Bamameli ba ba Rulagantšwego (Kgetha tšohle tše di šomago):",
+        "error": "Ka kgopelo kgetha bonyane bamameli ba le bongwe.",
+        "option_all_employees": "Bašomi Bohle",
+        "option_new_employees": "Bašomi ba Bafsa",
+        "option_managers": "Balaodi/Balawana",
+        "option_she_reps": "Baemedi ba SHE",
+        "option_emergency_team": "Sehlopha sa Tšhoganetšo (Bathuši ba Pele, Balwaneli ba Mollo)",
+        "option_hazard_workers": "Bašomi ba ba Bonwago ke Dikotsi tše di Kgethegilego",
+        "option_equipment_operators": "Bašomiši ba Dithuši/Mochini",
+        "option_construction_roles": "Maemo a Kgethegilego a Kago"
+      },
+      "step_3": {
+        "title": "Mohato 3 wa 5: Hlalosa Lefelo la Gago",
+        "municipality_label": "Mmasepala:",
+        "municipality_error": "Ka kgopelo kgetha mmasepala.",
+        "option_johannesburg_south": "Johannesburg Borwa, Gauteng",
+        "option_other": "E Nngwe"
+      },
+      "step_4": {
+        "title": "Mohato 4 wa 5: Mekgwa ye e Okeditšwego",
+        "risk_profile_label": "Boemo bja Kotsi ya Lefelo la Gago la Mošomo:",
+        "risk_profile_error": "Ka kgopelo kgetha boemo bja kotsi.",
+        "option_low": "Kotsi ye e Tlase (mohl., Ofisi)",
+        "option_medium": "Kotsi ye e Mahareng (mohl., Tlhabollo)",
+        "option_high": "Kotsi ye e Godimo (mohl., Kago, Dikhemikhale)"
+      },
+      "step_5": {
+        "title": "Mohato 5 wa 5: Lekola Kweletšo ye e Kgothaletšwago",
+        "description": "Go ya ka dintlha tša gago, ke mananeo a kweletšo a a kgothaletšwago. Kgetha a o tla a kenya mo sesekeng sa gago.",
+        "selected_training_label": "Mananeo a Kweletšo a a Kgothaletšwago:"
+      },
+      "nav": {
+        "back": "Boela Morago",
+        "next": "Ye e Latelago",
+        "add_to_cart": "Kenya mo Sesekeng"
+      }
+    },
+    "cart": {
+      "title": "Seseke sa Gago sa Kweletšo",
+      "table": {
+        "training": "Lenaneo la Kweletšo",
+        "price": "Theko"
+      },
+      "customization": {
+        "title": "Rulaganya Dithuši tša Gago tša Kweletšo",
+        "company_name_label": "Leina la Khampani:",
+        "company_name_error": "Ka kgopelo tsenya leina la khampani ya gago.",
+        "location_label": "Lefelo la Khampani:",
+        "location_error": "Ka kgopelo tsenya lefelo la khampani ya gago.",
+        "first_aider_label": "Leina la Mothuši wa Pele:",
+        "first_aider_error": "Ka kgopelo tsenya leina la mothuši wa pele.",
+        "fire_fighter_label": "Leina la Molwaneli wa Mollo:",
+        "fire_fighter_error": "Ka kgopelo tsenya leina la molwaneli wa mollo.",
+        "ohs_rep_label": "Leina la Moemedi wa OHS:",
+        "ohs_rep_error": "Ka kgopelo tsenya leina la moemedi wa OHS.",
+        "supervisor_label": "Leina la Molawana:",
+        "supervisor_error": "Ka kgopelo tsenya leina la molawana.",
+        "emergency_line_label": "Nomoro ya Mogala ya Tšhoganetšo:",
+        "emergency_line_error": "Ka kgopelo tsenya nomoro ya mogala ya tšhoganetšo ye e nepagetšego (mohl., +27123456789)."
+      },
+      "compiled_by": {
+        "title": "E Hlahlišitšwe Ke",
+        "name_label": "Leina:",
+        "name_error": "Ka kgopelo tsenya leina la gago.",
+        "role_label": "Maemo:",
+        "role_error": "Ka kgopelo tsenya maemo a gago.",
+        "contact_label": "Nomoro ya Mogala:",
+        "contact_error": "Ka kgopelo tsenya nomoro ya mogala ye e nepagetšego (mohl., +27123456789)."
+      },
+      "training_type": {
+        "title": "Mohuta wa Kweletšo",
+        "label": "Kgetha mohuta wa kweletšo:",
+        "error": "Ka kgopelo kgetha mohuta wa kweletšo.",
+        "option_pdf": "PDF tša Kweletšo Fela",
+        "option_online": "Kweletšo ya Video ya Inthaneteng (E tla kgauswi)",
+        "online_num_people_label": "Palo ya Batho ba ba tla Kwetlišwago:",
+        "online_num_people_error": "Ka kgopelo tsenya palo ya batho (bonyane 1)."
+      },
+      "checkout": {
+        "disclaimer": "Boitlhotlhollo bja SafetyHelp: Dithuši tša kweletšo tše di filwego ke tša tshedimošo fela mme ga di fane ka kgopolo ya ditsebi. Bakeng sa ditharollo tša OHS tše di rulagantšwego, ka kgopelo ikopanye le SafetyHelp mo <a href='mailto:support@safetyhelp.co.za' class='text-blue-500 hover:underline'>support@safetyhelp.co.za</a> goba etela <a href='/safety-plans/contact.html' class='text-blue-500 hover:underline'>Letlakala la go Ikopanya</a>.",
+        "button": "Tšwela Pele go Tefa"
+      },
+      "success": "Tefo e atlegile! Dithuši tša gago tša kweletšo di hlahlišitšwe. Laolla di-PDF tša gago ka tlase. Bakeng sa kweletšo ya inthaneteng, dikhoutu tša tšhomišo di rometšwe mo go wena ka e-poso.",
+      "download_pdf": "Laolla PDF ya Kweletšo",
+      "online_codes": "Dikhoutu tša Tšhomišo ya Kweletšo ya Inthaneteng: <span id='access-codes'></span>"
+    },
+    "providers": {
+      "title": "Bafani ba Kweletšo ba ba Netefaditšwego",
+      "description": "Na o nyaka kweletšo ya motho ka motho? Ikopanye le bafani ba kweletšo ba ba netefaditšwego bakeng sa ditlhokego tša gago.",
+      "provider_1": "<strong>ABC Training Solutions</strong> - E Netefaditšwe ke SETA - E Kgethegile mo Thušo ya Pele, go Lwana le Mollo - Ikopanye: <a href='mailto:info@abctraining.co.za' class='text-blue-500 hover:underline'>info@abctraining.co.za</a>"
+    },
+    "manual": {
+      "purchase": {
+        "title": "Reka Bukana ya Kweletšo ye e Fetolegago",
+        "description": "Hwetša bukana ya kweletšo ye e tletšego ye e rulagantšwego khampani ya gago, e akaretša ditlhokego tša molao, diteng tše di rulagantšwego tša khampani tše di theilwego mo boemong bja gago bja kotsi, le dikgakololo go tšwa go bafani ba kweletšo ba ba netefaditšwego.",
+        "button": "Kenya Bukana mo Sesekeng"
+      },
+      "risk_profile": {
+        "title": "Hlalosa Boemo bja Gago bja Kotsi bakeng sa Bukana ya Kweletšo",
+        "label": "Boemo bja Kotsi:",
+        "error": "Ka kgopelo kgetha boemo bja kotsi.",
+        "option_low": "Kotsi ye e Tlase (mohl., Ofisi)",
+        "option_medium": "Kotsi ye e Mahareng (mohl., Tlhabollo)",
+        "option_high": "Kotsi ye e Godimo (mohl., Kago, Dikhemikhale)"
+      }
+    },
+    "selection_method": {
+      "title": "Kgetha Mokgwa wa Gago wa Kweletšo"
+    },
+    "category": {
+      "induction_training": "Kweletšo ya go Thoma",
+      "awareness_training": "Kweletšo ya Tlhokomelo",
+      "statutory_mandatory_training": "Kweletšo ya Molao/E e Tlamago",
+      "task_risk_specific_training": "Kweletšo ye e Kgethegilego ya Mošomo/Kotsi",
+      "role_specific_competency_training": "Kweletšo ya Bokgoni ye e Kgethegilego ya Maemo",
+      "refresher_training": "Kweletšo ya go Nchafatša",
+      "toolbox_talks_safety_briefings": "Dipoledišano tša Dithuši/Dipolelo tša Tšhireletšo"
+    },
+    "list": {
+      "all_programs": "Mananeo A Kweletšo A A Gona",
+      "search_placeholder": "Nyaka Mananeo a Kweletšo...",
+      "add_to_cart": "Kenya tše di Kgethilwego mo Sesekeng"
+    },
+    "legal_fact": {
+      "step_1": "Taba ya Molao: Karolo 8 ya Molao wa OHS e nyaka gore bagweledi ba fane ka kweletšo ye e rulagantšwego dikotsing tše di kgethegilego tša lefelo la mošomo.",
+      "step_3": "Taba ya Molao: Bommasepala ba selegae ba ka ba le melao e fapanego ya OHS ye e amago ditlhokego tša kweletšo."
+    },
+    "fun_fact": {
+      "step_2": "Taba ye e Kgahlišago: Na o be o tseba gore kweletšo ye e tlwaelegilego e ka fokotša ditiragalo tša lefelo la mošomo go fihla 30%?",
+      "step_4": "Taba ye e Kgahlišago: Mafelo a mošomo a a nago le kotsi ye e godimo bjalo ka mafelo a kago a nyaka kweletšo ye e tlwaelegilego go boloka maemo a tšhireletšo."
+    }
+  }
+}

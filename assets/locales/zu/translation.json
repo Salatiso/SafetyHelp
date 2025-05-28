@@ -1,0 +1,533 @@
+{
+  "header": {
+    "title": "SafetyHelp",
+    "tagline": "Ukuphepha Okwenziwe Ngokwakho, Ukuhambisana Okulula—Ngaso Sonke Isikhathi, Noma Kuphi",
+    "nav": {
+      "home": "Ikhaya",
+      "resources": "Izinsiza",
+      "services": "Izinsizakalo",
+      "community": "Umphakathi",
+      "about": "Mayelana Nathi",
+      "contact": "Xhumana Nathi",
+      "login": "Ngena",
+      "logout": "Phuma"
+    },
+    "search": {
+      "placeholder": "Sesha Izinsiza ze-OHS...",
+      "button": "Sesha"
+    }
+  },
+  "language_selector": {
+    "en": "IsiNgisi",
+    "af": "IsiBhunu",
+    "zu": "isiZulu"
+  },
+  "sidebar": {
+    "ohs_tools": "Izinsiza ze-OHS zeSafetyHelp",
+    "construction_safety": "Ukuphepha Kokwakha",
+    "emergency_planning": "Ukuhlela Isimo Esiphuthumayo",
+    "risk_assessment": "Ukuhlola Ubungozi",
+    "legal_appointments": "Ukuqashwa Okusemthethweni",
+    "incident_management": "Ukulawula Izigameko",
+    "training": "Ukuqeqesha",
+    "inspections_audits": "Ukuhlola & Ukuhlolwa",
+    "suppliers": "Abahlinzeki",
+    "legislation": "Umthetho",
+    "community_tools": "Izinsiza Zomphakathi",
+    "member_dashboard": "Ideshibhodi Yelungu",
+    "ohs_system": "Isistimu ye-OHS",
+    "step_0": {
+      "title": "📜 Wamukelekile ku-SafetyHelp",
+      "description": "Hlola izinsiza zethu ezibanzi kanye nezinsizakusebenza zokuthuthukisa ukuphepha nezempilo endaweni yakho yokusebenza.",
+      "fun_fact": "⚡ Ngabe uyazi ukuthi ukusebenzisa abahlinzeki abanokuziphatha okuhle kunganciphisa izingozi endaweni yokusebenza ngokuqinisekisa ukuthi umsebenzi wenziwa ngesikhathi futhi ngezinga eliphezulu lokuphepha?"
+    }
+  },
+  "intro": {
+    "title": "Wamukelekile ku-SafetyHelp",
+    "description": "Hlola izinsiza zethu ezibanzi kanye nezinsizakusebenza zokuthuthukisa ukuphepha nezempilo endaweni yakho yokusebenza."
+  },
+  "welcome": {
+    "title": "Wamukelekile ku-SafetyHelp",
+    "description": "Iplatifomu yakho ethembekile yokuphepha nezempilo emsebenzini (OHS) eNingizimu Afrika. Sinikezela ngezinsiza ezizenzakalelayo, ezithuthukiswe yi-AI ukuqinisekisa ukuphepha nokuthobela izikole, amasonto, kanye nezindawo ezingahlelekile. Joyina umphakathi wethu ukuze uthole izinsiza, izinsizakalo, kanye nokusekelwa okwenziwe ngezifiso zezidingo zakho."
+  },
+  "why_choose": {
+    "title": "Kungani Ukhetha iSafetyHelp ukuThobela i-OHS?",
+    "content": "I-SafetyHelp ingumlingani wakho othembekile wokuthobela ukuphepha nezempilo emsebenzini eNingizimu Afrika. Iplatifomu yethu inikezela ngezinsiza ezibanzi ezilungiselelwe ukuhlangabezana nezidingo eziyingqayizivele zezimboni ezifana nokwakha, izimayini, kanye nokukhiqiza. Kusukela ekuqaleni kweerejista ezisemthethweni kuya ekuhloleni ubungozi, iSafetyHelp yenza lula izidingo ze-OHS ezinzima ngezinsiza ezisebenziseka kalula kanye nokusekelwa kwesikhathi sangempela nge-chatbot yethu ephefumlelwe yi-AI. Isekwa yimithetho yaseNingizimu Afrika kanye nezindlela ezinhle, sinika amabhizinisi amandla okudala izindawo zokusebenza eziphephile ngenkathi siqinisekisa ukuthobela i-OHSA kanye ne-COIDA. Joyina izinkulungwane zabachwepheshe abethembele kwi-SafetyHelp ukuvikela amaqembu abo kanye nokwenza lula izinqubo zokuphepha."
+  },
+  "legal_obligations": {
+    "client": {
+      "title": "Izibopho Zeklayenti",
+      "reg_5_1_a": "<strong>Umthetho Wokwakha 5(1)(a):</strong> Lungiselela Ukuhlola Ubungozi Obusisiseko (BRA) okukhomba izingozi zephrojekthi.",
+      "reg_5_1_b": "<strong>Umthetho Wokwakha 5(1)(b):</strong> Nikeza Isichibiyelo Sokuphepha Nezempilo esicacisa izidingo ezithile zephrojekthi.",
+      "reg_5_1_l": "<strong>Umthetho Wokwakha 5(1)(l):</strong> Yamukela Uhlelo Lwezokuphepha Nezempilo Lwekontraka ngaphambi kokuba umsebenzi uqale."
+    },
+    "contractor": {
+      "title": "Izibopho Zekontraka",
+      "reg_7_1_a": "<strong>Umthetho Wokwakha 7(1)(a):</strong> Ngenisa Uhlelo Lwezokuphepha Nezempilo olusekelwe kusichibiyelo seklayenti.",
+      "reg_7_1_b": "<strong>Umthetho Wokwakha 7(1)(b):</strong> Gcina Ifayile Yezokuphepha Nezempilo esizeni enazo zonke izincwadi ezidingekayo.",
+      "reg_9": "<strong>Umthetho Wokwakha 9:</strong> Qhuba Ukuhlola Ubungozi kanye Nokuqashelwa Kwezingozi Zokuphazamisa (HIRAs) ezithile kumsebenzi."
+    },
+    "professional": {
+      "title": "Izibopho Zochwepheshe Wokuphepha Nezempilo",
+      "reg_5_5": "<strong>Umthetho Wokwakha 5(5):</strong> Ama-Arhente (PrCHSA) alawula ukuphepha nezempilo egameni leklayenti, eqinisekisa ukuthobela.",
+      "reg_8_5": "<strong>Umthetho Wokwakha 8(5):</strong> Amagosa (CHSO) asiza okontraka ekusebenziseni nasekuhloleni izinhlelo ze-OHS.",
+      "sacpcmp": "<strong>Iziqondiso ze-SACPCMP:</strong> Kumele igcine ukubhaliswa kanye nezidingo ze-CPD zesimo sobuchwepheshe."
+    }
+  },
+  "action_buttons": {
+    "hs_spec": "Hlanganisa Isichibiyelo Sokuphepha Nezempilo",
+    "hs_plan": "Hlanganisa Uhlelo Lwezokuphepha Nezempilo",
+    "risk_assessment": "Hlanganisa Ukuhlola Ubungozi",
+    "training": "Qhuba Ukuqeqesha",
+    "appointments": "Qhuba Ukuqashwa Okusemthethweni",
+    "inspections": "Qhuba Ukuhlola/Ukuhlolwa",
+    "incidents": "Lawula Izigameko",
+    "reports": "Hlanganisa Izinhlalo Zokuthobela",
+    "hs_file": "Hlanganisa Ifayile Yezokuphepha Nezempilo",
+    "search_laws": "Sesha Imithetho ye-OHS",
+    "generate_rmp": "Khiqiza i-RMP",
+    "generate_legal_register": "Khiqiza iRejista Yezomthetho ye-OHS"
+  },
+  "wizard": {
+    "step_0": "Sicela ukhethe isenzo ukuze uqale inqubo.",
+    "step_1": {
+      "title": "Isinyathelo 1 kwezi-9: Ufuna ukwenzani?",
+      "label": "Khetha Amadokhumenti ozowadibanisa (Khetha zonke ezisebenzayo):",
+      "error": "Sicela ukhethe okungenani idokhumenti eyodwa ukuze idityaniswe.",
+      "hs_spec": "<span class='emoji'>📋</span> Isichibiyelo Sokuphepha Nezempilo",
+      "hs_plan": "<span class='emoji'>📑</span> Uhlelo Lwezokuphepha Nezempilo",
+      "risk_assessment": "<span class='emoji'>⚠️</span> Ukuhlola Ubungozi",
+      "training": "<span class='emoji'>🎓</span> Qhuba Ukuqeqesha",
+      "appointments": "<span class='emoji'>📜</span> Qhuba Ukuqashwa Okusemthethweni",
+      "inspections": "<span class='emoji'>🔍</span> Qhuba Ukuhlola/Ukuhlolwa",
+      "incidents": "<span class='emoji'>🚑</span> Lawula Izigameko",
+      "reports": "<span class='emoji'>📊</span> Izinhlalo Zokuthobela",
+      "hs_file": "<span class='emoji'>📂</span> Ifayile Yezokuphepha Nezempilo",
+      "health_safety_specification_template": "<span class='emoji'>📋</span> Isichibiyelo Sokuphepha Nezempilo",
+      "construction_health_safety_plan_template": "<span class='emoji'>📑</span> Uhlelo Lwezokuphepha Nezempilo",
+      "baseline_risk_assessment_template": "<span class='emoji'>⚠️</span> Ukuhlola Ubungozi Obusisiseko",
+      "risk_assessment_plan_template": "<span class='emoji'>⚠️</span> Uhlelo Lokuhlola Ubungozi",
+      "ohs_training_competency_policy_template": "<span class='emoji'>🎓</span> Inqubomgomo Yokuqeqesha",
+      "section_16_1_appointment_template": "<span class='emoji'>📜</span> Ukuqashwa Kwesigaba 16(1)",
+      "ohs_audit_inspection_standard_template": "<span class='emoji'>🔍</span> Izinga Lokuhlola/Ukuhlolwa",
+      "ohs_incident_management_standard_template": "<span class='emoji'>🚑</span> Izinga Lokulawula Izigameko",
+      "ohs_contractor_management_policy_template": "<span class='emoji'>🤝</span> Inqubomgomo Yokulawula Okontraka"
+    },
+    "step_2": {
+      "title": "Isinyathelo 2 kwezi-9: Imininingwane Yeklayenti",
+      "client_name_label": "Igama Lenkampani Yeklayenti:",
+      "client_name_error": "Sicela ufake igama lenkampani yeklayenti.",
+      "client_address_label": "Ikheli Leklayenti:",
+      "client_address_error": "Sicela ufake ikheli leklayenti.",
+      "client_contact_person_label": "Umuntu Wokuxhumana Weklayenti:",
+      "client_contact_person_error": "Sicela ufake umuntu wokuxhumana weklayenti.",
+      "client_contact_role_label": "Indima Yokuxhumana Yeklayenti:",
+      "client_contact_role_error": "Sicela ufake indima yokuxhumana weklayenti.",
+      "client_contact_number_label": "Inombolo Yokuxhumana Yeklayenti:",
+      "client_contact_number_error": "Sicela ufake inombolo yocingo esebenzayo (isb., +27123456789).",
+      "client_email_label": "I-imeyili Yeklayenti:",
+      "client_email_error": "Sicela ufake ikheli le-imeyili elisebenzayo.",
+      "client_coida_label": "Inombolo Yokubhalisa kwe-COIDA:",
+      "client_coida_error": "Sicela ufake inombolo yokubhalisa kwe-COIDA."
+    },
+    "step_3": {
+      "title": "Isinyathelo 3 kwezi-9: Ingabe Ikontraka Iqashiwe?",
+      "contractor_appointed_label": "Ikontraka Iqashiwe:",
+      "contractor_appointed_error": "Sicela ukhethe ukhetho.",
+      "option_yes": "Yebo",
+      "option_no": "Cha",
+      "option_not_applicable": "Ayisebenzi"
+    },
+    "step_4": {
+      "title": "Isinyathelo 4 kwezi-9: Imininingwane Yekontraka",
+      "contractor_name_label": "Igama Lenkampani Yekontraka:",
+      "contractor_name_error": "Sicela ufake igama lenkampani yekontraka.",
+      "contractor_address_label": "Ikheli Lekontraka:",
+      "contractor_address_error": "Sicela ufake ikheli lekontraka.",
+      "contractor_contact_person_label": "Umuntu Wokuxhumana Wekontraka:",
+      "contractor_contact_person_error": "Sicela ufake umuntu wokuxhumana wekontraka.",
+      "contractor_contact_role_label": "Indima Yokuxhumana Yekontraka:",
+      "contractor_contact_role_error": "Sicela ufake indima yokuxhumana wekontraka.",
+      "contractor_contact_number_label": "Inombolo Yokuxhumana Yekontraka:",
+      "contractor_contact_number_error": "Sicela ufake inombolo yocingo esebenzayo (isb., +27123456789).",
+      "contractor_email_label": "I-imeyili Yekontraka:",
+      "contractor_email_error": "Sicela ufake ikheli le-imeyili elisebenzayo.",
+      "contractor_coida_label": "Inombolo Yokubhalisa kwe-COIDA:",
+      "contractor_coida_error": "Sicela ufake inombolo yokubhalisa kwe-COIDA."
+    },
+    "step_5": {
+      "title": "Isinyathelo 5 kwezi-9: Imininingwane Yephrojekthi",
+      "project_reference_label": "Inombolo Yereferensi Yephrojekthi:",
+      "project_name_label": "Igama Lephrojekthi:",
+      "project_name_error": "Sicela ufake igama lephrojekthi.",
+      "site_address_label": "Ikheli Lesiza:",
+      "site_address_error": "Sicela ufake ikheli lesiza.",
+      "site_supervisor_name_label": "Igama Lomphathi Wesiza:",
+      "site_supervisor_name_error": "Sicela ufake igama lomphathi wesiza.",
+      "site_supervisor_number_label": "Inombolo Yokuxhumana Yomphathi Wesiza:",
+      "site_supervisor_number_error": "Sicela ufake inombolo yocingo esebenzayo (isb., +27123456789).",
+      "site_supervisor_email_label": "I-imeyili Yomphathi Wesiza:",
+      "site_supervisor_email_error": "Sicela ufake ikheli le-imeyili elisebenzayo."
+    },
+    "step_6": {
+      "title": "Isinyathelo 6 kwezi-9: Ububanzi Bephrojekthi",
+      "type_of_work_label": "Uhlobo Lomsebenzi Ozokwenziwa:",
+      "type_of_work_error": "Sicela ufake uhlobo lomsebenzi.",
+      "cidb_grade_label": "Izinga le-CIDB:",
+      "cidb_grade_error": "Sicela ukhethe izinga le-CIDB.",
+      "cidb_grade_not_applicable": "Ayisebenzi",
+      "cidb_grade_1": "Izinga 1",
+      "cidb_grade_2": "Izinga 2",
+      "cost_label": "Izindleko (R):",
+      "cost_error": "Sicela ufake izindleko zephrojekthi ezisebenzayo (R).",
+      "duration_label": "Isikhathi (Izinsuku):",
+      "duration_error": "Sicela ufake isikhathi esisebenzayo (izinsuku).",
+      "activities_label": "Imisebenzi Ebandakanyekayo (Khetha zonke ezisebenzayo):",
+      "activities": {
+        "security_guards": "Onogada",
+        "night_work": "Umsebenzi Wasebusuku",
+        "moving_traffic": "Umsebenzi Wezimoto Ezihambayo",
+        "vibration_exposure": "Ukuchayeka Kokudlidliza",
+        "noise_exposure": "Ukuchayeka Komsindo",
+        "welders": "Abashisayo",
+        "welding": "Ukushisa",
+        "hot_work": "Umsebenzi Oshisayo (isb., ukusika, ukugaya)",
+        "combustible_materials": "Izinto Ezishayo",
+        "hazardous_substances": "Ukuphatha Izinto Eziyingozi",
+        "office_fit_out": "Ukulungiswa Kwehhovisi",
+        "sensitive_it_equipment": "Izinsiza Ze-IT Ezibuthakathaka",
+        "manual_handling": "Ukuphatha Ngezandla",
+        "working_electricity": "Umsebenzi Wogesi",
+        "dust_exposure": "Ukuchayeka Kothuli",
+        "civil_contractors": "Okontraka Bomphakathi",
+        "excavation": "Ukumba",
+        "crane_operations": "Imisebenzi Yekhreyini",
+        "working_near_water": "Umsebenzi Eduze Namanzi",
+        "pile_driving": "Ukuqhuba Izipali",
+        "working_tunnels": "Umsebenzi Wemigudu",
+        "general_construction": "Ukwakha Okujwayelekile",
+        "working_from_heights": "Ukusebenza Endaweni Ephakeme",
+        "scaffolding": "Isikafula",
+        "multi_storey": "Ukwakha Izigaba Eziningi",
+        "asbestos": "Ukususa I-Asbestos",
+        "confined_space": "Ukungena Endaweni Evaliwe",
+        "demolition": "Ukudiliza",
+        "roof_work": "Umsebenzi Wophahla",
+        "temporary_works": "Imisebenzi Yesikhashana",
+        "live_voltage": "Umsebenzi Wogesi Ophilayo"
+      },
+      "scope_details_label": "Imininingwane Yobubanzi:",
+      "scope_details_error": "Sicela ufake imininingwane yobubanzi."
+    },
+    "step_7": {
+      "title": "Isinyathelo 7 kwezi-9: Ihlanganiswe Ngu",
+      "name_label": "Igama:",
+      "name_error": "Sicela ufake igama lakho.",
+      "number_label": "Inombolo Yokuxhumana:",
+      "number_error": "Sicela ufake inombolo yocingo esebenzayo (isb., +27123456789).",
+      "email_label": "I-imeyili:",
+      "email_error": "Sicela ufake ikheli le-imeyili elisebenzayo.",
+      "role_label": "Indima:",
+      "role_error": "Sicela ukhethe indima.",
+      "role_trainee": "Umfundi we-OHS",
+      "role_ohs_rep": "Ummeli we-OHS",
+      "role_sacpcmp_officer": "Isikhulu se-SACPCMP (CHSO)",
+      "role_sacpcmp_agent": "I-Arhente ye-SACPCMP (PrCHSA)",
+      "role_other": "Okunye",
+      "sacpcmp_reg_label": "Inombolo Yokubhalisa kwe-SACPCMP:",
+      "sacpcmp_reg_error": "Sicela ufake inombolo yokubhalisa kwe-SACPCMP.",
+      "specify_role_label": "Cacisa Indima:",
+      "specify_role_error": "Sicela ucacise indima yakho."
+    },
+    "step_8": {
+      "title": "Isinyathelo 8 kwezi-9: Ihlanganiselwe",
+      "compiled_for_label": "Ihlanganiselwe:",
+      "compiled_for_error": "Sicela ukhethe ukhetho.",
+      "option_client": "Iklayenti",
+      "option_contractor": "Ikontraka",
+      "option_other": "Okunye",
+      "specify_label": "Cacisa:",
+      "specify_error": "Sicela ucacise ukuthi idokhumenti ihlanganiselwe bani."
+    },
+    "step_9": {
+      "title": "Isinyathelo 9 kwezi-9: Buyekeza futhi Yongeza ku-Cart",
+      "description": "Buyekeza okukhethiwe kwakho futhi yongeza amadokhumenti ku-cart yakho ukuze uqhubeke.",
+      "selected_documents_label": "Amadokhumenti Akhethiwe:"
+    },
+    "nav": {
+      "back": "Emuva",
+      "next": "Okulandelayo",
+      "add_to_cart": "Yongeza ku-Cart"
+    }
+  },
+  "cart": {
+    "title": "I-Cart Yakho",
+    "invoice_reference": "Inombolo Yereferensi Ye-invoyisi: <span id=\"invoice-ref-number\" class=\"font-medium\"></span> (Isebenza izinsuku ezi-7. Bhalisa ukuze igcinwe unomphela!)",
+    "table": {
+      "document": "Idokhumenti",
+      "price": "Intengo"
+    },
+    "checkout": {
+      "promo_label": "Ikhodi Yesaphulelo:",
+      "promo_placeholder": "Faka i-SAFETYFIRST25",
+      "button": "Qhubeka Nokukhokha"
+    },
+    "subscribe": {
+      "button": "Bhalisela Ukufinyelela Okugcwele"
+    }
+  },
+  "resources": {
+    "title": "Xhumana Nochwepheshe Bezempilo Nezokuphepha Abagunyaziwe",
+    "description": "Udinga usizo lochwepheshe? Thinta ochwepheshe abagunyaziwe ngezidingo zephrojekthi yakho.",
+    "jane_doe": "<strong>Jane Doe, I-Arhente ye-SACPCMP (PrCHSA)</strong> - Inombolo Yokubhalisa: PR12345 - Uxhumana naye: <a href='mailto:jane.doe@example.com' class='text-blue-500 hover:underline'>jane.doe@example.com</a>"
+  },
+  "footer": {
+    "copyright": "© 2025 SafetyHelp. Wonke amalungelo agodliwe.",
+    "links": {
+      "privacy": "Inqubomgomo Yobumfihlo",
+      "terms": "Imigomo Yesevisi",
+      "contact": "Xhumana Nathi"
+    },
+    "newsletter": {
+      "title": "Hlala Uhlaziyiwe",
+      "placeholder": "Faka i-imeyili yakho",
+      "button": "Bhalisa"
+    }
+  },
+  "chatbot": {
+    "button": "Buza uSalatiso",
+    "input_placeholder": "Buza mayelana ne-OHS...",
+    "send": "Thumela",
+    "welcome": "Sawubona! Ngingakusiza kanjani nge-OHS namuhla?",
+    "response": "Ngilapha ukuze ngikusize! Ngezinsiza ze-OHS ezenzelwe wena, sicela uxhumane nochwepheshe."
+  },
+  "page_title": {
+    "construction": "SafetyHelp - Ukuphepha Kokwakha",
+    "legal_appointments": "SafetyHelp - Ukuqashwa Okusemthethweni",
+    "legislation": "SafetyHelp - Umthetho",
+    "services": "SafetyHelp - Izinsizakalo"
+  },
+  "construction": {
+    "title": "Ukuphepha Kokwakha",
+    "description": "Qinisekisa ukuthobela imithetho yokuphepha nezempilo yokwakha usebenzisa izinsiza ze-OHS zeSafetyHelp. Izinsiza zethu zikusiza ulawule ubungozi, uthobele izidingo zomthetho, futhi uvikele abasebenzi esizeni, ukhipha izindlela ezingcono ezichazwe ku-'Safety First: The Essentials of OHS Plans.'",
+    "download_link": "Landa Uhlelo lwe-OHS Lokwakha: "
+  },
+  "legal_appointments": {
+    "title": "Ukuqashwa Okusemthethweni",
+    "description": "Lawula ukuqashwa okusemthethweni kokuphepha nezempilo emsebenzini njengoba kudingwa yimithetho ye-OHS yaseNingizimu Afrika. Sebenzisa i-organogram ukuze unikeze izindima, ugcwalise imininingwane yomuntu oqashiwe, futhi ukhiqize idokhumenti ebanzi enezincwadi zokuqashwa, amarekhodi okuqeqesha, nokunye."
+  },
+  "organogram": {
+    "title": "I-Organogram Yokuqashwa Okusemthethweni kwe-OHS",
+    "form": {
+      "name": "Igama Lomuntu Oqashiwe",
+      "name_error": "Sicela ufake igama lomuntu oqashiwe.",
+      "email": "I-imeyili",
+      "email_error": "Sicela ufake ikheli le-imeyili elisebenzayo.",
+      "phone": "Inombolo Yocingo",
+      "phone_error": "Sicela ufake inombolo yocingo esebenzayo (isb., +27123456789).",
+      "start_date": "Usuku Lokuqala",
+      "start_date_error": "Sicela ufake usuku lokuqala.",
+      "end_date": "Usuku Lokuphela",
+      "training": "Ukuqeqesha/Ukufaneleka",
+      "training_error": "Sicela ufake imininingwane yokuqeqesha/okufaneleka.",
+      "notes": "Amanothi Angeziwe",
+      "save": "Gcina Umuntu Oqashiwe"
+    },
+    "generate_document": "Khiqiza Idokhumenti Yokuqashwa"
+  },
+  "legislation": {
+    "title": "Umthetho",
+    "description": "Finyelela kulabhulali ebanzi yemithetho ye-OHS, izindinganiso, kanye nokuhleziwa. Khiqiza iirejista ze-OHS ezisemthethweni, sesha imithetho ethile, futhi uhlola ubudlelwano phakathi kwemithetho. Izichazelo ezilula ziyatholakala ukuze zithengwe ukuze kwenziwe amadokhumenti omthetho anzima afinyeleleke kakhudlwana.",
+    "tools": {
+      "title": "Izinsiza Zomthetho",
+      "search_placeholder": "Sesha imithetho (isb., Isigaba se-OHSA 8)",
+      "search_button": "Sesha",
+      "buy_simplified": "Thenga Ukuhumusha Okulula (R50)"
+    },
+    "updates": {
+      "title": "Ukuhlaziywa Kwemithetho kanye Nemibhalo Yemithetho"
+    },
+    "standards": {
+      "title": "Izindinganiso ze-OHS"
+    }
+  },
+  "services": {
+    "title": "Izinsizakalo zeSafetyHelp",
+    "description": "Thola uhla lwezinsizakalo zokuphepha nezempilo emsebenzini eziklanyelwe ukusekela izindawo zokusebenza, izikole, amasonto, kanye nezindawo ezingahlelekile kulo lonke elaseNingizimu Afrika. Kusukela ekuboniseni kuya ekuqeqesheni, iSafetyHelp inikezela ngezixazululo ezilungiselelwe ukuqinisekisa ukuthobela nokuphepha.",
+    "consulting": {
+      "title": "Ukubonisana nge-OHS",
+      "description": "Thola izeluleko zochwepheshe mayelana nokuthobela i-OHS, ukulawulwa kobungozi, kanye nokuqashwa okusemthethweni kubachwepheshe bethu abagunyaziwe. Sisebenze nezinhlangano ezifana ne-Anglo Platinum, ABSA, kanye ne-Metrorail ukuhambisa izixazululo ezilungiselelwe."
+    },
+    "training": {
+      "title": "Izinhlelo Zokuqeqesha",
+      "description": "Finyelela ezinhlelweni zokuqeqesha ezibanzi zazo zonke izimboni, okuhlanganisa ukwakha, ukukhiqiza, kanye nemfundo. Khetha phakathi kokuqeqesha kokuqala, izifundo ezithile zokusebenza, nokunye, konke kuhambisana nemithetho ye-OHS yaseNingizimu Afrika."
+    },
+    "audits": {
+      "title": "Ukuhlola & Ukuhlolwa",
+      "description": "Qinisekisa ukuthi indawo yakho yokusebenza ifinyelela ezindinganisweni ze-OHS ngezinsizakalo zethu zokuhlola nokuhlolwa. Izinsiza zethu zikusiza ukwenza ukuhlola okuphelele, ukukhiqiza izinhlalo, kanye nokusebenzisa izenzo zokulungisa."
+    },
+    "risk_management": {
+      "title": "Izinhlelo Zokulawulwa Kobungozi",
+      "description": "Khiqiza izinhlelo zokulawulwa kobungozi (RMPs) ezilungiselelwe ezibandakanya umthetho waseNingizimu Afrika, imithetho kamasipala, kanye nezindinganiso zomhlaba wonke ezifana ne-ISO 45001, ukuqinisekisa ukuthi ibhizinisi lakho lilungiselele noma yibuphi ubungozi."
+    },
+    "support": {
+      "title": "Ukusekela & Izinsiza Zomphakathi",
+      "description": "Joyina umphakathi wethu ukuze ubike izigameko, ufinyelele kuluhlu lokuhlola ukuphepha lwezitolo ezincane, izikole, kanye nezindawo zokudlela, futhi uxhumane nabanye ochwepheshe be-OHS ukuze uthole ukusekela kanye nokusebenzisana."
+    }
+  },
+  "training": {
+    "title": "Ukuqeqesha Okuphelele Kwendawo Yokusebenza",
+    "description": "Hlola izinhlelo zethu zokuqeqesha ezibanzi zendawo yokusebenza ukuqinisekisa ukuthobela imithetho ye-OHS yaseNingizimu Afrika kanye nokukhuthaza indawo yokusebenza ephephile. Khetha ukuqeqesha okusebenzayo, ukuqeqesha kweqembu, noma usebenzise i-wizard yethu ukuze uthole iziphakamiso ezilungiselelwe ngokusekelwe kwishishini lakho, ababukeli ekujoliswe kubo, kanye nendawo.",
+    "action_buttons": {
+      "start_wizard": "Qala i-Wizard Yokuqeqesha",
+      "select_by_category": "Khetha ngesigaba",
+      "select_manually": "Khetha Ngezandla",
+      "view_manual": "Thenga Imanuwali Yokuqeqesha Elungisekayo"
+    },
+    "wizard": {
+      "start": "Sicela ukhethe ukhetho ukuze uqale inqubo yesiphakamiso sokuqeqesha.",
+      "step_1": {
+        "title": "Isinyathelo 1 kwezi-5: Khetha Ishishini Lakho",
+        "label": "Ishishini:",
+        "error": "Sicela ukhethe ishishini.",
+        "option_construction": "Ukwakha",
+        "option_manufacturing": "Ukukhiqiza",
+        "option_office": "Ihhovisi/Ukuphatha",
+        "option_chemical": "Ishishini Lekhemikhali",
+        "option_other": "Okunye"
+      },
+      "step_2": {
+        "title": "Isinyathelo 2 kwezi-5: Khetha Ababukeli Bakho ekujoliswe kubo",
+        "label": "Ababukeli ekujoliswe kubo (Khetha zonke ezisebenzayo):",
+        "error": "Sicela ukhethe okungenani ababukeli abakujoliswe kubo.",
+        "option_all_employees": "Bonke Abasebenzi",
+        "option_new_employees": "Abasebenzi Abasha",
+        "option_managers": "Abaphathi/Abalawuli",
+        "option_she_reps": "Abameli be-SHE",
+        "option_emergency_team": "Ithimba Lesimo Esiphuthumayo (Abasizi Bokuqala, Abacimi Bomlilo)",
+        "option_hazard_workers": "Abasebenzi abachayeka ezingozini ezithile",
+        "option_equipment_operators": "Abasebenzi bezinsiza/Imishini",
+        "option_construction_roles": "Izindima ezithile zokwakha"
+      },
+      "step_3": {
+        "title": "Isinyathelo 3 kwezi-5: Chaza Indawo Yakho",
+        "municipality_label": "Umasipala:",
+        "municipality_error": "Sicela ukhethe umaspala.",
+        "option_johannesburg_south": "Johannesburg South, Gauteng",
+        "option_other": "Okunye"
+      },
+      "step_4": {
+        "title": "Isinyathelo 4 kwezi-5: Izinto Ezongeziweyo",
+        "risk_profile_label": "IProfayili Yobungozi yendawo yakho Yokusebenza:",
+        "risk_profile_error": "Sicela ukhethe iprofayili yobungozi.",
+        "option_low": "Ubungozi Obuphansi (isb., ihhovisi)",
+        "option_medium": "Ubungozi Obuphakathi (isb., ukukhiqiza)",
+        "option_high": "Ubungozi Obuphezulu (isb., ukwakha, amakhemikhali)"
+      },
+      "step_5": {
+        "title": "Isinyathelo 5 kwezi-5: Buyekeza Ukuqeqesha Okuphakanyisiweyo",
+        "description": "Ngokusekelwe kulwazi olufakileyo, nazi izinhlelo zokuqeqesha eziphakanyisiweyo. Khetha lezo ofuna ukuzifaka ku-cart yakho.",
+        "selected_training_label": "Izinhlelo Zokuqeqesha Eziphakanyisiweyo:"
+      },
+      "nav": {
+        "back": "Emuva",
+        "next": "Okulandelayo",
+        "add_to_cart": "Yongeza ku-Cart"
+      }
+    },
+    "cart": {
+      "title": "I-Cart Yakho Yokuqeqesha",
+      "table": {
+        "training": "Inhlelo Yokuqeqesha",
+        "price": "Intengo"
+      },
+      "customization": {
+        "title": "Lungiselela Izinsiza Zakho Zokuqeqesha",
+        "company_name_label": "Igama Lenkampani:",
+        "company_name_error": "Sicela ufake igama lenkampani yakho.",
+        "location_label": "Indawo Yenkampani:",
+        "location_error": "Sicela ufake indawo yenkampani yakho.",
+        "first_aider_label": "Igama Lomeluleki Wokuqala:",
+        "first_aider_error": "Sicela ufake igama lomeluleki wokuqala.",
+        "fire_fighter_label": "Igama Lomcishi Womlilo:",
+        "fire_fighter_error": "Sicela ufake igama lomcishi womlilo.",
+        "ohs_rep_label": "Igama Lomeli we-OHS:",
+        "ohs_rep_error": "Sicela ufake igama lomeli we-OHS.",
+        "supervisor_label": "Igama Lomphathi:",
+        "supervisor_error": "Sicela ufake igama lomphathi.",
+        "emergency_line_label": "Inombolo Yokuxhumana Yesimo Esiphuthumayo:",
+        "emergency_line_error": "Sicela ufake inombolo yokuxhumana yesimo esiphuthumayo esebenzayo (isb., +27123456789)."
+      },
+      "compiled_by": {
+        "title": "Ihlanganiswe Ngu",
+        "name_label": "Igama:",
+        "name_error": "Sicela ufake igama lakho.",
+        "role_label": "Indima:",
+        "role_error": "Sicela ufake indima yakho.",
+        "contact_label": "Inombolo Yokuxhumana:",
+        "contact_error": "Sicela ufake inombolo yokuxhumana esebenzayo (isb., +27123456789)."
+      },
+      "training_type": {
+        "title": "Indlela Yokuqeqesha",
+        "label": "Khetha indlela yokuqeqesha:",
+        "error": "Sicela ukhethe indlela yokuqeqesha.",
+        "option_pdf": "Ama-PDF Wokuqeqesha Kuphela",
+        "option_online": "Ukuqeqesha Ngevidiyo Ku-inthanethi (Kuza Maduze)",
+        "online_num_people_label": "Inani Labantu Abazoqeqeshwa:",
+        "online_num_people_error": "Sicela ufake inani labantu (ubuncinane 1)."
+      },
+      "checkout": {
+        "disclaimer": "Ukuzikhulula kweSafetyHelp: Izinsiza zokuqeqesha ezinikeziwe zenzelwe izinjongo zolwazi kuphela futhi azinikezi izeluleko zobuchwepheshe. Ngezixazululo ze-OHS ezenzelwe wena, thinta iSafetyHelp ku <a href='mailto:support@safetyhelp.co.za' class='text-blue-500 hover:underline'>support@safetyhelp.co.za</a> noma vakashela <a href='/safety-plans/contact.html' class='text-blue-500 hover:underline'>Ikhasi Lokuxhumana</a>.",
+        "button": "Qhubeka Nokukhokha"
+      },
+      "success": "Ukukhokha kuphumelele! Izinsiza zakho zokuqeqesha sezenziwe. Landa ama-PDF akho ngezansi. Ngokuqeqesha ku-inthanethi, amakhodi okufinyelela athunyelwe kuwe nge-imeyili.",
+      "download_pdf": "Landa i-PDF Yokuqeqesha",
+      "online_codes": "Amakhodi Okufinyelela Ukuqeqesha Ku-inthanethi: <span id='access-codes'></span>"
+    },
+    "providers": {
+      "title": "Abahlinzeki Bokuqeqesha Abagunyaziwe",
+      "description": "Udinga ukuqeqesha komuntu? Thinta abahlinzeki bokuqeqesha abagunyaziwe ngezidingo zakho.",
+      "provider_1": "<strong>I-ABC Training Solutions</strong> - i-SETA Evunyiweyo - Igxile kuNcedo lokuQala, ukuCima uMlilo - Unxibelelwano: <a href='mailto:info@abctraining.co.za' class='text-blue-500 hover:underline'>info@abctraining.co.za</a>"
+    },
+    "manual": {
+      "purchase": {
+        "title": "Thenga Imanuwali Yokuqeqesha Elungisekayo",
+        "description": "Thola imanuwali yokuqeqesha ebanzi elungiselelwe inkampani yakho, okuhlanganisa izidingo zomthetho, okuqukethwe okuthile kwenkampani okusekelwe kwiprofayili yakho yobungozi, kanye namakhothi avela kubahlinzeki bokuqeqesha abagunyaziwe.",
+        "button": "Yongeza Imanuwali ku-Cart"
+      },
+      "risk_profile": {
+        "title": "Chaza Iprofayili Yakho Yobungozi Yemanuwali Yokuqeqesha",
+        "label": "Iprofayili Yobungozi:",
+        "error": "Sicela ukhethe iprofayili yobungozi.",
+        "option_low": "Ubungozi Obuphansi (isb., ihhovisi)",
+        "option_medium": "Ubungozi Obuphakathi (isb., ukukhiqiza)",
+        "option_high": "Ubungozi Obuphezulu (isb., ukwakha, amakhemikhali)"
+      }
+    },
+    "selection_method": {
+      "title": "Khetha Indlela Yakho Yokuqeqesha"
+    },
+    "category": {
+      "induction_training": "Ukuqeqesha Kokuqala",
+      "awareness_training": "Ukuqeqesha Ukuqonda",
+      "statutory_mandatory_training": "Ukuqeqesha Okuyimfuno/Okuyimpoqo",
+      "task_risk_specific_training": "Ukuqeqesha Okuthile Komsebenzi/Ubungozi",
+      "role_specific_competency_training": "Ukuqeqesha Okuthile Kwendima/Ukufaneleka",
+      "refresher_training": "Ukuqeqesha Ukuvuselela",
+      "toolbox_talks_safety_briefings": "Izinkulumo Zamathuluzi/Izinkulumo Zokuphepha"
+    },
+    "list": {
+      "all_programs": "Zonke Izinhlelo Zokuqeqesha Ezitholakalayo",
+      "search_placeholder": "Sesha Izinhlelo Zokuqeqesha...",
+      "add_to_cart": "Yongeza Okukhethiwe ku-Cart"
+    },
+    "legal_fact": {
+      "step_1": "Iqiniso Lomthetho: Isigaba 8 se-OHS Act sidinga ukuthi abaqashi banikeze ukuqeqesha okwenziwe ngezifiso zezingozi ezithile zendawo yokusebenza.",
+      "step_3": "Iqiniso Lomthetho: Omasipala bendawo bangaba nemithetho ye-OHS ehlukile ethinta izidingo zokuqeqesha."
+    },
+    "fun_fact": {
+      "step_2": "Iqiniso Elimnandi: Ngabe uyazi ukuthi ukuqeqesha okujwayelekile kunganciphisa izingozi zendawo yokusebenza kuze kufike ku-30%?",
+      "step_4": "Iqiniso Elimnandi: Izindawo zokusebenza ezinobungozi obuphezulu ezifana nezindawo zokwakha zidinga ukuqeqesha okujwayelekile ukuze kugcinwe izindinganiso zokuphepha."
+    }
+  }
+}

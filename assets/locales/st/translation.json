@@ -1,0 +1,533 @@
+{
+  "header": {
+    "title": "SafetyHelp",
+    "tagline": "Polokeho e ikhethileng, ho nolofatsa ho latela—neng kapa neng, kae kapa kae",
+    "nav": {
+      "home": "Hae",
+      "resources": "Lisebelisoa",
+      "services": "Litšebeletso",
+      "community": "Sechaba",
+      "about": "Ka Rona",
+      "contact": "Iteanye le Rona",
+      "login": "Kena",
+      "logout": "Tsoa"
+    },
+    "search": {
+      "placeholder": "Batla Lisebelisoa tsa OHS...",
+      "button": "Batla"
+    }
+  },
+  "language_selector": {
+    "en": "Senyesemane",
+    "af": "Seafrikans",
+    "zu": "Sezulu",
+    "st": "Sesotho"
+  },
+  "sidebar": {
+    "ohs_tools": "Lisebelisoa tsa OHS tsa SafetyHelp",
+    "construction_safety": "Polokeho ea Kaho",
+    "emergency_planning": "Thalelo ea Tšohanyetso",
+    "risk_assessment": "Tlhahlobo ea Kotsi",
+    "legal_appointments": "Likhetho tsa Molao",
+    "incident_management": "Tsamaise ea Liketsahalo",
+    "training": "Koetliso",
+    "inspections_audits": "Litlhahlobo le Lihlahlobo",
+    "suppliers": "Bafani ba Litšebeletso",
+    "legislation": "Melao",
+    "community_tools": "Lisebelisoa tsa Sechaba",
+    "member_dashboard": "Boto ea Litho",
+    "ohs_system": "Tsamaiso ea OHS",
+    "step_0": {
+      "title": "📜 Amoheloa ho SafetyHelp",
+      "description": "Hlahloba lisebelisoa le lisebelisoa tsa rona tse felletseng ho ntlafatsa polokeho le bophelo bo botle sebakeng sa hau sa mosebetsi.",
+      "fun_fact": "⚡ Na u ne u tseba hore ho sebelisa bafani ba nang le boitšoaro bo botle ho ka fokotsa kotsi ea likotsi tsa mosebetsi ka ho netefatsa hore mosebetsi o etsoa ka nako le ka maemo a phahameng a polokeho?"
+    }
+  },
+  "intro": {
+    "title": "Amoheloa ho SafetyHelp",
+    "description": "Hlahloba lisebelisoa le lisebelisoa tsa rona tse felletseng ho ntlafatsa polokeho le bophelo bo botle sebakeng sa hau sa mosebetsi."
+  },
+  "welcome": {
+    "title": "Amoheloa ho SafetyHelp",
+    "description": "Sethala sa hau se tšepahalang sa bophelo bo botle le polokeho ea mosebetsi (OHS) Afrika Borwa. Re fana ka lisebelisoa tse ikemetseng, tse ntlafalitsoeng ka AI ho netefatsa polokeho le ho latela melao bakeng sa likolo, likereke le likarolo tse sa reroang. Kopanela le sechaba sa rona bakeng sa phihlello ea lisebelisoa, litšebeletso le tšehetso e ikhethileng ho litlhoko tsa hau."
+  },
+  "why_choose": {
+    "title": "Hobaneng u Khetha SafetyHelp bakeng sa Ho Latela OHS?",
+    "content": "SafetyHelp ke molekane oa hau ea tšepahalang bakeng sa ho latela bophelo bo botle le polokeho ea mosebetsi Afrika Borwa. Sethala sa rona se fana ka sehlopha se felletseng sa lisebelisoa tse hlophiselitsoeng ho fihlela litlhoko tse ikhethang tsa liindasteri tse kang kaho, merafo le tlhahiso. Ho tloha ho hlahiseng lirekoto tsa molao ho isa tlhahlobong ea kotsi, SafetyHelp e nolofatsa litlhoko tse rarahaneng tsa OHS ka li-wizard tse bonolo ho sebelisa le tšehetso ea nako ea sebele ka chatbot ea rona e bululetsoeng ke AI. E tšehelitsoe ke melao ea Afrika Borwa le mekhoa e metle, re matlafatsa likhoebo ho theha libaka tsa mosebetsi tse sireletsehileng ha re ntse re netefatsa ho latela OHSA le COIDA. Kopanela le batho ba likete ba litsebi ba itšetlehileng ka SafetyHelp ho sireletsa lihlopha tsa bona le ho nolofatsa lits'ebetso tsa polokeho."
+  },
+  "legal_obligations": {
+    "client": {
+      "title": "Litlamo tsa Moreki",
+      "reg_5_1_a": "<strong>Molao oa Kaho 5(1)(a):</strong> Lokisetsa Tlhahlobo ea Kotsi ea Motheo (BRA) e supang likotsi tsa projeke.",
+      "reg_5_1_b": "<strong>Molao oa Kaho 5(1)(b):</strong> Fana ka Tlhophiso ea Bophelo le Polokeho e hlalosang litlhoko tse ikhethang tsa projeke.",
+      "reg_5_1_l": "<strong>Molao oa Kaho 5(1)(l):</strong> Amohela Moralo oa Bophelo le Polokeho oa Mokonteraka pele mosebetsi o qala."
+    },
+    "contractor": {
+      "title": "Litlamo tsa Mokonteraka",
+      "reg_7_1_a": "<strong>Molao oa Kaho 7(1)(a):</strong> Fana ka Moralo oa Bophelo le Polokeho o thehiloeng ho tlhophiso ea moreki.",
+      "reg_7_1_b": "<strong>Molao oa Kaho 7(1)(b):</strong> Boloka Faele ea Bophelo le Polokeho sebakeng sa kaho e nang le litokomane tsohle tse hlokahalang.",
+      "reg_9": "<strong>Molao oa Kaho 9:</strong> Etsa Tlhahlobo ea Kotsi e ikhethileng ea mosebetsi le Tlhahlobo ea Kotsi e Hlophisitsoeng ea Likotsi (HIRAs)."
+    },
+    "professional": {
+      "title": "Litlamo tsa Litsebi tsa Bophelo le Polokeho",
+      "reg_5_5": "<strong>Molao oa Kaho 5(5):</strong> Baemeli (PrCHSA) ba laola bophelo le polokeho molemong oa moreki, ba netefatsa ho latela melao.",
+      "reg_8_5": "<strong>Molao oa Kaho 8(5):</strong> Liofisiri (CHSO) li thusa bakonteraka ka ho kenya tšebetsong le ho beha leihlo litsamaiso tsa OHS.",
+      "sacpcmp": "<strong>Melao ea SACPCMP:</strong> Ho tlameha ho boloka ngoliso le litlhoko tsa CPD bakeng sa boemo ba litsebi."
+    }
+  },
+  "action_buttons": {
+    "hs_spec": "Hlahisa Tlhophiso ea Bophelo le Polokeho",
+    "hs_plan": "Hlahisa Moralo oa Bophelo le Polokeho",
+    "risk_assessment": "Hlahisa Tlhahlobo ea Kotsi",
+    "training": "Etsa Koetliso",
+    "appointments": "Etsa Likhetho tsa Molao",
+    "inspections": "Etsa Litlhahlobo/Hlahlobo",
+    "incidents": "Laola Liketsahalo",
+    "reports": "Hlahisa Litlaleho tsa Ho Latela",
+    "hs_file": "Hlahisa Faele ea Bophelo le Polokeho",
+    "search_laws": "Batla Melao ea OHS",
+    "generate_rmp": "Hlahisa RMP",
+    "generate_legal_register": "Hlahisa Ngoliso ea Molao ea OHS"
+  },
+  "wizard": {
+    "step_0": "Ka kopo khetha ketso ho qala ts'ebetso.",
+    "step_1": {
+      "title": "Mohato oa 1 ho isa ho 9: U Batla ho Etsa Eng?",
+      "label": "Khetha Litokomane tseo U tla li Hlahisa (Khetha tsohle tse sebetsang):",
+      "error": "Ka kopo khetha bonyane tokomaneng e le 'ngoe ho e hlahisa.",
+      "hs_spec": "<span class='emoji'>📋</span> Tlhophiso ea Bophelo le Polokeho",
+      "hs_plan": "<span class='emoji'>📑</span> Moralo oa Bophelo le Polokeho",
+      "risk_assessment": "<span class='emoji'>⚠️</span> Tlhahlobo ea Kotsi",
+      "training": "<span class='emoji'>🎓</span> Etsa Koetliso",
+      "appointments": "<span class='emoji'>📜</span> Etsa Likhetho tsa Molao",
+      "inspections": "<span class='emoji'>🔍</span> Etsa Litlhahlobo/Hlahlobo",
+      "incidents": "<span class='emoji'>🚑</span> Laola Liketsahalo",
+      "reports": "<span class='emoji'>📊</span> Litlaleho tsa Ho Latela",
+      "hs_file": "<span class='emoji'>📂</span> Faele ea Bophelo le Polokeho",
+      "health_safety_specification_template": "<span class='emoji'>📋</span> Tlhophiso ea Bophelo le Polokeho",
+      "construction_health_safety_plan_template": "<span class='emoji'>📑</span> Moralo oa Bophelo le Polokeho oa Kaho",
+      "baseline_risk_assessment_template": "<span class='emoji'>⚠️</span> Tlhahlobo ea Kotsi ea Motheo",
+      "risk_assessment_plan_template": "<span class='emoji'>⚠️</span> Moralo oa Tlhahlobo ea Kotsi",
+      "ohs_training_competency_policy_template": "<span class='emoji'>🎓</span> Leano la Koetliso",
+      "section_16_1_appointment_template": "<span class='emoji'>📜</span> Khetho ea Karolo 16(1)",
+      "ohs_audit_inspection_standard_template": "<span class='emoji'>🔍</span> Maemo a Litlhahlobo/Hlahlobo",
+      "ohs_incident_management_standard_template": "<span class='emoji'>🚑</span> Maemo a Tsamaiso ea Liketsahalo",
+      "ohs_contractor_management_policy_template": "<span class='emoji'>🤝</span> Leano la Tsamaiso ea Mokonteraka"
+    },
+    "step_2": {
+      "title": "Mohato oa 2 ho isa ho 9: Lintlha tsa Moreki",
+      "client_name_label": "Lebitso la K’hamphani ea Moreki:",
+      "client_name_error": "Ka kopo kenya lebitso la k’hamphani ea moreki.",
+      "client_address_label": "Aterese ea Moreki:",
+      "client_address_error": "Ka kopo kenya aterese ea moreki.",
+      "client_contact_person_label": "Motho oa Iteanyang le Moreki:",
+      "client_contact_person_error": "Ka kopo kenya motho oa iteanyang le moreki.",
+      "client_contact_role_label": "Karolo ea Motho oa Iteanyang le Moreki:",
+      "client_contact_role_error": "Ka kopo kenya karolo ea motho oa iteanyang le moreki.",
+      "client_contact_number_label": "Nomoro ea Motho oa Iteanyang le Moreki:",
+      "client_contact_number_error": "Ka kopo kenya nomoro ea mohala e nepahetseng (mohl., +27123456789).",
+      "client_email_label": "E-poso ea Moreki:",
+      "client_email_error": "Ka kopo kenya aterese ea e-poso e nepahetseng.",
+      "client_coida_label": "Nomoro ea Ngoliso ea COIDA:",
+      "client_coida_error": "Ka kopo kenya nomoro ea ngoliso ea COIDA."
+    },
+    "step_3": {
+      "title": "Mohato oa 3 ho isa ho 9: Na Mokonteraka o Khethiloe?",
+      "contractor_appointed_label": "Mokonteraka o Khethiloe:",
+      "contractor_appointed_error": "Ka kopo khetha khetho.",
+      "option_yes": "E",
+      "option_no": "Che",
+      "option_not_applicable": "Ha e Sebetsa"
+    },
+    "step_4": {
+      "title": "Mohato oa 4 ho isa ho 9: Lintlha tsa Mokonteraka",
+      "contractor_name_label": "Lebitso la K’hamphani ea Mokonteraka:",
+      "contractor_name_error": "Ka kopo kenya lebitso la k’hamphani ea mokonteraka.",
+      "contractor_address_label": "Aterese ea Mokonteraka:",
+      "contractor_address_error": "Ka kopo kenya aterese ea mokonteraka.",
+      "contractor_contact_person_label": "Motho oa Iteanyang le Mokonteraka:",
+      "contractor_contact_person_error": "Ka kopo kenya motho oa iteanyang le mokonteraka.",
+      "contractor_contact_role_label": "Karolo ea Motho oa Iteanyang le Mokonteraka:",
+      "contractor_contact_role_error": "Ka kopo kenya karolo ea motho oa iteanyang le mokonteraka.",
+      "contractor_contact_number_label": "Nomoro ea Motho oa Iteanyang le Mokonteraka:",
+      "contractor_contact_number_error": "Ka kopo kenya nomoro ea mohala e nepahetseng (mohl., +27123456789).",
+      "contractor_email_label": "E-poso ea Mokonteraka:",
+      "contractor_email_error": "Ka kopo kenya aterese ea e-poso e nepahetseng.",
+      "contractor_coida_label": "Nomoro ea Ngoliso ea COIDA:",
+      "contractor_coida_error": "Ka kopo kenya nomoro ea ngoliso ea COIDA."
+    },
+    "step_5": {
+      "title": "Mohato oa 5 ho isa ho 9: Lintlha tsa Projeke",
+      "project_reference_label": "Nomoro ea Boitsebiso ea Projeke:",
+      "project_name_label": "Lebitso la Projeke:",
+      "project_name_error": "Ka kopo kenya lebitso la projeke.",
+      "site_address_label": "Aterese ea Sebaka:",
+      "site_address_error": "Ka kopo kenya aterese ea sebaka.",
+      "site_supervisor_name_label": "Lebitso la Molebeli oa Sebaka:",
+      "site_supervisor_name_error": "Ka kopo kenya lebitso la molebeli oa sebaka.",
+      "site_supervisor_number_label": "Nomoro ea Molebeli oa Sebaka:",
+      "site_supervisor_number_error": "Ka kopo kenya nomoro ea mohala e nepahetseng (mohl., +27123456789).",
+      "site_supervisor_email_label": "E-poso ea Molebeli oa Sebaka:",
+      "site_supervisor_email_error": "Ka kopo kenya aterese ea e-poso e nepahetseng."
+    },
+    "step_6": {
+      "title": "Mohato oa 6 ho isa ho 9: Boemo ba Projeke",
+      "type_of_work_label": "Mofuta oa Mosebetsi o Tla Etsuoa:",
+      "type_of_work_error": "Ka kopo kenya mofuta oa mosebetsi.",
+      "cidb_grade_label": "Boemo ba CIDB:",
+      "cidb_grade_error": "Ka kopo khetha boemo ba CIDB.",
+      "cidb_grade_not_applicable": "Ha e Sebetsa",
+      "cidb_grade_1": "Boemo ba 1",
+      "cost_label": "Litšenyehelo (R):",
+      "cost_error": "Ka kopo kenya litšenyehelo tsa projeke tse nepahetseng (R).",
+      "duration_label": "Nako (Matsatsi):",
+      "duration_error": "Ka kopo kenya nako e nepahetseng (matsatsi).",
+      "activities_label": "Mesebetsi e Amang (Khetha tsohle tse sebetsang):",
+      "activities": {
+        "security_guards": "Balebeli ba Tšireletso",
+        "night_work": "Mosebetsi oa Bosiu",
+        "moving_traffic": "Mosebetsi oa Sephethephethe se Tsamaeang",
+        "vibration_exposure": "Ho Pepesehela Vibration",
+        "noise_exposure": "Ho Pepesehela Lerata",
+        "welders": "Batsietsi",
+        "welding": "Ho Tšela ka Motlakase",
+        "hot_work": "Mosebetsi o Chesang (mohl., ho seha, ho sila)",
+        "combustible_materials": "Lisebelisoa tse Chang",
+        "hazardous_substances": "Ho Tšoara Lisebelisoa tse Kotsi",
+        "office_fit_out": "Ho Lokisa Ofisi",
+        "sensitive_it_equipment": "Lisebelisoa tsa IT tse Bohloko",
+        "manual_handling": "Ho Tšoara ka Matsoho",
+        "working_electricity": "Mosebetsi oa Motlakase",
+        "dust_exposure": "Ho Pepesehela Lerole",
+        "civil_contractors": "Bakonteraka ba Sechaba",
+        "excavation": "Ho Cheka",
+        "crane_operations": "Ts'ebetso ea Kreine",
+        "working_near_water": "Mosebetsi Haufi le Metsi",
+        "pile_driving": "Ho Khanna Lithupa",
+        "working_tunnels": "Mosebetsi oa Litonopo",
+        "general_construction": "Kaho e Akaretsang",
+        "working_from_heights": "Mosebetsi ho tloha Bophahamong",
+        "scaffolding": "Sefahlo",
+        "multi_storey": "Kaho ea Meaho e Mengata",
+        "asbestos": "Ho Tlosa Asbestos",
+        "confined_space": "Ho Kena Sebaka se Lekanyelitsoeng",
+        "demolition": "Ho Heletsa",
+        "roof_work": "Mosebetsi oa Marulelo",
+        "temporary_works": "Mesebetsi ea Nakoana",
+        "live_voltage": "Mosebetsi oa Motlakase o Phelang"
+      },
+      "scope_details_label": "Lintlha tsa Boemo:",
+      "scope_details_error": "Ka kopo kenya lintlha tsa boemo."
+    },
+    "step_7": {
+      "title": "Mohato oa 7 ho isa ho 9: E Hlahisitsoe Ke",
+      "name_label": "Lebitso:",
+      "name_error": "Ka kopo kenya lebitso la hau.",
+      "number_label": "Nomoro ea Mohala:",
+      "number_error": "Ka kopo kenya nomoro ea mohala e nepahetseng (mohl., +27123456789).",
+      "email_label": "E-poso:",
+      "email_error": "Ka kopo kenya aterese ea e-poso e nepahetseng.",
+      "role_label": "Karolo:",
+      "role_error": "Ka kopo khetha karolo.",
+      "role_trainee": "Mokoetlisi oa OHS",
+      "role_ohs_rep": "Moemeli oa OHS",
+      "role_sacpcmp_officer": "Ofisiri ea SACPCMP (CHSO)",
+      "role_sacpcmp_agent": "Moemeli oa SACPCMP (PrCHSA)",
+      "role_other": "E 'ngoe",
+      "sacpcmp_reg_label": "Nomoro ea Ngoliso ea SACPCMP:",
+      "sacpcmp_reg_error": "Ka kopo kenya nomoro ea ngoliso ea SACPCMP.",
+      "specify_role_label": "Hlalosa Karolo:",
+      "specify_role_error": "Ka kopo hlalosa karolo ea hau."
+    },
+    "step_8": {
+      "title": "Mohato oa 8 ho isa ho 9: E Hlahisitsoe Bakeng sa",
+      "compiled_for_label": "E Hlahisitsoe Bakeng sa:",
+      "compiled_for_error": "Ka kopo khetha khetho.",
+      "option_client": "Moreki",
+      "option_contractor": "Mokonteraka",
+      "option_other": "E 'ngoe",
+      "specify_label": "Hlalosa:",
+      "specify_error": "Ka kopo hlalosa hore na tokomaneng e hlahisitsoe bakeng sa mang."
+    },
+    "step_9": {
+      "title": "Mohato oa 9 ho isa ho 9: Hlahloba le ho Kenya ka Basketeng",
+      "description": "Hlahloba likhetho tsa hau le ho kenya litokomane ka basketeng ea hau ho tsoela pele.",
+      "selected_documents_label": "Litokomane tse Khethiloeng:"
+    },
+    "nav": {
+      "back": "Khutlela Morao",
+      "next": "E Latelang",
+      "add_to_cart": "Kenya ka Basketeng"
+    }
+  },
+  "cart": {
+    "title": "Basket ea Hau",
+    "invoice_reference": "Nomoro ea Boitsebiso ea Invoice: <span id=\"invoice-ref-number\" class=\"font-medium\"></span> (E sebetsa matsatsi a 7. Ngolisa ho boloka ka ho sa feleng!)",
+    "table": {
+      "document": "Tokomane",
+      "price": "Theko"
+    },
+    "checkout": {
+      "promo_label": "Khoutu ea Phahamiso:",
+      "promo_placeholder": "Kenya SAFETYFIRST25",
+      "button": "Tsoela Pele ho Tefo"
+    },
+    "subscribe": {
+      "button": "Ingolise bakeng sa Phihlello e Felletseng"
+    }
+  },
+  "resources": {
+    "title": "Iteanye le Litsebi tsa Bophelo le Polokeho tse Netefalitsoeng",
+    "description": "Na u hloka thuso ea litsebi? Iteanye le litsebi tse netefalitsoeng bakeng sa litlhoko tsa projeke ea hau.",
+    "jane_doe": "<strong>Jane Doe, Moemeli oa SACPCMP (PrCHSA)</strong> - Nomoro ea Ngoliso: PR12345 - Iteanye: <a href='mailto:jane.doe@example.com' class='text-blue-500 hover:underline'>jane.doe@example.com</a>"
+  },
+  "footer": {
+    "copyright": "© 2025 SafetyHelp. Litokelo tsohle li bolokiloe.",
+    "links": {
+      "privacy": "Leano la Lekunutu",
+      "terms": "Melao ea Tšebeletso",
+      "contact": "Iteanye le Rona"
+    },
+    "newsletter": {
+      "title": "Lula U le Morao-rao",
+      "placeholder": "Kenya e-poso ea hau",
+      "button": "Ingolise"
+    }
+  },
+  "chatbot": {
+    "button": "Botsa Salatiso",
+    "input_placeholder": "Botsa ka OHS...",
+    "send": "Romela",
+    "welcome": "Lumela! Nka u thusa joang kajeno ka OHS?",
+    "response": "Ke teng ho thusa! Bakeng sa likeletso tsa OHS tse ikhethileng, ka kopo iteanye le setsebi."
+  },
+  "page_title": {
+    "construction": "SafetyHelp - Bophelo le Polokeho ea Kaho",
+    "legal_appointments": "SafetyHelp - Likhetho tsa Molao",
+    "legislation": "SafetyHelp - Melao",
+    "services": "SafetyHelp - Litšebeletso"
+  },
+  "construction": {
+    "title": "Bophelo le Polokeho ea Kaho",
+    "description": "Netefatsa ho latela melao ea bophelo le polokeho ea kaho ka Lisebelisoa tsa OHS tsa SafetyHelp. Lisebelisoa tsa rona li u thusa ho laola likotsi, ho finyella litlhoko tsa molao, le ho sireletsa basebetsi sebakeng sa kaho, ka tšebeliso ea mekhoa e metle joalo ka ha e hlalositsoe ho 'Polokeho Pele: Lintho tsa Bohlokoa tsa Merero ea OHS.'",
+    "download_link": "Khoasolla Moralo oa OHS oa Kaho: "
+  },
+  "legal_appointments": {
+    "title": "Likhetho tsa Molao",
+    "description": "Laola likhetho tsa molao bakeng sa bophelo bo botle le polokeho ea mosebetsi joalo ka ha ho hlokoa ke melao ea OHS ea Afrika Borwa. Sebelisa organogram ho abela likarolo, tlatsa lintlha tsa mohiri, le ho hlahisa tokomaneng e felletseng e nang le mangolo a likhetho, lirekoto tsa koetliso, le tse ling."
+  },
+  "organogram": {
+    "title": "Organogram bakeng sa Likhetho tsa Molao tsa OHS",
+    "form": {
+      "name": "Lebitso la Motho ea Khethiloeng",
+      "name_error": "Ka kopo kenya lebitso la motho ea khethiloeng.",
+      "email": "E-poso",
+      "email_error": "Ka kopo kenya aterese ea e-poso e nepahetseng.",
+      "phone": "Nomoro ea Mohala",
+      "phone_error": "Ka kopo kenya nomoro ea mohala e nepahetseng (mohl., +27123456789).",
+      "start_date": "Letsatsi la Qalo",
+      "start_date_error": "Ka kopo kenya letsatsi la qalo.",
+      "end_date": "Letsatsi la Qetello",
+      "training": "Koetliso/Bokhoni",
+      "training_error": "Ka kopo kenya lintlha tsa koetliso/bokhoni.",
+      "notes": "Lintlha tse Eketsehileng",
+      "save": "Boloka Motho ea Khethiloeng"
+    },
+    "generate_document": "Hlahisa Tokomane ea Likhetho"
+  },
+  "legislation": {
+    "title": "Melao",
+    "description": "Finyelela laeboraring e felletseng ea melao ea OHS, maemo, le lintlafatso. Hlahisa lirekoto tsa molao tsa OHS, batla melao e itseng, le ho hlahloba kamano pakeng tsa melaoana. Litlhaloso tse nolofalitsoeng li fumaneha bakeng sa ho reka ho etsa hore litokomane tsa molao tse rarahaneng li fumanehe habonolo.",
+    "tools": {
+      "title": "Lisebelisoa tsa Molao",
+      "search_placeholder": "Batla melao (mohl., OHSA Karolo 8)",
+      "search_button": "Batla",
+      "buy_simplified": "Reka Tlhaloso e Nolofalitsoeng (R50)"
+    },
+    "updates": {
+      "title": "Lintlafatso tsa Melao le Merero ea Melaoana"
+    },
+    "standards": {
+      "title": "Maemo a OHS"
+    }
+  },
+  "services": {
+    "title": "Litšebeletso tsa SafetyHelp",
+    "description": "Fumana mefuta e mengata ea litšebeletso tsa bophelo bo botle le polokeho ea mosebetsi tse etselitsoeng ho tšehetsa libaka tsa mosebetsi, likolo, likereke, le likarolo tse sa reroang ho pholletsa le Afrika Borwa. Ho tloha ho boeletsi ho isa koetlisong, SafetyHelp e fana ka litharollo tse ikhethileng ho netefatsa ho latela le polokeho.",
+    "consulting": {
+      "title": "Boeletsi ba OHS",
+      "description": "Fumana likeletso tsa litsebi mabapi le ho latela OHS, tsamaiso ea likotsi, le likhetho tsa molao ho tsoa ho litsebi tsa rona tse netefalitsoeng. Re sebelitse le mekhatlo e kang Anglo Platinum, ABSA, le Metrorail ho fana ka litharollo tse ikhethileng."
+    },
+    "training": {
+      "title": "Mananeo a Koetliso",
+      "description": "Finyelela mananeo a koetliso a felletseng bakeng sa liindasteri tsohle, ho kenyeletsoa kaho, tlhahiso, le thuto. Khetha ho tsoa koetlisong ea ho qala, lithupelo tse ikhethileng tsa karolo, le tse ling, tsohle li tsamaisana le melao ea OHS ea Afrika Borwa."
+    },
+    "audits": {
+      "title": "Litlhahlobo le Hlahlobo",
+      "description": "Netefatsa hore sebaka sa hau sa mosebetsi se latela maemo a OHS ka litšebeletso tsa rona tsa tlhahlobo le hlahlobo. Lisebelisoa tsa rona li u thusa ho etsa litlhahlobo tse phethahetseng, ho hlahisa litlaleho, le ho kenya ts'ebetsong litokiso."
+    },
+    "risk_management": {
+      "title": "Merero ea Tsamaiso ea Likotsi",
+      "description": "Hlahisa merero ea tsamaiso ea likotsi e ikhethileng (RMPs) e akaretsang melao ea Afrika Borwa, melaoana ea bomasepala, le maemo a lefatše ka bophara a kang ISO 45001, ho netefatsa hore khoebo ea hau e itokiselitse kotsi efe kapa efe."
+    },
+    "support": {
+      "title": "Tšehetso le Lisebelisoa tsa Sechaba",
+      "description": "Kopanela le sechaba sa rona ho tlaleha liketsahalo, ho fumana manane a polokeho bakeng sa mabenkele a manyane, likolo, le litaverna, le ho hokahana le litsebi tse ling tsa OHS bakeng sa tšehetso le tšebelisano."
+    }
+  },
+  "training": {
+    "title": "Koetliso e Felletseng ea Sebaka sa Mosebetsi",
+    "description": "Hlahloba mananeo a rona a koetliso a felletseng a sebaka sa mosebetsi ho netefatsa ho latela melao ea OHS ea Afrika Borwa le ho khothaletsa sebaka sa mosebetsi se sireletsehileng. Khetha ho tsoa koetlisong ea boitlhakiso, koetliso ea sehlopha, kapa sebelisa wizard ea rona bakeng sa likhothaletso tse ikhethileng tse thehiloeng indastering ea hau, bamameli ba hau, le sebaka.",
+    "action_buttons": {
+      "start_wizard": "Qala Wizard ea Koetliso",
+      "select_by_category": "Khetha ka Sehlopha",
+      "select_manually": "Khetha ka Matsoho",
+      "view_manual": "Reka Bukana ea Koetliso e Fetolehang"
+    },
+    "wizard": {
+      "start": "Ka kopo khetha khetho ho qala ts'ebetso ea likhothaletso tsa koetliso.",
+      "step_1": {
+        "title": "Mohato oa 1 ho isa ho 5: Khetha Indasteri ea Hau",
+        "label": "Indasteri:",
+        "error": "Ka kopo khetha indasteri.",
+        "option_construction": "Kaho",
+        "option_manufacturing": "Tlhahiso",
+        "option_office": "Ofisi/Tsamaise",
+        "option_chemical": "Indasteri ea Lik’hemik’hale",
+        "option_other": "E 'ngoe"
+      },
+      "step_2": {
+        "title": "Mohato oa 2 ho isa ho 5: Khetha Mameli a Hau",
+        "label": "Mameli a Hlokahalang (Khetha tsohle tse sebetsang):",
+        "error": "Ka kopo khetha bonyane mameli a le mong.",
+        "option_all_employees": "Basebetsi Bohle",
+        "option_new_employees": "Basebetsi ba Bacha",
+        "option_managers": "Balaoli/Balebeli",
+        "option_she_reps": "Baemeli ba SHE",
+        "option_emergency_team": "Sehlopha sa Tšohanyetso (Thusang Pele, Baloaneli ba Mollo)",
+        "option_hazard_workers": "Basebetsi ba Pepesehileng Likotsing tse Khethehileng",
+        "option_equipment_operators": "Basebelisi ba Lisebelisoa/Mochini",
+        "option_construction_roles": "Likarolo tse Khethehileng tsa Kaho"
+      },
+      "step_3": {
+        "title": "Mohato oa 3 ho isa ho 5: Hlalosa Sebaka sa Hau",
+        "municipality_label": "Masepala:",
+        "municipality_error": "Ka kopo khetha masepala.",
+        "option_johannesburg_south": "Johannesburg Borwa, Gauteng",
+        "option_other": "E 'ngoe"
+      },
+      "step_4": {
+        "title": "Mohato oa 4 ho isa ho 5: Mekhoa e Eketsehileng",
+        "risk_profile_label": "Boemo ba Kotsi ea Sebaka sa Hau sa Mosebetsi:",
+        "risk_profile_error": "Ka kopo khetha boemo ba kotsi.",
+        "option_low": "Kotsi e Tlaase (mohl., Ofisi)",
+        "option_medium": "Kotsi e Mahareng (mohl., Tlhahiso)",
+        "option_high": "Kotsi e Phahameng (mohl., Kaho, Lik’hemik’hale)"
+      },
+      "step_5": {
+        "title": "Mohato oa 5 ho isa ho 5: Hlahloba Koetliso e Khothalelitsoeng",
+        "description": "Ho latela lintlha tsa hau, ke mananeo a koetliso a khothalelitsoeng. Khetha a u tla a kenya ka basketeng ea hau.",
+        "selected_training_label": "Mananeo a Koetliso a Khothalelitsoeng:"
+      },
+      "nav": {
+        "back": "Khutlela Morao",
+        "next": "E Latelang",
+        "add_to_cart": "Kenya ka Basketeng"
+      }
+    },
+    "cart": {
+      "title": "Basket ea Hau ea Koetliso",
+      "table": {
+        "training": "Lenaneo la Koetliso",
+        "price": "Theko"
+      },
+      "customization": {
+        "title": "Fetola Lisebelisoa tsa Hau tsa Koetliso",
+        "company_name_label": "Lebitso la K’hamphani:",
+        "company_name_error": "Ka kopo kenya lebitso la k’hamphani ea hau.",
+        "location_label": "Sebaka sa K’hamphani:",
+        "location_error": "Ka kopo kenya sebaka sa k’hamphani ea hau.",
+        "first_aider_label": "Lebitso la Motho oa Thusang Pele:",
+        "first_aider_error": "Ka kopo kenya lebitso la motho oa thusang pele.",
+        "fire_fighter_label": "Lebitso la Molloaneli:",
+        "fire_fighter_error": "Ka kopo kenya lebitso la molloaneli.",
+        "ohs_rep_label": "Lebitso la Moemeli oa OHS:",
+        "ohs_rep_error": "Ka kopo kenya lebitso la moemeli oa OHS.",
+        "supervisor_label": "Lebitso la Molebeli:",
+        "supervisor_error": "Ka kopo kenya lebitso la molebeli.",
+        "emergency_line_label": "Nomoro ea Mohala ea Tšohanyetso:",
+        "emergency_line_error": "Ka kopo kenya nomoro ea mohala ea tšohanyetso e nepahetseng (mohl., +27123456789)."
+      },
+      "compiled_by": {
+        "title": "E Hlahisitsoe Ke",
+        "name_label": "Lebitso:",
+        "name_error": "Ka kopo kenya lebitso la hau.",
+        "role_label": "Karolo:",
+        "role_error": "Ka kopo kenya karolo ea hau.",
+        "contact_label": "Nomoro ea Mohala:",
+        "contact_error": "Ka kopo kenya nomoro ea mohala e nepahetseng (mohl., +27123456789)."
+      },
+      "training_type": {
+        "title": "Mokhoa oa Koetliso",
+        "label": "Khetha mokhoa oa koetliso:",
+        "error": "Ka kopo khetha mokhoa oa koetliso.",
+        "option_pdf": "PDF tsa Koetliso Feela",
+        "option_online": "Koetliso ea Video ea Inthaneteng (E Tla Haufinyane)",
+        "online_num_people_label": "Palo ea Batho ba Tla Koetlisoa:",
+        "online_num_people_error": "Ka kopo kenya palo ea batho (bonyane 1)."
+      },
+      "checkout": {
+        "disclaimer": "Boitlhotlhollo ba SafetyHelp: Lisebelisoa tsa koetliso tse fanoeng ke tsa tlhahisoleseding feela ’me ha li fane ka likeletso tsa litsebi. Bakeng sa litharollo tsa OHS tse ikhethileng, ka kopo iteanye le SafetyHelp ho <a href='mailto:support@safetyhelp.co.za' class='text-blue-500 hover:underline'>support@safetyhelp.co.za</a> kapa etela <a href='/safety-plans/contact.html' class='text-blue-500 hover:underline'>Leqephe la Iteanyo</a>.",
+        "button": "Tsoela Pele ho Tefo"
+      },
+      "success": "Tefo e atlehile! Lisebelisoa tsa hau tsa koetliso li hlahisitsoe. Khoasolla li-PDF tsa hau ka tlase. Bakeng sa koetliso ea inthaneteng, likhoutu tsa phihlello li rometsoe ho uena ka e-poso.",
+      "download_pdf": "Khoasolla PDF ea Koetliso",
+      "online_codes": "Likhoutu tsa Phihlello ea Koetliso ea Inthaneteng: <span id='access-codes'></span>"
+    },
+    "providers": {
+      "title": "Bafani ba Koetliso ba Netefalitsoeng",
+      "description": "Na u hloka koetliso ea botho? Iteanye le bafani ba koetliso ba netefalitsoeng bakeng sa litlhoko tsa hau.",
+      "provider_1": "<strong>ABC Training Solutions</strong> - E Netefalitsoe ke SETA - E Ikhethile ho Thuso ea Pele, Ho Loantša Mollo - Iteanye: <a href='mailto:info@abctraining.co.za' class='text-blue-500 hover:underline'>info@abctraining.co.za</a>"
+    },
+    "manual": {
+      "purchase": {
+        "title": "Reka Bukana ea Koetliso e Fetolehang",
+        "description": "Fumana bukana ea koetliso e felletseng e hlophiselitsoeng k’hamphani ea hau, e kenyeletsang litlhoko tsa molao, litaba tse ikhethileng tsa k’hamphani tse thehiloeng boemong ba hau ba kotsi, le likhothaletso ho tsoa ho bafani ba koetliso ba netefalitsoeng.",
+        "button": "Kenya Bukana ka Basketeng"
+      },
+      "risk_profile": {
+        "title": "Hlalosa Boemo ba Hau ba Kotsi bakeng sa Bukana ea Koetliso",
+        "label": "Boemo ba Kotsi:",
+        "error": "Ka kopo khetha boemo ba kotsi.",
+        "option_low": "Kotsi e Tlaase (mohl., Ofisi)",
+        "option_medium": "Kotsi e Mahareng (mohl., Tlhahiso)",
+        "option_high": "Kotsi e Phahameng (mohl., Kaho, Lik’hemik’hale)"
+      }
+    },
+    "selection_method": {
+      "title": "Khetha Mokhoa oa Hau oa Koetliso"
+    },
+    "category": {
+      "induction_training": "Koetliso ea Ho Qala",
+      "awareness_training": "Koetliso ea Tlhokomeliso",
+      "statutory_mandatory_training": "Koetliso ea Molao/E Tlamang",
+      "task_risk_specific_training": "Koetliso e Khethehileng ea Mosebetsi/Kotsi",
+      "role_specific_competency_training": "Koetliso ea Bokhoni e Khethehileng ea Karolo",
+      "refresher_training": "Koetliso ea Nchafatso",
+      "toolbox_talks_safety_briefings": "Lipuo tsa Lisebelisoa/Litaba tsa Polokeho"
+    },
+    "list": {
+      "all_programs": "Mananeo Ohle a Koetliso a Fumanehang",
+      "search_placeholder": "Batla Mananeo a Koetliso...",
+      "add_to_cart": "Kenya tse Khethiloeng ka Basketeng"
+    },
+    "legal_fact": {
+      "step_1": "Taba ea Molao: Karolo 8 ea Molao oa OHS e hloka hore bahiri ba fane ka koetliso e lokiselitsoeng likotsi tse khethehileng tsa sebaka sa mosebetsi.",
+      "step_3": "Taba ea Molao: Bomasepala ba lehae ba ka ba le melao e fapaneng ea OHS e amang litlhoko tsa koetliso."
+    },
+    "fun_fact": {
+      "step_2": "Taba e Thabisang: Na u ne u tseba hore koetliso e tloaelehileng e ka fokotsa liketsahalo tsa sebaka sa mosebetsi ho fihlela 30%?",
+      "step_4": "Taba e Thabisang: Libaka tsa mosebetsi tse nang le kotsi e phahameng joalo ka libaka tsa kaho li hloka koetliso e tloaelehileng ho boloka maemo a polokeho."
+    }
+  }
+}

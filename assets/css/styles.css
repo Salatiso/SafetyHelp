@@ -1,0 +1,396 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    display: flex;
+    min-height: 100vh;
+    background-color: #E8F0FE;
+    overflow-x: hidden;
+    flex-direction: row;
+    padding-top: 100px;
+}
+
+/* Header */
+header {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 15px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 90;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo-container img {
+    height: 50px;
+}
+
+.tagline {
+    font-size: 14px;
+    margin-top: 5px;
+    color: white;
+}
+
+.header-content h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 8px;
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.nav-links a:hover {
+    color: #FD7E14;
+}
+
+.search-bar {
+    margin-top: 5px;
+}
+
+.search-bar input {
+    padding: 4px;
+    border: none;
+    border-radius: 2px;
+    font-size: 14px;
+    width: 150px;
+}
+
+.search-bar button {
+    padding: 4px 8px;
+    background-color: #FD7E14;
+    color: white;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.search-bar button:hover {
+    background-color: #e06b00;
+}
+
+.language-selector {
+    margin-left: 10px;
+}
+
+.language-selector select {
+    padding: 4px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 100px;
+    width: 250px;
+    background-color: #F4F4F4;
+    border-right: 1px solid #ddd;
+    padding: 15px;
+    min-height: calc(100vh - 100px);
+    overflow-y: auto;
+    z-index: 80;
+}
+
+.sidebar h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #007BFF;
+}
+
+.sidebar a {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.sidebar a:hover {
+    color: #28A745;
+}
+
+.sidebar a.active {
+    color: #28A745;
+    font-weight: bold;
+}
+
+.step-info {
+    background-color: #E8F0FE;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.step-info h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #007BFF;
+}
+
+.step-info p {
+    font-size: 14px;
+}
+
+.fun-fact {
+    color: #28A745;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    margin-left: 250px;
+    padding: 20px;
+    min-height: 100vh;
+    max-width: 1200px;
+}
+
+.intro {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.intro h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.intro h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.intro p {
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.intro a {
+    background-color: #FD7E14;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.intro a:hover {
+    background-color: #e06b00;
+}
+
+/* Footer */
+footer {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+    margin-top: auto;
+    width: 100%;
+}
+
+footer p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+footer a {
+    color: #FD7E14;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #e06b00;
+}
+
+.newsletter {
+    margin-top: 10px;
+}
+
+.newsletter h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.newsletter form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.newsletter input {
+    padding: 8px;
+    border: none;
+    border-radius: 2px;
+    margin-right: 10px;
+    font-size: 14px;
+    width: 150px;
+}
+
+.newsletter button {
+    padding: 8px 16px;
+    background-color: #FD7E14;
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.newsletter button:hover {
+    background-color: #e06b00;
+}
+
+/* Chatbot */
+.chatbot-container {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    z-index: 1000;
+}
+
+.chat-toggle-btn {
+    background-color: #FD7E14;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 24px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chat-toggle-btn:hover {
+    background-color: #e06b00;
+}
+
+.chat-icon {
+    margin-right: 5px;
+    font-size: 16px;
+}
+
+#chat-window {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    width: 250px;
+    max-height: 350px;
+    overflow-y: auto;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    margin-top: 8px;
+}
+
+.chat-hidden {
+    display: none;
+}
+
+#chat-output {
+    padding: 8px;
+    font-size: 14px;
+    flex: 1;
+    overflow-y: auto;
+    border-bottom: 1px solid #ddd;
+}
+
+#chat-input {
+    width: 70%;
+    padding: 8px;
+    border: none;
+    border-top: 1px solid #ddd;
+    font-size: 14px;
+}
+
+#chat-send {
+    width: 30%;
+    padding: 8px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#chat-send:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding-top: 0;
+        flex-direction: column;
+    }
+    header {
+        position: relative;
+    }
+    .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .logo-container {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        top: 0;
+    }
+    .main-content {
+        margin-left: 0;
+        padding: 10px;
+    }
+    .intro {
+        margin: 10px 0;
+    }
+    .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .nav-links a {
+        margin: 5px 8px;
+    }
+    .chat-window {
+        width: 90%;
+        right: 5%;
+    }
+}

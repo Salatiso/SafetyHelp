@@ -1,0 +1,329 @@
+{
+  "industries": [
+    {
+      "name": "Construction",
+      "company_sizes": [
+        {
+          "size": "Small",
+          "risk_profiles": [
+            {
+              "risk": "Medium",
+              "documents": [
+                "construction-health-safety-plan-template",
+                "risk-assessment-plan-template",
+                "ohs-legal-compliance-policy-template",
+                "ohs-training-competency-policy-template",
+                "permit-to-work-general-template",
+                "ohs-incident-report-investigation-template"
+              ]
+            },
+            {
+              "risk": "High",
+              "documents": [
+                "construction-health-safety-plan-template",
+                "risk-assessment-plan-template",
+                "ohs-legal-compliance-standard-template",
+                "ohs-contractor-management-policy-template",
+                "permit-to-work-hot-work-template",
+                "fall-protection-plan-template",
+                "ohs-incident-management-standard-template"
+              ]
+            }
+          ]
+        },
+        {
+          "size": "Medium",
+          "risk_profiles": [
+            {
+              "risk": "High",
+              "documents": [
+                "construction-health-safety-plan-template",
+                "risk-management-standard-template",
+                "ohs-legal-register-template",
+                "ohs-contractor-management-forms-templates",
+                "ohs-audit-inspection-standard-template",
+                "emergency-response-plan-template"
+              ]
+            }
+          ]
+        },
+        {
+          "size": "Large",
+          "risk_profiles": [
+            {
+              "risk": "High",
+              "documents": [
+                "construction-health-safety-plan-template",
+                "ohs-management-system-manual-template",
+                "ohs-legal-compliance-evaluation-checklist-template",
+                "ohs-contractor-management-policy-template",
+                "ohs-audit-inspection-forms-checklists-template",
+                "risk-register-template",
+                "emergency-management-standard-template"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Mining",
+      "company_sizes": [
+        {
+          "size": "Small",
+          "risk_profiles": [
+            {
+              "risk": "High",
+              "documents": [
+                "risk-assessment-plan-template",
+                "ohs-legal-compliance-policy-template",
+                "ohs-training-competency-standard-template",
+                "ohs-incident-register-template",
+                "emergency-evacuation-plan-template",
+                "safe-work-procedure-template"
+              ]
+            }
+          ]
+        },
+        {
+          "size": "Medium",
+          "risk_profiles": [
+            {
+              "risk": "High",
+              "documents": [
+                "risk-management-policy-template",
+                "ohs-legal-register-template",
+                "ohs-audit-inspection-policy-template",
+                "ohs-incident-management-standard-template",
+                "emergency-management-policy-template",
+                "ohs-training-forms-templates"
+              ]
+            }
+          ]
+        },
+        {
+          "size": "Large",
+          "risk_profiles": [
+            {
+              "risk": "High",
+              "documents": [
+                "ohs-management-system-manual-template",
+                "risk-management-standard-template",
+                "ohs-legal-compliance-standard-template",
+                "ohs-audit-inspection-standard-template",
+                "ohs-incident-management-policy-template",
+                "emergency-response-plan-template",
+                "section-16-1-appointment-template"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Healthcare",
+      "company_sizes": [
+        {
+          "size": "Small",
+          "risk_profiles": [
+            {
+              "risk": "Medium",
+              "documents": [
+                "ohs-workplace-health-wellness-policy-template",
+                "ohs-training-competency-log-template",
+                "ohs-incident-report-investigation-template",
+                "emergency-evacuation-plan-template",
+                "ohs-legal-compliance-policy-template"
+              ]
+            }
+          ]
+        },
+        {
+          "size": "Medium",
+          "risk_profiles": [
+            {
+              "risk": "Medium",
+              "documents": [
+                "ohs-workplace-health-wellness-standard-template",
+                "ohs-legal-compliance-evaluation-checklist-template",
+                "ohs-audit-inspection-forms-checklists-template",
+                "ohs-communication-participation-consultation-policy-template",
+                "risk-management-forms-checklists-template"
+              ]
+            }
+          ]
+        },
+        {
+          "size": "Large",
+          "risk_profiles": [
+            {
+              "risk": "Medium",
+              "documents": [
+                "ohs-management-system-manual-template",
+                "ohs-workplace-health-wellness-forms-templates",
+                "ohs-legal-register-template",
+                "ohs-audit-inspection-standard-template",
+                "ohs-communication-participation-consultation-standard-template",
+                "emergency-management-standard-template"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Education",
+      "company_sizes": [
+        {
+          "size": "Small",
+          "risk_profiles": [
+            {
+              "risk": "Low",
+              "documents": [
+                "ohs-workplace-health-wellness-policy-template",
+                "ohs-training-competency-policy-template",
+                "ohs-incident-report-investigation-template",
+                "emergency-evacuation-plan-template",
+                "workplace-inspection-checklist-template"
+              ]
+            }
+          ]
+        },
+        {
+          "size": "Medium",
+          "risk_profiles": [
+            {
+              "risk": "Low",
+              "documents": [
+                "ohs-communication-participation-consultation-policy-template",
+                "ohs-workplace-health-wellness-standard-template",
+                "ohs-training-forms-templates",
+                "ohs-legal-compliance-policy-template",
+                "workplace-inspection-policy-template"
+              ]
+            }
+          ]
+        },
+        {
+          "size": "Large",
+          "risk_profiles": [
+            {
+              "risk": "Low",
+              "documents": [
+                "ohs-management-system-manual-template",
+                "ohs-communication-participation-consultation-standard-template",
+                "ohs-workplace-health-wellness-forms-templates",
+                "ohs-audit-inspection-policy-template",
+                "ohs-legal-compliance-standard-template",
+                "section-17-appointment-template"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Retail",
+      "company_sizes": [
+        {
+          "size": "Small",
+          "risk_profiles": [
+            {
+              "risk": "Low",
+              "documents": [
+                "ohs-workplace-health-wellness-policy-template",
+                "ohs-training-competency-log-template",
+                "ohs-incident-report-investigation-template",
+                "emergency-evacuation-plan-template",
+                "workplace-inspection-checklist-template"
+              ]
+            }
+          ]
+        },
+        {
+          "size": "Medium",
+          "risk_profiles": [
+            {
+              "risk": "Medium",
+              "documents": [
+                "ohs-workplace-health-wellness-standard-template",
+                "ohs-legal-compliance-policy-template",
+                "ohs-communication-participation-consultation-forms-templates",
+                "risk-management-policy-template",
+                "workplace-inspection-standard-template"
+              ]
+            }
+          ]
+        },
+        {
+          "size": "Large",
+          "risk_profiles": [
+            {
+              "risk": "Medium",
+              "documents": [
+                "ohs-management-system-manual-template",
+                "ohs-legal-compliance-standard-template",
+                "ohs-audit-inspection-forms-checklists-template",
+                "ohs-communication-participation-consultation-standard-template",
+                "risk-management-standard-template",
+                "emergency-management-policy-template"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Manufacturing",
+      "company_sizes": [
+        {
+          "size": "Small",
+          "risk_profiles": [
+            {
+              "risk": "Medium",
+              "documents": [
+                "risk-assessment-plan-template",
+                "ohs-training-competency-policy-template",
+                "ohs-incident-management-policy-template",
+                "ohs-legal-compliance-policy-template",
+                "safe-work-procedure-template"
+              ]
+            }
+          ]
+        },
+        {
+          "size": "Medium",
+          "risk_profiles": [
+            {
+              "risk": "High",
+              "documents": [
+                "risk-management-standard-template",
+                "ohs-legal-register-template",
+                "ohs-audit-inspection-standard-template",
+                "ohs-contractor-management-policy-template",
+                "ohs-incident-management-standard-template",
+                "emergency-response-plan-template"
+              ]
+            }
+          ]
+        },
+        {
+          "size": "Large",
+          "risk_profiles": [
+            {
+              "risk": "High",
+              "documents": [
+                "ohs-management-system-manual-template",
+                "risk-management-policy-template",
+                "ohs-legal-compliance-evaluation-checklist-template",
+                "ohs-contractor-management-forms-templates",
+                "ohs-audit-inspection-policy-template",
+                "ohs-performance-review-objectives-standard-template"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

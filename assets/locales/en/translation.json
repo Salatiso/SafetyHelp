@@ -1,0 +1,1154 @@
+{
+    "header": {
+        "title": "SafetyHelp",
+        "tagline": "Safety Personalized, Compliance Simplified—Anytime, Anywhere",
+        "nav": {
+            "home": "Home",
+            "resources": "Resources",
+            "services": "Services",
+            "community": "Community",
+            "about": "About",
+            "contact": "Contact",
+            "login": "Login",
+            "logout": "Logout"
+        },
+        "search": {
+            "placeholder": "Search OHS Resources...",
+            "button": "Search"
+        }
+    },
+    "language_selector": {
+        "en": "English",
+        "af": "Afrikaans",
+        "zu": "isiZulu",
+        "xh": "isiXhosa",
+        "st": "Sesotho",
+        "tn": "Setswana",
+        "nso": "Sepedi",
+        "ts": "Xitsonga",
+        "ss": "siSwati",
+        "ve": "Tshivenda",
+        "nr": "isiNdebele",
+        "es": "Español",
+        "fr": "French",
+        "sn": "Shona",
+        "sw": "Swahili",
+        "zh": "Mandarin"
+    },
+    "sidebar": {
+        "ohs_tools": "SafetyHelp OHS Tools",
+        "construction_safety": "Construction Safety",
+        "emergency_planning": "Emergency Planning",
+        "risk_assessment": "Risk Assessment",
+        "legal_appointments": "Legal Appointments",
+        "incident_management": "Incident Management",
+        "training": "Training",
+        "inspections_audits": "Inspections & Audits",
+        "suppliers": "Suppliers",
+        "legislation": "Legislation",
+        "community_tools": "Community Tools",
+        "member_dashboard": "Member Dashboard",
+        "ohs_system": "OHS System",
+        "step_0": {
+            "title": "📜 Welcome to SafetyHelp",
+            "description": "Explore our comprehensive tools and resources to enhance occupational health and safety in your workplace.",
+            "fun_fact": "⚡ Did you know using reputable ethical suppliers can reduce workplace hazards by ensuring work is done on time and to the highest quality and safety standards?"
+        }
+    },
+    "intro": {
+        "title": "Welcome to SafetyHelp",
+        "description": "Explore our comprehensive tools and resources to enhance occupational health and safety in your workplace."
+    },
+    "welcome": {
+        "title": "Welcome to SafetyHelp",
+        "description": "Your trusted platform for occupational health and safety (OHS) in South Africa. We provide automated, AI-enhanced tools to ensure safety and compliance for workplaces, schools, churches, and informal sectors. Join our community to access resources, services, and support tailored to your needs."
+    },
+    "why_choose": {
+        "title": "Why Choose SafetyHelp for OHS Compliance?",
+        "content": "SafetyHelp is your trusted partner for occupational health and safety compliance in South Africa. Our platform offers a comprehensive suite of tools tailored to meet the unique needs of industries like construction, mining, and manufacturing. From generating legal registers to conducting risk assessments, SafetyHelp simplifies complex OHS requirements with user-friendly wizards and real-time support through our AI-powered chatbot. Backed by South African regulations and best practices, we empower businesses to create safer workplaces while ensuring compliance with the OHSA and COIDA. Join thousands of professionals who rely on SafetyHelp to protect their teams and streamline safety processes."
+    },
+    "legal_obligations": {
+        "client": {
+            "title": "Client Obligations",
+            "reg_5_1_a": "<strong>Construction Regulation 5(1)(a):</strong> Prepare a Baseline Risk Assessment (BRA) identifying project hazards.",
+            "reg_5_1_b": "<strong>Construction Regulation 5(1)(b):</strong> Provide a Health and Safety Specification outlining specific project requirements.",
+            "reg_5_1_l": "<strong>Construction Regulation 5(1)(l):</strong> Accept the Contractor’s Health and Safety Plan before work begins."
+        },
+        "contractor": {
+            "title": "Contractor Obligations",
+            "reg_7_1_a": "<strong>Construction Regulation 7(1)(a):</strong> Submit a Health and Safety Plan based on the client’s specification.",
+            "reg_7_1_b": "<strong>Construction Regulation 7(1)(b):</strong> Maintain a Health and Safety File on site with all required documentation.",
+            "reg_9": "<strong>Construction Regulation 9:</strong> Conduct Risk Assessments and Hazard Identification Risk Assessments (HIRAs) specific to the work."
+        },
+        "professional": {
+            "title": "H&S Professional Obligations",
+            "reg_5_5": "<strong>Construction Regulation 5(5):</strong> Agents (PrCHSA) manage H&S on behalf of the client, ensuring compliance.",
+            "reg_8_5": "<strong>Construction Regulation 8(5):</strong> Officers (CHSO) assist contractors in implementing and auditing H&S systems.",
+            "sacpcmp": "<strong>SACPCMP Guidelines:</strong> Must maintain registration and CPD requirements for professional status."
+        }
+    },
+    "action_buttons": {
+        "hs_spec": "Compile Health and Safety Specification",
+        "hs_plan": "Compile Health and Safety Plan",
+        "risk_assessment": "Compile Risk Assessment",
+        "training": "Conduct Training",
+        "appointments": "Conduct Legal Appointments",
+        "inspections": "Conduct Inspections/Audits",
+        "incidents": "Manage Incidents",
+        "reports": "Compile Compliance Reports",
+        "hs_file": "Compile Health and Safety File",
+        "search_laws": "Search OHS Laws",
+        "generate_rmp": "Generate RMP",
+        "generate_legal_register": "Generate OHS Legal Register"
+    },
+    "wizard": {
+        "step_0": "Please select an action to start the process.",
+        "step_1": {
+            "title": "Step 1 of 9: What do you want to do?",
+            "label": "Select the Documents you will Compile (Select all that apply):",
+            "errors": {
+                "document_types": "Please select at least one document to compile."
+            },
+            "documents": {
+                "hs_spec": "<span class='emoji'>📋</span> Health and Safety Specification",
+                "hs_plan": "<span class='emoji'>📑</span> Health and Safety Plan",
+                "risk_assessment": "<span class='emoji'>⚠️</span> Risk Assessment",
+                "training": "<span class='emoji'>🎓</span> Conduct Training",
+                "appointments": "<span class='emoji'>📜</span> Conduct Legal Appointments",
+                "inspections": "<span class='emoji'>🔍</span> Conduct Inspections/Audits",
+                "incidents": "<span class='emoji'>🚑</span> Manage Incidents",
+                "reports": "<span class='emoji'>📊</span> Compliance Reports",
+                "hs_file": "<span class='emoji'>📂</span> Health and Safety File",
+                "health_safety_specification_template": "<span class='emoji'>📋</span> Health and Safety Specification",
+                "construction_health_safety_plan_template": "<span class='emoji'>📑</span> Health and Safety Plan",
+                "baseline_risk_assessment_template": "<span class='emoji'>⚠️</span> Baseline Risk Assessment",
+                "risk_assessment_plan_template": "<span class='emoji'>⚠️</span> Risk Assessment Plan",
+                "ohs_training_competency_policy_template": "<span class='emoji'>🎓</span> Training Policy",
+                "section_16_1_appointment_template": "<span class='emoji'>📜</span> Section 16(1) Appointment",
+                "ohs_audit_inspection_standard_template": "<span class='emoji'>🔍</span> Inspections/Audits Standard",
+                "ohs_incident_management_standard_template": "<span class='emoji'>🚑</span> Incident Management Standard",
+                "ohs_contractor_management_policy_template": "<span class='emoji'>🤝</span> Contractor Management Policy"
+            }
+        },
+        "step_2": {
+            "title": "Step 2 of 9: Client Details",
+            "fields": {
+                "client_name": "Client Company Name:",
+                "client_address": "Client Address:",
+                "client_contact_person": "Client Contact Person:",
+                "client_contact_role": "Client Contact Role:",
+                "client_contact_number": "Client Contact Number:",
+                "client_email": "Client Email:",
+                "client_coida": "COIDA Registration Number:"
+            },
+            "errors": {
+                "client_name": "Please enter the client company name.",
+                "client_address": "Please enter the client address.",
+                "client_contact_person": "Please enter the client contact person.",
+                "client_contact_role": "Please enter the client contact role.",
+                "client_contact_number": "Please enter a valid phone number (e.g., +27123456789).",
+                "client_email": "Please enter a valid email address.",
+                "client_coida": "Please enter the COIDA registration number."
+            }
+        },
+        "step_3": {
+            "title": "Step 3 of 9: Is a Contractor Appointed?",
+            "fields": {
+                "contractor_appointed": "Contractor Appointed:"
+            },
+            "errors": {
+                "contractor_appointed": "Please select an option."
+            },
+            "options": {
+                "yes": "Yes",
+                "no": "No",
+                "not_applicable": "Not Applicable"
+            }
+        },
+        "step_4": {
+            "title": "Step 4 of 9: Contractor Details",
+            "fields": {
+                "contractor_name": "Contractor Company Name:",
+                "contractor_address": "Contractor Address:",
+                "contractor_contact_person": "Contractor Contact Person:",
+                "contractor_contact_role": "Contractor Contact Role:",
+                "contractor_contact_number": "Contractor Contact Number:",
+                "contractor_email": "Contractor Email:",
+                "contractor_coida": "COIDA Registration Number:"
+            },
+            "errors": {
+                "contractor_name": "Please enter the contractor company name.",
+                "contractor_address": "Please enter the contractor address.",
+                "contractor_contact_person": "Please enter the contractor contact person.",
+                "contractor_contact_role": "Please enter the contractor contact role.",
+                "contractor_contact_number": "Please enter a valid phone number (e.g., +27123456789).",
+                "contractor_email": "Please enter a valid email address.",
+                "contractor_coida": "Please enter the COIDA registration number."
+            }
+        },
+        "step_5": {
+            "title": "Step 5 of 9: Project Details",
+            "fields": {
+                "project_reference": "Project Reference Number:",
+                "project_name": "Project Name:",
+                "site_address": "Site Address:",
+                "site_supervisor_name": "Site Supervisor Name:",
+                "site_supervisor_number": "Site Supervisor Contact Number:",
+                "site_supervisor_email": "Site Supervisor Email:"
+            },
+            "errors": {
+                "project_name": "Please enter the project name.",
+                "site_address": "Please enter the site address.",
+                "site_supervisor_name": "Please enter the site supervisor name.",
+                "site_supervisor_number": "Please enter a valid phone number (e.g., +27123456789).",
+                "site_supervisor_email": "Please enter a valid email address."
+            }
+        },
+        "step_6": {
+            "title": "Step 6 of 9: Project Scope",
+            "fields": {
+                "type_of_work": "Type of Work to be Performed:",
+                "cidb_grade": "CIDB Grade:",
+                "cost": "Cost (R):",
+                "duration": "Duration (Days):",
+                "activities": "Involved Activities (Select all that apply):",
+                "scope_details": "Scope Details:"
+            },
+            "errors": {
+                "type_of_work": "Please enter the type of work.",
+                "cidb_grade": "Please select a CIDB grade.",
+                "cost": "Please enter a valid project cost (R).",
+                "duration": "Please enter a valid duration (days).",
+                "scope_details": "Please enter the scope details."
+            },
+            "options": {
+                "cidb_grade_not_applicable": "Not Applicable",
+                "cidb_grade_1": "Grade 1",
+                "cidb_grade_2": "Grade 2",
+                "cidb_grade_3": "Grade 3",
+                "cidb_grade_4": "Grade 4",
+                "cidb_grade_5": "Grade 5",
+                "cidb_grade_6": "Grade 6",
+                "cidb_grade_7": "Grade 7",
+                "cidb_grade_8": "Grade 8",
+                "cidb_grade_9": "Grade 9",
+                "activities": {
+                    "security_guards": "Security guards",
+                    "night_work": "Night Work",
+                    "moving_traffic": "Moving Traffic Work",
+                    "vibration_exposure": "Vibration Exposure",
+                    "noise_exposure": "Noise Exposure",
+                    "welders": "Welders",
+                    "welding": "Welding",
+                    "hot_work": "Hot Work (e.g., cutting, grinding)",
+                    "combustible_materials": "Combustible Materials",
+                    "hazardous_substances": "Handling Hazardous Substances",
+                    "office_fit_out": "Office Fit-Out",
+                    "sensitive_it_equipment": "Sensitive IT Equipment",
+                    "manual_handling": "Manual Handling",
+                    "working_electricity": "Electricity Work",
+                    "dust_exposure": "Dust Exposure",
+                    "civil_contractors": "Civil Contractors",
+                    "excavation": "Excavation",
+                    "crane_operations": "Crane Operations",
+                    "working_near_water": "Work Near Water",
+                    "pile_driving": "Pile Driving",
+                    "working_tunnels": "Tunnel Work",
+                    "general_construction": "General Construction",
+                    "working_from_heights": "Working from Heights",
+                    "scaffolding": "Scaffolding",
+                    "multi_storey": "Multi-Storey Construction",
+                    "asbestos": "Asbestos Removal",
+                    "confined_space": "Confined Space Entry",
+                    "demolition": "Demolition",
+                    "roof_work": "Roof Work",
+                    "temporary_works": "Temporary Works",
+                    "live_voltage": "Live Voltage Work"
+                }
+            }
+        },
+        "step_7": {
+            "title": "Step 7 of 9: Compiled By",
+            "fields": {
+                "name": "Name:",
+                "number": "Contact Number:",
+                "email": "Email:",
+                "role": "Role:",
+                "sacpcmp_reg": "SACPCMP Registration Number:",
+                "specify_role": "Specify Role:"
+            },
+            "errors": {
+                "name": "Please enter your name.",
+                "number": "Please enter a valid phone number (e.g., +27123456789).",
+                "email": "Please enter a valid email address.",
+                "role": "Please select a role.",
+                "sacpcmp_reg": "Please enter the SACPCMP registration number.",
+                "specify_role": "Please specify your role."
+            },
+            "options": {
+                "trainee": "OHS Trainee",
+                "ohs_rep": "OHS Representative",
+                "sacpcmp_officer": "SACPCMP Officer (CHSO)",
+                "sacpcmp_agent": "SACPCMP Agent (PrCHSA)",
+                "other": "Other"
+            }
+        },
+        "step_8": {
+            "title": "Step 8 of 9: Compiled For",
+            "fields": {
+                "compiled_for": "Compiled For:",
+                "compiled_for_name": "Name:",
+                "compiled_for_number": "Contact Number:",
+                "compiled_for_email": "Email:",
+                "compiled_for_other": "Specify Role:",
+                "additional_signatories": "Additional Signatories (Optional):"
+            },
+            "errors": {
+                "compiled_for": "Please select an option.",
+                "compiled_for_name": "Please enter a name.",
+                "compiled_for_number": "Please enter a valid phone number (e.g., +27123456789).",
+                "compiled_for_email": "Please enter a valid email address.",
+                "compiled_for_other": "Please specify the role."
+            },
+            "options": {
+                "client": "Client",
+                "contractor": "Contractor",
+                "other": "Other"
+            },
+            "hint": "Enter one name per line."
+        },
+        "step_9": {
+            "title": "Step 9 of 9: Review and Checkout",
+            "description": "Review your selections and proceed to checkout.",
+            "cart": {
+                "label": "Your Cart:",
+                "table": {
+                    "document": "Document",
+                    "price": "Price"
+                },
+                "errors": {
+                    "cart_empty": "Please add at least one document to the cart."
+                },
+                "empty_cart": "Your cart is empty."
+            },
+            "promo_code": {
+                "label": "Promo Code (Optional):",
+                "placeholder": "Enter SAFETYFIRST25",
+                "apply_promo": "Apply",
+                "errors": {
+                    "promo_code": "Invalid promo code."
+                },
+                "promo_success": "Promo code applied! 25% discount."
+            },
+            "total": {
+                "label": "Total Price:"
+            },
+            "payment_method": {
+                "label": "Payment Method:",
+                "errors": {
+                    "payment_method": "Please select a payment method."
+                },
+                "options": {
+                    "credit_card": "Credit Card",
+                    "bank_transfer": "Bank Transfer",
+                    "paypal": "PayPal"
+                }
+            },
+            "selected_documents_label": "Selected Documents:"
+        },
+        "nav": {
+            "back": "Back",
+            "next": "Next",
+            "add_to_cart": "Add to Cart",
+            "checkout": "Checkout"
+        }
+    },
+    "cart": {
+        "title": "Your Cart",
+        "invoice_reference": "Invoice Reference Number: <span id=\"invoice-ref-number\" class=\"font-medium\"></span> (Valid for 7 days. Register to store indefinitely!)",
+        "table": {
+            "document": "Document",
+            "price": "Price"
+        },
+        "checkout": {
+            "promo_label": "Promo Code:",
+            "promo_placeholder": "Enter SAFETYFIRST25",
+            "button": "Checkout"
+        },
+        "subscribe": {
+            "button": "Subscribe for Full Access"
+        }
+    },
+    "resources": {
+        "title": "Contact Accredited H&S Professionals",
+        "description": "Need expert assistance? Reach out to accredited professionals for your project needs.",
+        "jane_doe": "<strong>Jane Doe, SACPCMP Agent (PrCHSA)</strong> - Reg No: PR12345 - Contact: <a href='mailto:jane.doe@example.com' class='text-blue-500 hover:underline'>jane.doe@example.com</a>",
+        "john_smith": "<strong>John Smith, SACPCMP Officer (CHSO)</strong> - Reg No: CHSO67890 - Contact: <a href='mailto:john.smith@example.com' class='text-blue-500 hover:underline'>john.smith@example.com</a>",
+        "emily_brown": "<strong>Emily Brown, OHS Representative</strong> - Contact: <a href='mailto:emily.brown@example.com' class='text-blue-500 hover:underline'>emily.brown@example.com</a>"
+    },
+    "footer": {
+        "copyright": "© 2025 SafetyHelp. All rights reserved.",
+        "links": {
+            "privacy": "Privacy Policy",
+            "terms": "Terms of Service",
+            "contact": "Contact Us"
+        },
+        "newsletter": {
+            "title": "Stay Updated",
+            "placeholder": "Enter your email",
+            "button": "Subscribe"
+        }
+    },
+    "chatbot": {
+        "button": "Ask Salatiso",
+        "input_placeholder": "Ask about OHS...",
+        "send": "Send",
+        "welcome": "Hello! How can I help you with OHS today?",
+        "response": "I'm here to help! For personalized OHS advice, please contact a professional.",
+        "you": "You",
+        "bot": "SafetyHelp Bot",
+        "error": "Error",
+        "unavailable": "Chatbot unavailable. Please try again later.",
+        "error_generic": "Oops, something went wrong. Please try again!",
+        "no_match": "Sorry, I couldn’t find an exact match. Try rephrasing!",
+        "escalate": "I’m not sure I can help with that. Would you like to contact our support team?",
+        "contact_support": "Contact Support",
+        "see_more": "See more",
+        "full_chapter": "View full chapter",
+        "from": "From {book}, Chapter {chapter}:",
+        "responses": {
+            "hs_spec": "A Health and Safety Specification outlines the client’s OHS requirements for a construction project, as per Construction Regulation 5(1)(b). It includes project details, hazards, and compliance obligations.",
+            "hs_plan": "A Health and Safety Plan is prepared by the contractor to address the client’s H&S Specification, detailing safety measures and procedures, as required by Construction Regulation 7(1)(a).",
+            "risk_assessment": "A Risk Assessment identifies hazards and evaluates risks for project activities, mandatory under Construction Regulation 9.",
+            "sacpcmp": "SACPCMP (South African Council for the Project and Construction Management Professions) accredits professionals like CHSOs and PrCHSAs to ensure OHS compliance.",
+            "coida": "COIDA (Compensation for Occupational Injuries and Diseases Act) requires employers to register for compensation coverage for workplace injuries."
+        }
+    },
+    "page_title": {
+        "construction": "SafetyHelp - Construction Health and Safety",
+        "legal_appointments": "SafetyHelp - Legal Appointments",
+        "legislation": "SafetyHelp - Legislation",
+        "services": "SafetyHelp - Services"
+    },
+    "construction": {
+        "title": "Construction Health and Safety",
+        "description": "Ensure compliance with construction health and safety regulations using SafetyHelp OHS Tools. Our resources help you manage risks, comply with legal requirements, and protect workers on-site, drawing from best practices outlined in 'Safety First: The Essentials of OHS Plans.'",
+        "download_link": "Download the Construction OHS Plan: "
+    },
+    "legal_appointments": {
+        "title": "Legal Appointments",
+        "description": "Manage occupational health and safety legal appointments as required by South African OHS regulations. Use the organogram to assign roles, populate appointee details, and generate a comprehensive document with appointment letters, training records, and more."
+    },
+    "organogram": {
+        "title": "OHS Legal Appointments Organogram",
+        "form": {
+            "name": "Appointee Name",
+            "name_error": "Please enter the appointee's name.",
+            "email": "Email",
+            "email_error": "Please enter a valid email address.",
+            "phone": "Phone Number",
+            "phone_error": "Please enter a valid phone number (e.g., +27123456789).",
+            "start_date": "Start Date",
+            "start_date_error": "Please enter the start date.",
+            "end_date": "End Date",
+            "training": "Training/Competency",
+            "training_error": "Please enter training/competency details.",
+            "notes": "Additional Notes",
+            "save": "Save Appointee"
+        },
+        "generate_document": "Generate Appointment Document"
+    },
+    "legislation": {
+        "title": "Legislation",
+        "description": "Access a comprehensive library of OHS legislation, standards, and updates. Generate OHS legal registers, search for specific laws, and explore relationships between regulations. Simplified interpretations are available for purchase to make complex legal texts more accessible.",
+        "tools": {
+            "title": "Legislation Tools",
+            "search_placeholder": "Search for laws (e.g., OHSA Section 8)",
+            "search_button": "Search",
+            "buy_simplified": "Buy Simplified Interpretation (R50)"
+        },
+        "updates": {
+            "title": "Legislation Updates and Bills"
+        },
+        "standards": {
+            "title": "OHS Standards"
+        },
+        "wizard": {
+            "title": "Generate Your RMP",
+            "step_1": {
+                "title": "Step 1 of 4: Company Details",
+                "fields": {
+                    "company_name": "Company Name:",
+                    "industry": "Industry:",
+                    "location": "Location (Province):"
+                },
+                "errors": {
+                    "company_name": "Please enter the company name.",
+                    "industry": "Please select an industry.",
+                    "location": "Please select a province."
+                },
+                "options": {
+                    "select": "Select Industry",
+                    "construction": "Construction",
+                    "manufacturing": "Manufacturing",
+                    "education": "Education",
+                    "healthcare": "Healthcare",
+                    "retail": "Retail",
+                    "select_location": "Select Province",
+                    "gauteng": "Gauteng",
+                    "kzn": "KwaZulu-Natal",
+                    "wc": "Western Cape",
+                    "ec": "Eastern Cape",
+                    "fs": "Free State"
+                }
+            },
+            "step_2": {
+                "title": "Step 2 of 4: Activities",
+                "fields": {
+                    "activities": "Select Activities (Check all that apply):"
+                },
+                "errors": {
+                    "activities": "Please select at least one activity."
+                },
+                "options": {
+                    "excavation": "Excavation",
+                    "working_at_heights": "Working at Heights",
+                    "fire_risk": "Fire Risk Activities"
+                }
+            },
+            "step_3": {
+                "title": "Step 3 of 4: Risks",
+                "fields": {
+                    "risks": "Select Risks (Check all that apply):"
+                },
+                "errors": {
+                    "risks": "Please select at least one risk."
+                },
+                "options": {
+                    "falls": "Falls from Heights",
+                    "chemical_exposure": "Chemical Exposure",
+                    "fire_hazard": "Fire Hazard"
+                }
+            },
+            "step_4": {
+                "title": "Step 4 of 4: Review and Generate",
+                "description": "Review your inputs and generate your RMP. You can add additional legislation if needed.",
+                "fields": {
+                    "additional_legislation": "Add Additional Legislation (Optional):",
+                    "additional_legislation_placeholder": "Enter any additional legislation here..."
+                },
+                "errors": {
+                    "additional_legislation": "Please enter valid legislation details."
+                }
+            },
+            "nav": {
+                "back": "Back",
+                "next": "Next",
+                "generate": "Generate RMP"
+            }
+        },
+        "cart": {
+            "title": "Checkout",
+            "description": "Your RMP has been generated! Use the voucher code FREERMP2025 for a free download (first 100 users).",
+            "voucher_label": "Voucher Code:",
+            "voucher_placeholder": "FREERMP2025",
+            "apply_voucher": "Apply Voucher",
+            "price": "Price: R200 (Free with Voucher)",
+            "download": "Download RMP"
+        }
+    },
+    "services": {
+        "title": "SafetyHelp Services",
+        "description": "Discover a range of occupational health and safety services designed to support workplaces, schools, churches, and informal sectors across South Africa. From consulting to training, SafetyHelp provides tailored solutions to ensure compliance and safety.",
+        "consulting": {
+            "title": "OHS Consulting",
+            "description": "Get expert advice on OHS compliance, risk management, and legal appointments from our accredited professionals. We’ve worked with organizations like Anglo Platinum, ABSA, and Metrorail to deliver customized solutions."
+        },
+        "training": {
+            "title": "Training Programs",
+            "description": "Access comprehensive training programs for all industries, including construction, manufacturing, and education. Choose from induction training, role-specific courses, and more, all aligned with South African OHS regulations."
+        },
+        "audits": {
+            "title": "Inspections & Audits",
+            "description": "Ensure your workplace meets OHS standards with our inspection and audit services. Our tools help you conduct thorough checks, generate reports, and implement corrective actions."
+        },
+        "risk_management": {
+            "title": "Risk Management Plans",
+            "description": "Generate tailored risk management plans (RMPs) that cover South African legislation, municipal by-laws, and international standards like ISO 45001, ensuring your business is prepared for any hazard."
+        },
+        "support": {
+            "title": "Support & Community Tools",
+            "description": "Join our community to report incidents, access safety checklists for spaza shops, schools, and taverns, and connect with other OHS professionals for support and collaboration."
+        }
+    },
+    "training": {
+        "title": "Comprehensive Workplace Training",
+        "description": "Explore our comprehensive workplace training programs to ensure compliance with South African OHS regulations and promote a safe working environment. Choose hands-on training, group training, or use our wizard to get tailored recommendations based on your industry, target audience, and location.",
+        "action_buttons": {
+            "start_wizard": "Start Training Wizard",
+            "select_by_category": "Select by Category",
+            "select_manually": "Select Manually",
+            "view_manual": "Purchase Customizable Training Manual"
+        },
+        "wizard": {
+            "start": "Please select an option to start the training recommendation process.",
+            "step_1": {
+                "title": "Step 1 of 5: Select Your Industry",
+                "fields": {
+                    "industry": "Industry:"
+                },
+                "errors": {
+                    "industry": "Please select an industry."
+                },
+                "options": {
+                    "construction": "Construction",
+                    "manufacturing": "Manufacturing",
+                    "office": "Office/Administration",
+                    "chemical": "Chemical Industry",
+                    "other": "Other"
+                }
+            },
+            "step_2": {
+                "title": "Step 2 of 5: Select Your Target Audience",
+                "fields": {
+                    "target_audience": "Target Audience (Select all that apply):"
+                },
+                "errors": {
+                    "target_audience": "Please select at least one target audience."
+                },
+                "options": {
+                    "all_employees": "All Employees",
+                    "new_employees": "New Employees",
+                    "managers": "Managers/Supervisors",
+                    "she_reps": "SHE Representatives",
+                    "emergency_team": "Emergency Team (First Aiders, Fire Fighters)",
+                    "hazard_workers": "Workers Exposed to Specific Hazards",
+                    "equipment_operators": "Equipment/Machine Operators",
+                    "construction_roles": "Specific Construction Roles"
+                }
+            },
+            "step_3": {
+                "title": "Step 3 of 5: Specify Your Location",
+                "fields": {
+                    "municipality": "Municipality:"
+                },
+                "errors": {
+                    "municipality": "Please select a municipality."
+                },
+                "options": {
+                    "johannesburg_south": "Johannesburg South, Gauteng",
+                    "other": "Other"
+                }
+            },
+            "step_4": {
+                "title": "Step 4 of 5: Additional Criteria",
+                "fields": {
+                    "risk_profile": "Your Workplace Risk Profile:"
+                },
+                "errors": {
+                    "risk_profile": "Please select a risk profile."
+                },
+                "options": {
+                    "low": "Low Risk (e.g., Office)",
+                    "medium": "Medium Risk (e.g., Manufacturing)",
+                    "high": "High Risk (e.g., Construction, Chemicals)"
+                }
+            },
+            "step_5": {
+                "title": "Step 5 of 5: Review Recommended Training",
+                "description": "Based on your inputs, here are the recommended training programs. Select the ones you want to add to your cart.",
+                "fields": {
+                    "selected_training": "Recommended Training Programs:"
+                },
+                "errors": {
+                    "selected_training": "Please select at least one training program."
+                }
+            },
+            "nav": {
+                "back": "Back",
+                "next": "Next",
+                "add_to_cart": "Add to Cart"
+            }
+        },
+        "cart": {
+            "title": "Your Training Cart",
+            "table": {
+                "training": "Training Program",
+                "price": "Price"
+            },
+            "customization": {
+                "title": "Customize Your Training Materials",
+                "fields": {
+                    "company_name": "Company Name:",
+                    "location": "Company Location:",
+                    "first_aider": "First Aider Name:",
+                    "fire_fighter": "Fire Fighter Name:",
+                    "ohs_rep": "OHS Representative Name:",
+                    "supervisor": "Supervisor Name:",
+                    "emergency_line": "Emergency Contact Number:"
+                },
+                "errors": {
+                    "company_name": "Please enter your company name.",
+                    "location": "Please enter your company location.",
+                    "first_aider": "Please enter the first aider's name.",
+                    "fire_fighter": "Please enter the fire fighter's name.",
+                    "ohs_rep": "Please enter the OHS representative's name.",
+                    "supervisor": "Please enter the supervisor's name.",
+                    "emergency_line": "Please enter a valid emergency contact number (e.g., +27123456789)."
+                }
+            },
+            "compiled_by": {
+                "title": "Compiled By",
+                "fields": {
+                    "name": "Name:",
+                    "role": "Role:",
+                    "contact": "Contact Number:"
+                },
+                "errors": {
+                    "name": "Please enter your name.",
+                    "role": "Please enter your role.",
+                    "contact": "Please enter a valid contact number (e.g., +27123456789)."
+                }
+            },
+            "training_type": {
+                "title": "Training Delivery Method",
+                "fields": {
+                    "delivery_method": "Select Delivery Method:",
+                    "online_num_people": "Number of People to be Trained:"
+                },
+                "errors": {
+                    "delivery_method": "Please select a delivery method.",
+                    "online_num_people": "Please enter the number of people (minimum 1)."
+                },
+                "options": {
+                    "pdf": "PDF Training Manuals Only",
+                    "online": "Online Video Training (Coming Soon)"
+                }
+            },
+            "checkout": {
+                "disclaimer": "SafetyHelp Disclaimer: The training materials provided are for informational purposes only and do not constitute professional advice. For tailored OHS solutions, contact SafetyHelp at <a href='mailto:support@safetyhelp.co.za' class='text-blue-500 hover:underline'>support@safetyhelp.co.za</a> or visit <a href='/safety-plans/contact.html' class='text-blue-500 hover:underline'>Contact Page</a>.",
+                "button": "Proceed to Payment",
+                "success": "Payment successful! Your training materials have been generated. Download your PDFs below. For online training, access codes have been emailed to you.",
+                "download_pdf": "Download Training PDF",
+                "online_codes": "Online Training Access Codes: <span id='access-codes'></span>"
+            }
+        },
+        "providers": {
+            "title": "Approved Training Providers",
+            "description": "Need in-person training? Contact approved training providers for your needs.",
+            "provider_1": "<strong>ABC Training Solutions</strong> - SETA Accredited - Specializes in First Aid, Fire Fighting - Contact: <a href='mailto:info@abctraining.co.za' class='text-blue-500 hover:underline'>info@abctraining.co.za</a>",
+            "provider_2": "<strong>SafeSkills Academy</strong> - SACPCMP Registered - Specializes in Construction Safety - Contact: <a href='mailto:training@safeskills.co.za' class='text-blue-500 hover:underline'>training@safeskills.co.za</a>",
+            "provider_3": "<strong>SafetyHelp Training</strong> - Comprehensive OHS Training - Contact: <a href='mailto:support@safetyhelp.co.za' class='text-blue-500 hover:underline'>support@safetyhelp.co.za</a>"
+        },
+        "manual": {
+            "purchase": {
+                "title": "Purchase Customizable Training Manual",
+                "description": "Obtain a comprehensive training manual tailored for your company, including legal requirements, company-specific content based on your risk profile, and quotes from approved training providers.",
+                "button": "Add Manual to Cart"
+            },
+            "risk_profile": {
+                "title": "Specify Your Training Manual Risk Profile",
+                "fields": {
+                    "risk_profile": "Risk Profile:"
+                },
+                "errors": {
+                    "risk_profile": "Please select a risk profile."
+                },
+                "options": {
+                    "low": "Low Risk (e.g., Office)",
+                    "medium": "Medium Risk (e.g., Manufacturing)",
+                    "high": "High Risk (e.g., Construction, Chemicals)"
+                }
+            }
+        },
+        "selection_method": {
+            "title": "Select Your Training Method"
+        },
+        "category": {
+            "induction_training": "Induction Training",
+            "awareness_training": "Awareness Training",
+            "statutory_mandatory_training": "Statutory/Mandatory Training",
+            "task_risk_specific_training": "Task/Risk-Specific Training",
+            "role_specific_competency_training": "Role-Specific/Competency Training",
+            "refresher_training": "Refresher Training",
+            "toolbox_talks_safety_briefings": "Toolbox Talks/Safety Briefings"
+        },
+        "list": {
+            "all_programs": "All Available Training Programs",
+            "search_placeholder": "Search Training Programs...",
+            "add_to_cart": "Add Selected to Cart"
+        },
+        "facts": {
+            "legal_fact_step_1": "Legal Fact: OHS Act Section 8 requires employers to provide training tailored to specific workplace hazards.",
+            "fun_fact_step_2": "Fun Fact: Did you know that regular training can reduce workplace incidents by up to 30%?",
+            "legal_fact_step_3": "Legal Fact: Local municipalities may have varying OHS regulations affecting training requirements.",
+            "fun_fact_step_4": "Fun Fact: High-risk workplaces like construction sites require frequent training to maintain safety standards.",
+            "legal_fact_step_5": "Legal Fact: OHS Act mandates specific training for roles like SHE representatives to ensure compliance."
+        }
+    },
+    "suppliers": {
+        "title": "OHS Suppliers Directory",
+        "description": "Find and rank OHS suppliers in South Africa. Browse by location, services, and accreditations. Submit reviews to help others make informed decisions.",
+        "list": {
+            "title": "Supplier List"
+        },
+        "filters": {
+            "province_label": "Filter by Province:",
+            "service_label": "Filter by Service:",
+            "sort_label": "Sort by:",
+            "options": {
+                "all_provinces": "All Provinces",
+                "gauteng": "Gauteng",
+                "kzn": "KwaZulu-Natal",
+                "wc": "Western Cape",
+                "ec": "Eastern Cape",
+                "fs": "Free State",
+                "all_services": "All Services",
+                "ppe": "PPE",
+                "training": "Training",
+                "consulting": "Consulting",
+                "alcohol_drug_testing": "Alcohol & Drug Testing",
+                "ranking": "Ranking",
+                "name": "Name",
+                "established": "Years Established"
+            }
+        },
+        "table": {
+            "name": "Supplier Name",
+            "location": "Location",
+            "services": "Services",
+            "contact": "Contact",
+            "ranking": "Ranking",
+            "actions": "Actions",
+            "action_review": "Submit Review"
+        },
+        "review_form": {
+            "title": "Submit a Review",
+            "fields": {
+                "supplier": "Supplier:",
+                "rating": "Rating (1-5):",
+                "comment": "Review:",
+                "comment_placeholder": "Enter your review here..."
+            },
+            "errors": {
+                "supplier": "Please select a supplier.",
+                "rating": "Please select a rating between 1 and 5.",
+                "comment": "Please enter a review."
+            },
+            "submit": "Submit Review"
+        }
+    },
+    "community_tools": {
+        "title": "Community Safety Tools",
+        "description": "Report any safety incident or hazard in your community or workplace, from potholes to defective equipment. Use our tools to ensure safety in settings like spaza shops, schools, hospitals, and taverns.",
+        "incident_report": {
+            "title": "Report an Incident or Hazard",
+            "fields": {
+                "photo": "Upload Photo of the Incident (Optional):",
+                "location_info": "Location will be auto-detected...",
+                "weather_info": "Weather will be auto-detected...",
+                "description": "Incident Description:",
+                "description_placeholder": "Describe the incident or hazard (e.g., pothole on Main Street, broken chair in community center)...",
+                "user_name": "Your Name (Optional):",
+                "user_name_placeholder": "Enter your name...",
+                "user_contact": "Your Contact Details (Optional):",
+                "user_contact_placeholder": "Enter your phone or email...",
+                "user_social": "Your Social Media Handle (Optional, e.g., @username on X):",
+                "user_social_placeholder": "Enter your X handle...",
+                "service_provider": "Service Provider (e.g., Municipality):",
+                "provider_contact": "Service Provider Contact Details (Optional):",
+                "provider_contact_placeholder": "Enter phone or email (auto-filled if provider selected)...",
+                "provider_social": "Service Provider Social Media Handle (Optional, e.g., @CityofJoburgZA on X):",
+                "provider_social_placeholder": "Enter X handle (auto-filled if provider selected)...",
+                "employee_route": "Route to Employer (For Members Only):",
+                "share_method": "Share Report Via:"
+            },
+            "errors": {
+                "description": "Please describe the incident or hazard.",
+                "service_provider": "Please select a service provider."
+            },
+            "options": {
+                "select_provider": "Select a Service Provider",
+                "none": "Do Not Route",
+                "supervisor": "Supervisor",
+                "safety_rep": "Health and Safety Representative",
+                "share_email": "Email",
+                "share_sms": "SMS",
+                "share_whatsapp": "WhatsApp",
+                "share_x": "X (Social Media)"
+            },
+            "submit": "Submit Report"
+        },
+        "list": {
+            "title": "Other Community Safety Tools",
+            "spaza_shop": {
+                "title": "Spaza Shop OHS Checklist",
+                "description": "Ensure your spaza shop meets fire safety, electrical, and structural requirements per municipal bylaws and the OHS Act."
+            },
+            "school": {
+                "title": "School Fire Safety Guide",
+                "description": "Learn the legal requirements for fire safety in schools, including evacuation plans and equipment."
+            },
+            "hospital": {
+                "title": "Hospital Emergency Preparedness Guide",
+                "description": "Ensure hospitals are prepared for emergencies with proper evacuation plans and safety equipment."
+            },
+            "tavern": {
+                "title": "Tavern Safety Checklist",
+                "description": "Check that taverns comply with fire safety and crowd management regulations to prevent incidents."
+            },
+            "view": "View Checklist"
+        }
+    },
+    "dashboard": {
+        "title": "Member Dashboard",
+        "welcome": "Welcome, {user_name}! Manage your OHS compliance, RMPs, supplier reviews, and community reports here.",
+        "profile": {
+            "title": "Company Profile",
+            "fields": {
+                "company_name": "Company Name:",
+                "industry": "Industry:",
+                "location": "Location (Province):",
+                "supervisor_name": "Supervisor Name (For Incident Routing):",
+                "supervisor_contact": "Supervisor Contact Details:",
+                "supervisor_contact_placeholder": "Enter phone or email...",
+                "safety_rep_name": "Health and Safety Representative Name:",
+                "safety_rep_contact": "Health and Safety Representative Contact Details:",
+                "safety_rep_contact_placeholder": "Enter phone or email..."
+            },
+            "errors": {
+                "company_name": "Please enter the company name.",
+                "industry": "Please select an industry.",
+                "location": "Please select a province."
+            },
+            "options": {
+                "select": "Select Industry",
+                "construction": "Construction",
+                "manufacturing": "Manufacturing",
+                "education": "Education",
+                "healthcare": "Healthcare",
+                "retail": "Retail",
+                "select_location": "Select Province",
+                "gauteng": "Gauteng",
+                "kzn": "KwaZulu-Natal",
+                "wc": "Western Cape",
+                "ec": "Eastern Cape",
+                "fs": "Free State"
+            },
+            "save": "Save Profile"
+        },
+        "rmps": {
+            "title": "Saved RMPs",
+            "date": "Date",
+            "title_col": "Title",
+            "actions": "Actions"
+        },
+        "supplier_reviews": {
+            "title": "Supplier Reviews",
+            "supplier": "Supplier",
+            "rating": "Rating",
+            "comment": "Review",
+            "actions": "Actions"
+        },
+        "incident_reports": {
+            "title": "Incident Reports",
+            "date": "Date",
+            "description": "Description",
+            "location": "Location",
+            "actions": "Actions"
+        }
+    },
+    "document_categories": {
+        "title": "Compile Your OHS Management System Documents",
+        "description": "Select and compile the documents you need for your OHS management system. Choose from policies, procedures, standards, and more, tailored to your organization’s needs.",
+        "policies": {
+            "title": "Policies",
+            "description": "High-level statements of intent and commitment, approved by top management.",
+            "ohs_policy": "Occupational Health and Safety (OHS) Policy",
+            "environmental_policy": "Environmental Policy",
+            "quality_policy": "Quality Policy",
+            "substance_abuse_policy": "Substance Abuse Policy",
+            "smoking_policy": "Smoking Policy",
+            "workplace_violence_policy": "Workplace Violence and Harassment Policy",
+            "mental_health_policy": "Mental Health and Wellbeing Policy",
+            "disability_policy": "Disability and Return-to-Work Policy",
+            "contractor_policy": "Contractor and Service Provider Policy",
+            "ppe_policy": "PPE Policy",
+            "fit_for_duty_policy": "Fit-for-Duty Policy",
+            "infectious_disease_policy": "COVID-19 or Infectious Disease Response Policy",
+            "emergency_management_policy": "Emergency Management Policy",
+            "risk_management_policy": "Risk Management Policy",
+            "construction_ohs_policy": "Construction OHS Policy",
+            "ohs_audit_inspection_policy": "OHS Audit and Inspection Policy",
+            "ohs_legal_compliance_policy": "OHS Legal Compliance Policy",
+            "ohs_incident_management_policy": "OHS Incident Management Policy",
+            "ohs_training_competency_policy": "OHS Training and Competency Policy",
+            "ohs_contractor_management_policy": "OHS Contractor Management Policy",
+            "ohs_performance_review_objectives_policy": "OHS Performance, Review, and Objectives Policy",
+            "ohs_control_measures_policy": "OHS Control Measures Management Policy",
+            "ohs_communication_participation_consultation_policy": "OHS Communication, Participation, and Consultation Policy",
+            "ohs_workplace_health_wellness_policy": "OHS Workplace Health and Wellness Policy",
+            "ohs_environmental_management_policy": "OHS Environmental Management Policy",
+            "ohs_documentation_records_control_policy": "OHS Documentation and Records Control Policy"
+        },
+        "procedures": {
+            "title": "Procedures",
+            "description": "Step-by-step guides on how to perform tasks safely and consistently.",
+            "incident_reporting_procedure": "Incident and Accident Reporting Procedure",
+            "emergency_response_procedure": "Emergency Response Procedure",
+            "fire_evacuation_procedure": "Fire Evacuation Procedure",
+            "permit_to_work_procedure": "Permit-to-Work Procedure",
+            "hira_procedure": "Hazard Identification and Risk Assessment (HIRA) Procedure",
+            "ppe_issuance_procedure": "PPE Issuance and Use Procedure",
+            "lockout_tagout_procedure": "Lockout/Tagout Procedure",
+            "confined_space_entry_procedure": "Confined Space Entry Procedure",
+            "working_at_heights_procedure": "Working at Heights Procedure",
+            "contractor_management_procedure": "Contractor Management Procedure",
+            "hot_work_procedure": "Hot Work Procedure",
+            "first_aid_procedure": "First Aid and Medical Emergency Procedure",
+            "ergonomics_assessment_procedure": "Ergonomics Assessment Procedure",
+            "incident_investigation_procedure": "Incident Investigation Procedure",
+            "induction_training_procedure": "Induction and Training Procedure",
+            "toolbox_talk_procedure": "Toolbox Talk Procedure",
+            "document_control_procedure": "Document and Records Control Procedure",
+            "non_conformance_procedure": "Non-Conformance and Corrective Action Procedure",
+            "internal_audit_procedure": "Internal OHS Audit Procedure",
+            "return_to_work_procedure": "Return-to-Work Procedure"
+        },
+        "standards": {
+            "title": "Standards/Guidelines",
+            "description": "Internal benchmarks aligned to legislation or industry norms, defining expected conditions or behaviors.",
+            "ohs_management_standard": "OHS Management System Standard (ISO 45001 aligned)",
+            "risk_rating_matrix": "Risk Rating Matrix",
+            "emergency_preparedness_standard": "Standard for Emergency Preparedness and Response",
+            "housekeeping_standard": "Housekeeping and Waste Management Standard",
+            "incident_classification_matrix": "Incident Classification Matrix",
+            "ohs_training_standard": "OHS Training and Competency Standard",
+            "safe_driving_standard": "Safe Driving / Fleet Management Standard",
+            "noise_ventilation_standard": "Standard for Noise, Ventilation, and Lighting",
+            "fire_protection_standard": "Fire Protection System Standard",
+            "ergonomics_standard": "Workplace Ergonomics Standard",
+            "health_surveillance_standard": "Occupational Health Surveillance Standard",
+            "fall_protection_standard": "Fall Protection Plan Standard",
+            "hazardous_substance_standard": "Hazardous Substance Handling Standard",
+            "construction_safety_standard": "Construction Site Safety Standard",
+            "hygiene_facility_standard": "Hygiene Facility Standard (toilets, water, rest areas)",
+            "emergency_management_standard": "Emergency Management Standard",
+            "risk_management_standard": "Risk Management Standard",
+            "construction_ohs_standard": "Construction OHS Management System Standard",
+            "ohs_audit_inspection_standard": "OHS Audit and Inspection Standard",
+            "ohs_legal_compliance_standard": "OHS Legal Compliance Management Standard",
+            "ohs_incident_management_standard": "OHS Incident Management Standard",
+            "ohs_training_competency_standard": "OHS Training and Competency Standard",
+            "ohs_contractor_management_standard": "OHS Contractor Management Standard",
+            "ohs_performance_review_objectives_standard": "OHS Performance, Review, and Objectives Standard",
+            "ohs_control_measures_standard": "OHS Control Measures Management Standard",
+            "ohs_communication_participation_consultation_standard": "OHS Communication, Participation, and Consultation Standard",
+            "ohs_workplace_health_wellness_standard": "OHS Workplace Health and Wellness Standard",
+            "ohs_environmental_management_standard": "OHS Environmental Management Standard",
+            "ohs_documentation_records_control_standard": "OHS Documentation and Records Control Standard"
+        },
+        "registers_logs": {
+            "title": "Registers and Logs",
+            "description": "Continuously updated records for tracking and traceability.",
+            "legal_requirements_register": "Legal Requirements Register",
+            "risk_register": "Risk Register / HIRA Register",
+            "training_competency_log": "Training and Competency Log",
+            "ppe_issuance_register": "PPE Issuance Register",
+            "contractor_register": "Contractor Register",
+            "incident_injury_register": "Incident and Injury Register",
+            "corrective_action_register": "Corrective Action Register (CAR/PAR)",
+            "first_aid_register": "First Aid Register",
+            "equipment_inspection_log": "Equipment/Machinery Inspection Log",
+            "fire_equipment_inspection_register": "Fire Equipment Inspection Register",
+            "chemical_register": "Chemical Register / MSDS Register",
+            "emergency_drill_register": "Emergency Drill Register",
+            "visitor_induction_register": "Visitor and Induction Register",
+            "medical_examination_register": "Occupational Medical Examination Register",
+            "asbestos_lead_exposure_register": "Asbestos or Lead Exposure Register"
+        },
+        "templates_forms": {
+            "title": "Templates/Forms",
+            "description": "Pre-formatted documents to collect and standardize input.",
+            "hira_template": "HIRA Template",
+            "incident_report_form": "Incident Report Form",
+            "root_cause_analysis_form": "Root Cause Analysis Form",
+            "toolbox_talk_attendance_sheet": "Toolbox Talk Attendance Sheet",
+            "emergency_contact_list": "Emergency Contact List",
+            "training_attendance_register": "Training Attendance Register",
+            "safety_meeting_minutes_template": "Safety Meeting Minutes Template",
+            "audit_checklist_template": "Audit Checklist Template",
+            "daily_site_inspection_form": "Daily Site Inspection Form",
+            "permit_request_forms": "Permit Request Forms",
+            "risk_control_action_plan_template": "Risk Control Action Plan Template",
+            "contractor_evaluation_checklist": "Contractor Evaluation Checklist",
+            "ohs_induction_checklist": "OHS Induction Checklist",
+            "health_surveillance_consent_form": "Health Surveillance Consent Form",
+            "hazard_report_card": "Hazard Report Card / Near-Miss Form",
+            "fit_for_duty_form": "Fit-for-Duty / Return-to-Work Assessment Form",
+            "jsa_template": "Job Safety Analysis (JSA) Template",
+            "ergonomic_risk_assessment_form": "Ergonomic Risk Assessment Form",
+            "emergency_response_plan": "Emergency Response and Evacuation Plan",
+            "emergency_management_forms_checklists": "Emergency Management Forms and Checklists",
+            "risk_assessment_plan": "Risk Assessment Plan",
+            "risk_management_forms_checklists": "Risk Management Forms and Checklists",
+            "construction_health_safety_plan": "Construction Health and Safety Plan",
+            "construction_ohs_forms_checklists": "Construction OHS Forms and Checklists",
+            "ohs_audit_inspection_forms_checklists": "OHS Audit and Inspection Forms and Checklists",
+            "ohs_legal_compliance_evaluation_checklist": "OHS Legal Compliance Evaluation Checklist",
+            "ohs_incident_report_investigation": "OHS Incident Report and Investigation Forms",
+            "ohs_training_forms_templates": "OHS Training Forms and Templates",
+            "ohs_contractor_management_forms_templates": "OHS Contractor Management Forms and Templates",
+            "ohs_performance_review_objectives_forms_templates": "OHS Performance, Review, and Objectives Forms and Templates",
+            "ohs_control_measures_forms_templates": "OHS Control Measures Management Forms and Templates",
+            "ohs_communication_participation_consultation_forms_templates": "OHS Communication, Participation, and Consultation Forms and Templates",
+            "ohs_workplace_health_wellness_forms_templates": "OHS Workplace Health and Wellness Forms and Templates",
+            "ohs_environmental_management_forms_templates": "OHS Environmental Management Forms and Templates",
+            "ohs_documentation_records_control_forms_templates": "OHS Documentation and Records Control Forms and Templates"
+        },
+        "permits": {
+            "title": "Permits",
+            "description": "Controlled authorizations for high-risk or restricted tasks.",
+            "permit_to_work_general": "Permit to Work (General)",
+            "hot_work_permit": "Hot Work Permit",
+            "confined_space_entry_permit": "Confined Space Entry Permit",
+            "working_at_heights_permit": "Working at Heights Permit",
+            "electrical_isolation_permit": "Electrical Isolation / Lockout Permit",
+            "excavation_permit": "Excavation and Trenching Permit",
+            "crane_lifting_permit": "Crane / Lifting Operation Permit",
+            "demolition_work_permit": "Demolition Work Permit",
+            "hazardous_substance_handling_permit": "Hazardous Substance Handling Permit",
+            "vehicle_equipment_access_permit": " enfrentVehicle and Equipment Access Permit",
+            "radiation_work_permit": "Radiation Work Permit",
+            "asbestos_disturbance_permit": "Asbestos Disturbance Permit"
+        },
+        "records": {
+            "title": "Records",
+            "description": "Completed documents demonstrating implementation and compliance.",
+            "signed_policies": "Signed Policies",
+            "completed_risk_assessments": "Completed Risk Assessments",
+            "incident_investigation_reports": "Incident Investigation Reports",
+            "signed_meeting_minutes": "Signed Meeting Minutes",
+            "completed_permits": "Completed Permits",
+            "attendance_records": "Attendance Records (Training/Inductions/Toolbox Talks)",
+            "certificates_of_compliance": "Certificates of Compliance (e.g., fire, electrical)",
+            "equipment_maintenance_reports": "Equipment Maintenance and Calibration Reports",
+            "medical_surveillance_reports": "Medical Surveillance Reports",
+            "coida_claims_reports": "COIDA Claims and Reports",
+            "audit_reports": "Audit Reports",
+            "contractor_safety_files": "Contractor Safety Files",
+            "waste_disposal_certificates": "Waste Disposal Certificates"
+        },
+        "errors": {
+            "document_selection": "Please select at least one document."
+        }
+    },
+    "links": {
+        "incident_management": "Manage Incidents",
+        "emergency_response": "Plan Emergency Response",
+        "risk_assessment": "Conduct Risk Assessment",
+        "training": "Conduct Training",
+        "inspections_audits": "Conduct Inspections & Audits",
+        "legislation": "View Legislation"
+    }
+}

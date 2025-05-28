@@ -1,0 +1,545 @@
+/* assets/css/risk-assessment.css */
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    display: flex;
+    min-height: 100vh;
+    background-color: #f5f6f5;
+    overflow-x: hidden;
+    flex-direction: row;
+}
+
+/* Header */
+header {
+    background-color: #1a2526;
+    color: #fff;
+    padding: 15px 30px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 90;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo-placeholder {
+    background-color: #fff;
+    color: #333;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    text-align: center;
+    width: 250px;
+    height: 40px;
+    line-height: 20px;
+}
+
+.header-content {
+    flex: 1;
+}
+
+header h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 15px;
+    font-size: 0.9em;
+}
+
+.nav-links a:hover {
+    color: #00aaff;
+}
+
+.search-bar form {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input {
+    padding: 6px;
+    border: 1px solid #ddd;
+    border-radius: 4px 0 0 4px;
+    font-size: 0.9em;
+}
+
+.search-bar button {
+    padding: 6px 12px;
+    background-color: #00aaff;
+    color: #fff;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+
+.search-bar button:hover {
+    background-color: #0088cc;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 250px;
+    background-color: #1a2526;
+    color: #ecf0f1;
+    overflow-y: auto;
+    z-index: 100;
+}
+
+.sidebar-content {
+    padding: 20px;
+}
+
+.sidebar h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.sidebar a {
+    display: flex;
+    align-items: center;
+    color: #ecf0f1;
+    text-decoration: none;
+    padding: 10px 0;
+    font-size: 1em;
+}
+
+.sidebar a .icon {
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+.sidebar a:hover {
+    color: #00aaff;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    margin-left: 250px;
+    background-color: #f5f6f5;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Risk Assessment Form */
+.risk-assessment-form {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    margin: 100px 30px 30px 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex: 1;
+}
+
+.risk-assessment-form h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.6em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.risk-assessment-form p {
+    font-size: 1em;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.step {
+    margin-bottom: 20px;
+}
+
+.step.hidden {
+    display: none;
+}
+
+.step h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+    color: #1a2526;
+}
+
+.step form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.step label {
+    font-size: 1em;
+    color: #333;
+}
+
+.step select,
+.step input[type="text"],
+.step input[type="date"],
+.step input[type="email"],
+.step input[type="tel"],
+.step textarea {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.9em;
+    width: 100%;
+    max-width: 400px;
+}
+
+.step textarea {
+    height: 100px;
+    resize: vertical;
+    overflow-y: auto;
+}
+
+.step button {
+    padding: 10px 20px;
+    background-color: #00aaff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    align-self: flex-start;
+}
+
+.step button:hover {
+    background-color: #0088cc;
+}
+
+.step button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.back-btn {
+    background-color: #666;
+}
+
+.back-btn:hover {
+    background-color: #555;
+}
+
+.activity-group {
+    margin: 15px 0;
+}
+
+.activity-group h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    color: #1a2526;
+    cursor: pointer;
+}
+
+.activity-group ul {
+    list-style: none;
+    margin-left: 20px;
+    display: none;
+}
+
+.activity-group.open ul {
+    display: block;
+}
+
+.activity-group li {
+    margin: 5px 0;
+}
+
+.activity-group input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+#activity-search {
+    margin-bottom: 15px;
+}
+
+.ratings-table,
+.review-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+}
+
+.ratings-table th,
+.review-table th {
+    background-color: #1a2526;
+    color: #fff;
+    padding: 10px;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.ratings-table td,
+.review-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    font-size: 0.9em;
+}
+
+.ratings-table select {
+    width: 100px;
+}
+
+.compliance-note {
+    color: #d32f2f;
+    font-size: 0.9em;
+    margin-top: 10px;
+}
+
+.form-desc {
+    font-size: 0.8em;
+    color: #666;
+    margin-top: 5px;
+}
+
+#step-5 ul {
+    list-style: disc;
+    margin-left: 20px;
+    color: #333;
+}
+
+#step-5 a {
+    color: #00aaff;
+    text-decoration: none;
+}
+
+#step-5 a:hover {
+    text-decoration: underline;
+}
+
+/* Suggested Activities */
+.suggested {
+    background-color: #e6f3ff;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.suggested-label {
+    font-size: 0.8em;
+    color: #00aaff;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+/* Footer */
+footer {
+    background-color: #1a2526;
+    color: #fff;
+    padding: 30px;
+    text-align: center;
+}
+
+footer p {
+    margin: 5px 0;
+    font-size: 0.9em;
+}
+
+footer a {
+    color: #00aaff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+.newsletter {
+    margin-top: 20px;
+}
+
+.newsletter h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.newsletter form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.newsletter input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px 0 0 4px;
+    font-size: 0.9em;
+    width: 200px;
+}
+
+.newsletter button {
+    padding: 8px 16px;
+    background-color: #00aaff;
+    color: #fff;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+
+.newsletter button:hover {
+    background-color: #0088cc;
+}
+
+/* Chatbot */
+.chatbot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.chat-toggle-btn {
+    background-color: #00aaff;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+}
+
+.chat-toggle-btn:hover {
+    background-color: #0088cc;
+}
+
+.chat-icon {
+    margin-right: 5px;
+    font-size: 20px;
+}
+
+#chat-window {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 300px;
+    max-height: 400px;
+    overflow-y: auto;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-hidden {
+    display: none;
+}
+
+#chat-output {
+    padding: 10px;
+    font-size: 14px;
+    flex: 1;
+}
+
+#chat-input {
+    width: 70%;
+    padding: 8px;
+    border: none;
+    border-top: 1px solid #ddd;
+}
+
+#chat-send {
+    width: 30%;
+    padding: 8px;
+    background-color: #00aaff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+#chat-send:hover {
+    background-color: #0088cc;
+}
+
+/* Accessibility */
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 2px solid #00aaff;
+    outline-offset: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        top: 0;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    header {
+        position: relative;
+    }
+
+    .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .logo-placeholder {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .risk-assessment-form {
+        margin: 20px;
+    }
+
+    .ratings-table,
+    .review-table {
+        font-size: 0.8em;
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .step button {
+        width: 100%;
+    }
+
+    .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-links a {
+        margin: 5px 10px;
+    }
+}

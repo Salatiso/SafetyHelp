@@ -1,0 +1,93 @@
+.incident-report {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #e8f4f8;
+    border: 2px solid #3498db;
+    border-radius: 8px;
+}
+
+.incident-report h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+}
+
+.incident-report form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.incident-report label {
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.incident-report input,
+.incident-report select,
+.incident-report textarea {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.incident-report textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.incident-report button {
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: fit-content;
+    font-size: 1.1em;
+}
+
+.incident-report button:hover {
+    background-color: #2980b9;
+}
+
+.tools-list {
+    margin: 20px 0;
+}
+
+.tools-list h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.tool {
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.tool h4 {
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+.tool p {
+    margin-bottom: 10px;
+}
+
+.tool button {
+    padding: 5px 10px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.tool button:hover {
+    background-color: #2980b9;
+}

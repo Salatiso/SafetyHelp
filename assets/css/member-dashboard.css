@@ -1,0 +1,96 @@
+.dashboard {
+    padding: 20px;
+}
+
+.dashboard h2 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.dashboard-section {
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.dashboard-section h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+#company-profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 400px;
+}
+
+#company-profile-form label {
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+#company-profile-form input,
+#company-profile-form select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+}
+
+#company-profile-form button {
+    padding: 8px 15px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: fit-content;
+}
+
+#company-profile-form button:hover {
+    background-color: #2980b9;
+}
+
+.dashboard-section table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.dashboard-section th,
+.dashboard-section td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.dashboard-section th {
+    background-color: #f2f2f2;
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+.dashboard-section td {
+    background-color: #fff;
+}
+
+.dashboard-section tr:nth-child(even) td {
+    background-color: #f9f9f9;
+}
+
+.dashboard-section button {
+    padding: 5px 10px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.dashboard-section button:hover {
+    background-color: #2980b9;
+}

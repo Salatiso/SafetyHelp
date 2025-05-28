@@ -1,0 +1,1161 @@
+{
+    "header": {
+        "title": "VeiligheidHulp",
+        "tagline": "Veiligheid Gepersonaliseer, Naleving Vereenvoudig—Anytyd, Enige plek",
+        "nav": {
+            "home": "Tuis",
+            "resources": "Hulpbronne",
+            "services": "Dienste",
+            "community": "Gemeenskap",
+            "about": "Oor Ons",
+            "contact": "Kontak Ons",
+            "login": "Meld Aan",
+            "logout": "Meld Af"
+        },
+        "search": {
+            "placeholder": "Soek ARB-hulpbronne...",
+            "button": "Soek"
+        }
+    },
+    "language_selector": {
+        "en": "Engels",
+        "af": "Afrikaans",
+        "zu": "Zoeloe",
+        "xh": "Xhosa",
+        "st": "Sotho",
+        "tn": "Tswana",
+        "nso": "Pedi",
+        "ts": "Tsonga",
+        "ss": "Swati",
+        "ve": "Venda",
+        "nr": "Ndebele",
+        "es": "Spaans",
+        "fr": "Frans",
+        "sn": "Shona",
+        "sw": "Swahili",
+        "zh": "Mandaryn"
+    },
+    "sidebar": {
+        "ohs_tools": "VeiligheidHulp ARB-gereedskap",
+        "construction_safety": "Konstruksieveiligheid",
+        "emergency_planning": "Noodbeplanning",
+        "risk_assessment": "Risiko-assessering",
+        "legal_appointments": "Wettige Aanstellings",
+        "incident_management": "Voorvalbestuur",
+        "training": "Opleiding",
+        "inspections_audits": "Inspeksies & Oudits",
+        "suppliers": "Verskaffers",
+        "legislation": "Wetgewing",
+        "community_tools": "Gemeenskapsgereedskap",
+        "member_dashboard": "Lidkontrolebord",
+        "ohs_system": "ARB-stelsel",
+        "step_0": {
+            "title": "📜 Welkom by VeiligheidHulp",
+            "description": "Verken ons omvattende gereedskap en hulpbronne om arbeidsgesondheid en -veiligheid in jou werkplek te verbeter.",
+            "fun_fact": "⚡ Het jy geweet dat die gebruik van betroubare etiese verskaffers werkplekgevare kan verminder deur te verseker dat werk betyds en volgens die hoogste gehalte- en veiligheidsstandaarde gedoen word?"
+        }
+    },
+    "intro": {
+        "title": "Welkom by VeiligheidHulp",
+        "description": "Verken ons omvattende gereedskap en hulpbronne om arbeidsgesondheid en -veiligheid in jou werkplek te verbeter."
+    },
+    "welcome": {
+        "title": "Welkom by VeiligheidHulp",
+        "description": "Jou betroubare platform vir arbeidsgesondheid en -veiligheid (ARB) in Suid-Afrika. Ons bied outomatiese, KI-verbeterde gereedskap om veiligheid en naleving vir werkplekke, skole, kerke en informele sektore te verseker. Sluit aan by ons gemeenskap om toegang te kry tot hulpbronne, dienste en ondersteuning wat op jou behoeftes toegespits is."
+    },
+    "why_choose": {
+        "title": "Waarom VeiligheidHulp Kies vir ARB-naleving?",
+        "content": "VeiligheidHulp is jou betroubare vennoot vir arbeidsgesondheid en -veiligheid naleving in Suid-Afrika. Ons platform bied ’n omvattende reeks gereedskap wat aangepas is om te voldoen aan die unieke behoeftes van nywerhede soos konstruksie, mynbou en vervaardiging. Van die opstel van wetlike registers tot die uitvoer van risiko-assesserings, VeiligheidHulp vereenvoudig komplekse ARB-vereistes met gebruikersvriendelike towenaars en intydse ondersteuning deur ons KI-aangedrewe kletsbot. Gesteun deur Suid-Afrikaanse regulasies en beste praktyke, bemagtig ons besighede om veiliger werkplekke te skep terwyl ons naleving van die ARB-wet en COIDA verseker. Sluit aan by duisende professionele persone wat op VeiligheidHulp staatmaak om hul spanne te beskerm en veiligheidsprosesse te stroomlyn."
+    },
+    "legal_obligations": {
+        "client": {
+            "title": "Kliëntverpligtinge",
+            "reg_5_1_a": "<strong>Konstruksieregulasie 5(1)(a):</strong> Stel ’n Basislyn Risiko-assessering (BRA) op wat projekgevare identifiseer.",
+            "reg_5_1_b": "<strong>Konstruksieregulasie 5(1)(b):</strong> Verskaf ’n Gesondheids- en Veiligheidsspesifikasie wat spesifieke projekvereistes uiteensit.",
+            "reg_5_1_l": "<strong>Konstruksieregulasie 5(1)(l):</strong> Aanvaar die Kontrakteur se Gesondheids- en Veiligheidsplan voordat werk begin."
+        },
+        "contractor": {
+            "title": "Kontrakteurverpligtinge",
+            "reg_7_1_a": "<strong>Konstruksieregulasie 7(1)(a):</strong> Dien ’n Gesondheids- en Veiligheidsplan in wat op die kliënt se spesifikasie gebaseer is.",
+            "reg_7_1_b": "<strong>Konstruksieregulasie 7(1)(b):</strong> Hou ’n Gesondheids- en Veiligheidslêer op die terrein met alle vereiste dokumentasie.",
+            "reg_9": "<strong>Konstruksieregulasie 9:</strong> Voer Risiko-assesserings en Gevaaridentifikasie Risiko-assesserings (HIRA’s) spesifiek vir die werk uit."
+        },
+        "professional": {
+            "title": "G&V Professionele Verpligtinge",
+            "reg_5_5": "<strong>Konstruksieregulasie 5(5):</strong> Agente (PrCHSA) bestuur G&V namens die kliënt en verseker naleving.",
+            "reg_8_5": "<strong>Konstruksieregulasie 8(5):</strong> Beamptes (CHSO) help kontrakteurs met die implementering en ouditering van G&V-stelsels.",
+            "sacpcmp": "<strong>SACPCMP-riglyne:</strong> Moet registrasie en CPD-vereistes handhaaf vir professionele status."
+        }
+    },
+    "action_buttons": {
+        "hs_spec": "Stel Gesondheids- en Veiligheidsspesifikasie Saam",
+        "hs_plan": "Stel Gesondheids- en Veiligheidsplan Saam",
+        "risk_assessment": "Stel Risiko-assessering Saam",
+        "training": "Voer Opleiding Uit",
+        "appointments": "Voer Wettige Aanstellings Uit",
+        "inspections": "Voer Inspeksies/Oudits Uit",
+        "incidents": "Bestuur Voorvalle",
+        "reports": "Stel Nakomingsverslae Saam",
+        "hs_file": "Stel Gesondheids- en Veiligheidslêer Saam",
+        "search_laws": "Soek ARB-wette",
+        "generate_rmp": "Genereer RMP",
+        "generate_legal_register": "Genereer ARB Wetlike Register"
+    },
+    "wizard": {
+        "step_0": "Kies asseblief ’n aksie om die proses te begin.",
+        "step_1": {
+            "title": "Stap 1 van 9: Wat wil jy doen?",
+            "label": "Kies die dokumente wat jy sal saamstel (Kies alles wat van toepassing is):",
+            "errors": {
+                "document_types": "Kies asseblief ten minste een dokument om saam te stel."
+            },
+            "documents": {
+                "hs_spec": "<span class='emoji'>📋</span> Gesondheids- en Veiligheidsspesifikasie",
+                "hs_plan": "<span class='emoji'>📑</span> Gesondheids- en Veiligheidsplan",
+                "risk_assessment": "<span class='emoji'>⚠️</span> Risiko-assessering",
+                "training": "<span class='emoji'>🎓</span> Voer Opleiding Uit",
+                "appointments": "<span class='emoji'>📜</span> Voer Wettige Aanstellings Uit",
+                "inspections": "<span class='emoji'>🔍</span> Voer Inspeksies/Oudits Uit",
+                "incidents": "<span class='emoji'>🚑</span> Bestuur Voorvalle",
+                "reports": "<span class='emoji'>📊</span> Nakomingsverslae",
+                "hs_file": "<span class='emoji'>📂</span> Gesondheids- en Veiligheidslêer",
+                "health_safety_specification_template": "<span class='emoji'>📋</span> Gesondheids- en Veiligheidsspesifikasie",
+                "construction_health_safety_plan_template": "<span class='emoji'>📑</span> Gesondheids- en Veiligheidsplan",
+                "baseline_risk_assessment_template": "<span class='emoji'>⚠️</span> Basislyn Risiko-assessering",
+                "risk_assessment_plan_template": "<span class='emoji'>⚠️</span> Risiko-assesseringsplan",
+                "ohs_training_competency_policy_template": "<span class='emoji'>🎓</span> Opleidingsbeleid",
+                "section_16_1_appointment_template": "<span class='emoji'>📜</span> Artikel 16(1) Aanstelling",
+                "ohs_audit_inspection_standard_template": "<span class='emoji'>🔍</span> Inspeksies/Ouditstandaard",
+                "ohs_incident_management_standard_template": "<span class='emoji'>🚑</span> Voorvalbestuurstandaard",
+                "ohs_contractor_management_policy_template": "<span class='emoji'>🤝</span> Kontrakteurbestuursbeleid"
+            }
+        },
+        "step_2": {
+            "title": "Stap 2 van 9: Kliëntbesonderhede",
+            "fields": {
+                "client_name": "Kliëntmaatskappy Naam:",
+                "client_address": "Kliëntadres:",
+                "client_contact_person": "Kliëntkontakpersoon:",
+                "client_contact_role": "Kliëntkontakrol:",
+                "client_contact_number": "Kliëntkontaknommer:",
+                "client_email": "Kliënte-pos:",
+                "client_coida": "COIDA-registrasienommer:"
+            },
+            "errors": {
+                "client_name": "Vul asseblief die kliëntmaatskappy se naam in.",
+                "client_address": "Vul asseblief die kliënt se adres in.",
+                "client_contact_person": "Vul asseblief die kliënt se kontakpersoon in.",
+                "client_contact_role": "Vul asseblief die kliënt se kontakrol in.",
+                "client_contact_number": "Vul asseblief ’n geldige telefoonnommer in (bv. +27123456789).",
+                "client_email": "Vul asseblief ’n geldige e-posadres in.",
+                "client_coida": "Vul asseblief die COIDA-registrasienommer in."
+            }
+        },
+        "step_3": {
+            "title": "Stap 3 van 9: Is ’n Kontrakteur Aangestel?",
+            "fields": {
+                "contractor_appointed": "Kontrakteur Aangestel:"
+            },
+            "errors": {
+                "contractor_appointed": "Kies asseblief ’n opsie."
+            },
+            "options": {
+                "yes": "Ja",
+                "no": "Nee",
+                "not_applicable": "Nie Toepaslik Nie"
+            }
+        },
+        "step_4": {
+            "title": "Stap 4 van 9: Kontrakteurbesonderhede",
+            "fields": {
+                "contractor_name": "Kontrakteurmaatskappy Naam:",
+                "contractor_address": "Kontrakteuradres:",
+                "contractor_contact_person": "Kontrakteurkontakpersoon:",
+                "contractor_contact_role": "Kontrakteurkontakrol:",
+                "contractor_contact_number": "Kontrakteurkontaknommer:",
+                "contractor_email": "Kontrakteure-pos:",
+                "contractor_coida": "COIDA-registrasienommer:"
+            },
+            "errors": {
+                "contractor_name": "Vul asseblief die kontrakteurmaatskappy se naam in.",
+                "contractor_address": "Vul asseblief die kontrakteur se adres in.",
+                "contractor_contact_person": "Vul asseblief die kontrakteur se kontakpersoon in.",
+                "contractor_contact_role": "Vul asseblief die kontrakteur se kontakrol in.",
+                "contractor_contact_number": "Vul asseblief ’n geldige telefoonnommer in (bv. +27123456789).",
+                "contractor_email": "Vul asseblief ’n geldige e-posadres in.",
+                "contractor_coida": "Vul asseblief die COIDA-registrasienommer in."
+            }
+        },
+        "step_5": {
+            "title": "Stap 5 van 9: Projekbesonderhede",
+            "fields": {
+                "project_reference": "Projekverwysingsnommer:",
+                "project_name": "Projeknaam:",
+                "site_address": "Terreinadres:",
+                "site_supervisor_name": "Terreintoesighouer Naam:",
+                "site_supervisor_number": "Terreintoesighouer Kontaknommer:",
+                "site_supervisor_email": "Terreintoesighouer E-pos:"
+            },
+            "errors": {
+                "project_name": "Vul asseblief die projeknaam in.",
+                "site_address": "Vul asseblief die terreinadres in.",
+                "site_supervisor_name": "Vul asseblief die terreintoesighouer se naam in.",
+                "site_supervisor_number": "Vul asseblief ’n geldige telefoonnommer in (bv. +27123456789).",
+                "site_supervisor_email": "Vul asseblief ’n geldige e-posadres in."
+            }
+        },
+        "step_6": {
+            "title": "Stap 6 van 9: Projekomvang",
+            "fields": {
+                "type_of_work": "Tipe Werk om Uitgevoer te Word:",
+                "cidb_grade": "CIDB-graad:",
+                "cost": "Koste (R):",
+                "duration": "Duur (Dae):",
+                "activities": "Betrokke Aktiwiteite (Kies alles wat van toepassing is):",
+                "scope_details": "Omvangbesonderhede:"
+            },
+            "errors": {
+                "type_of_work": "Vul asseblief die tipe werk in.",
+                "cidb_grade": "Kies asseblief ’n CIDB-graad.",
+                "cost": "Vul asseblief ’n geldige projekkoste in (R).",
+                "duration": "Vul asseblief ’n geldige duur in (dae).",
+                "scope_details": "Vul asseblief die omvangbesonderhede in."
+            },
+            "options": {
+                "cidb_grade_not_applicable": "Nie Toepaslik Nie",
+                "cidb_grade_1": "Graad 1",
+                "cidb_grade_2": "Graad 2",
+                "cidb_grade_3": "Graad 3",
+                "cidb_grade_4": "Graad 4",
+                "cidb_grade_5": "Graad 5",
+                "cidb_grade_6": "Graad 6",
+                "cidb_grade_7": "Graad 7",
+                "cidb_grade_8": "Graad 8",
+                "cidb_grade_9": "Graad 9",
+                "activities": {
+                    "security_guards": "Sekuriteitswagte",
+                    "night_work": "Nagwerk",
+                    "moving_traffic": "Bewegende Verkeer Werk",
+                    "vibration_exposure": "Vibrasieblootstelling",
+                    "noise_exposure": "Geraasblootstelling",
+                    "welders": "Sweisers",
+                    "welding": "Sweiswerk",
+                    "hot_work": "Warm Werk (bv. sny, slyp)",
+                    "combustible_materials": "Brandbare Materiale",
+                    "hazardous_substances": "Hantering van Gevaarlike Stowwe",
+                    "office_fit_out": "Kantoorverbouing",
+                    "sensitive_it_equipment": "Sensitiewe IT-toerusting",
+                    "manual_handling": "Handhantering",
+                    "working_electricity": "Elektriese Werk",
+                    "dust_exposure": "Stofblootstelling",
+                    "civil_contractors": "Siviele Kontrakteurs",
+                    "excavation": "Uitgrawing",
+                    "crane_operations": "Kraanbedrywighede",
+                    "working_near_water": "Werk Naby Water",
+                    "pile_driving": "Heipaalwerk",
+                    "working_tunnels": "Tonnelwerk",
+                    "general_construction": "Algemene Konstruksie",
+                    "working_from_heights": "Werk vanaf Hoogtes",
+                    "scaffolding": "Steierwerk",
+                    "multi_storey": "Multi-verdieping Konstruksie",
+                    "asbestos": "Asbesverwydering",
+                    "confined_space": "Beperkte Ruimte Betreding",
+                    "demolition": "Sloping",
+                    "roof_work": "Dakwerk",
+                    "temporary_works": "Tydelike Werke",
+                    "live_voltage": "Lewendige Spanning Werk"
+                }
+            }
+        },
+        "step_7": {
+            "title": "Stap 7 van 9: Saamgestel Deur",
+            "fields": {
+                "name": "Naam:",
+                "number": "Kontaknommer:",
+                "email": "E-pos:",
+                "role": "Rol:",
+                "sacpcmp_reg": "SACPCMP-registrasienommer:",
+                "specify_role": "Spesifiseer Rol:"
+            },
+            "errors": {
+                "name": "Vul asseblief jou naam in.",
+                "number": "Vul asseblief ’n geldige telefoonnommer in (bv. +27123456789).",
+                "email": "Vul asseblief ’n geldige e-posadres in.",
+                "role": "Kies asseblief ’n rol.",
+                "sacpcmp_reg": "Vul asseblief die SACPCMP-registrasienommer in.",
+                "specify_role": "Spesifiseer asseblief jou rol."
+            },
+            "options": {
+                "trainee": "ARB-leerling",
+                "ohs_rep": "ARB-verteenwoordiger",
+                "sacpcmp_officer": "SACPCMP-beampte (CHSO)",
+                "sacpcmp_agent": "SACPCMP-agent (PrCHSA)",
+                "other": "Ander"
+            }
+        },
+        "step_8": {
+            "title": "Stap 8 van 9: Saamgestel Vir",
+            "fields": {
+                "compiled_for": "Saamgestel Vir:",
+                "compiled_for_name": "Naam:",
+                "compiled_for_number": "Kontaknommer:",
+                "compiled_for_email": "E-pos:",
+                "compiled_for_other": "Spesifiseer Rol:",
+                "additional_signatories": "Bykomende Ondertekenaars (Opsioneel):"
+            },
+            "errors": {
+                "compiled_for": "Kies asseblief ’n opsie.",
+                "compiled_for_name": "Vul asseblief ’n naam in.",
+                "compiled_for_number": "Vul asseblief ’n geldige telefoonnommer in (bv. +27123456789).",
+                "compiled_for_email": "Vul asseblief ’n geldige e-posadres in.",
+                "compiled_for_other": "Spesifiseer asseblief die rol."
+            },
+            "options": {
+                "client": "Kliënt",
+                "contractor": "Kontrakteur",
+                "other": "Ander"
+            },
+            "hint": "Voer een naam per lyn in."
+        },
+        "step_9": {
+            "title": "Stap 9 van 9: Hersien en Gaan na Afhandeling",
+            "description": "Hersien jou keuses en gaan voort na afhandeling.",
+            "cart": {
+                "label": "Jou Mandjie:",
+                "table": {
+                    "document": "Dokument",
+                    "price": "Prys"
+                },
+                "errors": {
+                    "cart_empty": "Voeg asseblief ten minste een dokument by die mandjie."
+                },
+                "empty_cart": "Jou mandjie is leeg."
+            },
+            "promo_code": {
+                "label": "Promosiekode (Opsioneel):",
+                "placeholder": "Voer SAFETYFIRST25 in",
+                "apply_promo": "Pas Toe",
+                "errors": {
+                    "promo_code": "Ongeldige promosiekode."
+                },
+                "promo_success": "Promosiekode toegepas! 25% afslag."
+            },
+            "total": {
+                "label": "Totale Prys:"
+            },
+            "payment_method": {
+                "label": "Betaalmetode:",
+                "errors": {
+                    "payment_method": "Kies asseblief ’n betaalmetode."
+                },
+                "options": {
+                    "credit_card": "Kredietkaart",
+                    "bank_transfer": "Bankoorplasing",
+                    "paypal": "PayPal"
+                }
+            },
+            "selected_documents_label": "Gekose Dokumente:"
+        },
+        "nav": {
+            "back": "Terug",
+            "next": "Volgende",
+            "add_to_cart": "Voeg by Mandjie",
+            "checkout": "Gaan na Afhandeling"
+        }
+    },
+    "cart": {
+        "title": "Jou Mandjie",
+        "invoice_reference": "Faktuurnommer: <span id=\"invoice-ref-number\" class=\"font-medium\"></span> (Geldig vir 7 dae. Registreer om onbepaald te stoor!)",
+        "table": {
+            "document": "Dokument",
+            "price": "Prys"
+        },
+        "checkout": {
+            "promo_label": "Promosiekode:",
+            "promo_placeholder": "Voer SAFETYFIRST25 in",
+            "button": "Gaan na Afhandeling"
+        },
+        "subscribe": {
+            "button": "Teken in vir Volle Toegang"
+        }
+    },
+    "resources": {
+        "title": "Kontak Geakkrediteerde G&V Professionele",
+        "description": "Benodig jy kundige hulp? Kontak geakkrediteerde professionele vir jou projekbehoeftes.",
+        "jane_doe": "<strong>Jane Doe, SACPCMP-agent (PrCHSA)</strong> - Reg No: PR12345 - Kontak: <a href='mailto:jane.doe@example.com' class='text-blue-500 hover:underline'>jane.doe@example.com</a>",
+        "john_smith": "<strong>John Smith, SACPCMP-beampte (CHSO)</strong> - Reg No: CHSO67890 - Kontak: <a href='mailto:john.smith@example.com' class='text-blue-500 hover:underline'>john.smith@example.com</a>",
+        "emily_brown": "<strong>Emily Brown, ARB-verteenwoordiger</strong> - Kontak: <a href='mailto:emily.brown@example.com' class='text-blue-500 hover:underline'>emily.brown@example.com</a>"
+    },
+    "footer": {
+        "copyright": "© 2025 VeiligheidHulp. Alle regte voorbehou.",
+        "links": {
+            "privacy": "Privaatheidsbeleid",
+            "terms": "Diensvoorwaardes",
+            "contact": "Kontak Ons"
+        },
+        "newsletter": {
+            "title": "Bly Opgedateer",
+            "placeholder": "Voer jou e-pos in",
+            "button": "Teken In"
+        }
+    },
+    "chatbot": {
+        "button": "Vra Salatiso",
+        "input_placeholder": "Vra oor ARB...",
+        "send": "Stuur",
+        "welcome": "Hallo! Hoe kan ek jou vandag met ARB help?",
+        "response": "Ek is hier om te help! Vir persoonlike ARB-advies, kontak asseblief ’n professionele.",
+        "you": "Jy",
+        "bot": "VeiligheidHulp Bot",
+        "error": "Fout",
+        "unavailable": "Kletsbot nie beskikbaar nie. Probeer asseblief weer later.",
+        "error_generic": "Oeps, iets het verkeerd geloop. Probeer asseblief weer!",
+        "no_match": "Jammer, ek kon nie ’n presiese passing vind nie. Probeer herformuleer!",
+        "escalate": "Ek is nie seker ek kan daarmee help nie. Wil jy ons ondersteuningspan kontak?",
+        "contact_support": "Kontak Ondersteuning",
+        "see_more": "Sien meer",
+        "full_chapter": "Bekyk volle hoofstuk",
+        "from": "Van {book}, Hoofstuk {chapter}:",
+        "responses": {
+            "hs_spec": "’n Gesondheids- en Veiligheidsspesifikasie skets die kliënt se ARB-vereistes vir ’n konstruksieprojek, volgens Konstruksieregulasie 5(1)(b). Dit sluit projekbesonderhede, gevare en nakomingsverpligtinge in.",
+            "hs_plan": "’n Gesondheids- en Veiligheidsplan word deur die kontrakteur voorberei om die kliënt se G&V-spesifikasie aan te spreek, met besonderhede oor veiligheidsmaatreëls en prosedures, soos vereis deur Konstruksieregulasie 7(1)(a).",
+            "risk_assessment": "’n Risiko-assessering identifiseer gevare en evalueer risiko’s vir projekaktiwiteite, verpligtend onder Konstruksieregulasie 9.",
+            "sacpcmp": "SACPCMP (Suid-Afrikaanse Raad vir die Projek- en Konstruksiebestuursprofessies) akkrediteer professionele soos CHSO’s en PrCHSA’s om ARB-naleving te verseker.",
+            "coida": "COIDA (Wet op Vergoeding vir Beroepsbeserings en Siektes) vereis dat werkgewers registreer vir vergoedingdekking vir werkplekbeserings."
+        }
+    },
+    "page_title": {
+        "construction": "VeiligheidHulp - Konstruksie Gesondheid en Veiligheid",
+        "legal_appointments": "VeiligheidHulp - Wettige Aanstellings",
+        "legislation": "VeiligheidHulp - Wetgewing",
+        "services": "VeiligheidHulp - Dienste"
+    },
+    "construction": {
+        "title": "Konstruksie Gesondheid en Veiligheid",
+        "description": "Verseker naleving van konstruksie gesondheids- en veiligheidsregulasies met VeiligheidHulp ARB-gereedskap. Ons hulpbronne help jou om risiko’s te bestuur, aan wetlike vereistes te voldoen en werkers op die terrein te beskerm, met verwysing na beste praktyke uit 'Safety First: The Essentials of OHS Plans.'",
+        "download_link": "Laai die Konstruksie ARB-plan af: "
+    },
+    "legal_appointments": {
+        "title": "Wettige Aanstellings",
+        "description": "Bestuur arbeidsgesondheid en -veiligheid wettige aanstellings soos vereis deur Suid-Afrikaanse ARB-regulasies. Gebruik die organogram om rolle toe te ken, vul aangestelde besonderhede in en genereer ’n omvattende dokument met aanstellingsbriewe, opleidingsrekords en meer."
+    },
+    "organogram": {
+        "title": "ARB Wettige Aanstellings Organogram",
+        "form": {
+            "name": "Aangestelde Naam",
+            "name_error": "Vul asseblief die aangestelde se naam in.",
+            "email": "E-pos",
+            "email_error": "Vul asseblief ’n geldige e-posadres in.",
+            "phone": "Telefoonnommer",
+            "phone_error": "Vul asseblief ’n geldige telefoonnommer in (bv. +27123456789).",
+            "start_date": "Begindatum",
+            "start_date_error": "Vul asseblief die begindatum in.",
+            "end_date": "Einddatum",
+            "training": "Opleiding/Bevoegdheid",
+            "training_error": "Vul asseblief opleidings/bevoegdheidsbesonderhede in.",
+            "notes": "Bykomende Notas",
+            "save": "Stoor Aangestelde"
+        },
+        "generate_document": "Genereer Aanstellingsdokument"
+    },
+    "legislation": {
+        "title": "Wetgewing",
+        "description": "Kry toegang tot ’n omvattende biblioteek van ARB-wetgewing, standaarde en opdaterings. Genereer ARB wetlike registers, soek vir spesifieke wette en verken verhoudings tussen regulasies. Vereenvoudigde interpretasies is beskikbaar vir aankoop om komplekse wetlike tekste toegankliker te maak.",
+        "tools": {
+            "title": "Wetgewingsgereedskap",
+            "search_placeholder": "Soek vir wette (bv. ARB Artikel 8)",
+            "search_button": "Soek",
+            "buy_simplified": "Koop Vereenvoudigde Interpretasie (R50)"
+        },
+        "updates": {
+            "title": "Wetgewingsopdaterings en Wetsontwerpe"
+        },
+        "standards": {
+            "title": "ARB-standaarde"
+        },
+        "wizard": {
+            "title": "Genereer Jou RMP",
+            "step_1": {
+                "title": "Stap 1 van 4: Maatskappybesonderhede",
+                "fields": {
+                    "company_name": "Maatskappy Naam:",
+                    "industry": "Bedryf:",
+                    "location": "Ligging (Provinsie):"
+                },
+                "errors": {
+                    "company_name": "Vul asseblief die maatskappy se naam in.",
+                    "industry": "Kies asseblief ’n bedryf.",
+                    "location": "Kies asseblief ’n provinsie."
+                },
+                "options": {
+                    "select": "Kies Bedryf",
+                    "construction": "Konstruksie",
+                    "manufacturing": "Vervaardiging",
+                    "education": "Onderwys",
+                    "healthcare": "Gesondheidsorg",
+                    "retail": "Kleinhandel",
+                    "select_location": "Kies Provinsie",
+                    "gauteng": "Gauteng",
+                    "kzn": "KwaZulu-Natal",
+                    "wc": "Wes-Kaap",
+                    "ec": "Oos-Kaap",
+                    "fs": "Vrystaat"
+                }
+            },
+            "step_2": {
+                "title": "Stap 2 van 4: Aktiwiteite",
+                "fields": {
+                    "activities": "Kies Aktiwiteite (Merk alles wat van toepassing is):"
+                },
+                "errors": {
+                    "activities": "Kies asseblief ten minste een aktiwiteit."
+                },
+                "options": {
+                    "excavation": "Uitgrawing",
+                    "working_at_heights": "Werk vanaf Hoogtes",
+                    "fire_risk": "Vuur Risiko Aktiwiteite"
+                }
+            },
+            "step_3": {
+                "title": "Stap 3 van 4: Risiko’s",
+                "fields": {
+                    "risks": "Kies Risiko’s (Merk alles wat van toepassing is):"
+                },
+                "errors": {
+                    "risks": "Kies asseblief ten minste een risiko."
+                },
+                "options": {
+                    "falls": "Valle vanaf Hoogtes",
+                    "chemical_exposure": "Chemiese Blootstelling",
+                    "fire_hazard": "Vuurgevaar"
+                }
+            },
+            "step_4": {
+                "title": "Stap 4 van 4: Hersien en Genereer",
+                "description": "Hersien jou insette en genereer jou RMP. Jy kan bykomende wetgewing byvoeg indien nodig.",
+                "fields": {
+                    "additional_legislation": "Voeg Bykomende Wetgewing by (Opsioneel):",
+                    "additional_legislation_placeholder": "Voer enige bykomende wetgewing hier in..."
+                },
+                "errors": {
+                    "additional_legislation": "Vul asseblief geldige wetgewingsbesonderhede in."
+                }
+            },
+            "nav": {
+                "back": "Terug",
+                "next": "Volgende",
+                "generate": "Genereer RMP"
+            }
+        },
+        "cart": {
+            "title": "Afhandeling",
+            "description": "Jou RMP is gegenereer! Gebruik die koeponkode FREERMP2025 vir ’n gratis aflaai (eerste 100 gebruikers).",
+            "voucher_label": "Koeponkode:",
+            "voucher_placeholder": "FREERMP2025",
+            "apply_voucher": "Pas Koepon Toe",
+            "price": "Prys: R200 (Gratis met Koepon)",
+            "download": "Laai RMP af"
+        }
+    },
+    "services": {
+        "title": "VeiligheidHulp Dienste",
+        "description": "Ontdek ’n reeks arbeidsgesondheid en -veiligheidsdienste wat ontwerp is om werkplekke, skole, kerke en informele sektore regoor Suid-Afrika te ondersteun. Van konsultasie tot opleiding, VeiligheidHulp bied pasgemaakte oplossings om naleving en veiligheid te verseker.",
+        "consulting": {
+            "title": "ARB-konsultasie",
+            "description": "Kry kundige advies oor ARB-naleving, risikobestuur en wettige aanstellings van ons geakkrediteerde professionele. Ons het saam met organisasies soos Anglo Platinum, ABSA en Metrorail gewerk om pasgemaakte oplossings te lewer."
+        },
+        "training": {
+            "title": "Opleidingsprogramme",
+            "description": "Kry toegang tot omvattende opleidingsprogramme vir alle bedrywe, insluitend konstruksie, vervaardiging en onderwys. Kies uit induksie-opleiding, rolspesifieke kursusse en meer, alles in lyn met Suid-Afrikaanse ARB-regulasies."
+        },
+        "audits": {
+            "title": "Inspeksies & Oudits",
+            "description": "Verseker dat jou werkplek aan ARB-standaarde voldoen met ons inspeksie- en ouditdienste. Ons gereedskap help jou om deeglike kontroles uit te voer, verslae te genereer en korrigerende aksies te implementeer."
+        },
+        "risk_management": {
+            "title": "Risikobestuursplanne",
+            "description": "Genereer pasgemaakte risikobestuursplanne (RMP’s) wat Suid-Afrikaanse wetgewing, munisipale verordeninge en internasionale standaarde soos ISO 45001 dek, om te verseker dat jou besigheid voorbereid is vir enige gevaar."
+        },
+        "support": {
+            "title": "Ondersteuning & Gemeenskapsgereedskap",
+            "description": "Sluit aan by ons gemeenskap om voorvalle te rapporteer, toegang tot veiligheidslyste vir spaza-winkels, skole en tavernes te kry, en met ander ARB-professionele te skakel vir ondersteuning en samewerking."
+        }
+    },
+    "training": {
+        "title": "Omvattende Werkplekopleiding",
+        "description": "Verken ons omvattende werkplekopleidingsprogramme om naleving van Suid-Afrikaanse ARB-regulasies te verseker en ’n veilige werksomgewing te bevorder. Kies hands-on opleiding, groepopleiding, of gebruik ons towenaar vir pasgemaakte aanbevelings gebaseer op jou bedryf, teikengehoor en ligging.",
+        "action_buttons": {
+            "start_wizard": "Begin Opleidingstowenaar",
+            "select_by_category": "Kies volgens Kategorie",
+            "select_manually": "Kies Handmatig",
+            "view_manual": "Koop Aanpasbare Opleidingshandleiding"
+        },
+        "wizard": {
+            "start": "Kies asseblief ’n opsie om die opleidingsaanbevelingsproses te begin.",
+            "step_1": {
+                "title": "Stap 1 van 5: Kies Jou Bedryf",
+                "fields": {
+                    "industry": "Bedryf:"
+                },
+                "errors": {
+                    "industry": "Kies asseblief ’n bedryf."
+                },
+                "options": {
+                    "construction": "Konstruksie",
+                    "manufacturing": "Vervaardiging",
+                    "office": "Kantoor/Administrasie",
+                    "chemical": "Chemiese Bedryf",
+                    "other": "Ander"
+                }
+            },
+            "step_2": {
+                "title": "Stap 2 van 5: Kies Jou Teikengehoor",
+                "fields": {
+                    "target_audience": "Teikengehoor (Kies alles wat van toepassing is):"
+                },
+                "errors": {
+                    "target_audience": "Kies asseblief ten minste een teikengehoor."
+                },
+                "options": {
+                    "all_employees": "Alle Werknemers",
+                    "new_employees": "Nuwe Werknemers",
+                    "managers": "Bestuurders/Toesighouers",
+                    "she_reps": "SHE-verteenwoordigers",
+                    "emergency_team": "Noodspan (Eerste Hulp, Brandbestryders)",
+                    "hazard_workers": "Werkers Blootgestel aan Spesifieke Gevare",
+                    "equipment_operators": "Toerusting/Masjienoperateurs",
+                    "construction_roles": "Spesifieke Konstruksirolle"
+                }
+            },
+            "step_3": {
+                "title": "Stap 3 van 5: Spesifiseer Jou Ligging",
+                "fields": {
+                    "municipality": "Munisipaliteit:"
+                },
+                "errors": {
+                    "municipality": "Kies asseblief ’n munisipaliteit."
+                },
+                "options": {
+                    "johannesburg_south": "Johannesburg Suid, Gauteng",
+                    "other": "Ander"
+                }
+            },
+            "step_4": {
+                "title": "Stap 4 van 5: Bykomende Kriteria",
+                "fields": {
+                    "risk_profile": "Jou Werkplek Risikoprofiel:"
+                },
+                "errors": {
+                    "risk_profile": "Kies asseblief ’n risikoprofiel."
+                },
+                "options": {
+                    "low": "Lae Risiko (bv. Kantoor)",
+                    "medium": "Medium Risiko (bv. Vervaardiging)",
+                    "high": "Hoë Risiko (bv. Konstruksie, Chemikalieë)"
+                }
+            },
+            "step_5": {
+                "title": "Stap 5 van 5: Hersien Aanbevole Opleiding",
+                "description": "Gebaseer op jou insette, hier is die aanbevole opleidingsprogramme. Kies die wat jy by jou mandjie wil voeg.",
+                "fields": {
+                    "selected_training": "Aanbevole Opleidingsprogramme:"
+                },
+                "errors": {
+                    "selected_training": "Kies asseblief ten minste een opleidingsprogram."
+                }
+            },
+            "nav": {
+                "back": "Terug",
+                "next": "Volgende",
+                "add_to_cart": "Voeg by Mandjie"
+            }
+        },
+        "cart": {
+            "title": "Jou Opleidingsmandjie",
+            "table": {
+                "training": "Opleidingsprogram",
+                "price": "Prys"
+            },
+            "customization": {
+                "title": "Pas Jou Opleidingsmateriaal Aan",
+                "fields": {
+                    "company_name": "Maatskappy Naam:",
+                    "location": "Maatskappy Ligging:",
+                    "first_aider": "Eerste Hulp Naam:",
+                    "fire_fighter": "Brandbestryder Naam:",
+                    "ohs_rep": "ARB-verteenwoordiger Naam:",
+                    "supervisor": "Toesighouer Naam:",
+                    "emergency_line": "Noodkontaknommer:"
+                },
+                "errors": {
+                    "company_name": "Vul asseblief jou maatskappy se naam in.",
+                    "location": "Vul asseblief jou maatskappy se ligging in.",
+                    "first_aider": "Vul asseblief die eerste hulp se naam in.",
+                    "fire_fighter": "Vul asseblief die brandbestryder se naam in.",
+                    "ohs_rep": "Vul asseblief die ARB-verteenwoordiger se naam in.",
+                    "supervisor": "Vul asseblief die toesighouer se naam in.",
+                    "emergency_line": "Vul asseblief ’n geldige noodkontaknommer in (bv. +27123456789)."
+                }
+            },
+            "compiled_by": {
+                "title": "Saamgestel Deur",
+                "fields": {
+                    "name": "Naam:",
+                    "role": "Rol:",
+                    "contact": "Kontaknommer:"
+                },
+                "errors": {
+                    "name": "Vul asseblief jou naam in.",
+                    "role": "Vul asseblief jou rol in.",
+                    "contact": "Vul asseblief ’n geldige kontaknommer in (bv. +27123456789)."
+                }
+            },
+            "training_type": {
+                "title": "Opleidingsleweringsmetode",
+                "fields": {
+                    "delivery_method": "Kies Leweringsmetode:",
+                    "online_num_people": "Aantal Mense om Op te Lei:"
+                },
+                "errors": {
+                    "delivery_method": "Kies asseblief ’n leweringsmetode.",
+                    "online_num_people": "Vul asseblief die aantal mense in (minimum 1)."
+                },
+                "options": {
+                    "pdf": "Slegs PDF-opleidingshandleidings",
+                    "online": "Aanlyn Video-opleiding (Binnenkort beskikbaar)"
+                }
+            },
+            "checkout": {
+                "disclaimer": "VeiligheidHulp Vrywaring: Die opleidingsmateriaal wat verskaf word, is slegs vir inligtingsdoeleindes en vorm nie professionele advies nie. Vir pasgemaakte ARB-oplossings, kontak VeiligheidHulp by <a href='mailto:support@safetyhelp.co.za' class='text-blue-500 hover:underline'>support@safetyhelp.co.za</a> of besoek <a href='/safety-plans/contact.html' class='text-blue-500 hover:underline'>Kontakbladsy</a>.",
+                "button": "Gaan na Betaling",
+                "success": "Betaling suksesvol! Jou opleidingsmateriaal is gegenereer. Laai jou PDF’s hieronder af. Vir aanlyn opleiding is toegangskodes per e-pos aan jou gestuur.",
+                "download_pdf": "Laai Opleiding PDF af",
+                "online_codes": "Aanlyn Opleiding Toegangskodes: <span id='access-codes'></span>"
+            }
+        },
+        "providers": {
+            "title": "Goedgekeurde Opleidingsverskaffers",
+            "description": "Benodig jy persoonlike opleiding? Kontak goedgekeurde opleidingsverskaffers vir jou behoeftes.",
+            "provider_1": "<strong>ABC Training Solutions</strong> - SETA Geakkrediteer - Spesialiseer in Eerste Hulp, Brandbestryding - Kontak: <a href='mailto:info@abctraining.co.za' class='text-blue-500 hover:underline'>info@abctraining.co.za</a>",
+            "provider_2": "<strong>SafeSkills Academy</strong> - SACPCMP Geregistreer - Spesialiseer in Konstruksieveiligheid - Kontak: <a href='mailto:training@safeskills.co.za' class='text-blue-500 hover:underline'>training@safeskills.co.za</a>",
+            "provider_3": "<strong>VeiligheidHulp Opleiding</strong> - Omvattende ARB-opleiding - Kontak: <a href='mailto:support@safetyhelp.co.za' class='text-blue-500 hover:underline'>support@safetyhelp.co.za</a>"
+        },
+        "manual": {
+            "purchase": {
+                "title": "Koop Aanpasbare Opleidingshandleiding",
+                "description": "Verkry ’n omvattende opleidingshandleiding wat vir jou maatskappy aangepas is, insluitend wetlike vereistes, maatskappyspes
+{
+    "training": {
+        "manual": {
+            "purchase": {
+                "title": "Koop Aanpasbare Opleidingshandleiding",
+                "description": "Verkry ’n omvattende opleidingshandleiding wat vir jou maatskappy aangepas is, insluitend wetlike vereistes, maatskappyspesifieke inhoud gebaseer op jou risikoprofiel, en aantekeninge van geakkrediteerde opleidingsverskaffers.",
+                "button": "Voeg Handleiding by Mandjie"
+            },
+            "risk_profile": {
+                "title": "Spesifiseer Risikoprofiel vir Jou Opleidingshandleiding",
+                "fields": {
+                    "risk_profile": "Risikoprofiel:"
+                },
+                "errors": {
+                    "risk_profile": "Kies asseblief ’n risikoprofiel."
+                },
+                "options": {
+                    "low": "Lae Risiko (bv. Kantoor)",
+                    "medium": "Medium Risiko (bv. Vervaardiging)",
+                    "high": "Hoë Risiko (bv. Konstruksie, Chemikalieë)"
+                }
+            }
+        },
+        "selection_method": {
+            "title": "Kies Jou Opleidingsmetode"
+        },
+        "category": {
+            "induction_training": "Induksie-opleiding",
+            "awareness_training": "Bewustheidsopleiding",
+            "statutory_mandatory_training": "Wettige/Verpligte Opleiding",
+            "task_risk_specific_training": "Taak-/Risikospesifieke Opleiding",
+            "role_specific_competency_training": "Rolspesifieke Bevoegdheidsopleiding",
+            "refresher_training": "Opfrissingsopleiding",
+            "toolbox_talks_safety_briefings": "Gereedskapkaspraatjies/Veiligheidsbriefings"
+        },
+        "list": {
+            "all_programs": "Alle Beskikbare Opleidingsprogramme",
+            "search_placeholder": "Soek Opleidingsprogramme...",
+            "add_to_cart": "Voeg Gekose by Mandjie"
+        },
+        "facts": {
+            "legal_fact_step_1": "Wetlike Feit: Artikel 8 van die ARB-wet vereis dat werkgewers opleiding verskaf wat aangepas is vir spesifieke werkplekgevare.",
+            "fun_fact_step_2": "Interessante Feit: Het jy geweet dat gereelde opleiding werkplekvoorvalle met tot 30% kan verminder?",
+            "legal_fact_step_3": "Wetlike Feit: Plaaslike munisipaliteite kan verskillende ARB-regulasies hê wat opleidingsvereistes beïnvloed.",
+            "fun_fact_step_4": "Interessante Feit: Hoë-risiko werkplekke soos konstruksieterreine vereis gereelde opleiding om veiligheidsstandaarde te handhaaf.",
+            "legal_fact_step_5": "Wetlike Feit: Die ARB-wet verplig spesifieke opleiding vir rolle soos SHE-verteenwoordigers om naleving te verseker."
+        }
+    },
+    "suppliers": {
+        "title": "ARB-verskafferslys",
+        "description": "Vind en rangskik ARB-verskaffers in Suid-Afrika. Kies volgens ligging, dienste en akkreditasies. Dien resensies in om ander te help om ingeligte besluite te neem.",
+        "list": {
+            "title": "Verskafferslys"
+        },
+        "filters": {
+            "province_label": "Filter volgens Provinsie:",
+            "service_label": "Filter volgens Diens:",
+            "sort_label": "Sorteer volgens:",
+            "options": {
+                "all_provinces": "Alle Provinsies",
+                "gauteng": "Gauteng",
+                "kzn": "KwaZulu-Natal",
+                "wc": "Wes-Kaap",
+                "ec": "Oos-Kaap",
+                "fs": "Vrystaat",
+                "all_services": "Alle Dienste",
+                "ppe": "PPE",
+                "training": "Opleiding",
+                "consulting": "Konsultasie",
+                "alcohol_drug_testing": "Alkohol- en Dwelmtoetsing",
+                "ranking": "Rangorde",
+                "name": "Naam",
+                "established": "Jare Gestig"
+            }
+        },
+        "table": {
+            "name": "Verskaffernaam",
+            "location": "Ligging",
+            "services": "Dienste",
+            "contact": "Kontak",
+            "ranking": "Rangorde",
+            "actions": "Aksies",
+            "action_review": "Dien Resensie In"
+        },
+        "review_form": {
+            "title": "Dien Resensie In",
+            "fields": {
+                "supplier": "Verskaffer:",
+                "rating": "Gradering (1-5):",
+                "comment": "Resensie:",
+                "comment_placeholder": "Voer jou resensie hier in..."
+            },
+            "errors": {
+                "supplier": "Kies asseblief ’n verskaffer.",
+                "rating": "Kies asseblief ’n gradering tussen 1 en 5.",
+                "comment": "Vul asseblief ’n resensie in."
+            },
+            "submit": "Dien Resensie In"
+        }
+    },
+    "community_tools": {
+        "title": "Gemeenskapsveiligheidsgereedskap",
+        "description": "Rapporteer enige veiligheidsvoorval of gevaar in jou gemeenskap of werkplek, van slaggate tot beskadigde toerusting. Gebruik ons gereedskap om veiligheid te verseker in omgewings soos spaza-winkels, skole, hospitale en tavernes.",
+        "incident_report": {
+            "title": "Rapporteer ’n Voorval of Gevaar",
+            "fields": {
+                "photo": "Laai ’n Foto van die Voorval op (Opsioneel):",
+                "location_info": "Ligging sal outomaties opgespoor word...",
+                "weather_info": "Weer sal outomaties opgespoor word...",
+                "description": "Voorvalbeskrywing:",
+                "description_placeholder": "Beskryf die voorval of gevaar (bv. slaggat in Hoofstraat, gebreekte stoel in gemeenskapsentrum)...",
+                "user_name": "Jou Naam (Opsioneel):",
+                "user_name_placeholder": "Voer jou naam in...",
+                "user_contact": "Jou Kontakbesonderhede (Opsioneel):",
+                "user_contact_placeholder": "Voer jou foon of e-pos in...",
+                "user_social": "Jou Sosiale Media Handvatsel (Opsioneel, bv. @gebruikernaam op X):",
+                "user_social_placeholder": "Voer jou X-handvatsel in...",
+                "service_provider": "Diensverskaffer (bv. Munisipaliteit):",
+                "provider_contact": "Diensverskaffer Kontakbesonderhede (Opsioneel):",
+                "provider_contact_placeholder": "Voer foon of e-pos in (outomaties ingevul indien verskaffer gekies is)...",
+                "provider_social": "Diensverskaffer Sosiale Media Handvatsel (Opsioneel, bv. @CityofJoburgZA op X):",
+                "provider_social_placeholder": "Voer X-handvatsel in (outomaties ingevul indien verskaffer gekies is)...",
+                "employee_route": "Roete na Werk (Slegs vir Lede):",
+                "share_method": "Deel Verslag Via:"
+            },
+            "errors": {
+                "description": "Beskryf asseblief die voorval of gevaar.",
+                "service_provider": "Kies asseblief ’n diensverskaffer."
+            },
+            "options": {
+                "select_provider": "Kies Diensverskaffer",
+                "none": "Moenie Deel Nie",
+                "supervisor": "Toesighouer",
+                "safety_rep": "Gesondheids- en Veiligheidsverteenwoordiger",
+                "share_email": "E-pos",
+                "share_sms": "SMS",
+                "share_whatsapp": "WhatsApp",
+                "share_x": "X (Sosiale Media)"
+            },
+            "submit": "Dien Verslag In"
+        },
+        "list": {
+            "title": "Ander Gemeenskapsveiligheidsgereedskap",
+            "spaza_shop": {
+                "title": "ARB-kontrolelys vir Spaza-winkel",
+                "description": "Verseker dat jou spaza-winkel voldoen aan brand-, elektriese en strukturele veiligheidsvereistes volgens munisipale regulasies en die ARB-wet."
+            },
+            "school": {
+                "title": "Skool Brandveiligheidsgids",
+                "description": "Leer die wetlike vereistes vir brandveiligheid in skole, insluitend ontruimingsplanne en toerusting."
+            },
+            "hospital": {
+                "title": "Hospitaal Noodvoorbereidingsgids",
+                "description": "Verseker dat hospitale voorbereid is vir noodgevalle met gepaste ontruimingsplanne en veiligheidstoerusting."
+            },
+            "tavern": {
+                "title": "Taverne Veiligheidskontrolelys",
+                "description": "Kontroleer dat tavernes voldoen aan brandveiligheid en skarebeheer regulasies om voorvalle te voorkom."
+            },
+            "view": "Bekyk Kontrolelys"
+        }
+    },
+    "dashboard": {
+        "title": "Lidkontrolebord",
+        "welcome": "Welkom, {user_name}! Bestuur jou ARB-naleving, RMP’s, verskafferresensies en gemeenskapsverslae hier.",
+        "profile": {
+            "title": "Maatskappyprofiel",
+            "fields": {
+                "company_name": "Maatskappy Naam:",
+                "industry": "Bedryf:",
+                "location": "Ligging (Provinsie):",
+                "supervisor_name": "Toesighouer Naam (vir Voorvalversending):",
+                "supervisor_contact": "Toesighouer Kontakbesonderhede:",
+                "supervisor_contact_placeholder": "Voer foon of e-pos in...",
+                "safety_rep_name": "Gesondheids- en Veiligheidsverteenwoordiger Naam:",
+                "safety_rep_contact": "Gesondheids- en Veiligheidsverteenwoordiger Kontakbesonderhede:",
+                "safety_rep_contact_placeholder": "Voer foon of e-pos in..."
+            },
+            "errors": {
+                "company_name": "Vul asseblief die maatskappy se naam in.",
+                "industry": "Kies asseblief ’n bedryf.",
+                "location": "Kies asseblief ’n provinsie."
+            },
+            "options": {
+                "select": "Kies Bedryf",
+                "construction": "Konstruksie",
+                "manufacturing": "Vervaardiging",
+                "education": "Onderwys",
+                "healthcare": "Gesondheidsorg",
+                "retail": "Kleinhandel",
+                "select_location": "Kies Provinsie",
+                "gauteng": "Gauteng",
+                "kzn": "KwaZulu-Natal",
+                "wc": "Wes-Kaap",
+                "ec": "Oos-Kaap",
+                "fs": "Vrystaat"
+            },
+            "save": "Stoor Profiel"
+        },
+        "rmps": {
+            "title": "Gestoorde RMP’s",
+            "date": "Datum",
+            "title_col": "Titel",
+            "actions": "Aksies"
+        },
+        "supplier_reviews": {
+            "title": "Verskafferresensies",
+            "supplier": "Verskaffer",
+            "rating": "Gradering",
+            "comment": "Resensie",
+            "actions": "Aksies"
+        },
+        "incident_reports": {
+            "title": "Voorvalverslae",
+            "date": "Datum",
+            "description": "Beskrywing",
+            "location": "Ligging",
+            "actions": "Aksies"
+        }
+    },
+    "document_categories": {
+        "title": "Stel Jou ARB-bestuurstelsel Dokumente Saam",
+        "description": "Kies en stel die dokumente saam wat jy vir jou ARB-bestuurstelsel benodig. Kies uit beleide, prosedures, standaarde en meer, aangepas vir jou organisasie se behoeftes.",
+        "policies": {
+            "title": "Beleide",
+            "description": "Hoëvlakverklarings van voorneme en verbintenis, goedgekeur deur senior bestuur.",
+            "ohs_policy": "Arbeidsgesondheid en -veiligheid (ARB) Beleid",
+            "environmental_policy": "Omgewingsbeleid",
+            "quality_policy": "Kwaliteitsbeleid",
+            "substance_abuse_policy": "Dwelm- en Alkoholmisbruikbeleid",
+            "smoking_policy": "Rookbeleid",
+            "workplace_violence_policy": "Werkplekgeweld- en Teisteringbeleid",
+            "mental_health_policy": "Geestelike Gesondheid en Welstandbeleid",
+            "disability_policy": "Gestremdheid en Terugkeer-na-werk Beleid",
+            "contractor_policy": "Kontrakteur- en Diensverskafferbeleid",
+            "ppe_policy": "PPE-beleid",
+            "fit_for_duty_policy": "Geskiktheid vir Werk Beleid",
+            "infectious_disease_policy": "Beleid vir Reaksie op Aansteeklike Siektes of COVID-19",
+            "emergency_management_policy": "Noodbestuurbeleid",
+            "risk_management_policy": "Risikobestuurbeleid",
+            "construction_ohs_policy": "Konstruksie ARB-beleid",
+            "ohs_audit_inspection_policy": "ARB-inspeksie- en Ouditbeleid",
+            "ohs_legal_compliance_policy": "ARB Wetlike Nakomingsbeleid",
+            "ohs_incident_management_policy": "ARB Voorvalbestuurbeleid",
+            "ohs_training_competency_policy": "ARB Opleiding- en Bevoegdheidsbeleid",
+            "ohs_contractor_management_policy": "ARB Kontrakteurbestuurbeleid",
+            "ohs_performance_review_objectives_policy": "ARB Prestasie, Hersiening en Doelwitte Beleid",
+            "ohs_control_measures_policy": "ARB Beheermaatreëls Beleid",
+            "ohs_communication_participation_consultation_policy": "ARB Kommunikasie, Deelname en Konsultasie Beleid",
+            "ohs_workplace_health_wellness_policy": "ARB Werkplekgesondheid en Welstand Beleid",
+            "ohs_environmental_management_policy": "ARB Omgewingsbestuurbeleid",
+            "ohs_documentation_records_control_policy": "ARB Dokumentasie- en Rekordbeheerbeleid"
+        },
+        "procedures": {
+            "title": "Prosedures",
+            "description": "Stap-vir-stap riglyne om take veilig en konsekwent uit te voer.",
+            "incident_reporting_procedure": "Voorval- en Gevaarrapporteerprosedure",
+            "emergency_response_procedure": "Noodreaksieprosedure",
+            "fire_evacuation_procedure": "Brandontruimingsprosedure",
+            "permit_to_work_procedure": "Werkpermitprosedure",
+            "hira_procedure": "Gevaaridentifikasie en Risiko-assesseringsprosedure (HIRA)",
+            "ppe_issuance_procedure": "PPE-uitreiking- en Gebruiksprosedure",
+            "lockout_tagout_procedure": "Uitsluit-/Merkprosedure",
+            "confined_space_entry_procedure": "Beperkte Ruimte Betredingsprosedure",
+            "working_at_heights_procedure": "Werk vanaf Hoogtes Prosedure",
+            "contractor_management_procedure": "Kontrakteurbestuurprosedure",
+            "hot_work_procedure": "Warmwerkprosedure",
+            "first_aid_procedure": "Eerste Hulp en Mediese Noodprosedure",
+            "ergonomics_assessment_procedure": "Ergonomiese Assesseringsprosedure",
+            "incident_investigation_procedure": "Voorvalondersoekprosedure",
+            "induction_training_procedure": "Induksie- en Opleidingsprosedure",
+            "toolbox_talk_procedure": "Gereedskapkaspraatjiesprosedure",
+            "document_control_procedure": "Dokument- en Rekordbeheerprosedure",
+            "non_conformance_procedure": "Nie-nakoming- en Korrigerende Aksie Prosedure",
+            "internal_audit_procedure": "Interne ARB-ouditprosedure",
+            "return_to_work_procedure": "Terugkeer-na-werk Prosedure"
+        },
+        "standards": {
+            "title": "Standaarde/Riglyne",
+            "description": "Interne standaarde wat ooreenstem met wetgewing of bedryfstandaarde, wat verwagte voorwaardes of gedrag spesifiseer.",
+            "ohs_management_standard": "ARB-bestuurstelsel Standaard (in ooreenstemming met ISO 45001)",
+            "risk_rating_matrix": "Risikograderingsmatriks",
+            "emergency_preparedness_standard": "Noodvoorbereiding- en Reaksiestandaard",
+            "housekeeping_standard": "Huishouding- en Afvalbestuurstandaard",
+            "incident_classification_matrix": "Voorvalklassifikasiematriks",
+            "ohs_training_standard": "ARB Opleiding- en Bevoegdheidsstandaard",
+            "safe_driving_standard": "Veilige Bestuur / Vlootbestuurstandaard",
+            "noise_ventilation_standard": "Geraas, Ventilasie en Beligting Standaard",
+            "fire_protection_standard": "Brandbeskermingstelsel Standaard",
+            "ergonomics_standard": "Ergonomiese Werkplekstandaard",
+            "health_surveillance_standard": "Gesondheidstoesigstandaard",
+            "fall_protection_standard": "Valbeskermingsplan Standaard",
+            "hazardous_substance_standard": "Gevaarlike Stof Hantering Standaard",
+            "construction_safety_standard": "Konstruksieterrein Veiligheidstandaard",
+            "hygiene_facility_standard": "Higiënefasiliteitstandaard (toilette, water, rusareas)",
+            "emergency_management_standard": "Noodbestuurstandaard",
+            "risk_management_standard": "Risikobestuurstandaard",
+            "construction_ohs_standard": "Konstruksie ARB-bestuurstelsel Standaard",
+            "ohs_audit_inspection_standard": "ARB-inspeksie- en Ouditstandaard",
+            "ohs_legal_compliance_standard": "ARB Wetlike Nakomingsbestuurstandaard",
+            "ohs_incident_management_standard": "ARB Voorvalbestuurstandaard",
+            "ohs_training_competency_standard": "ARB Opleiding- en Bevoegdheidsstandaard",
+            "ohs_contractor_management_standard": "ARB Kontrakteurbestuurstandaard",
+            "ohs_performance_review_objectives_standard": "ARB Prestasie, Hersiening en Doelwitte Standaard",
+            "ohs_control_measures_standard": "ARB Beheermaatreëls Standaard",
+            "ohs_communication_participation_consultation_standard": "ARB Kommunikasie, Deelname en Konsultasie Standaard",
+            "ohs_workplace_health_wellness_standard": "ARB Werkplekgesondheid en Welstand Standaard",
+            "ohs_environmental_management_standard": "ARB Omgewingsbestuurstandaard",
+            "ohs_documentation_records_control_standard": "ARB Dokumentasie- en Rekordbeheerstandaard"
+        },
+        "registers_logs": {
+            "title": "Registers en Logboeke",
+            "description": "Lopende rekords vir naspeurbaarheid en nakoming.",
+            "legal_requirements_register": "Wetlike Vereistes Register",
+            "risk_register": "Risiko-register / HIRA-register",
+            "training_competency_log": "Opleiding- en Bevoegdheidslog",
+            "ppe_issuance_register": "PPE-uitreikingsregister",
+            "contractor_register": "Kontrakteurregister",
+            "incident_injury_register": "Voorval- en Beseringsregister",
+            "corrective_action_register": "Korrigerende Aksieregister (CAR/PAR)",
+            "first_aid_register": "Eerste Hulp Register",
+            "equipment_inspection_log": "Toerusting-/Masjinerie-inspeksielog",
+            "fire_equipment_inspection_register": "Brandtoerusting-inspeksieregister",
+            "chemical_register": "Chemiese / MSDS-register",
+            "emergency_drill_register": "Noodoefeningregister",
+            "visitor_induction_register": "Bezoeker- en Induksie-register",
+            "medical_examination_register": "Mediese Ondersoekregister",
+            "asbestos_lead_exposure_register": "Asbes- of Loodblootstellingsregister"
+        },
+        "templates_forms": {
+            "title": "Sjablone/Vorms",
+            "description": "Vooraf-opgestelde dokumente vir standaardisering en datavulling.",
+            "hira_template": "HIRA-sjabloon",
+            "incident_report_form": "Voorvalrapportvorm",
+            "root_cause_analysis_form": "Oorsaakanalisevorm",
+            "toolbox_talk_attendance_sheet": "Gereedskapkaspraatjies Bywoningsblad",
+            "emergency_contact_list": "Noodkontaklys",
+            "training_attendance_register": "Opleidingsbywoningsregister",
+            "safety_meeting_minutes_template": "Veiligheidsvergadering Notule-sjabloon",
+            "audit_checklist_template": "Ouditkontrolelyssjabloon",
+            "daily_site_inspection_form": "Daaglikse Terreininspeksievorm",
+            "permit_request_forms": "Permitversoekvorms",
+            "risk_control_action_plan_template": "Risikobeheer-aksieplan Sjabloon",
+            "contractor_evaluation_checklist": "Kontrakteurevalueringskontrolelys",
+            "ohs_induction_checklist": "ARB-induksiekontrolelys",
+            "health_surveillance_consent_form": "Gesondheidstoesig Toestemmingsvorm",
+            "hazard_report_card": "Gevaarrapportkaart / Weglaatvorm",
+            "fit_for_duty_form": "Geskiktheid vir Werk Vorm / Terugkeer-na-werk Assessering",
+            "jsa_template": "Werksveiligheid Analise-sjabloon (JSA)",
+            "ergonomic_risk_assessment_form": "Ergonomiese Risiko-assesseringsvorm",
+            "emergency_response_plan": "Noodreaksie- en Ontruimingsplan",
+            "emergency_management_forms_checklists": "Noodbestuur Vorms en Kontrolelyste",
+            "risk_assessment_plan": "Risiko-assesseringsplan",
+            "risk_management_forms_checklists": "Risikobestuur Vorms en Kontrolelyste",
+            "construction_health_safety_plan": "Konstruksie Gesondheids- en Veiligheidsplan",
+            "construction_ohs_forms_checklists": "Konstruksie ARB Vorms en Kontrolelyste",
+            "ohs_audit_inspection_forms_checklists": "ARB-inspeksie- en Oudit Vorms en Kontrolelyste",
+            "ohs_legal_compliance_evaluation_checklist": "ARB Wetlike Nakomingsevalueringskontrolelys",
+            "ohs_incident_report_investigation": "ARB Voorvalrapport- en Ondersoekvorms",
+            "ohs_training_forms_templates": "ARB Opleidingsvorms en Sjablone",
+            "ohs_contractor_management_forms_templates": "ARB Kontrakteurbestuur Vorms en Sjablone",
+            "ohs_performance_review_objectives_forms_templates": "ARB Prestasie, Hersiening en Doelwitte Vorms en Sjablone",
+            "ohs_control_measures_forms_templates": "ARB Beheermaatreëls Vorms en Sjablone",
+            "ohs_communication_participation_consultation_forms_templates": "ARB Kommunikasie, Deelname en Konsultasie Vorms en Sjablone",
+            "ohs_workplace_health_wellness_forms_templates": "ARB Werkplekgesondheid en Welstand Vorms en Sjablone",
+            "ohs_environmental_management_forms_templates": "ARB Omgewingsbestuur Vorms en Sjablone",
+            "ohs_documentation_records_control_forms_templates": "ARB Dokumentasie- en Rekordbeheer Vorms en Sjablone"
+        },
+        "permits": {
+            "title": "Permit",
+            "description": "Beheerde permitte vir hoë-risiko of beperkte aktiwiteite.",
+            "permit_to_work_general": "Werkpermit (Algemeen)",
+            "hot_work_permit": "Warmwerkpermit",
+            "confined_space_entry_permit": "Beperkte Ruimte Betredingspermit",
+            "working_at_heights_permit": "Werk vanaf Hoogtes Permit",
+            "electrical_isolation_permit": "Elektriese Isolasie / Merkpermit",
+            "excavation_permit": "Uitgrawings- en Graafpermit",
+            "crane_lifting_permit": "Kraan / Hyswerkpermit",
+            "demolition_work_permit": "Slopingswerkpermit",
+            "hazardous_substance_handling_permit": "Gevaarlike Stof Hanteringspermit",
+            "vehicle_equipment_access_permit": "Voertuig/Toerusting Toegangspermit",
+            "radiation_work_permit": "Bestralingswerkpermit",
+            "asbestos_disturbance_permit": "Asbesversteuringspermit"
+        },
+        "records": {
+            "title": "Rekords",
+            "description": "Voltooide dokumente wat implementering en nakoming demonstreer.",
+            "signed_policies": "Ondertekende Beleide",
+            "completed_risk_assessments": "Voltooide Risiko-assesserings",
+            "incident_investigation_reports": "Voorvalondersoekverslae",
+            "signed_meeting_minutes": "Ondertekende Vergaderingnotule",
+            "completed_permits": "Voltooide Permit",
+            "attendance_records": "Bywoningsrekords (Opleiding/Induksie/Gereedskapkaspraatjies)",
+            "certificates_of_compliance": "Nalevingsertifikate (bv. brand, elektries)",
+            "equipment_maintenance_reports": "Toerustingonderhouds- en Diensverslae",
+            "medical_surveillance_reports": "Mediese Toesigverslae",
+            "coida_claims_reports": "COIDA-eise en Verslae",
+            "audit_reports": "Ouditverslae",
+            "contractor_safety_files": "Kontrakteur Veiligheidslêers",
+            "waste_disposal_certificates": "Afvalverwyderingsertifikate"
+        },
+        "errors": {
+            "document_selection": "Kies asseblief ten minste een dokument."
+        }
+    },
+    "links": {
+        "incident_management": "Bestuur Voorvalle",
+        "emergency_response": "Beplan Noodreaksie",
+        "risk_assessment": "Voer Risiko-assessering Uit",
+        "training": "Voer Opleiding Uit",
+        "inspections_audits": "Voer Inspeksies & Oudits Uit",
+        "legislation": "Sien Wetgewing"
+    }
+}
+        
