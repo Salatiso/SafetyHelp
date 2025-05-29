@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Login page for SafetyHelp. Access your account to manage OHS compliance, RMPs, supplier reviews, and community reports.">
-    <meta name="keywords" content="SafetyHelp login, OHS registration, subscription benefits, workplace safety, South Africa OHS">
+    <meta name="description" content="Login to SafetyHelp or explore plans. Access OHS tools, resources, and manage compliance.">
+    <meta name="keywords" content="SafetyHelp login, OHS plans, safety compliance, user registration, subscription benefits">
     <meta name="author" content="SafetyHelp Team">
-    <title data-i18n="page_title.login">SafetyHelp - Login</title>
+    <title data-i18n="page_title.login">Login | SafetyHelp</title>
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
     <link
       rel="stylesheet"
@@ -14,23 +14,74 @@
       onload="this.rel='stylesheet'"
       href="https://fonts.googleapis.com/css2?display=swap&family=Inter%3Awght%40400%3B500%3B700%3B900&family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&family=Montserrat:wght@500;700"
     />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://unpkg.com/i18next@23.15.2/dist/umd/i18next.min.js"></script>
     <script src="https://unpkg.com/i18next-http-backend@2.5.2/dist/umd/i18nextHttpBackend.min.js"></script>
     <script src="https://unpkg.com/i18next-browser-languagedetector@8.0.0/dist/umd/i18nextBrowserLanguageDetector.min.js"></script>
-    <link rel="stylesheet" href="./assets/css/main.css"> <style>
+    <style>
+        /* Global Styles from signup.html for consistency */
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f0f4f8; /* Light blue-gray background */
+            font-family: 'Inter', "Noto Sans", sans-serif;
+            background-color: #E8F0FE; /* Consistent background */
+            color: #333;
+            margin: 0;
+            padding-top: 100px; /* Space for fixed header */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Header styles from signup.html */
+        header {
+            background-color: #007BFF;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000; /* Ensure header is on top */
+            width: 100%;
+        }
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            min-height: 80px; /* Ensure header has some height */
+        }
+        .header-left { display: flex; flex-direction: column; align-items: flex-start; }
+        .logo-container img { height: 50px; /* Adjust as needed */ }
+        .tagline { font-size: 12px; margin-top: 4px; color: #f0f0f0; }
+        .nav-links { text-align: center; flex-grow: 1; } /* Changed flex:1 to flex-grow:1 */
+        .nav-links a { color: white; margin: 0 10px; font-family: 'Montserrat', sans-serif; text-decoration: none; font-size: 14px; }
+        .nav-links a:hover { color: #FD7E14; }
+        .header-right { display: flex; flex-direction: column; align-items: flex-end; }
+        .search-language-container { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; } /* Adjusted alignment and gap */
+        .language-selector select { padding: 5px 8px; border-radius: 4px; font-size: 13px; color: #333; border: 1px solid #ccc; background-color: white;}
+        .search-bar { display: flex; }
+        .search-bar input { padding: 6px 10px; border: 1px solid #ccc; border-right: none; border-radius: 4px 0 0 4px; font-size: 13px; color: #333; width: 150px; }
+        .search-bar button { background-color: #FD7E14; color: white; padding: 6px 12px; border: none; border-radius: 0 4px 4px 0; cursor: pointer; font-size: 13px;}
+        .search-bar button:hover { background-color: #e06b00; }
+
+        /* Main content for login page */
+        main.login-page-main { /* Added a specific class for login page main */
+            flex-grow: 1;
+            padding: 2rem 1rem; /* Responsive padding */
+            width: 100%;
+            max-width: 1280px; /* Max width for content */
+            margin: 0 auto; /* Center content */
+        }
+
         .login-plan-container {
             display: flex;
             flex-direction: column; /* Stack on small screens */
             gap: 2rem;
-            padding: 2rem;
-            max-width: 1200px;
-            margin: 2rem auto;
         }
         @media (min-width: 1024px) { /* Tailwind 'lg' breakpoint */
             .login-plan-container {
@@ -41,13 +92,14 @@
             background-color: white;
             padding: 2rem;
             border-radius: 0.5rem; /* Tailwind 'rounded-lg' */
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); /* Tailwind 'shadow-md' */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* Softer shadow */
         }
         .form-container {
-            flex: 2; /* Takes up less space */
+            flex: 1; /* Adjusted flex basis */
+            min-width: 300px; /* Minimum width for login form */
         }
         .plans-container {
-            flex: 3; /* Takes up more space */
+            flex: 1.5; /* Adjusted flex basis */
         }
         .input-group {
             position: relative;
@@ -65,11 +117,12 @@
             width: 100%;
             border-radius: 0.375rem; /* Tailwind 'rounded-md' */
             border: 1px solid #d1d5db; /* Tailwind gray-300 */
-            padding-top: 0.5rem;
-            padding-bottom: 0.5rem;
+            padding-top: 0.75rem; /* Increased padding */
+            padding-bottom: 0.75rem; /* Increased padding */
+            font-size: 1rem; /* Standard font size */
         }
         .btn-primary {
-            background-color: #2563eb; /* Tailwind blue-600 */
+            background-color: #007BFF; /* Consistent blue */
             color: white;
             padding: 0.75rem 1.5rem;
             border-radius: 0.375rem;
@@ -79,9 +132,10 @@
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
+            transition: background-color 0.3s ease;
         }
         .btn-primary:hover {
-            background-color: #1d4ed8; /* Tailwind blue-700 */
+            background-color: #0056b3; /* Darker blue on hover */
         }
         .btn-google {
             background-color: #ffffff;
@@ -91,165 +145,280 @@
         .btn-google:hover {
             background-color: #f9fafb; /* Tailwind gray-50 */
         }
+        .plan-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
         .plan-table th, .plan-table td {
-            padding: 0.75rem;
+            padding: 0.75rem 1rem; /* Increased padding */
             text-align: left;
             border-bottom: 1px solid #e5e7eb; /* Tailwind gray-200 */
+            font-size: 0.9rem; /* Slightly smaller font for table */
         }
         .plan-table th {
             background-color: #f9fafb; /* Tailwind gray-50 */
+            font-weight: 600; /* Semibold for headers */
+            color: #374151; /* gray-700 */
         }
-        .plan-feature-icon {
-            margin-right: 0.5rem;
-            color: #10b981; /* Tailwind green-500 for yes */
+        .plan-table td.yes .fa-check, .plan-table td.paid .fa-check, .plan-table td .plan-feature-icon.yes { color: #10b981; /* green-500 */ }
+        .plan-table td.no .fa-times, .plan-table td .plan-feature-icon.no { color: #ef4444; /* red-500 */ }
+        .plan-table td.limited .fa-info-circle, .plan-table td .plan-feature-icon.limited { color: #f59e0b; /* amber-500 */ }
+        .plan-feature-icon { margin-right: 0.5rem; }
+
+        .encouragement-message {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background-color: #dbeafe; /* Tailwind blue-100 */
+            color: #1e40af; /* Tailwind blue-800 */
+            border-left: 4px solid #2563eb; /* Tailwind blue-600 */
+            border-radius: 0.25rem;
+            font-size: 0.9rem;
         }
-        .plan-feature-icon.no {
-            color: #ef4444; /* Tailwind red-500 for no */
+        .encouragement-message p strong { font-weight: 600; }
+        .encouragement-message a { color: #1d4ed8; text-decoration: underline; }
+        .encouragement-message a:hover { color: #1e3a8a; }
+
+
+        /* Footer styles from signup.html */
+        footer {
+            background-color: #007BFF;
+            color: white;
+            padding: 20px 15px; /* Increased padding */
+            text-align: center;
+            width: 100%;
+            margin-top: auto; /* Pushes footer to bottom */
         }
-        .plan-feature-icon.limited {
-            color: #f59e0b; /* Tailwind amber-500 for limited */
-        }
-        .language-selector-container {
-            position: fixed;
-            top: 1rem;
-            right: 1rem;
-            z-index: 1000;
+        footer p { font-size: 13px; margin: 5px 0; }
+        .footer-links a { color: #FD7E14; text-decoration: none; margin: 0 8px; font-size: 13px;}
+        .footer-links a:hover { color: #e06b00; text-decoration: underline;}
+        .newsletter { margin-top: 15px; }
+        .newsletter h3 { font-size: 16px; margin-bottom: 10px; font-family: 'Montserrat', sans-serif; }
+        .newsletter form { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px;}
+        .newsletter input { padding: 8px 12px; border: none; border-radius: 4px; font-size: 14px; width: 220px; color: #333; }
+        .newsletter button { padding: 8px 18px; background-color: #FD7E14; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; }
+        .newsletter button:hover { background-color: #e06b00; }
+
+        /* Responsive adjustments from signup.html */
+        @media (max-width: 768px) {
+            body { padding-top: 0; } /* Remove top padding as header becomes relative */
+            header { position: relative; }
+            .header-container { flex-direction: column; padding: 15px; }
+            .header-left, .header-right, .nav-links { width: 100%; align-items: center; text-align: center; margin-bottom: 10px;}
+            .nav-links a { display: block; margin: 8px 0; }
+            .search-language-container { align-items: center; }
+            .logo-container { text-align: center; }
+            .tagline { text-align: center; }
+
+            main.login-page-main { padding: 1rem; }
+            .login-plan-container { flex-direction: column; }
+            .form-container, .plans-container { width: 100%; padding: 1.5rem; }
+            .plan-table th, .plan-table td { font-size: 0.85rem; padding: 0.5rem; }
+            .newsletter form { flex-direction: column; }
+            .newsletter input { width: 80%; margin-bottom: 10px; }
+            .newsletter button { width: 50%; }
         }
     </style>
 </head>
-<body class="bg-gray-100">
+<body>
 
-    <header class="bg-slate-800 text-white p-4 shadow-md">
-        <div class="container mx-auto flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold" data-i18n="header.title">SafetyHelp</a>
-            <div class="language-selector-container fixed top-4 right-4 z-50">
-                <select id="language-select" class="bg-white text-gray-800 p-2 rounded-md shadow">
-                    <option value="en">English</option>
-                    <option value="xh">isiXhosa</option>
-                    <option value="zu">isiZulu</option>
-                    <option value="af">Afrikaans</option>
-                    <option value="st">Sesotho</option>
-                    </select>
+    <header>
+        <div class="header-container">
+            <div class="header-left">
+                <div class="logo-container">
+                    <img src="./assets/images/logo.png" alt="SafetyHelp Logo" onerror="this.onerror=null;this.src='https://placehold.co/150x50/007BFF/FFFFFF?text=SafetyHelp';">
+                    <p class="tagline" data-i18n="header.tagline">Safety Personalized, Compliance Simplified—Anytime, Anywhere</p>
+                </div>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html" data-i18n="header.nav.home">Home</a>
+                <a href="resources.html" data-i18n="header.nav.resources">Resources</a>
+                <a href="services.html" data-i18n="header.nav.services">Services</a>
+                <a href="community.html" data-i18n="header.nav.community">Community</a>
+                <a href="about.html" data-i18n="header.nav.about">About</a>
+                <a href="contact.html" data-i18n="header.nav.contact">Contact</a>
+                <a href="login.html" id="login-link" data-i18n="header.nav.login" class="font-bold text-orange-400">Login</a> <a href="#" id="logout-link" data-i18n="header.nav.logout" style="display: none;">Logout</a>
+            </nav>
+            <div class="header-right">
+                <div class="search-language-container">
+                    <div class="language-selector">
+                        <select id="language-select" aria-label="Select language">
+                            <option value="en" data-i18n="language_selector.en">English</option>
+                            <option value="af" data-i18n="language_selector.af">Afrikaans</option>
+                            <option value="zu" data-i18n="language_selector.zu">isiZulu</option>
+                            <option value="xh" data-i18n="language_selector.xh">isiXhosa</option>
+                            <option value="st" data-i18n="language_selector.st">Sesotho</option>
+                            <option value="tn" data-i18n="language_selector.tn">Setswana</option>
+                            <option value="nso" data-i18n="language_selector.nso">Sepedi</option>
+                            <option value="ts" data-i18n="language_selector.ts">Xitsonga</option>
+                            <option value="ss" data-i18n="language_selector.ss">siSwati</option>
+                            <option value="ve" data-i18n="language_selector.ve">Tshivenda</option>
+                            <option value="nr" data-i18n="language_selector.nr">isiNdebele</option>
+                            <option value="es" data-i18n="language_selector.es">Español</option>
+                            <option value="fr" data-i18n="language_selector.fr">French</option>
+                            <option value="sn" data-i18n="language_selector.sn">Shona</option>
+                            <option value="sw" data-i18n="language_selector.sw">Swahili</option>
+                            <option value="zh" data-i18n="language_selector.zh">Mandarin</option>
+                        </select>
+                    </div>
+                    <div class="search-bar">
+                        <form role="search" class="flex">
+                            <input type="text" data-i18n="[placeholder]header.search.placeholder" placeholder="Search OHS Tools..." aria-label="Search OHS Tools">
+                            <button type="submit" aria-label="Search" data-i18n="header.search.button">Search</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
 
-    <main class="login-plan-container">
-        <div class="form-container">
-            <h2 class="text-2xl font-semibold mb-6 text-center text-gray-700" data-i18n="login.title">Log In to Your Account</h2>
-            <form id="loginForm">
-                <div class="input-group">
-                    <span class="fa-icon"><i class="fas fa-envelope"></i></span>
-                    <input type="email" id="email" name="email" required placeholder="your@email.com" aria-label="Email Address"
-                           class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md py-3">
-                </div>
+    <main class="login-page-main">
+        <div class="login-plan-container">
+            <div class="form-container">
+                <h2 class="text-2xl font-semibold mb-6 text-center text-gray-800" data-i18n="login.title">Log In to Your Account</h2>
+                <form id="loginForm">
+                    <div class="input-group">
+                        <span class="fa-icon"><i class="fas fa-envelope"></i></span>
+                        <input type="email" id="email" name="email" required data-i18n="[placeholder]login.email_placeholder" placeholder="your@email.com" aria-label="Email Address"
+                               class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                    </div>
 
-                <div class="input-group">
-                    <span class="fa-icon"><i class="fas fa-lock"></i></span>
-                    <input type="password" id="password" name="password" required placeholder="Password" aria-label="Password"
-                           class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md py-3">
-                </div>
+                    <div class="input-group">
+                        <span class="fa-icon"><i class="fas fa-lock"></i></span>
+                        <input type="password" id="password" name="password" required data-i18n="[placeholder]login.password_placeholder" placeholder="Password" aria-label="Password"
+                               class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                    </div>
 
-                <button type="submit" class="btn-primary mb-4">
-                    <i class="fas fa-sign-in-alt"></i> <span data-i18n="login.loginButton">Log In</span>
-                </button>
+                    <button type="submit" class="btn-primary mb-4">
+                        <i class="fas fa-sign-in-alt"></i> <span data-i18n="login.loginButton">Log In</span>
+                    </button>
 
-                <button type="button" class="btn-primary btn-google mb-6">
-                    <i class="fab fa-google"></i> <span data-i18n="login.continueWithGoogle">Continue with Google</span>
-                </button>
+                    <button type="button" class="btn-primary btn-google mb-6">
+                        <i class="fab fa-google"></i> <span data-i18n="login.continueWithGoogle">Continue with Google</span>
+                    </button>
 
-                <div class="text-center text-sm">
-                    <p class="mb-2">
-                        <span data-i18n="login.noAccount">Don't have an account?</span>
-                        <a href="signup.html" class="font-medium text-blue-600 hover:text-blue-500" data-i18n="login.signUpFree">
-                            <i class="fas fa-user-plus"></i> Sign Up for Free!
+                    <div class="text-center text-sm text-gray-600">
+                        <p class="mb-2">
+                            <span data-i18n="login.noAccount">Don't have an account?</span>
+                            <a href="signup.html" class="font-medium text-blue-600 hover:text-blue-700 hover:underline" data-i18n="login.signUpFree">
+                                <i class="fas fa-user-plus"></i> Sign Up for Free!
+                            </a>
+                        </p>
+                        <a href="#" class="font-medium text-blue-600 hover:text-blue-700 hover:underline" data-i18n="login.forgotPassword">
+                            <i class="fas fa-key"></i> Forgot your Password?
                         </a>
-                    </p>
-                    <a href="#" class="font-medium text-blue-600 hover:text-blue-500" data-i18n="login.forgotPassword">
-                        <i class="fas fa-key"></i> Forgot your Password?
+                    </div>
+                </form>
+            </div>
+
+            <div class="plans-container">
+                <h2 class="text-2xl font-semibold mb-6 text-center text-gray-800">
+                    <i class="fas fa-tags"></i> <span data-i18n="login.plansTitle">Choose the Right Plan for Your Needs</span>
+                </h2>
+                <div class="overflow-x-auto">
+                    <table class="plan-table">
+                        <thead>
+                            <tr>
+                                <th data-i18n="login.plans.feature">Feature</th>
+                                <th data-i18n="login.plans.guest">Non-Registered User (Guest/Visitor)</th>
+                                <th data-i18n="login.plans.free">Registered User (Free)</th>
+                                <th data-i18n="login.plans.paid">Subscribed Member (Paid)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td data-i18n="login.plans.feature.basic_tools">Access to Basic Tools</td>
+                                <td class="yes"><i class="fas fa-check plan-feature-icon yes"></i> <span data-i18n="login.plans.yes">Yes</span></td>
+                                <td class="yes"><i class="fas fa-check plan-feature-icon yes"></i> <span data-i18n="login.plans.yes">Yes</span></td>
+                                <td class="yes"><i class="fas fa-check plan-feature-icon yes"></i> <span data-i18n="login.plans.yes">Yes</span></td>
+                            </tr>
+                            <tr>
+                                <td data-i18n="login.plans.feature.doc_downloads">Document Downloads</td>
+                                <td class="limited"><i class="fas fa-info-circle plan-feature-icon limited"></i> <span data-i18n="login.plans.guest.doc_downloads">Limited (Temporary Access, 7 Days)</span></td>
+                                <td class="yes"><i class="fas fa-check plan-feature-icon yes"></i> <span data-i18n="login.plans.free.doc_downloads">Permanent Access</span></td>
+                                <td class="yes"><i class="fas fa-check plan-feature-icon yes"></i> <span data-i18n="login.plans.paid.doc_downloads">Permanent Access</span></td>
+                            </tr>
+                            <tr>
+                                <td data-i18n="login.plans.feature.cost_per_doc">Cost Per Document</td>
+                                <td><span data-i18n="login.plans.guest.cost_per_doc">Standard Price (e.g., R50)</span></td>
+                                <td><span data-i18n="login.plans.free.cost_per_doc">Standard Price (e.g., R50)</span></td>
+                                <td class="paid"><i class="fas fa-check plan-feature-icon yes"></i> <span data-i18n="login.plans.paid.cost_per_doc">Discounted Price (e.g., R40)</span></td>
+                            </tr>
+                            <tr>
+                                <td data-i18n="login.plans.feature.early_access">Early Access to New Features</td>
+                                <td class="no"><i class="fas fa-times plan-feature-icon no"></i> <span data-i18n="login.plans.no">No</span></td>
+                                <td class="no"><i class="fas fa-times plan-feature-icon no"></i> <span data-i18n="login.plans.no">No</span></td>
+                                <td class="yes"><i class="fas fa-check plan-feature-icon yes"></i> <span data-i18n="login.plans.yes">Yes</span></td>
+                            </tr>
+                            <tr>
+                                <td data-i18n="login.plans.feature.product_launches">Access to Book & Product Launches</td>
+                                <td class="no"><i class="fas fa-times plan-feature-icon no"></i> <span data-i18n="login.plans.no">No</span></td>
+                                <td class="no"><i class="fas fa-times plan-feature-icon no"></i> <span data-i18n="login.plans.no">No</span></td>
+                                <td class="yes"><i class="fas fa-check plan-feature-icon yes"></i> <span data-i18n="login.plans.paid.product_launches">Yes (Early Access)</span></td>
+                            </tr>
+                            <tr>
+                                <td data-i18n="login.plans.feature.discounts">Exclusive Discounts</td>
+                                <td class="no"><i class="fas fa-times plan-feature-icon no"></i> <span data-i18n="login.plans.no">No</span></td>
+                                <td class="no"><i class="fas fa-times plan-feature-icon no"></i> <span data-i18n="login.plans.no">No</span></td>
+                                <td class="yes"><i class="fas fa-check plan-feature-icon yes"></i> <span data-i18n="login.plans.yes">Yes</span></td>
+                            </tr>
+                            <tr>
+                                <td data-i18n="login.plans.feature.trusted_seal">Website Trusted Seal (Visible to Others)</td>
+                                <td class="no"><i class="fas fa-times plan-feature-icon no"></i> <span data-i18n="login.plans.no">No</span></td>
+                                <td class="no"><i class="fas fa-times plan-feature-icon no"></i> <span data-i18n="login.plans.no">No</span></td>
+                                <td class="yes"><i class="fas fa-check plan-feature-icon yes"></i> <span data-i18n="login.plans.yes">Yes</span></td>
+                            </tr>
+                            <tr>
+                                <td data-i18n="login.plans.feature.content_featuring">Preference in Content Featuring (Articles, Services)</td>
+                                <td class="no"><i class="fas fa-times plan-feature-icon no"></i> <span data-i18n="login.plans.no">No</span></td>
+                                <td class="no"><i class="fas fa-times plan-feature-icon no"></i> <span data-i18n="login.plans.no">No</span></td>
+                                <td class="yes"><i class="fas fa-check plan-feature-icon yes"></i> <span data-i18n="login.plans.yes">Yes</span></td>
+                            </tr>
+                            <tr>
+                                <td data-i18n="login.plans.feature.dashboard">Personalized Dashboard</td>
+                                <td class="no"><i class="fas fa-times plan-feature-icon no"></i> <span data-i18n="login.plans.no">No</span></td>
+                                <td class="yes"><i class="fas fa-check plan-feature-icon yes"></i> <span data-i18n="login.plans.yes">Yes</span></td>
+                                <td class="yes"><i class="fas fa-check plan-feature-icon yes"></i> <span data-i18n="login.plans.paid.dashboard">Yes (Enhanced)</span></td>
+                            </tr>
+                            <tr>
+                                <td data-i18n="login.plans.feature.community">Community Participation</td>
+                                <td class="limited"><i class="fas fa-info-circle plan-feature-icon limited"></i> <span data-i18n="login.plans.guest.community">Limited</span></td>
+                                <td class="yes"><i class="fas fa-check plan-feature-icon yes"></i> <span data-i18n="login.plans.free.community">Full Access</span></td>
+                                <td class="yes"><i class="fas fa-check plan-feature-icon yes"></i> <span data-i18n="login.plans.paid.community">Full Access + Priority</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                 <div class="mt-6 text-center">
+                    <a href="signup.html" class="btn-primary inline-block w-auto px-8 py-3"> <i class="fas fa-arrow-right"></i> <span data-i18n="login.plans.getStarted">Get Started</span>
                     </a>
                 </div>
-            </form>
-        </div>
-
-        <div class="plans-container">
-            <h2 class="text-2xl font-semibold mb-6 text-center text-gray-700">
-                <i class="fas fa-tags"></i> <span data-i18n="login.plansTitle">Choose the Right Plan for Your Needs</span>
-            </h2>
-            <div class="overflow-x-auto">
-                <table class="min-w-full plan-table">
-                    <thead>
-                        <tr>
-                            <th data-i18n="plans.feature">Feature</th>
-                            <th data-i18n="plans.free">Free</th>
-                            <th data-i18n="plans.premium">Premium</th>
-                            <th data-i18n="plans.enterprise">Enterprise</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td data-i18n="plans.accessBasicTools">Access to Basic Tools</td>
-                            <td><i class="fas fa-check plan-feature-icon" aria-label="Feature included"></i> <span data-i18n="plans.yes">Yes</span></td>
-                            <td><i class="fas fa-check plan-feature-icon" aria-label="Feature included"></i> <span data-i18n="plans.yes">Yes</span></td>
-                            <td><i class="fas fa-check plan-feature-icon" aria-label="Feature included"></i> <span data-i18n="plans.yes">Yes</span></td>
-                        </tr>
-                        <tr>
-                            <td data-i18n="plans.documentDownload">Document Download</td>
-                            <td><i class="fas fa-times plan-feature-icon no" aria-label="Feature not included"></i> <span data-i18n="plans.no">No</span></td>
-                            <td><i class="fas fa-check plan-feature-icon" aria-label="Feature included"></i> <span data-i18n="plans.yes">Yes</span></td>
-                            <td><i class="fas fa-check plan-feature-icon" aria-label="Feature included"></i> <span data-i18n="plans.yes">Yes</span></td>
-                        </tr>
-                        <tr>
-                            <td data-i18n="plans.customTemplates">Custom Templates</td>
-                            <td><i class="fas fa-times plan-feature-icon no" aria-label="Feature not included"></i> <span data-i18n="plans.no">No</span></td>
-                            <td><i class="fas fa-info-circle plan-feature-icon limited" aria-label="Limited feature"></i> <span data-i18n="plans.limited">Limited</span></td>
-                            <td><i class="fas fa-check plan-feature-icon" aria-label="Feature included"></i> <span data-i18n="plans.yes">Yes</span></td>
-                        </tr>
-                         <tr>
-                            <td data-i18n="plans.support">Support</td>
-                            <td><span data-i18n="plans.communitySupport">Community</span></td>
-                            <td><span data-i18n="plans.emailSupport">Email</span></td>
-                            <td><span data-i18n="plans.prioritySupport">Priority</span></td>
-                        </tr>
-                        <tr>
-                            <td data-i18n="plans.storage">Storage</td>
-                            <td><span data-i18n="plans.storageFree">100MB</span></td>
-                            <td><span data-i18n="plans.storagePremium">1GB</span></td>
-                            <td><span data-i18n="plans.storageEnterprise">Unlimited</span></td>
-                        </tr>
-                        <tr>
-                            <td data-i18n="plans.personalizeDashboard">Personalize Dashboard</td>
-                             <td><i class="fas fa-times plan-feature-icon no" aria-label="Feature not included"></i> <span data-i18n="plans.no">No</span></td>
-                            <td><i class="fas fa-check plan-feature-icon" aria-label="Feature included"></i> <span data-i18n="plans.yes">Yes</span></td>
-                            <td><i class="fas fa-check plan-feature-icon" aria-label="Feature included"></i> <span data-i18n="plans.yes">Yes</span></td>
-                        </tr>
-                        <tr>
-                            <td data-i18n="plans.fullAccessPriority">Full Access + Priority</td>
-                             <td><i class="fas fa-times plan-feature-icon no" aria-label="Feature not included"></i> <span data-i18n="plans.no">No</span></td>
-                             <td><i class="fas fa-times plan-feature-icon no" aria-label="Feature not included"></i> <span data-i18n="plans.no">No</span></td>
-                            <td><i class="fas fa-check plan-feature-icon" aria-label="Feature included"></i> <span data-i18n="plans.yes">Yes</span></td>
-                        </tr>
-                        </tbody>
-                </table>
-            </div>
-             <div class="mt-6 text-center">
-                <a href="signup.html" class="btn-primary inline-block">
-                    <i class="fas fa-arrow-right"></i> <span data-i18n="plans.getStarted">Get Started</span>
-                </a>
+                <div class="encouragement-message">
+                    <p><strong data-i18n="login.encouragement.title">Unlock More with a Free Account!</strong></p>
+                    <p data-i18n="login.encouragement.text">While guests can explore many of our resources, <a href="signup.html" data-i18n="login.encouragement.link">signing up for a free Registered User account</a> grants you permanent access to downloaded documents, a personalized dashboard, and full community participation. It's quick, easy, and enhances your SafetyHelp experience!</p>
+                </div>
             </div>
         </div>
     </main>
 
-    <footer class="bg-slate-800 text-white p-4 mt-8 text-center">
-        <p>&copy; <span id="currentYear"></span> SafetyHelp. <span data-i18n="footer.allRightsReserved">All rights reserved.</span></p>
-        <p>
-            <a href="privacy.html" class="hover:underline" data-i18n="footer.privacyPolicy">Privacy Policy</a> |
-            <a href="terms.html" class="hover:underline" data-i18n="footer.termsOfService">Terms of Service</a>
-        </p>
+    <footer>
+        <p data-i18n="footer.copyright" id="footer-copyright-year">© 2025 SafetyHelp. All Rights Reserved.</p>
+        <div class="footer-links">
+            <a href="privacy.html" data-i18n="footer.links.privacy">Privacy Policy</a>
+            <a href="terms.html" data-i18n="footer.links.terms">Terms of Service</a>
+            <a href="contact.html" data-i18n="footer.links.contact">Contact Us</a>
+        </div>
+        <div class="newsletter">
+            <h3 data-i18n="footer.newsletter.title">Stay Updated</h3>
+            <form id="newsletterForm" class="flex justify-center">
+                <input type="email" id="newsletterEmail" data-i18n="[placeholder]footer.newsletter.placeholder" placeholder="Enter your email" aria-label="Email for newsletter">
+                <button type="submit" data-i18n="footer.newsletter.button">Subscribe</button>
+            </form>
+        </div>
     </footer>
 
     <script>
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        // Dynamic Year for Footer
+        document.getElementById('footer-copyright-year').textContent = `© ${new Date().getFullYear()} SafetyHelp. All Rights Reserved.`;
 
         // Basic i18next setup
         async function initializeI18next() {
@@ -260,8 +429,8 @@
                         .use(i18nextBrowserLanguageDetector)
                         .init({
                             fallbackLng: 'en',
-                            debug: true,
-                            ns: ['translation'], // Ensure you have a namespace
+                            debug: true, // Set to false in production
+                            ns: ['translation'],
                             defaultNS: 'translation',
                             backend: {
                                 loadPath: './assets/locales/{{lng}}/{{ns}}.json' // Path to your translation files
@@ -274,9 +443,12 @@
                     updateContent();
                 } catch (error) {
                     console.error("Error initializing i18next:", error);
+                    // Fallback if i18next fails to load translations
+                    applyStaticTranslations();
                 }
             } else {
-                console.error("i18next or its plugins are not loaded.");
+                console.error("i18next or its plugins are not loaded. Applying static translations.");
+                applyStaticTranslations();
             }
         }
 
@@ -293,21 +465,111 @@
                     }
                 }
 
-                if (element.hasAttribute('placeholder') && key.startsWith('[placeholder]')) {
+                if (key.startsWith('[placeholder]')) {
                      element.setAttribute('placeholder', i18next.t(key.substring('[placeholder]'.length), options));
                 } else if (element.tagName === 'TITLE') {
                     document.title = i18next.t(key, options);
                 } else {
-                    element.innerHTML = i18next.t(key, options); // Use innerHTML to render icons if they are part of the translation string
+                    // Preserve existing HTML structure for elements with children (like icons)
+                    const firstChild = element.firstChild;
+                    if (firstChild && firstChild.nodeType === Node.ELEMENT_NODE && element.children.length > 0) {
+                        const textNode = Array.from(element.childNodes).find(node => node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== '');
+                        if (textNode) {
+                            textNode.textContent = ' ' + i18next.t(key, options);
+                        } else {
+                             // If no direct text node, append translated text after last child icon or element
+                             const newTextNode = document.createTextNode(' ' + i18next.t(key, options));
+                             element.appendChild(newTextNode);
+                        }
+                    } else {
+                         element.innerHTML = i18next.t(key, options);
+                    }
                 }
             });
         }
+
+        // Fallback for static translations if i18next fails
+        function applyStaticTranslations() {
+            const staticTranslations = {
+                "page_title.login": "Login | SafetyHelp",
+                "header.tagline": "Safety Personalized, Compliance Simplified—Anytime, Anywhere",
+                "header.nav.home": "Home", "header.nav.resources": "Resources", "header.nav.services": "Services",
+                "header.nav.community": "Community", "header.nav.about": "About", "header.nav.contact": "Contact",
+                "header.nav.login": "Login", "header.nav.logout": "Logout",
+                "[placeholder]header.search.placeholder": "Search OHS Tools...", "header.search.button": "Search",
+                "language_selector.en": "English", /* Add other languages as needed */
+                "login.title": "Log In to Your Account",
+                "[placeholder]login.email_placeholder": "your@email.com",
+                "[placeholder]login.password_placeholder": "Password",
+                "login.loginButton": "Log In", "login.continueWithGoogle": "Continue with Google",
+                "login.noAccount": "Don't have an account?", "login.signUpFree": "Sign Up for Free!",
+                "login.forgotPassword": "Forgot your Password?",
+                "login.plansTitle": "Choose the Right Plan for Your Needs",
+                "login.plans.feature": "Feature",
+                "login.plans.guest": "Non-Registered User (Guest/Visitor)",
+                "login.plans.free": "Registered User (Free)",
+                "login.plans.paid": "Subscribed Member (Paid)",
+                "login.plans.feature.basic_tools": "Access to Basic Tools", "login.plans.yes": "Yes", "login.plans.no": "No",
+                "login.plans.feature.doc_downloads": "Document Downloads",
+                "login.plans.guest.doc_downloads": "Limited (Temporary Access, 7 Days)",
+                "login.plans.free.doc_downloads": "Permanent Access",
+                "login.plans.paid.doc_downloads": "Permanent Access",
+                "login.plans.feature.cost_per_doc": "Cost Per Document",
+                "login.plans.guest.cost_per_doc": "Standard Price (e.g., R50)",
+                "login.plans.free.cost_per_doc": "Standard Price (e.g., R50)",
+                "login.plans.paid.cost_per_doc": "Discounted Price (e.g., R40)",
+                "login.plans.feature.early_access": "Early Access to New Features",
+                "login.plans.feature.product_launches": "Access to Book & Product Launches",
+                "login.plans.paid.product_launches": "Yes (Early Access)",
+                "login.plans.feature.discounts": "Exclusive Discounts",
+                "login.plans.feature.trusted_seal": "Website Trusted Seal (Visible to Others)",
+                "login.plans.feature.content_featuring": "Preference in Content Featuring (Articles, Services)",
+                "login.plans.feature.dashboard": "Personalized Dashboard",
+                "login.plans.paid.dashboard": "Yes (Enhanced)",
+                "login.plans.feature.community": "Community Participation",
+                "login.plans.guest.community": "Limited",
+                "login.plans.free.community": "Full Access",
+                "login.plans.paid.community": "Full Access + Priority",
+                "login.plans.getStarted": "Get Started",
+                "login.encouragement.title": "Unlock More with a Free Account!",
+                "login.encouragement.text": "While guests can explore many of our resources, signing up for a free Registered User account grants you permanent access to downloaded documents, a personalized dashboard, and full community participation. It's quick, easy, and enhances your SafetyHelp experience!",
+                "login.encouragement.link": "signing up for a free Registered User account",
+                "footer.copyright": `© ${new Date().getFullYear()} SafetyHelp. All Rights Reserved.`,
+                "footer.links.privacy": "Privacy Policy", "footer.links.terms": "Terms of Service", "footer.links.contact": "Contact Us",
+                "footer.newsletter.title": "Stay Updated", "[placeholder]footer.newsletter.placeholder": "Enter your email", "footer.newsletter.button": "Subscribe"
+            };
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                const translation = staticTranslations[key] || staticTranslations[key.replace('[placeholder]','')] || element.textContent;
+                if (key.startsWith('[placeholder]')) {
+                    element.setAttribute('placeholder', translation);
+                } else if (element.tagName === 'TITLE') {
+                    document.title = translation;
+                } else {
+                    element.innerHTML = translation; // Simplified for fallback
+                }
+            });
+        }
+
 
         document.addEventListener('DOMContentLoaded', () => {
             initializeI18next();
 
             const langSelect = document.getElementById('language-select');
             if (langSelect) {
+                // Set initial value of select based on current language, if i18next is ready
+                if (typeof i18next !== 'undefined' && i18next.isInitialized) {
+                     const currentLang = i18next.language;
+                     if (currentLang) {
+                        const baseLang = currentLang.split('-')[0];
+                        if (Array.from(langSelect.options).some(opt => opt.value === baseLang)) {
+                            langSelect.value = baseLang;
+                        } else if (Array.from(langSelect.options).some(opt => opt.value === currentLang)) {
+                             langSelect.value = currentLang;
+                        }
+                     }
+                }
+
                 langSelect.addEventListener('change', (e) => {
                     if (typeof i18next !== 'undefined' && i18next.isInitialized) {
                         i18next.changeLanguage(e.target.value, (err) => {
@@ -321,24 +583,33 @@
                          console.error('i18next not ready for language change or not initialized.');
                     }
                 });
-                // Set initial value of select based on current language
-                 if (typeof i18next !== 'undefined' && i18next.isInitialized) {
-                    langSelect.value = i18next.language.split('-')[0]; // Use base language e.g. 'en' from 'en-US'
-                }
             }
 
-            // Example: Handle login form submission
             const loginForm = document.getElementById('loginForm');
             if (loginForm) {
                 loginForm.addEventListener('submit', function(event) {
                     event.preventDefault();
-                    // Add your login logic here
-                    // For example, get email and password
                     const email = document.getElementById('email').value;
                     const password = document.getElementById('password').value;
                     console.log('Login attempt with:', { email, password });
-                    // Show a message or redirect
-                    alert('Login functionality would be handled here.');
+                    // Replace alert with a more integrated message if possible
+                    // For now, keeping it simple as per previous versions.
+                    // Consider adding a message div to show success/error.
+                    alert('Login functionality would be handled here. Check console for details.');
+                });
+            }
+
+            const newsletterForm = document.getElementById('newsletterForm');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    const email = document.getElementById('newsletterEmail').value;
+                    if (email) {
+                        alert(`Thank you for subscribing with ${email}!`);
+                        document.getElementById('newsletterEmail').value = '';
+                    } else {
+                        alert('Please enter a valid email address.');
+                    }
                 });
             }
         });
