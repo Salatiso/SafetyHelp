@@ -14,689 +14,331 @@
       onload="this.rel='stylesheet'"
       href="https://fonts.googleapis.com/css2?display=swap&family=Inter%3Awght%40400%3B500%3B700%3B900&family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&family=Montserrat:wght@500;700"
     />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://unpkg.com/i18next@23.15.2/dist/umd/i18next.min.js"></script>
-    <script src="https://unpkg.com/i18next-browser-languagedetector@8.0.0/dist/i18nextBrowserLanguageDetector.min.js"></script>
-    <style>
-        /* Global Styles */
+    <script src="https://unpkg.com/i18next-http-backend@2.5.2/dist/umd/i18nextHttpBackend.min.js"></script>
+    <script src="https://unpkg.com/i18next-browser-languagedetector@8.0.0/dist/umd/i18nextBrowserLanguageDetector.min.js"></script>
+    <link rel="stylesheet" href="./assets/css/main.css"> <style>
         body {
-            font-family: 'Inter', "Noto Sans", sans-serif;
-            background-color: #E8F0FE;
-            color: #333;
-            margin: 0;
-            padding-top: 100px; /* Space for fixed header */
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* Light blue-gray background */
+        }
+        .login-plan-container {
             display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        h1, h2, h3 { /* Ensure Montserrat is available if used */
-            font-family: 'Montserrat', sans-serif;
-        }
-        /* Header styles */
-        header {
-            background-color: #007BFF;
-            color: white;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 50;
-            width: 100%;
-        }
-        .header-container {
+            flex-direction: column; /* Stack on small screens */
+            gap: 2rem;
+            padding: 2rem;
             max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
+            margin: 2rem auto;
         }
-        .header-left {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
+        @media (min-width: 1024px) { /* Tailwind 'lg' breakpoint */
+            .login-plan-container {
+                flex-direction: row; /* Side-by-side on larger screens */
+            }
         }
-        .search-language-container {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-        .search-bar button {
-            background-color: #FD7E14;
-            color: white;
-        }
-        .search-bar button:hover {
-            background-color: #e06b00;
-        }
-        .language-selector {
-            margin-bottom: 5px;
-        }
-        .language-selector select {
-            padding: 4px;
-            border-radius: 4px;
-            font-size: 14px;
-            color: #333;
-        }
-        .nav-links {
-            text-align: center;
-            flex: 1;
-        }
-        .nav-links a {
-            color: white;
-            margin: 0 15px;
-            font-family: 'Montserrat', sans-serif;
-            text-decoration: none;
-        }
-        .nav-links a:hover {
-            color: #FD7E14;
-        }
-        .header-right {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-        }
-        .logo-container img {
-            height: 50px;
-        }
-        .tagline {
-            font-size: 14px;
-            margin-top: 5px;
-        }
-
-        /* Main Content & Form Specific Styles */
-        .main-content {
-            flex-grow: 1;
-            padding: 1.5rem;
-            display: flex;
-            justify-content: center; /* Center content horizontally */
-            align-items: center; /* Center content vertically */
-            flex-direction: column;
-        }
-        .login-container {
+        .form-container, .plans-container {
             background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 20px; /* Reduced padding for smaller screens can be done in @media */
-            margin: 20px auto; /* Added top/bottom margin */
-            max-width: 480px;
+            padding: 2rem;
+            border-radius: 0.5rem; /* Tailwind 'rounded-lg' */
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); /* Tailwind 'shadow-md' */
+        }
+        .form-container {
+            flex: 2; /* Takes up less space */
+        }
+        .plans-container {
+            flex: 3; /* Takes up more space */
+        }
+        .input-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        .input-group .fa-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6b7280; /* Tailwind gray-500 */
+        }
+        .input-group input {
+            padding-left: 2.5rem; /* Space for the icon */
             width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
+            border-radius: 0.375rem; /* Tailwind 'rounded-md' */
+            border: 1px solid #d1d5db; /* Tailwind gray-300 */
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
         }
-        .login-container h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 24px;
-            color: #0d141c;
-            margin-bottom: 0;
-        }
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-        }
-        .form-group label p { /* Target the <p> inside label for styling */
-            color: #0d141c;
-            font-size: 16px;
+        .btn-primary {
+            background-color: #2563eb; /* Tailwind blue-600 */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
             font-weight: 500;
-            padding-bottom: 8px;
-            margin-bottom: 0; /* Remove default p margin */
-        }
-        .form-input {
             width: 100%;
-            min-width: 0;
-            flex: 1;
-            resize: none;
-            overflow: hidden;
-            border-radius: 8px;
-            color: #0d141c;
-            outline: 0;
-            border: 1px solid #cbd5e1; /* Added a subtle border */
-            background-color: #f8fafc; /* Slightly off-white background */
-            height: 56px;
-            padding: 16px;
-            font-size: 16px;
-            font-weight: normal;
-            line-height: normal;
-        }
-        .form-input::placeholder { /* Style placeholder */
-            color: #94a3b8; /* Lighter placeholder text */
-        }
-        .login-button {
             display: flex;
-            min-w: 84px;
-            max-width: 480px;
-            cursor: pointer;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
-            border-radius: 8px;
-            height: 40px;
-            padding-left: 16px;
-            padding-right: 16px;
-            background-color: #0c7ff2;
-            color: #f8fafc;
-            font-size: 14px;
-            font-weight: bold;
-            line-height: normal;
-            letter-spacing: 0.015em;
-            transition: background-color 0.3s ease;
-            width: 100%;
-            border: none; /* Ensure no default border */
+            gap: 0.5rem;
         }
-        .login-button:hover {
-            background-color: #0a6bd0;
+        .btn-primary:hover {
+            background-color: #1d4ed8; /* Tailwind blue-700 */
         }
-        .social-login-text {
-            color: #49739c;
-            font-size: 14px;
-            font-weight: normal;
-            line-height: normal;
-            padding-top: 4px;
-            padding-bottom: 12px;
-            text-align: center;
+        .btn-google {
+            background-color: #ffffff;
+            color: #374151; /* Tailwind gray-700 */
+            border: 1px solid #d1d5db; /* Tailwind gray-300 */
         }
-        .social-buttons-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            width: 100%;
-            justify-content: center;
+        .btn-google:hover {
+            background-color: #f9fafb; /* Tailwind gray-50 */
         }
-        .social-button {
-            display: flex;
-            min-w: 84px;
-            max-width: 480px;
-            cursor: pointer;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            border-radius: 8px;
-            height: 40px;
-            padding-left: 16px;
-            padding-right: 16px;
-            background-color: #e7edf4;
-            color: #0d141c;
-            font-size: 14px;
-            font-weight: bold;
-            line-height: normal;
-            letter-spacing: 0.015em;
-            flex-grow: 1;
-            transition: background-color 0.3s ease;
-            border: 1px solid #cbd5e1; /* Added subtle border */
-        }
-        .social-button:hover {
-            background-color: #d0d6e0;
-        }
-        #auth-message {
-            /* display: none; */ /* JavaScript will handle display */
-            width: 100%;
-            padding: 0.75rem; /* p-3 */
-            margin-top: 1rem; /* mt-4 */
-            border-radius: 0.375rem; /* rounded-md */
-            text-align: center;
-        }
-        .message-success {
-            background-color: #d1fae5; /* bg-green-100 */
-            color: #065f46; /* text-green-800 */
-        }
-        .message-error {
-            background-color: #fee2e2; /* bg-red-100 */
-            color: #991b1b; /* text-red-800 */
-        }
-
-
-        /* Benefits Table styles */
-        .content-section { /* Added for benefits table section */
-            width: 100%;
-            max-width: 800px; /* Limit width of this section */
-            margin: 20px auto;
-            padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .benefits-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        .benefits-table th, .benefits-table td {
-            border: 1px solid #ddd;
-            padding: 10px;
+        .plan-table th, .plan-table td {
+            padding: 0.75rem;
             text-align: left;
-            font-size: 0.875rem; /* text-sm */
+            border-bottom: 1px solid #e5e7eb; /* Tailwind gray-200 */
         }
-        .benefits-table th {
-            background-color: #007BFF;
-            color: white;
+        .plan-table th {
+            background-color: #f9fafb; /* Tailwind gray-50 */
         }
-        .benefits-table tr:nth-child(even) {
-            background-color: #f9f9f9;
+        .plan-feature-icon {
+            margin-right: 0.5rem;
+            color: #10b981; /* Tailwind green-500 for yes */
         }
-        .benefits-table .yes {
-            color: #28A745;
-            font-weight: bold;
+        .plan-feature-icon.no {
+            color: #ef4444; /* Tailwind red-500 for no */
         }
-        .benefits-table .no {
-            color: #DC3545;
-            font-weight: bold;
+        .plan-feature-icon.limited {
+            color: #f59e0b; /* Tailwind amber-500 for limited */
         }
-
-        /* Footer styles */
-        footer {
-            background-color: #007BFF;
-            color: white;
-            padding: 15px;
-            text-align: center;
-            width: 100%;
-            margin-top: auto;
-        }
-        footer p {
-            font-size: 14px;
-            margin: 5px 0;
-        }
-        footer a {
-            color: #FD7E14;
-            text-decoration: none;
-        }
-        footer a:hover {
-            color: #e06b00;
-        }
-        .newsletter h3 {
-            font-size: 14px;
-            margin-bottom: 8px;
-        }
-        .newsletter input {
-            padding: 8px;
-            border: none;
-            border-radius: 2px;
-            margin-right: 10px;
-            font-size: 14px;
-            width: 150px;
-            color: #333;
-        }
-        .newsletter button {
-            padding: 8px 16px;
-            background-color: #FD7E14;
-            color: white;
-            border: none;
-            border-radius: 2px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        .newsletter button:hover {
-            background-color: #e06b00;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            body {
-                padding-top: 0;
-            }
-            header {
-                position: relative;
-            }
-            .header-container, .header-left, .header-right, .search-language-container, .nav-links {
-                flex-direction: column;
-                align-items: center;
-                width: 100%;
-            }
-            .nav-links a { margin: 5px 0; }
-            .logo-container { text-align: center; }
-            .tagline { text-align: center; }
-            .header-left, .header-right { margin-bottom: 10px; }
-
-            .main-content {
-                padding: 1rem;
-            }
-            .login-container {
-                padding: 15px;
-                margin-top: 20px;
-                margin-bottom: 20px;
-            }
-            .content-section {
-                padding: 15px;
-            }
-            .benefits-table th, .benefits-table td {
-                font-size: 12px; /* Smaller font for table on mobile */
-                padding: 6px;
-            }
-            .social-buttons-container {
-                flex-direction: column; /* Stack social buttons */
-            }
-            .social-button {
-                width: 100%; /* Full width social buttons */
-            }
-            .newsletter form {
-                flex-direction: column;
-            }
-            .newsletter input {
-                margin-bottom: 10px;
-                width: 80%;
-            }
-            .newsletter button {
-                width: 50%;
-            }
+        .language-selector-container {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1000;
         }
     </style>
 </head>
-<body>
-    <header>
-        <div class="container mx-auto header-container">
-            <div class="header-left">
-                <div class="logo-container">
-                    <img src="/SafetyHelp/assets/images/logo.png" alt="SafetyHelp Logo">
-                    <p class="tagline" data-i18n="header.tagline">Safety Personalized, Compliance Simplified—Anytime, Anywhere</p>
-                </div>
-            </div>
-            <div class="nav-links">
-                <a href="/SafetyHelp/index.html" data-i18n="header.nav.home">Home</a>
-                <a href="/SafetyHelp/resources.html" data-i18n="header.nav.resources">Resources</a>
-                <a href="/SafetyHelp/services.html" data-i18n="header.nav.services">Services</a>
-                <a href="/SafetyHelp/community.html" data-i18n="header.nav.community">Community</a>
-                <a href="/SafetyHelp/about.html" data-i18n="header.nav.about">About</a>
-                <a href="/SafetyHelp/contact.html" data-i18n="header.nav.contact">Contact</a>
-                <a href="/SafetyHelp/login.html" id="login-link" data-i18n="header.nav.login">Login</a>
-                <a href="#" id="logout-link" data-i18n="header.nav.logout" style="display: none;">Logout</a>
-            </div>
-            <div class="header-right">
-                <div class="search-language-container">
-                    <div class="language-selector">
-                        <select id="language-select" aria-label="Select language">
-                            <option value="en" data-i18n="language_selector.en">English</option>
-                            <option value="af" data-i18n="language_selector.af">Afrikaans</option>
-                            <option value="zu" data-i18n="language_selector.zu">isiZulu</option>
-                            <option value="xh" data-i18n="language_selector.xh">isiXhosa</option>
-                            <option value="st" data-i18n="language_selector.st">Sesotho</option>
-                            <option value="tn" data-i18n="language_selector.tn">Setswana</option>
-                            <option value="nso" data-i18n="language_selector.nso">Sepedi</option>
-                            <option value="ts" data-i18n="language_selector.ts">Xitsonga</option>
-                            <option value="ss" data-i18n="language_selector.ss">siSwati</option>
-                            <option value="ve" data-i18n="language_selector.ve">Tshivenda</option>
-                            <option value="nr" data-i18n="language_selector.nr">isiNdebele</option>
-                            <option value="es" data-i18n="language_selector.es">Español</option>
-                            <option value="fr" data-i18n="language_selector.fr">French</option>
-                            <option value="sn" data-i18n="language_selector.sn">Shona</option>
-                            <option value="sw" data-i18n="language_selector.sw">Swahili</option>
-                            <option value="zh" data-i18n="language_selector.zh">Mandarin</option>
-                        </select>
-                    </div>
-                    <div class="search-bar">
-                        <form role="search" class="flex">
-                            <input type="text" data-i18n="[placeholder]header.search.placeholder" placeholder="Search OHS Tools..." aria-label="Search OHS Tools" class="px-3 py-1 border border-gray-300 rounded-l text-gray-800">
-                            <button type="submit" aria-label="Search" data-i18n="header.search.button" class="px-4 py-1 bg-blue-500 hover:bg-blue-600 text-white rounded-r">Search</button>
-                        </form>
-                    </div>
-                </div>
+<body class="bg-gray-100">
+
+    <header class="bg-slate-800 text-white p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold" data-i18n="header.title">SafetyHelp</a>
+            <div class="language-selector-container fixed top-4 right-4 z-50">
+                <select id="language-select" class="bg-white text-gray-800 p-2 rounded-md shadow">
+                    <option value="en">English</option>
+                    <option value="xh">isiXhosa</option>
+                    <option value="zu">isiZulu</option>
+                    <option value="af">Afrikaans</option>
+                    <option value="st">Sesotho</option>
+                    </select>
             </div>
         </div>
     </header>
 
-    <div class="main-content">
-        <div class="login-container">
-            <h2 data-i18n="login.title" class="text-[#0d141c] text-2xl font-bold leading-tight tracking-[-0.015em]">Log In to Your Account</h2>
-            <div id="auth-message" style="display:none;"></div> <form id="login-form" class="flex flex-col w-full gap-4">
-                <div class="form-group">
-                    <label class="flex flex-col min-w-40 flex-1">
-                        <p data-i18n="login.email_label" class="text-[#0d141c] text-base font-medium leading-normal pb-2">Email</p>
-                        <input
-                            type="email"
-                            id="login-email"
-                            data-i18n="[placeholder]login.email_placeholder"
-                            placeholder="Enter your email"
-                            class="form-input"
-                            required
-                        />
-                    </label>
+    <main class="login-plan-container">
+        <div class="form-container">
+            <h2 class="text-2xl font-semibold mb-6 text-center text-gray-700" data-i18n="login.title">Log In to Your Account</h2>
+            <form id="loginForm">
+                <div class="input-group">
+                    <span class="fa-icon"><i class="fas fa-envelope"></i></span>
+                    <input type="email" id="email" name="email" required placeholder="your@email.com" aria-label="Email Address"
+                           class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md py-3">
                 </div>
-                <div class="form-group">
-                    <label class="flex flex-col min-w-40 flex-1">
-                        <p data-i18n="login.password_label" class="text-[#0d141c] text-base font-medium leading-normal pb-2">Password</p>
-                        <input
-                            type="password"
-                            id="login-password"
-                            data-i18n="[placeholder]login.password_placeholder"
-                            placeholder="Enter your password"
-                            class="form-input"
-                            required
-                        />
-                    </label>
-                </div>
-                <button type="submit" class="login-button">
-                    <span class="truncate" data-i18n="login.submit_button">Log In</span>
-                </button>
-            </form>
 
-            <p class="social-login-text" data-i18n="login.social_text">Or log in with</p>
-            <div class="social-buttons-container">
-                <button id="google-login-btn" class="social-button">
-                    <i class="fab fa-google mr-2"></i> <span class="truncate" data-i18n="login.google_button">Continue with Google</span>
+                <div class="input-group">
+                    <span class="fa-icon"><i class="fas fa-lock"></i></span>
+                    <input type="password" id="password" name="password" required placeholder="Password" aria-label="Password"
+                           class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md py-3">
+                </div>
+
+                <button type="submit" class="btn-primary mb-4">
+                    <i class="fas fa-sign-in-alt"></i> <span data-i18n="login.loginButton">Log In</span>
                 </button>
+
+                <button type="button" class="btn-primary btn-google mb-6">
+                    <i class="fab fa-google"></i> <span data-i18n="login.continueWithGoogle">Continue with Google</span>
+                </button>
+
+                <div class="text-center text-sm">
+                    <p class="mb-2">
+                        <span data-i18n="login.noAccount">Don't have an account?</span>
+                        <a href="signup.html" class="font-medium text-blue-600 hover:text-blue-500" data-i18n="login.signUpFree">
+                            <i class="fas fa-user-plus"></i> Sign Up for Free!
+                        </a>
+                    </p>
+                    <a href="#" class="font-medium text-blue-600 hover:text-blue-500" data-i18n="login.forgotPassword">
+                        <i class="fas fa-key"></i> Forgot your Password?
+                    </a>
+                </div>
+            </form>
+        </div>
+
+        <div class="plans-container">
+            <h2 class="text-2xl font-semibold mb-6 text-center text-gray-700">
+                <i class="fas fa-tags"></i> <span data-i18n="login.plansTitle">Choose the Right Plan for Your Needs</span>
+            </h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full plan-table">
+                    <thead>
+                        <tr>
+                            <th data-i18n="plans.feature">Feature</th>
+                            <th data-i18n="plans.free">Free</th>
+                            <th data-i18n="plans.premium">Premium</th>
+                            <th data-i18n="plans.enterprise">Enterprise</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-i18n="plans.accessBasicTools">Access to Basic Tools</td>
+                            <td><i class="fas fa-check plan-feature-icon" aria-label="Feature included"></i> <span data-i18n="plans.yes">Yes</span></td>
+                            <td><i class="fas fa-check plan-feature-icon" aria-label="Feature included"></i> <span data-i18n="plans.yes">Yes</span></td>
+                            <td><i class="fas fa-check plan-feature-icon" aria-label="Feature included"></i> <span data-i18n="plans.yes">Yes</span></td>
+                        </tr>
+                        <tr>
+                            <td data-i18n="plans.documentDownload">Document Download</td>
+                            <td><i class="fas fa-times plan-feature-icon no" aria-label="Feature not included"></i> <span data-i18n="plans.no">No</span></td>
+                            <td><i class="fas fa-check plan-feature-icon" aria-label="Feature included"></i> <span data-i18n="plans.yes">Yes</span></td>
+                            <td><i class="fas fa-check plan-feature-icon" aria-label="Feature included"></i> <span data-i18n="plans.yes">Yes</span></td>
+                        </tr>
+                        <tr>
+                            <td data-i18n="plans.customTemplates">Custom Templates</td>
+                            <td><i class="fas fa-times plan-feature-icon no" aria-label="Feature not included"></i> <span data-i18n="plans.no">No</span></td>
+                            <td><i class="fas fa-info-circle plan-feature-icon limited" aria-label="Limited feature"></i> <span data-i18n="plans.limited">Limited</span></td>
+                            <td><i class="fas fa-check plan-feature-icon" aria-label="Feature included"></i> <span data-i18n="plans.yes">Yes</span></td>
+                        </tr>
+                         <tr>
+                            <td data-i18n="plans.support">Support</td>
+                            <td><span data-i18n="plans.communitySupport">Community</span></td>
+                            <td><span data-i18n="plans.emailSupport">Email</span></td>
+                            <td><span data-i18n="plans.prioritySupport">Priority</span></td>
+                        </tr>
+                        <tr>
+                            <td data-i18n="plans.storage">Storage</td>
+                            <td><span data-i18n="plans.storageFree">100MB</span></td>
+                            <td><span data-i18n="plans.storagePremium">1GB</span></td>
+                            <td><span data-i18n="plans.storageEnterprise">Unlimited</span></td>
+                        </tr>
+                        <tr>
+                            <td data-i18n="plans.personalizeDashboard">Personalize Dashboard</td>
+                             <td><i class="fas fa-times plan-feature-icon no" aria-label="Feature not included"></i> <span data-i18n="plans.no">No</span></td>
+                            <td><i class="fas fa-check plan-feature-icon" aria-label="Feature included"></i> <span data-i18n="plans.yes">Yes</span></td>
+                            <td><i class="fas fa-check plan-feature-icon" aria-label="Feature included"></i> <span data-i18n="plans.yes">Yes</span></td>
+                        </tr>
+                        <tr>
+                            <td data-i18n="plans.fullAccessPriority">Full Access + Priority</td>
+                             <td><i class="fas fa-times plan-feature-icon no" aria-label="Feature not included"></i> <span data-i18n="plans.no">No</span></td>
+                             <td><i class="fas fa-times plan-feature-icon no" aria-label="Feature not included"></i> <span data-i18n="plans.no">No</span></td>
+                            <td><i class="fas fa-check plan-feature-icon" aria-label="Feature included"></i> <span data-i18n="plans.yes">Yes</span></td>
+                        </tr>
+                        </tbody>
+                </table>
             </div>
-
-            <p class="text-[#49739c] text-sm font-normal leading-normal text-center mt-4">
-                <span data-i18n="login.no_account">Don't have an account?</span> <a href="/SafetyHelp/signup.html" class="text-[#0c7ff2] hover:underline font-bold" data-i18n="login.signup_link">Sign Up for Free!</a>
-            </p>
-            <p class="text-[#49739c] text-sm font-normal leading-normal text-center">
-                <span data-i18n="login.forgot_password">Forgot your password?</span> <a href="#" class="text-[#0c7ff2] hover:underline font-bold" data-i18n="login.reset_password_link">Reset Password</a>
-            </p>
+             <div class="mt-6 text-center">
+                <a href="signup.html" class="btn-primary inline-block">
+                    <i class="fas fa-arrow-right"></i> <span data-i18n="plans.getStarted">Get Started</span>
+                </a>
+            </div>
         </div>
+    </main>
 
-        <section class="content-section mt-8">
-            <h3 class="text-2xl font-bold text-[#0d141c] mb-4" data-i18n="login.plans.title">Choose the Right Plan for Your Needs</h3>
-            <table class="benefits-table">
-                <thead>
-                    <tr>
-                        <th data-i18n="login.plans.feature">Feature</th>
-                        <th data-i18n="login.plans.guest">Non-Registered User (Guest/Visitor)</th>
-                        <th data-i18n="login.plans.free">Registered User (Free)</th>
-                        <th data-i18n="login.plans.paid">Subscribed Member (Paid)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td data-i18n="login.plans.feature.basic_tools">Access to Basic Tools</td>
-                        <td class="yes" data-i18n="login.plans.yes">Yes</td>
-                        <td class="yes" data-i18n="login.plans.yes">Yes</td>
-                        <td class="yes" data-i18n="login.plans.yes">Yes</td>
-                    </tr>
-                    <tr>
-                        <td data-i18n="login.plans.feature.doc_downloads">Document Downloads</td>
-                        <td data-i18n="login.plans.guest.doc_downloads">Limited (Temporary Access, 7 Days)</td>
-                        <td data-i18n="login.plans.free.doc_downloads">Permanent Access</td>
-                        <td class="yes" data-i18n="login.plans.paid.doc_downloads">Permanent Access</td>
-                    </tr>
-                    <tr>
-                        <td data-i18n="login.plans.feature.cost_per_doc">Cost Per Document</td>
-                        <td data-i18n="login.plans.guest.cost_per_doc">Standard Price (e.g., R50)</td>
-                        <td data-i18n="login.plans.free.cost_per_doc">Standard Price (e.g., R50)</td>
-                        <td class="yes" data-i18n="login.plans.paid.cost_per_doc">Discounted Price (e.g., R40)</td>
-                    </tr>
-                    <tr>
-                        <td data-i18n="login.plans.feature.early_access">Early Access to New Features</td>
-                        <td class="no" data-i18n="login.plans.no">No</td>
-                        <td class="no" data-i18n="login.plans.no">No</td>
-                        <td class="yes" data-i18n="login.plans.yes">Yes</td>
-                    </tr>
-                    <tr>
-                        <td data-i18n="login.plans.feature.product_launches">Access to Book & Product Launches</td>
-                        <td class="no" data-i18n="login.plans.no">No</td>
-                        <td class="no" data-i18n="login.plans.no">No</td>
-                        <td class="yes" data-i18n="login.plans.paid.product_launches">Yes (Early Access)</td>
-                    </tr>
-                    <tr>
-                        <td data-i18n="login.plans.feature.discounts">Exclusive Discounts</td>
-                        <td class="no" data-i18n="login.plans.no">No</td>
-                        <td class="no" data-i18n="login.plans.no">No</td>
-                        <td class="yes" data-i18n="login.plans.yes">Yes</td>
-                    </tr>
-                    <tr>
-                        <td data-i18n="login.plans.feature.trusted_seal">Website Trusted Seal (Visible to Others)</td>
-                        <td class="no" data-i18n="login.plans.no">No</td>
-                        <td class="no" data-i18n="login.plans.no">No</td>
-                        <td class="yes" data-i18n="login.plans.yes">Yes</td>
-                    </tr>
-                    <tr>
-                        <td data-i18n="login.plans.feature.content_featuring">Preference in Content Featuring (Articles, Services)</td>
-                        <td class="no" data-i18n="login.plans.no">No</td>
-                        <td class="no" data-i18n="login.plans.no">No</td>
-                        <td class="yes" data-i18n="login.plans.yes">Yes</td>
-                    </tr>
-                    <tr>
-                        <td data-i18n="login.plans.feature.dashboard">Personalized Dashboard</td>
-                        <td class="no" data-i18n="login.plans.no">No</td>
-                        <td class="yes" data-i18n="login.plans.yes">Yes</td>
-                        <td class="yes" data-i18n="login.plans.paid.dashboard">Yes (Enhanced)</td>
-                    </tr>
-                    <tr>
-                        <td data-i18n="login.plans.feature.community">Community Participation</td>
-                        <td data-i18n="login.plans.guest.community">Limited</td>
-                        <td class="yes" data-i18n="login.plans.free.community">Full Access</td>
-                        <td class="yes" data-i18n="login.plans.paid.community">Full Access + Priority</td>
-                    </tr>
-                </tbody>
-            </table>
-            <p class="mt-4 text-sm text-gray-600" data-i18n="login.plans.note">Registering for a Free account unlocks a range of benefits. You can upgrade to a Subscribed Member (Paid) plan anytime from your dashboard!</p>
-        </section>
-    </div>
-
-    <footer>
-        <p class="mb-2" data-i18n="footer.copyright">© 2025 SafetyHelp. All rights reserved.</p>
-        <p class="mb-4">
-            <a href="/SafetyHelp/privacy.html" data-i18n="footer.links.privacy" class="mx-2 hover:text-blue-400">Privacy Policy</a> |
-            <a href="/SafetyHelp/terms.html" data-i18n="footer.links.terms" class="mx-2 hover:text-blue-400">Terms of Service</a> |
-            <a href="/SafetyHelp/contact.html" data-i18n="footer.links.contact" class="mx-2 hover:text-blue-400">Contact Us</a>
+    <footer class="bg-slate-800 text-white p-4 mt-8 text-center">
+        <p>&copy; <span id="currentYear"></span> SafetyHelp. <span data-i18n="footer.allRightsReserved">All rights reserved.</span></p>
+        <p>
+            <a href="privacy.html" class="hover:underline" data-i18n="footer.privacyPolicy">Privacy Policy</a> |
+            <a href="terms.html" class="hover:underline" data-i18n="footer.termsOfService">Terms of Service</a>
         </p>
-        <div class="newsletter mt-6">
-            <h3 class="text-lg font-semibold mb-3" data-i18n="footer.newsletter.title">Stay Updated</h3>
-            <form class="flex justify-center">
-                <input type="email" data-i18n="[placeholder]footer.newsletter.placeholder" placeholder="Enter your email" aria-label="Email for newsletter" class="px-3 py-2 border border-gray-300 rounded-l text-gray-800 w-64">
-                <button type="submit" data-i18n="footer.newsletter.button" class="px-4 py-2 bg-orange-500 text-white rounded-r hover:bg-orange-600">Subscribe</button>
-            </form>
-        </div>
     </footer>
-    <script type="module" src="/SafetyHelp/assets/js/scripts.js"></script>
+
     <script>
-        // i18next initialization specific to login.html
-        document.addEventListener('DOMContentLoaded', async () => {
-            const translations = {
-                "page_title.login": "SafetyHelp - Login",
-                "header.tagline": "Safety Personalized, Compliance Simplified—Anytime, Anywhere",
-                "header.nav.home": "Home",
-                "header.nav.resources": "Resources",
-                "header.nav.services": "Services",
-                "header.nav.community": "Community",
-                "header.nav.about": "About",
-                "header.nav.contact": "Contact",
-                "header.nav.login": "Login",
-                "header.nav.logout": "Logout",
-                "header.search.placeholder": "Search OHS Tools...",
-                "header.search.button": "Search",
-                "language_selector.en": "English",
-                "language_selector.af": "Afrikaans",
-                "language_selector.zu": "isiZulu",
-                "language_selector.xh": "isiXhosa",
-                "language_selector.st": "Sesotho",
-                "language_selector.tn": "Setswana",
-                "language_selector.nso": "Sepedi",
-                "language_selector.ts": "Xitsonga",
-                "language_selector.ss": "siSwati",
-                "language_selector.ve": "Tshivenda",
-                "language_selector.nr": "isiNdebele",
-                "language_selector.es": "Español",
-                "language_selector.fr": "French",
-                "language_selector.sn": "Shona",
-                "language_selector.sw": "Swahili",
-                "language_selector.zh": "Mandarin",
-                "login.title": "Log In to Your Account",
-                "login.email_label": "Email",
-                "login.email_placeholder": "Enter your email",
-                "login.password_label": "Password",
-                "login.password_placeholder": "Enter your password",
-                "login.submit_button": "Log In",
-                "login.social_text": "Or log in with",
-                "login.google_button": "Continue with Google",
-                "login.no_account": "Don't have an account?",
-                "login.signup_link": "Sign Up for Free!",
-                "login.forgot_password": "Forgot your password?",
-                "login.reset_password_link": "Reset Password",
-                "login.plans.title": "Choose the Right Plan for Your Needs",
-                "login.plans.feature": "Feature",
-                "login.plans.guest": "Non-Registered User (Guest/Visitor)",
-                "login.plans.free": "Registered User (Free)",
-                "login.plans.paid": "Subscribed Member (Paid)",
-                "login.plans.yes": "Yes",
-                "login.plans.no": "No",
-                "login.plans.feature.basic_tools": "Access to Basic Tools",
-                "login.plans.feature.doc_downloads": "Document Downloads",
-                "login.plans.guest.doc_downloads": "Limited (Temporary Access, 7 Days)",
-                "login.plans.free.doc_downloads": "Permanent Access",
-                "login.plans.paid.doc_downloads": "Permanent Access",
-                "login.plans.feature.cost_per_doc": "Cost Per Document",
-                "login.plans.guest.cost_per_doc": "Standard Price (e.g., R50)",
-                "login.plans.free.cost_per_doc": "Standard Price (e.g., R50)",
-                "login.plans.paid.cost_per_doc": "Discounted Price (e.g., R40)",
-                "login.plans.feature.early_access": "Early Access to New Features",
-                "login.plans.feature.product_launches": "Access to Book & Product Launches",
-                "login.plans.paid.product_launches": "Yes (Early Access)",
-                "login.plans.feature.discounts": "Exclusive Discounts",
-                "login.plans.feature.trusted_seal": "Website Trusted Seal (Visible to Others)",
-                "login.plans.feature.content_featuring": "Preference in Content Featuring (Articles, Services)",
-                "login.plans.feature.dashboard": "Personalized Dashboard",
-                "login.plans.paid.dashboard": "Yes (Enhanced)",
-                "login.plans.feature.community": "Community Participation",
-                "login.plans.guest.community": "Limited",
-                "login.plans.free.community": "Full Access",
-                "login.plans.paid.community": "Full Access + Priority",
-                "login.plans.note": "Registering for a Free account unlocks a range of benefits. You can upgrade to a Subscribed Member (Paid) plan anytime from your dashboard!",
-                "footer.copyright": "© 2025 SafetyHelp. All rights reserved.",
-                "footer.links.privacy": "Privacy Policy",
-                "footer.links.terms": "Terms of Service",
-                "footer.links.contact": "Contact Us",
-                "footer.newsletter.title": "Stay Updated",
-                "footer.newsletter.placeholder": "Enter your email",
-                "footer.newsletter.button": "Subscribe"
-            };
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-            if (typeof i18next !== 'undefined') {
-                await i18next
-                    .use(i18nextBrowserLanguageDetector)
-                    .init({
-                        lng: 'en',
-                        fallbackLng: 'en',
-                        resources: {
-                            en: { translation: translations }
-                        },
-                        debug: true
-                    });
-                updateContent();
+        // Basic i18next setup
+        async function initializeI18next() {
+            if (typeof i18next !== 'undefined' && typeof i18nextHttpBackend !== 'undefined' && typeof i18nextBrowserLanguageDetector !== 'undefined') {
+                try {
+                    await i18next
+                        .use(i18nextHttpBackend)
+                        .use(i18nextBrowserLanguageDetector)
+                        .init({
+                            fallbackLng: 'en',
+                            debug: true,
+                            ns: ['translation'], // Ensure you have a namespace
+                            defaultNS: 'translation',
+                            backend: {
+                                loadPath: './assets/locales/{{lng}}/{{ns}}.json' // Path to your translation files
+                            },
+                            detection: {
+                                order: ['querystring', 'cookie', 'localStorage', 'sessionStorage', 'navigator', 'htmlTag'],
+                                caches: ['localStorage', 'cookie']
+                            }
+                        });
+                    updateContent();
+                } catch (error) {
+                    console.error("Error initializing i18next:", error);
+                }
             } else {
-                console.error("i18next is not loaded on login.html");
+                console.error("i18next or its plugins are not loaded.");
             }
+        }
 
-            document.getElementById('language-select')?.addEventListener('change', (e) => {
-                if (typeof i18next !== 'undefined') {
-                    i18next.changeLanguage(e.target.value, (err) => {
-                        if (err) { console.error('Error changing language:', err); return; }
-                        updateContent();
-                    });
+        function updateContent() {
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                const optionsAttr = element.getAttribute('data-i18n-options');
+                let options = {};
+                if (optionsAttr) {
+                    try {
+                        options = JSON.parse(optionsAttr);
+                    } catch (e) {
+                        console.error(`Error parsing i18n options for key "${key}":`, e);
+                    }
+                }
+
+                if (element.hasAttribute('placeholder') && key.startsWith('[placeholder]')) {
+                     element.setAttribute('placeholder', i18next.t(key.substring('[placeholder]'.length), options));
+                } else if (element.tagName === 'TITLE') {
+                    document.title = i18next.t(key, options);
+                } else {
+                    element.innerHTML = i18next.t(key, options); // Use innerHTML to render icons if they are part of the translation string
                 }
             });
+        }
 
-            function updateContent() {
-                document.querySelectorAll('[data-i18n]').forEach(element => {
-                    const key = element.getAttribute('data-i18n');
-                    if (element.hasAttribute('[placeholder]')) {
-                        element.setAttribute('placeholder', i18next.t(key.replace('[placeholder]','')));
-                    } else if (element.tagName === 'TITLE') {
-                        document.title = i18next.t(key);
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeI18next();
+
+            const langSelect = document.getElementById('language-select');
+            if (langSelect) {
+                langSelect.addEventListener('change', (e) => {
+                    if (typeof i18next !== 'undefined' && i18next.isInitialized) {
+                        i18next.changeLanguage(e.target.value, (err) => {
+                            if (err) {
+                                console.error('Error changing language:', err);
+                                return;
+                            }
+                            updateContent();
+                        });
+                    } else {
+                         console.error('i18next not ready for language change or not initialized.');
                     }
-                    else {
-                        element.innerHTML = i18next.t(key);
-                    }
+                });
+                // Set initial value of select based on current language
+                 if (typeof i18next !== 'undefined' && i18next.isInitialized) {
+                    langSelect.value = i18next.language.split('-')[0]; // Use base language e.g. 'en' from 'en-US'
+                }
+            }
+
+            // Example: Handle login form submission
+            const loginForm = document.getElementById('loginForm');
+            if (loginForm) {
+                loginForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    // Add your login logic here
+                    // For example, get email and password
+                    const email = document.getElementById('email').value;
+                    const password = document.getElementById('password').value;
+                    console.log('Login attempt with:', { email, password });
+                    // Show a message or redirect
+                    alert('Login functionality would be handled here.');
                 });
             }
         });
