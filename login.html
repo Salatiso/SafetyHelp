@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Login to SafetyHelp or explore plans. Access OHS tools, resources, and manage compliance.">
-    <meta name="keywords" content="SafetyHelp login, OHS plans, safety compliance, user registration, subscription benefits">
+    <meta name="description" content="Login or Sign up for SafetyHelp. Access OHS tools, resources, and manage compliance.">
+    <meta name="keywords" content="SafetyHelp login, SafetyHelp signup, OHS plans, safety compliance, user registration">
     <meta name="author" content="SafetyHelp Team">
-    <title data-i18n="page_title.login">Login | SafetyHelp</title>
+    <title data-i18n="page_title.signup_login">Signup/Login | SafetyHelp</title>
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
     <link
       rel="stylesheet"
@@ -20,12 +20,15 @@
     <script src="https://unpkg.com/i18next-http-backend@2.5.2/dist/umd/i18nextHttpBackend.min.js"></script>
     <script src="https://unpkg.com/i18next-browser-languagedetector@8.0.0/dist/umd/i18nextBrowserLanguageDetector.min.js"></script>
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
         body {
             font-family: 'Inter', "Noto Sans", sans-serif;
             background-color: #E8F0FE;
             color: #333;
             margin: 0;
-            padding-top: 100px;
+            padding-top: 100px; /* Space for fixed header */
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -45,30 +48,30 @@
         /* Variation 3 Text Logo Style */
         .logo-text-v3 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.75rem; /* Slightly smaller for header context */
+            font-size: 1.75rem; 
             letter-spacing: -0.025em;
             color: white;
             text-decoration: none;
             display: inline-block;
             position: relative;
-            padding-bottom: 5px; /* Space for underline */
+            padding-bottom: 5px; 
         }
         .logo-text-v3 .safety-part {
-            font-weight: 700; /* Bold */
-            position: relative; /* For pseudo-element positioning */
+            font-weight: 700; 
+            position: relative; 
         }
         .logo-text-v3 .help-part {
-            font-weight: 900; /* Black (very bold) */
-            color: #FF8C00; /* Deeper Orange */
+            font-weight: 900; 
+            color: #FF8C00; 
         }
         .logo-text-v3 .safety-part::after {
             content: '';
             position: absolute;
-            bottom: -7px; /* Adjusted for thickness & main logo padding */
+            bottom: -7px; 
             left: 0;
-            width: 100%; /* Underlines the "Safety" part */
-            height: 4px; /* Thicker */
-            background-color: #FF8C00; /* Deeper Orange */
+            width: 100%; 
+            height: 4px; 
+            background-color: #FF8C00; 
             border-radius: 2px;
         }
         /* End Variation 3 Text Logo Style */
@@ -77,48 +80,76 @@
         .nav-links { text-align: center; flex-grow: 1; }
         .nav-links a { color: white; margin: 0 10px; font-family: 'Montserrat', sans-serif; text-decoration: none; font-size: 14px; }
         .nav-links a:hover { color: #FD7E14; }
-        .header-right { display: flex; flex-direction: column; align-items: flex-end; }
-        .search-language-container { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; }
+        
+        .header-right { display: flex; align-items: center; gap: 1rem; } 
+        .search-language-container { display: flex; align-items: center; gap: 0.75rem; } 
+
         .language-selector select { padding: 5px 8px; border-radius: 4px; font-size: 13px; color: #333; border: 1px solid #ccc; background-color: white;}
         .search-bar { display: flex; }
         .search-bar input { padding: 6px 10px; border: 1px solid #ccc; border-right: none; border-radius: 4px 0 0 4px; font-size: 13px; color: #333; width: 150px; }
         .search-bar button { background-color: #FD7E14; color: white; padding: 6px 12px; border: none; border-radius: 0 4px 4px 0; cursor: pointer; font-size: 13px;}
         .search-bar button:hover { background-color: #e06b00; }
 
-        main.login-page-main {
+        main.page-main {
             flex-grow: 1; padding: 2rem 1rem; width: 100%;
             max-width: 1280px; margin: 0 auto;
         }
-        .login-plan-container { display: flex; flex-direction: column; gap: 2rem; }
-        @media (min-width: 1024px) { .login-plan-container { flex-direction: row; } }
-        .form-container, .plans-container {
+        .auth-plan-container { display: flex; flex-direction: column; gap: 2rem; }
+        @media (min-width: 1024px) { 
+            .auth-plan-container { 
+                flex-direction: row; 
+                align-items: flex-start; 
+            } 
+        }
+        
+        .forms-main-column { 
+            flex: 2; /* Forms column takes 2 parts of the space */
+            display: flex;
+            flex-direction: column;
+            gap: 2rem; 
+        }
+        .plans-main-column { 
+            flex: 3; /* Plans column takes 3 parts of the space */
+        }
+        .form-container { 
             background-color: white; padding: 2rem; border-radius: 0.5rem;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
-        .form-container { flex: 1; min-width: 300px; }
-        .plans-container { flex: 1.5; }
-        .input-group { position: relative; margin-bottom: 1.5rem; }
+
+        .input-group { position: relative; margin-bottom: 1.25rem; } 
         .input-group .fa-icon {
             position: absolute; left: 0.75rem; top: 50%;
             transform: translateY(-50%); color: #6b7280;
         }
-        .input-group input {
+        .form-input, .input-group input { 
             padding-left: 2.5rem; width: 100%; border-radius: 0.375rem;
-            border: 1px solid #d1d5db; padding-top: 0.75rem;
-            padding-bottom: 0.75rem; font-size: 1rem;
+            border: 1px solid #d1d5db; padding-top: 0.625rem; 
+            padding-bottom: 0.625rem; font-size: 0.9rem; 
+            color: #1f2937;
         }
-        .btn-primary {
-            background-color: #007BFF; color: white; padding: 0.75rem 1.5rem;
+        .form-input::placeholder, .input-group input::placeholder { color: #9ca3af; }
+        .form-input:focus, .input-group input:focus {
+            border-color: #2563eb; box-shadow: 0 0 0 2px #bfdbfe; outline: none;
+        }
+        .form-label {
+            display: block; margin-bottom: 0.375rem; font-weight: 500;
+            color: #374151; font-size: 0.875rem;
+        }
+
+        .btn-submit { 
+            background-color: #007BFF; color: white; padding: 0.625rem 1.25rem;
             border-radius: 0.375rem; font-weight: 500; width: 100%;
             display: flex; align-items: center; justify-content: center;
             gap: 0.5rem; transition: background-color 0.3s ease;
         }
-        .btn-primary:hover { background-color: #0056b3; }
+        .btn-submit:hover { background-color: #0056b3; }
         .btn-google {
             background-color: #ffffff; color: #374151;
             border: 1px solid #d1d5db;
         }
         .btn-google:hover { background-color: #f9fafb; }
+        .btn-google i { margin-right: 0.5rem; }
+
 
         .plan-table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
         .plan-table th, .plan-table td {
@@ -135,9 +166,9 @@
         }
         .plan-table tbody tr:hover { background-color: #eef2ff; }
         .plan-table td .fas { margin-right: 0.5rem; width: 1.1em; text-align: center; }
-        .plan-table td.yes .fa-check, .plan-table td .plan-feature-icon.yes { color: #10b981; }
-        .plan-table td.no .fa-times, .plan-table td .plan-feature-icon.no { color: #ef4444; }
-        .plan-table td.limited .fa-info-circle, .plan-table td .plan-feature-icon.limited { color: #f59e0b; }
+        .plan-table td.yes .fa-check { color: #10b981; }
+        .plan-table td.no .fa-times { color: #ef4444; }
+        .plan-table td.limited .fa-info-circle { color: #f59e0b; }
         .plan-table td.discount .fa-percent { color: #007BFF; }
 
         .encouragement-message {
@@ -169,20 +200,20 @@
             .header-container { flex-direction: column; padding: 15px; }
             .header-left, .header-right, .nav-links { width: 100%; align-items: center; text-align: center; margin-bottom: 10px;}
             .nav-links a { display: block; margin: 8px 0; }
-            .search-language-container { align-items: center; }
-            .logo-text-v3 { font-size: 1.5rem; /* Adjust for mobile if needed */ }
+            .search-language-container { flex-direction: column; gap: 10px; } 
+            .logo-text-v3 { font-size: 1.5rem; }
             .tagline { text-align: center; font-size: 11px; }
 
-            main.login-page-main { padding: 1rem; }
-            .login-plan-container { flex-direction: column; }
-            .form-container, .plans-container { width: 100%; padding: 1.5rem; }
+            main.page-main { padding: 1rem; }
+            .auth-plan-container { flex-direction: column; }
+            .forms-main-column, .plans-main-column { width: 100%; } 
             .plan-table th, .plan-table td { font-size: 0.85rem; padding: 0.5rem; }
             .plan-table td.plan-table-feature-col { white-space: normal; }
             .newsletter form { flex-direction: column; }
             .newsletter input { width: 80%; margin-bottom: 10px; }
             .newsletter button { width: 50%; }
         }
-        #auth-message {
+        #auth-message-login, #auth-message-signup { 
             width: 100%; padding: 0.75rem; margin-bottom: 1rem;
             border-radius: 0.375rem; text-align: center; font-size: 0.9rem;
         }
@@ -207,11 +238,15 @@
                 <a href="community.html" data-i18n="header.nav.community">Community</a>
                 <a href="about.html" data-i18n="header.nav.about">About</a>
                 <a href="contact.html" data-i18n="header.nav.contact">Contact</a>
-                <a href="login.html" id="login-link" data-i18n="header.nav.login" class="font-bold text-orange-400">Login</a>
-                <a href="#" id="logout-link" data-i18n="header.nav.logout" style="display: none;">Logout</a>
             </nav>
             <div class="header-right">
                 <div class="search-language-container">
+                    <div class="search-bar">
+                        <form role="search" class="flex">
+                            <input type="text" data-i18n="[placeholder]header.search.placeholder" placeholder="Search OHS Tools..." aria-label="Search OHS Tools">
+                            <button type="submit" aria-label="Search" data-i18n="header.search.button">Search</button>
+                        </form>
+                    </div>
                     <div class="language-selector">
                         <select id="language-select" aria-label="Select language">
                             <option value="en" data-i18n="language_selector.en">English</option>
@@ -219,80 +254,83 @@
                             <option value="zu" data-i18n="language_selector.zu">isiZulu</option>
                             <option value="xh" data-i18n="language_selector.xh">isiXhosa</option>
                             <option value="st" data-i18n="language_selector.st">Sesotho</option>
-                            <option value="tn" data-i18n="language_selector.tn">Setswana</option>
-                            <option value="nso" data-i18n="language_selector.nso">Sepedi</option>
-                            <option value="ts" data-i18n="language_selector.ts">Xitsonga</option>
-                            <option value="ss" data-i18n="language_selector.ss">siSwati</option>
-                            <option value="ve" data-i18n="language_selector.ve">Tshivenda</option>
-                            <option value="nr" data-i18n="language_selector.nr">isiNdebele</option>
-                            <option value="es" data-i18n="language_selector.es">Español</option>
-                            <option value="fr" data-i18n="language_selector.fr">French</option>
-                            <option value="sn" data-i18n="language_selector.sn">Shona</option>
-                            <option value="sw" data-i18n="language_selector.sw">Swahili</option>
-                            <option value="zh" data-i18n="language_selector.zh">Mandarin</option>
                         </select>
-                    </div>
-                    <div class="search-bar">
-                        <form role="search" class="flex">
-                            <input type="text" data-i18n="[placeholder]header.search.placeholder" placeholder="Search OHS Tools..." aria-label="Search OHS Tools">
-                            <button type="submit" aria-label="Search" data-i18n="header.search.button">Search</button>
-                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <main class="login-page-main">
-        <div class="login-plan-container">
-            <div class="form-container">
-                <h2 class="text-2xl font-semibold mb-4 text-center text-gray-800" data-i18n="login.title">Log In to Your Account</h2>
-                <div id="auth-message" style="display:none;"></div>
-                <form id="loginForm"> <div class="input-group">
-                        <span class="fa-icon"><i class="fas fa-envelope"></i></span>
-                        <input type="email" id="email" name="email" required data-i18n="[placeholder]login.email_placeholder" placeholder="your@email.com" aria-label="Email Address"
-                               class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md">
-                    </div>
-
-                    <div class="input-group">
-                        <span class="fa-icon"><i class="fas fa-lock"></i></span>
-                        <input type="password" id="password" name="password" required data-i18n="[placeholder]login.password_placeholder" placeholder="Password" aria-label="Password"
-                               class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md">
-                    </div>
-
-                    <button type="submit" class="btn-primary mb-4">
-                        <i class="fas fa-sign-in-alt"></i> <span data-i18n="login.loginButton">Log In</span>
-                    </button>
-
-                    <button type="button" id="google-login-btn" class="btn-primary btn-google mb-6"> <i class="fab fa-google"></i> <span data-i18n="login.continueWithGoogle">Continue with Google</span>
-                    </button>
-
-                    <div class="text-center text-sm text-gray-600">
-                        <p class="mb-2">
-                            <span data-i18n="login.noAccount">Don't have an account?</span>
-                            <a href="signup.html" class="font-medium text-blue-600 hover:text-blue-700 hover:underline" data-i18n="login.signUpFree">
-                                <i class="fas fa-user-plus"></i> Sign Up for Free!
+    <main class="page-main">
+        <div class="auth-plan-container">
+            <div class="forms-main-column">
+                <div class="form-container">
+                    <h2 class="text-xl font-semibold mb-4 text-center text-gray-800" data-i18n="login.title">Log In to Your Account</h2>
+                    <div id="auth-message-login" style="display:none;"></div>
+                    <form id="loginForm" class="space-y-4">
+                        <div class="input-group">
+                            <span class="fa-icon"><i class="fas fa-envelope"></i></span>
+                            <input type="email" id="login-email" name="email" required data-i18n="[placeholder]login.email_placeholder" placeholder="your@email.com" aria-label="Email Address">
+                        </div>
+                        <div class="input-group">
+                            <span class="fa-icon"><i class="fas fa-lock"></i></span>
+                            <input type="password" id="login-password" name="password" required data-i18n="[placeholder]login.password_placeholder" placeholder="Password" aria-label="Password">
+                        </div>
+                        <button type="submit" class="btn-submit">
+                            <i class="fas fa-sign-in-alt"></i> <span data-i18n="login.loginButton">Log In</span>
+                        </button>
+                        <button type="button" id="google-login-btn" class="btn-submit btn-google">
+                            <i class="fab fa-google"></i> <span data-i18n="login.continueWithGoogle">Continue with Google</span>
+                        </button>
+                        <div class="text-center text-xs text-gray-600 mt-3">
+                            <a href="#" id="forgot-password-link" class="font-medium text-blue-600 hover:text-blue-700 hover:underline" data-i18n="login.forgotPassword">
+                                <i class="fas fa-key"></i> Forgot your Password?
                             </a>
-                        </p>
-                        <a href="#" id="forgot-password-link" class="font-medium text-blue-600 hover:text-blue-700 hover:underline" data-i18n="login.forgotPassword">
-                            <i class="fas fa-key"></i> Forgot your Password?
-                        </a>
-                    </div>
-                </form>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="form-container" id="signup-section"> 
+                    <h2 class="text-xl font-semibold mb-4 text-center text-gray-800" data-i18n="signup.title">Sign Up for SafetyHelp</h2>
+                    <div id="auth-message-signup" style="display:none;"></div>
+                    <p class="text-center text-slate-600 text-xs mb-3" data-i18n="signup.intro_text_short">
+                        New here? Create a free account to get started!
+                    </p>
+                    <form id="signup-form" class="space-y-4">
+                        <div>
+                            <label for="signup-email" class="form-label" data-i18n="signup.email_label">Email</label>
+                            <input type="email" id="signup-email" data-i18n="[placeholder]signup.email_placeholder" placeholder="Enter your email" class="form-input" required />
+                        </div>
+                        <div>
+                            <label for="signup-password" class="form-label" data-i18n="signup.password_label">Password</label>
+                            <input type="password" id="signup-password" data-i18n="[placeholder]signup.password_placeholder" placeholder="Create a password (min. 6 characters)" class="form-input" required />
+                        </div>
+                        <div>
+                            <label for="signup-company" class="form-label" data-i18n="signup.company_label">Company Name (Optional)</label>
+                            <input type="text" id="signup-company" data-i18n="[placeholder]signup.company_placeholder" placeholder="Enter your company name" class="form-input" />
+                        </div>
+                        <button type="submit" class="btn-submit">
+                            <i class="fas fa-user-plus"></i><span data-i18n="signup.submit_button">Sign Up</span>
+                        </button>
+                         <button type="button" id="google-signup-btn" class="btn-submit btn-google">
+                            <i class="fab fa-google"></i><span data-i18n="signup.google_button">Sign Up with Google</span>
+                        </button>
+                    </form>
+                </div>
             </div>
 
-            <div class="plans-container">
-                <h2 class="text-2xl font-semibold mb-6 text-center text-gray-800">
-                    <i class="fas fa-tags"></i> <span data-i18n="login.plansTitle">Choose the Right Plan for Your Needs</span>
+            <div class="plans-main-column form-container"> 
+                <h2 class="text-xl font-semibold mb-6 text-center text-gray-800">
+                    <i class="fas fa-tags"></i> <span data-i18n="login.plansTitle">Choose the Right Plan</span>
                 </h2>
                 <div class="overflow-x-auto">
                     <table class="plan-table">
                         <thead>
                             <tr>
                                 <th class="plan-table-feature-col" data-i18n="login.plans.feature">Feature</th>
-                                <th data-i18n="login.plans.guest">Non-Registered User (Guest/Visitor)</th>
-                                <th data-i18n="login.plans.free">Registered User (Free)</th>
-                                <th data-i18n="login.plans.paid">Subscribed Member (Paid)</th>
+                                <th data-i18n="login.plans.guest">Guest/Visitor</th>
+                                <th data-i18n="login.plans.free">Registered (Free)</th>
+                                <th data-i18n="login.plans.paid">Subscribed (Paid)</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -304,15 +342,15 @@
                             </tr>
                             <tr>
                                 <td class="plan-table-feature-col" data-i18n="login.plans.feature.doc_downloads">Document Downloads</td>
-                                <td class="limited"><i class="fas fa-info-circle"></i> <span data-i18n="login.plans.guest.doc_downloads">Limited (Temporary Access, 7 Days)</span></td>
+                                <td class="limited"><i class="fas fa-info-circle"></i> <span data-i18n="login.plans.guest.doc_downloads">Limited (7 Days)</span></td>
                                 <td class="yes"><i class="fas fa-check"></i> <span data-i18n="login.plans.free.doc_downloads">Permanent Access</span></td>
                                 <td class="yes"><i class="fas fa-check"></i> <span data-i18n="login.plans.paid.doc_downloads">Permanent Access</span></td>
                             </tr>
                             <tr>
                                 <td class="plan-table-feature-col" data-i18n="login.plans.feature.cost_per_doc">Cost Per Document</td>
-                                <td data-i18n="login.plans.guest.cost_per_doc_discount">Standard Price (No Discount)</td>
-                                <td class="discount"><i class="fas fa-percent"></i> <span data-i18n="login.plans.free.cost_per_doc_discount">Up to 5% Discount</span></td>
-                                <td class="discount"><i class="fas fa-percent"></i> <span data-i18n="login.plans.paid.cost_per_doc_discount">Up to 25% Discount</span></td>
+                                <td data-i18n="login.plans.guest.cost_per_doc_discount">Standard Price</td>
+                                <td class="discount"><i class="fas fa-percent"></i> <span data-i18n="login.plans.free.cost_per_doc_discount">Up to 5% Off</span></td>
+                                <td class="discount"><i class="fas fa-percent"></i> <span data-i18n="login.plans.paid.cost_per_doc_discount">Up to 25% Off</span></td>
                             </tr>
                             <tr>
                                 <td class="plan-table-feature-col" data-i18n="login.plans.feature.early_access">Early Access to New Features</td>
@@ -324,24 +362,7 @@
                                 <td class="plan-table-feature-col" data-i18n="login.plans.feature.product_launches">Access to Book & Product Launches</td>
                                 <td class="no"><i class="fas fa-times"></i> <span data-i18n="login.plans.no">No</span></td>
                                 <td class="yes"><i class="fas fa-check"></i> <span data-i18n="login.plans.yes">Yes</span></td>
-                                <td class="yes"><i class="fas fa-check"></i> <span data-i18n="login.plans.paid.product_launches">Yes (Early Access)</span></td>
-                            </tr>
-                            <tr>
-                                <td class="plan-table-feature-col" data-i18n="login.plans.feature.discounts">Exclusive Discounts</td>
-                                <td class="no"><i class="fas fa-times"></i> <span data-i18n="login.plans.no">No</span></td>
-                                <td class="no"><i class="fas fa-times"></i> <span data-i18n="login.plans.no">No</span></td> <td class="yes"><i class="fas fa-check"></i> <span data-i18n="login.plans.yes">Yes</span></td>
-                            </tr>
-                            <tr>
-                                <td class="plan-table-feature-col" data-i18n="login.plans.feature.trusted_seal">Website Trusted Seal</td>
-                                <td class="no"><i class="fas fa-times"></i> <span data-i18n="login.plans.no">No</span></td>
-                                <td class="no"><i class="fas fa-times"></i> <span data-i18n="login.plans.no">No</span></td>
-                                <td class="yes"><i class="fas fa-check"></i> <span data-i18n="login.plans.yes">Yes</span></td>
-                            </tr>
-                            <tr>
-                                <td class="plan-table-feature-col" data-i18n="login.plans.feature.content_featuring">Preference in Content Featuring</td>
-                                <td class="no"><i class="fas fa-times"></i> <span data-i18n="login.plans.no">No</span></td>
-                                <td class="no"><i class="fas fa-times"></i> <span data-i18n="login.plans.no">No</span></td>
-                                <td class="yes"><i class="fas fa-check"></i> <span data-i18n="login.plans.yes">Yes</span></td>
+                                <td class="yes"><i class="fas fa-check"></i> <span data-i18n="login.plans.paid.product_launches">Yes (Early)</span></td>
                             </tr>
                             <tr>
                                 <td class="plan-table-feature-col" data-i18n="login.plans.feature.dashboard">Personalized Dashboard</td>
@@ -353,19 +374,14 @@
                                 <td class="plan-table-feature-col" data-i18n="login.plans.feature.community">Community Participation</td>
                                 <td class="limited"><i class="fas fa-info-circle"></i> <span data-i18n="login.plans.guest.community">Limited</span></td>
                                 <td class="yes"><i class="fas fa-check"></i> <span data-i18n="login.plans.free.community">Full Access</span></td>
-                                <td class="yes"><i class="fas fa-check"></i> <span data-i18n="login.plans.paid.community">Full Access + Priority</span></td>
+                                <td class="yes"><i class="fas fa-check"></i> <span data-i18n="login.plans.paid.community">Full + Priority</span></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                 <div class="mt-6 text-center">
-                    <a href="signup.html" class="btn-primary inline-block w-auto px-8 py-3">
-                        <i class="fas fa-arrow-right"></i> <span data-i18n="login.plans.getStarted">Get Started</span>
-                    </a>
-                </div>
-                <div class="encouragement-message">
-                    <p><strong data-i18n="login.encouragement.title">Unlock More with a Free Account!</strong></p>
-                    <p data-i18n="login.encouragement.text" class="leading-relaxed">While guests can explore many of our resources, <a href="signup.html" class="font-semibold hover:underline" data-i18n="login.encouragement.linkText">signing up for a free Registered User account</a> grants you permanent access to downloaded documents, a personalized dashboard, and full community participation. It's quick, easy, and enhances your SafetyHelp experience!</p>
+                <div class="encouragement-message mt-6">
+                    <p><strong data-i18n="login.encouragement.title">Unlock More with SafetyHelp!</strong></p>
+                    <p data-i18n="login.encouragement.text_combined" class="leading-relaxed">Guests can explore resources, but <a href="#signup-section" class="font-semibold hover:underline scroll-to-signup" data-i18n="login.encouragement.linkTextCombined">creating a free account</a> unlocks permanent document access, a personalized dashboard, and full community participation. Sign up today!</p>
                 </div>
             </div>
         </div>
@@ -380,8 +396,8 @@
         </div>
         <div class="newsletter">
             <h3 data-i18n="footer.newsletter.title">Stay Updated</h3>
-            <form id="newsletterForm" class="flex justify-center">
-                <input type="email" id="newsletterEmail" data-i18n="[placeholder]footer.newsletter.placeholder" placeholder="Enter your email" aria-label="Email for newsletter">
+            <form id="newsletterFormCombined" class="flex justify-center">
+                <input type="email" id="newsletterEmailCombined" data-i18n="[placeholder]footer.newsletter.placeholder" placeholder="Enter your email" aria-label="Email for newsletter">
                 <button type="submit" data-i18n="footer.newsletter.button">Subscribe</button>
             </form>
         </div>
@@ -393,547 +409,10 @@
         import {
             getAuth,
             signInWithEmailAndPassword,
+            createUserWithEmailAndPassword,
             GoogleAuthProvider,
             signInWithPopup,
             sendPasswordResetEmail
-        } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
-        import {
-            getFirestore,
-            doc,
-            setDoc,
-            getDoc
-        } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
-
-        // Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyDASGZnUyav23Mte5Q96H0j-T3LlGzVK-k", // Replace with your actual API key if different
-            authDomain: "safetyfirst2025-aea34.firebaseapp.com",
-            projectId: "safetyfirst2025-aea34",
-            storageBucket: "safetyfirst2025-aea34.appspot.com", // Corrected from previous
-            messagingSenderId: "620306944192",
-            appId: "1:620306944192:web:ddadeef6825901068a9d25",
-            measurementId: "G-VQL1FCD8NN"
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
-        // --- UI Management ---
-        function displayMessage(messageKey, type, elementId = "auth-message", persistShort = false, options = {}) {
-            const messageContainer = document.getElementById(elementId);
-            if (messageContainer) {
-                messageContainer.textContent = i18next.t(messageKey, options);
-                messageContainer.className = '';
-                messageContainer.classList.add('p-3', 'my-2', 'rounded-md', 'text-center', 'text-sm');
-                if (type === 'success') {
-                    messageContainer.classList.add('bg-green-100', 'text-green-700', 'border', 'border-green-300', 'message-success');
-                } else {
-                    messageContainer.classList.add('bg-red-100', 'text-red-700', 'border', 'border-red-300', 'message-error');
-                }
-                messageContainer.style.display = 'block';
-                if (!persistShort) {
-                     setTimeout(() => { messageContainer.style.display = 'none'; }, 5000);
-                }
-            }
-        }
-
-        // --- Authentication Functions ---
-        async function handleEmailPasswordSignIn(email, password) {
-            try {
-                await signInWithEmailAndPassword(auth, email, password);
-                displayMessage("login.successRedirect", "success", "auth-message", true);
-                setTimeout(() => { window.location.href = '/SafetyHelp/secure/member-dashboard.html'; }, 2000);
-            } catch (error) {
-                let errorMessageKey = "login.errorGeneral";
-                if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
-                    errorMessageKey = "login.errorInvalidCredentials";
-                } else if (error.code === 'auth/invalid-email') {
-                    errorMessageKey = "login.errorInvalidEmail";
-                }
-                displayMessage(errorMessageKey, "error", "auth-message");
-            }
-        }
-
-        async function handleGoogleSignIn() {
-            try {
-                const provider = new GoogleAuthProvider();
-                const userCredential = await signInWithPopup(auth, provider);
-                const user = userCredential.user;
-                const userDocRef = doc(db, "users", user.uid);
-                const docSnap = await getDoc(userDocRef);
-
-                if (!docSnap.exists()) {
-                    await setDoc(userDocRef, {
-                        email: user.email, displayName: user.displayName || '',
-                        companyName: '', membershipPlan: 'free',
-                        createdAt: new Date(), authMethod: 'google'
-                    });
-                    displayMessage("login.googleRegisterSuccess", "success", "auth-message", true);
-                } else {
-                    displayMessage("login.googleLoginSuccess", "success", "auth-message", true);
-                }
-                setTimeout(() => { window.location.href = '/SafetyHelp/secure/member-dashboard.html'; }, 2000);
-            } catch (error) {
-                let errorMessageKey = "login.errorGoogleGeneral";
-                if (error.code === 'auth/popup-closed-by-user') errorMessageKey = "login.errorGooglePopupClosed";
-                else if (error.code === 'auth/cancelled-popup-request') errorMessageKey = "login.errorGoogleCancelled";
-                displayMessage(errorMessageKey, "error", "auth-message");
-            }
-        }
-
-        async function handlePasswordReset(email) {
-            if (!email) { displayMessage("login.errorEmailRequiredForReset", "error", "auth-message"); return; }
-            try {
-                await sendPasswordResetEmail(auth, email);
-                displayMessage("login.passwordResetSent", "success", "auth-message");
-            } catch (error) {
-                let errorMessageKey = "login.errorPasswordResetFailed";
-                if (error.code === 'auth/user-not-found') errorMessageKey = "login.errorUserNotFoundForReset";
-                else if (error.code === 'auth/invalid-email') errorMessageKey = "login.errorInvalidEmail";
-                displayMessage(errorMessageKey, "error", "auth-message");
-            }
-        }
-
-        // --- i18next and DOMContentLoaded ---
-        async function initializeI18next() {
-             if (typeof i18next !== 'undefined' && typeof i18nextHttpBackend !== 'undefined' && typeof i18nextBrowserLanguageDetector !== 'undefined') {
-                try {
-                    await i18next
-                        .use(i18nextHttpBackend)
-                        .use(i18nextBrowserLanguageDetector)
-                        .init({
-                            fallbackLng: 'en', debug: true, ns: ['translation'], defaultNS: 'translation',
-                            backend: { loadPath: './assets/locales/{{lng}}/{{ns}}.json' },
-                            detection: { order: ['querystring', 'cookie', 'localStorage', 'sessionStorage', 'navigator', 'htmlTag'], caches: ['localStorage', 'cookie'] }
-                        });
-                    updateContent();
-                } catch (error) { console.error("Error initializing i18next:", error); applyStaticTranslations(); }
-            } else { console.error("i18next plugins not loaded."); applyStaticTranslations(); }
-        }
-
-        function updateContent() {
-            document.querySelectorAll('[data-i18n]').forEach(element => {
-                const key = element.getAttribute('data-i18n');
-                const optionsAttr = element.getAttribute('data-i18n-options');
-                let options = {};
-                if (optionsAttr) { try { options = JSON.parse(optionsAttr); } catch (e) { console.error(`Error parsing i18n options for key "${key}":`, e); }}
-
-                if (key.startsWith('[placeholder]')) {
-                     element.setAttribute('placeholder', i18next.t(key.substring('[placeholder]'.length), options));
-                } else if (element.tagName === 'TITLE') {
-                    document.title = i18next.t(key, options);
-                } else {
-                    const icon = element.querySelector('i.fas, i.fab');
-                    let textContent = i18next.t(key, options);
-                    if (icon && (element.classList.contains('btn-primary') || element.classList.contains('btn-google') || element.closest('a'))) {
-                         let textNode = icon.nextSibling;
-                        while(textNode && textNode.nodeType !== Node.TEXT_NODE) { textNode = textNode.nextSibling; }
-                        if (textNode) { textNode.textContent = ' ' + textContent; }
-                        else { element.appendChild(document.createTextNode(' ' + textContent));}
-                    } else if (element.id === 'footer-copyright-year') {
-                         element.textContent = i18next.t(key, { year: new Date().getFullYear(), ...options });
-                    }
-                     else { element.innerHTML = textContent; }
-                }
-            });
-        }
-        function applyStaticTranslations() { /* ... full static translations from previous ... */ }
-
-        document.addEventListener('DOMContentLoaded', async () => {
-            await initializeI18next();
-            const footerYearEl = document.getElementById('footer-copyright-year');
-            if(footerYearEl) footerYearEl.textContent = i18next.t('footer.copyright', { year: new Date().getFullYear() });
-
-
-            const langSelect = document.getElementById('language-select');
-            if (langSelect) {
-                if (i18next.isInitialized) {
-                     const currentLang = i18next.language;
-                     if (currentLang) {
-                        const baseLang = currentLang.split('-')[0];
-                        if (Array.from(langSelect.options).some(opt => opt.value === baseLang)) langSelect.value = baseLang;
-                        else if (Array.from(langSelect.options).some(opt => opt.value === currentLang)) langSelect.value = currentLang;
-                     }
-                }
-                langSelect.addEventListener('change', (e) => {
-                    if (i18next.isInitialized) {
-                        i18next.changeLanguage(e.target.value, (err) => {
-                            if (err) { console.error('Error changing language:', err); return; }
-                            updateContent();
-                            if(footerYearEl) footerYearEl.textContent = i18next.t('footer.copyright', { year: new Date().getFullYear() });
-                        });
-                    }
-                });
-            }
-
-            const loginForm = document.getElementById('loginForm');
-            if (loginForm) {
-                loginForm.addEventListener('submit', async (event) => {
-                    event.preventDefault();
-                    const email = document.getElementById('email').value;
-                    const password = document.getElementById('password').value;
-                    await handleEmailPasswordSignIn(email, password);
-                });
-            }
-
-            const googleLoginButton = document.getElementById('google-login-btn');
-            if (googleLoginButton) {
-                googleLoginButton.addEventListener('click', async () => { await handleGoogleSignIn(); });
-            }
-
-            const forgotPasswordLink = document.getElementById('forgot-password-link');
-            if (forgotPasswordLink) {
-                forgotPasswordLink.addEventListener('click', async (event) => {
-                    event.preventDefault();
-                    const email = prompt(i18next.t('login.promptForgotPasswordEmail'));
-                    if (email) await handlePasswordReset(email);
-                    else if (email === "") displayMessage("login.errorEmailRequiredForReset", "error", "auth-message");
-                });
-            }
-
-            const newsletterForm = document.getElementById('newsletterForm');
-            if (newsletterForm) {
-                newsletterForm.addEventListener('submit', function(event) {
-                    event.preventDefault();
-                    const email = document.getElementById('newsletterEmail').value;
-                    if (email) {
-                        displayMessage('footer.newsletter.success', "success", "auth-message", false, {email: email});
-                        document.getElementById('newsletterEmail').value = '';
-                    } else {
-                        displayMessage('footer.newsletter.error', "error", "auth-message");
-                    }
-                });
-            }
-        });
-    </script>
-</body>
-</html>
-```
-<hr/>
-Here is the revised `signup.html`:
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-i18n="page_title.signup">Sign Up | SafetyHelp</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
-    <link
-      rel="stylesheet"
-      as="style"
-      onload="this.rel='stylesheet'"
-      href="https://fonts.googleapis.com/css2?display=swap&family=Inter%3Awght%40400%3B500%3B700%3B900&family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&family=Montserrat:wght@400;500;600;700;800;900&display=swap"
-    />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://unpkg.com/i18next@23.15.2/dist/umd/i18next.min.js"></script>
-    <script src="https://unpkg.com/i18next-http-backend@2.5.2/dist/umd/i18nextHttpBackend.min.js"></script>
-    <script src="https://unpkg.com/i18next-browser-languagedetector@8.0.0/dist/umd/i18nextBrowserLanguageDetector.min.js"></script>
-    <style>
-        /* Global Styles */
-        body {
-            font-family: 'Inter', "Noto Sans", sans-serif;
-            background-color: #E8F0FE;
-            color: #333;
-            margin: 0;
-            padding-top: 100px; /* Space for fixed header */
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
-        /* Header styles */
-        header {
-            background-color: #007BFF; color: white; position: fixed;
-            top: 0; left: 0; right: 0; z-index: 50; width: 100%;
-        }
-        .header-container {
-            max-width: 1200px; margin: 0 auto; display: flex;
-            justify-content: space-between; align-items: center;
-            padding: 10px 20px; min-height: 80px;
-        }
-        .header-left { display: flex; flex-direction: column; align-items: flex-start; }
-        
-        /* Variation 3 Text Logo Style */
-        .logo-text-v3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.75rem; /* Slightly smaller for header context */
-            letter-spacing: -0.025em;
-            color: white;
-            text-decoration: none;
-            display: inline-block;
-            position: relative;
-            padding-bottom: 5px; /* Space for underline */
-        }
-        .logo-text-v3 .safety-part {
-            font-weight: 700; /* Bold */
-            position: relative; /* For pseudo-element positioning */
-        }
-        .logo-text-v3 .help-part {
-            font-weight: 900; /* Black (very bold) */
-            color: #FF8C00; /* Deeper Orange */
-        }
-        .logo-text-v3 .safety-part::after {
-            content: '';
-            position: absolute;
-            bottom: -7px; /* Adjusted for thickness & main logo padding */
-            left: 0;
-            width: 100%; /* Underlines the "Safety" part */
-            height: 4px; /* Thicker */
-            background-color: #FF8C00; /* Deeper Orange */
-            border-radius: 2px;
-        }
-        /* End Variation 3 Text Logo Style */
-
-        .tagline { font-size: 12px; margin-top: 4px; color: #f0f0f0; }
-        .nav-links { text-align: center; flex: 1; }
-        .nav-links a { color: white; margin: 0 10px; font-family: 'Montserrat', sans-serif; text-decoration: none; font-size: 14px; }
-        .nav-links a:hover { color: #FD7E14; }
-        .header-right { display: flex; flex-direction: column; align-items: flex-end; }
-        .search-language-container { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; }
-        .language-selector select { padding: 5px 8px; border-radius: 4px; font-size: 13px; color: #333; border: 1px solid #ccc; background-color: white;}
-        .search-bar { display: flex; }
-        .search-bar input { padding: 6px 10px; border: 1px solid #ccc; border-right: none; border-radius: 4px 0 0 4px; font-size: 13px; color: #333; width: 150px; }
-        .search-bar button { background-color: #FD7E14; color: white; padding: 6px 12px; border: none; border-radius: 0 4px 4px 0; cursor: pointer; font-size: 13px;}
-        .search-bar button:hover { background-color: #e06b00; }
-
-        /* Main Content & Form Specific Styles from user's signup.html */
-        main {
-            flex-grow: 1; padding: 1.5rem; display: flex;
-            justify-content: center; align-items: center; flex-direction: column;
-        }
-        .signup-container {
-            background-color: white; border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Softer shadow */
-            padding: 2rem; /* Increased padding */
-            margin: 20px auto; max-width: 520px; /* Slightly wider */
-            width: 100%; display: flex; flex-direction: column;
-            align-items: center; gap: 1.25rem; /* Tailwind gap-5 */
-        }
-        .signup-container h2 {
-            font-family: 'Montserrat', sans-serif; font-size: 1.75rem; /* text-2xl */
-            color: #1f2937; /* Tailwind gray-800 */
-            font-weight: 700; /* Bold */
-            margin-bottom: 0.5rem; /* mb-2 */
-        }
-        .form-group { display: flex; flex-direction: column; width: 100%; }
-        .form-group label { /* Combined label styling */
-            color: #374151; /* Tailwind gray-700 */
-            font-size: 0.875rem; /* text-sm */
-            font-weight: 500; /* medium */
-            margin-bottom: 0.375rem; /* mb-1.5 */
-        }
-        .form-input {
-            width: 100%; min-width: 0; flex: 1; resize: none; overflow: hidden;
-            border-radius: 0.375rem; /* Tailwind rounded-md */
-            color: #1f2937; /* gray-800 */
-            outline: 0; border: 1px solid #d1d5db; /* gray-300 */
-            background-color: #f9fafb; /* gray-50 */
-            height: 46px; /* Adjusted height */
-            padding: 0.625rem 0.875rem; /* py-2.5 px-3.5 */
-            font-size: 0.875rem; /* text-sm */
-            line-height: 1.25rem;
-        }
-        .form-input::placeholder { color: #9ca3af; /* gray-400 */ }
-        .form-input:focus {
-            border-color: #2563eb; /* blue-600 */
-            box-shadow: 0 0 0 2px #bfdbfe; /* blue-200 ring */
-        }
-        .signup-button { /* Base styling for primary button */
-            display: flex; min-w: 84px; max-width: 480px; cursor: pointer;
-            align-items: center; justify-content: center; overflow: hidden;
-            border-radius: 0.375rem; height: 42px; padding-left: 1rem; padding-right: 1rem;
-            background-color: #007BFF; color: white;
-            font-size: 0.875rem; font-weight: 500; /* medium */
-            line-height: normal; transition: background-color 0.3s ease;
-            width: 100%; border: none;
-        }
-        .signup-button:hover { background-color: #0056b3; } /* Darker blue */
-        .social-login-text {
-            color: #4b5563; /* gray-600 */
-            font-size: 0.875rem; /* text-sm */
-            margin-top: 0.5rem; /* mt-2 */
-            margin-bottom: 0.75rem; /* mb-3 */
-            text-align: center;
-        }
-        .social-buttons-container { display: flex; flex-wrap: wrap; gap: 0.75rem; width: 100%; justify-content: center; }
-        .social-button { /* Base styling for social buttons */
-            display: flex; min-w: 84px; max-width: 480px; cursor: pointer;
-            align-items: center; justify-content: center; overflow: hidden;
-            border-radius: 0.375rem; height: 42px; padding: 0.5rem 1rem; /* py-2 px-4 */
-            background-color: #f3f4f6; /* gray-100 */
-            color: #374151; /* gray-700 */
-            font-size: 0.875rem; font-weight: 500;
-            flex-grow: 1; transition: background-color 0.3s ease;
-            border: 1px solid #e5e7eb; /* gray-200 */
-        }
-        .social-button:hover { background-color: #e5e7eb; /* gray-200 */ }
-        .social-button i { margin-right: 0.5rem; }
-
-        #auth-message {
-            width: 100%; padding: 0.75rem; margin-bottom: 1rem; /* Add margin below */
-            border-radius: 0.375rem; text-align: center; font-size: 0.9rem;
-        }
-        .message-success { background-color: #d1fae5; color: #065f46; border: 1px solid #a7f3d0; }
-        .message-error { background-color: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
-
-        /* Footer styles */
-        footer {
-            background-color: #007BFF; color: white; padding: 20px 15px;
-            text-align: center; width: 100%; margin-top: auto;
-        }
-        footer p { font-size: 13px; margin: 5px 0; }
-        .footer-links a { color: #FD7E14; text-decoration: none; margin: 0 8px; font-size: 13px;}
-        .footer-links a:hover { color: #e06b00; text-decoration: underline;}
-        .newsletter { margin-top: 15px; }
-        .newsletter h3 { font-size: 16px; margin-bottom: 10px; font-family: 'Montserrat', sans-serif; }
-        .newsletter form { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px;}
-        .newsletter input { padding: 8px 12px; border: none; border-radius: 4px; font-size: 14px; width: 220px; color: #333; }
-        .newsletter button { padding: 8px 18px; background-color: #FD7E14; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; }
-        .newsletter button:hover { background-color: #e06b00; }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            body { padding-top: 0; }
-            header { position: relative; }
-            .header-container { flex-direction: column; padding: 15px; }
-            .header-left, .header-right, .nav-links { width: 100%; align-items: center; text-align: center; margin-bottom: 10px;}
-            .nav-links a { display: block; margin: 8px 0; }
-            .search-language-container { align-items: center; }
-            .logo-text-v3 { font-size: 1.5rem; }
-            .tagline { text-align: center; font-size: 11px; }
-            main { padding: 1rem; }
-            .signup-container { padding: 1.5rem; margin-top: 20px; margin-bottom: 20px; }
-            .social-buttons-container { flex-direction: column; }
-            .social-button { width: 100%; }
-            .newsletter form { flex-direction: column; }
-            .newsletter input { width: 80%; margin-bottom: 10px; }
-            .newsletter button { width: 50%; }
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <div class="header-container">
-            <div class="header-left">
-                 <a href="index.html" class="logo-text-v3">
-                    <span class="safety-part">Safety</span><span class="help-part">Help</span>
-                </a>
-                <p class="tagline" data-i18n="header.tagline">Safety Personalized, Compliance Simplified—Anytime, Anywhere</p>
-            </div>
-            <nav class="nav-links">
-                <a href="index.html" data-i18n="header.nav.home">Home</a>
-                <a href="resources.html" data-i18n="header.nav.resources">Resources</a>
-                <a href="services.html" data-i18n="header.nav.services">Services</a>
-                <a href="community.html" data-i18n="header.nav.community">Community</a>
-                <a href="about.html" data-i18n="header.nav.about">About</a>
-                <a href="contact.html" data-i18n="header.nav.contact">Contact</a>
-                <a href="login.html" id="login-link" data-i18n="header.nav.login">Login</a>
-                <a href="#" id="logout-link" data-i18n="header.nav.logout" style="display: none;">Logout</a>
-            </nav>
-            <div class="header-right">
-                <div class="search-language-container">
-                    <div class="language-selector">
-                        <select id="language-select" aria-label="Select language">
-                            <option value="en" data-i18n="language_selector.en">English</option>
-                            <option value="af" data-i18n="language_selector.af">Afrikaans</option>
-                            <option value="zu" data-i18n="language_selector.zu">isiZulu</option>
-                            <option value="xh" data-i18n="language_selector.xh">isiXhosa</option>
-                            <option value="st" data-i18n="language_selector.st">Sesotho</option>
-                            <option value="tn" data-i18n="language_selector.tn">Setswana</option>
-                            <option value="nso" data-i18n="language_selector.nso">Sepedi</option>
-                            <option value="ts" data-i18n="language_selector.ts">Xitsonga</option>
-                            <option value="ss" data-i18n="language_selector.ss">siSwati</option>
-                            <option value="ve" data-i18n="language_selector.ve">Tshivenda</option>
-                            <option value="nr" data-i18n="language_selector.nr">isiNdebele</option>
-                            <option value="es" data-i18n="language_selector.es">Español</option>
-                            <option value="fr" data-i18n="language_selector.fr">French</option>
-                            <option value="sn" data-i18n="language_selector.sn">Shona</option>
-                            <option value="sw" data-i18n="language_selector.sw">Swahili</option>
-                            <option value="zh" data-i18n="language_selector.zh">Mandarin</option>
-                        </select>
-                    </div>
-                    <div class="search-bar">
-                        <form role="search" class="flex">
-                            <input type="text" data-i18n="[placeholder]header.search.placeholder" placeholder="Search OHS Tools..." aria-label="Search OHS Tools">
-                            <button type="submit" aria-label="Search" data-i18n="header.search.button">Search</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <main>
-        <div class="signup-container">
-            <h2 data-i18n="signup.title">Sign Up for SafetyHelp</h2>
-            <div id="auth-message" style="display:none;"></div>
-            <p class="text-center text-slate-600 text-sm mb-2" data-i18n="signup.intro_text">
-                Join as a Registered User (Free) to get started with SafetyHelp!
-            </p>
-
-            <form id="signup-form" class="w-full space-y-4">
-                <div class="form-group">
-                    <label for="signup-email" data-i18n="signup.email_label">Email</label>
-                    <input type="email" id="signup-email" data-i18n="[placeholder]signup.email_placeholder" placeholder="Enter your email" class="form-input" required />
-                </div>
-                <div class="form-group">
-                    <label for="signup-password" data-i18n="signup.password_label">Password</label>
-                    <input type="password" id="signup-password" data-i18n="[placeholder]signup.password_placeholder" placeholder="Create a password (min. 6 characters)" class="form-input" required />
-                </div>
-                <div class="form-group">
-                    <label for="signup-company" data-i18n="signup.company_label">Company Name (Optional)</label>
-                    <input type="text" id="signup-company" data-i18n="[placeholder]signup.company_placeholder" placeholder="Enter your company name" class="form-input" />
-                </div>
-                <button type="submit" class="signup-button">
-                    <i class="fas fa-user-plus mr-2"></i><span data-i18n="signup.submit_button">Sign Up</span>
-                </button>
-            </form>
-
-            <p class="social-login-text" data-i18n="signup.social_text">Or sign up with</p>
-            <div class="social-buttons-container">
-                <button id="google-signup-btn" class="social-button">
-                    <i class="fab fa-google"></i><span data-i18n="signup.google_button">Continue with Google</span>
-                </button>
-            </div>
-
-            <p class="text-sm text-slate-600 text-center mt-3">
-                <span data-i18n="signup.already_account">Already have an account?</span>
-                <a href="login.html" class="font-medium text-blue-600 hover:underline" data-i18n="signup.login_link">Login</a>
-            </p>
-        </div>
-    </main>
-
-    <footer>
-        <p data-i18n="footer.copyright" id="footer-copyright-year">© 2025 SafetyHelp. All Rights Reserved.</p>
-        <div class="footer-links">
-            <a href="privacy.html" data-i18n="footer.links.privacy">Privacy Policy</a>
-            <a href="terms.html" data-i18n="footer.links.terms">Terms of Service</a>
-            <a href="contact.html" data-i18n="footer.links.contact">Contact Us</a>
-        </div>
-        <div class="newsletter">
-            <h3 data-i18n="footer.newsletter.title">Stay Updated</h3>
-            <form id="newsletterFormSignup" class="flex justify-center">
-                <input type="email" id="newsletterEmailSignup" data-i18n="[placeholder]footer.newsletter.placeholder" placeholder="Enter your email" aria-label="Email for newsletter">
-                <button type="submit" data-i18n="footer.newsletter.button">Subscribe</button>
-            </form>
-        </div>
-    </footer>
-
-    <script type="module">
-        // Firebase SDK Imports
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
-        import {
-            getAuth,
-            createUserWithEmailAndPassword,
-            GoogleAuthProvider,
-            signInWithPopup
-            // Removed onAuthStateChanged from here as it's not strictly needed for signup page logic
-            // It's better managed globally or on pages that require checking auth state like dashboard
         } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
         import {
             getFirestore,
@@ -953,19 +432,18 @@ Here is the revised `signup.html`:
             measurementId: "G-VQL1FCD8NN"
         };
 
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
 
         // --- UI Management ---
-        function displayMessage(messageKey, type, elementId = "auth-message", persistShort = false, options = {}) {
+        function displayMessage(messageKey, type, elementId, persistShort = false, options = {}) {
             const messageContainer = document.getElementById(elementId);
             if (messageContainer) {
-                messageContainer.textContent = i18next.t(messageKey, options); // Use i18next for message
-                messageContainer.className = '';
+                messageContainer.textContent = i18next.t(messageKey, options);
+                messageContainer.className = ''; 
                 messageContainer.classList.add('p-3', 'my-2', 'rounded-md', 'text-center', 'text-sm');
-                if (type === 'success') {
+                 if (type === 'success') {
                     messageContainer.classList.add('bg-green-100', 'text-green-700', 'border', 'border-green-300', 'message-success');
                 } else {
                     messageContainer.classList.add('bg-red-100', 'text-red-700', 'border', 'border-red-300', 'message-error');
@@ -978,31 +456,75 @@ Here is the revised `signup.html`:
         }
 
         // --- Authentication Functions ---
+        const dashboardUrl = '/SafetyHelp/secure/member-dashboard.html';
+
+        async function handleEmailPasswordSignIn(email, password) {
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                displayMessage("login.successRedirect", "success", "auth-message-login", true);
+                setTimeout(() => { window.location.href = dashboardUrl; }, 1500);
+            } catch (error) {
+                console.error("Login Error:", error.code, error.message);
+                let msgKey = "login.errorGeneral";
+                if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') msgKey = "login.errorInvalidCredentials";
+                else if (error.code === 'auth/invalid-email') msgKey = "login.errorInvalidEmail";
+                displayMessage(msgKey, "error", "auth-message-login");
+            }
+        }
+
+        async function handleGoogleSignIn() { 
+            try {
+                const provider = new GoogleAuthProvider();
+                const result = await signInWithPopup(auth, provider);
+                // User is signed in. Check if they exist in Firestore to decide if it's truly a login or first-time via Google
+                const user = result.user;
+                const userDocRef = doc(db, "users", user.uid);
+                const docSnap = await getDoc(userDocRef);
+
+                if (!docSnap.exists()) { // If user doesn't exist in DB, it's more like a first-time signup via Google
+                     await setDoc(userDocRef, {
+                        email: user.email, displayName: user.displayName || user.email.split('@')[0],
+                        companyName: '', membershipPlan: 'free', role: 'client',
+                        createdAt: new Date(), authMethod: 'google'
+                    });
+                    displayMessage("signup.googleSuccessRedirect", "success", "auth-message-signup", true); // Show signup success
+                } else {
+                    displayMessage("login.googleLoginSuccess", "success", "auth-message-login", true);
+                }
+                setTimeout(() => { window.location.href = dashboardUrl; }, 1500);
+            } catch (error) {
+                console.error("Google Login Error:", error.code, error.message);
+                let msgKey = "login.errorGoogleGeneral";
+                if (error.code === 'auth/popup-closed-by-user') msgKey = "login.errorGooglePopupClosed";
+                else if (error.code === 'auth/account-exists-with-different-credential'){
+                    msgKey = "login.errorGoogleAccountExists"; 
+                }
+                displayMessage(msgKey, "error", "auth-message-login");
+            }
+        }
+        
         async function handleSignUp(email, password, companyName = '') {
             try {
                 const userCredential = await createUserWithEmailAndPassword(auth, email, password);
                 const user = userCredential.user;
                 await setDoc(doc(db, "users", user.uid), {
-                    email: user.email,
-                    companyName: companyName,
-                    displayName: email.split('@')[0], // Basic display name
-                    membershipPlan: 'free', // Default to free plan
-                    role: 'client', // Default role for new signups
-                    createdAt: new Date()
+                    email: user.email, companyName: companyName, displayName: email.split('@')[0],
+                    membershipPlan: 'free', role: 'client', createdAt: new Date()
                 });
-                displayMessage("signup.successRedirect", "success", "auth-message", true);
-                setTimeout(() => { window.location.href = '/SafetyHelp/secure/member-dashboard.html'; }, 2000);
+                displayMessage("signup.successRedirect", "success", "auth-message-signup", true);
+                setTimeout(() => { window.location.href = dashboardUrl; }, 1500);
             } catch (error) {
-                let errorMessageKey = "signup.errorGeneral";
-                if (error.code === 'auth/email-already-in-use') errorMessageKey = "signup.errorEmailInUse";
-                else if (error.code === 'auth/invalid-email') errorMessageKey = "signup.errorInvalidEmail";
-                else if (error.code === 'auth/weak-password') errorMessageKey = "signup.errorWeakPassword";
-                displayMessage(errorMessageKey, "error", "auth-message");
+                console.error("Signup Error:", error.code, error.message);
+                let msgKey = "signup.errorGeneral";
+                if (error.code === 'auth/email-already-in-use') msgKey = "signup.errorEmailInUse";
+                else if (error.code === 'auth/invalid-email') msgKey = "signup.errorInvalidEmail";
+                else if (error.code === 'auth/weak-password') msgKey = "signup.errorWeakPassword";
+                displayMessage(msgKey, "error", "auth-message-signup");
             }
         }
 
-        async function handleGoogleSignUp() {
-            try {
+        async function handleGoogleSignUp() { 
+             try {
                 const provider = new GoogleAuthProvider();
                 const userCredential = await signInWithPopup(auth, provider);
                 const user = userCredential.user;
@@ -1015,35 +537,53 @@ Here is the revised `signup.html`:
                         companyName: '', membershipPlan: 'free', role: 'client',
                         createdAt: new Date(), authMethod: 'google'
                     });
-                    displayMessage("signup.googleSuccessRedirect", "success", "auth-message", true);
+                     displayMessage("signup.googleSuccessRedirect", "success", "auth-message-signup", true);
                 } else {
-                     // User already exists, treat as login
-                    displayMessage("login.googleLoginSuccess", "success", "auth-message", true); // Use a login success message
+                    // User already exists, so this is effectively a login. Show message in login area.
+                    displayMessage("login.googleLoginSuccess", "success", "auth-message-login", true); 
                 }
-                setTimeout(() => { window.location.href = '/SafetyHelp/secure/member-dashboard.html'; }, 2000);
+                setTimeout(() => { window.location.href = dashboardUrl; }, 1500);
             } catch (error) {
-                let errorMessageKey = "signup.errorGoogleGeneral";
-                if (error.code === 'auth/popup-closed-by-user') errorMessageKey = "signup.errorGooglePopupClosed";
-                else if (error.code === 'auth/cancelled-popup-request') errorMessageKey = "signup.errorGoogleCancelled";
-                displayMessage(errorMessageKey, "error", "auth-message");
+                console.error("Google Signup Error:", error.code, error.message);
+                let msgKey = "signup.errorGoogleGeneral";
+                if (error.code === 'auth/popup-closed-by-user') msgKey = "signup.errorGooglePopupClosed";
+                else if (error.code === 'auth/account-exists-with-different-credential'){
+                     msgKey = "login.errorGoogleAccountExists"; 
+                     displayMessage(msgKey, "error", "auth-message-login"); // Show in login message area
+                     return; 
+                }
+                displayMessage(msgKey, "error", "auth-message-signup");
+            }
+        }
+
+        async function handlePasswordReset(email) {
+            if (!email) { displayMessage("login.errorEmailRequiredForReset", "error", "auth-message-login"); return; }
+            try {
+                await sendPasswordResetEmail(auth, email);
+                displayMessage("login.passwordResetSent", "success", "auth-message-login");
+            } catch (error) {
+                console.error("Password Reset Error:", error.code, error.message);
+                let msgKey = "login.errorPasswordResetFailed";
+                if (error.code === 'auth/user-not-found') msgKey = "login.errorUserNotFoundForReset";
+                displayMessage(msgKey, "error", "auth-message-login");
             }
         }
 
         // --- i18next and DOMContentLoaded ---
         async function initializeI18next() {
-            if (typeof i18next !== 'undefined' && typeof i18nextHttpBackend !== 'undefined' && typeof i18nextBrowserLanguageDetector !== 'undefined') {
+             if (typeof i18next !== 'undefined' && typeof i18nextHttpBackend !== 'undefined' && typeof i18nextBrowserLanguageDetector !== 'undefined') {
                 try {
                     await i18next
                         .use(i18nextHttpBackend)
                         .use(i18nextBrowserLanguageDetector)
                         .init({
                             fallbackLng: 'en', debug: true, ns: ['translation'], defaultNS: 'translation',
-                            backend: { loadPath: './assets/locales/{{lng}}/{{ns}}.json' },
+                            backend: { loadPath: './assets/locales/{{lng}}/{{ns}}.json' }, 
                             detection: { order: ['querystring', 'cookie', 'localStorage', 'sessionStorage', 'navigator', 'htmlTag'], caches: ['localStorage', 'cookie'] }
                         });
                     updateContent();
-                } catch (error) { console.error("Error initializing i18next:", error); applyStaticTranslations(); }
-            } else { console.error("i18next plugins not loaded."); applyStaticTranslations(); }
+                } catch (error) { console.error("Error initializing i18next:", error); /* applyStaticTranslations(); */ }
+            } else { console.error("i18next plugins not loaded."); /* applyStaticTranslations(); */ }
         }
 
         function updateContent() {
@@ -1052,7 +592,7 @@ Here is the revised `signup.html`:
                 const optionsAttr = element.getAttribute('data-i18n-options');
                 let options = {};
                 if (optionsAttr) { try { options = JSON.parse(optionsAttr); } catch (e) { console.error(`Error parsing i18n options for key "${key}":`, e); }}
-
+                
                 if (key.startsWith('[placeholder]')) {
                      element.setAttribute('placeholder', i18next.t(key.substring('[placeholder]'.length), options));
                 } else if (element.tagName === 'TITLE') {
@@ -1060,7 +600,7 @@ Here is the revised `signup.html`:
                 } else {
                     const icon = element.querySelector('i.fas, i.fab');
                     let textContent = i18next.t(key, options);
-                    if (icon && (element.classList.contains('signup-button') || element.classList.contains('social-button'))) {
+                    if (icon && (element.classList.contains('btn-submit') || element.classList.contains('btn-google') || element.closest('a.font-medium'))) {
                          let textNode = icon.nextSibling;
                         while(textNode && textNode.nodeType !== Node.TEXT_NODE) { textNode = textNode.nextSibling; }
                         if (textNode) { textNode.textContent = ' ' + textContent; }
@@ -1072,34 +612,54 @@ Here is the revised `signup.html`:
                 }
             });
         }
-        function applyStaticTranslations() { /* ... full static translations ... */ }
-
+        
         document.addEventListener('DOMContentLoaded', async () => {
             await initializeI18next();
             const footerYearEl = document.getElementById('footer-copyright-year');
-            if(footerYearEl) footerYearEl.textContent = i18next.t('footer.copyright', { year: new Date().getFullYear() });
+            if(footerYearEl && i18next.isInitialized) footerYearEl.textContent = i18next.t('footer.copyright', { year: new Date().getFullYear() });
 
             const langSelect = document.getElementById('language-select');
-            if (langSelect) {
-                if (i18next.isInitialized) {
-                     const currentLang = i18next.language;
-                     if (currentLang) {
-                        const baseLang = currentLang.split('-')[0];
-                        if (Array.from(langSelect.options).some(opt => opt.value === baseLang)) langSelect.value = baseLang;
-                        else if (Array.from(langSelect.options).some(opt => opt.value === currentLang)) langSelect.value = currentLang;
-                     }
-                }
+            if (langSelect && i18next.isInitialized) {
+                 const currentLang = i18next.language;
+                 if (currentLang) {
+                    const baseLang = currentLang.split('-')[0];
+                    if (Array.from(langSelect.options).some(opt => opt.value === baseLang)) langSelect.value = baseLang;
+                    else if (Array.from(langSelect.options).some(opt => opt.value === currentLang)) langSelect.value = currentLang;
+                 }
                 langSelect.addEventListener('change', (e) => {
-                    if (i18next.isInitialized) {
-                        i18next.changeLanguage(e.target.value, (err) => {
-                            if (err) { console.error('Error changing language:', err); return; }
-                            updateContent();
-                             if(footerYearEl) footerYearEl.textContent = i18next.t('footer.copyright', { year: new Date().getFullYear() });
-                        });
-                    }
+                    i18next.changeLanguage(e.target.value, (err) => {
+                        if (err) { console.error('Error changing language:', err); return; }
+                        updateContent();
+                        if(footerYearEl) footerYearEl.textContent = i18next.t('footer.copyright', { year: new Date().getFullYear() });
+                    });
                 });
             }
 
+            // Login Form
+            const loginForm = document.getElementById('loginForm');
+            if (loginForm) {
+                loginForm.addEventListener('submit', async (event) => {
+                    event.preventDefault();
+                    const email = document.getElementById('login-email').value;
+                    const password = document.getElementById('login-password').value;
+                    await handleEmailPasswordSignIn(email, password);
+                });
+            }
+            const googleLoginButton = document.getElementById('google-login-btn');
+            if (googleLoginButton) {
+                googleLoginButton.addEventListener('click', async () => { await handleGoogleSignIn(); });
+            }
+            const forgotPasswordLink = document.getElementById('forgot-password-link');
+            if (forgotPasswordLink) {
+                forgotPasswordLink.addEventListener('click', async (event) => {
+                    event.preventDefault();
+                    const email = prompt(i18next.t('login.promptForgotPasswordEmail'));
+                    if (email) await handlePasswordReset(email);
+                    else if (email === "") displayMessage("login.errorEmailRequiredForReset", "error", "auth-message-login");
+                });
+            }
+
+            // Signup Form
             const signupForm = document.getElementById('signup-form');
             if (signupForm) {
                 signupForm.addEventListener('submit', async (event) => {
@@ -1110,24 +670,35 @@ Here is the revised `signup.html`:
                     await handleSignUp(email, password, companyName);
                 });
             }
-
             const googleSignupButton = document.getElementById('google-signup-btn');
             if (googleSignupButton) {
                 googleSignupButton.addEventListener('click', async () => { await handleGoogleSignUp(); });
             }
-            const newsletterForm = document.getElementById('newsletterFormSignup');
+
+            const newsletterForm = document.getElementById('newsletterFormCombined');
             if (newsletterForm) {
                 newsletterForm.addEventListener('submit', function(event) {
                     event.preventDefault();
-                    const email = document.getElementById('newsletterEmailSignup').value;
+                    const email = document.getElementById('newsletterEmailCombined').value;
                     if (email) {
-                         displayMessage('footer.newsletter.success', "success", "auth-message", false, {email: email});
-                        document.getElementById('newsletterEmailSignup').value = '';
+                        displayMessage('footer.newsletter.success', "success", "auth-message-signup", false, {email: email}); // Using signup message area for newsletter
+                        document.getElementById('newsletterEmailCombined').value = '';
                     } else {
-                         displayMessage('footer.newsletter.error', "error", "auth-message");
+                        displayMessage('footer.newsletter.error', "error", "auth-message-signup");
                     }
                 });
             }
+            
+            document.querySelectorAll('.scroll-to-signup').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href'); 
+                    const targetElement = document.querySelector(targetId); 
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
         });
     </script>
 </body>
