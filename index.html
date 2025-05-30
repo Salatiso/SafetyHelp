@@ -1,158 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SafetyHelp - OHS Compliance Platform</title>
-  <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/babel-standalone@7.22.5/babel.min.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    .timeline { animation: scrollTimeline 15s linear infinite; }
-    .timeline:hover { animation-play-state: paused; }
-    @keyframes scrollTimeline {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-50%); }
-    }
-    .carousel-item { transition: transform 0.3s ease; }
-    .carousel-item:hover { transform: scale(1.05); }
-    .progress-bar { transition: width 0.3s ease; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafetyHelp - Compliance Made Easy</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
-<body class="bg-pink-100 font-sans">
-  <div id="root"></div>
-  <script type="text/babel">
-    const { useState } = React;
+<body>
 
-    const modules = [
-      { id: 1, name: "Compliance Audits", icon: "📋", url: "/audits" },
-      { id: 2, name: "Risk Assessments", icon: "⚠️", url: "/risk" },
-      { id: 3, name: "Safety Training", icon: "🎓", url: "/training" },
-      { id: 4, name: "Emergency Plans", icon: "🚨", url: "/emergency" },
-      { id: 5, name: "Fire Safety", icon: "🔥", url: "/fire" },
-      { id: 6, name: "First Aid Systems", icon: "🩺", url: "/firstaid" },
-      { id: 7, name: "Hazard Control", icon: "☣️", url: "/hazard" },
-      { id: 8, name: "Safety Reports", icon: "📊", url: "/reports" },
-      { id: 9, name: "Legal Appointments", icon: "📜", url: "/appointments" },
-      { id: 10, name: "Incident Tracking", icon: "🚑", url: "/incidents" },
-    ];
+    <!-- Header -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">OHS Tools</a></li>
+                <li><a href="#">Compliance Quiz</a></li>
+                <li><a href="#">Milestones</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    const milestones = [
-      { year: 1993, title: "OHS Act Enacted", desc: "Occupational Health and Safety Act 85 of 1993 established. 🛠️", emoji: "🛠️" },
-      { year: 2015, title: "Fall Protection", desc: "Mandatory training for working at heights introduced. 🪜", emoji: "🪜" },
-      { year: 2023, title: "Airborne Hazards", desc: "Regulations for airborne hazards in mining enforced. 🌬️", emoji: "🌬️" },
-      { year: 2024, title: "Digital Tools", desc: "Platforms like SafetyHelp revolutionize compliance. 💻", emoji: "💻" },
-      { year: 2025, title: "Violence Prevention", desc: "Campaign to prevent workplace violence launched. 🛑", emoji: "🛑" },
-    ];
+    <!-- Interactive Quiz -->
+    <section id="quiz">
+        <h2>Test Your Compliance Knowledge!</h2>
+        <div id="quiz-container"></div>
+    </section>
 
-    const quizQuestions = [
-      { q: "Got a safety officer in your workplace?", a: ["Yes", "No"], correct: 0 },
-      { q: "Is your OHS Act copy ready to view?", a: ["Yes", "No"], correct: 0 },
-      { q: "Doing regular risk assessments?", a: ["Yes", "No"], correct: 0 },
-      { q: "Safety posters up and visible?", a: ["Yes", "No"], correct: 0 },
-      { q: "Employees trained on safety?", a: ["Yes", "No"], correct: 0 },
-    ];
-
-    function App() {
-      const [quizOpen, setQuizOpen] = useState(false);
-      const [quizStep, setQuizStep] = useState(0);
-      const [quizScore, setQuizScore] = useState(0);
-      const [selectedMilestone, setSelectedMilestone] = useState(null);
-
-      const handleQuizAnswer = (answerIndex) => {
-        if (answerIndex === quizQuestions[quizStep].correct) setQuizScore(quizScore + 1);
-        if (quizStep < quizQuestions.length - 1) {
-          setQuizStep(quizStep + 1);
-        } else {
-          setQuizOpen(false);
-          alert(`Quiz done! Your score: ${quizScore + 1}/${quizQuestions.length} 🎉`);
-        }
-      };
-
-      return (
-        <div class="min-h-screen bg-gradient-to-br from-pink-200 to-blue-200 text-gray-800">
-          {/* Header */}
-          <header class="bg-pink-500 text-white p-4 flex justify-between items-center">
-            <h1 class="text-2xl font-bold">SafetyHelp ✨</h1>
-            <nav>
-              <a href="#home" class="mx-2 hover:underline">Home</a>
-              <a href="#modules" class="mx-2 hover:underline">Tools</a>
-              <a href="#quiz" class="mx-2 hover:underline" onClick={() => setQuizOpen(true)}>Quiz 🎯</a>
-              <a href="#about" class="mx-2 hover:underline">About</a>
-              <a href="#contact" class="mx-2 hover:underline">Contact</a>
-            </nav>
-          </header>
-
-          {/* Main Content */}
-          <main class="flex p-8">
-            {/* Modules Grid */}
-            <div class="w-1/2">
-              <h2 class="text-xl font-bold mb-4">OHS Tools 🚀</h2>
-              <div class="grid grid-cols-2 gap-4">
-                {modules.map(module => (
-                  <aස class="carousel-item p-4 bg-white rounded-lg shadow flex flex-col items-center hover:bg-pink-100" href={module.url} key={module.id}>
-                    <span class="text-4xl">{module.icon}</span>
-                    <span class="mt-2 text-center">{module.name}</span>
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            {/* Timeline */}
-            <div class="w-1/2 pl-8">
-              <h2 class="text-xl font-bold mb-4">OHS Milestones 🕒</h2>
-              <div class="relative h-96 overflow-hidden">
-                <div class="timeline absolute w-full">
-                  {milestones.map((milestone, index) => (
-                    <div key={index} class="mb-8 p-4 bg-white rounded-lg shadow cursor-pointer hover:bg-blue-100" onClick={() => setSelectedMilestone(milestone)}>
-                      <h3 class="font-bold">{milestone.year}: {milestone.title} {milestone.emoji}</h3>
-                      <p>{milestone.desc.substring(0, 50)}...</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              {selectedMilestone && (
-                <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                  <div class="bg-white p-6 rounded-lg">
-                    <h3 class="font-bold">{selectedMilestone.year}: {selectedMilestone.title} {selectedMilestone.emoji}</h3>
-                    <p>{selectedMilestone.desc}</p>
-                    <button onClick={() => setSelectedMilestone(null)} class="mt-4 bg-pink-500 text-white p-2 rounded">Close</button>
-                  </div>
-                </div>
-              )}
-            </div>
-          </main>
-
-          {/* Quiz Modal with Progress Bar */}
-          {quizOpen && (
-            <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-              <div class="bg-white p-6 rounded-lg w-1/2">
-                <h2 class="text-xl font-bold mb-4">Compliance Quiz 🎉</h2>
-                <div class="w-full bg-gray-200 h-2 rounded">
-                  <div class="bg-pink-500 h-2 rounded progress-bar" style={{ width: `${((quizStep + 1) / quizQuestions.length) * 100}%` }}></div>
-                </div>
-                <p class="mt-4">{quizQuestions[quizStep].q}</p>
-                <div class="mt-4">
-                  {quizQuestions[quizStep].a.map((answer, index) => (
-                    <button key={index} onClick={() => handleQuizAnswer(index)} class="m-2 p-2 bg-blue-500 text-white rounded hover:bg-blue-600">{answer}</button>
-                  ))}
-                </div>
-                <button onClick={() => setQuizOpen(false)} class="mt-4 bg-gray-500 text-white p-2 rounded">Exit Quiz</button>
-              </div>
-            </div>
-          )}
-
-          {/* Footer */}
-          <footer class="bg-pink-500 text-white p-4 text-center">
-            <p>&copy; 2025 SafetyHelp. All rights reserved. 🌟</p>
-            <p>Contact: info@safetyhelp.co.za | <a href="/privacy" class="underline">Privacy Policy</a></p>
-          </footer>
+    <!-- OHS Tools -->
+    <section id="tools">
+        <h2>Explore OHS Tools</h2>
+        <div class="tools-grid">
+            <div class="tool-card" onclick="openModule('module1')">Risk Assessment</div>
+            <div class="tool-card" onclick="openModule('module2')">Incident Reporting</div>
+            <div class="tool-card" onclick="openModule('module3')">Emergency Preparedness</div>
+            <!-- Add all 10 modules dynamically -->
         </div>
-      );
-    }
+    </section>
 
-    ReactDOM.render(<App />, document.getElementById('root'));
-  </script>
+    <!-- Vertical Timeline -->
+    <section id="timeline">
+        <h2>OHS Milestones</h2>
+        <div class="timeline-container">
+            <div class="timeline-item" onclick="showDetails('milestone1')">1993 - OHS Act Introduced</div>
+            <div class="timeline-item" onclick="showDetails('milestone2')">2005 - Major Compliance Update</div>
+            <div class="timeline-item" onclick="showDetails('milestone3')">2020 - Digital Compliance Evolution</div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 SafetyHelp - Making Compliance Accessible</p>
+    </footer>
+
 </body>
 </html>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+header {
+    background: #0A74DA;
+    padding: 20px;
+    text-align: center;
+}
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+section {
+    padding: 50px;
+    text-align: center;
+}
+.tools-grid {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+.tool-card {
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.timeline-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.timeline-item {
+    background: #0A74DA;
+    color: white;
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+}
+footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+document.addEventListener("DOMContentLoaded", function() {
+    const quizContainer = document.getElementById("quiz-container");
+    const quizQuestions = [
+        { question: "What is the purpose of OHS compliance?", answer: "Ensuring workplace safety" },
+        { question: "Which law governs OHS in South Africa?", answer: "Occupational Health and Safety Act" },
+        { question: "What is a risk assessment?", answer: "Evaluating workplace hazards" },
+        { question: "Who benefits from OHS compliance?", answer: "Employees, Employers, Communities" },
+        { question: "How can digital tools enhance compliance?", answer: "Automation & Monitoring" }
+    ];
+
+    quizQuestions.forEach((q, index) => {
+        let div = document.createElement("div");
+        div.innerHTML = `<strong>Q${index + 1}:</strong> ${q.question} <br> <input type='text' id='answer${index}'>`;
+        quizContainer.appendChild(div);
+    });
+
+    function openModule(moduleId) {
+        alert("Opening module: " + moduleId);
+    }
+
+    function showDetails(milestoneId) {
+        alert("Details for " + milestoneId);
+    }
+});
