@@ -3,452 +3,683 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SafetyHelp - Dashboard Concept</title>
+    <title data-i18n="page_title.home">SafetyHelp - Home</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?display=swap&family=Inter%3Awght%40400%3B500%3B700%3B900&family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://unpkg.com/i18next@23.15.2/dist/umd/i18next.min.js"></script>
+    <script src="https://unpkg.com/i18next-http-backend@2.5.2/dist/umd/i18nextHttpBackend.min.js"></script>
+    <script src="https://unpkg.com/i18next-browser-languagedetector@8.0.0/dist/umd/i18nextBrowserLanguageDetector.min.js"></script>
     <style>
-        /* Custom Styles to complement Tailwind */
-        :root {
-            --brand-primary-blue: #005A9C;
-            --brand-secondary-orange: #FFA500;
-            --brand-hover-green: #28a745;
-            --text-color-light: #ffffff;
-            --text-color-dark: #333333;
-            --tile-bg: #ffffff;
-            --tile-header-bg: #f0f4f8; /* Light blueish gray for tile headers */
-        }
-
+        html { scroll-behavior: smooth; }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #e9ebee; /* Light gray background for dashboard feel */
+            font-family: 'Inter', "Noto Sans", sans-serif;
+            background-color: #E8F0FE; color: #374151;
+            margin: 0; padding-top: 80px; /* Adjusted for potentially shorter header */
+            display: flex; flex-direction: column; min-height: 100vh;
         }
+        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; color: #1f2937; }
 
-        .safety-text { color: var(--brand-primary-blue); }
-        .help-text { color: var(--brand-secondary-orange); }
+        /* Header & Logo */
+        header { background-color: #007BFF; color: white; position: fixed; top: 0; left: 0; right: 0; z-index: 1000; width: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .header-container { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 1rem; height: 80px; }
+        .header-left { display: flex; align-items: center; gap: 0.5rem; }
+        .logo-text-v3 { font-family: 'Montserrat', sans-serif; font-size: 1.75rem; letter-spacing: -0.025em; color: white; text-decoration: none; display: inline-block; position: relative; padding-bottom: 5px; }
+        .logo-text-v3 .safety-part { font-weight: 700; position: relative; }
+        .logo-text-v3 .help-part { font-weight: 900; color: #FF8C00; }
+        .logo-text-v3 .safety-part::after { content: ''; position: absolute; bottom: -7px; left: 0; width: 100%; height: 4px; background-color: #FF8C00; border-radius: 2px; }
+        .tagline { font-size: 0.7rem; color: #e0f2fe; margin-left: 0.5rem; line-height: 1.2; max-width: 150px;}
+        .nav-links { display: flex; gap: 0.25rem; } /* Tighter spacing for boxed links */
+        .nav-links a { color: white; font-family: 'Montserrat', sans-serif; text-decoration: none; font-size: 0.8rem; padding: 0.5rem 0.75rem; border-radius: 0.375rem; transition: background-color 0.2s ease; font-weight:500; }
+        .nav-links a:hover, .nav-links a.active-nav-link { background-color: rgba(255,255,255,0.15); }
+        .header-right { display: flex; align-items: center; gap: 1rem; }
+        .search-language-container { display: flex; align-items: center; gap: 0.75rem; }
+        .language-selector select { padding: 0.375rem 0.5rem; border-radius: 4px; font-size: 0.8rem; color: #333; border: 1px solid #ccc; background-color: white;}
+        .search-bar { display: flex; }
+        .search-bar input { padding: 0.375rem 0.625rem; border: 1px solid #ccc; border-right: none; border-radius: 4px 0 0 4px; font-size: 0.8rem; color: #333; width: 130px; }
+        .search-bar button { background-color: #FD7E14; color: white; padding: 0.375rem 0.75rem; border: none; border-radius: 0 4px 4px 0; cursor: pointer; font-size: 0.8rem;}
+        .search-bar button:hover { background-color: #e06b00; }
 
-        /* Header styles (similar to previous concepts) */
-        .site-header {
-            background-color: var(--brand-primary-blue);
-            color: var(--text-color-light);
-            border-bottom: 3px solid var(--brand-secondary-orange);
-        }
-        .logo-text .safety { color: var(--text-color-light); }
-        .logo-text .help { color: var(--brand-secondary-orange); }
+        /* Main Layout */
+        .page-container { display: flex; flex-grow: 1; max-width: 1400px; margin: 0 auto; width: 100%; padding: 1.5rem; gap: 1.5rem;}
+        .sidebar-column { flex: 0 0 260px; /* Fixed width */ }
+        .main-content-column { flex-grow: 1; display: flex; flex-direction: column; gap: 1.5rem; }
+        .timeline-column { flex: 0 0 260px; /* Fixed width */ }
+        
+        /* Sidebar: SafetyHelp Tools */
+        .tools-sidebar { background-color: #f8fafc; padding: 1rem; border-radius: 0.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); height: fit-content; max-height: calc(100vh - 100px - 3rem); overflow-y: auto;}
+        .tools-sidebar-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; display: inline-block; position:relative; padding-bottom:5px;}
+        .tools-sidebar-title .safety-part { color: #007BFF; }
+        .tools-sidebar-title .help-part { color: #FF8C00; }
+        .tools-sidebar-title .safety-part::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 3px; background-color: #FF8C00; border-radius: 1px;}
+        .tool-link { display: block; padding: 0.6rem 0.75rem; margin-bottom: 0.25rem; border-radius: 0.375rem; font-size: 0.875rem; color: #007BFF; font-weight: 500; transition: all 0.2s ease; border-left: 3px solid transparent;}
+        .tool-link:hover { background-color: #e0f2fe; color: #0284c7; border-left-color: #007BFF;}
+        .tool-link.active { background-color: #16a34a; color: white; font-weight: 600; border-left-color: #0d9488;}
+        .tool-link i { margin-right: 0.5rem; width: 1.1em; text-align: center;}
 
-        /* Tile base style */
-        .dashboard-tile {
-            background-color: var(--tile-bg);
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05), 0 5px 15px rgba(0,0,0,0.05);
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden; /* Important for internal scrolling and content containment */
-        }
+        /* OHS Milestones Timeline */
+        .milestones-timeline { background-color: #f8fafc; padding: 1rem; border-radius: 0.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); height: fit-content; max-height: calc(100vh - 100px - 3rem); overflow-y: auto;}
+        .milestones-timeline h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; color: #1f2937;}
+        .timeline-item { padding: 0.6rem 0.75rem; margin-bottom: 0.5rem; border-radius: 0.375rem; background-color: #007BFF; color:white; cursor: pointer; transition: all 0.2s ease; border-left: 3px solid #0056b3;}
+        .timeline-item:hover { background-color: #0056b3; }
+        .timeline-item.expanded { background-color: #16a34a; border-left-color: #0d9488;}
+        .timeline-item-header { display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size:0.875rem; }
+        .timeline-item-year { font-size: 0.75rem; opacity: 0.8; }
+        .timeline-item-details { display: none; margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px solid rgba(255,255,255,0.3); font-size: 0.8rem; line-height: 1.5; }
+        .timeline-item.expanded .timeline-item-details { display: block; }
+        .timeline-item-details a { color: #fde047; text-decoration: underline; }
+        .timeline-item-details a:hover { color: #fef9c3; }
 
-        .tile-title {
-            font-size: 1.3em;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: var(--brand-primary-blue);
-            border-bottom: 1px solid #e0e0e0;
-            padding-bottom: 10px;
-        }
-        .tile-title .safety { color: var(--brand-primary-blue); }
-        .tile-title .help { color: var(--brand-secondary-orange); }
+        /* Welcome Section & Slogan */
+        .welcome-banner { background-color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.08); text-align: center;}
+        .welcome-banner h1 { font-size: 1.75rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .welcome-banner .slogan { font-family: 'Montserrat', sans-serif; font-size: 0.9rem; color: #4b5563; margin-bottom: 1rem; font-style: italic;}
+        .welcome-banner p.intro-text { font-size: 0.9rem; color: #374151; line-height: 1.6; max-width: 700px; margin: 0 auto 1rem auto;}
 
-        /* Specific for scrollable lists within tiles */
-        .tile-scrollable-list {
-            flex-grow: 1; /* Allows list to take available space */
-            overflow-y: auto;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            min-height: 150px; /* Ensure some height before scrolling kicks in */
-        }
-        .tile-scrollable-list::-webkit-scrollbar { width: 5px; }
-        .tile-scrollable-list::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
-        .tile-scrollable-list::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
-        .tile-scrollable-list::-webkit-scrollbar-thumb:hover { background: #aaa; }
+        /* Interactive Hub: Tips & Quiz */
+        .interactive-hub { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .info-box { background-color: white; padding: 1.25rem; border-radius: 0.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .info-box h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.75rem; display: flex; align-items: center; }
+        .info-box h3 i { margin-right: 0.5rem; color: #007BFF; }
+        .info-box p, .info-box .quiz-question { font-size: 0.875rem; color: #4b5563; line-height: 1.5; }
+        .quiz-options button { display: block; width: 100%; text-align: left; padding: 0.5rem 0.75rem; margin-top: 0.5rem; border: 1px solid #e5e7eb; border-radius: 0.375rem; background-color: #f9fafb; hover:bg-slate-100 transition-colors text-sm;}
+        .quiz-input { width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 0.375rem; margin-bottom: 0.5rem; font-size:0.875rem;}
+        
+        /* Launch Message Section */
+        .launch-message-section { background: linear-gradient(135deg, #007BFF, #0056b3); color: white; padding: 2rem; border-radius: 0.5rem; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .launch-message-section h2 { font-size: 1.6rem; font-weight: 700; margin-bottom: 0.75rem; color:white; }
+        .launch-message-section p { font-size: 0.9rem; margin-bottom: 1rem; line-height: 1.6; max-width: 650px; margin-left: auto; margin-right: auto; opacity: 0.9;}
+        .launch-message-section .beta-cta { background-color: #FF8C00; color: white; padding: 0.75rem 1.5rem; border-radius: 0.375rem; font-weight: 600; text-decoration: none; display: inline-block; transition: background-color 0.2s ease;}
+        .launch-message-section .beta-cta:hover { background-color: #e06b00; }
 
-        .tool-list-item a, .timeline-item-header-content {
-            display: block;
-            padding: 8px 10px;
-            text-decoration: none;
-            color: var(--brand-primary-blue);
-            border-radius: 4px;
-            margin-bottom: 5px;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            font-weight: 500;
-        }
-        .tool-list-item a:hover, .tool-list-item a.active {
-            background-color: var(--brand-hover-green);
-            color: var(--text-color-light);
-        }
+        /* Why Choose Us Section */
+        .why-choose-us { background-color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        .why-choose-us h2 { text-align: center; font-size: 1.5rem; margin-bottom: 1.5rem; }
+        .feature-tile { background-color: #f8fafc; padding: 1rem; border-radius: 0.5rem; text-align: center; border: 1px solid #e5e7eb; transition: all 0.3s ease;}
+        .feature-tile:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
+        .feature-tile i { font-size: 2rem; color: #007BFF; margin-bottom: 0.75rem; }
+        .feature-tile h4 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .feature-tile p { font-size: 0.8rem; color: #6b7280; }
 
-        /* Timeline specific styles within tile */
-        .timeline-item {
-            background-color: #f9fafb; /* Slightly different for items */
-            margin-bottom: 8px;
-            border-radius: 4px;
-            border: 1px solid #e5e7eb;
-            overflow: hidden;
-        }
-        .timeline-item-header-content { /* Re-using class name for styling consistency */
-            cursor: pointer;
-            background-color: var(--brand-primary-blue);
-            color: var(--text-color-light);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .timeline-item-header-content:hover { background-color: #00487a; }
-        .timeline-item.expanded .timeline-item-header-content { background-color: var(--brand-hover-green); }
-        .timeline-item-header-content h5 { margin: 0; font-size: 0.9em; }
-        .timeline-item-header-content .toggle-icon { font-size: 0.8em; transition: transform 0.3s ease; }
-        .timeline-item.expanded .toggle-icon { transform: rotate(180deg); }
-        .timeline-item-summary {
-            padding: 0 10px 10px 10px;
-            font-size: 0.85em;
-            max-height: 0;
-            opacity: 0;
-            transition: max-height 0.4s ease-out, opacity 0.3s ease-out, padding 0.4s ease-out;
-        }
-        .timeline-item.expanded .timeline-item-summary { max-height: 150px; opacity: 1; padding-top: 8px; }
-        .timeline-item-summary a { color: var(--brand-secondary-orange); font-weight: bold; }
+        /* Chatbot */
+        .chatbot-container { position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 1000; }
+        #chat-toggle { background-color: #FD7E14; color: white; border: none; width: 56px; height: 56px; border-radius: 50%; cursor: pointer; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); transition: background-color 0.2s ease; }
+        #chat-toggle:hover { background-color: #e06b00; }
+        #chat-window { display: none; position: fixed; bottom: 80px; right: 1.5rem; width: 320px; max-height: 450px; background-color: white; border-radius: 0.5rem; box-shadow: 0 5px 15px rgba(0,0,0,0.3); flex-direction: column; border: 1px solid #e5e7eb; }
+        #chat-window.active { display: flex; }
+        #chat-output { flex-grow: 1; padding: 0.75rem; overflow-y: auto; font-size: 0.875rem; }
+        #chat-output p { margin-bottom: 0.5rem; line-height: 1.5; }
+        #chat-output strong { font-weight: 600; }
+        #chat-input-container { display: flex; border-top: 1px solid #e5e7eb; padding: 0.5rem; }
+        #chat-input { flex-grow: 1; border: 1px solid #d1d5db; padding: 0.5rem; border-radius: 0.375rem 0 0 0.375rem; font-size: 0.875rem; }
+        #chat-input:focus { outline: none; border-color: #007BFF; box-shadow: 0 0 0 2px #bfdbfe; }
+        #chat-send { border: none; padding: 0.5rem 1rem; cursor: pointer; background-color: #007BFF; color: white; border-radius: 0 0.375rem 0.375rem 0; font-size: 0.875rem; }
+        #chat-send:hover { background-color: #0056b3; }
 
-        /* Feature tile specific */
-        .feature-tile-clickable {
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .feature-tile-clickable:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        .feature-tile-icon {
-            font-size: 2.5rem; /* Tailwind: text-4xl */
-            margin-bottom: 0.75rem; /* Tailwind: mb-3 */
-            color: var(--brand-primary-blue);
-        }
+        /* Footer (already styled) */
 
-        /* Modal (re-using from Concept B for consistency) */
-        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); }
-        .modal-content { background-color: #fff; margin: 10% auto; padding: 30px; border-radius: 8px; width: 90%; max-width: 600px; position: relative; animation: slideIn 0.3s ease-out; }
-        @keyframes slideIn { from {transform: translateY(-50px); opacity: 0;} to {transform: translateY(0); opacity: 1;} }
-        .close-modal-button { color: #aaa; float: right; font-size: 28px; font-weight: bold; line-height: 1; cursor: pointer; }
-        .close-modal-button:hover, .close-modal-button:focus { color: black; }
-        .modal-content h3 { margin-top: 0; color: var(--brand-primary-blue); font-size: 1.8em; }
-
-        /* Ensure tiles have enough height, especially when content is dynamic */
-        .min-h-tile { min-height: 250px; } /* Adjust as needed */
-        .min-h-large-tile { min-height: 400px; } /* For the main launch tile */
-
+        /* Responsive adjustments */
+        @media (max-width: 1024px) { /* For tablets and large phones */
+            .page-container { flex-direction: column; }
+            .sidebar-column, .timeline-column { flex: 0 0 auto; width: 100%; max-height: 300px; /* Limit height when stacked */ }
+            .main-content-column { order: -1; /* Move main content above sidebar/timeline on stack */ }
+        }
+        @media (max-width: 768px) {
+            body { padding-top: 0; }
+            header { position: relative; }
+            .header-container { flex-direction: column; padding: 15px; height: auto; }
+            .header-left, .header-right, .nav-links { width: 100%; align-items: center; text-align: center; margin-bottom: 10px;}
+            .nav-links { flex-direction: column; }
+            .nav-links a { margin: 8px 0; padding: 0.75rem 1rem; background-color: rgba(255,255,255,0.1); width: 80%; text-align: center;}
+            .search-language-container { flex-direction: column; gap: 10px; } 
+            .logo-text-v3 { font-size: 1.5rem; }
+            .tagline { text-align: center; font-size: 11px; }
+            .main-content-wrapper { margin-left: 0; flex-direction: column; padding: 1rem; }
+            .interactive-hub { grid-template-columns: 1fr; }
+        }
     </style>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'brand-primary-blue': '#005A9C',
-                        'brand-secondary-orange': '#FFA500',
-                        'brand-hover-green': '#28a745',
-                    }
-                }
-            }
-        }
-    </script>
 </head>
-<body class="bg-gray-100">
-
-    <header class="site-header py-4">
-        <div class="container mx-auto px-4 flex flex-wrap justify-between items-center">
-            <a href="index.html" class="logo-text text-3xl font-bold">
-                <span class="safety">Safety</span><span class="help">Help</span>
-            </a>
-            <div class="header-right flex items-center mt-2 md:mt-0">
-                <input type="search" class="search-bar p-2 border border-gray-300 rounded-md mr-4 text-sm text-gray-700" placeholder="Search...">
-                <div class="language-selector">
-                    <select name="language" id="language" class="p-2 border border-gray-300 rounded-md bg-white text-sm text-gray-700">
-                        <option value="en">English</option>
-                        <option value="es">Español</option>
-                        <option value="fr">Français</option>
-                    </select>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="header-left">
+                <a href="index.html" class="logo-text-v3">
+                    <span class="safety-part">Safety</span><span class="help-part">Help</span>
+                </a>
+                <p class="tagline" data-i18n="header.tagline">Safety Personalized, Compliance Simplified—Anytime, Anywhere</p>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html" data-i18n="header.nav.home" class="active-nav-link">Home</a>
+                <a href="resources.html" data-i18n="header.nav.resources">Resources</a>
+                <a href="services.html" data-i18n="header.nav.services">Services</a>
+                <a href="community.html" data-i18n="header.nav.community">Community</a>
+                <a href="about.html" data-i18n="header.nav.about">About</a>
+                <a href="contact.html" data-i18n="header.nav.contact">Contact</a>
+            </nav>
+            <div class="header-right">
+                <div class="search-language-container">
+                    <div class="search-bar">
+                        <form role="search" class="flex">
+                            <input type="text" data-i18n="[placeholder]header.search.placeholder" placeholder="Search OHS Tools..." aria-label="Search OHS Tools">
+                            <button type="submit" aria-label="Search" data-i18n="header.search.button"><i class="fas fa-search"></i></button>
+                        </form>
+                    </div>
+                    <div class="language-selector">
+                        <select id="language-select" aria-label="Select language">
+                            <option value="en" data-i18n="language_selector.en">English</option>
+                            <option value="xh" data-i18n="language_selector.xh">isiXhosa</option>
+                            <option value="zu" data-i18n="language_selector.zu">isiZulu</option>
+                            <option value="af" data-i18n="language_selector.af">Afrikaans</option>
+                            <option value="st" data-i18n="language_selector.st">Sesotho</option>
+                        </select>
+                    </div>
                 </div>
+                 <a href="login.html" id="login-header-link" class="ml-4 px-4 py-2 text-sm font-medium text-white bg-orange-500 rounded-md hover:bg-orange-600 transition-colors" data-i18n="header.nav.login_signup">Login / Sign Up</a>
             </div>
         </div>
     </header>
 
-    <main class="container mx-auto p-4 md:p-6 lg:p-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+    <div class="page-container">
+        <aside class="sidebar-column">
+            <div class="tools-sidebar">
+                <h3 class="tools-sidebar-title">
+                    <span class="safety-part">Safety</span><span class="help-part">Help</span> <span class="text-slate-700" data-i18n="sidebar.tools_title_suffix">Tools</span>
+                </h3>
+                <nav id="tools-nav">
+                    <a href="#" class="tool-link active" data-tool="dashboard"><i class="fas fa-tachometer-alt"></i><span data-i18n="sidebar.dashboard">Dashboard</span></a>
+                    <a href="#" class="tool-link" data-tool="risk-assessment"><i class="fas fa-shield-alt"></i><span data-i18n="sidebar.risk_assessment">Risk Assessments</span></a>
+                    <a href="#" class="tool-link" data-tool="incident-reporting"><i class="fas fa-triangle-exclamation"></i><span data-i18n="sidebar.incident_reporting">Incident Reporting</span></a>
+                    <a href="#" class="tool-link" data-tool="training-modules"><i class="fas fa-graduation-cap"></i><span data-i18n="sidebar.training_modules">Training Modules</span></a>
+                    <a href="#" class="tool-link" data-tool="document-management"><i class="fas fa-folder-open"></i><span data-i18n="sidebar.document_management">Document Management</span></a>
+                    <a href="#" class="tool-link" data-tool="compliance-checklists"><i class="fas fa-tasks"></i><span data-i18n="sidebar.compliance_checklists">Compliance Checklists</span></a>
+                </nav>
+            </div>
+        </aside>
 
-            <div class="dashboard-tile lg:col-span-2 lg:row-span-2 min-h-large-tile bg-brand-primary-blue text-white flex flex-col justify-between">
-                <div>
-                    <h2 class="text-3xl font-bold mb-3">🚀 <span class="text-brand-secondary-orange">Safety</span>Help Launching June 1, 2025!</h2>
-                    <h3 class="text-xl mb-4">Shape the Future of OHS.</h3>
-                    <p class="mb-6 text-gray-200">
-                        Our core platform with AI-enhanced tools is arriving soon, followed by a phased module rollout.
-                        Join our exclusive Beta Program to test new features, provide critical feedback, and gain complimentary
-                        premium access during your testing period. Limited spots available for dedicated OHS professionals!
-                    </p>
+        <main class="main-content-column">
+            <section class="welcome-banner">
+                <h1><span class="logo-text-v3" style="font-size: 2rem; color: #007BFF; --underline-color: #FF8C00;"><span class="safety-part" style="color:#007BFF;">Safety</span><span class="help-part">Help</span></span></h1>
+                <p class="slogan" data-i18n="header.tagline">Safety Personalized, Compliance Simplified—Anytime, Anywhere</p>
+                <p class="intro-text" data-i18n="hero.description">Your trusted platform for occupational health and safety (OHS) in South Africa. We provide automated, AI-enhanced tools to ensure safety and compliance for workplaces, schools, churches, and informal sectors. Join our community to access resources, services, and support tailored to your needs.</p>
+            </section>
+
+            <div class="interactive-hub">
+                <div class="info-box">
+                    <h3><i class="fas fa-lightbulb"></i><span data-i18n="index.didYouKnowTitle">Did you know...</span></h3>
+                    <p id="safety-tip-text" data-i18n="index.safetyTipPlaceholder">⚡ Using reputable ethical suppliers can reduce workplace hazards by ensuring work is done on time and to the highest quality and safety standards?</p>
+                    <button id="next-tip-btn" class="text-xs text-blue-600 hover:underline mt-2" data-i18n="index.nextTip">Next Tip</button>
                 </div>
-                <a href="login.html#signup-section" class="mt-auto bg-brand-secondary-orange text-brand-primary-blue font-bold py-3 px-6 rounded-lg hover:bg-orange-400 transition duration-300 text-center block w-full md:w-auto md:self-start">
-                    Apply for Beta Program & Register
-                </a>
-            </div>
-
-            <div class="dashboard-tile min-h-tile">
-                <h3 class="tile-title"><span class="safety">Safety</span><span class="help">Help</span> Tools</h3>
-                <ul class="tile-scrollable-list" id="toolList">
-                    <li class="tool-list-item"><a href="#" data-tool="dashboard">📊 Dashboard</a></li>
-                    <li class="tool-list-item"><a href="#" data-tool="assessments">📝 Risk Assessments</a></li>
-                    <li class="tool-list-item"><a href="#" data-tool="incidents">⚠️ Incident Reporting</a></li>
-                    <li class="tool-list-item"><a href="#" data-tool="training">🎓 Training Modules</a></li>
-                    <li class="tool-list-item"><a href="#" data-tool="documents">📂 Document Management</a></li>
-                    <li class="tool-list-item"><a href="#" data-tool="compliance">✅ Compliance Checklists</a></li>
-                    <li class="tool-list-item"><a href="#" data-tool="sds">🧪 SDS Management</a></li>
-                </ul>
-            </div>
-
-            <div class="dashboard-tile min-h-tile">
-                <h3 class="tile-title">OHS Milestones</h3>
-                <ul class="tile-scrollable-list" id="timelineList">
-                    </ul>
-            </div>
-
-            <div class="dashboard-tile min-h-tile">
-                <h3 class="tile-title">Welcome! 👋</h3>
-                <p class="mb-3 text-gray-700">Glad to have you at <span class="safety-text font-semibold">Safety</span><span class="help-text font-semibold">Help</span>.</p>
-                <h4 class="font-semibold text-gray-800 mb-1">💡 Today's Safety Tip:</h4>
-                <p id="safetyTipContent" class="text-sm text-gray-600 mb-3 flex-grow">Loading tip...</p>
-                <button id="nextTipBtn" class="mt-auto w-full bg-brand-secondary-orange text-white font-semibold py-2 px-4 rounded-md hover:bg-orange-400 transition duration-300 text-sm">
-                    Next Tip
-                </button>
-            </div>
-
-            <div class="dashboard-tile min-h-tile">
-                <h3 class="tile-title">🧠 Daily Safety Challenge!</h3>
-                <input type="text" id="quizUserName" placeholder="Your Name" class="w-full p-2 border border-gray-300 rounded-md mb-2 text-sm">
-                <p id="quizQuestion" class="text-sm text-gray-700 mb-2 flex-grow">Loading question...</p>
-                <input type="text" id="quizAnswer" placeholder="Your Answer" class="w-full p-2 border border-gray-300 rounded-md mb-3 text-sm">
-                <button id="submitQuizBtn" class="w-full bg-brand-primary-blue text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-700 transition duration-300 text-sm">
-                    Submit Answer
-                </button>
-                <div class="text-xs text-gray-500 mt-2">
-                    <span id="quizScore">Score: 0</span> | <span id="quizLeader">Leader: Pending</span>
+                <div class="info-box">
+                    <h3><i class="fas fa-stopwatch"></i><span data-i18n="index.nextModuleCountdownTitle">Next Module Launch In:</span></h3>
+                    <div id="countdown-timer" class="text-2xl font-bold text-center text-blue-600 my-2">00d 00h 00m 00s</div>
+                    <p class="text-xs text-center text-slate-500" data-i18n="index.nextModuleIs">Next Up: Advanced Incident Investigation</p>
                 </div>
-            </div>
-
-            <div class="dashboard-tile feature-tile-clickable min-h-tile text-center" data-feature-id="ai">
-                <div class="feature-tile-icon">🤖</div>
-                <h4 class="text-lg font-semibold mb-1 safety-text">AI Automation</h4>
-                <p class="text-sm text-gray-600">Streamline compliance with intelligent, automated OHS processes.</p>
-            </div>
-
-            <div class="dashboard-tile feature-tile-clickable min-h-tile text-center" data-feature-id="accessible">
-                <div class="feature-tile-icon">📱</div>
-                <h4 class="text-lg font-semibold mb-1 safety-text">Accessible to All</h4>
-                <p class="text-sm text-gray-600">Manage OHS anytime, anywhere, on any device. Mobile-first design.</p>
             </div>
             
-            <div class="dashboard-tile feature-tile-clickable min-h-tile text-center" data-feature-id="community">
-                 <div class="feature-tile-icon">🤝</div>
-                <h4 class="text-lg font-semibold mb-1 safety-text">Community Driven</h4>
-                <p class="text-sm text-gray-600">Shape the platform with your feedback. Built for OHS pros, by OHS pros.</p>
-            </div>
-
-            <div class="dashboard-tile min-h-tile">
-                <h3 class="tile-title">Quick Links 🔗</h3>
-                <div class="flex flex-col space-y-2 mt-2">
-                    <a href="#" class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium py-2 px-3 rounded-md text-sm text-center transition duration-300">View OHS Resources</a>
-                    <a href="#" class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium py-2 px-3 rounded-md text-sm text-center transition duration-300">Explore Modules (Soon)</a>
-                    <a href="login.html#signup-section" class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium py-2 px-3 rounded-md text-sm text-center transition duration-300">Register Interest</a>
+            <div class="info-box">
+                <h3 class="text-center"><i class="fas fa-brain"></i><span data-i18n="index.brainChallengeTitle">SafetyHelp Brain of the Day - Daily Challenge!</span></h3>
+                <div id="quiz-area">
+                    </div>
+                <div id="quiz-feedback" class="mt-2 text-sm"></div>
+                <div id="leaderboard-preview" class="mt-3 text-xs">
+                    <p><strong data-i18n="index.leaderboardTitle">Today's Leader:</strong> <span id="leaderboard-name">Loading...</span> (<span id="leaderboard-score">0</span> pts)</p>
+                    <a href="#" class="text-blue-600 hover:underline" data-i18n="index.viewFullRanking">View Full Ranking</a>
                 </div>
             </div>
-        </div>
-    </main>
 
-    <div id="featureModal" class="modal">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                 <div class="info-box">
+                    <h3><i class="fas fa-podcast"></i><span data-i18n="index.latestPodcastTitle">Latest OHS Podcast</span></h3>
+                    <p><a href="#" class="text-blue-600 hover:underline" data-i18n="index.podcastLinkText">Episode 5: Understanding COIDA in 2025</a></p>
+                    <p class="text-xs text-slate-500" data-i18n="index.podcastDate">Posted: May 28, 2025</p>
+                </div>
+                <div class="info-box">
+                    <h3><i class="far fa-newspaper"></i><span data-i18n="index.latestArticleTitle">Latest Safety Article</span></h3>
+                    <p><a href="#" class="text-blue-600 hover:underline" data-i18n="index.articleLinkText">Top 10 Workplace Hazards in Construction</a></p>
+                    <p class="text-xs text-slate-500" data-i18n="index.articleDate">Posted: May 25, 2025</p>
+                </div>
+            </div>
+
+            <section class="launch-message-section">
+                <h2 data-i18n="index.launch.mainTitle">SafetyHelp Launched June 1, 2025!</h2>
+                <p data-i18n="index.launch.corePlatformLive">Our core platform with essential OHS tools is now LIVE! Start simplifying your safety compliance today.</p>
+                <h3 class="text-xl font-semibold mt-4 mb-2 text-yellow-300" data-i18n="index.launch.upcomingModules">Upcoming Modules & Beta Program:</h3>
+                <p data-i18n="index.launch.phasedRollout">Advanced modules like Construction Compliance Pro, AI-Driven Risk Profiling, and Emergency Preparedness Suite will be launched monthly. Check the countdown timer above for the next release!</p>
+                <p data-i18n="index.launch.betaProgramIntro">Want early access and a chance to shape these tools? Join our Beta Program!</p>
+                <ul class="list-disc list-inside my-3 text-left max-w-md mx-auto text-sm opacity-90">
+                    <li data-i18n="index.launch.betaBenefit1">Test new modules before public release.</li>
+                    <li data-i18n="index.launch.betaBenefit2">Provide direct feedback to influence development.</li>
+                    <li data-i18n="index.launch.betaBenefit3">Receive complimentary premium subscription access during your active beta testing period.</li>
+                </ul>
+                <p data-i18n="index.launch.betaCaveat">Spots are limited. The application process is rigorous as we seek individuals who can provide valuable insights and demonstrate OHS skills.</p>
+                <a href="login.html#signup-section" class="beta-cta mt-4"><i class="fas fa-flask-vial mr-2"></i><span data-i18n="index.launch.betaCTA">Apply for Beta & Register</span></a>
+            </section>
+
+            <section class="why-choose-us">
+                <h2 data-i18n="features.title">Why Choose SafetyHelp?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="feature-tile">
+                        <i class="fas fa-cogs"></i>
+                        <h4 data-i18n="features.automation.title">AI & Automation</h4>
+                        <p data-i18n="features.automation.description_short">Intelligent task streamlining for efficient OHS management.</p>
+                    </div>
+                    <div class="feature-tile">
+                        <i class="fas fa-chart-line"></i>
+                        <h4 data-i18n="features.analytics.title">Insightful Analytics</h4>
+                        <p data-i18n="features.analytics.description_short">Data-driven safety decisions and trend identification.</p>
+                    </div>
+                    <div class="feature-tile">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h4 data-i18n="features.mobile.title">Mobile Accessibility</h4>
+                        <p data-i18n="features.mobile.description_short">OHS management on the go, anytime, anywhere.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <aside class="timeline-column">
+            <div class="milestones-timeline">
+                <h3 data-i18n="timeline.title">OHS Milestones</h3>
+                <div id="timeline-items-container">
+                    </div>
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <p data-i18n="footer.copyright" id="footer-copyright-year">© 2025 SafetyHelp. All Rights Reserved.</p>
+        <div class="footer-links">
+            <a href="privacy.html" data-i18n="footer.links.privacy">Privacy Policy</a>
+            <a href="terms.html" data-i18n="footer.links.terms">Terms of Service</a>
+            <a href="contact.html" data-i18n="footer.links.contact">Contact Us</a>
+        </div>
+        <div class="newsletter">
+            <h3 data-i18n="footer.newsletter.title">Stay Updated</h3>
+            <form id="newsletterFormIndex" class="flex justify-center">
+                <input type="email" id="newsletterEmailIndex" data-i18n="[placeholder]footer.newsletter.placeholder" placeholder="Enter your email" aria-label="Email for newsletter">
+                <button type="submit" data-i18n="footer.newsletter.button">Subscribe</button>
+            </form>
+        </div>
+    </footer>
+
+    <div id="modal" class="modal">
         <div class="modal-content">
-            <span class="close-modal-button" id="closeModalBtn">&times;</span>
-            <h3 id="modalTitle" class="text-2xl mb-4">Feature Title</h3>
-            <div id="modalIcon" class="text-5xl mb-4 text-center"></div>
-            <p id="modalDescription" class="text-gray-700 leading-relaxed">Detailed description...</p>
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div id="modal-body"></div>
         </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // --- SafetyHelp Tools Link Activation ---
-            const toolLinks = document.querySelectorAll('#toolList a');
-            toolLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    toolLinks.forEach(l => l.classList.remove('active', 'bg-brand-hover-green', 'text-white')); // Tailwind classes
-                    this.classList.add('active', 'bg-brand-hover-green', 'text-white');
-                    console.log('Tool selected:', this.dataset.tool);
+    <div class="chatbot-container">
+        <button id="chat-toggle" aria-label="Toggle Chatbot">
+             <span class="chat-icon"><i class="fas fa-headset"></i></span>
+        </button>
+        <div id="chat-window" class="chat-hidden">
+            <div id="chat-output">
+                <p><strong>Salatiso:</strong> <span data-i18n="chatbot.welcome">Hello! How can I help you with OHS today?</span></p>
+            </div>
+            <div id="chat-input-container">
+                <input id="chat-input" type="text" data-i18n="[placeholder]chatbot.input_placeholder" placeholder="Ask about OHS..." aria-label="Ask about OHS">
+                <button id="chat-send" aria-label="Send chat message" data-i18n="chatbot.send">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Firebase SDK Imports (if needed directly on index for non-auth features like testimonials, otherwise handled by auth pages)
+        // For now, assuming testimonials are static or loaded via a different mechanism if this page doesn't require user auth for them.
+        // import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+        // import { getFirestore, collection, query, orderBy, limit, startAfter, getDocs } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+
+        // const firebaseConfig = { /* ... your config ... */ };
+        // const app = initializeApp(firebaseConfig);
+        // const db = getFirestore(app);
+
+        // --- i18next and DOMContentLoaded ---
+        async function initializeI18next() {
+            if (typeof i18next !== 'undefined' && typeof i18nextHttpBackend !== 'undefined' && typeof i18nextBrowserLanguageDetector !== 'undefined') {
+                try {
+                    await i18next
+                        .use(i18nextHttpBackend)
+                        .use(i18nextBrowserLanguageDetector)
+                        .init({
+                            fallbackLng: 'en', debug: true, ns: ['translation'], defaultNS: 'translation',
+                            backend: { loadPath: './assets/locales/{{lng}}/{{ns}}.json' },
+                            detection: { order: ['querystring', 'cookie', 'localStorage', 'sessionStorage', 'navigator', 'htmlTag'], caches: ['localStorage', 'cookie'] }
+                        });
+                    updateContent();
+                } catch (error) { console.error("Error initializing i18next:", error); }
+            } else { console.error("i18next plugins not loaded."); }
+        }
+
+        function updateContent() {
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                const optionsAttr = element.getAttribute('data-i18n-options');
+                let options = {};
+                if (optionsAttr) { try { options = JSON.parse(optionsAttr); } catch (e) { console.error(`Error parsing i18n options for key "${key}":`, e); }}
+                
+                if (key.startsWith('[placeholder]')) {
+                     element.setAttribute('placeholder', i18next.t(key.substring('[placeholder]'.length), options));
+                } else if (element.tagName === 'TITLE') {
+                    document.title = i18next.t(key, options);
+                } else {
+                    const icon = element.querySelector('i.fas, i.fab');
+                    let textContent = i18next.t(key, options);
+                     if (element.id === 'footer-copyright-year') {
+                         element.textContent = i18next.t(key, { year: new Date().getFullYear(), ...options });
+                    } else if (icon && (element.classList.contains('btn-submit') || element.classList.contains('btn-google') || element.closest('a.tool-link') || element.closest('button.beta-cta'))) {
+                         let textNode = icon.nextSibling;
+                        while(textNode && textNode.nodeType !== Node.TEXT_NODE) { textNode = textNode.nextSibling; }
+                        if (textNode) { textNode.textContent = ' ' + textContent; }
+                        else { element.appendChild(document.createTextNode(' ' + textContent));}
+                    } else { element.innerHTML = textContent; }
+                }
+            });
+            populateTimeline(); // Re-populate timeline after language change
+        }
+        
+        // --- OHS Milestones Timeline ---
+        const timelineData = [ // Add all 50 items here
+            { year: "1911", title: "Mines & Works Act", detailsKey: "timeline.detail.1911", link: "#" },
+            { year: "1973", title: "Occupational Diseases Act", detailsKey: "timeline.detail.1973", link: "#" },
+            { year: "1993", title: "OHS Act (SA)", detailsKey: "timeline.detail.1993", link: "https://www.gov.za/documents/occupational-health-and-safety-act" },
+            { year: "1996", title: "Mine Health & Safety Act", detailsKey: "timeline.detail.1996", link: "#" },
+            { year: "2001", title: "King II Report", detailsKey: "timeline.detail.2001", link: "#" },
+            // ... Add more items. For brevity, only a few are shown here.
+            { year: "2025", title: "SafetyHelp Launch", detailsKey: "timeline.detail.2025sh", link: "#" } 
+        ];
+        const timelineContainer = document.getElementById('timeline-items-container');
+        let timelineScrollInterval;
+
+        function populateTimeline() {
+            if (!timelineContainer || !i18next.isInitialized) return;
+            timelineContainer.innerHTML = ''; // Clear existing
+            timelineData.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'timeline-item';
+                div.innerHTML = `
+                    <div class="timeline-item-header">
+                        <span>${item.year}: ${item.title}</span>
+                        <i class="fas fa-chevron-down text-xs"></i>
+                    </div>
+                    <div class="timeline-item-details">
+                        <p>${i18next.t(item.detailsKey, "Details coming soon...")}</p>
+                        ${item.link !== "#" ? `<a href="${item.link}" target="_blank" rel="noopener noreferrer" data-i18n="timeline.learnMore">${i18next.t('timeline.learnMore')}</a>` : ''}
+                    </div>
+                `;
+                div.addEventListener('click', function() {
+                    this.classList.toggle('expanded');
+                    const icon = this.querySelector('.fa-chevron-down, .fa-chevron-up');
+                    if (icon) {
+                        icon.classList.toggle('fa-chevron-down');
+                        icon.classList.toggle('fa-chevron-up');
+                    }
+                });
+                timelineContainer.appendChild(div);
+            });
+        }
+
+        function startTimelineScroll() {
+            if (!timelineContainer) return;
+            let scrollAmount = 1;
+            timelineScrollInterval = setInterval(() => {
+                if (timelineContainer.scrollTop + timelineContainer.clientHeight >= timelineContainer.scrollHeight) {
+                    scrollAmount = -1; // Scroll up
+                } else if (timelineContainer.scrollTop <= 0) {
+                    scrollAmount = 1; // Scroll down
+                }
+                timelineContainer.scrollTop += scrollAmount;
+            }, 70); // Adjust speed as needed
+        }
+        function stopTimelineScroll() {
+            clearInterval(timelineScrollInterval);
+        }
+        if (timelineContainer) {
+            timelineContainer.addEventListener('mouseenter', stopTimelineScroll);
+            timelineContainer.addEventListener('mouseleave', startTimelineScroll);
+            // startTimelineScroll(); // Start scrolling initially
+        }
+
+        // --- Daily Safety Tip ---
+        const safetyTips = [
+            "index.safetyTip.tip1", "index.safetyTip.tip2", "index.safetyTip.tip3",
+            "index.safetyTip.tip4", "index.safetyTip.tip5"
+        ];
+        const safetyTipTextEl = document.getElementById('safety-tip-text');
+        const nextTipBtn = document.getElementById('next-tip-btn');
+        function showRandomTip() {
+            if (!safetyTipTextEl || !i18next.isInitialized) return;
+            const randomIndex = Math.floor(Math.random() * safetyTips.length);
+            safetyTipTextEl.innerHTML = `<i class="fas fa-bolt text-yellow-500 mr-1"></i> ${i18next.t(safetyTips[randomIndex])}`;
+        }
+        if(nextTipBtn) nextTipBtn.addEventListener('click', showRandomTip);
+
+        // --- Module Countdown Timer ---
+        const countdownTimerEl = document.getElementById('countdown-timer');
+        function updateCountdown() {
+            if (!countdownTimerEl) return;
+            const now = new Date();
+            const currentMonth = now.getMonth();
+            const currentYear = now.getFullYear();
+            // Target the end of the current month for the next module launch
+            const nextLaunchDate = new Date(currentYear, currentMonth + 1, 1, 0, 0, 0, 0); // First day of next month
+            
+            const timeRemaining = nextLaunchDate.getTime() - now.getTime();
+
+            if (timeRemaining < 0) { // Should not happen if logic is correct, but as a fallback
+                countdownTimerEl.textContent = i18next.t('index.moduleLaunched') || "New Module Soon!";
+                return;
+            }
+
+            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+            countdownTimerEl.textContent = `${String(days).padStart(2,'0')}d ${String(hours).padStart(2,'0')}h ${String(minutes).padStart(2,'0')}m ${String(seconds).padStart(2,'0')}s`;
+        }
+        // setInterval(updateCountdown, 1000); // Update every second
+
+        // --- Brain of SafetyHelp Quiz ---
+        const quizArea = document.getElementById('quiz-area');
+        const quizFeedback = document.getElementById('quiz-feedback');
+        const leaderboardNameEl = document.getElementById('leaderboard-name');
+        const leaderboardScoreEl = document.getElementById('leaderboard-score');
+        let currentQuizSet = 0;
+        let userQuizScore = 0;
+        let quizUserName = "";
+
+        const quizQuestions = [
+            // Set 1
+            [
+                { qKey: "quiz.q1.question", aKey: "quiz.q1.ansA", bKey: "quiz.q1.ansB", cKey: "quiz.q1.ansC", correct: "A" },
+                { qKey: "quiz.q2.question", aKey: "quiz.q2.ansA", bKey: "quiz.q2.ansB", cKey: "quiz.q2.ansC", correct: "B" },
+                // Add 3 more for a set of 5
+                { qKey: "quiz.q3.question", aKey: "quiz.q3.ansA", bKey: "quiz.q3.ansB", cKey: "quiz.q3.ansC", correct: "C" },
+                { qKey: "quiz.q4.question", aKey: "quiz.q4.ansA", bKey: "quiz.q4.ansB", cKey: "quiz.q4.ansC", correct: "A" },
+                { qKey: "quiz.q5.question", aKey: "quiz.q5.ansA", bKey: "quiz.q5.ansB", cKey: "quiz.q5.ansC", correct: "B" },
+            ],
+            // Set 2 (add more sets as needed)
+            [
+                { qKey: "quiz.q6.question", aKey: "quiz.q6.ansA", bKey: "quiz.q6.ansB", cKey: "quiz.q6.ansC", correct: "A" },
+                // ... more questions
+            ]
+        ];
+
+        function loadQuizSet(setIndex) {
+            if (!quizArea || !quizQuestions[setIndex] || !i18next.isInitialized) {
+                 if(quizArea) quizArea.innerHTML = `<p>${i18next.t('quiz.noMoreQuestions') || 'No more questions for now!'}</p>`;
+                return;
+            }
+            const questions = quizQuestions[setIndex];
+            quizArea.innerHTML = ''; // Clear previous
+            questions.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'mb-3 text-sm';
+                questionDiv.innerHTML = `
+                    <p class="font-semibold quiz-question">${index + 1}. ${i18next.t(q.qKey)}</p>
+                    <div class="quiz-options mt-1 space-y-1">
+                        <button data-answer="A">${i18next.t(q.aKey)}</button>
+                        <button data-answer="B">${i18next.t(q.bKey)}</button>
+                        <button data-answer="C">${i18next.t(q.cKey)}</button>
+                    </div>
+                    <p class="text-xs text-green-600 mt-1 correct-answer hidden">Correct Answer: ${q.correct}</p>
+                `;
+                quizArea.appendChild(questionDiv);
+            });
+
+            quizArea.querySelectorAll('.quiz-options button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const questionDiv = this.closest('.mb-3');
+                    // Disable other options for this question
+                    questionDiv.querySelectorAll('.quiz-options button').forEach(btn => btn.disabled = true);
+                    this.classList.add(this.dataset.answer === questionDiv.querySelector('.correct-answer').textContent.slice(-1) ? 'bg-green-200' : 'bg-red-200');
+                    if (this.dataset.answer === questionDiv.querySelector('.correct-answer').textContent.slice(-1)) {
+                        userQuizScore += 10; // Add points
+                    }
                 });
             });
-            if (toolLinks.length > 0) toolLinks[0].click(); // Activate first by default
 
-            // --- Daily Safety Tip ---
-            const safetyTips = [
-                "Double-check your PPE before starting any task.",
-                "Keep your workspace tidy to prevent trips and falls.",
-                "Report hazards immediately – don't assume someone else will.",
-                "Understand the emergency exits and assembly points.",
-                "Take short breaks to stay alert and avoid fatigue.",
-                "Lift with your legs, not your back, and ask for help with heavy items."
-            ];
-            const safetyTipContentEl = document.getElementById('safetyTipContent');
-            const nextTipBtn = document.getElementById('nextTipBtn');
-            let currentTipIdx = -1;
+            const submitSetBtn = document.createElement('button');
+            submitSetBtn.className = 'btn-submit bg-green-600 hover:bg-green-700 text-xs py-2 mt-3';
+            submitSetBtn.textContent = i18next.t('quiz.submitSet') || 'Submit Answers for this Set';
+            submitSetBtn.onclick = () => handleSubmitQuizSet(setIndex);
+            quizArea.appendChild(submitSetBtn);
+        }
 
-            function showRandomTip() {
-                if (!safetyTipContentEl) return;
-                let newIdx;
-                do { newIdx = Math.floor(Math.random() * safetyTips.length); }
-                while (newIdx === currentTipIdx && safetyTips.length > 1);
-                currentTipIdx = newIdx;
-                safetyTipContentEl.textContent = safetyTips[currentTipIdx];
+        function handleSubmitQuizSet(setIndex) {
+            quizArea.querySelectorAll('.correct-answer').forEach(el => el.classList.remove('hidden'));
+            quizArea.querySelectorAll('.quiz-options button').forEach(btn => btn.disabled = true);
+            quizArea.querySelector('button.btn-submit').remove(); // Remove submit button for this set
+
+            if (quizFeedback) quizFeedback.innerHTML = i18next.t('quiz.currentScore', { score: userQuizScore });
+
+            if (setIndex === 0 && !quizUserName) { // After first set, prompt for name
+                promptForUserName();
+            } else if (quizQuestions[setIndex + 1]) { // If more sets exist
+                const nextSetBtn = document.createElement('button');
+                nextSetBtn.className = 'btn-submit bg-blue-600 hover:bg-blue-700 text-xs py-2 mt-3';
+                nextSetBtn.textContent = i18next.t('quiz.nextSet') || 'Next 5 Questions';
+                nextSetBtn.onclick = () => { currentQuizSet++; loadQuizSet(currentQuizSet); };
+                quizArea.appendChild(nextSetBtn);
+            } else {
+                if(quizArea) quizArea.innerHTML += `<p class="mt-3 font-semibold">${i18next.t('quiz.finalScore', {score: userQuizScore})}</p>`;
+                // Potentially submit score to backend here if user provided name
+                if(quizUserName && leaderboardNameEl && leaderboardScoreEl){
+                    // This is a simulation. In real app, fetch and update leaderboard.
+                    leaderboardNameEl.textContent = quizUserName;
+                    leaderboardScoreEl.textContent = userQuizScore;
+                }
             }
-            if (nextTipBtn) nextTipBtn.addEventListener('click', showRandomTip);
-            showRandomTip();
+        }
+        
+        function promptForUserName() {
+            const namePromptDiv = document.createElement('div');
+            namePromptDiv.className = 'mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-md';
+            namePromptDiv.innerHTML = `
+                <p class="text-sm font-semibold mb-2">${i18next.t('quiz.enterNamePrompt')}</p>
+                <input type="text" id="quiz-user-name" class="quiz-input" placeholder="${i18next.t('quiz.namePlaceholder')}">
+                <input type="email" id="quiz-user-email" class="quiz-input mt-1" placeholder="${i18next.t('quiz.emailOptionalPlaceholder')}">
+                <button id="submit-quiz-name" class="btn-submit bg-yellow-500 hover:bg-yellow-600 text-xs py-1.5 mt-2">${i18next.t('quiz.submitNameAndContinue')}</button>
+                <button id="continue-quiz-guest" class="btn-submit bg-slate-400 hover:bg-slate-500 text-xs py-1.5 mt-1">${i18next.t('quiz.continueAsGuest')}</button>
+            `;
+            quizArea.appendChild(namePromptDiv);
 
-            // --- Brain of SafetyHelp Quiz ---
-            const quizQuestionEl = document.getElementById('quizQuestion');
-            const quizAnswerEl = document.getElementById('quizAnswer');
-            const submitQuizBtn = document.getElementById('submitQuizBtn');
-            const quizScoreEl = document.getElementById('quizScore');
-            const quizQuestions = [
-                { question: "What does 'OHS' primarily stand for?", answer: "Occupational Health and Safety", type: "input" },
-                { question: "In emergency, what's the first 'A' in 'RACE' (fire safety)?", answer: "Alarm", type: "input" },
-            ];
-            let currentQuizQ = null; let userQuizScore = 0;
+            document.getElementById('submit-quiz-name').addEventListener('click', () => {
+                quizUserName = document.getElementById('quiz-user-name').value.trim();
+                const email = document.getElementById('quiz-user-email').value.trim();
+                if (!quizUserName) {
+                    alert(i18next.t('quiz.nameRequiredError')); return;
+                }
+                // Here you could add logic to register the user if email is provided or link to existing account
+                console.log("User:", quizUserName, "Email:", email);
+                namePromptDiv.remove();
+                if (quizQuestions[currentQuizSet + 1]) {
+                    currentQuizSet++; loadQuizSet(currentQuizSet);
+                } else {
+                     if(quizArea) quizArea.innerHTML += `<p class="mt-3 font-semibold">${i18next.t('quiz.finalScore', {score: userQuizScore})}</p>`;
+                }
+            });
+            document.getElementById('continue-quiz-guest').addEventListener('click', () => {
+                namePromptDiv.remove();
+                 if (quizQuestions[currentQuizSet + 1]) {
+                    currentQuizSet++; loadQuizSet(currentQuizSet);
+                } else {
+                     if(quizArea) quizArea.innerHTML += `<p class="mt-3 font-semibold">${i18next.t('quiz.finalScore', {score: userQuizScore})}</p>`;
+                }
+            });
+        }
 
-            function displayQuizQ() {
-                if(!quizQuestionEl) return;
-                currentQuizQ = quizQuestions[Math.floor(Math.random() * quizQuestions.length)];
-                quizQuestionEl.textContent = currentQuizQ.question;
-                if(quizAnswerEl) quizAnswerEl.value = '';
-            }
-            if (submitQuizBtn) {
-                submitQuizBtn.addEventListener('click', () => {
-                    if (!currentQuizQ || !quizAnswerEl || !quizScoreEl ) return;
-                    const userAnswer = quizAnswerEl.value.trim();
-                    if (userAnswer.toLowerCase() === currentQuizQ.answer.toLowerCase()) {
-                        userQuizScore += 10;
-                        quizScoreEl.textContent = `Score: ${userQuizScore}`;
-                        alert(`Correct! You earned 10 points.`); // Replace with a non-blocking notification
-                    } else {
-                         alert(`Incorrect. The answer was: ${currentQuizQ.answer}`); // Replace
-                    }
-                    displayQuizQ(); 
-                });
-            }
-            displayQuizQ();
 
-            // --- OHS Snippets Timeline (Scroll & Expand) ---
-            const timelineItemsData = [
-                { year: "1911", title: "Mines & Works Act", summary: "Pioneering SA law for mine worker safety.", learnMore: "#" },
-                { year: "1970", title: "OSHA (USA)", summary: "Landmark US federal worker protection act.", learnMore: "#" },
-                { year: "1993", title: "OHS Act 85 (SA)", summary: "SA's foundational OHS legislation.", learnMore: "#" },
-                { year: "2000s", title: "Ergonomics Rise", summary: "Focus on musculoskeletal disorder prevention.", learnMore: "#" },
-                { year: "2020s", title: "Mental Wellness", summary: "Increased emphasis on psychosocial safety.", learnMore: "#" }
-            ];
-            const timelineListEl = document.getElementById('timelineList');
-            let timelineScrollInterval;
-            let timelineScrollPaused = false;
+        // --- Chatbot ---
+        const chatToggle = document.getElementById('chat-toggle');
+        const chatWindow = document.getElementById('chat-window');
+        const chatOutput = document.getElementById('chat-output');
+        const chatInput = document.getElementById('chat-input');
+        const chatSend = document.getElementById('chat-send');
+        let isChatExpanded = false;
 
-            function populateTimeline() {
-                if (!timelineListEl) return;
-                timelineListEl.innerHTML = ''; 
-                timelineItemsData.forEach(item => {
-                    const li = document.createElement('li');
-                    li.className = 'timeline-item';
-                    li.innerHTML = `
-                        <div class="timeline-item-header-content">
-                            <h5 class="text-sm">${item.year}: ${item.title}</h5>
-                            <span class="toggle-icon">▼</span>
-                        </div>
-                        <div class="timeline-item-summary">
-                            <p>${item.summary}</p>
-                            ${item.learnMore ? `<a href="${item.learnMore}" target="_blank" class="text-brand-secondary-orange hover:underline">Learn More</a>` : ''}
-                        </div>
-                    `;
-                    timelineListEl.appendChild(li);
-                    const header = li.querySelector('.timeline-item-header-content');
-                    header.addEventListener('click', () => {
-                        timelineListEl.querySelectorAll('.timeline-item.expanded').forEach(openItem => {
-                            if (openItem !== li) openItem.classList.remove('expanded');
-                        });
-                        li.classList.toggle('expanded');
+        if(chatToggle) chatToggle.addEventListener('click', () => {
+            isChatExpanded = !isChatExpanded;
+            chatWindow.classList.toggle('hidden', !isChatExpanded); // Use Tailwind hidden
+            chatWindow.classList.toggle('active', isChatExpanded);
+            if (isChatExpanded) chatInput.focus();
+        });
+        
+        // --- Document Ready ---
+        document.addEventListener('DOMContentLoaded', async () => {
+            await initializeI18next();
+            const footerYearEl = document.getElementById('footer-copyright-year');
+            if(footerYearEl && i18next.isInitialized) footerYearEl.textContent = i18next.t('footer.copyright', { year: new Date().getFullYear() });
+
+            const langSelect = document.getElementById('language-select');
+            if (langSelect && i18next.isInitialized) {
+                 const currentLang = i18next.language;
+                 if (currentLang) {
+                    const baseLang = currentLang.split('-')[0];
+                    if (Array.from(langSelect.options).some(opt => opt.value === baseLang)) langSelect.value = baseLang;
+                    else if (Array.from(langSelect.options).some(opt => opt.value === currentLang)) langSelect.value = currentLang;
+                 }
+                langSelect.addEventListener('change', (e) => {
+                    i18next.changeLanguage(e.target.value, (err) => {
+                        if (err) { console.error('Error changing language:', err); return; }
+                        updateContent(); // This will re-translate static parts
+                        // Re-initialize dynamic parts that depend on translated text
+                        showRandomTip(); 
+                        loadQuizSet(currentQuizSet); 
+                        if(footerYearEl) footerYearEl.textContent = i18next.t('footer.copyright', { year: new Date().getFullYear() });
                     });
                 });
             }
+            
+            populateTimeline(); // Populate timeline on load
+            if (timelineData.length > 0) startTimelineScroll(); // Start timeline scroll
 
-            function startTimelineScroll() {
-                if (!timelineListEl || timelineScrollPaused || timelineListEl.children.length === 0) return;
-                if (timelineListEl.scrollHeight <= timelineListEl.clientHeight) {
-                    stopTimelineScroll(); return;
-                }
-                timelineScrollInterval = setInterval(() => {
-                    if (timelineListEl.scrollTop + timelineListEl.clientHeight >= timelineListEl.scrollHeight -1 ) {
-                        timelineListEl.scrollTop = 0;
-                    } else {
-                        timelineListEl.scrollTop += 1;
-                    }
-                }, 80); 
-            }
-            function stopTimelineScroll() { clearInterval(timelineScrollInterval); }
+            showRandomTip(); // Show initial tip
+            updateCountdown(); // Initial countdown display
+            setInterval(updateCountdown, 1000); // Update countdown every second
+            loadQuizSet(currentQuizSet); // Load first set of quiz questions
 
-            if (timelineListEl) {
-                populateTimeline();
-                startTimelineScroll();
-                timelineListEl.addEventListener('mouseenter', () => { timelineScrollPaused = true; stopTimelineScroll(); });
-                timelineListEl.addEventListener('mouseleave', () => { timelineScrollPaused = false; startTimelineScroll(); });
-            }
+            // Newsletter
+            const newsletterForm = document.getElementById('newsletterFormIndex');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    const email = document.getElementById('newsletterEmailIndex').value;
+                    const messageDivId = document.querySelector('#auth-message-login') ? 'auth-message-login' : (document.querySelector('#auth-message-signup') ? 'auth-message-signup' : null);
 
-            // --- Key Features Modal ---
-            const featuresDetails = {
-                ai: { 
-                    icon: '🤖', 
-                    title: 'AI-Powered Automation', 
-                    description: 'SafetyHelp leverages cutting-edge Artificial Intelligence to automate routine OHS tasks, identify potential hazards proactively through pattern recognition, and provide intelligent recommendations. This frees up your OHS professionals to focus on strategic initiatives and complex problem-solving, ultimately enhancing overall safety and efficiency.' 
-                },
-                accessible: { 
-                    icon: '📱', 
-                    title: 'Accessible to All, Anywhere', 
-                    description: 'Our platform is built with a mobile-first philosophy, ensuring full functionality across desktops, tablets, and smartphones. Whether in the office or out in the field, your team can access critical safety information, report incidents, complete checklists, and stay connected, promoting a culture of safety without barriers.' 
-                },
-                community: { 
-                    icon: '🤝', 
-                    title: 'Community Driven & Continuously Improving', 
-                    description: 'SafetyHelp is designed for OHS professionals, with direct input from the community. We believe in continuous improvement and actively solicit feedback to evolve the platform. Beta testers and early adopters play a crucial role in shaping features and ensuring the tool meets real-world demands.' 
-                }
-            };
-            const featureTiles = document.querySelectorAll('.feature-tile-clickable');
-            const modalEl = document.getElementById('featureModal');
-            const closeModalBtn = document.getElementById('closeModalBtn');
-            const modalTitleEl = document.getElementById('modalTitle');
-            const modalIconEl = document.getElementById('modalIcon');
-            const modalDescriptionEl = document.getElementById('modalDescription');
-
-            featureTiles.forEach(tile => {
-                tile.addEventListener('click', () => {
-                    const featureId = tile.dataset.featureId;
-                    const details = featuresDetails[featureId];
-                    if (details) {
-                        if(modalTitleEl) modalTitleEl.textContent = details.title;
-                        if(modalIconEl) modalIconEl.innerHTML = details.icon;
-                        if(modalDescriptionEl) modalDescriptionEl.textContent = details.description;
-                        if(modalEl) modalEl.style.display = "block";
+                    if (email && messageDivId) {
+                        displayMessage('footer.newsletter.success', "success", messageDivId, false, {email: email});
+                        document.getElementById('newsletterEmailIndex').value = '';
+                    } else if (messageDivId) {
+                        displayMessage('footer.newsletter.error', "error", messageDivId);
+                    } else { // Fallback if no message div is found
+                        alert(email ? i18next.t('footer.newsletter.success', {email: email}) : i18next.t('footer.newsletter.error'));
+                         if(email) document.getElementById('newsletterEmailIndex').value = '';
                     }
                 });
-            });
-
-            if(closeModalBtn && modalEl) closeModalBtn.onclick = () => modalEl.style.display = "none";
-            if(modalEl) window.onclick = (event) => { if (event.target == modalEl) modalEl.style.display = "none"; }
-
+            }
         });
     </script>
 </body>
