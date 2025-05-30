@@ -3,613 +3,863 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SafetyHelp - Your OHS Platform</title>
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+    <title>SafetyHelp - Your OHS Partner</title>
     <style>
+        /* --- Reset & Base Styles --- */
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
         }
 
         body {
-            background-color: #F5F7FA;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
         }
 
-        /* Header */
-        header {
-            background-color: #003087;
-            color: white;
-            padding: 10px 20px;
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Branding Guidelines (Conceptual) --- */
+        :root {
+            --brand-primary-blue: #005A9C;
+            --brand-secondary-orange: #FFA500;
+            --brand-hover-green: #28a745;
+            --brand-light-blue: #e0efff; /* For announcement bar */
+            --text-color-light: #ffffff;
+            --text-color-dark: #333333;
+            --border-color: #ddd;
+            --card-bg: #ffffff;
+            --panel-bg: #f9f9f9;
+        }
+
+        /* --- Header --- */
+        .site-header {
+            background-color: var(--brand-primary-blue);
+            color: var(--text-color-light);
+            padding: 15px 0;
+            border-bottom: 3px solid var(--brand-secondary-orange);
+        }
+
+        .site-header .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
+            flex-wrap: wrap; /* For smaller screens */
         }
 
-        .logo {
+        .logo-text {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--text-color-light);
+            text-decoration: none;
+        }
+        .logo-text .safety { color: var(--text-color-light); }
+        .logo-text .help { color: var(--brand-secondary-orange); }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            margin-top: 10px; /* Space on smaller screens */
+        }
+        @media (min-width: 768px) {
+            .header-right {
+                margin-top: 0;
+            }
+        }
+
+
+        .search-bar {
+            padding: 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            margin-right: 15px;
+            font-size: 14px;
+        }
+
+        .language-selector select {
+            padding: 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background-color: var(--text-color-light);
+            color: var(--text-color-dark);
+            font-size: 14px;
+        }
+
+        /* --- Launch Announcement Bar --- */
+        .launch-announcement {
+            background-color: var(--brand-light-blue);
+            color: var(--text-color-dark);
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            border-bottom: 1px solid var(--border-color);
+            display: block; /* Initially visible */
+            transition: opacity 0.5s ease, max-height 0.5s ease;
+            overflow: hidden;
+            max-height: 500px; /* Adjust as needed */
+        }
+
+        .launch-announcement.dismissed {
+            opacity: 0;
+            max-height: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .launch-announcement h2 {
+            font-size: 1.4em;
+            margin-bottom: 8px;
+            color: var(--brand-primary-blue);
+        }
+
+        .launch-announcement p {
+            font-size: 0.95em;
+            margin-bottom: 12px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .launch-cta-button {
+            background-color: var(--brand-secondary-orange);
+            color: var(--text-color-light);
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .launch-cta-button:hover {
+            background-color: #e09500; /* Darker orange */
+        }
+
+        .dismiss-button {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
             font-size: 24px;
+            cursor: pointer;
+            color: var(--text-color-dark);
+            line-height: 1;
+        }
+        .dismiss-button:hover {
+            color: var(--brand-primary-blue);
+        }
+
+        /* --- Main Content Area --- */
+        .main-content-area .container {
+            display: flex;
+            flex-wrap: wrap; /* Allow stacking on mobile */
+            padding-top: 20px;
+            gap: 20px; /* Space between columns */
+        }
+
+        /* Shared Sidebar Styles */
+        .sidebar {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            height: fit-content;
+            width: 100%; /* Full width on mobile */
+        }
+        @media (min-width: 992px) { /* Desktop: fixed width */
+            .sidebar {
+                width: 260px;
+                flex-shrink: 0; /* Prevent shrinking */
+            }
+        }
+
+
+        .sidebar-title {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        .sidebar-title .safety { color: var(--brand-primary-blue); }
+        .sidebar-title .help { color: var(--brand-secondary-orange); }
+
+        /* Left Column (Tools Sidebar) */
+        .tool-list {
+            list-style: none;
+        }
+
+        .tool-list li a {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: var(--brand-primary-blue);
+            border-radius: 4px;
+            margin-bottom: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .tool-list li a:hover,
+        .tool-list li a.active {
+            background-color: var(--brand-hover-green);
+            color: var(--text-color-light);
+        }
+        .tool-list li a.active {
             font-weight: bold;
         }
 
-        .logo a {
-            color: white;
-            text-decoration: none;
-        }
-
-        .nav-links {
+        /* Central Column (Flexible Width) */
+        .central-column {
+            flex: 1; /* Takes remaining space */
+            min-width: 0; /* Allows shrinking below content size if needed */
+            background-color: transparent; /* No background, content cards will have it */
+            padding: 0; /* Padding will be on individual cards */
             display: flex;
-            gap: 10px;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .central-content-card {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            padding: 8px 15px;
-            background-color: #0041C2;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
 
-        .nav-links a:hover {
-            background-color: #FFC107;
-            color: #003087;
+        .welcome-message {
+            font-size: 1.8em;
+            margin-bottom: 20px; /* Reduced margin as it's in a card */
+            color: var(--text-color-dark);
         }
+        .welcome-message .safety-help-brand {
+            font-weight: bold;
+        }
+        .welcome-message .safety-help-brand .safety { color: var(--brand-primary-blue); }
+        .welcome-message .safety-help-brand .help { color: var(--brand-secondary-orange); }
 
-        .search-lang {
+
+        .mini-panels-container {
             display: flex;
-            gap: 10px;
-            align-items: center;
+            flex-wrap: wrap; /* Stack on smaller screens */
+            gap: 20px; /* Space between panels */
+            margin-bottom: 0; /* No margin as it's the last element in its card */
         }
 
-        .search-lang input {
-            padding: 5px;
-            border-radius: 5px;
+        .mini-panel {
+            flex: 1; /* Each panel takes equal space */
+            min-width: 280px; /* Minimum width before stacking */
+            background-color: var(--panel-bg);
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .mini-panel h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color: var(--brand-primary-blue);
+        }
+        .mini-panel p {
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            min-height: 40px; /* Ensure some space for text */
+        }
+        .mini-panel input[type="text"], .mini-panel input[type="number"], .mini-panel select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+        .mini-panel button {
+            background-color: var(--brand-secondary-orange);
+            color: var(--text-color-light);
+            padding: 10px 15px;
             border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 0.9em;
+            margin-top: 5px;
         }
-
-        .search-lang select {
-            padding: 5px;
-            border-radius: 5px;
+        .mini-panel button:hover {
+            background-color: #e09500;
         }
+        .quiz-feedback {
+            font-size: 0.9em;
+            margin-top:10px;
+            font-weight: bold;
+        }
+        .quiz-feedback .score { color: var(--brand-hover-green); }
+        .quiz-feedback .leader { color: var(--brand-primary-blue); }
 
-        /* Welcome Section */
-        .welcome-section {
-            background: linear-gradient(to bottom, #E6F0FA, #FFFFFF);
-            padding: 50px 20px;
+
+        .key-features-section h2 {
+            font-size: 1.6em;
+            margin-bottom: 20px;
             text-align: center;
-            margin-top: 60px; /* Space for fixed header */
+            color: var(--text-color-dark);
         }
 
-        .welcome-section h1 {
-            color: #003087;
-            font-size: 36px;
-            margin-bottom: 10px;
-        }
-
-        .welcome-section .slogan {
-            color: #FFC107;
-            semesterfont-size: 20px;
-            margin-bottom: 10px;
-        }
-
-        .welcome-section p {
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        /* Main Content Layout */
-        .main-content {
-            display: flex;
-            gap: 20px;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .sidebar {
-            flex: 1;
-            background-color: #FFFFFF;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            height: 400px; /* Fixed height for consistency */
-        }
-
-        .middle-content {
-            flex: 2;
-            display: flex;
-            flex-direction: column;
+        .feature-tiles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
         }
 
-        /* SafetyHelp Tools */
-        .tools-list a {
-            display: block;
-            padding: 10px;
-            margin: 5px 0;
-            color: #003087;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+        .feature-tile {
+            background-color: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            overflow: hidden; /* For smooth expansion */
         }
 
-        .tools-list a:hover, .tools-list a.active {
-            background-color: #E6F0FA;
-        }
-
-        .tools-list a i {
-            margin-right: 10px;
-        }
-
-        /* OHS Milestones */
-        .milestones-list a {
-            display: block;
-            padding: 10px;
-            margin: 5px 0;
-            color: #003087;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .milestones-list a:hover {
-            background-color: #E6F0FA;
-        }
-
-        .milestones-list a i {
-            margin-right: 10px;
-        }
-
-        /* Did You Know */
-        .did-you-know, .dashboard, .brain-challenge, .launch-message, .why-choose {
-            background-color: #FFFFFF;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .did-you-know h3 {
-            color: #003087;
-            margin-bottom: 10px;
-        }
-
-        .did-you-know p {
-            color: #333;
-        }
-
-        .did-you-know button {
-            background-color: #FFC107;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        /* Dashboard */
-        .dashboard h3 {
-            color: #003087;
-            margin-bottom: 10px;
-        }
-
-        .dashboard .timer, .dashboard .brain-of-day, .dashboard .podcast, .dashboard .article {
-            margin-bottom: 10px;
-        }
-
-        /* Brain of SafetyHelp */
-        .brain-challenge h3 {
-            color: #003087;
-            margin-bottom: 10px;
-        }
-
-        .brain-challenge .question {
-            margin-bottom: 15px;
-        }
-
-        .brain-challenge .options {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .brain-challenge .options label {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .brain-challenge button {
-            background-color: #FFC107;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        /* Launch Message */
-        .launch-message h3 {
-            color: #003087;
-            margin-bottom: 10px;
-        }
-
-        .launch-message button {
-            background-color: #FFC107;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        /* Why Choose SafetyHelp */
-        .why-choose {
-            display: flex;
-            gap: 20px;
-            justify-content: space-between;
-            padding: 20px;
-        }
-
-        .why-choose .item {
-            flex: 1;
-            background-color: #E6F0FA;
+        .feature-tile-header {
             padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .why-choose .item i {
-            font-size: 24px;
-            color: #003087;
-            margin-bottom: 10px;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #003087;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-
-        footer a {
-            color: #FFC107;
-            text-decoration: none;
-            margin: 0 10px;
-        }
-
-        /* Chatbot */
-        .chatbot {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #003087;
-            color: white;
-            padding: 10px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            width: 300px;
-        }
-
-        .chatbot.collapsed {
-            width: auto;
-            padding: 10px;
-        }
-
-        .chatbot.collapsed .chat-content {
-            display: none;
-        }
-
-        .chatbot .toggle-btn {
-            background-color: #FFC107;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
             cursor: pointer;
-            align-self: flex-end;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #f0f0f0;
+            transition: background-color 0.3s ease;
+        }
+        .feature-tile-header:hover {
+            background-color: #e9e9e9;
         }
 
-        .chatbot .chat-content {
+        .feature-tile-header h4 {
+            font-size: 1.1em;
+            margin: 0;
+            color: var(--brand-primary-blue);
+        }
+        .feature-tile-header .icon {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+        .feature-tile-header .toggle-icon {
+            font-size: 1.2em;
+            transition: transform 0.3s ease;
+        }
+        .feature-tile.expanded .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .feature-tile-teaser {
+            padding: 0 15px 10px 15px;
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        .feature-tile-details {
+            padding: 0 15px 15px 15px;
+            font-size: 0.9em;
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 0.5s ease-out, opacity 0.3s ease-out, padding 0.5s ease-out;
+        }
+
+        .feature-tile.expanded .feature-tile-details {
+            max-height: 300px; /* Adjust as needed */
+            opacity: 1;
+            padding-top: 10px;
+        }
+
+        .quick-access-section h2 {
+            font-size: 1.6em;
+            margin-bottom: 20px;
+            text-align: center;
+            color: var(--text-color-dark);
+        }
+        .quick-access-buttons {
             display: flex;
-            flex-direction: column;
-            gap: 10px;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+        .quick-access-button {
+            background-color: var(--brand-primary-blue);
+            color: var(--text-color-light);
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            flex-grow: 1; /* Allow buttons to grow */
+        }
+        @media (min-width: 768px) {
+            .quick-access-button {
+                flex-grow: 0; /* Prevent full width on larger screens */
+            }
+        }
+        .quick-access-button:hover {
+            background-color: #00487a; /* Darker blue */
+        }
+
+
+        /* Right Column (OHS Snippets Timeline) */
+        .timeline-list {
+            list-style: none;
+            max-height: 500px; /* Adjust as needed for auto-scroll */
+            overflow-y: auto; /* Hidden initially, JS will handle scroll */
+            padding-right: 10px; /* For scrollbar */
+        }
+
+        /* Custom scrollbar for timeline (optional) */
+        .timeline-list::-webkit-scrollbar {
+            width: 8px;
+        }
+        .timeline-list::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .timeline-list::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 10px;
+        }
+        .timeline-list::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+
+        .timeline-item {
+            background-color: var(--panel-bg);
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .timeline-item-header {
+            padding: 10px 15px;
+            cursor: pointer;
+            background-color: var(--brand-primary-blue);
+            color: var(--text-color-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+        .timeline-item-header:hover {
+             background-color: #00487a;
+        }
+        .timeline-item.expanded .timeline-item-header {
+            background-color: var(--brand-hover-green);
+        }
+
+
+        .timeline-item-header h5 {
+            margin: 0;
+            font-size: 1em;
+        }
+        .timeline-item-header .toggle-icon-timeline {
+            font-size: 1em;
+            transition: transform 0.3s ease;
+        }
+        .timeline-item.expanded .toggle-icon-timeline {
+            transform: rotate(180deg);
+        }
+
+        .timeline-item-summary {
+            padding: 0 15px 15px 15px;
+            font-size: 0.85em;
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 0.4s ease-out, opacity 0.3s ease-out, padding 0.4s ease-out;
+        }
+        .timeline-item.expanded .timeline-item-summary {
+            max-height: 200px; /* Adjust as needed */
+            opacity: 1;
+            padding-top: 10px;
+        }
+        .timeline-item-summary a {
+            color: var(--brand-secondary-orange);
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .timeline-item-summary a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 991px) { /* Tablet and below */
+            .main-content-area .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%; /* Full width for sidebars */
+                margin-bottom: 20px;
+            }
+            .central-column {
+                order: 0; /* Ensure central content is first or as desired */
+            }
+            .left-sidebar { order: 1; }
+            .right-sidebar { order: 2; }
+        }
+
+        @media (max-width: 767px) { /* Mobile */
+            .site-header .container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .header-right {
+                width: 100%;
+                margin-top: 15px;
+                justify-content: space-between;
+            }
+            .search-bar {
+                flex-grow: 1;
+                margin-right: 10px;
+            }
+            .language-selector select {
+                min-width: 100px;
+            }
+
+            .welcome-message { font-size: 1.5em; }
+            .mini-panels-container { flex-direction: column; }
+            .quick-access-buttons { flex-direction: column; }
+            .quick-access-button { width: 100%; }
+
+            .launch-announcement h2 { font-size: 1.2em; }
+            .launch-announcement p { font-size: 0.9em; }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="logo">
-            <a href="index.htm">SafetyHelp</a>
-        </div>
-        <div class="nav-links">
-            <a href="index.htm">Home</a>
-            <a href="resources.htm">Resources</a>
-            <a href="community.htm">Community</a>
-            <a href="about.htm">About</a>
-        </div>
-        <div class="search-lang">
-            <input type="text" placeholder="Search...">
-            <select>
-                <option>English</option>
-                <option>Afrikaans</option>
-            </select>
+
+    <header class="site-header">
+        <div class="container">
+            <a href="index.html" class="logo-text">
+                <span class="safety">Safety</span><span class="help">Help</span>
+            </a>
+            <div class="header-right">
+                <input type="search" class="search-bar" placeholder="Search...">
+                <div class="language-selector">
+                    <select name="language" id="language">
+                        <option value="en">English</option>
+                        <option value="es">Español</option>
+                        <option value="fr">Français</option>
+                    </select>
+                </div>
+            </div>
         </div>
     </header>
 
-    <!-- Welcome Section -->
-    <section class="welcome-section">
-        <h1>Welcome to SafetyHelp</h1>
-        <div class="slogan">Empowering Safety, Ensuring Compliance</div>
-        <p>Your trusted platform for occupational health and safety (OHS) in South Africa. We provide intuitive, AI-enhanced tools to ensure safety and compliance in workplaces, schools, churches, and informal sectors. Join our community to access resources, services, and support tailored to your needs.</p>
-    </section>
-
-    <!-- Main Content -->
-    <div class="main-content">
-        <!-- SafetyHelp Tools -->
-        <div class="sidebar">
-            <h3>SafetyHelp Tools</h3>
-            <div class="tools-list">
-                <a href="dashboard.htm" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-                <a href="risk-assessments.htm"><i class="fas fa-exclamation-triangle"></i> Risk Assessments</a>
-                <a href="incident-reporting.htm"><i class="fas fa-file-alt"></i> Incident Reporting</a>
-                <a href="training-modules.htm"><i class="fas fa-graduation-cap"></i> Training Modules</a>
-                <a href="document-management.htm"><i class="fas fa-folder-open"></i> Document Management</a>
-                <a href="compliance-checklists.htm"><i class="fas fa-check-square"></i> Compliance Checklists</a>
-                <a href="analytics-reports.htm"><i class="fas fa-chart-bar"></i> Analytics & Reports</a>
-            </div>
-        </div>
-
-        <!-- Middle Content -->
-        <div class="middle-content">
-            <!-- Did You Know -->
-            <div class="did-you-know">
-                <h3>⚡ Did You Know...</h3>
-                <p id="daily-tip">Using reputable ethical suppliers can reduce workplace hazards by ensuring work is done on time and to the highest quality and safety standards.</p>
-                <button onclick="fetchNextTip()">Next Tip</button>
-            </div>
-
-            <!-- Dashboard -->
-            <div class="dashboard">
-                <h3>Dashboard</h3>
-                <div class="timer">
-                    <p>Next Module Launch: <span id="countdown"></span></p>
-                </div>
-                <div class="brain-of-day">
-                    <p>SafetyHelp Brain of the Day: <span id="brain-of-day">Loading...</span></p>
-                </div>
-                <div class="podcast">
-                    <p>Latest Podcast: <a href="podcast.htm">Episode 10: Safety in 2025</a></p>
-                </div>
-                <div class="article">
-                    <p>Latest Article: <a href="article.htm">Top 5 OHS Trends for 2025</a></p>
-                </div>
-            </div>
-
-            <!-- Brain of SafetyHelp -->
-            <div class="brain-challenge">
-                <h3>Brain of SafetyHelp - Daily Challenge!</h3>
-                <div id="quiz-container"></div>
-                <button id="submit-quiz" onclick="submitQuiz()">Submit Answers</button>
-            </div>
-
-            <!-- Launch Message -->
-            <div class="launch-message">
-                <h3>SafetyHelp Launched June 1, 2025! Be a Pioneer in OHS</h3>
-                <p>Our core platform is now live! Upcoming modules will launch monthly – see the countdown on the dashboard. Join our exclusive Beta Program: test new features, shape development, and get complimentary premium access during your testing period. Register now to be part of the future of OHS!</p>
-                <button onclick="location.href='beta-register.htm'">Join Beta & Register Now</button>
-            </div>
-        </div>
-
-        <!-- OHS Milestones -->
-        <div class="sidebar">
-            <h3>OHS Milestones</h3>
-            <div class="milestones-list">
-                <a href="osha-1970.htm"><i class="fas fa-history"></i> 1970: OSHA (USA)</a>
-                <a href="ohs-act-1993.htm"><i class="fas fa-gavel"></i> 1993: OHS Act (SA)</a>
-                <a href="coida-2003.htm"><i class="fas fa-briefcase"></i> 2003: COIDA</a>
-                <a href="global-2015.htm"><i class="fas fa-globe"></i> 2015: Global Harmonization</a>
-                <a href="mental-health-2022.htm"><i class="fas fa-heart"></i> 2022: Mental Health Focus</a>
-                <a href="predictive-future.htm"><i class="fas fa-forward"></i> Future: Predictive Safety</a>
-            </div>
-        </div>
+    <div class="launch-announcement" id="launchAnnouncement">
+        <button class="dismiss-button" id="dismissAnnouncementBtn" aria-label="Dismiss announcement">&times;</button>
+        <h2>🚀 SafetyHelp Launches June 1, 2025! Be a Pioneer in OHS.</h2>
+        <p>Our core platform is coming soon! Advanced modules (Construction Compliance, Risk Assessment, etc.) will follow in phases. Register now to join our exclusive Beta Program: test new features, shape development, and get complimentary premium access during your testing period. Limited spots available – rigorous application process applies to ensure valuable contributions.</p>
+        <a href="login.html#signup-section" class="launch-cta-button">Join Beta & Register Now</a>
     </div>
 
-    <!-- Why Choose SafetyHelp -->
-    <section class="why-choose">
-        <div class="item">
-            <i class="fas fa-robot"></i>
-            <p>AI Automation</p>
-            <p>Intelligent task streamlining.</p>
-        </div>
-        <div class="item">
-            <i class="fas fa-lightbulb"></i>
-            <p>Intelligent Analytics</p>
-            <p>Data-driven safety decisions.</p>
-        </div>
-        <div class="item">
-            <i class="fas fa-mobile-alt"></i>
-            <p>Mobile Accessibility</p>
-            <p>OHS management on the go.</p>
-        </div>
-        <div class="item">
-            <i class="fas fa-link"></i>
-            <p>Integrated Modules</p>
-            <p>Holistic OHS ecosystem.</p>
-        </div>
-    </section>
+    <main class="main-content-area">
+        <div class="container">
 
-    <!-- Footer -->
-    <footer>
-        <p>© 2025 SafetyHelp. All Rights Reserved.</p>
-        <p>
-            <a href="privacy.htm">Privacy Policy</a> |
-            <a href="terms.htm">Terms of Service</a> |
-            <a href="contact.htm">Contact Us</a>
-        </p>
-    </footer>
+            <aside class="left-sidebar sidebar">
+                <h2 class="sidebar-title"><span class="safety">Safety</span><span class="help">Help</span> Tools</h2>
+                <ul class="tool-list" id="toolList">
+                    <li><a href="#" data-tool="dashboard">Dashboard</a></li>
+                    <li><a href="#" data-tool="assessments">Risk Assessments</a></li>
+                    <li><a href="#" data-tool="incidents">Incident Reporting</a></li>
+                    <li><a href="#" data-tool="training">Training Modules</a></li>
+                    <li><a href="#" data-tool="documents">Document Management</a></li>
+                    <li><a href="#" data-tool="compliance">Compliance Checklists</a></li>
+                    <li><a href="#" data-tool="reports">Analytics & Reports</a></li>
+                </ul>
+            </aside>
 
-    <!-- Chatbot -->
-    <div class="chatbot" id="chatbot">
-        <button class="toggle-btn" onclick="toggleChatbot()">Toggle Chat</button>
-        <div class="chat-content">
-            <p>Welcome to SafetyHelp Chat! How can I assist you today?</p>
-            <input type="text" placeholder="Type your message...">
-            <button onclick="sendMessage()">Send</button>
+            <section class="central-column">
+                <div class="central-content-card">
+                    <h1 class="welcome-message">Welcome to <span class="safety-help-brand"><span class="safety">Safety</span><span class="help">Help</span></span>! Your partner in simplified OHS compliance.</h1>
+                </div>
+
+                <div class="central-content-card">
+                    <div class="mini-panels-container">
+                        <div class="mini-panel" id="safetyTipPanel">
+                            <h3>💡 Daily Safety Tip</h3>
+                            <p id="safetyTipContent">Loading safety tip...</p>
+                            <button id="nextTipBtn">Next Tip</button>
+                        </div>
+
+                        <div class="mini-panel" id="quizPanel">
+                            <h3>🧠 Brain of SafetyHelp - Daily Challenge!</h3>
+                            <input type="text" id="quizUserName" placeholder="Enter your name">
+                            <p id="quizQuestion">Loading question...</p>
+                            <input type="text" id="quizAnswer" placeholder="Your answer here">
+                            <!-- Example for multiple choice (can be dynamically added by JS)
+                            <select id="quizAnswerOptions">
+                                <option value="">Select an answer</option>
+                            </select>
+                            -->
+                            <button id="submitQuizBtn">Submit Answer</button>
+                            <div class="quiz-feedback">
+                                <span id="quizScore">Your Score: 0</span> |
+                                <span id="quizLeader">Today's Leader: Jane D. (150 pts)</span>
+                            </div>
+                            <a href="#" style="font-size:0.8em; margin-top:5px; display:inline-block;">View Full Ranking</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="central-content-card key-features-section">
+                    <h2>Why Choose SafetyHelp?</h2>
+                    <div class="feature-tiles" id="featureTilesContainer">
+                        </div>
+                </div>
+
+                <div class="central-content-card quick-access-section">
+                    <h2>Quick Access</h2>
+                    <div class="quick-access-buttons">
+                        <a href="#" class="quick-access-button">Start a Risk Assessment</a>
+                        <a href="#" class="quick-access-button">View OHS Resources</a>
+                        <a href="#" class="quick-access-button">Latest Safety News</a>
+                        <a href="#" class="quick-access-button">Contact Support</a>
+                    </div>
+                </div>
+            </section>
+
+            <aside class="right-sidebar sidebar">
+                <h2 class="sidebar-title">OHS Milestones</h2>
+                <ul class="timeline-list" id="timelineList">
+                    </ul>
+            </aside>
+
         </div>
-    </div>
+    </main>
 
     <script>
-        // Firebase Configuration (Replace with your Firebase config)
-        const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_AUTH_DOMAIN",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_STORAGE_BUCKET",
-            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-            appId: "YOUR_APP_ID"
-        };
-
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-
-        // Fetch Did You Know Tip
-        let currentTipIndex = 0;
-        const tips = []; // Store tips from Firebase
-
-        async function fetchTips() {
-            const snapshot = await db.collection('didYouKnowTips').get();
-            snapshot.forEach(doc => tips.push(doc.data().tip));
-            displayTip();
-        }
-
-        function displayTip() {
-            document.getElementById('daily-tip').textContent = tips[currentTipIndex];
-        }
-
-        function fetchNextTip() {
-            currentTipIndex = (currentTipIndex + 1) % tips.length;
-            displayTip();
-        }
-
-        fetchTips();
-
-        // Countdown Timer
-        function updateCountdown() {
-            const now = new Date();
-            const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0);
-            const timeLeft = endOfMonth - now;
-            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-            document.getElementById('countdown').textContent = `${days}d ${hours}h ${minutes}m`;
-        }
-
-        setInterval(updateCountdown, 60000); // Update every minute
-        updateCountdown();
-
-        // Brain of SafetyHelp Quiz
-        let currentQuestionSet = 1;
-        let userAnswers = [];
-        let questions = [];
-
-        async function fetchQuestions() {
-            const snapshot = await db.collection('quizQuestions').where('set', '==', currentQuestionSet).get();
-            questions = [];
-            snapshot.forEach(doc => questions.push(doc.data()));
-            displayQuestions();
-        }
-
-        function displayQuestions() {
-            const quizContainer = document.getElementById('quiz-container');
-            quizContainer.innerHTML = '';
-            questions.forEach((q, index) => {
-                const questionDiv = document.createElement('div');
-                questionDiv.className = 'question';
-                questionDiv.innerHTML = `
-                    <p>${index + 1}. ${q.question}</p>
-                    <div class="options">
-                        ${q.options.map(option => `
-                            <label>
-                                <input type="radio" name="q${index}" value="${option}">
-                                ${option}
-                            </label>
-                        `).join('')}
-                    </div>
-                `;
-                quizContainer.appendChild(questionDiv);
-            });
-        }
-
-        async function submitQuiz() {
-            const correctAnswers = questions.map(q => q.correctAnswer);
-            userAnswers = [];
-            questions.forEach((q, index) => {
-                const selected = document.querySelector(`input[name="q${index}"]:checked`);
-                userAnswers.push(selected ? selected.value : null);
-            });
-
-            let score = 0;
-            userAnswers.forEach((answer, i) => {
-                if (answer === correctAnswers[i]) score += 10;
-                alert(`Question ${i + 1}: Correct Answer: ${correctAnswers[i]}`);
-            });
-
-            const name = prompt('Enter your name to register or continue (leave blank to skip):');
-            const email = name ? prompt('Enter your email (optional):') : null;
-
-            if (name) {
-                await db.collection('quizScores').add({
-                    name,
-                    email,
-                    score,
-                    date: new Date().toISOString()
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Dismiss Launch Announcement ---
+            const announcementBar = document.getElementById('launchAnnouncement');
+            const dismissBtn = document.getElementById('dismissAnnouncementBtn');
+            if (dismissBtn && announcementBar) {
+                dismissBtn.addEventListener('click', () => {
+                    announcementBar.classList.add('dismissed');
+                     // Optional: remove from DOM after animation if not needed anymore
+                    setTimeout(() => {
+                        if(announcementBar.classList.contains('dismissed')) {
+                           // announcementBar.style.display = 'none'; // Alternative to full removal
+                        }
+                    }, 500); // Match CSS transition time
                 });
             }
 
-            // Fetch Brain of the Day
-            const topScore = await db.collection('quizScores')
-                .orderBy('score', 'desc')
-                .orderBy('date', 'desc')
-                .limit(1)
-                .get();
-            if (!topScore.empty) {
-                const topUser = topScore.docs[0].data();
-                document.getElementById('brain-of-day').textContent = `${topUser.name} (${topUser.score} pts)`;
+            // --- SafetyHelp Tools Link Activation ---
+            const toolLinks = document.querySelectorAll('#toolList a');
+            toolLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    toolLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                    // Future: Add logic to filter content based on this.dataset.tool
+                    console.log('Tool selected:', this.dataset.tool);
+                });
+            });
+            if (toolLinks.length > 0) toolLinks[0].classList.add('active'); // Activate first tool by default
+
+
+            // --- Daily Safety Tip ---
+            const safetyTips = [
+                "Always wear appropriate Personal Protective Equipment (PPE).",
+                "Report any unsafe conditions to your supervisor immediately.",
+                "Keep walkways clear to prevent slips, trips, and falls.",
+                "Understand emergency procedures and evacuation routes.",
+                "Practice good housekeeping in your work area.",
+                "Use tools and equipment correctly and only if trained.",
+                "Take regular breaks to avoid fatigue, especially on long shifts.",
+                "Lift correctly: bend your knees, keep your back straight.",
+                "Be aware of chemical safety and SDS information.",
+                "Using reputable ethical suppliers enhances overall workplace safety culture."
+            ];
+            const safetyTipContent = document.getElementById('safetyTipContent');
+            const nextTipBtn = document.getElementById('nextTipBtn');
+            let currentTipIndex = -1;
+
+            function showRandomTip() {
+                let newIndex;
+                do {
+                    newIndex = Math.floor(Math.random() * safetyTips.length);
+                } while (newIndex === currentTipIndex && safetyTips.length > 1);
+                currentTipIndex = newIndex;
+                if (safetyTipContent) safetyTipContent.textContent = safetyTips[currentTipIndex];
+            }
+            if (nextTipBtn) nextTipBtn.addEventListener('click', showRandomTip);
+            showRandomTip(); // Initial tip
+
+            // --- Brain of SafetyHelp Quiz ---
+            const quizQuestions = [
+                { question: "What does PPE stand for?", answer: "Personal Protective Equipment", type: "input" },
+                { question: "Which color typically signifies 'danger' or 'stop' on safety signs?", answer: "Red", type: "input" },
+                { question: "What is the first step in a fire emergency?", answer: "Raise the alarm", type: "input" },
+                { question: "The acronym SDS stands for Safety Data ____?", answer: "Sheet", type: "input"}
+            ];
+            const quizQuestionEl = document.getElementById('quizQuestion');
+            const quizAnswerEl = document.getElementById('quizAnswer');
+            const submitQuizBtn = document.getElementById('submitQuizBtn');
+            const quizScoreEl = document.getElementById('quizScore');
+            const quizUserNameEl = document.getElementById('quizUserName');
+            let currentQuizQuestion = null;
+            let userScore = 0;
+
+            function displayQuizQuestion() {
+                currentQuizQuestion = quizQuestions[Math.floor(Math.random() * quizQuestions.length)];
+                if (quizQuestionEl) quizQuestionEl.textContent = currentQuizQuestion.question;
+                if (quizAnswerEl) quizAnswerEl.value = '';
             }
 
-            const continueQuiz = confirm('Continue with the next set of questions?');
-            if (continueQuiz) {
-                currentQuestionSet++;
-                fetchQuestions();
+            if (submitQuizBtn) {
+                submitQuizBtn.addEventListener('click', () => {
+                    if (!currentQuizQuestion || !quizAnswerEl || !quizScoreEl || !quizUserNameEl) return;
+                    const userAnswer = quizAnswerEl.value.trim();
+                    const userName = quizUserNameEl.value.trim() || "Anonymous";
+
+                    if (userAnswer.toLowerCase() === currentQuizQuestion.answer.toLowerCase()) {
+                        userScore += 10;
+                        quizScoreEl.textContent = `Your Score: ${userScore}`;
+                        quizScoreEl.classList.add('score');
+                        setTimeout(()=> quizScoreEl.classList.remove('score'), 1000);
+                        alert(`Correct, ${userName}! You earned 10 points.`); // Replace with modal in production
+                    } else {
+                        alert(`Incorrect, ${userName}. The answer was: ${currentQuizQuestion.answer}`); // Replace with modal
+                    }
+                    displayQuizQuestion(); // Display next question
+                });
             }
-        }
+            displayQuizQuestion(); // Initial question
 
-        fetchQuestions();
+            // --- Key Features Section (Accordion) ---
+            const featureTilesData = [
+                { 
+                    icon: '🤖', title: 'AI-Powered Automation', 
+                    teaser: 'Streamline compliance tasks with intelligent automation.', 
+                    details: 'Our AI algorithms help identify potential risks, suggest corrective actions, and automate repetitive reporting tasks, saving you time and resources.' 
+                },
+                { 
+                    icon: '📊', title: 'Comprehensive Analytics', 
+                    teaser: 'Gain actionable insights from your safety data.', 
+                    details: 'Visualize trends, track incident rates, and measure the effectiveness of your safety programs with our intuitive dashboards and reporting tools.' 
+                },
+                { 
+                    icon: '📱', title: 'Mobile-First Access', 
+                    teaser: 'Manage OHS on-the-go, anytime, anywhere.', 
+                    details: 'Our platform is fully responsive, allowing your team to report incidents, complete checklists, and access safety documents directly from their mobile devices in the field.' 
+                },
+                 { 
+                    icon: '📚', title: 'Centralized Resources', 
+                    teaser: 'All your OHS documents and training in one place.', 
+                    details: 'Keep policies, procedures, SDS, and training materials organized and easily accessible to all employees, ensuring everyone has the latest information.' 
+                }
+            ];
+            const featureTilesContainer = document.getElementById('featureTilesContainer');
+            if (featureTilesContainer) {
+                featureTilesData.forEach(feature => {
+                    const tile = document.createElement('div');
+                    tile.className = 'feature-tile';
+                    tile.innerHTML = `
+                        <div class="feature-tile-header">
+                            <div>
+                                <span class="icon">${feature.icon}</span>
+                                <h4>${feature.title}</h4>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <p class="feature-tile-teaser">${feature.teaser}</p>
+                        <div class="feature-tile-details">
+                            <p>${feature.details}</p>
+                        </div>
+                    `;
+                    featureTilesContainer.appendChild(tile);
 
-        // Chatbot Toggle
-        function toggleChatbot() {
-            const chatbot = document.getElementById('chatbot');
-            chatbot.classList.toggle('collapsed');
-        }
+                    const header = tile.querySelector('.feature-tile-header');
+                    header.addEventListener('click', () => {
+                        tile.classList.toggle('expanded');
+                    });
+                });
+            }
 
-        function sendMessage() {
-            alert('Chatbot functionality coming soon!');
-        }
+            // --- OHS Snippets Timeline ---
+            const timelineItemsData = [
+                { year: "1911", title: "Mines & Works Act", summary: "Early legislation in South Africa focusing on safety in mining environments, laying groundwork for future OHS regulations.", learnMore: "#" },
+                { year: "1970", title: "OSHA (USA)", summary: "The Occupational Safety and Health Act was enacted in the USA, a landmark for federal worker protection standards.", learnMore: "#" },
+                { year: "1993", title: "OHS Act (SA)", summary: "South Africa's Occupational Health and Safety Act No. 85 established comprehensive duties for employers and rights for employees.", learnMore: "#" },
+                { year: "2003", title: "COIDA Amendment", summary: "Amendments to the Compensation for Occupational Injuries and Diseases Act in SA, refining worker compensation.", learnMore: "#" },
+                { year: "2015", title: "Global Harmonization", summary: "Increased focus on aligning OHS standards internationally, e.g., GHS for chemical classification.", learnMore: "#" },
+                { year: "2022", title: "Mental Health Focus", summary: "Growing recognition and inclusion of psychosocial risks and mental well-being in OHS frameworks globally.", learnMore: "#" },
+                { year: "Future", title: "Predictive Safety", summary: "Leveraging AI and big data to predict and prevent workplace incidents before they occur.", learnMore: "#" }
+            ];
+            const timelineList = document.getElementById('timelineList');
+            let timelineScrollInterval;
+            let scrollPaused = false;
+
+            function populateTimeline() {
+                if (!timelineList) return;
+                timelineItemsData.forEach(item => {
+                    const li = document.createElement('li');
+                    li.className = 'timeline-item';
+                    li.innerHTML = `
+                        <div class="timeline-item-header">
+                            <h5>${item.year}: ${item.title}</h5>
+                            <span class="toggle-icon-timeline">▼</span>
+                        </div>
+                        <div class="timeline-item-summary">
+                            <p>${item.summary}</p>
+                            ${item.learnMore ? `<a href="${item.learnMore}">Learn More</a>` : ''}
+                        </div>
+                    `;
+                    timelineList.appendChild(li);
+
+                    const header = li.querySelector('.timeline-item-header');
+                    header.addEventListener('click', () => {
+                        // Close other expanded items
+                        timelineList.querySelectorAll('.timeline-item.expanded').forEach(openItem => {
+                            if (openItem !== li) openItem.classList.remove('expanded');
+                        });
+                        li.classList.toggle('expanded');
+                    });
+                });
+            }
+
+            function startTimelineScroll() {
+                if (!timelineList || scrollPaused) return;
+                timelineScrollInterval = setInterval(() => {
+                    if (timelineList.scrollTop + timelineList.clientHeight >= timelineList.scrollHeight -1) { // -1 for potential rounding issues
+                        timelineList.scrollTop = 0; // Loop to top
+                    } else {
+                        timelineList.scrollTop += 1; // Scroll speed
+                    }
+                }, 50); // Scroll interval
+            }
+
+            function stopTimelineScroll() {
+                clearInterval(timelineScrollInterval);
+            }
+
+            if (timelineList) {
+                populateTimeline();
+                // Only start auto-scroll if there's enough content to scroll
+                if (timelineList.scrollHeight > timelineList.clientHeight) {
+                    startTimelineScroll();
+                    timelineList.addEventListener('mouseenter', () => {
+                        scrollPaused = true;
+                        stopTimelineScroll();
+                    });
+                    timelineList.addEventListener('mouseleave', () => {
+                        scrollPaused = false;
+                        startTimelineScroll();
+                    });
+                }
+            }
+        });
     </script>
 </body>
 </html>
