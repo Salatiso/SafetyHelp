@@ -7,545 +7,430 @@
     <meta name="keywords" content="OHS tools, occupational health and safety, safety plans, South Africa OHS, SafetyHelp">
     <meta name="author" content="SafetyHelp Team">
     <title data-i18n="page_title.home">SafetyHelp - Home</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&family=Inter%3Awght%40400%3B500%3B700%3B900&family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+    />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/i18next@23.15.2/dist/umd/i18next.min.js"></script>
-    <script src="https://unpkg.com/i18next-browser-languagedetector@8.0.0/dist/i18nextBrowserLanguageDetector.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://unpkg.com/i18next-http-backend@2.5.2/dist/umd/i18nextHttpBackend.min.js"></script> <script src="https://unpkg.com/i18next-browser-languagedetector@8.0.0/dist/umd/i18nextBrowserLanguageDetector.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        /* Global Styles */
+        /* Global Styles from Branding Document */
         body {
-            font-family: 'Open Sans', sans-serif;
-            background-color: #E8F0FE;
-            color: #333;
+            font-family: 'Inter', "Noto Sans", sans-serif;
+            background-color: #E8F0FE; /* Light Blue-Gray */
+            color: #374151; /* Tailwind gray-700 */
             margin: 0;
             padding-top: 100px; /* Adjusted for fixed header */
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
-        header h1, .sidebar h2, .sidebar h3, .hero-section h1, .features h2, .quick-access h2, .testimonials h2, footer h3, .carousel-item h4, .modal-content h4 { /* Updated .hero to .hero-section for h1 */
+        h1, h2, h3, h4 {
             font-family: 'Montserrat', sans-serif;
+            color: #1f2937; /* Tailwind gray-800 */
         }
         /* Header */
         header {
-            background-color: #007BFF;
+            background-color: #007BFF; /* Primary Blue */
             color: white;
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 50;
-            width: 100%;
+            top: 0; left: 0; right: 0;
+            z-index: 1000; width: 100%;
         }
         .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
+            max-width: 1200px; margin: 0 auto; display: flex;
+            justify-content: space-between; align-items: center;
+            padding: 10px 20px; min-height: 80px;
         }
-        .header-left {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-        .search-language-container {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-        .search-bar button {
-            background-color: #FD7E14;
-            color: white;
-        }
-        .search-bar button:hover {
-            background-color: #e06b00;
-        }
-        .language-selector {
-            margin-bottom: 5px;
-        }
-        .language-selector select {
-            padding: 4px;
-            border-radius: 4px;
-            font-size: 14px;
-            color: #333; /* Ensure select text is visible */
-        }
-        .nav-links {
-            text-align: center;
-            flex: 1;
-        }
-        .nav-links a {
-            color: white;
-            margin: 0 15px;
+        .header-left { display: flex; flex-direction: column; align-items: flex-start; }
+        
+        /* Variation 3 Text Logo Style */
+        .logo-text-v3 {
             font-family: 'Montserrat', sans-serif;
+            font-size: 1.75rem; 
+            letter-spacing: -0.025em;
+            color: white;
             text-decoration: none;
+            display: inline-block;
+            position: relative;
+            padding-bottom: 5px; 
         }
-        .nav-links a:hover {
-            color: #FD7E14;
+        .logo-text-v3 .safety-part {
+            font-weight: 700; 
+            position: relative; 
         }
-        .header-right {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
+        .logo-text-v3 .help-part {
+            font-weight: 900; 
+            color: #FF8C00; /* Deeper Orange */
         }
-        .logo-container img {
-            height: 50px;
+        .logo-text-v3 .safety-part::after {
+            content: '';
+            position: absolute;
+            bottom: -7px; 
+            left: 0;
+            width: 100%; 
+            height: 4px; 
+            background-color: #FF8C00; 
+            border-radius: 2px;
         }
-        .tagline {
-            font-size: 14px;
-            margin-top: 5px;
-        }
-        /* Sidebar */
+        /* End Variation 3 Text Logo Style */
+
+        .tagline { font-size: 12px; margin-top: 4px; color: #f0f0f0; }
+        .nav-links { text-align: center; flex-grow: 1; }
+        .nav-links a { color: white; margin: 0 10px; font-family: 'Montserrat', sans-serif; text-decoration: none; font-size: 14px; }
+        .nav-links a:hover { color: #FD7E14; /* Primary Orange Accent */ }
+        
+        .header-right { display: flex; align-items: center; gap: 1rem; } 
+        .search-language-container { display: flex; align-items: center; gap: 0.75rem; } 
+
+        .language-selector select { padding: 5px 8px; border-radius: 4px; font-size: 13px; color: #333; border: 1px solid #ccc; background-color: white;}
+        .search-bar { display: flex; }
+        .search-bar input { padding: 6px 10px; border: 1px solid #ccc; border-right: none; border-radius: 4px 0 0 4px; font-size: 13px; color: #333; width: 150px; }
+        .search-bar button { background-color: #FD7E14; color: white; padding: 6px 12px; border: none; border-radius: 0 4px 4px 0; cursor: pointer; font-size: 13px;}
+        .search-bar button:hover { background-color: #e06b00; }
+
+        /* Sidebar (from original index.html, with minor adjustments for consistency) */
         .sidebar {
             position: fixed;
             top: 100px; /* Match header height */
             left: 0;
             bottom: 0;
             width: 250px;
-            background-color: #F4F4F4;
+            background-color: #f8fafc; /* Tailwind slate-50 */
+            border-right: 1px solid #e5e7eb; /* Tailwind gray-200 */
             overflow-y: auto;
             z-index: 40;
-            padding: 15px;
+            padding: 1.5rem 1rem; /* p-6 sm:p-4 */
         }
         .sidebar h2 {
-            color: #007BFF;
-            font-size: 24px;
-            margin-bottom: 15px;
-            text-align: right;
+            color: #007BFF; /* Primary Blue */
+            font-size: 1.25rem; /* text-xl */
+            margin-bottom: 1rem; /* mb-4 */
+            font-weight: 600;
         }
         .sidebar a {
-            color: white;
-            background-color: #007BFF;
-            padding: 8px;
-            border-radius: 4px;
-            margin-bottom: 5px;
+            color: #4b5563; /* Tailwind gray-600 */
+            background-color: transparent;
+            padding: 0.625rem 0.75rem; /* py-2.5 px-3 */
+            border-radius: 0.375rem; /* rounded-md */
+            margin-bottom: 0.25rem; /* mb-1 */
             display: block;
             text-decoration: none;
-            font-size: 14px;
-            transition: font-weight 0.3s, background-color 0.3s;
+            font-size: 0.875rem; /* text-sm */
+            transition: background-color 0.2s ease, color 0.2s ease;
+            font-weight: 500;
         }
         .sidebar a:hover {
-            font-weight: bold;
-            background-color: #0056b3;
+            background-color: #e0f2fe; /* Tailwind sky-100 */
+            color: #0c4a6e; /* Tailwind sky-800 */
         }
         .sidebar a.active {
-            background-color: #28A745;
+            background-color: #007BFF; /* Primary Blue */
+            color: white;
+            font-weight: 600;
         }
         .step-info {
-            background-color: #E8F0FE;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 20px;
+            background-color: #eff6ff; /* Tailwind blue-50 */
+            padding: 1rem; /* p-4 */
+            border-radius: 0.5rem; /* rounded-lg */
+            margin-top: 1.5rem; /* mt-6 */
+            border: 1px solid #bfdbfe; /* Tailwind blue-200 */
         }
         .step-info h3 {
-            font-size: 18px;
-            color: #007BFF;
-            margin-bottom: 10px;
+            font-size: 1rem; /* text-base */
+            color: #1e40af; /* Tailwind blue-800 */
+            margin-bottom: 0.5rem; /* mb-2 */
+            font-weight: 600;
         }
         .step-info p {
-            font-size: 14px;
+            font-size: 0.875rem; /* text-sm */
+            color: #1d4ed8; /* Tailwind blue-700 */
         }
-        .fun-fact {
-            color: #28A745;
-        }
-        /* Main Content */
-        .main-content {
+        .fun-fact { color: #059669; /* Tailwind green-700 */ font-style: italic; }
+
+        /* Main Content Area */
+        .main-content-wrapper { /* New wrapper for index page layout */
             margin-left: 250px; /* Account for sidebar */
             flex-grow: 1;
-            padding: 1.5rem;
+            padding: 1.5rem; /* p-6 */
             display: flex;
-            flex-direction: row; /* For content column and carousel */
-            gap: 20px;
+            flex-direction: row; 
+            gap: 1.5rem; /* gap-6 */
         }
         .content-column {
-            flex: 3; /* Takes more space */
+            flex: 3; 
             display: flex;
             flex-direction: column;
+            gap: 1.5rem; /* Space between sections */
+        }
+        .carousel-column { /* Renamed for clarity */
+            flex: 1; 
+            max-width: 300px; /* Adjusted max-width */
+            position: relative; 
         }
         /* Hero Section Specific Styling */
         .hero-section {
-            background-color: #007BFF;
+            background-color: #007BFF; /* Primary Blue */
             color: white;
-            padding: 48px 20px; /* py-12 equivalent */
+            padding: 2.5rem 1.5rem; /* py-10 px-6 */
             text-align: center;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin-bottom: 24px;
+            border-radius: 0.5rem; /* rounded-lg */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
         .hero-section h1 {
-            font-size: 2.25rem; /* text-4xl */
-            font-weight: bold;
+            font-size: 2rem; /* text-3xl or text-4xl */
+            font-weight: 700; /* bold */
             margin-bottom: 1rem; /* mb-4 */
+            color: white; /* Ensure heading is white */
         }
         .hero-section p {
-            font-size: 1.125rem; /* text-lg */
-            color: white; /* Ensuring text is white on blue background */
+            font-size: 1rem; /* text-base or text-lg */
+            color: #e0f2fe; /* Lighter white for paragraph */
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
-        /* General Section Styling (Features, Quick Access, Testimonials) */
+        /* General Section Styling */
         .features, .quick-access, .testimonials {
             background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin-bottom: 24px;
+            border-radius: 0.5rem; /* rounded-lg */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 1.5rem; /* p-6 */
         }
         .features h2, .quick-access h2, .testimonials h2 {
-            font-size: 24px;
-            color: #333;
-            margin-bottom: 10px;
+            font-size: 1.5rem; /* text-2xl */
+            color: #1f2937; /* gray-800 */
+            margin-bottom: 1rem; /* mb-4 */
+            font-weight: 600;
         }
         .features p, .quick-access p, .testimonials p {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 15px;
+            font-size: 0.875rem; /* text-sm */
+            color: #4b5563; /* gray-600 */
+            margin-bottom: 1rem; /* mb-4 */
         }
-        .hero-section a, .features a, .quick-access a, .testimonials a, .quick-access-card { /* Added .quick-access-card for consistent styling */
-            background-color: #FD7E14;
-            color: white !important; /* Ensure text is white for links styled as buttons */
-            padding: 8px 16px;
-            border-radius: 4px;
+        .hero-section a, .features a, .quick-access a, .testimonials a {
+            background-color: #FD7E14; /* Primary Orange Accent */
+            color: white !important; 
+            padding: 0.625rem 1.25rem; /* py-2.5 px-5 */
+            border-radius: 0.375rem; /* rounded-md */
             text-decoration: none;
             display: inline-block;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
         }
-         .quick-access-card { /* Specific styling for quick access cards if they are links */
-            background-color: white; /* Override for card background */
-            color: #333 !important; /* Text color for card content */
-            padding: 1rem; /* p-4 */
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .quick-access-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-        }
-        .quick-access-card span { /* Icon styling */
-            font-size: 1.875rem; /* text-3xl */
-            margin-bottom: 0.5rem; /* mb-2 */
-            display: block;
-            color: #007BFF; /* Icon color */
-        }
-        .quick-access-card h3 {
-            font-size: 1.125rem; /* text-lg */
-            font-weight: 600; /* font-semibold */
-            color: #333; /* Heading color */
-            margin-bottom: 0.5rem; /* mb-2 */
-        }
-        .quick-access-card p {
-            font-size: 0.875rem; /* text-sm */
-            color: #666; /* Paragraph color */
-        }
-
         .hero-section a:hover, .features a:hover, .quick-access a:hover, .testimonials a:hover {
-            background-color: #e06b00;
+            background-color: #e06b00; /* Darker Orange */
         }
         .feature-card {
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: #f9fafb; /* Tailwind gray-50 */
+            border: 1px solid #e5e7eb; /* Tailwind gray-200 */
         }
         .feature-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
         }
-        /* Carousel */
-        .carousel-container {
-            flex: 1; /* Takes less space */
-            max-width: 250px;
-            position: relative; /* For positioning prev/next buttons */
-        }
-        .carousel-item {
-            background-color: white;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            margin-bottom: 10px; /* Space between items if stacked, or if only one is shown */
-        }
-        .carousel-item:hover {
-            transform: scale(1.05);
-            font-weight: bold;
-        }
-        .carousel-item h4 {
-            font-size: 16px;
-            color: #007BFF;
-            margin-bottom: 5px;
-        }
-        .carousel-item p {
-            font-size: 14px;
-            color: #333;
-        }
-        .carousel-item.active {
-            display: block; /* Show active item */
-        }
-        .carousel-item:not(.active) {
-            display: none; /* Hide inactive items */
-        }
-        .carousel-prev, .carousel-next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: #FD7E14;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-            border-radius: 4px;
-            z-index: 10; /* Ensure buttons are above items */
-        }
-        .carousel-prev:hover, .carousel-next:hover {
-            background-color: #e06b00;
-        }
-        .carousel-prev {
-            left: -40px; /* Adjust position */
-        }
-        .carousel-next {
-            right: -40px; /* Adjust position */
-        }
-        /* Modal */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-            z-index: 1000; /* Ensure modal is on top */
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-content {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            max-width: 500px;
-            width: 90%; /* Responsive width */
-            position: relative; /* For close button positioning */
-        }
-        .modal-content h4 {
-            font-size: 18px;
-            color: #007BFF;
-            margin-bottom: 10px;
-        }
-        .modal-content p {
-            font-size: 14px;
-            color: #333;
-            margin-bottom: 10px;
-        }
-        .modal-content a {
-            color: #28A745; /* Green link for emphasis */
-            text-decoration: underline;
-        }
-        .modal-content a:hover {
-            color: #1e7e34; /* Darker green on hover */
-        }
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 20px;
-            cursor: pointer;
-            color: #333;
-        }
-        /* Chatbot */
-        .chatbot-container {
-            position: fixed;
-            bottom: 1.25rem; /* Tailwind's bottom-5 */
-            right: 1.25rem; /* Tailwind's right-5 */
-            z-index: 1000; /* Ensure it's above other content */
-        }
-        #chat-window {
-            width: 300px;
-            max-height: 400px;
-            overflow-y: auto;
+        .feature-card h3 { color: #111827; font-size: 1.125rem; } /* text-lg gray-900 */
+        .feature-card p { color: #4b5563; } /* gray-600 */
+
+        .quick-access-card {
+            background-color: white; 
+            color: #374151 !important; 
+            padding: 1rem; 
+            text-align: center;
+            border-radius: 0.5rem; /* rounded-lg */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border: 1px solid #e5e7eb; /* gray-200 */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
-            transition: all 0.3s ease;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
         }
-        .chat-hidden {
-            display: none;
+        .quick-access-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
         }
-        .chat-expanded {
-            display: flex; /* Or block, depending on layout needs */
+        .quick-access-card span.icon-wrapper { /* Wrapper for icon */
+            font-size: 2rem; /* text-3xl */
+            margin-bottom: 0.75rem; /* mb-3 */
+            display: inline-block;
+            color: #007BFF; 
+            background-color: #eff6ff; /* blue-50 */
+            padding: 0.75rem;
+            border-radius: 50%;
         }
-        #chat-output {
-            flex-grow: 1; /* Allows output to take available space */
+        .quick-access-card h3 {
+            font-size: 1rem; /* text-base */
+            font-weight: 600; 
+            color: #1f2937; /* gray-800 */
+            margin-bottom: 0.25rem; /* mb-1 */
         }
-        #chat-input-container {
-            display: flex;
-            border-top-width: 1px; /* From original Tailwind */
+        .quick-access-card p {
+            font-size: 0.875rem; /* text-sm */
+            color: #6b7280; /* gray-500 */
         }
+
+        /* Carousel */
+        .carousel-item {
+            background-color: white; padding: 1rem; border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05); cursor: pointer;
+            transition: transform 0.3s ease; margin-bottom: 0.75rem; /* mb-3 */
+            border: 1px solid #e5e7eb;
+        }
+        .carousel-item:hover { transform: scale(1.03); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .carousel-item h4 { font-size: 0.875rem; color: #007BFF; margin-bottom: 0.25rem; font-weight: 600; }
+        .carousel-item p { font-size: 0.8rem; color: #4b5563; line-height: 1.4; }
+        .carousel-item.active { display: block; }
+        .carousel-item:not(.active) { display: none; }
+        .carousel-nav-button { /* Common style for prev/next */
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background-color: rgba(0, 123, 255, 0.7); color: white;
+            border: none; padding: 0.375rem 0.625rem; /* py-1.5 px-2.5 */
+            cursor: pointer; border-radius: 0.25rem; /* rounded-sm */
+            z-index: 10; font-size: 0.875rem; /* text-sm */
+        }
+        .carousel-nav-button:hover { background-color: #0056b3; }
+        .carousel-prev { left: -35px; }
+        .carousel-next { right: -35px; }
+        
+        /* Modal */
+        .modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.6); z-index: 1050; 
+            justify-content: center; align-items: center; padding: 1rem;
+        }
+        .modal-content {
+            background-color: white; padding: 1.5rem; border-radius: 0.5rem;
+            max-width: 600px; width: 90%; position: relative;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            max-height: 80vh; overflow-y: auto;
+        }
+        .modal-content h4 { font-size: 1.25rem; color: #1f2937; margin-bottom: 0.75rem; font-weight: 600;}
+        .modal-content p { font-size: 0.9rem; color: #4b5563; margin-bottom: 0.75rem; line-height: 1.6;}
+        .modal-content a { color: #007BFF; text-decoration: underline; }
+        .modal-content a:hover { color: #0056b3; }
+        .close-btn {
+            position: absolute; top: 0.75rem; right: 0.75rem; font-size: 1.75rem;
+            cursor: pointer; color: #9ca3af; /* gray-400 */ line-height: 1;
+        }
+        .close-btn:hover { color: #374151; /* gray-700 */ }
+
+        /* Chatbot Styles */
+        .chatbot-container { position: fixed; bottom: 1.25rem; right: 1.25rem; z-index: 1000; }
+        #chat-window {
+            width: 320px; max-height: 450px; overflow-y: auto; display: flex; flex-direction: column;
+            transition: all 0.3s ease; background-color: white; border-radius: 0.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+            border: 1px solid #e5e7eb; /* gray-200 */
+        }
+        .chat-hidden { display: none !important; }
+        .chat-expanded { display: flex !important; }
+        #chat-output { flex-grow: 1; padding: 0.75rem; overflow-y: auto; }
+        #chat-output p { margin-bottom: 0.5rem; line-height: 1.5; }
+        #chat-output strong { font-weight: 600; color: #1e40af; /* blue-800 */ }
+        #chat-input-container { display: flex; border-top: 1px solid #e5e7eb; }
         #chat-input {
-            flex-grow: 1;
-            border: none;
-            padding: 0.5rem; /* Tailwind's p-2 */
+            flex-grow: 1; border: none; padding: 0.75rem; border-bottom-left-radius: 0.5rem;
+            font-size: 0.875rem; color: #1f2937;
         }
+        #chat-input:focus { outline: none; box-shadow: 0 0 0 2px #bfdbfe; }
         #chat-send {
-            border: none;
-            padding: 0.5rem 1rem; /* Tailwind's px-4 py-2 */
-            cursor: pointer;
-            background-color: #007BFF; /* Blue from original */
-            color: white;
+            border: none; padding: 0.75rem 1rem; cursor: pointer; background-color: #007BFF;
+            color: white; border-bottom-right-radius: 0.5rem;
         }
-        #chat-send:hover {
-            background-color: #0056b3; /* Darker blue */
+        #chat-send:hover { background-color: #0056b3; }
+        #chat-toggle, #open-chatbot-direct {
+            background-color: #FD7E14; color: white; border: none; 
+            border-radius: 9999px; cursor: pointer; 
+            width: 56px; height: 56px; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: background-color 0.2s ease;
         }
-        .chat-toggle-btn {
-            background-color: #FD7E14; /* Orange from original */
-        }
-        .chat-toggle-btn:hover {
-            background-color: #e06b00; /* Darker orange */
-        }
-        .chat-toggle-btn.collapsed {
-            /* Styles for when the chatbot is minimized, if any */
-            padding: 0.75rem; /* Example: smaller padding when collapsed */
-            font-size: 0.875rem; /* Example: smaller font when collapsed */
-        }
-        .chat-toggle-btn.collapsed #chat-toggle-text {
-            display: none; /* Hide text when collapsed */
-        }
+        #chat-toggle .chat-icon, #open-chatbot-direct .chat-icon { font-size: 1.5rem; /* text-2xl */ }
+        #chat-toggle:hover, #open-chatbot-direct:hover { background-color: #e06b00; }
+        #chat-toggle-text { display: none; } /* Hide text for icon-only button */
+        #open-chatbot-direct { position: fixed; bottom: 6.5rem; right: 1.25rem; background-color: #007BFF; } /* Position above main chat toggle */
+        #open-chatbot-direct:hover { background-color: #0056b3; }
+        #open-chatbot-direct .text-xl { font-size: 1.25rem; }
+
+
         /* Footer */
         footer {
-            background-color: #007BFF;
-            color: white;
-            padding: 15px;
-            text-align: center;
-            width: 100%;
-            margin-top: auto; /* Pushes footer to bottom if content is short */
+            background-color: #007BFF; color: white; padding: 20px 15px;
+            text-align: center; width: 100%; margin-top: auto;
         }
-        footer p {
-            font-size: 14px;
-            margin: 5px 0;
-        }
-        footer a {
-            color: #FD7E14; /* Orange links on blue background */
-            text-decoration: none;
-            margin: 0 5px;
-        }
-        footer a:hover {
-            color: #e06b00; /* Darker orange for hover */
-        }
-        .newsletter h3 {
-            font-size: 14px; /* Was text-lg font-semibold */
-            margin-bottom: 8px;
-        }
-        .newsletter input {
-            padding: 8px;
-            border: none;
-            border-radius: 2px;
-            margin-right: 10px;
-            font-size: 14px;
-            width: 150px; /* Adjusted width */
-            color: #333; /* Text color for input */
-        }
-        .newsletter button {
-            padding: 8px 16px;
-            background-color: #FD7E14;
-            color: white;
-            border: none;
-            border-radius: 2px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        .newsletter button:hover {
-            background-color: #e06b00;
-        }
+        footer p { font-size: 13px; margin: 5px 0; }
+        .footer-links a { color: #FD7E14; text-decoration: none; margin: 0 8px; font-size: 13px;}
+        .footer-links a:hover { color: #e06b00; text-decoration: underline;}
+        .newsletter { margin-top: 15px; }
+        .newsletter h3 { font-size: 16px; margin-bottom: 10px; font-family: 'Montserrat', sans-serif; }
+        .newsletter form { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px;}
+        .newsletter input { padding: 8px 12px; border: none; border-radius: 4px; font-size: 14px; width: 220px; color: #333; }
+        .newsletter button { padding: 8px 18px; background-color: #FD7E14; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; }
+        .newsletter button:hover { background-color: #e06b00; }
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
-            body {
-                padding-top: 0; /* Remove top padding if header is not fixed */
-                flex-direction: column;
-            }
-            header {
-                position: relative; /* Header flows with content */
-            }
-            .header-container {
-                flex-direction: column;
-                align-items: center;
-            }
-            .header-left, .header-right {
-                align-items: center;
-                margin-bottom: 10px;
-                width: 100%; /* Ensure full width for centering */
-            }
-            .search-language-container {
-                align-items: center; /* Center search and language */
-            }
-            .nav-links {
-                margin: 10px 0;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-            .nav-links a {
-                margin: 5px 0;
-            }
+            body { padding-top: 0; }
+            header { position: relative; }
+            .header-container { flex-direction: column; padding: 15px; }
+            .header-left, .header-right, .nav-links { width: 100%; align-items: center; text-align: center; margin-bottom: 10px;}
+            .nav-links a { display: block; margin: 8px 0; }
+            .search-language-container { flex-direction: column; gap: 10px; } 
+            .logo-text-v3 { font-size: 1.5rem; }
+            .tagline { text-align: center; font-size: 11px; }
+
             .sidebar {
-                position: relative; /* Sidebar flows with content */
-                top: 0;
-                width: 100%;
-                height: auto;
-                bottom: auto;
-                z-index: 1;
+                position: relative; top: 0; width: 100%; height: auto;
+                bottom: auto; z-index: 1; margin-bottom: 1rem;
             }
-            .sidebar h2 {
-                text-align: center;
-            }
-            .main-content {
-                margin-left: 0; /* No sidebar offset */
-                flex-direction: column;
-            }
-            .content-column, .hero-section, .features, .quick-access, .testimonials {
-                margin: 1rem 0; /* Consistent vertical spacing */
-            }
-            .carousel-container {
-                max-width: 100%;
-                margin: 1rem 0;
-            }
-            .carousel-prev {
-                left: 10px; /* Adjust for screen edge */
-            }
-            .carousel-next {
-                right: 10px; /* Adjust for screen edge */
-            }
-            .newsletter form {
-                flex-direction: column; /* Stack newsletter input and button */
-                align-items: center;
-            }
-            .newsletter input {
-                margin-right: 0;
-                margin-bottom: 10px; /* Space between input and button */
-                width: 80%; /* Make input wider */
-            }
-            .newsletter button {
-                width: 50%; /* Make button wider */
-            }
+            .main-content-wrapper { margin-left: 0; flex-direction: column; padding: 1rem; }
+            .content-column, .carousel-column { max-width: 100%; flex: none; }
+            .carousel-prev, .carousel-next { display: none; /* Simpler carousel on mobile, or use touch swipes */ }
+            .hero-section h1 { font-size: 1.75rem; }
+            .hero-section p { font-size: 0.9rem; }
+            .features h2, .quick-access h2, .testimonials h2 { font-size: 1.25rem; }
+            .quick-access .grid { grid-template-columns: repeat(2, 1fr); } /* 2 cards per row on mobile */
+
+            .newsletter form { flex-direction: column; }
+            .newsletter input { width: 80%; margin-bottom: 10px; }
+            .newsletter button { width: 50%; }
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="container mx-auto header-container">
+        <div class="header-container">
             <div class="header-left">
-                <div class="logo-container">
-                    <img src="/SafetyHelp/assets/images/logo.png" alt="SafetyHelp Logo">
-                    <p class="tagline" data-i18n="header.tagline">Safety Personalized, Compliance Simplified—Anytime, Anywhere</p>
-                </div>
+                <a href="index.html" class="logo-text-v3">
+                    <span class="safety-part">Safety</span><span class="help-part">Help</span>
+                </a>
+                <p class="tagline" data-i18n="header.tagline">Safety Personalized, Compliance Simplified—Anytime, Anywhere</p>
             </div>
-            <div class="nav-links">
-                <a href="/SafetyHelp/index.html" data-i18n="header.nav.home">Home</a>
-                <a href="/SafetyHelp/resources.html" data-i18n="header.nav.resources">Resources</a>
-                <a href="/SafetyHelp/services.html" data-i18n="header.nav.services">Services</a>
-                <a href="/SafetyHelp/community.html" data-i18n="header.nav.community">Community</a>
-                <a href="/SafetyHelp/about.html" data-i18n="header.nav.about">About</a>
-                <a href="/SafetyHelp/contact.html" data-i18n="header.nav.contact">Contact</a>
-                <a href="/SafetyHelp/login.html" id="login-link" data-i18n="header.nav.login">Login</a>
+            <nav class="nav-links">
+                <a href="index.html" data-i18n="header.nav.home" class="font-bold text-orange-400">Home</a> <a href="resources.html" data-i18n="header.nav.resources">Resources</a>
+                <a href="services.html" data-i18n="header.nav.services">Services</a>
+                <a href="community.html" data-i18n="header.nav.community">Community</a>
+                <a href="about.html" data-i18n="header.nav.about">About</a>
+                <a href="contact.html" data-i18n="header.nav.contact">Contact</a>
+                <a href="login.html" id="login-link" data-i18n="header.nav.login">Login</a>
                 <a href="#" id="logout-link" data-i18n="header.nav.logout" style="display: none;">Logout</a>
-            </div>
+            </nav>
             <div class="header-right">
                 <div class="search-language-container">
+                    <div class="search-bar">
+                        <form role="search" class="flex">
+                            <input type="text" data-i18n="[placeholder]header.search.placeholder" placeholder="Search OHS Tools..." aria-label="Search OHS Tools">
+                            <button type="submit" aria-label="Search" data-i18n="header.search.button">Search</button>
+                        </form>
+                    </div>
                     <div class="language-selector">
                         <select id="language-select" aria-label="Select language">
                             <option value="en" data-i18n="language_selector.en">English</option>
@@ -553,24 +438,7 @@
                             <option value="zu" data-i18n="language_selector.zu">isiZulu</option>
                             <option value="xh" data-i18n="language_selector.xh">isiXhosa</option>
                             <option value="st" data-i18n="language_selector.st">Sesotho</option>
-                            <option value="tn" data-i18n="language_selector.tn">Setswana</option>
-                            <option value="nso" data-i18n="language_selector.nso">Sepedi</option>
-                            <option value="ts" data-i18n="language_selector.ts">Xitsonga</option>
-                            <option value="ss" data-i18n="language_selector.ss">siSwati</option>
-                            <option value="ve" data-i18n="language_selector.ve">Tshivenda</option>
-                            <option value="nr" data-i18n="language_selector.nr">isiNdebele</option>
-                            <option value="es" data-i18n="language_selector.es">Español</option>
-                            <option value="fr" data-i18n="language_selector.fr">French</option>
-                            <option value="sn" data-i18n="language_selector.sn">Shona</option>
-                            <option value="sw" data-i18n="language_selector.sw">Swahili</option>
-                            <option value="zh" data-i18n="language_selector.zh">Mandarin</option>
                         </select>
-                    </div>
-                    <div class="search-bar">
-                        <form role="search" class="flex">
-                            <input type="text" data-i18n="[placeholder]header.search.placeholder" placeholder="Search OHS Tools..." aria-label="Search OHS Tools" class="px-3 py-1 border border-gray-300 rounded-l text-gray-800">
-                            <button type="submit" aria-label="Search" data-i18n="header.search.button" class="px-4 py-1 bg-blue-500 hover:bg-blue-600 text-white rounded-r">Search</button>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -579,625 +447,327 @@
 
     <aside class="sidebar">
         <h2 data-i18n="sidebar.ohs_tools">SafetyHelp OHS Tools</h2>
-        <ul class="space-y-2">
-            <li><a href="/SafetyHelp/pages/construction-compliance.html" data-i18n="sidebar.construction_safety">Construction Safety</a></li>
-            <li><a href="/SafetyHelp/pages/emergency-response-plan.html" data-i18n="sidebar.emergency_planning">Emergency Planning</a></li>
-            <li><a href="/SafetyHelp/pages/risk-assessment.html" data-i18n="sidebar.risk_assessment">Risk Assessment</a></li>
-            <li><a href="/SafetyHelp/pages/legal-appointments.html" data-i18n="sidebar.legal_appointments">Legal Appointments</a></li>
-            <li><a href="/SafetyHelp/pages/incident-management.html" data-i18n="sidebar.incident_management">Incident Management</a></li>
-            <li><a href="/SafetyHelp/pages/training.html" data-i18n="sidebar.training">Training</a></li>
-            <li><a href="/SafetyHelp/pages/inspections-audits.html" data-i18n="sidebar.inspections_audits">Inspections & Audits</a></li>
-            <li><a href="/SafetyHelp/pages/suppliers.html" data-i18n="sidebar.suppliers">Suppliers</a></li>
-            <li><a href="/SafetyHelp/pages/legislation.html" data-i18n="sidebar.legislation">Legislation</a></li>
-            <li><a href="/SafetyHelp/pages/community-tools.html" data-i18n="sidebar.community_tools">Community Tools</a></li>
-            <li><a href="/SafetyHelp/member-dashboard.html" data-i18n="sidebar.member_dashboard">Member Dashboard</a></li>
-            <li><a href="/SafetyHelp/pages/ohs-system.html" data-i18n="sidebar.ohs_system" class="active">OHS System</a></li>
+        <ul class="space-y-1"> <li><a href="./pages/construction-compliance.html" data-i18n="sidebar.construction_safety">Construction Safety</a></li>
+            <li><a href="./pages/emergency-response-plan.html" data-i18n="sidebar.emergency_planning">Emergency Planning</a></li>
+            <li><a href="./pages/risk-assessment.html" data-i18n="sidebar.risk_assessment">Risk Assessment</a></li>
+            <li><a href="./pages/legal-appointments.html" data-i18n="sidebar.legal_appointments">Legal Appointments</a></li>
+            <li><a href="./pages/incident-management.html" data-i18n="sidebar.incident_management">Incident Management</a></li>
+            <li><a href="./pages/training.html" data-i18n="sidebar.training">Training</a></li>
+            <li><a href="./pages/inspections-audits.html" data-i18n="sidebar.inspections_audits">Inspections & Audits</a></li>
+            <li><a href="./pages/suppliers.html" data-i18n="sidebar.suppliers">Suppliers</a></li>
+            <li><a href="./pages/legislation.html" data-i18n="sidebar.legislation">Legislation</a></li>
+            <li><a href="./pages/community-tools.html" data-i18n="sidebar.community_tools">Community Tools</a></li>
+            <li><a href="./secure/member-dashboard.html" data-i18n="sidebar.member_dashboard">Member Dashboard</a></li>
+            <li><a href="./pages/ohs-system.html" data-i18n="sidebar.ohs_system" class="active">OHS System Overview</a></li>
         </ul>
         <div id="sidebar-step-info" class="step-info">
             <h3 data-i18n="sidebar.step_0.title">📜 Welcome to SafetyHelp</h3>
-            <p data-i18n="sidebar.step_0.description" class="text-sm mb-3">Explore our comprehensive tools and resources to enhance occupational health and safety in your workplace.</p>
-            <p class="fun-fact text-sm" data-i18n="sidebar.step_0.fun_fact">⚡ Did you know using reputable ethical suppliers can reduce workplace hazards by ensuring work is done on time and to the highest quality and safety standards?</p>
+            <p data-i18n="sidebar.step_0.description" class="text-sm mb-2">Explore our comprehensive tools and resources to enhance OHS in your workplace.</p>
+            <p class="fun-fact text-sm" data-i18n="sidebar.step_0.fun_fact">⚡ Using reputable ethical suppliers can reduce workplace hazards!</p>
         </div>
     </aside>
 
-    <div class="main-content">
+    <div class="main-content-wrapper">
         <div class="content-column">
-            <section class="hero-section"> <h1 data-i18n="hero.title">Welcome to SafetyHelp</h1>
+            <section class="hero-section">
+                <h1 data-i18n="hero.title">Welcome to SafetyHelp</h1>
                 <p data-i18n="hero.description">Your trusted platform for occupational health and safety (OHS) in South Africa. We provide automated, AI-enhanced tools to ensure safety and compliance for workplaces, schools, churches, and informal sectors. Join our community to access resources, services, and support tailored to your needs.</p>
             </section>
 
-            <section class="features mb-6">
-                <h2 data-i18n="features.title" class="text-2xl font-bold mb-4">Why Choose SafetyHelp?</h2>
+            <section class="features">
+                <h2 data-i18n="features.title">Why Choose SafetyHelp?</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="feature-card bg-white p-6 rounded-lg shadow hover:shadow-lg transition-shadow duration-300 cursor-pointer" data-feature="automation">
-                        <h3 class="text-xl font-semibold text-gray-700 mb-3">Automation & AI</h3>
-                        <p class="text-gray-600 text-sm">Our tools use automation and AI to simplify OHS processes like risk assessments and compliance audits, saving you time and ensuring accuracy.</p>
+                    <div class="feature-card p-6 rounded-lg cursor-pointer" data-feature="automation">
+                        <h3 class="mb-2"><i class="fas fa-cogs text-blue-500 mr-2"></i> Automation & AI</h3>
+                        <p>Our tools use automation and AI to simplify OHS processes like risk assessments and compliance audits, saving you time and ensuring accuracy.</p>
                     </div>
-                    <div class="feature-card bg-white p-6 rounded-lg shadow hover:shadow-lg transition-shadow duration-300 cursor-pointer" data-feature="accessibility">
-                        <h3 class="text-xl font-semibold text-gray-700 mb-3">Accessible for All</h3>
-                        <p class="text-gray-600 text-sm">Designed for both formal and informal sectors, our services support workplaces, schools, churches, and community spaces across South Africa.</p>
+                    <div class="feature-card p-6 rounded-lg cursor-pointer" data-feature="accessibility">
+                        <h3 class="mb-2"><i class="fas fa-universal-access text-green-500 mr-2"></i> Accessible for All</h3>
+                        <p>Designed for both formal and informal sectors, our services support workplaces, schools, churches, and community spaces across South Africa.</p>
                     </div>
-                    <div class="feature-card bg-white p-6 rounded-lg shadow hover:shadow-lg transition-shadow duration-300 cursor-pointer" data-feature="community">
-                        <h3 class="text-xl font-semibold text-gray-700 mb-3">Community-Driven</h3>
-                        <p class="text-gray-600 text-sm">Join our vibrant community to access mentorship, share resources, rate suppliers, and collaborate on safety initiatives.</p>
+                    <div class="feature-card p-6 rounded-lg cursor-pointer" data-feature="community">
+                        <h3 class="mb-2"><i class="fas fa-users text-purple-500 mr-2"></i> Community-Driven</h3>
+                        <p>Join our vibrant community to access mentorship, share resources, rate suppliers, and collaborate on safety initiatives.</p>
                     </div>
                 </div>
-                <div id="feature-details" class="mt-6 bg-gray-50 p-6 rounded-lg hidden">
-                    <h3 id="feature-title" class="text-xl font-semibold text-gray-700 mb-3"></h3>
-                    <p id="feature-description" class="text-gray-600 text-sm"></p>
+                <div id="feature-details" class="mt-6 bg-slate-50 p-6 rounded-lg hidden">
+                    <h3 id="feature-title" class="text-xl font-semibold text-slate-700 mb-3"></h3>
+                    <p id="feature-description" class="text-slate-600 text-sm"></p>
                 </div>
             </section>
 
-            <section class="quick-access mb-6">
-                <h2 data-i18n="quick_access.title" class="text-2xl font-bold mb-4">Quick Access</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <a href="/SafetyHelp/pages/risk-assessment.html" class="quick-access-card">
-                        <span>🛠️</span>
+            <section class="quick-access">
+                <h2 data-i18n="quick_access.title">Quick Access</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <a href="./pages/risk-assessment.html" class="quick-access-card">
+                        <span class="icon-wrapper">⚠️</span>
                         <h3 data-i18n="quick_access.risk_assessment.title">Risk Assessment</h3>
-                        <p data-i18n="quick_access.risk_assessment.description">Start your risk assessment today.</p>
+                        <p data-i18n="quick_access.risk_assessment.description">Start your assessment.</p>
                     </a>
-                    <a href="/SafetyHelp/resources.html" class="quick-access-card">
-                        <span>📚</span>
+                    <a href="resources.html" class="quick-access-card">
+                        <span class="icon-wrapper">📚</span>
                         <h3 data-i18n="quick_access.resources.title">Resources</h3>
-                        <p data-i18n="quick_access.resources.description">Download templates and guides.</p>
+                        <p data-i18n="quick_access.resources.description">Templates & guides.</p>
                     </a>
-                    <a href="/SafetyHelp/pages/training.html" class="quick-access-card">
-                        <span>🎓</span>
+                    <a href="./pages/training.html" class="quick-access-card">
+                        <span class="icon-wrapper">🎓</span>
                         <h3 data-i18n="quick_access.training.title">Training</h3>
-                        <p data-i18n="quick_access.training.description">Access OHS training programs.</p>
+                        <p data-i18n="quick_access.training.description">Access OHS programs.</p>
                     </a>
-                    <a href="/SafetyHelp/community.html" class="quick-access-card">
-                        <span>👥</span>
+                    <a href="community.html" class="quick-access-card">
+                        <span class="icon-wrapper">👥</span>
                         <h3 data-i18n="quick_access.community.title">Community</h3>
-                        <p data-i18n="quick_access.community.description">Join our OHS community.</p>
+                        <p data-i18n="quick_access.community.description">Join our OHS network.</p>
                     </a>
                 </div>
             </section>
-            <section class="testimonials mb-6">
-            <h2 data-i18n="testimonials.title" class="text-2xl font-bold mb-4">What Our Users Say</h2>
-            <div id="testimonial-list" class="space-y-4">
-                </div>
-            <button id="load-more-testimonials" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Load More</button>
-        </section>
+            <section class="testimonials">
+                <h2 data-i18n="testimonials.title">What Our Users Say</h2>
+                <div id="testimonial-list" class="space-y-4">
+                    </div>
+                <button id="load-more-testimonials" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition duration-150 ease-in-out">Load More</button>
+            </section>
         </div>
 
-        <div class="carousel-container">
-            <div class="carousel-item active" data-index="0">
-                <h4>🌍 Prehistoric Era: Early OHS Practices</h4>
-                <p>Early humans used communal knowledge to train hunters on safe tool use, minimizing injuries.</p>
+        <div class="carousel-column">
+            <h3 class="text-lg font-semibold mb-3 text-slate-700" data-i18n="carousel.title">OHS History Snippets</h3>
+            <div class="relative">
+                <div id="carousel-items-container">
+                    </div>
+                <button class="carousel-nav-button carousel-prev">❮</button>
+                <button class="carousel-nav-button carousel-next">❯</button>
             </div>
-            <div class="carousel-item" data-index="1">
-                <h4>🏹 3000 BCE: Ancient Egypt OHS</h4>
-                <p>Egyptian pyramid builders used ramps to reduce lifting injuries, an early ergonomic practice.</p>
-            </div>
-            <div class="carousel-item" data-index="2">
-                <h4>⚒️ 1800 BCE: Babylonian Code of Hammurabi</h4>
-                <p>The Code of Hammurabi included laws on workplace accountability, like penalties for builders if structures collapsed.</p>
-            </div>
-            <div class="carousel-item" data-index="3">
-                <h4>🩺 400 BCE: Hippocrates on Lead Poisoning</h4>
-                <p>Greek physician Hippocrates described lead poisoning in miners, an early recognition of occupational disease.</p>
-            </div>
-            <div class="carousel-item" data-index="4">
-                <h4>🏺 200 BCE: Roman OHS Innovations</h4>
-                <p>Romans used aqueducts to reduce worker exposure to contaminated water, improving health on construction sites.</p>
-            </div>
-            <div class="carousel-item" data-index="5">
-                <h4>🌿 Pre-1652: Precolonial South Africa OHS</h4>
-                <p>Bantu and Khoisan communities used medicinal plants like aloe to treat work-related injuries.</p>
-            </div>
-            <div class="carousel-item" data-index="6">
-                <h4>🪓 Pre-1652: Task Rotation in South Africa</h4>
-                <p>Indigenous South Africans practiced task rotation in agriculture to reduce fatigue and injury risks.</p>
-            </div>
-            <div class="carousel-item" data-index="7">
-                <h4>⚒️ 1652: Dutch East India Company in Cape Town</h4>
-                <p>The Dutch introduced European trades like carpentry, bringing new workplace hazards to South Africa.</p>
-            </div>
-            <div class="carousel-item" data-index="8">
-                <h4>⛏️ 1867: Mineral Revolution in South Africa</h4>
-                <p>Diamond discovery in Hopetown led to deep-shaft mining, exposing workers to cave-ins and silica dust.</p>
-            </div>
-            <div class="carousel-item" data-index="9">
-                <h4>🪨 1871: Kimberley Deep-Shaft Mining Risks</h4>
-                <p>Kimberley mines introduced risks like toxic gas exposure, with over 50,000 workers affected by 1875.</p>
-            </div>
-            <div class="carousel-item" data-index="10">
-                <h4>🏭 1886: Witwatersrand Gold Rush</h4>
-                <p>The gold rush in Johannesburg led to over 1,000 annual fatalities by 1904 due to rockfalls and explosions.</p>
-            </div>
-            <div class="carousel-item" data-index="11">
-                <h4>🛠️ 1886: Industrial OHS in South Africa</h4>
-                <p>Factories in Cape Town and Johannesburg introduced risks like machinery entanglement and chemical burns.</p>
-            </div>
-            <div class="carousel-item" data-index="12">
-                <h4>🌍 1893: Migrant Labour System in South Africa</h4>
-                <p>The Chamber of Mines created a migrant labour system, exposing black workers to hazardous jobs.</p>
-            </div>
-            <div class="carousel-item" data-index="13">
-                <h4>📜 1911: Mines and Works Act in South Africa</h4>
-                <p>South Africa’s first OHS framework mandated mine inspectors but enforced a “colour bar” limiting safety roles to white workers.</p>
-            </div>
-            <div class="carousel-item" data-index="14">
-                <h4>🩺 1912: Silicosis Compensation in South Africa</h4>
-                <p>Temporary compensation for silicosis was introduced, with over 20% of miners affected by 1920.</p>
-            </div>
-            <div class="carousel-item" data-index="15">
-                <h4>🚨 1932: Safety First Association in South Africa</h4>
-                <p>Sir Ernest Oppenheimer founded the Safety First Association to promote accident prevention in mines.</p>
-            </div>
-            <div class="carousel-item" data-index="16">
-                <h4>🌍 1948: ILO Convention 81 on Labour Inspection</h4>
-                <p>The ILO’s Labour Inspection Convention influenced South Africa to strengthen workplace safety oversight.</p>
-            </div>
-            <div class="carousel-item" data-index="17">
-                <h4>🩺 1973: Occupational Diseases Act in South Africa</h4>
-                <p>Compensation for diseases like silicosis and asbestosis was consolidated, effective October 1973.</p>
-            </div>
-            <div class="carousel-item" data-index="18">
-                <h4>📋 1976: Erasmus Commission on OHS</h4>
-                <p>The Erasmus Commission examined OHS shortcomings across South African industries, highlighting enforcement gaps.</p>
-            </div>
-            <div class="carousel-item" data-index="19">
-                <h4>🪖 1982: National Union of Mineworkers (NUM)</h4>
-                <p>NUM was founded, advocating for better mine safety and black workers’ rights under apartheid.</p>
-            </div>
-            <div class="carousel-item" data-index="20">
-                <h4>📉 1980s: Job Insecurity in South Africa</h4>
-                <p>High unemployment and sanctions increased job insecurity, deterring workers from demanding safer conditions.</p>
-            </div>
-            <div class="carousel-item" data-index="21">
-                <h4>📊 1987: Manpower Survey in South Africa</h4>
-                <p>The survey highlighted hazardous job concentration among non-white workers, exacerbating OHS risks.</p>
-            </div>
-            <div class="carousel-item" data-index="22">
-                <h4>📜 1992: IOHSA in South Africa</h4>
-                <p>The Institute of Occupational Hygienists of Southern Africa was formed, professionalizing OHS.</p>
-            </div>
-            <div class="carousel-item" data-index="23">
-                <h4>📋 1993: OHS Act in South Africa</h4>
-                <p>The Occupational Health and Safety Act introduced universal OHS frameworks, including risk assessments.</p>
-            </div>
-            <div class="carousel-item" data-index="24">
-                <h4>🩺 1993: COIDA in South Africa</h4>
-                <p>The Compensation for Occupational Injuries and Diseases Act provided compensation across industries.</p>
-            </div>
-            <div class="carousel-item" data-index="25">
-                <h4>👥 1994: Gender Integration in South Africa</h4>
-                <p>Post-apartheid workplace gender integration increased women’s exposure to OHS risks in male-dominated sectors.</p>
-            </div>
-            <div class="carousel-item" data-index="26">
-                <h4>👩‍🏭 1995: Women in Mining</h4>
-                <p>Women faced ergonomic and psychosocial hazards in South African mines, often in low-skilled roles.</p>
-            </div>
-            <div class="carousel-item" data-index="27">
-                <h4>📜 1996: Mine Health and Safety Act</h4>
-                <p>South Africa strengthened mine safety with mandatory accident reporting and inspectorate powers.</p>
-            </div>
-            <div class="carousel-item" data-index="28">
-                <h4>⚖️ 1996: SA Constitution and OHS</h4>
-                <p>The South African Constitution enshrined the right to a safe work environment in the Bill of Rights.</p>
-            </div>
-            <div class="carousel-item" data-index="29">
-                <h4>🌍 1997: SADC HIV Programs</h4>
-                <p>Southern African mines introduced HIV prevention programs, but they had limited OHS impact.</p>
-            </div>
-            <div class="carousel-item" data-index="30">
-                <h4>🌍 1999: Global OHS Research Gap</h4>
-                <p>Leading OHS journals focused on workplace issues, often neglecting developing countries like South Africa.</p>
-            </div>
-            <div class="carousel-item" data-index="31">
-                <h4>⚖️ 2000: Lubbe v Cape plc</h4>
-                <p>SA asbestos victims sued UK companies, setting a global precedent for corporate OHS accountability.</p>
-            </div>
-            <div class="carousel-item" data-index="32">
-                <h4>📜 2001: King II Report in South Africa</h4>
-                <p>The King II Report integrated OHS into corporate governance, emphasizing social responsibility.</p>
-            </div>
-            <div class="carousel-item" data-index="33">
-                <h4>📉 2001-2020: Inconsistent OHS Data</h4>
-                <p>South Africa’s lack of a national OHS surveillance system led to inconsistent occupational disease reporting.</p>
-            </div>
-            <div class="carousel-item" data-index="34">
-                <h4>🛠️ 2003: Informal Labour in Kenya</h4>
-                <p>Kenyan informal workers faced unsafe conditions, a trend mirrored in South Africa’s informal sector.</p>
-            </div>
-            <div class="carousel-item" data-index="35">
-                <h4>📜 2004: Companies Act and OHS</h4>
-                <p>South Africa’s Companies Act began emphasizing OHS in corporate responsibility frameworks.</p>
-            </div>
-            <div class="carousel-item" data-index="36">
-                <h4>📉 2008: Rising Unemployment in South Africa</h4>
-                <p>Unemployment exceeded 30%, driving workers into hazardous informal jobs with poor OHS standards.</p>
-            </div>
-            <div class="carousel-item" data-index="37">
-                <h4>📜 2009: King III Report and ESG</h4>
-                <p>King III integrated OHS into ESG frameworks, urging companies to prioritize workplace safety.</p>
-            </div>
-            <div class="carousel-item" data-index="38">
-                <h4>🌍 2010: ILO WISE Program Influence</h4>
-                <p>The ILO’s WISE program influenced South African small enterprises to adopt practical OHS improvements.</p>
-            </div>
-            <div class="carousel-item" data-index="39">
-                <h4>⛏️ 2011: Artisanal Mining in Africa</h4>
-                <p>Artisanal mining exposed workers to dust and fumes, impacting South African Zama Zamas similarly.</p>
-            </div>
-            <div class="carousel-item" data-index="40">
-                <h4>🛒 2012: Spaza Shops OHS Risks</h4>
-                <p>South African spaza shops faced OHS issues like poor ventilation and fire hazards in informal settings.</p>
-            </div>
-            <div class="carousel-item" data-index="41">
-                <h4>🔋 2013: Green Tech Mining Concerns</h4>
-                <p>Cobalt mining for EV batteries in the DRC exposed workers to toxic chemicals, influencing SA’s green tech OHS debates.</p>
-            </div>
-            <div class="carousel-item" data-index="42">
-                <h4>🌍 2014: E-Waste Dumping in Africa</h4>
-                <p>E-waste dumping in West Africa released toxins, impacting SA workers through similar disposal practices.</p>
-            </div>
-            <div class="carousel-item" data-index="43">
-                <h4>⛏️ 2015: Zama Zamas in South Africa</h4>
-                <p>Over 30,000 Zama Zamas operated in 6,000 abandoned SA mines, facing unsupported tunnels and gas risks.</p>
-            </div>
-            <div class="carousel-item" data-index="44">
-                <h4>🚨 2016: Crime and OHS in South Africa</h4>
-                <p>Violent crime in SA mining towns exposed security guards to OHS risks like assault and trauma.</p>
-            </div>
-            <div class="carousel-item" data-index="45">
-                <h4>🌍 2017: Global Initiative on Zama Zamas</h4>
-                <p>A report highlighted crime in SA’s Zama Zama sector, including gang violence affecting worker safety.</p>
-            </div>
-            <div class="carousel-item" data-index="46">
-                <h4>⚖️ 2018: PSA obo Members v Minister</h4>
-                <p>A case reaffirmed employer duty under SA’s OHS Act after unsafe government building conditions were reported.</p>
-            </div>
-            <div class="carousel-item" data-index="47">
-                <h4>👩 2019: Gender Discrimination in Zama Zamas</h4>
-                <p>Female Zama Zamas faced sexual abuse and restricted site access, increasing their OHS vulnerabilities.</p>
-            </div>
-            <div class="carousel-item" data-index="48">
-                <h4>🌱 2020: Green Tech Disposal Risks</h4>
-                <p>Disposal of rare earth elements for green tech in SA raised OHS concerns like chemical exposure.</p>
-            </div>
-            <div class="carousel-item" data-index="49">
-                <h4>📉 2021: Unemployment and Informal Work</h4>
-                <p>SA’s unemployment rate hit 45%, pushing workers into unsafe informal roles with minimal OHS protections.</p>
-            </div>
-            <button class="carousel-prev">❮</button>
-            <button class="carousel-next">❯</button>
         </div>
     </div>
 
     <footer>
-        <div class="container mx-auto px-6 text-center">
-            <p class="mb-2" data-i18n="footer.copyright">© 2025 SafetyHelp. All rights reserved.</p>
-            <p class="mb-4">
-                <a href="/SafetyHelp/privacy.html" data-i18n="footer.links.privacy" class="mx-2 hover:text-blue-400">Privacy Policy</a> |
-                <a href="/SafetyHelp/terms.html" data-i18n="footer.links.terms" class="mx-2 hover:text-blue-400">Terms of Service</a> |
-                <a href="/SafetyHelp/contact.html" data-i18n="footer.links.contact" class="mx-2 hover:text-blue-400">Contact Us</a>
-            </p>
-            <div class="newsletter mt-6">
-                <h3 class="text-lg font-semibold mb-3" data-i18n="footer.newsletter.title">Stay Updated</h3>
-                <form class="flex justify-center">
-                    <input type="email" data-i18n="[placeholder]footer.newsletter.placeholder" placeholder="Enter your email" aria-label="Email for newsletter" class="px-3 py-2 border border-gray-300 rounded-l text-gray-800 w-64">
-                    <button type="submit" data-i18n="footer.newsletter.button" class="px-4 py-2 bg-orange-500 text-white rounded-r hover:bg-orange-600">Subscribe</button>
-                </form>
-            </div>
+        <p data-i18n="footer.copyright" id="footer-copyright-year">© 2025 SafetyHelp. All Rights Reserved.</p>
+        <div class="footer-links">
+            <a href="privacy.html" data-i18n="footer.links.privacy">Privacy Policy</a>
+            <a href="terms.html" data-i18n="footer.links.terms">Terms of Service</a>
+            <a href="contact.html" data-i18n="footer.links.contact">Contact Us</a>
+        </div>
+        <div class="newsletter">
+            <h3 data-i18n="footer.newsletter.title">Stay Updated</h3>
+            <form id="newsletterFormIndex" class="flex justify-center">
+                <input type="email" id="newsletterEmailIndex" data-i18n="[placeholder]footer.newsletter.placeholder" placeholder="Enter your email" aria-label="Email for newsletter">
+                <button type="submit" data-i18n="footer.newsletter.button">Subscribe</button>
+            </form>
         </div>
     </footer>
 
     <div id="modal" class="modal">
         <div class="modal-content">
-            <span class="close-btn">×</span>
+            <span class="close-btn" onclick="closeModal()">&times;</span>
             <div id="modal-body"></div>
         </div>
     </div>
 
-    <div class="chatbot-container fixed bottom-5 right-5 z-50">
-        <button id="chat-toggle" class="chat-toggle-btn p-3 rounded-full shadow-lg flex items-center justify-center bg-orange-500 text-white hover:bg-orange-600 transition duration-300">
-            <span class="chat-icon text-2xl mr-1">⛑️</span>
-            <span id="chat-toggle-text" data-i18n="chatbot.button">Ask Salatiso</span>
+    <div class="chatbot-container">
+        <button id="chat-toggle" aria-label="Toggle Chatbot">
+             <span class="chat-icon"><i class="fas fa-robot"></i></span>
         </button>
-        <div id="chat-window" class="chat-hidden bg-white border border-gray-300 rounded-lg shadow-xl mt-2">
-            <div id="chat-output" class="p-3 text-sm h-80 overflow-y-scroll">
+        <div id="chat-window" class="chat-hidden bg-white border border-slate-300 rounded-lg shadow-xl mt-2">
+            <div id="chat-output" class="p-3 text-sm h-80 overflow-y-auto">
                 <p><strong>Salatiso:</strong> <span data-i18n="chatbot.welcome">Hello! How can I help you with OHS today?</span></p>
             </div>
-            <div id="chat-input-container" class="flex border-t border-gray-200">
-                <input id="chat-input" type="text" data-i18n="[placeholder]chatbot.input_placeholder" placeholder="Ask about OHS..." aria-label="Ask about OHS" class="flex-grow p-2 border-none focus:outline-none">
-                <button id="chat-send" aria-label="Send message" data-i18n="chatbot.send" class="px-4 py-2 bg-blue-500 text-white hover:bg-blue-600">Send</button>
+            <div id="chat-input-container" class="flex border-t border-slate-200">
+                <input id="chat-input" type="text" data-i18n="[placeholder]chatbot.input_placeholder" placeholder="Ask about OHS..." aria-label="Ask about OHS" class="flex-grow p-2 border-none focus:outline-none focus:ring-0">
+                <button id="chat-send" aria-label="Send message" data-i18n="chatbot.send" class="px-4 py-2 bg-blue-600 text-white hover:bg-blue-700">Send</button>
             </div>
         </div>
     </div>
-
-    <button id="open-chatbot-direct" class="fixed bottom-24 right-5 z-50 p-3 rounded-full shadow-lg bg-blue-500 text-white hover:bg-blue-600 transition duration-300">
+    <!-- <button id="open-chatbot-direct" class="fixed bottom-24 right-5 z-50 p-3 rounded-full shadow-lg bg-blue-500 text-white hover:bg-blue-600 transition duration-300">
         <span class="text-xl">💬</span> <span class="hidden md:inline">Quick Chat</span>
-    </button>
+    </button> -->
 
-    <script type="module" src="/SafetyHelp/assets/js/scripts.js"></script>
-    <script type="module" src="/SafetyHelp/assets/js/chatbot.js"></script>
+    <script type="module">
+        // Firebase SDK Imports
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+        import { getFirestore, collection, query, orderBy, limit, startAfter, getDocs } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+        // Note: Auth SDK not needed for index.html unless checking login state for UI changes.
 
-    <script>
-        // This inline script is for i18next initialization and basic UI interactions specific to index.html
-        document.addEventListener('DOMContentLoaded', async () => {
-            const translations = {
-                "header.tagline": "Safety Personalized, Compliance Simplified—Anytime, Anywhere",
-                "header.nav.home": "Home",
-                "header.nav.resources": "Resources",
-                "header.nav.services": "Services",
-                "header.nav.community": "Community",
-                "header.nav.about": "About",
-                "header.nav.contact": "Contact",
-                "header.nav.login": "Login",
-                "header.nav.logout": "Logout",
-                "header.search.placeholder": "Search OHS Tools...",
-                "header.search.button": "Search",
-                "language_selector.en": "English",
-                "language_selector.af": "Afrikaans",
-                "language_selector.zu": "isiZulu",
-                "language_selector.xh": "isiXhosa",
-                "language_selector.st": "Sesotho",
-                "language_selector.tn": "Setswana",
-                "language_selector.nso": "Sepedi",
-                "language_selector.ts": "Xitsonga",
-                "language_selector.ss": "siSwati",
-                "language_selector.ve": "Tshivenda",
-                "language_selector.nr": "isiNdebele",
-                "language_selector.es": "Español",
-                "language_selector.fr": "French",
-                "language_selector.sn": "Shona",
-                "language_selector.sw": "Swahili",
-                "language_selector.zh": "Mandarin",
-                "sidebar.ohs_tools": "SafetyHelp OHS Tools",
-                "sidebar.construction_safety": "Construction Safety",
-                "sidebar.emergency_planning": "Emergency Planning",
-                "sidebar.risk_assessment": "Risk Assessment",
-                "sidebar.legal_appointments": "Legal Appointments",
-                "sidebar.incident_management": "Incident Management",
-                "sidebar.training": "Training",
-                "sidebar.inspections_audits": "Inspections & Audits",
-                "sidebar.suppliers": "Suppliers",
-                "sidebar.legislation": "Legislation",
-                "sidebar.community_tools": "Community Tools",
-                "sidebar.member_dashboard": "Member Dashboard",
-                "sidebar.ohs_system": "OHS System",
-                "sidebar.step_0.title": "📜 Welcome to SafetyHelp",
-                "sidebar.step_0.description": "Explore our comprehensive tools and resources to enhance occupational health and safety in your workplace.",
-                "sidebar.step_0.fun_fact": "⚡ Did you know using reputable ethical suppliers can reduce workplace hazards by ensuring work is done on time and to the highest quality and safety standards?",
-                "hero.title": "Welcome to SafetyHelp",
-                "hero.description": "Your trusted platform for occupational health and safety (OHS) in South Africa. We provide automated, AI-enhanced tools to ensure safety and compliance for workplaces, schools, churches, and informal sectors. Join our community to access resources, services, and support tailored to your needs.",
-                "features.title": "Why Choose SafetyHelp?",
-                "quick_access.title": "Quick Access",
-                "quick_access.risk_assessment.title": "Risk Assessment",
-                "quick_access.risk_assessment.description": "Start your risk assessment today.",
-                "quick_access.resources.title": "Resources",
-                "quick_access.resources.description": "Download templates and guides.",
-                "quick_access.training.title": "Training",
-                "quick_access.training.description": "Access OHS training programs.",
-                "quick_access.community.title": "Community",
-                "quick_access.community.description": "Join our OHS community.",
-                "testimonials.title": "What Our Users Say",
-                "footer.copyright": "© 2025 SafetyHelp. All rights reserved.",
-                "footer.links.privacy": "Privacy Policy",
-                "footer.links.terms": "Terms of Service",
-                "footer.links.contact": "Contact Us",
-                "footer.newsletter.title": "Stay Updated",
-                "footer.newsletter.placeholder": "Enter your email",
-                "footer.newsletter.button": "Subscribe",
-                "chatbot.button": "Ask Salatiso",
-                "chatbot.input_placeholder": "Ask about OHS...",
-                "chatbot.send": "Send",
-                "chatbot.welcome": "Hello! How can I help you with OHS today?",
-                "wizard.chatbot.responses.hs_spec": "A Health and Safety Specification outlines the client's specific health and safety requirements for a project.",
-                "wizard.chatbot.responses.hs_plan": "A Health and Safety Plan details how a contractor will manage OHS risks on a project, based on the H&S Specification.",
-                "wizard.chatbot.responses.risk_assessment": "A Risk Assessment identifies hazards, evaluates risks, and determines control measures to prevent harm.",
-                "wizard.chatbot.responses.sacpcmp": "The South African Council for the Project and Construction Management Professions (SACPCMP) is a statutory body regulating construction professionals.",
-                "wizard.chatbot.responses.coida": "The Compensation for Occupational Injuries and Diseases Act (COIDA) provides compensation for employees injured or diseased at work.",
-                "wizard.chatbot.see_more": "See more",
-                "wizard.chatbot.you": "You",
-                "wizard.chatbot.bot": "Salatiso",
-                "wizard.chatbot.error": "Error",
-                "wizard.chatbot.unavailable": "Chatbot unavailable. Please try again later.",
-                "wizard.chatbot.from": "From {{book}}, Chapter {{chapter}}",
-                "wizard.chatbot.full_chapter": "full chapter",
-                "wizard.chatbot.no_match": "Sorry, I couldn’t find an exact match. Try rephrasing!",
-                "wizard.chatbot.escalate": "If you need further assistance, please",
-                "wizard.chatbot.contact_support": "contact support.",
-                "wizard.chatbot.error_generic": "Oops, something went wrong. Please try again!"
-            };
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDASGZnUyav23Mte5Q96H0j-T3LlGzVK-k",
+            authDomain: "safetyfirst2025-aea34.firebaseapp.com",
+            projectId: "safetyfirst2025-aea34",
+            storageBucket: "safetyfirst2025-aea34.appspot.com",
+            messagingSenderId: "620306944192",
+            appId: "1:620306944192:web:ddadeef6825901068a9d25",
+            measurementId: "G-VQL1FCD8NN"
+        };
 
-            // Ensure i18next is available
-            if (typeof i18next !== 'undefined') {
-                await i18next
-                    .use(i18nextBrowserLanguageDetector)
-                    .init({
-                        lng: 'en', // Default language
-                        fallbackLng: 'en',
-                        resources: {
-                            en: { translation: translations }
-                            // Add other languages here if needed
-                        },
-                        debug: true // Set to false for production
-                    });
-                updateContent(); // Initial content update
-            } else {
-                console.error("i18next is not loaded.");
-            }
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
 
+        // --- i18next and DOMContentLoaded ---
+        async function initializeI18next() {
+            if (typeof i18next !== 'undefined' && typeof i18nextHttpBackend !== 'undefined' && typeof i18nextBrowserLanguageDetector !== 'undefined') {
+                try {
+                    await i18next
+                        .use(i18nextHttpBackend)
+                        .use(i18nextBrowserLanguageDetector)
+                        .init({
+                            fallbackLng: 'en', debug: true, ns: ['translation'], defaultNS: 'translation',
+                            backend: { loadPath: './assets/locales/{{lng}}/{{ns}}.json' },
+                            detection: { order: ['querystring', 'cookie', 'localStorage', 'sessionStorage', 'navigator', 'htmlTag'], caches: ['localStorage', 'cookie'] }
+                        });
+                    updateContent();
+                } catch (error) { console.error("Error initializing i18next:", error); /* applyStaticTranslations(); */ }
+            } else { console.error("i18next plugins not loaded."); /* applyStaticTranslations(); */ }
+        }
 
-            document.getElementById('language-select')?.addEventListener('change', (e) => {
-                if (typeof i18next !== 'undefined') {
-                    i18next.changeLanguage(e.target.value, (err) => {
-                        if (err) {
-                            console.error('Error changing language:', err);
-                            return;
-                        }
-                        updateContent();
-                    });
+        function updateContent() {
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                const optionsAttr = element.getAttribute('data-i18n-options');
+                let options = {};
+                if (optionsAttr) { try { options = JSON.parse(optionsAttr); } catch (e) { console.error(`Error parsing i18n options for key "${key}":`, e); }}
+                
+                if (key.startsWith('[placeholder]')) {
+                     element.setAttribute('placeholder', i18next.t(key.substring('[placeholder]'.length), options));
+                } else if (element.tagName === 'TITLE') {
+                    document.title = i18next.t(key, options);
+                } else {
+                    const icon = element.querySelector('i.fas, i.fab');
+                    let textContent = i18next.t(key, options);
+                    if (icon && (element.classList.contains('btn-primary') || element.classList.contains('btn-google') || element.closest('a'))) {
+                         let textNode = icon.nextSibling;
+                        while(textNode && textNode.nodeType !== Node.TEXT_NODE) { textNode = textNode.nextSibling; }
+                        if (textNode) { textNode.textContent = ' ' + textContent; }
+                        else { element.appendChild(document.createTextNode(' ' + textContent));}
+                    } else if (element.id === 'footer-copyright-year') {
+                         element.textContent = i18next.t(key, { year: new Date().getFullYear(), ...options });
+                    }
+                     else { element.innerHTML = textContent; }
                 }
             });
+            // Update carousel items after language change
+            if (typeof populateCarousel === 'function') populateCarousel();
+        }
+        
+        document.addEventListener('DOMContentLoaded', async () => {
+            await initializeI18next();
+            const footerYearEl = document.getElementById('footer-copyright-year');
+            if(footerYearEl && i18next.isInitialized) footerYearEl.textContent = i18next.t('footer.copyright', { year: new Date().getFullYear() });
 
-            function updateContent() {
-                document.querySelectorAll('[data-i18n]').forEach(element => {
-                    const key = element.getAttribute('data-i18n');
-                    if (element.hasAttribute('placeholder')) {
-                        element.setAttribute('placeholder', i18next.t(key));
-                    } else if (element.tagName === 'TITLE') {
-                         document.title = i18next.t(key); // Update page title
-                    }
-                    else {
-                        element.innerHTML = i18next.t(key);
-                    }
-                });
-                 // Special handling for dynamic content like quick access cards if their text is from i18n
-                document.querySelectorAll('.quick-access-card h3').forEach(el => {
-                    const key = el.getAttribute('data-i18n');
-                    if (key) el.textContent = i18next.t(key);
-                });
-                document.querySelectorAll('.quick-access-card p').forEach(el => {
-                    const key = el.getAttribute('data-i18n');
-                    if (key) el.textContent = i18next.t(key);
+
+            const langSelect = document.getElementById('language-select');
+            if (langSelect && i18next.isInitialized) {
+                 const currentLang = i18next.language;
+                 if (currentLang) {
+                    const baseLang = currentLang.split('-')[0];
+                    if (Array.from(langSelect.options).some(opt => opt.value === baseLang)) langSelect.value = baseLang;
+                    else if (Array.from(langSelect.options).some(opt => opt.value === currentLang)) langSelect.value = currentLang;
+                 }
+                langSelect.addEventListener('change', (e) => {
+                    i18next.changeLanguage(e.target.value, (err) => {
+                        if (err) { console.error('Error changing language:', err); return; }
+                        updateContent();
+                        if(footerYearEl) footerYearEl.textContent = i18next.t('footer.copyright', { year: new Date().getFullYear() });
+                    });
                 });
             }
+            
+            // Carousel Data (Moved here for clarity and potential i18n integration)
+            const carouselData = [
+                { titleKey: 'carousel.item1.title', summaryKey: 'carousel.item1.summary', detailsKey: 'carousel.item1.details', link: 'https://www.sahistory.org.za/article/indigenous-knowledge-systems' },
+                { titleKey: 'carousel.item2.title', summaryKey: 'carousel.item2.summary', detailsKey: 'carousel.item2.details', link: 'https://www.history.com/topics/ancient-egypt/the-egyptian-pyramids' },
+                { titleKey: 'carousel.item3.title', summaryKey: 'carousel.item3.summary', detailsKey: 'carousel.item3.details', link: 'https://www.britannica.com/topic/Code-of-Hammurabi' },
+                { titleKey: 'carousel.item4.title', summaryKey: 'carousel.item4.summary', detailsKey: 'carousel.item4.details', link: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1039204/' },
+                { titleKey: 'carousel.item5.title', summaryKey: 'carousel.item5.summary', detailsKey: 'carousel.item5.details', link: 'https://www.ancient.eu/Roman_Aqueducts/' },
+                { titleKey: 'carousel.item6.title', summaryKey: 'carousel.item6.summary', detailsKey: 'carousel.item6.details', link: 'https://www.sahistory.org.za/article/indigenous-knowledge-systems' },
+                { titleKey: 'carousel.item7.title', summaryKey: 'carousel.item7.summary', detailsKey: 'carousel.item7.details', link: 'https://www.sahistory.org.za/article/indigenous-knowledge-systems' },
+                { titleKey: 'carousel.item8.title', summaryKey: 'carousel.item8.summary', detailsKey: 'carousel.item8.details', link: 'https://www.sahistory.org.za/article/dutch-east-india-company-voc' },
+                { titleKey: 'carousel.item9.title', summaryKey: 'carousel.item9.summary', detailsKey: 'carousel.item9.details', link: 'https://www.sahistory.org.za/article/mineral-revolution' },
+                { titleKey: 'carousel.item10.title', summaryKey: 'carousel.item10.summary', detailsKey: 'carousel.item10.details', link: 'https://www.sahistory.org.za/article/mineral-revolution' },
+                { titleKey: 'carousel.item11.title', summaryKey: 'carousel.item11.summary', detailsKey: 'carousel.item11.details', link: 'https://www.dmr.gov.za/mine-health-and-safety' },
+                { titleKey: 'carousel.item12.title', summaryKey: 'carousel.item12.summary', detailsKey: 'carousel.item12.details', link: 'https://www.sahistory.org.za/article/industrialisation-south-africa' },
+                { titleKey: 'carousel.item13.title', summaryKey: 'carousel.item13.summary', detailsKey: 'carousel.item13.details', link: 'https://www.sahistory.org.za/article/migrant-labour-system' },
+                { titleKey: 'carousel.item14.title', summaryKey: 'carousel.item14.summary', detailsKey: 'carousel.item14.details', link: 'https://en.wikipedia.org/wiki/Mines_and_Works_Act' },
+                { titleKey: 'carousel.item15.title', summaryKey: 'carousel.item15.summary', detailsKey: 'carousel.item15.details', link: 'https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1748-0361.2007.00114.x' },
+            ]; // Add all 50 items here with their keys
 
-            // Carousel Functionality
-            const carouselItems = document.querySelectorAll('.carousel-item');
+            const carouselItemsContainer = document.getElementById('carousel-items-container');
             const prevBtn = document.querySelector('.carousel-prev');
             const nextBtn = document.querySelector('.carousel-next');
-            let currentIndex = 0; // Start at the first item or randomize
+            let currentCarouselIndex = 0;
 
-            if (carouselItems.length > 0) {
-                currentIndex = Math.floor(Math.random() * carouselItems.length); // Randomize start
-
-                function showItem(index) {
-                    carouselItems.forEach((item, i) => {
-                        item.classList.toggle('active', i === index);
-                    });
-                }
-
-                prevBtn?.addEventListener('click', () => {
-                    currentIndex = (currentIndex - 1 + carouselItems.length) % carouselItems.length;
-                    showItem(currentIndex);
+            function populateCarousel() {
+                if (!carouselItemsContainer || !i18next.isInitialized) return;
+                carouselItemsContainer.innerHTML = ''; // Clear previous items
+                carouselData.forEach((itemData, index) => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.classList.add('carousel-item');
+                    itemDiv.setAttribute('data-index', index);
+                    itemDiv.innerHTML = `
+                        <h4 data-i18n="${itemData.titleKey}">${i18next.t(itemData.titleKey)}</h4>
+                        <p data-i18n="${itemData.summaryKey}">${i18next.t(itemData.summaryKey)}</p>
+                    `;
+                    itemDiv.addEventListener('click', () => openCarouselModal(index));
+                    carouselItemsContainer.appendChild(itemDiv);
                 });
-
-                nextBtn?.addEventListener('click', () => {
-                    currentIndex = (currentIndex + 1) % carouselItems.length;
-                    showItem(currentIndex);
+                showCarouselItem(currentCarouselIndex); // Show the initial or current item
+            }
+            
+            function showCarouselItem(index) {
+                const items = carouselItemsContainer.querySelectorAll('.carousel-item');
+                items.forEach((item, i) => {
+                    item.classList.toggle('active', i === index);
                 });
-
-                showItem(currentIndex); // Initial display
             }
 
-
-            // Modal for Carousel Items
+            if (prevBtn) prevBtn.addEventListener('click', () => {
+                currentCarouselIndex = (currentCarouselIndex - 1 + carouselData.length) % carouselData.length;
+                showCarouselItem(currentCarouselIndex);
+            });
+            if (nextBtn) nextBtn.addEventListener('click', () => {
+                currentCarouselIndex = (currentCarouselIndex + 1) % carouselData.length;
+                showCarouselItem(currentCarouselIndex);
+            });
+            
+            // Modal for Carousel Detailed Info
             const modal = document.getElementById('modal');
             const modalBody = document.getElementById('modal-body');
-            const closeBtn = document.querySelector('.close-btn');
-
-            const detailedContent = [
-                { title: '🌍 Prehistoric Era: Early OHS Practices', summary: 'Early humans used communal knowledge to train hunters on safe tool use, minimizing injuries.', details: 'Prehistoric communities globally relied on oral traditions to pass down safety practices, such as safe hunting techniques and the use of natural remedies for injuries, laying the foundation for OHS.', link: 'https://www.sahistory.org.za/article/indigenous-knowledge-systems' },
-                { title: '🏹 3000 BCE: Ancient Egypt OHS', summary: 'Egyptian pyramid builders used ramps to reduce lifting injuries, an early ergonomic practice.', details: 'Ancient Egyptians implemented ramps and sledges to move heavy stones, reducing physical strain and setting a precedent for ergonomic considerations in labor-intensive work.', link: 'https://www.history.com/topics/ancient-egypt/the-egyptian-pyramids' },
-                { title: '⚒️ 1800 BCE: Babylonian Code of Hammurabi', summary: 'The Code of Hammurabi included laws on workplace accountability, like penalties for builders if structures collapsed.', details: 'One of the earliest legal codes, the Code of Hammurabi held builders accountable for structural failures, marking an early step in workplace responsibility.', link: 'https://www.britannica.com/topic/Code-of-Hammurabi' },
-                { title: '🩺 400 BCE: Hippocrates on Lead Poisoning', summary: 'Greek physician Hippocrates described lead poisoning in miners, an early recognition of occupational disease.', details: 'Hippocrates noted symptoms like abdominal pain in miners, linking lead exposure to health issues and influencing later OHS awareness globally.', link: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1039204/' },
-                { title: '🏺 200 BCE: Roman OHS Innovations', summary: 'Romans used aqueducts to reduce worker exposure to contaminated water, improving health on construction sites.', details: 'Roman engineering provided clean water via aqueducts, reducing waterborne diseases among workers and setting a standard for environmental health in OHS.', link: 'https://www.ancient.eu/Roman_Aqueducts/' },
-                { title: '🌿 Pre-1652: Precolonial South Africa OHS', summary: 'Bantu and Khoisan communities used medicinal plants like aloe to treat work-related injuries.', details: 'Indigenous South Africans used natural remedies and communal knowledge to address injuries from hunting and farming, showcasing early OHS practices.', link: 'https://www.sahistory.org.za/article/indigenous-knowledge-systems' },
-                { title: '🪓 Pre-1652: Task Rotation in South Africa', summary: 'Indigenous South Africans practiced task rotation in agriculture to reduce fatigue and injury risks.', details: 'Task rotation among Bantu communities minimized repetitive strain injuries, a practice that aligns with modern ergonomic principles in OHS.', link: 'https://www.sahistory.org.za/article/indigenous-knowledge-systems' },
-                { title: '⚒️ 1652: Dutch East India Company in Cape Town', summary: 'The Dutch introduced European trades like carpentry, bringing new workplace hazards to South Africa.', details: 'The arrival of the Dutch East India Company introduced carpentry and masonry, exposing workers to new risks like tool injuries and dust exposure.', link: 'https://www.sahistory.org.za/article/dutch-east-india-company-voc' },
-                { title: '⛏️ 1867: Mineral Revolution in South Africa', summary: 'Diamond discovery in Hopetown led to deep-shaft mining, exposing workers to cave-ins and silica dust.', details: 'Erasmus Jacobs’ discovery sparked mass labor migration, with workers facing deadly risks like cave-ins and silicosis from silica dust exposure.', link: 'https://www.sahistory.org.za/article/mineral-revolution' },
-                { title: '🪨 1871: Kimberley Deep-Shaft Mining Risks', summary: 'Kimberley mines introduced risks like toxic gas exposure, with over 50,000 workers affected by 1875.', details: 'Deep-shaft mining in Kimberley led to carbon monoxide poisoning and cave-ins, with over 50,000 workers exposed by 1875, highlighting early OHS challenges.', link: 'https://www.sahistory.org.za/article/mineral-revolution' },
-                { title: '🏭 1886: Witwatersrand Gold Rush', summary: 'The gold rush in Johannesburg led to over 1,000 annual fatalities by 1904 due to rockfalls and explosions.', details: 'The Witwatersrand gold rush established Johannesburg as a mining hub, but poor safety led to over 1,000 deaths yearly by 1904 from preventable accidents.', link: 'https://www.dmr.gov.za/mine-health-and-safety' },
-                { title: '🛠️ 1886: Industrial OHS in South Africa', summary: 'Factories in Cape Town and Johannesburg introduced risks like machinery entanglement and chemical burns.', details: 'Early factories brought new OHS hazards like entanglement in machinery and exposure to chemicals, with little regulation to protect workers.', link: 'https://www.sahistory.org.za/article/industrialisation-south-africa' },
-                { title: '🌍 1893: Migrant Labour System in South Africa', summary: 'The Chamber of Mines created a migrant labour system, exposing black workers to hazardous jobs.', details: 'The migrant labour system entrenched racial disparities, assigning black workers to the most dangerous mining tasks with minimal safety protections.', link: 'https://www.sahistory.org.za/article/migrant-labour-system' },
-                { title: '📜 1911: Mines and Works Act in South Africa', summary: 'South Africa’s first OHS framework mandated mine inspectors but enforced a “colour bar” limiting safety roles to white workers.', details: 'The Act introduced ventilation standards and banned hazardous practices, but racial policies increased risks for black workers.', link: 'https://en.wikipedia.org/wiki/Mines_and_Works_Act' },
-                { title: '🩺 1912: Silicosis Compensation in South Africa', summary: 'Temporary compensation for silicosis was introduced, with over 20% of miners affected by 1920.', details: 'Silicosis affected over 20% of South African miners by 1920, prompting temporary compensation schemes to address occupational lung disease.', link: 'https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1748-0361.2007.00114.x' },
-                { title: '🚨 1932: Safety First Association in South Africa', summary: 'Sir Ernest Oppenheimer founded the Safety First Association to promote accident prevention in mines.', details: 'The Safety First Association launched campaigns and training, laying the groundwork for modern safety culture in South African workplaces.', link: 'https://safety1st.co.za/about-us/' },
-                { title: '🌍 1948: ILO Convention 81 on Labour Inspection', summary: 'The ILO’s Labour Inspection Convention influenced South Africa to strengthen workplace safety oversight.', details: 'ILO Convention 81 emphasized the need for robust labour inspections, pushing South Africa to improve OHS enforcement mechanisms.', link: 'https://www.ilo.org/dyn/normlex/en/f?p=NORMLEXPUB:12100:0::NO::P12100_ILO_CODE:C081' },
-                { title: '🩺 1973: Occupational Diseases Act in South Africa', summary: 'Compensation for diseases like silicosis and asbestosis was consolidated, effective October 1973.', details: 'The Act streamlined compensation for occupational diseases, addressing long-standing issues like silicosis in South African mines.', link: 'https://www.gov.za/documents/occupational-diseases-mines-and-works-act' },
-                { title: '📋 1976: Erasmus Commission on OHS', summary: 'The Erasmus Commission examined OHS shortcomings across South African industries, highlighting enforcement gaps.', details: 'The Commission revealed poor enforcement and unsafe conditions, calling for stronger OHS regulations across sectors.', link: 'https://www.sciencedirect.com/science/article/abs/pii/027795368190142X' },
-                { title: '🪖 1982: National Union of Mineworkers (NUM)', summary: 'NUM was founded, advocating for better mine safety and black workers’ rights under apartheid.', details: 'NUM’s advocacy led to improved safety standards and highlighted racial disparities in OHS protections.', link: 'https://www.num.org.za/About-Us/History' },
-                { title: '📉 1980s: Job Insecurity in South Africa', summary: 'High unemployment and sanctions increased job insecurity, deterring workers from demanding safer conditions.', details: 'Economic pressures and sanctions made workers reluctant to report OHS violations, fearing job loss.', link: 'https://www.sahistory.org.za/article/economic-sanctions-against-apartheid' },
-                { title: '📊 1987: Manpower Survey in South Africa', summary: 'The survey highlighted hazardous job concentration among non-white workers, exacerbating OHS risks.', details: 'Non-white workers were disproportionately assigned to dangerous roles, increasing their exposure to OHS hazards.', link: 'https://www.sciencedirect.com/science/article/abs/pii/027795368190142X' },
-                { title: '📜 1992: IOHSA in South Africa', summary: 'The Institute of Occupational Hygienists of Southern Africa was formed, professionalizing OHS.', details: 'IOHSA’s formation marked a step toward professionalizing OHS practices and improving workplace safety standards.', link: 'https://www.occhealth.co.za/about-us' },
-                { title: '📋 1993: OHS Act in South Africa', summary: 'The Occupational Health and Safety Act introduced universal OHS frameworks, including risk assessments.', details: 'The Act mandated risk assessments and safety committees, revolutionizing workplace safety in South Africa.', link: 'https://www.gov.za/documents/occupational-health-and-safety-act' },
-                { title: '🩺 1993: COIDA in South Africa', summary: 'The Compensation for Occupational Injuries and Diseases Act provided compensation across industries.', details: 'COIDA ensured workers in all sectors could claim compensation for workplace injuries and diseases.', link: 'https://www.gov.za/documents/compensation-occupational-injuries-and-diseases-act' },
-                { title: '👥 1994: Gender Integration in South Africa', summary: 'Post-apartheid workplace gender integration increased women’s exposure to OHS risks in male-dominated sectors.', details: 'Women entering mining and construction faced ergonomic hazards and discrimination, necessitating new OHS policies.', link: 'https://www.sahistory.org.za/article/women-and-work-post-1994' },
-                { title: '👩‍🏭 1995: Women in Mining', summary: 'Women faced ergonomic and psychosocial hazards in South African mines, often in low-skilled roles.', details: 'Women miners dealt with ill-fitting equipment and harassment, highlighting the need for gender-specific OHS measures.', link: 'https://www.scielosp.org/article/bwho/2001.v79n9/863-868/en/' },
-                { title: '📜 1996: Mine Health and Safety Act', summary: 'South Africa strengthened mine safety with mandatory accident reporting and inspectorate powers.', details: 'The Act improved safety oversight by mandating reporting and empowering inspectors to enforce regulations.', link: 'https://www.dmr.gov.za/mine-health-and-safety' },
-                { title: '⚖️ 1996: SA Constitution and OHS', summary: 'The South African Constitution enshrined the right to a safe work environment in the Bill of Rights.', details: 'This constitutional right provided a legal basis for enforcing OHS standards across all workplaces.', link: 'https://www.gov.za/documents/constitution-republic-south-africa-1996' },
-                { title: '🌍 1997: SADC HIV Programs', summary: 'Southern African mines introduced HIV prevention programs, but they had limited OHS impact.', details: 'While HIV programs addressed health, they often overlooked broader OHS issues like workplace safety.', link: 'https://www.sciencedirect.com/science/article/abs/pii/027795368190142X' },
-                { title: '🌍 1999: Global OHS Research Gap', summary: 'Leading OHS journals focused on workplace issues, often neglecting developing countries like South Africa.', details: 'Research gaps limited the global understanding of OHS challenges in developing regions like South Africa.', link: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1446872/' },
-                { title: '⚖️ 2000: Lubbe v Cape plc', summary: 'SA asbestos victims sued UK companies, setting a global precedent for corporate OHS accountability.', details: 'The case allowed compensation for thousands of SA workers, highlighting the need for global OHS standards.', link: 'https://en.wikipedia.org/wiki/Lubbe_v_Cape_plc' },
-                { title: '📜 2001: King II Report in South Africa', summary: 'The King II Report integrated OHS into corporate governance, emphasizing social responsibility.', details: 'King II urged companies to prioritize OHS as part of ethical governance, influencing SA business practices.', link: 'https://www.iodsa.co.za/page/KingII' },
-                { title: '📉 2001-2020: Inconsistent OHS Data', summary: 'South Africa’s lack of a national OHS surveillance system led to inconsistent occupational disease reporting.', details: 'Without a surveillance system, SA struggled to track occupational diseases like noise-induced hearing loss.', link: 'https://www.mdpi.com/2071-1050/14/17/10464' },
-                { title: '🛠️ 2003: Informal Labour in Kenya', summary: 'Kenyan informal workers faced unsafe conditions, a trend mirrored in South Africa’s informal sector.', details: 'Informal workers lacked protective equipment, a common issue in SA’s informal workplaces like spaza shops.', link: 'https://academic.oup.com/annweh/article/50/5/445/149350' },
-                { title: '📜 2004: Companies Act and OHS', summary: 'South Africa’s Companies Act began emphasizing OHS in corporate responsibility frameworks.', details: 'The Act encouraged companies to integrate OHS into their operations, aligning with global standards.', link: 'https://www.gov.za/documents/companies-act' },
-                { title: '📉 2008: Rising Unemployment in South Africa', summary: 'Unemployment exceeded 30%, driving workers into hazardous informal jobs with poor OHS standards.', details: 'High unemployment pushed workers into unsafe informal roles, increasing OHS risks like injuries and stress.', link: 'https://www.trade.gov/country-commercial-guides/south-africa-market-challenges' },
-                { title: '📜 2009: King III Report and ESG', summary: 'King III integrated OHS into ESG frameworks, urging companies to prioritize workplace safety.', details: 'King III linked OHS to environmental, social, and governance (ESG) criteria, enhancing corporate accountability.', link: 'https://www.iodsa.co.za/page/KingIII' },
-                { title: '🌍 2010: ILO WISE Program Influence', summary: 'The ILO’s WISE program influenced South African small enterprises to adopt practical OHS improvements.', details: 'The WISE program promoted low-cost safety solutions, benefiting small businesses in SA’s informal sector.', link: 'https://www.ncbi.nlm.nih.gov/books/NBK224697/' },
-                { title: '⛏️ 2011: Artisanal Mining in Africa', summary: 'Artisanal mining exposed workers to dust and fumes, impacting South African Zama Zamas similarly.', details: 'Artisanal mining risks like dust exposure in Zambia mirrored those faced by SA’s Zama Zamas.', link: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6358123/' },
-                { title: '🛒 2012: Spaza Shops OHS Risks', summary: 'South African spaza shops faced OHS issues like poor ventilation and fire hazards in informal settings.', details: 'Spaza shops, common in SA townships, often lacked fire safety measures, posing risks to workers and customers.', link: 'https://www.scielosp.org/article/bwho/2001.v79n9/863-868/en/' },
-                { title: '🔋 2013: Green Tech Mining Concerns', summary: 'Cobalt mining for EV batteries in the DRC exposed workers to toxic chemicals, influencing SA’s green tech OHS debates.', details: 'Cobalt mining risks in the DRC raised concerns in SA about OHS in green tech mineral extraction.', link: 'https://www.sciencedirect.com/science/article/pii/S2214790X22000992' },
-                { title: '🌍 2014: E-Waste Dumping in Africa', summary: 'E-waste dumping in West Africa released toxins, impacting SA workers through similar disposal practices.', details: 'E-waste in Ghana and Nigeria exposed workers to lead and noise, a growing concern for SA’s informal recyclers.', link: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6358123/' },
-                { title: '⛏️ 2015: Zama Zamas in South Africa', summary: 'Over 30,000 Zama Zamas operated in 6,000 abandoned SA mines, facing unsupported tunnels and gas risks.', details: 'Zama Zamas worked in dangerous conditions, with risks like methane explosions and tunnel collapses.', link: 'https://www.dailymaverick.co.za/article/2022-02-02-the-zama-zama-informal-mining-unlike-anything-else-in-the-world/' },
-                { title: '🚨 2016: Crime and OHS in South Africa', summary: 'Violent crime in SA mining towns exposed security guards to OHS risks like assault and trauma.', details: 'Crime in SA’s mining regions increased psychological stress and physical risks for security personnel.', link: 'https://www.newyorker.com/magazine/2023/02/27/the-dystopian-underworld-of-south-africas-illegal-gold-mines' },
-                { title: '🌍 2017: Global Initiative on Zama Zamas', summary: 'A report highlighted crime in SA’s Zama Zama sector, including gang violence affecting worker safety.', details: 'Syndicates controlling Zama Zama operations introduced violence, increasing OHS risks like assault underground.', link: 'https://www.sciencedirect.com/science/article/pii/S2214790X2300175X' },
-                { title: '⚖️ 2018: PSA obo Members v Minister', summary: 'A case reaffirmed employer duty under SA’s OHS Act after unsafe government building conditions were reported.', details: 'The case highlighted the need for government workplaces to comply with OHS standards, setting a precedent.', link: 'https://www.dmr.gov.za/mine-health-and-safety' },
-                { title: '👩 2019: Gender Discrimination in Zama Zamas', summary: 'Female Zama Zamas faced sexual abuse and restricted site access, increasing their OHS vulnerabilities.', details: 'Women in Zama Zama mining endured harassment and limited safety resources, exacerbating OHS risks.', link: 'https://www.dispatchlive.co.za/news/2020-01-30-female-zama-zamas-suffer-sexual-abuse-and-discrimination-in-mining/' },
-                { title: '🌱 2020: Green Tech Disposal Risks', summary: 'Disposal of rare earth elements for green tech in SA raised OHS concerns like chemical exposure.', details: 'Improper disposal of green tech materials exposed SA workers to toxins, mirroring global e-waste issues.', link: 'https://www.mdpi.com/2071-1050/14/17/10464' },
-                { title: '📉 2021: Unemployment and Informal Work', summary: 'SA’s unemployment rate hit 45%, pushing workers into unsafe informal roles with minimal OHS protections.', details: 'High unemployment forced workers into informal sectors like Zama Zamas, increasing exposure to OHS hazards.', link: 'https://www.trade.gov/country-commercial-guides/south-africa-market-challenges' }
-            ];
-
-            carouselItems.forEach(item => {
-                item.addEventListener('click', () => {
-                    const index = item.getAttribute('data-index');
-                    if (detailedContent[index] && modal && modalBody && closeBtn) {
-                        const content = detailedContent[index];
-                        modalBody.innerHTML = `
-                            <h4>${content.title}</h4>
-                            <p>${content.details}</p>
-                            <p><a href="${content.link}" target="_blank" rel="noopener noreferrer">Learn More</a></p>
-                        `;
-                        modal.style.display = 'flex';
-                    }
-                });
-            });
-
-            closeBtn?.addEventListener('click', () => {
-                if(modal) modal.style.display = 'none';
-            });
-
-            modal?.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.style.display = 'none';
+            
+            function openCarouselModal(index) {
+                if (carouselData[index] && modal && modalBody && i18next.isInitialized) {
+                    const content = carouselData[index];
+                    modalBody.innerHTML = `
+                        <h4 data-i18n="${content.titleKey}">${i18next.t(content.titleKey)}</h4>
+                        <p data-i18n="${content.detailsKey}">${i18next.t(content.detailsKey)}</p>
+                        <p><a href="${content.link}" target="_blank" rel="noopener noreferrer" data-i18n="carousel.learnMoreLink">Learn More</a></p>
+                    `;
+                    modal.style.display = 'flex';
                 }
+            }
+            window.closeModal = function() { // Make it global for inline onclick
+                if(modal) modal.style.display = 'none';
+            }
+            if(modal) modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
             });
 
             // Feature card details display
             const featureCards = document.querySelectorAll('.feature-card');
-            const featureDetails = document.getElementById('feature-details');
-            const featureTitle = document.getElementById('feature-title');
-            const featureDescription = document.getElementById('feature-description');
+            const featureDetailsDiv = document.getElementById('feature-details');
+            const featureTitleEl = document.getElementById('feature-title');
+            const featureDescriptionEl = document.getElementById('feature-description');
 
             const featureDetailsContent = {
-                automation: {
-                    title: "Automation & AI",
-                    description: "SafetyHelp leverages cutting-edge automation and AI to streamline OHS processes. Our tools automatically generate risk assessment reports, compliance checklists, and safety plans, reducing manual effort and ensuring precision. Whether you're a large corporation or a small informal business, our technology adapts to your needs, making safety management efficient and effective."
-                },
-                accessibility: {
-                    title: "Accessible for All",
-                    description: "We believe safety should be accessible to everyone. SafetyHelp is designed to support both formal and informal sectors in South Africa, including workplaces, schools, churches, and community spaces. Our user-friendly platform offers resources in multiple languages and provides tailored solutions for diverse environments, ensuring that everyone can achieve OHS compliance."
-                },
-                community: {
-                    title: "Community-Driven",
-                    description: "Our community platform connects OHS professionals, suppliers, and individuals across South Africa. Access mentorship programs, share and discover resources, rate suppliers, and collaborate on safety initiatives. Join a network that fosters knowledge sharing and collective growth, helping you build safer workplaces and communities together."
-                }
+                automation: { titleKey: "features.automation.title", descriptionKey: "features.automation.description" },
+                accessibility: { titleKey: "features.accessibility.title", descriptionKey: "features.accessibility.description" },
+                community: { titleKey: "features.community.title", descriptionKey: "features.community.description" }
             };
 
             featureCards.forEach(card => {
                 card.addEventListener('click', () => {
                     const feature = card.getAttribute('data-feature');
-                    if (featureDetailsContent[feature] && featureTitle && featureDescription && featureDetails) {
-                        featureTitle.textContent = featureDetailsContent[feature].title;
-                        featureDescription.textContent = featureDetailsContent[feature].description;
-                        featureDetails.classList.remove('hidden');
+                    if (featureDetailsContent[feature] && featureTitleEl && featureDescriptionEl && featureDetailsDiv && i18next.isInitialized) {
+                        featureTitleEl.textContent = i18next.t(featureDetailsContent[feature].titleKey);
+                        featureDescriptionEl.textContent = i18next.t(featureDetailsContent[feature].descriptionKey);
+                        featureDetailsDiv.classList.remove('hidden');
                     }
                 });
             });
@@ -1205,90 +775,131 @@
             // Testimonials Functionality
             const testimonialList = document.getElementById('testimonial-list');
             const loadMoreBtn = document.getElementById('load-more-testimonials');
-            let lastDoc = null;
+            let lastTestimonialDoc = null;
             const testimonialsPerPage = 3;
 
             async function loadTestimonials() {
-                 // Ensure Firebase db is initialized (it should be by scripts.js or chatbot.js)
-                if (!window.db && !window.chatbotDbInstance) { // Check for db instances from both scripts.js and chatbot.js
-                    console.error("Firestore not initialized. Testimonials cannot be loaded.");
-                    if(loadMoreBtn) loadMoreBtn.style.display = 'none';
-                    return;
+                if (!db) { console.error("Firestore not initialized."); if(loadMoreBtn) loadMoreBtn.style.display = 'none'; return; }
+                let testimonialsQuery;
+                if (lastTestimonialDoc) {
+                    testimonialsQuery = query(collection(db, 'testimonials'), orderBy('timestamp', 'desc'), startAfter(lastTestimonialDoc), limit(testimonialsPerPage));
+                } else {
+                    testimonialsQuery = query(collection(db, 'testimonials'), orderBy('timestamp', 'desc'), limit(testimonialsPerPage));
                 }
-                // Use the db instance from scripts.js (auth project) if available for testimonials, or chatbot's if that's where they are
-                const firestoreInstance = window.db || window.chatbotDbInstance; // Prefer main db if testimonials are there
-                if (!firestoreInstance) {
-                     console.error("No valid Firestore instance found for testimonials.");
-                     if(loadMoreBtn) loadMoreBtn.style.display = 'none';
-                     return;
-                }
-
-                const { getFirestore, collection, query, orderBy, limit, startAfter, getDocs } = await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js');
-
-                let testimonialsQuery = query(collection(firestoreInstance, 'testimonials'), orderBy('timestamp', 'desc'), limit(testimonialsPerPage));
-
-                if (lastDoc) {
-                    testimonialsQuery = query(collection(firestoreInstance, 'testimonials'), orderBy('timestamp', 'desc'), startAfter(lastDoc), limit(testimonialsPerPage));
-                }
-
                 try {
                     const snapshot = await getDocs(testimonialsQuery);
-                    if (snapshot.empty && !lastDoc) { // No testimonials at all
-                         if(testimonialList) testimonialList.innerHTML = '<p>No testimonials yet. Be the first to share your experience!</p>';
-                         if(loadMoreBtn) loadMoreBtn.style.display = 'none';
-                         return;
-                    }
-                    if (snapshot.empty && lastDoc) { // No more testimonials to load
-                        if(loadMoreBtn) loadMoreBtn.style.display = 'none';
-                        return;
-                    }
-
+                    if (snapshot.empty && !lastTestimonialDoc && testimonialList) testimonialList.innerHTML = `<p data-i18n="testimonials.none">${i18next.t('testimonials.none')}</p>`;
+                    if (snapshot.empty && loadMoreBtn) loadMoreBtn.style.display = 'none';
+                    
                     snapshot.forEach(doc => {
                         const testimonial = doc.data();
                         const testimonialDiv = document.createElement('div');
-                        testimonialDiv.classList.add('border', 'border-gray-200', 'p-4', 'rounded-lg', 'bg-gray-50'); // Added bg-gray-50 for slight differentiation
+                        testimonialDiv.className = 'border border-slate-200 p-4 rounded-lg bg-slate-50 text-sm';
                         testimonialDiv.innerHTML = `
-                            <p class="text-gray-700 italic">"${testimonial.text}"</p>
-                            <p class="text-gray-800 font-semibold mt-2">- ${testimonial.author}</p>
-                            <p class="text-gray-500 text-sm">${testimonial.timestamp ? new Date(testimonial.timestamp.toDate()).toLocaleDateString() : 'N/A'}</p>
+                            <p class="text-slate-700 italic">"${testimonial.text}"</p>
+                            <p class="text-slate-800 font-semibold mt-2">- ${testimonial.author}</p>
+                            <p class="text-slate-500 text-xs">${testimonial.timestamp ? new Date(testimonial.timestamp.toDate()).toLocaleDateString() : 'N/A'}</p>
                         `;
                         if(testimonialList) testimonialList.appendChild(testimonialDiv);
-                        lastDoc = doc;
+                        lastTestimonialDoc = doc; 
                     });
-
-                    if (snapshot.size < testimonialsPerPage) {
-                        if(loadMoreBtn) loadMoreBtn.style.display = 'none';
-                    } else {
-                        if(loadMoreBtn) loadMoreBtn.style.display = 'block';
-                    }
+                    if (snapshot.size < testimonialsPerPage && loadMoreBtn) loadMoreBtn.style.display = 'none';
+                    else if (loadMoreBtn) loadMoreBtn.style.display = 'block';
                 } catch (error) {
                     console.error("Error loading testimonials:", error);
-                    if(testimonialList) testimonialList.innerHTML = '<p>Could not load testimonials at this time.</p>';
+                    if(testimonialList) testimonialList.innerHTML = `<p data-i18n="testimonials.errorLoad">${i18next.t('testimonials.errorLoad')}</p>`;
                     if(loadMoreBtn) loadMoreBtn.style.display = 'none';
                 }
             }
-            if(loadMoreBtn) {
-                loadMoreBtn.addEventListener('click', loadTestimonials);
-            }
-            // Initial load
-            loadTestimonials();
+            if(loadMoreBtn) loadMoreBtn.addEventListener('click', loadTestimonials);
+            loadTestimonials(); // Initial load
 
+            // Chatbot Functionality
+            const chatToggle = document.getElementById('chat-toggle');
+            const chatWindow = document.getElementById('chat-window');
+            const chatOutput = document.getElementById('chat-output');
+            const chatInput = document.getElementById('chat-input');
+            const chatSend = document.getElementById('chat-send');
+            let isChatExpanded = false;
 
-            // Direct chatbot link functionality
-            const openChatbotDirectBtn = document.getElementById('open-chatbot-direct');
-            if (openChatbotDirectBtn) {
-                openChatbotDirectBtn.addEventListener('click', () => {
-                    if (typeof window.openChatbot === 'function') {
-                        window.openChatbot();
-                    } else {
-                        console.warn("openChatbot function not found. Ensure chatbot.js exposes it globally.");
-                        // Fallback to simple toggle if direct open not available
-                        document.getElementById('chat-window')?.classList.remove('chat-hidden');
-                        document.getElementById('chat-window')?.classList.add('chat-expanded');
-                        document.getElementById('chat-toggle')?.classList.remove('collapsed');
+            if(chatToggle) chatToggle.addEventListener('click', () => {
+                isChatExpanded = !isChatExpanded;
+                chatWindow.classList.toggle('chat-hidden', !isChatExpanded);
+                chatWindow.classList.toggle('chat-expanded', isChatExpanded);
+                if (isChatExpanded) chatInput.focus();
+            });
+
+            async function sendChatMessage() {
+                if (!db) { addChatMessageToUI('Salatiso', i18next.t('chatbot.unavailable')); return; }
+                const input = chatInput.value.trim();
+                if (!input) return;
+                addChatMessageToUI(i18next.t('chatbot.you'), input);
+                chatInput.value = '';
+                addChatMessageToUI('Salatiso', i18next.t('chatbot.searching'));
+                const queryText = input.toLowerCase();
+
+                try {
+                    // This is a simplified query. For better results, consider more complex querying or a dedicated search service.
+                    const q = query(collection(db, 'ohs-knowledge'), where('keywords', 'array-contains', queryText), limit(1));
+                    const snapshot = await getDocs(q);
+                    let responseFound = false;
+                    let responseText = i18next.t('chatbot.no_match');
+
+                    if (!snapshot.empty) {
+                        snapshot.forEach(doc => { // Should only be one due to limit(1)
+                            const data = doc.data();
+                            responseText = i18next.t('chatbot.responseTemplate', {
+                                source: data.book || 'our resources',
+                                chapter: data.chapter || 'N/A',
+                                content: data.content.substring(0, 250) + (data.content.length > 250 ? '...' : ''),
+                                interpolation: { escapeValue: false } // Allow HTML in translation
+                            });
+                            if (data.file) {
+                                responseText += ` (<a href="./resources/${data.file}" target="_blank" class="text-blue-500 hover:underline" data-i18n="chatbot.fullChapterLink">${i18next.t('chatbot.fullChapterLink')}</a>)`;
+                            }
+                            responseFound = true;
+                        });
                     }
-                });
+                    const searchingMessage = chatOutput.querySelector('p:last-child');
+                    if (searchingMessage && searchingMessage.textContent.includes(i18next.t('chatbot.searching'))) {
+                        searchingMessage.innerHTML = `<strong>Salatiso:</strong> ${responseText}`;
+                    } else {
+                        addChatMessageToUI('Salatiso', responseText);
+                    }
+                } catch (error) {
+                    console.error("Chatbot Firestore query failed:", error);
+                     const searchingMessage = chatOutput.querySelector('p:last-child');
+                    if (searchingMessage && searchingMessage.textContent.includes(i18next.t('chatbot.searching'))) {
+                         searchingMessage.innerHTML = `<strong>Salatiso:</strong> ${i18next.t('chatbot.error_generic')}`;
+                    } else {
+                        addChatMessageToUI('Salatiso', i18next.t('chatbot.error_generic'));
+                    }
+                }
             }
+
+            function addChatMessageToUI(sender, message) {
+                if (chatOutput) {
+                    const messageElement = document.createElement('p');
+                    messageElement.classList.add('mb-2');
+                    messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`; // HTML is allowed for links
+                    chatOutput.appendChild(messageElement);
+                    chatOutput.scrollTop = chatOutput.scrollHeight;
+                }
+            }
+
+            if(chatSend) chatSend.addEventListener('click', sendChatMessage);
+            if(chatInput) chatInput.addEventListener('keypress', (event) => {
+                if (event.key === 'Enter') sendChatMessage();
+            });
+            
+            // Initialize carousel after i18next and DOM are ready
+            populateCarousel(); 
+            if (carouselData.length > 0) { // Ensure there's data before trying to show an item
+                currentCarouselIndex = Math.floor(Math.random() * carouselData.length);
+                showCarouselItem(currentCarouselIndex);
+            }
+
+
         });
     </script>
 </body>
