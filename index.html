@@ -1,1020 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SafetyHelp - Your OHS Partner</title>
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
-    <style>
-        /* --- Reset & Base Styles --- */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f4f4f4;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* --- Branding Guidelines --- */
-        :root {
-            --brand-primary-blue: #005A9C;
-            --brand-secondary-orange: #FFA500;
-            --brand-hover-green: #28a745;
-            --brand-light-blue: #e0efff;
-            --text-color-light: #ffffff;
-            --text-color-dark: #333333;
-            --border-color: #ddd;
-            --card-bg: #ffffff;
-            --panel-bg: #f9f9f9;
-        }
-
-        /* --- Header --- */
-        .site-header {
-            background-color: var(--brand-primary-blue);
-            color: var(--text-color-light);
-            padding: 15px 0;
-            border-bottom: 3px solid var(--brand-secondary-orange);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .site-header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .logo-text {
-            font-size: 28px;
-            font-weight: bold;
-            text-decoration: none;
-        }
-        .logo-text .safety { color: var(--text-color-light); }
-        .logo-text .help { color: var(--brand-secondary-orange); }
-
-        .nav-links {
-            display: flex;
-            gap: 10px;
-        }
-
-        .nav-links a {
-            color: var(--brand-primary-blue);
-            background-color: var(--text-color-light);
-            text-decoration: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            font-weight: 500;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            background-color: var(--brand-secondary-orange);
-            color: var(--text-color-light);
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            margin-top: 10px;
-        }
-        @media (min-width: 768px) {
-            .header-right {
-                margin-top: 0;
-            }
-        }
-
-        .search-bar {
-            padding: 8px;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            margin-right: 15px;
-            font-size: 14px;
-        }
-
-        .language-selector select {
-            padding: 8px;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            background-color: var(--text-color-light);
-            color: var(--text-color-dark);
-            font-size: 14px;
-        }
-
-        /* --- Welcome Section --- */
-        .welcome-section {
-            background: linear-gradient(to bottom, var(--brand-light-blue), #ffffff);
-            padding: 50px 20px;
-            text-align: center;
-            margin-top: 70px;
-        }
-
-        .welcome-section h1 {
-            font-size: 36px;
-            color: var(--brand-primary-blue);
-            margin-bottom: 10px;
-        }
-
-        .welcome-section .slogan {
-            font-size: 20px;
-            color: var(--brand-secondary-orange);
-            margin-bottom: 10px;
-        }
-
-        .welcome-section p {
-            font-size: 16px;
-            color: var(--text-color-dark);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        /* --- Launch Announcement Bar --- */
-        .launch-announcement {
-            background-color: var(--brand-light-blue);
-            color: var(--text-color-dark);
-            padding: 20px;
-            text-align: center;
-            position: relative;
-            border-bottom: 1px solid var(--border-color);
-            transition: opacity 0.5s ease, max-height 0.5s ease;
-            overflow: hidden;
-            max-height: 500px;
-        }
-
-        .launch-announcement.dismissed {
-            opacity: 0;
-            max-height: 0;
-            padding-top: 0;
-            padding-bottom: 0;
-            border-bottom: none;
-        }
-
-        .launch-announcement h2 {
-            font-size: 1.4em;
-            margin-bottom: 8px;
-            color: var(--brand-primary-blue);
-        }
-
-        .launch-announcement p {
-            font-size: 0.95em;
-            margin-bottom: 12px;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .launch-cta-button {
-            background-color: var(--brand-secondary-orange);
-            color: var(--text-color-light);
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-            border: none;
-            cursor: pointer;
-            display: inline-block;
-        }
-
-        .launch-cta-button:hover {
-            background-color: #e09500;
-        }
-
-        .dismiss-button {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: var(--text-color-dark);
-            line-height: 1;
-        }
-        .dismiss-button:hover {
-            color: var(--brand-primary-blue);
-        }
-
-        /* --- Main Content Area --- */
-        .main-content-area .container {
-            display: flex;
-            flex-wrap: wrap;
-            padding-top: 20px;
-            gap: 20px;
-        }
-
-        /* --- Shared Sidebar Styles --- */
-        .sidebar {
-            background-color: var(--card-bg);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            height: 400px;
-            width: 100%;
-        }
-        @media (min-width: 992px) {
-            .sidebar {
-                width: 260px;
-                flex-shrink: 0;
-            }
-        }
-
-        .sidebar-title {
-            font-size: 1.5em;
-            margin-bottom: 15px;
-            font-weight: bold;
-        }
-        .sidebar-title .safety { color: var(--brand-primary-blue); }
-        .sidebar-title .help { color: var(--brand-secondary-orange); }
-
-        /* --- Left Sidebar (SafetyHelp Tools) --- */
-        .tool-list {
-            list-style: none;
-        }
-
-        .tool-list li a {
-            display: flex;
-            align-items: center;
-            padding: 10px 15px;
-            text-decoration: none;
-            color: var(--brand-primary-blue);
-            border-radius: 4px;
-            margin-bottom: 5px;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            font-weight: 500;
-        }
-
-        .tool-list li a i {
-            margin-right: 10px;
-        }
-
-        .tool-list li a:hover,
-        .tool-list li a.active {
-            background-color: var(--brand-hover-green);
-            color: var(--text-color-light);
-        }
-        .tool-list li a.active {
-            font-weight: bold;
-        }
-
-        /* --- Right Sidebar (OHS Milestones) --- */
-        .timeline-list {
-            list-style: none;
-            max-height: 340px;
-            overflow-y: auto;
-            padding-right: 10px;
-        }
-
-        .timeline-list::-webkit-scrollbar {
-            width: 8px;
-        }
-        .timeline-list::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
-        }
-        .timeline-list::-webkit-scrollbar-thumb {
-            background: var(--border-color);
-            border-radius: 10px;
-        }
-        .timeline-list::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
-
-        .timeline-item {
-            background-color: var(--panel-bg);
-            margin-bottom: 10px;
-            border-radius: 4px;
-            border: 1px solid var(--border-color);
-            overflow: hidden;
-        }
-
-        .timeline-item-header {
-            padding: 10px 15px;
-            cursor: pointer;
-            background-color: var(--brand-primary-blue);
-            color: var(--text-color-light);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: background-color 0.3s ease;
-        }
-        .timeline-item-header:hover {
-            background-color: #00487a;
-        }
-        .timeline-item.expanded .timeline-item-header {
-            background-color: var(--brand-hover-green);
-        }
-
-        .timeline-item-header h5 {
-            margin: 0;
-            font-size: 1em;
-            display: flex;
-            align-items: center;
-        }
-        .timeline-item-header h5 i {
-            margin-right: 10px;
-        }
-        .timeline-item-header .toggle-icon-timeline {
-            font-size: 1em;
-            transition: transform 0.3s ease;
-        }
-        .timeline-item.expanded .toggle-icon-timeline {
-            transform: rotate(180deg);
-        }
-
-        .timeline-item-summary {
-            padding: 0 15px 15px 15px;
-            font-size: 0.85em;
-            max-height: 0;
-            opacity: 0;
-            transition: max-height 0.4s ease-out, opacity 0.3s ease-out, padding 0.4s ease-out;
-        }
-        .timeline-item.expanded .timeline-item-summary {
-            max-height: 200px;
-            opacity: 1;
-            padding-top: 10px;
-        }
-        .timeline-item-summary a {
-            color: var(--brand-secondary-orange);
-            font-weight: bold;
-            text-decoration: none;
-        }
-        .timeline-item-summary a:hover {
-            text-decoration: underline;
-        }
-
-        /* --- Central Column --- */
-        .central-column {
-            flex: 1;
-            min-width: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .central-content-card {
-            background-color: var(--card-bg);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .mini-panels-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-bottom: 0;
-        }
-
-        .mini-panel {
-            flex: 1;
-            min-width: 280px;
-            background-color: var(--panel-bg);
-            padding: 20px;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
-        }
-
-        .mini-panel h3 {
-            font-size: 1.2em;
-            margin-bottom: 10px;
-            color: var(--brand-primary-blue);
-            display: flex;
-            align-items: center;
-        }
-        .mini-panel h3 i {
-            margin-right: 10px;
-        }
-        .mini-panel p {
-            font-size: 0.9em;
-            margin-bottom: 10px;
-            min-height: 40px;
-        }
-        .mini-panel input[type="text"],
-        .mini-panel input[type="number"],
-        .mini-panel select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-        }
-        .mini-panel button {
-            background-color: var(--brand-secondary-orange);
-            color: var(--text-color-light);
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            font-size: 0.9em;
-            margin-top: 5px;
-        }
-        .mini-panel button:hover {
-            background-color: #e09500;
-        }
-        .quiz-feedback {
-            font-size: 0.9em;
-            margin-top: 10px;
-            font-weight: bold;
-        }
-        .quiz-feedback .score { color: var(--brand-hover-green); }
-        .quiz-feedback .leader { color: var(--brand-primary-blue); }
-
-        /* --- Why Choose SafetyHelp --- */
-        .key-features-section h2 {
-            font-size: 1.6em;
-            margin-bottom: 20px;
-            text-align: center;
-            color: var(--text-color-dark);
-        }
-
-        .feature-tiles {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .feature-tile {
-            background-color: #f0f0f0;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 15px;
-            text-align: center;
-            transition: background-color 0.3s ease;
-        }
-
-        .feature-tile:hover {
-            background-color: var(--brand-light-blue);
-        }
-
-        .feature-tile i {
-            font-size: 24px;
-            color: var(--brand-primary-blue);
-            margin-bottom: 10px;
-        }
-
-        .feature-tile h4 {
-            font-size: 1.1em;
-            color: var(--brand-primary-blue);
-            margin-bottom: 5px;
-        }
-
-        .feature-tile p {
-            font-size: 0.9em;
-            color: #555;
-        }
-
-        /* --- Footer --- */
-        footer {
-            background-color: var(--brand-primary-blue);
-            color: var(--text-color-light);
-            padding: 20px;
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        footer a {
-            color: var(--brand-secondary-orange);
-            text-decoration: none;
-            margin: 0 10px;
-        }
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* --- Chatbot --- */
-        .chatbot {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: var(--card-bg);
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            width: 300px;
-        }
-
-        .chatbot.collapsed {
-            width: auto;
-            padding: 10px;
-        }
-
-        .chatbot-header {
-            background-color: var(--brand-primary-blue);
-            color: var(--text-color-light);
-            padding: 10px;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .chatbot-header i {
-            cursor: pointer;
-        }
-
-        .chatbot-content {
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .chatbot.collapsed .chatbot-content {
-            display: none;
-        }
-
-        .chatbot input {
-            padding: 8px;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-        }
-
-        .chatbot button {
-            background-color: var(--brand-secondary-orange);
-            color: var(--text-color-light);
-            padding: 8px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .chatbot button:hover {
-            background-color: #e09500;
-        }
-
-        /* --- Responsive Adjustments --- */
-        @media (max-width: 991px) {
-            .main-content-area .container {
-                flex-direction: column;
-            }
-            .sidebar {
-                width: 100%;
-                margin-bottom: 20px;
-                height: auto;
-            }
-            .central-column {
-                order: 0;
-            }
-            .left-sidebar { order: 1; }
-            .right-sidebar { order: 2; }
-        }
-
-        @media (max-width: 767px) {
-            .site-header .container {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .nav-links {
-                flex-direction: column;
-                width: 100%;
-                margin-top: 10px;
-            }
-            .nav-links a {
-                width: 100%;
-                text-align: center;
-            }
-            .header-right {
-                width: 100%;
-                margin-top: 15px;
-                justify-content: space-between;
-            }
-            .search-bar {
-                flex-grow: 1;
-                margin-right: 10px;
-            }
-            .language-selector select {
-                min-width: 100px;
-            }
-            .welcome-section h1 { font-size: 1.5em; }
-            .mini-panels-container { flex-direction: column; }
-            .launch-announcement h2 { font-size: 1.2em; }
-            .launch-announcement p { font-size: 0.9em; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SafetyHelp - OHS Compliance Platform</title>
+  <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/babel-standalone@7.22.5/babel.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .timeline { animation: scrollTimeline 18s linear infinite; }
+    .timeline:hover { animation-play-state: paused; }
+    @keyframes scrollTimeline {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-50%); }
+    }
+    .carousel-item { transition: transform 0.5s ease, box-shadow 0.5s ease; }
+    .carousel-item:hover { transform: translateZ(10px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); }
+    .quiz-slide { animation: slideIn 0.5s ease; }
+    @keyframes slideIn {
+      from { transform: translateX(100%); }
+      to { transform: translateX(0); }
+    }
+  </style>
 </head>
-<body>
-    <!-- Header -->
-    <header class="site-header">
-        <div class="container">
-            <a href="index.htm" class="logo-text">
-                <span class="safety">Safety</span><span class="help">Help</span>
-            </a>
-            <div class="nav-links">
-                <a href="index.htm">Home</a>
-                <a href="resources.htm">Resources</a>
-                <a href="community.htm">Community</a>
-                <a href="about.htm">About</a>
+<body class="bg-gray-900 text-white font-sans">
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useState } = React;
+
+    const modules = [
+      { id: 1, name: "Compliance Audits", icon: "📋", url: "/audits" },
+      { id: 2, name: "Risk Assessments", icon: "⚠️", url: "/risk" },
+      { id: 3, name: "Safety Training", icon: "🎓", url: "/training" },
+      { id: 4, name: "Emergency Plans", icon: "🚨", url: "/emergency" },
+      { id: 5, name: "Fire Safety", icon: "🔥", url: "/fire" },
+      { id: 6, name: "First Aid Systems", icon: "🩺", url: "/firstaid" },
+      { id: 7, name: "Hazard Control", icon: "☣️", url: "/hazard" },
+      { id: 8, name: "Safety Reports", icon: "📊", url: "/reports" },
+      { id: 9, name: "Legal Appointments", icon: "📜", url: "/appointments" },
+      { id: 10, name: "Incident Tracking", icon: "🚑", url: "/incidents" },
+    ];
+
+    const milestones = [
+      { year: 1993, title: "OHS Act Enacted", desc: "Foundation of workplace safety in South Africa with Act 85 of 1993." },
+      { year: 2015, title: "Fall Protection Training", desc: "Mandatory training for high-risk work environments." },
+      { year: 2023, title: "Airborne Hazards Regulation", desc: "Stricter controls for mining sector safety." },
+      { year: 2024, title: "Digital Compliance Era", desc: "Automation platforms like SafetyHelp emerge." },
+      { year: 2025, title: "Workplace Violence Focus", desc: "Nationwide campaign to enhance workplace safety." },
+    ];
+
+    const quizQuestions = [
+      { q: "Is a safety officer appointed?", a: ["Yes", "No"], correct: 0 },
+      { q: "OHS Act copy available?", a: ["Yes", "No"], correct: 0 },
+      { q: "Regular risk assessments done?", a: ["Yes", "No"], correct: 0 },
+      { q: "Safety posters displayed?", a: ["Yes", "No"], correct: 0 },
+      { q: "Staff trained on safety?", a: ["Yes", "No"], correct: 0 },
+    ];
+
+    function App() {
+      const [carouselIndex, setCarouselIndex] = useState(0);
+      const [quizOpen, setQuizOpen] = useState(false);
+      const [quizStep, setQuizStep] = useState(0);
+      const [quizScore, setQuizScore] = useState(0);
+      const [selectedMilestone, setSelectedMilestone] = useState(null);
+
+      const nextCarousel = () => setCarouselIndex((carouselIndex + 1) % Math.ceil(modules.length / 3));
+      const prevCarousel = () => setCarouselIndex((carouselIndex - 1 + Math.ceil(modules.length / 3)) % Math.ceil(modules.length / 3));
+
+      const handleQuizAnswer = (answerIndex) => {
+        if (answerIndex === quizQuestions[quizStep].correct) setQuizScore(quizScore + 1);
+        if (quizStep < quizQuestions.length - 1) {
+          setQuizStep(quizStep + 1);
+        } else {
+          setQuizOpen(false);
+          alert(`Quiz Complete! Score: ${quizScore + 1}/${quizQuestions.length}`);
+        }
+      };
+
+      return (
+        <div class="min-h-screen bg-gray-900">
+          {/* Header */}
+          <header class="bg-red-600 text-white p-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold">SafetyHelp</h1>
+            <nav>
+              <a href="#home" class="mx-2 hover:underline">Home</a>
+              <a href="#modules" class="mx-2 hover:underline">Modules</a>
+              <a href="#quiz" class="mx-2 hover:underline" onClick={() => setQuizOpen(true)}>Compliance Check</a>
+              <a href="#about" class="mx-2 hover:underline">About</a>
+              <a href="#contact" class="mx-2 hover:underline">Contact</a>
+            </nav>
+          </header>
+
+          {/* Main Content */}
+          <main class="flex p-8">
+            {/* Modules Carousel */}
+            <div class="w-1/2">
+              <h2 class="text-xl font-semibold mb-4">OHS Modules</h2>
+              <div class="relative overflow-hidden">
+                <div class="flex" style={{ transform: `translateX(-${carouselIndex * 100}%)` }}>
+                  {modules.map(module => (
+                    <a href={module.url} key={module.id} class="carousel-item w-1/3 p-4 bg-gray-800 rounded-lg shadow m-2 flex flex-col items-center hover:bg-red-800">
+                      <span class="text-4xl">{module.icon}</span>
+                      <span class="mt-2 text-center">{module.name}</span>
+                    </a>
+                  ))}
+                </div>
+                <button onClick={prevCarousel} class="absolute left-0 top-1/2 bg-red-600 text-white p-2 rounded-full">←</button>
+                <button onClick={nextCarousel} class="absolute right-0 top-1/2 bg-red-600 text-white p-2 rounded-full">→</button>
+              </div>
             </div>
-            <div class="header-right">
-                <input type="search" class="search-bar" placeholder="Search...">
-                <div class="language-selector">
-                    <select name="language" id="language">
-                        <option value="en">English</option>
-                        <option value="af">Afrikaans</option>
-                    </select>
+
+            {/* Timeline */}
+            <div class="w-1/2 pl-8">
+              <h2 class="text-xl font-semibold mb-4">OHS Milestones</h2>
+              <div class="relative h-96 overflow-hidden">
+                <div class="timeline absolute w-full">
+                  {milestones.map((milestone, index) => (
+                    <div key={index} class="mb-8 p-4 bg-gray-800 rounded-lg shadow cursor-pointer hover:bg-red-800" onClick={() => setSelectedMilestone(milestone)}>
+                      <h3 class="font-bold">{milestone.year}: {milestone.title}</h3>
+                      <p>{milestone.desc.substring(0, 50)}...</p>
+                    </div>
+                  ))}
                 </div>
+              </div>
+              {selectedMilestone && (
+                <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                  <div class="bg-gray-800 p-6 rounded-lg">
+                    <h3 class="font-bold">{selectedMilestone.year}: {selectedMilestone.title}</h3>
+                    <p>{selectedMilestone.desc}</p>
+                    <button onClick={() => setSelectedMilestone(null)} class="mt-4 bg-red-600 text-white p-2 rounded">Close</button>
+                  </div>
+                </div>
+              )}
             </div>
-        </div>
-    </header>
+          </main>
 
-    <!-- Welcome Section -->
-    <section class="welcome-section">
-        <h1>Welcome to SafetyHelp</h1>
-        <div class="slogan">Empowering Safety, Ensuring Compliance</div>
-        <p>Your trusted platform for occupational health and safety (OHS) in South Africa. We provide intuitive, AI-enhanced tools to ensure safety and compliance in workplaces, schools, churches, and informal sectors. Join our community to access resources, services, and support tailored to your needs.</p>
-    </section>
-
-    <!-- Launch Announcement -->
-    <div class="launch-announcement" id="launchAnnouncement">
-        <button class="dismiss-button" id="dismissAnnouncementBtn" aria-label="Dismiss announcement">×</button>
-        <h2>🚀 SafetyHelp Launched June 1, 2025! Be a Pioneer in OHS</h2>
-        <p>Our core platform is now live! Upcoming modules will launch monthly – see the countdown on the dashboard. Join our exclusive Beta Program: test new features, shape development, and get complimentary premium access during your testing period. Register now to be part of the future of OHS!</p>
-        <a href="login.htm#signup-section" class="launch-cta-button">Join Beta & Register Now</a>
-    </div>
-
-    <!-- Main Content -->
-    <main class="main-content-area">
-        <div class="container">
-            <!-- Left Sidebar (SafetyHelp Tools) -->
-            <aside class="left-sidebar sidebar">
-                <h2 class="sidebar-title"><span class="safety">Safety</span><span class="help">Help</span> Tools</h2>
-                <ul class="tool-list" id="toolList">
-                    <li><a href="dashboard.htm" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-                    <li><a href="risk-assessments.htm"><i class="fas fa-exclamation-triangle"></i> Risk Assessments</a></li>
-                    <li><a href="incident-reporting.htm"><i class="fas fa-file-alt"></i> Incident Reporting</a></li>
-                    <li><a href="training-modules.htm"><i class="fas fa-graduation-cap"></i> Training Modules</a></li>
-                    <li><a href="document-management.htm"><i class="fas fa-folder-open"></i> Document Management</a></li>
-                    <li><a href="compliance-checklists.htm"><i class="fas fa-check-square"></i> Compliance Checklists</a></li>
-                    <li><a href="analytics-reports.htm"><i class="fas fa-chart-bar"></i> Analytics & Reports</a></li>
-                </ul>
-            </aside>
-
-            <!-- Central Column -->
-            <section class="central-column">
-                <!-- Did You Know and Dashboard -->
-                <div class="central-content-card">
-                    <div class="mini-panels-container">
-                        <div class="mini-panel" id="didYouKnowPanel">
-                            <h3><i class="fas fa-bolt"></i> Did You Know...</h3>
-                            <p id="didYouKnowContent">Using reputable ethical suppliers can reduce workplace hazards by ensuring work is done on time and to the highest quality and safety standards.</p>
-                            <button id="nextTipBtn">Next Tip</button>
-                        </div>
-
-                        <div class="mini-panel" id="dashboardPanel">
-                            <h3><i class="fas fa-tachometer-alt"></i> Dashboard</h3>
-                            <div class="timer">
-                                <p>Next Module Launch: <span id="countdown" style="color: var(--brand-secondary-orange); font-weight: bold;"></span></p>
-                            </div>
-                            <div class="brain-of-day">
-                                <p>SafetyHelp Brain of the Day: <span id="brain-of-day">Loading...</span></p>
-                            </div>
-                            <div class="podcast">
-                                <p>Latest Podcast: <a href="podcast.htm" style="color: var(--brand-secondary-orange);">Episode 10: Safety in 2025</a></p>
-                            </div>
-                            <div class="article">
-                                <p>Latest Article: <a href="article.htm" style="color: var(--brand-secondary-orange);">Top 5 OHS Trends for 2025</a></p>
-                            </div>
-                        </div>
-                    </div>
+          {/* Quiz Modal */}
+          {quizOpen && (
+            <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+              <div class="bg-gray-800 p-6 rounded-lg w-1/2 quiz-slide">
+                <h2 class="text-xl font-semibold mb-4">Compliance Check</h2>
+                <p>{quizQuestions[quizStep].q}</p>
+                <div class="mt-4">
+                  {quizQuestions[quizStep].a.map((answer, index) => (
+                    <button key={index} onClick={() => handleQuizAnswer(index)} class="m-2 p-2 bg-red-600 text-white rounded hover:bg-red-700">{answer}</button>
+                  ))}
                 </div>
+                <button onClick={() => setQuizOpen(false)} class="mt-4 bg-gray-600 text-white p-2 rounded">Close</button>
+              </div>
+            </div>
+          )}
 
-                <!-- Brain of SafetyHelp -->
-                <div class="central-content-card">
-                    <div class="mini-panel" id="quizPanel">
-                        <h3><i class="fas fa-brain"></i> Brain of SafetyHelp - Daily Challenge!</h3>
-                        <div id="quiz-container"></div>
-                        <button id="submitQuizBtn">Submit Answers</button>
-                        <div class="quiz-feedback">
-                            <span id="quizScore">Your Score: 0</span> |
-                            <span id="quizLeader">Today's Leader: Loading...</span>
-                        </div>
-                        <a href="#" style="font-size:0.8em; margin-top:5px; display:inline-block; color: var(--brand-secondary-orange);">View Full Ranking</a>
-                    </div>
-                </div>
-
-                <!-- Why Choose SafetyHelp -->
-                <div class="central-content-card key-features-section">
-                    <h2>Why Choose SafetyHelp?</h2>
-                    <div class="feature-tiles">
-                        <div class="feature-tile">
-                            <i class="fas fa-robot"></i>
-                            <h4>AI Automation</h4>
-                            <p>Intelligent task streamlining.</p>
-                        </div>
-                        <div class="feature-tile">
-                            <i class="fas fa-lightbulb"></i>
-                            <h4>Intelligent Analytics</h4>
-                            <p>Data-driven safety decisions.</p>
-                        </div>
-                        <div class="feature-tile">
-                            <i class="fas fa-mobile-alt"></i>
-                            <h4>Mobile Accessibility</h4>
-                            <p>OHS management on the go.</p>
-                        </div>
-                        <div class="feature-tile">
-                            <i class="fas fa-link"></i>
-                            <h4>Integrated Modules</h4>
-                            <p>Holistic OHS ecosystem.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Right Sidebar (OHS Milestones) -->
-            <aside class="right-sidebar sidebar">
-                <h2 class="sidebar-title">OHS Milestones</h2>
-                <ul class="timeline-list" id="timelineList"></ul>
-            </aside>
+          {/* Footer */}
+          <footer class="bg-red-600 text-white p-4 text-center">
+            <p>&copy; 2025 SafetyHelp. All rights reserved.</p>
+            <p>Contact: info@safetyhelp.co.za | <a href="/privacy" class="underline">Privacy Policy</a></p>
+          </footer>
         </div>
-    </main>
+      );
+    }
 
-    <!-- Footer -->
-    <footer>
-        <p>© 2025 SafetyHelp. All Rights Reserved.</p>
-        <p>
-            <a href="privacy.htm">Privacy Policy</a> |
-            <a href="terms.htm">Terms of Service</a> |
-            <a href="contact.htm">Contact Us</a>
-        </p>
-    </footer>
-
-    <!-- Chatbot -->
-    <div class="chatbot" id="chatbot">
-        <div class="chatbot-header">
-            <span>SafetyHelp Chat</span>
-            <i class="fas fa-chevron-down" id="chatbotToggle"></i>
-        </div>
-        <div class="chatbot-content">
-            <p>Welcome to SafetyHelp Chat! How can I assist you today?</p>
-            <input type="text" placeholder="Type your message...">
-            <button onclick="sendMessage()">Send</button>
-        </div>
-    </div>
-
-    <script>
-        // --- Firebase Configuration (Replace with your Firebase config) ---
-        const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_AUTH_DOMAIN",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_STORAGE_BUCKET",
-            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-            appId: "YOUR_APP_ID"
-        };
-
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-
-        // --- Dismiss Launch Announcement ---
-        const announcementBar = document.getElementById('launchAnnouncement');
-        const dismissBtn = document.getElementById('dismissAnnouncementBtn');
-        if (dismissBtn && announcementBar) {
-            dismissBtn.addEventListener('click', () => {
-                announcementBar.classList.add('dismissed');
-            });
-        }
-
-        // --- SafetyHelp Tools Link Activation ---
-        const toolLinks = document.querySelectorAll('#toolList a');
-        toolLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                toolLinks.forEach(l => l.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-
-        // --- Did You Know Tips ---
-        let currentTipIndex = 0;
-        const tips = [];
-        const didYouKnowContent = document.getElementById('didYouKnowContent');
-        const nextTipBtn = document.getElementById('nextTipBtn');
-
-        async function fetchTips() {
-            const snapshot = await db.collection('didYouKnowTips').get();
-            snapshot.forEach(doc => tips.push(doc.data().tip));
-            displayTip();
-        }
-
-        function displayTip() {
-            if (tips.length > 0) {
-                didYouKnowContent.textContent = tips[currentTipIndex];
-            }
-        }
-
-        function fetchNextTip() {
-            currentTipIndex = (currentTipIndex + 1) % tips.length;
-            displayTip();
-        }
-
-        if (nextTipBtn) nextTipBtn.addEventListener('click', fetchNextTip);
-        fetchTips();
-
-        // --- Countdown Timer ---
-        function updateCountdown() {
-            const now = new Date();
-            const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0);
-            const timeLeft = endOfMonth - now;
-            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-            document.getElementById('countdown').textContent = `${days}d ${hours}h ${minutes}m`;
-        }
-
-        setInterval(updateCountdown, 60000);
-        updateCountdown();
-
-        // --- Brain of SafetyHelp Quiz ---
-        let currentQuestionSet = 1;
-        let userAnswers = [];
-        let questions = [];
-        let userScore = 0;
-
-        const quizContainer = document.getElementById('quiz-container');
-        const quizScoreEl = document.getElementById('quizScore');
-        const quizLeaderEl = document.getElementById('quizLeader');
-        const submitQuizBtn = document.getElementById('submitQuizBtn');
-
-        async function fetchQuestions() {
-            const snapshot = await db.collection('quizQuestions').where('set', '==', currentQuestionSet).get();
-            questions = [];
-            snapshot.forEach(doc => questions.push(doc.data()));
-            displayQuestions();
-        }
-
-        function displayQuestions() {
-            quizContainer.innerHTML = '';
-            questions.forEach((q, index) => {
-                const questionDiv = document.createElement('div');
-                questionDiv.className = 'question';
-                questionDiv.innerHTML = `
-                    <p>${index + 1}. ${q.question}</p>
-                    <div class="options">
-                        ${q.options.map(option => `
-                            <label>
-                                <input type="radio" name="q${index}" value="${option}">
-                                ${option}
-                            </label>
-                        `).join('')}
-                    </div>
-                `;
-                quizContainer.appendChild(questionDiv);
-            });
-        }
-
-        async function submitQuiz() {
-            const correctAnswers = questions.map(q => q.correctAnswer);
-            userAnswers = [];
-            questions.forEach((q, index) => {
-                const selected = document.querySelector(`input[name="q${index}"]:checked`);
-                userAnswers.push(selected ? selected.value : null);
-            });
-
-            let score = 0;
-            userAnswers.forEach((answer, i) => {
-                if (answer === correctAnswers[i]) score += 10;
-                alert(`Question ${i + 1}: Correct Answer: ${correctAnswers[i]}`);
-            });
-
-            userScore += score;
-            quizScoreEl.textContent = `Your Score: ${userScore}`;
-
-            const name = prompt('Enter your name to register or continue (leave blank to skip):');
-            const email = name ? prompt('Enter your email (optional):') : null;
-
-            if (name) {
-                await db.collection('quizScores').add({
-                    name,
-                    email,
-                    score: userScore,
-                    date: new Date().toISOString()
-                });
-            }
-
-            // Fetch Brain of the Day
-            const topScore = await db.collection('quizScores')
-                .orderBy('score', 'desc')
-                .orderBy('date', 'desc')
-                .limit(1)
-                .get();
-            if (!topScore.empty) {
-                const topUser = topScore.docs[0].data();
-                quizLeaderEl.textContent = `Today's Leader: ${topUser.name} (${topUser.score} pts)`;
-                document.getElementById('brain-of-day').textContent = `${topUser.name} (${topUser.score} pts)`;
-            }
-
-            const continueQuiz = confirm('Continue with the next set of questions?');
-            if (continueQuiz) {
-                currentQuestionSet++;
-                fetchQuestions();
-            }
-        }
-
-        if (submitQuizBtn) submitQuizBtn.addEventListener('click', submitQuiz);
-        fetchQuestions();
-
-        // --- OHS Milestones Timeline ---
-        const timelineItemsData = [
-            { year: "1970", title: "OSHA (USA)", summary: "The Occupational Safety and Health Act was enacted in the USA, a landmark for federal worker protection standards.", learnMore: "#", icon: "fas fa-history" },
-            { year: "1993", title: "OHS Act (SA)", summary: "South Africa's Occupational Health and Safety Act No. 85 established comprehensive duties for employers and rights for employees.", learnMore: "#", icon: "fas fa-gavel" },
-            { year: "2003", title: "COIDA Amendment", summary: "Amendments to the Compensation for Occupational Injuries and Diseases Act in SA, refining worker compensation.", learnMore: "#", icon: "fas fa-briefcase" },
-            { year: "2015", title: "Global Harmonization", summary: "Increased focus on aligning OHS standards internationally, e.g., GHS for chemical classification.", learnMore: "#", icon: "fas fa-globe" },
-            { year: "2022", title: "Mental Health Focus", summary: "Growing recognition and inclusion of psychosocial risks and mental well-being in OHS frameworks globally.", learnMore: "#", icon: "fas fa-heart" },
-            { year: "Future", title: "Predictive Safety", summary: "Leveraging AI and big data to predict and prevent workplace incidents before they occur.", learnMore: "#", icon: "fas fa-forward" }
-        ];
-
-        const timelineList = document.getElementById('timelineList');
-        let timelineScrollInterval;
-        let scrollPaused = false;
-
-        function populateTimeline() {
-            if (!timelineList) return;
-            timelineItemsData.forEach(item => {
-                const li = document.createElement('li');
-                li.className = 'timeline-item';
-                li.innerHTML = `
-                    <div class="timeline-item-header">
-                        <h5><i class="${item.icon}"></i> ${item.year}: ${item.title}</h5>
-                        <span class="toggle-icon-timeline">▼</span>
-                    </div>
-                    <div class="timeline-item-summary">
-                        <p>${item.summary}</p>
-                        ${item.learnMore ? `<a href="${item.learnMore}">Learn More</a>` : ''}
-                    </div>
-                `;
-                timelineList.appendChild(li);
-
-                const header = li.querySelector('.timeline-item-header');
-                header.addEventListener('click', () => {
-                    timelineList.querySelectorAll('.timeline-item.expanded').forEach(openItem => {
-                        if (openItem !== li) openItem.classList.remove('expanded');
-                    });
-                    li.classList.toggle('expanded');
-                });
-            });
-        }
-
-        function startTimelineScroll() {
-            if (!timelineList || scrollPaused) return;
-            timelineScrollInterval = setInterval(() => {
-                if (timelineList.scrollTop + timelineList.clientHeight >= timelineList.scrollHeight - 1) {
-                    timelineList.scrollTop = 0;
-                } else {
-                    timelineList.scrollTop += 1;
-                }
-            }, 50);
-        }
-
-        function stopTimelineScroll() {
-            clearInterval(timelineScrollInterval);
-        }
-
-        if (timelineList) {
-            populateTimeline();
-            if (timelineList.scrollHeight > timelineList.clientHeight) {
-                startTimelineScroll();
-                timelineList.addEventListener('mouseenter', () => {
-                    scrollPaused = true;
-                    stopTimelineScroll();
-                });
-                timelineList.addEventListener('mouseleave', () => {
-                    scrollPaused = false;
-                    startTimelineScroll();
-                });
-            }
-        }
-
-        // --- Chatbot Toggle ---
-        const chatbot = document.getElementById('chatbot');
-        const chatbotToggle = document.getElementById('chatbotToggle');
-        chatbotToggle.addEventListener('click', () => {
-            chatbot.classList.toggle('collapsed');
-            chatbotToggle.classList.toggle('fa-chevron-down');
-            chatbotToggle.classList.toggle('fa-chevron-up');
-        });
-
-        function sendMessage() {
-            alert('Chatbot functionality coming soon!');
-        }
-    </script>
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
 </body>
 </html>
