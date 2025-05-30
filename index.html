@@ -3,1148 +3,684 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="SafetyHelp offers innovative OHS tools and resources to ensure workplace and community safety in South Africa.">
-    <meta name="keywords" content="OHS, occupational health and safety, safety tools, risk assessment, safety compliance, South Africa, SafetyHelp">
-    <meta name="author" content="SafetyHelp Team">
-    <title>SafetyHelp - Your Partner in OHS Excellence</title>
+    <title data-i18n="page_title.home">SafetyHelp - Home</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?display=swap&family=Inter%3Awght%40400%3B500%3B700%3B900&family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://unpkg.com/i18next@23.15.2/dist/umd/i18next.min.js"></script>
-    <script src="https://unpkg.com/i18next-browser-languagedetector@8.0.0/dist/i18nextBrowserLanguageDetector.min.js"></script>
-
+    <script src="https://unpkg.com/i18next-http-backend@2.5.2/dist/umd/i18nextHttpBackend.min.js"></script>
+    <script src="https://unpkg.com/i18next-browser-languagedetector@8.0.0/dist/umd/i18nextBrowserLanguageDetector.min.js"></script>
     <style>
+        html { scroll-behavior: smooth; }
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #F0F4F8; /* Light blue-grey background */
-            color: #1E293B; /* Dark slate text */
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            margin:0;
+            font-family: 'Inter', "Noto Sans", sans-serif;
+            background-color: #E8F0FE; color: #374151;
+            margin: 0; padding-top: 80px; /* Adjusted for potentially shorter header */
+            display: flex; flex-direction: column; min-height: 100vh;
         }
+        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; color: #1f2937; }
 
-        /* Branding Colors (approximated from SHDesign.jpg) */
-        :root {
-            --sh-primary-dark: #0D47A1; /* Darker Blue for header/footer */
-            --sh-primary-blue: #1976D2; /* Main Blue */
-            --sh-secondary-orange: #FF8F00; /* Orange accent */
-            --sh-secondary-yellow: #FFCA28; /* Yellow accent */
-            --sh-light-bg: #FFFFFF; /* White for content cards */
-            --sh-light-blue-bg: #E3F2FD; /* Light blue for some sections */
-            --sh-light-yellow-bg: #FFF9C4; /* Light yellow for tip/quiz */
-            --sh-text-dark: #1E293B;
-            --sh-text-light: #FFFFFF;
-            --sh-text-muted: #64748B;
-        }
+        /* Header & Logo */
+        header { background-color: #007BFF; color: white; position: fixed; top: 0; left: 0; right: 0; z-index: 1000; width: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .header-container { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 1rem; height: 80px; }
+        .header-left { display: flex; align-items: center; gap: 0.5rem; }
+        .logo-text-v3 { font-family: 'Montserrat', sans-serif; font-size: 1.75rem; letter-spacing: -0.025em; color: white; text-decoration: none; display: inline-block; position: relative; padding-bottom: 5px; }
+        .logo-text-v3 .safety-part { font-weight: 700; position: relative; }
+        .logo-text-v3 .help-part { font-weight: 900; color: #FF8C00; }
+        .logo-text-v3 .safety-part::after { content: ''; position: absolute; bottom: -7px; left: 0; width: 100%; height: 4px; background-color: #FF8C00; border-radius: 2px; }
+        .tagline { font-size: 0.7rem; color: #e0f2fe; margin-left: 0.5rem; line-height: 1.2; max-width: 150px;}
+        .nav-links { display: flex; gap: 0.25rem; } /* Tighter spacing for boxed links */
+        .nav-links a { color: white; font-family: 'Montserrat', sans-serif; text-decoration: none; font-size: 0.8rem; padding: 0.5rem 0.75rem; border-radius: 0.375rem; transition: background-color 0.2s ease; font-weight:500; }
+        .nav-links a:hover, .nav-links a.active-nav-link { background-color: rgba(255,255,255,0.15); }
+        .header-right { display: flex; align-items: center; gap: 1rem; }
+        .search-language-container { display: flex; align-items: center; gap: 0.75rem; }
+        .language-selector select { padding: 0.375rem 0.5rem; border-radius: 4px; font-size: 0.8rem; color: #333; border: 1px solid #ccc; background-color: white;}
+        .search-bar { display: flex; }
+        .search-bar input { padding: 0.375rem 0.625rem; border: 1px solid #ccc; border-right: none; border-radius: 4px 0 0 4px; font-size: 0.8rem; color: #333; width: 130px; }
+        .search-bar button { background-color: #FD7E14; color: white; padding: 0.375rem 0.75rem; border: none; border-radius: 0 4px 4px 0; cursor: pointer; font-size: 0.8rem;}
+        .search-bar button:hover { background-color: #e06b00; }
 
-        header {
-            background-color: var(--sh-primary-dark);
-            color: var(--sh-text-light);
-            position: sticky; /* Sticky header */
-            top: 0;
-            z-index: 50;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
+        /* Main Layout */
+        .page-container { display: flex; flex-grow: 1; max-width: 1400px; margin: 0 auto; width: 100%; padding: 1.5rem; gap: 1.5rem;}
+        .sidebar-column { flex: 0 0 260px; /* Fixed width */ }
+        .main-content-column { flex-grow: 1; display: flex; flex-direction: column; gap: 1.5rem; }
+        .timeline-column { flex: 0 0 260px; /* Fixed width */ }
+        
+        /* Sidebar: SafetyHelp Tools */
+        .tools-sidebar { background-color: #f8fafc; padding: 1rem; border-radius: 0.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); height: fit-content; max-height: calc(100vh - 100px - 3rem); overflow-y: auto;}
+        .tools-sidebar-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; display: inline-block; position:relative; padding-bottom:5px;}
+        .tools-sidebar-title .safety-part { color: #007BFF; }
+        .tools-sidebar-title .help-part { color: #FF8C00; }
+        .tools-sidebar-title .safety-part::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 3px; background-color: #FF8C00; border-radius: 1px;}
+        .tool-link { display: block; padding: 0.6rem 0.75rem; margin-bottom: 0.25rem; border-radius: 0.375rem; font-size: 0.875rem; color: #007BFF; font-weight: 500; transition: all 0.2s ease; border-left: 3px solid transparent;}
+        .tool-link:hover { background-color: #e0f2fe; color: #0284c7; border-left-color: #007BFF;}
+        .tool-link.active { background-color: #16a34a; color: white; font-weight: 600; border-left-color: #0d9488;}
+        .tool-link i { margin-right: 0.5rem; width: 1.1em; text-align: center;}
 
-        .header-nav-item {
-            padding: 0.75rem 1rem;
-            border-radius: 0.375rem; /* rounded-md */
-            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-            text-align: center;
-        }
-        .header-nav-item:hover {
-            background-color: var(--sh-primary-blue);
-            color: var(--sh-text-light);
-        }
-        .header-nav-item.active {
-            background-color: var(--sh-secondary-orange);
-            color: var(--sh-text-light);
-            font-weight: 600;
-        }
-        .logo-img {
-            height: 50px; /* Adjust as needed */
-            width: auto;
-        }
+        /* OHS Milestones Timeline */
+        .milestones-timeline { background-color: #f8fafc; padding: 1rem; border-radius: 0.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); height: fit-content; max-height: calc(100vh - 100px - 3rem); overflow-y: auto;}
+        .milestones-timeline h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; color: #1f2937;}
+        .timeline-item { padding: 0.6rem 0.75rem; margin-bottom: 0.5rem; border-radius: 0.375rem; background-color: #007BFF; color:white; cursor: pointer; transition: all 0.2s ease; border-left: 3px solid #0056b3;}
+        .timeline-item:hover { background-color: #0056b3; }
+        .timeline-item.expanded { background-color: #16a34a; border-left-color: #0d9488;}
+        .timeline-item-header { display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size:0.875rem; }
+        .timeline-item-year { font-size: 0.75rem; opacity: 0.8; }
+        .timeline-item-details { display: none; margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px solid rgba(255,255,255,0.3); font-size: 0.8rem; line-height: 1.5; }
+        .timeline-item.expanded .timeline-item-details { display: block; }
+        .timeline-item-details a { color: #fde047; text-decoration: underline; }
+        .timeline-item-details a:hover { color: #fef9c3; }
 
-        .main-container-wrapper {
-            display: flex;
-            flex-grow: 1;
-            overflow: hidden; /* Prevent overall page scroll if sidebars are too long */
-        }
+        /* Welcome Section & Slogan */
+        .welcome-banner { background-color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.08); text-align: center;}
+        .welcome-banner h1 { font-size: 1.75rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .welcome-banner .slogan { font-family: 'Montserrat', sans-serif; font-size: 0.9rem; color: #4b5563; margin-bottom: 1rem; font-style: italic;}
+        .welcome-banner p.intro-text { font-size: 0.9rem; color: #374151; line-height: 1.6; max-width: 700px; margin: 0 auto 1rem auto;}
 
-        #left-sidebar, #right-sidebar {
-            background-color: #F8FAFC; /* Off-white */
-            padding: 1.5rem; /* p-6 */
-            height: calc(100vh - 80px - 68px); /* Viewport height - header - footer approx heights */
-            overflow-y: auto;
-            box-shadow: 0 0 10px rgba(0,0,0,0.05);
-        }
-        #left-sidebar {
-            width: 20%; /* Adjust as needed */
-            border-right: 1px solid #E2E8F0; /* Slate-200 */
-        }
-        #right-sidebar {
-            width: 20%; /* Adjust as needed */
-            border-left: 1px solid #E2E8F0; /* Slate-200 */
-        }
-        .sidebar-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.125rem; /* text-lg */
-            font-weight: 700;
-            color: var(--sh-primary-blue);
-            padding: 0.75rem;
-            background-color: var(--sh-light-blue-bg);
-            border-radius: 0.375rem;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-        .sidebar-link {
-            display: block;
-            padding: 0.5rem 0.75rem;
-            margin-bottom: 0.5rem;
-            border-radius: 0.375rem;
-            color: var(--sh-text-dark);
-            transition: background-color 0.2s ease, color 0.2s ease;
-        }
-        .sidebar-link:hover, .sidebar-link.active {
-            background-color: var(--sh-primary-blue);
-            color: var(--sh-text-light);
-        }
-        .sidebar-link .fa-fw { margin-right: 0.5rem; }
+        /* Interactive Hub: Tips & Quiz */
+        .interactive-hub { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .info-box { background-color: white; padding: 1.25rem; border-radius: 0.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .info-box h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.75rem; display: flex; align-items: center; }
+        .info-box h3 i { margin-right: 0.5rem; color: #007BFF; }
+        .info-box p, .info-box .quiz-question { font-size: 0.875rem; color: #4b5563; line-height: 1.5; }
+        .quiz-options button { display: block; width: 100%; text-align: left; padding: 0.5rem 0.75rem; margin-top: 0.5rem; border: 1px solid #e5e7eb; border-radius: 0.375rem; background-color: #f9fafb; hover:bg-slate-100 transition-colors text-sm;}
+        .quiz-input { width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 0.375rem; margin-bottom: 0.5rem; font-size:0.875rem;}
+        
+        /* Launch Message Section */
+        .launch-message-section { background: linear-gradient(135deg, #007BFF, #0056b3); color: white; padding: 2rem; border-radius: 0.5rem; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .launch-message-section h2 { font-size: 1.6rem; font-weight: 700; margin-bottom: 0.75rem; color:white; }
+        .launch-message-section p { font-size: 0.9rem; margin-bottom: 1rem; line-height: 1.6; max-width: 650px; margin-left: auto; margin-right: auto; opacity: 0.9;}
+        .launch-message-section .beta-cta { background-color: #FF8C00; color: white; padding: 0.75rem 1.5rem; border-radius: 0.375rem; font-weight: 600; text-decoration: none; display: inline-block; transition: background-color 0.2s ease;}
+        .launch-message-section .beta-cta:hover { background-color: #e06b00; }
 
-        #main-content-area {
-            width: 60%; /* Adjust based on sidebar widths */
-            padding: 1.5rem; /* p-6 */
-            overflow-y: auto;
-            height: calc(100vh - 80px - 68px); /* Viewport height - header - footer approx heights */
-        }
+        /* Why Choose Us Section */
+        .why-choose-us { background-color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        .why-choose-us h2 { text-align: center; font-size: 1.5rem; margin-bottom: 1.5rem; }
+        .feature-tile { background-color: #f8fafc; padding: 1rem; border-radius: 0.5rem; text-align: center; border: 1px solid #e5e7eb; transition: all 0.3s ease;}
+        .feature-tile:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
+        .feature-tile i { font-size: 2rem; color: #007BFF; margin-bottom: 0.75rem; }
+        .feature-tile h4 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .feature-tile p { font-size: 0.8rem; color: #6b7280; }
 
-        .welcome-section {
-            background-color: var(--sh-light-bg);
-            padding: 2rem;
-            border-radius: 0.5rem; /* rounded-lg */
-            text-align: center;
-            margin-bottom: 1.5rem; /* mb-6 */
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        .welcome-section h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.25rem; /* text-4xl */
-            color: var(--sh-primary-dark);
-            font-weight: 700;
-        }
-        .welcome-section .slogan {
-            font-size: 1.125rem; /* text-lg */
-            color: var(--sh-text-muted);
-            margin-top: 0.5rem; /* mt-2 */
-        }
+        /* Chatbot */
+        .chatbot-container { position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 1000; }
+        #chat-toggle { background-color: #FD7E14; color: white; border: none; width: 56px; height: 56px; border-radius: 50%; cursor: pointer; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); transition: background-color 0.2s ease; }
+        #chat-toggle:hover { background-color: #e06b00; }
+        #chat-window { display: none; position: fixed; bottom: 80px; right: 1.5rem; width: 320px; max-height: 450px; background-color: white; border-radius: 0.5rem; box-shadow: 0 5px 15px rgba(0,0,0,0.3); flex-direction: column; border: 1px solid #e5e7eb; }
+        #chat-window.active { display: flex; }
+        #chat-output { flex-grow: 1; padding: 0.75rem; overflow-y: auto; font-size: 0.875rem; }
+        #chat-output p { margin-bottom: 0.5rem; line-height: 1.5; }
+        #chat-output strong { font-weight: 600; }
+        #chat-input-container { display: flex; border-top: 1px solid #e5e7eb; padding: 0.5rem; }
+        #chat-input { flex-grow: 1; border: 1px solid #d1d5db; padding: 0.5rem; border-radius: 0.375rem 0 0 0.375rem; font-size: 0.875rem; }
+        #chat-input:focus { outline: none; border-color: #007BFF; box-shadow: 0 0 0 2px #bfdbfe; }
+        #chat-send { border: none; padding: 0.5rem 1rem; cursor: pointer; background-color: #007BFF; color: white; border-radius: 0 0.375rem 0.375rem 0; font-size: 0.875rem; }
+        #chat-send:hover { background-color: #0056b3; }
 
-        .content-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem; /* gap-6 */
-            margin-bottom: 1.5rem; /* mb-6 */
-        }
-        .content-card {
-            background-color: var(--sh-light-bg);
-            padding: 1.5rem; /* p-6 */
-            border-radius: 0.5rem; /* rounded-lg */
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-        .did-you-know-card { background-color: var(--sh-light-yellow-bg); }
-        .quiz-card { background-color: var(--sh-light-yellow-bg); }
-
-        .card-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.25rem; /* text-xl */
-            font-weight: 600;
-            color: var(--sh-primary-blue);
-            margin-bottom: 1rem; /* mb-4 */
-        }
-        .card-title i { margin-right: 0.5rem; }
-
-        .dashboard-section .content-card { margin-bottom: 1rem; }
-
-        .countdown-timer {
-            font-size: 1.5rem; /* text-2xl */
-            font-weight: 700;
-            color: var(--sh-secondary-orange);
-            text-align: center;
-        }
-
-        .quiz-question { margin-bottom: 0.75rem; }
-        .quiz-options label { display: block; margin-bottom: 0.5rem; cursor: pointer; padding: 0.5rem; border-radius: 0.25rem; background-color: #FFF; }
-        .quiz-options label:hover { background-color: #E0E0E0; }
-        .quiz-options input[type="radio"] { margin-right: 0.5rem; }
-        .quiz-button {
-            background-color: var(--sh-primary-blue);
-            color: var(--sh-text-light);
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 0.375rem;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-        }
-        .quiz-button:hover { background-color: #1565C0; /* Darker blue */ }
-        .quiz-button.secondary { background-color: var(--sh-secondary-orange); }
-        .quiz-button.secondary:hover { background-color: #EF6C00; /* Darker orange */ }
-
-        #quiz-results p, #quiz-answers p { margin-bottom: 0.5rem; }
-        .correct-answer { color: green; font-weight: bold; }
-        .incorrect-answer { color: red; }
-
-        .launch-message-section {
-            background-color: var(--sh-light-blue-bg);
-            padding: 2rem;
-            border-radius: 0.5rem; /* rounded-lg */
-            margin-bottom: 1.5rem; /* mb-6 */
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-        .launch-message-section h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.5rem; /* text-2xl */
-            color: var(--sh-primary-dark);
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .why-choose-us-section .feature-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-        .why-choose-us-section .feature-item i {
-            font-size: 1.5rem;
-            color: var(--sh-primary-blue);
-            margin-right: 1rem;
-            width: 30px; /* Fixed width for icon alignment */
-        }
-
-        footer {
-            background-color: var(--sh-primary-dark);
-            color: var(--sh-text-light);
-            padding: 1.5rem; /* p-6 */
-            text-align: center;
-        }
-        .footer-links a {
-            color: var(--sh-secondary-yellow);
-            margin: 0 0.5rem; /* mx-2 */
-        }
-        .footer-links a:hover { text-decoration: underline; }
-        .newsletter-form input[type="email"] {
-            padding: 0.5rem;
-            border-radius: 0.375rem 0 0 0.375rem;
-            border: 1px solid var(--sh-primary-blue);
-            color: var(--sh-text-dark);
-        }
-        .newsletter-form button {
-            background-color: var(--sh-secondary-orange);
-            color: var(--sh-text-light);
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 0 0.375rem 0.375rem 0;
-            cursor: pointer;
-        }
-
-        /* Chatbot Styles */
-        #chatbot-container {
-            position: fixed;
-            bottom: 1.5rem; /* 24px */
-            right: 1.5rem; /* 24px */
-            z-index: 1000;
-        }
-        #chat-toggle-button {
-            background-color: var(--sh-secondary-orange);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: none;
-            font-size: 1.5rem; /* text-2xl */
-            cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        #chat-widget {
-            width: 350px;
-            max-height: 500px;
-            background-color: white;
-            border-radius: 0.5rem; /* rounded-lg */
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-            transform-origin: bottom right;
-        }
-        #chat-widget.hidden {
-            transform: scale(0.5);
-            opacity: 0;
-            pointer-events: none;
-        }
-        #chat-header {
-            background-color: var(--sh-primary-blue);
-            color: white;
-            padding: 0.75rem;
-            font-weight: 600;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        #chat-close-button {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.25rem;
-            cursor: pointer;
-        }
-        #chat-messages {
-            flex-grow: 1;
-            padding: 0.75rem;
-            overflow-y: auto;
-            background-color: #F9FAFB; /* gray-50 */
-        }
-        .chat-message {
-            margin-bottom: 0.75rem;
-            padding: 0.5rem 0.75rem;
-            border-radius: 0.375rem;
-            max-width: 80%;
-            word-wrap: break-word;
-        }
-        .user-message {
-            background-color: var(--sh-primary-blue);
-            color: white;
-            margin-left: auto;
-            border-bottom-right-radius: 0;
-        }
-        .bot-message {
-            background-color: #E5E7EB; /* gray-200 */
-            color: var(--sh-text-dark);
-            margin-right: auto;
-            border-bottom-left-radius: 0;
-        }
-        #chat-input-area {
-            display: flex;
-            padding: 0.75rem;
-            border-top: 1px solid #E5E7EB; /* gray-200 */
-        }
-        #chat-input-area input {
-            flex-grow: 1;
-            padding: 0.5rem;
-            border: 1px solid #D1D5DB; /* gray-300 */
-            border-radius: 0.375rem 0 0 0.375rem;
-            outline: none;
-        }
-        #chat-input-area button {
-            background-color: var(--sh-secondary-orange);
-            color: white;
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 0 0.375rem 0.375rem 0;
-            cursor: pointer;
-        }
+        /* Footer (already styled) */
 
         /* Responsive adjustments */
-        @media (max-width: 1024px) { /* For tablets and smaller desktops */
-            #left-sidebar, #right-sidebar { width: 25%; }
-            #main-content-area { width: 50%; }
-            .content-grid { grid-template-columns: 1fr; } /* Stack tip and quiz on smaller screens */
+        @media (max-width: 1024px) { /* For tablets and large phones */
+            .page-container { flex-direction: column; }
+            .sidebar-column, .timeline-column { flex: 0 0 auto; width: 100%; max-height: 300px; /* Limit height when stacked */ }
+            .main-content-column { order: -1; /* Move main content above sidebar/timeline on stack */ }
         }
-        @media (max-width: 768px) { /* For mobile */
-            .header-container { flex-direction: column; align-items: flex-start; padding: 1rem; }
-            .header-nav { flex-direction: column; width: 100%; margin-top: 1rem; }
-            .header-nav-item { width: 100%; margin-bottom: 0.5rem; }
-            .header-actions { width: 100%; margin-top: 1rem; flex-direction: column; gap: 0.5rem; }
-            .header-actions .search-bar, .header-actions .language-selector { width: 100%; }
-            
-            .main-container-wrapper { flex-direction: column; }
-            #left-sidebar, #right-sidebar, #main-content-area {
-                width: 100%;
-                height: auto; /* Allow content to define height */
-                max-height: none;
-                border: none;
-                box-shadow: none;
-                margin-bottom: 1rem;
-                overflow-y: visible;
-            }
-            #left-sidebar { order: 2; }
-            #main-content-area { order: 1; padding-top: 1rem; } /* Reduce top padding if header is taller */
-            #right-sidebar { order: 3; }
-            .why-choose-us-section .grid { grid-template-columns: 1fr; }
+        @media (max-width: 768px) {
+            body { padding-top: 0; }
+            header { position: relative; }
+            .header-container { flex-direction: column; padding: 15px; height: auto; }
+            .header-left, .header-right, .nav-links { width: 100%; align-items: center; text-align: center; margin-bottom: 10px;}
+            .nav-links { flex-direction: column; }
+            .nav-links a { margin: 8px 0; padding: 0.75rem 1rem; background-color: rgba(255,255,255,0.1); width: 80%; text-align: center;}
+            .search-language-container { flex-direction: column; gap: 10px; } 
+            .logo-text-v3 { font-size: 1.5rem; }
+            .tagline { text-align: center; font-size: 11px; }
+            .main-content-wrapper { margin-left: 0; flex-direction: column; padding: 1rem; }
+            .interactive-hub { grid-template-columns: 1fr; }
         }
-
     </style>
 </head>
 <body>
-
     <header>
-        <div class="header-container container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
-            <a href="/SafetyHelp/index.html" class="flex items-center">
-                <img src="/SafetyHelp/assets/images/logo.png" alt="SafetyHelp Logo" class="logo-img mr-3"
-                     onerror="this.onerror=null; this.src='https://placehold.co/150x50/0D47A1/FFFFFF?text=SafetyHelp';">
-            </a>
-            <nav class="header-nav hidden md:flex items-center space-x-2">
-                <a href="/SafetyHelp/index.html" class="header-nav-item active" data-i18n="header.nav.home">Home</a>
-                <a href="/SafetyHelp/resources.html" class="header-nav-item" data-i18n="header.nav.resources">Resources</a>
-                <a href="/SafetyHelp/services.html" class="header-nav-item" data-i18n="header.nav.services">Services</a>
-                <a href="/SafetyHelp/community.html" class="header-nav-item" data-i18n="header.nav.community">Community</a>
-                <a href="/SafetyHelp/about.html" class="header-nav-item" data-i18n="header.nav.about">About</a>
-                <a href="/SafetyHelp/contact.html" class="header-nav-item" data-i18n="header.nav.contact">Contact</a>
-            </nav>
-            <div class="header-actions flex items-center space-x-3">
-                <div class="search-bar relative">
-                    <input type="text" placeholder="Search..." data-i18n="[placeholder]header.search.placeholder"
-                           class="px-3 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-var(--sh-secondary-orange) focus:border-transparent text-sm text-gray-700">
-                    <button class="absolute right-0 top-0 h-full px-3 text-gray-500 hover:text-var(--sh-secondary-orange)">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-                <div class="language-selector">
-                    <select id="language-select" class="px-3 py-2 rounded-md border border-gray-300 bg-white text-sm text-gray-700 focus:ring-2 focus:ring-var(--sh-secondary-orange) focus:border-transparent">
-                        <option value="en" data-i18n="language_selector.en">English</option>
-                        <option value="xh" data-i18n="language_selector.xh">isiXhosa</option>
-                        <option value="zu" data-i18n="language_selector.zu">isiZulu</option>
-                        <option value="af" data-i18n="language_selector.af">Afrikaans</option>
-                    </select>
-                </div>
-                <a href="/SafetyHelp/login.html" class="header-nav-item bg-var(--sh-secondary-orange) hover:bg-opacity-80" data-i18n="header.nav.login_signup">Login/Signup</a>
+        <div class="header-container">
+            <div class="header-left">
+                <a href="index.html" class="logo-text-v3">
+                    <span class="safety-part">Safety</span><span class="help-part">Help</span>
+                </a>
+                <p class="tagline" data-i18n="header.tagline">Safety Personalized, Compliance Simplified—Anytime, Anywhere</p>
             </div>
-            <button id="mobile-menu-button" class="md:hidden text-2xl">
-                <i class="fas fa-bars"></i>
-            </button>
+            <nav class="nav-links">
+                <a href="index.html" data-i18n="header.nav.home" class="active-nav-link">Home</a>
+                <a href="resources.html" data-i18n="header.nav.resources">Resources</a>
+                <a href="services.html" data-i18n="header.nav.services">Services</a>
+                <a href="community.html" data-i18n="header.nav.community">Community</a>
+                <a href="about.html" data-i18n="header.nav.about">About</a>
+                <a href="contact.html" data-i18n="header.nav.contact">Contact</a>
+            </nav>
+            <div class="header-right">
+                <div class="search-language-container">
+                    <div class="search-bar">
+                        <form role="search" class="flex">
+                            <input type="text" data-i18n="[placeholder]header.search.placeholder" placeholder="Search OHS Tools..." aria-label="Search OHS Tools">
+                            <button type="submit" aria-label="Search" data-i18n="header.search.button"><i class="fas fa-search"></i></button>
+                        </form>
+                    </div>
+                    <div class="language-selector">
+                        <select id="language-select" aria-label="Select language">
+                            <option value="en" data-i18n="language_selector.en">English</option>
+                            <option value="xh" data-i18n="language_selector.xh">isiXhosa</option>
+                            <option value="zu" data-i18n="language_selector.zu">isiZulu</option>
+                            <option value="af" data-i18n="language_selector.af">Afrikaans</option>
+                            <option value="st" data-i18n="language_selector.st">Sesotho</option>
+                        </select>
+                    </div>
+                </div>
+                 <a href="login.html" id="login-header-link" class="ml-4 px-4 py-2 text-sm font-medium text-white bg-orange-500 rounded-md hover:bg-orange-600 transition-colors" data-i18n="header.nav.login_signup">Login / Sign Up</a>
+            </div>
         </div>
-        <nav id="mobile-menu" class="md:hidden hidden flex-col items-center space-y-2 p-4 bg-var(--sh-primary-dark)">
-             <a href="/SafetyHelp/index.html" class="header-nav-item active w-full" data-i18n="header.nav.home">Home</a>
-            <a href="/SafetyHelp/resources.html" class="header-nav-item w-full" data-i18n="header.nav.resources">Resources</a>
-            <a href="/SafetyHelp/services.html" class="header-nav-item w-full" data-i18n="header.nav.services">Services</a>
-            <a href="/SafetyHelp/community.html" class="header-nav-item w-full" data-i18n="header.nav.community">Community</a>
-            <a href="/SafetyHelp/about.html" class="header-nav-item w-full" data-i18n="header.nav.about">About</a>
-            <a href="/SafetyHelp/contact.html" class="header-nav-item w-full" data-i18n="header.nav.contact">Contact</a>
-        </nav>
     </header>
 
-    <div class="main-container-wrapper">
-        <aside id="left-sidebar">
-            <h2 class="sidebar-title" data-i18n="sidebar.tools_title"><i class="fas fa-tools mr-2"></i>SafetyHelp Tools</h2>
-            <nav>
-                <a href="#" class="sidebar-link active" data-i18n="sidebar.tools.dashboard"><i class="fas fa-tachometer-alt fa-fw"></i>Dashboard</a>
-                <a href="#" class="sidebar-link" data-i18n="sidebar.tools.risk_assessments"><i class="fas fa-shield-alt fa-fw"></i>Risk Assessments</a>
-                <a href="#" class="sidebar-link" data-i18n="sidebar.tools.incident_reporting"><i class="fas fa-file-medical-alt fa-fw"></i>Incident Reporting</a>
-                <a href="#" class="sidebar-link" data-i18n="sidebar.tools.training_modules"><i class="fas fa-chalkboard-teacher fa-fw"></i>Training Modules</a>
-                <a href="#" class="sidebar-link" data-i18n="sidebar.tools.document_management"><i class="fas fa-folder-open fa-fw"></i>Document Management</a>
-                <a href="#" class="sidebar-link" data-i18n="sidebar.tools.compliance_checklists"><i class="fas fa-tasks fa-fw"></i>Compliance Checklists</a>
-                <a href="#" class="sidebar-link" data-i18n="sidebar.tools.analytics_reports"><i class="fas fa-chart-line fa-fw"></i>Analytics & Reports</a>
-            </nav>
+    <div class="page-container">
+        <aside class="sidebar-column">
+            <div class="tools-sidebar">
+                <h3 class="tools-sidebar-title">
+                    <span class="safety-part">Safety</span><span class="help-part">Help</span> <span class="text-slate-700" data-i18n="sidebar.tools_title_suffix">Tools</span>
+                </h3>
+                <nav id="tools-nav">
+                    <a href="#" class="tool-link active" data-tool="dashboard"><i class="fas fa-tachometer-alt"></i><span data-i18n="sidebar.dashboard">Dashboard</span></a>
+                    <a href="#" class="tool-link" data-tool="risk-assessment"><i class="fas fa-shield-alt"></i><span data-i18n="sidebar.risk_assessment">Risk Assessments</span></a>
+                    <a href="#" class="tool-link" data-tool="incident-reporting"><i class="fas fa-triangle-exclamation"></i><span data-i18n="sidebar.incident_reporting">Incident Reporting</span></a>
+                    <a href="#" class="tool-link" data-tool="training-modules"><i class="fas fa-graduation-cap"></i><span data-i18n="sidebar.training_modules">Training Modules</span></a>
+                    <a href="#" class="tool-link" data-tool="document-management"><i class="fas fa-folder-open"></i><span data-i18n="sidebar.document_management">Document Management</span></a>
+                    <a href="#" class="tool-link" data-tool="compliance-checklists"><i class="fas fa-tasks"></i><span data-i18n="sidebar.compliance_checklists">Compliance Checklists</span></a>
+                </nav>
+            </div>
         </aside>
 
-        <main id="main-content-area">
-            <section class="welcome-section">
-                <h1 data-i18n="welcome.title">Welcome to SafetyHelp</h1>
-                <p class="slogan" data-i18n="welcome.slogan">Safety Personalized, Compliance Simplified—Anytime, Anywhere.</p>
+        <main class="main-content-column">
+            <section class="welcome-banner">
+                <h1><span class="logo-text-v3" style="font-size: 2rem; color: #007BFF; --underline-color: #FF8C00;"><span class="safety-part" style="color:#007BFF;">Safety</span><span class="help-part">Help</span></span></h1>
+                <p class="slogan" data-i18n="header.tagline">Safety Personalized, Compliance Simplified—Anytime, Anywhere</p>
+                <p class="intro-text" data-i18n="hero.description">Your trusted platform for occupational health and safety (OHS) in South Africa. We provide automated, AI-enhanced tools to ensure safety and compliance for workplaces, schools, churches, and informal sectors. Join our community to access resources, services, and support tailored to your needs.</p>
             </section>
 
-            <section class="content-grid">
-                <div class="content-card did-you-know-card">
-                    <h3 class="card-title" data-i18n="did_you_know.title"><i class="fas fa-lightbulb"></i>Did you know...</h3>
-                    <p id="did-you-know-text" class="text-lg">⚡ Using reputable ethical suppliers can reduce workplace hazards by ensuring work is done on time and to the highest quality and safety standards?</p>
+            <div class="interactive-hub">
+                <div class="info-box">
+                    <h3><i class="fas fa-lightbulb"></i><span data-i18n="index.didYouKnowTitle">Did you know...</span></h3>
+                    <p id="safety-tip-text" data-i18n="index.safetyTipPlaceholder">⚡ Using reputable ethical suppliers can reduce workplace hazards by ensuring work is done on time and to the highest quality and safety standards?</p>
+                    <button id="next-tip-btn" class="text-xs text-blue-600 hover:underline mt-2" data-i18n="index.nextTip">Next Tip</button>
                 </div>
-                <div class="content-card quiz-card">
-                    <h3 class="card-title" data-i18n="quiz.title"><i class="fas fa-brain"></i>Brain of SafetyHelp - Daily Challenge!</h3>
-                    <div id="quiz-area">
-                        <div id="quiz-question-area">
-                            </div>
-                        <div id="quiz-user-input" class="mt-4 hidden">
-                            <input type="text" id="quiz-user-name" placeholder="Enter your name" class="p-2 border rounded-md w-full mb-2">
-                            <input type="email" id="quiz-user-email" placeholder="Enter your email (optional)" class="p-2 border rounded-md w-full mb-2">
-                            <button id="quiz-submit-score" class="quiz-button w-full">Register Score</button>
-                        </div>
-                        <div id="quiz-results" class="mt-4 hidden"></div>
-                        <div id="quiz-answers" class="mt-4 hidden"></div>
-                        <div class="mt-4 flex justify-between">
-                            <button id="quiz-start-button" class="quiz-button">Start Quiz</button>
-                            <button id="quiz-next-button" class="quiz-button hidden">Next Question</button>
-                            <button id="quiz-continue-button" class="quiz-button secondary hidden">Continue Quiz (Next 5)</button>
-                        </div>
+                <div class="info-box">
+                    <h3><i class="fas fa-stopwatch"></i><span data-i18n="index.nextModuleCountdownTitle">Next Module Launch In:</span></h3>
+                    <div id="countdown-timer" class="text-2xl font-bold text-center text-blue-600 my-2">00d 00h 00m 00s</div>
+                    <p class="text-xs text-center text-slate-500" data-i18n="index.nextModuleIs">Next Up: Advanced Incident Investigation</p>
+                </div>
+            </div>
+            
+            <div class="info-box">
+                <h3 class="text-center"><i class="fas fa-brain"></i><span data-i18n="index.brainChallengeTitle">SafetyHelp Brain of the Day - Daily Challenge!</span></h3>
+                <div id="quiz-area">
                     </div>
+                <div id="quiz-feedback" class="mt-2 text-sm"></div>
+                <div id="leaderboard-preview" class="mt-3 text-xs">
+                    <p><strong data-i18n="index.leaderboardTitle">Today's Leader:</strong> <span id="leaderboard-name">Loading...</span> (<span id="leaderboard-score">0</span> pts)</p>
+                    <a href="#" class="text-blue-600 hover:underline" data-i18n="index.viewFullRanking">View Full Ranking</a>
                 </div>
-            </section>
+            </div>
 
-            <section class="dashboard-section">
-                <h2 class="text-2xl font-bold mb-4 text-var(--sh-primary-dark)" data-i18n="dashboard.title"><i class="fas fa-columns mr-2"></i>Dashboard</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="content-card">
-                        <h3 class="card-title" data-i18n="dashboard.timer_title"><i class="fas fa-hourglass-half"></i>Next Module Countdown</h3>
-                        <div id="countdown-timer" class="countdown-timer">00d 00h 00m 00s</div>
-                        <p class="text-sm text-center text-var(--sh-text-muted) mt-2" data-i18n="dashboard.timer_caption">until the next module launch!</p>
-                    </div>
-                    <div class="content-card">
-                        <h3 class="card-title" data-i18n="dashboard.brain_title"><i class="fas fa-trophy"></i>SafetyHelp Brain of the Day</h3>
-                        <p id="brain-of-the-day" class="text-lg font-semibold text-var(--sh-primary-blue)">Fetching leader...</p>
-                    </div>
-                    <div class="content-card">
-                        <h3 class="card-title" data-i18n="dashboard.podcast_title"><i class="fas fa-podcast"></i>Latest Podcast</h3>
-                        <a href="#" class="text-var(--sh-primary-blue) hover:underline" data-i18n="dashboard.podcast_link">Listen to: OHS Innovations in 2025 <i class="fas fa-external-link-alt ml-1"></i></a>
-                    </div>
-                    <div class="content-card">
-                        <h3 class="card-title" data-i18n="dashboard.article_title"><i class="fas fa-newspaper"></i>Latest Article</h3>
-                        <a href="#" class="text-var(--sh-primary-blue) hover:underline" data-i18n="dashboard.article_link">Read: Mastering Risk Assessments <i class="fas fa-external-link-alt ml-1"></i></a>
-                    </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                 <div class="info-box">
+                    <h3><i class="fas fa-podcast"></i><span data-i18n="index.latestPodcastTitle">Latest OHS Podcast</span></h3>
+                    <p><a href="#" class="text-blue-600 hover:underline" data-i18n="index.podcastLinkText">Episode 5: Understanding COIDA in 2025</a></p>
+                    <p class="text-xs text-slate-500" data-i18n="index.podcastDate">Posted: May 28, 2025</p>
                 </div>
-            </section>
+                <div class="info-box">
+                    <h3><i class="far fa-newspaper"></i><span data-i18n="index.latestArticleTitle">Latest Safety Article</span></h3>
+                    <p><a href="#" class="text-blue-600 hover:underline" data-i18n="index.articleLinkText">Top 10 Workplace Hazards in Construction</a></p>
+                    <p class="text-xs text-slate-500" data-i18n="index.articleDate">Posted: May 25, 2025</p>
+                </div>
+            </div>
 
             <section class="launch-message-section">
-                <h2 data-i18n="launch.title">🚀 SafetyHelp Has Launched!</h2>
-                <p class="mb-2" data-i18n="launch.core_platform">The core SafetyHelp platform was successfully launched on <strong>June 1, 2025!</strong> We're excited to bring you a new era of OHS management.</p>
-                <p class="mb-2" data-i18n="launch.upcoming_modules">Stay tuned for new and advanced modules launching every month! Our next module is just around the corner (see countdown above).</p>
-                <p data-i18n="launch.beta_invite">Be a pioneer in OHS excellence! <a href="#" class="font-bold text-var(--sh-secondary-orange) hover:underline">Join our Beta Program</a> to test new features, influence development, and get complimentary premium access during the testing period. <a href="/SafetyHelp/register.html" class="font-bold text-var(--sh-secondary-orange) hover:underline">Register now!</a></p>
+                <h2 data-i18n="index.launch.mainTitle">SafetyHelp Launched June 1, 2025!</h2>
+                <p data-i18n="index.launch.corePlatformLive">Our core platform with essential OHS tools is now LIVE! Start simplifying your safety compliance today.</p>
+                <h3 class="text-xl font-semibold mt-4 mb-2 text-yellow-300" data-i18n="index.launch.upcomingModules">Upcoming Modules & Beta Program:</h3>
+                <p data-i18n="index.launch.phasedRollout">Advanced modules like Construction Compliance Pro, AI-Driven Risk Profiling, and Emergency Preparedness Suite will be launched monthly. Check the countdown timer above for the next release!</p>
+                <p data-i18n="index.launch.betaProgramIntro">Want early access and a chance to shape these tools? Join our Beta Program!</p>
+                <ul class="list-disc list-inside my-3 text-left max-w-md mx-auto text-sm opacity-90">
+                    <li data-i18n="index.launch.betaBenefit1">Test new modules before public release.</li>
+                    <li data-i18n="index.launch.betaBenefit2">Provide direct feedback to influence development.</li>
+                    <li data-i18n="index.launch.betaBenefit3">Receive complimentary premium subscription access during your active beta testing period.</li>
+                </ul>
+                <p data-i18n="index.launch.betaCaveat">Spots are limited. The application process is rigorous as we seek individuals who can provide valuable insights and demonstrate OHS skills.</p>
+                <a href="login.html#signup-section" class="beta-cta mt-4"><i class="fas fa-flask-vial mr-2"></i><span data-i18n="index.launch.betaCTA">Apply for Beta & Register</span></a>
             </section>
 
-            <section class="why-choose-us-section content-card">
-                <h2 class="card-title text-2xl font-bold mb-6 text-center text-var(--sh-primary-dark)" data-i18n="why_choose_us.title">Why Choose SafetyHelp?</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
-                    <div class="feature-item">
-                        <i class="fas fa-robot fa-fw"></i>
-                        <div>
-                            <h4 class="font-semibold text-lg" data-i18n="why_choose_us.ai_automation.title">AI Automation</h4>
-                            <p class="text-sm text-var(--sh-text-muted)" data-i18n="why_choose_us.ai_automation.desc">Intelligent task streamlining and risk prediction.</p>
-                        </div>
+            <section class="why-choose-us">
+                <h2 data-i18n="features.title">Why Choose SafetyHelp?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="feature-tile">
+                        <i class="fas fa-cogs"></i>
+                        <h4 data-i18n="features.automation.title">AI & Automation</h4>
+                        <p data-i18n="features.automation.description_short">Intelligent task streamlining for efficient OHS management.</p>
                     </div>
-                    <div class="feature-item">
-                        <i class="fas fa-chart-pie fa-fw"></i>
-                        <div>
-                            <h4 class="font-semibold text-lg" data-i18n="why_choose_us.analytics.title">Insightful Analytics</h4>
-                            <p class="text-sm text-var(--sh-text-muted)" data-i18n="why_choose_us.analytics.desc">Data-driven safety decisions and trend analysis.</p>
-                        </div>
+                    <div class="feature-tile">
+                        <i class="fas fa-chart-line"></i>
+                        <h4 data-i18n="features.analytics.title">Insightful Analytics</h4>
+                        <p data-i18n="features.analytics.description_short">Data-driven safety decisions and trend identification.</p>
                     </div>
-                    <div class="feature-item">
-                        <i class="fas fa-mobile-alt fa-fw"></i>
-                        <div>
-                            <h4 class="font-semibold text-lg" data-i18n="why_choose_us.mobile.title">Mobile Accessibility</h4>
-                            <p class="text-sm text-var(--sh-text-muted)" data-i18n="why_choose_us.mobile.desc">OHS management on the go, anytime, anywhere.</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-cubes fa-fw"></i>
-                        <div>
-                            <h4 class="font-semibold text-lg" data-i18n="why_choose_us.modules.title">Integrated Modules</h4>
-                            <p class="text-sm text-var(--sh-text-muted)" data-i18n="why_choose_us.modules.desc">A holistic OHS ecosystem for comprehensive coverage.</p>
-                        </div>
+                    <div class="feature-tile">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h4 data-i18n="features.mobile.title">Mobile Accessibility</h4>
+                        <p data-i18n="features.mobile.description_short">OHS management on the go, anytime, anywhere.</p>
                     </div>
                 </div>
             </section>
         </main>
 
-        <aside id="right-sidebar">
-            <h2 class="sidebar-title" data-i18n="sidebar.milestones_title"><i class="fas fa-flag-checkered mr-2"></i>OHS Milestones</h2>
-            <ul class="space-y-3">
-                <li class="flex items-start">
-                    <i class="fas fa-calendar-alt text-var(--sh-primary-blue) mt-1 mr-2"></i>
-                    <div>
-                        <strong class="block" data-i18n="milestones.y1970.year">1970:</strong>
-                        <span class="text-sm text-var(--sh-text-muted)" data-i18n="milestones.y1970.desc">OSHA (USA) established, influencing global standards.</span>
+        <aside class="timeline-column">
+            <div class="milestones-timeline">
+                <h3 data-i18n="timeline.title">OHS Milestones</h3>
+                <div id="timeline-items-container">
                     </div>
-                </li>
-                <li class="flex items-start">
-                    <i class="fas fa-calendar-alt text-var(--sh-primary-blue) mt-1 mr-2"></i>
-                    <div>
-                        <strong class="block" data-i18n="milestones.y1993.year">1993:</strong>
-                        <span class="text-sm text-var(--sh-text-muted)" data-i18n="milestones.y1993.desc">OHS Act (South Africa) enacted, a cornerstone of local OHS.</span>
-                    </div>
-                </li>
-                <li class="flex items-start">
-                    <i class="fas fa-calendar-alt text-var(--sh-primary-blue) mt-1 mr-2"></i>
-                    <div>
-                        <strong class="block" data-i18n="milestones.y2003.year">2003:</strong>
-                        <span class="text-sm text-var(--sh-text-muted)" data-i18n="milestones.y2003.desc">COIDA Amendment Act, refining worker compensation.</span>
-                    </div>
-                </li>
-                 <li class="flex items-start">
-                    <i class="fas fa-calendar-alt text-var(--sh-primary-blue) mt-1 mr-2"></i>
-                    <div>
-                        <strong class="block" data-i18n="milestones.y2015.year">2015:</strong>
-                        <span class="text-sm text-var(--sh-text-muted)" data-i18n="milestones.y2015.desc">Global Harmonization System (GHS) for chemical safety.</span>
-                    </div>
-                </li>
-                <li class="flex items-start">
-                    <i class="fas fa-calendar-alt text-var(--sh-primary-blue) mt-1 mr-2"></i>
-                    <div>
-                        <strong class="block" data-i18n="milestones.y2022.year">2022:</strong>
-                        <span class="text-sm text-var(--sh-text-muted)" data-i18n="milestones.y2022.desc">Increased focus on Mental Health in the Workplace.</span>
-                    </div>
-                </li>
-                <li class="flex items-start">
-                    <i class="fas fa-calendar-alt text-var(--sh-primary-blue) mt-1 mr-2"></i>
-                    <div>
-                        <strong class="block" data-i18n="milestones.future.year">Future:</strong>
-                        <span class="text-sm text-var(--sh-text-muted)" data-i18n="milestones.future.desc">Predictive Safety using AI and Big Data.</span>
-                    </div>
-                </li>
-            </ul>
+            </div>
         </aside>
     </div>
 
     <footer>
-        <div class="container mx-auto px-6">
-            <div class="newsletter mb-6">
-                <h3 class="text-lg font-semibold mb-2" data-i18n="footer.newsletter.title">Stay Updated with SafetyHelp</h3>
-                <form class="newsletter-form flex justify-center max-w-md mx-auto">
-                    <input type="email" placeholder="Enter your email" data-i18n="[placeholder]footer.newsletter.placeholder" aria-label="Email for newsletter">
-                    <button type="submit" data-i18n="footer.newsletter.button">Subscribe</button>
-                </form>
-            </div>
-            <div class="footer-links mb-4">
-                <a href="/SafetyHelp/privacy.html" data-i18n="footer.links.privacy">Privacy Policy</a> |
-                <a href="/SafetyHelp/terms.html" data-i18n="footer.links.terms">Terms of Service</a> |
-                <a href="/SafetyHelp/contact.html" data-i18n="footer.links.contact">Contact Us</a>
-            </div>
-            <p class="text-sm" data-i18n="footer.copyright">&copy; 2025 SafetyHelp. All rights reserved. Designed by Salatiso Lonwabo Mdeni.</p>
+        <p data-i18n="footer.copyright" id="footer-copyright-year">© 2025 SafetyHelp. All Rights Reserved.</p>
+        <div class="footer-links">
+            <a href="privacy.html" data-i18n="footer.links.privacy">Privacy Policy</a>
+            <a href="terms.html" data-i18n="footer.links.terms">Terms of Service</a>
+            <a href="contact.html" data-i18n="footer.links.contact">Contact Us</a>
+        </div>
+        <div class="newsletter">
+            <h3 data-i18n="footer.newsletter.title">Stay Updated</h3>
+            <form id="newsletterFormIndex" class="flex justify-center">
+                <input type="email" id="newsletterEmailIndex" data-i18n="[placeholder]footer.newsletter.placeholder" placeholder="Enter your email" aria-label="Email for newsletter">
+                <button type="submit" data-i18n="footer.newsletter.button">Subscribe</button>
+            </form>
         </div>
     </footer>
 
-    <div id="chatbot-container">
-        <button id="chat-toggle-button">
-            <i class="fas fa-comments"></i>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <div class="chatbot-container">
+        <button id="chat-toggle" aria-label="Toggle Chatbot">
+             <span class="chat-icon"><i class="fas fa-headset"></i></span>
         </button>
-        <div id="chat-widget" class="hidden">
-            <div id="chat-header">
-                <span data-i18n="chatbot.title">SafetyHelp Assistant</span>
-                <button id="chat-close-button"><i class="fas fa-times"></i></button>
+        <div id="chat-window" class="chat-hidden">
+            <div id="chat-output">
+                <p><strong>Salatiso:</strong> <span data-i18n="chatbot.welcome">Hello! How can I help you with OHS today?</span></p>
             </div>
-            <div id="chat-messages">
-                <div class="bot-message" data-i18n="chatbot.welcome_message">Hello! How can I assist you with OHS today?</div>
-            </div>
-            <div id="chat-input-area">
-                <input type="text" id="chat-user-input" placeholder="Type your question..." data-i18n="[placeholder]chatbot.input_placeholder">
-                <button id="chat-send-button"><i class="fas fa-paper-plane"></i></button>
+            <div id="chat-input-container">
+                <input id="chat-input" type="text" data-i18n="[placeholder]chatbot.input_placeholder" placeholder="Ask about OHS..." aria-label="Ask about OHS">
+                <button id="chat-send" aria-label="Send chat message" data-i18n="chatbot.send">Send</button>
             </div>
         </div>
     </div>
 
     <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getFirestore, collection, getDocs, addDoc, query, orderBy, limit, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
+        // Firebase SDK Imports (if needed directly on index for non-auth features like testimonials, otherwise handled by auth pages)
+        // For now, assuming testimonials are static or loaded via a different mechanism if this page doesn't require user auth for them.
+        // import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+        // import { getFirestore, collection, query, orderBy, limit, startAfter, getDocs } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
 
-        // Your web app's Firebase configuration
-        // IMPORTANT: Replace with your actual Firebase project configuration!
-        const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_PROJECT_ID.appspot.com",
-            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-            appId: "YOUR_APP_ID"
-        };
+        // const firebaseConfig = { /* ... your config ... */ };
+        // const app = initializeApp(firebaseConfig);
+        // const db = getFirestore(app);
 
-        // Initialize Firebase
-        let app;
-        let db;
-        try {
-            app = initializeApp(firebaseConfig);
-            db = getFirestore(app);
-            console.log("Firebase initialized successfully.");
-        } catch (e) {
-            console.error("Firebase initialization failed. Using mock data. Error:", e);
-            // Fallback or mock data initialization if Firebase fails
-            db = null; // Ensure db is null if Firebase fails
+        // --- i18next and DOMContentLoaded ---
+        async function initializeI18next() {
+            if (typeof i18next !== 'undefined' && typeof i18nextHttpBackend !== 'undefined' && typeof i18nextBrowserLanguageDetector !== 'undefined') {
+                try {
+                    await i18next
+                        .use(i18nextHttpBackend)
+                        .use(i18nextBrowserLanguageDetector)
+                        .init({
+                            fallbackLng: 'en', debug: true, ns: ['translation'], defaultNS: 'translation',
+                            backend: { loadPath: './assets/locales/{{lng}}/{{ns}}.json' },
+                            detection: { order: ['querystring', 'cookie', 'localStorage', 'sessionStorage', 'navigator', 'htmlTag'], caches: ['localStorage', 'cookie'] }
+                        });
+                    updateContent();
+                } catch (error) { console.error("Error initializing i18next:", error); }
+            } else { console.error("i18next plugins not loaded."); }
+        }
+
+        function updateContent() {
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                const optionsAttr = element.getAttribute('data-i18n-options');
+                let options = {};
+                if (optionsAttr) { try { options = JSON.parse(optionsAttr); } catch (e) { console.error(`Error parsing i18n options for key "${key}":`, e); }}
+                
+                if (key.startsWith('[placeholder]')) {
+                     element.setAttribute('placeholder', i18next.t(key.substring('[placeholder]'.length), options));
+                } else if (element.tagName === 'TITLE') {
+                    document.title = i18next.t(key, options);
+                } else {
+                    const icon = element.querySelector('i.fas, i.fab');
+                    let textContent = i18next.t(key, options);
+                     if (element.id === 'footer-copyright-year') {
+                         element.textContent = i18next.t(key, { year: new Date().getFullYear(), ...options });
+                    } else if (icon && (element.classList.contains('btn-submit') || element.classList.contains('btn-google') || element.closest('a.tool-link') || element.closest('button.beta-cta'))) {
+                         let textNode = icon.nextSibling;
+                        while(textNode && textNode.nodeType !== Node.TEXT_NODE) { textNode = textNode.nextSibling; }
+                        if (textNode) { textNode.textContent = ' ' + textContent; }
+                        else { element.appendChild(document.createTextNode(' ' + textContent));}
+                    } else { element.innerHTML = textContent; }
+                }
+            });
+            populateTimeline(); // Re-populate timeline after language change
         }
         
-        // --- Translations (i18next) ---
-        const translations = {
-            en: {
-                translation: {
-                    "header.nav.home": "Home",
-                    "header.nav.resources": "Resources",
-                    "header.nav.services": "Services",
-                    "header.nav.community": "Community",
-                    "header.nav.about": "About",
-                    "header.nav.contact": "Contact",
-                    "header.nav.login_signup": "Login/Signup",
-                    "header.search.placeholder": "Search...",
-                    "language_selector.en": "English",
-                    "language_selector.xh": "isiXhosa",
-                    "language_selector.zu": "isiZulu",
-                    "language_selector.af": "Afrikaans",
-                    "sidebar.tools_title": "SafetyHelp Tools",
-                    "sidebar.tools.dashboard": "Dashboard",
-                    "sidebar.tools.risk_assessments": "Risk Assessments",
-                    "sidebar.tools.incident_reporting": "Incident Reporting",
-                    "sidebar.tools.training_modules": "Training Modules",
-                    "sidebar.tools.document_management": "Document Management",
-                    "sidebar.tools.compliance_checklists": "Compliance Checklists",
-                    "sidebar.tools.analytics_reports": "Analytics & Reports",
-                    "sidebar.milestones_title": "OHS Milestones",
-                    "milestones.y1970.year": "1970:", "milestones.y1970.desc": "OSHA (USA) established.",
-                    "milestones.y1993.year": "1993:", "milestones.y1993.desc": "OHS Act (South Africa) enacted.",
-                    "milestones.y2003.year": "2003:", "milestones.y2003.desc": "COIDA Amendment Act.",
-                    "milestones.y2015.year": "2015:", "milestones.y2015.desc": "Global Harmonization System (GHS).",
-                    "milestones.y2022.year": "2022:", "milestones.y2022.desc": "Focus on Mental Health in Workplace.",
-                    "milestones.future.year": "Future:", "milestones.future.desc": "Predictive Safety (AI & Big Data).",
-                    "welcome.title": "Welcome to SafetyHelp",
-                    "welcome.slogan": "Safety Personalized, Compliance Simplified—Anytime, Anywhere.",
-                    "did_you_know.title": "Did you know...",
-                    "quiz.title": "Brain of SafetyHelp - Daily Challenge!",
-                    "dashboard.title": "Dashboard",
-                    "dashboard.timer_title": "Next Module Countdown",
-                    "dashboard.timer_caption": "until the next module launch!",
-                    "dashboard.brain_title": "SafetyHelp Brain of the Day",
-                    "dashboard.podcast_title": "Latest Podcast",
-                    "dashboard.podcast_link": "Listen to: OHS Innovations in 2025",
-                    "dashboard.article_title": "Latest Article",
-                    "dashboard.article_link": "Read: Mastering Risk Assessments",
-                    "launch.title": "🚀 SafetyHelp Has Launched!",
-                    "launch.core_platform": "The core SafetyHelp platform was successfully launched on <strong>June 1, 2025!</strong> We're excited to bring you a new era of OHS management.",
-                    "launch.upcoming_modules": "Stay tuned for new and advanced modules launching every month! Our next module is just around the corner (see countdown above).",
-                    "launch.beta_invite": "Be a pioneer in OHS excellence! <a href='#' class='font-bold text-var(--sh-secondary-orange) hover:underline'>Join our Beta Program</a> to test new features, influence development, and get complimentary premium access during the testing period. <a href='/SafetyHelp/register.html' class='font-bold text-var(--sh-secondary-orange) hover:underline'>Register now!</a>",
-                    "why_choose_us.title": "Why Choose SafetyHelp?",
-                    "why_choose_us.ai_automation.title": "AI Automation", "why_choose_us.ai_automation.desc": "Intelligent task streamlining and risk prediction.",
-                    "why_choose_us.analytics.title": "Insightful Analytics", "why_choose_us.analytics.desc": "Data-driven safety decisions and trend analysis.",
-                    "why_choose_us.mobile.title": "Mobile Accessibility", "why_choose_us.mobile.desc": "OHS management on the go, anytime, anywhere.",
-                    "why_choose_us.modules.title": "Integrated Modules", "why_choose_us.modules.desc": "A holistic OHS ecosystem for comprehensive coverage.",
-                    "footer.newsletter.title": "Stay Updated with SafetyHelp",
-                    "footer.newsletter.placeholder": "Enter your email",
-                    "footer.newsletter.button": "Subscribe",
-                    "footer.links.privacy": "Privacy Policy",
-                    "footer.links.terms": "Terms of Service",
-                    "footer.links.contact": "Contact Us",
-                    "footer.copyright": "&copy; 2025 SafetyHelp. All rights reserved. Designed by Salatiso Lonwabo Mdeni.",
-                    "chatbot.title": "SafetyHelp Assistant",
-                    "chatbot.welcome_message": "Hello! How can I assist you with OHS today?",
-                    "chatbot.input_placeholder": "Type your question..."
-                }
-                // Add other languages here
-            }
-        };
+        // --- OHS Milestones Timeline ---
+        const timelineData = [ // Add all 50 items here
+            { year: "1911", title: "Mines & Works Act", detailsKey: "timeline.detail.1911", link: "#" },
+            { year: "1973", title: "Occupational Diseases Act", detailsKey: "timeline.detail.1973", link: "#" },
+            { year: "1993", title: "OHS Act (SA)", detailsKey: "timeline.detail.1993", link: "https://www.gov.za/documents/occupational-health-and-safety-act" },
+            { year: "1996", title: "Mine Health & Safety Act", detailsKey: "timeline.detail.1996", link: "#" },
+            { year: "2001", title: "King II Report", detailsKey: "timeline.detail.2001", link: "#" },
+            // ... Add more items. For brevity, only a few are shown here.
+            { year: "2025", title: "SafetyHelp Launch", detailsKey: "timeline.detail.2025sh", link: "#" } 
+        ];
+        const timelineContainer = document.getElementById('timeline-items-container');
+        let timelineScrollInterval;
 
-        i18next
-            .use(i18nextBrowserLanguageDetector)
-            .init({
-                debug: true,
-                fallbackLng: 'en',
-                resources: translations
-            }, function(err, t) {
-                updateUIWithTranslations();
+        function populateTimeline() {
+            if (!timelineContainer || !i18next.isInitialized) return;
+            timelineContainer.innerHTML = ''; // Clear existing
+            timelineData.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'timeline-item';
+                div.innerHTML = `
+                    <div class="timeline-item-header">
+                        <span>${item.year}: ${item.title}</span>
+                        <i class="fas fa-chevron-down text-xs"></i>
+                    </div>
+                    <div class="timeline-item-details">
+                        <p>${i18next.t(item.detailsKey, "Details coming soon...")}</p>
+                        ${item.link !== "#" ? `<a href="${item.link}" target="_blank" rel="noopener noreferrer" data-i18n="timeline.learnMore">${i18next.t('timeline.learnMore')}</a>` : ''}
+                    </div>
+                `;
+                div.addEventListener('click', function() {
+                    this.classList.toggle('expanded');
+                    const icon = this.querySelector('.fa-chevron-down, .fa-chevron-up');
+                    if (icon) {
+                        icon.classList.toggle('fa-chevron-down');
+                        icon.classList.toggle('fa-chevron-up');
+                    }
+                });
+                timelineContainer.appendChild(div);
             });
-
-        document.getElementById('language-select').addEventListener('change', (event) => {
-            i18next.changeLanguage(event.target.value, (err,t) => {
-                if (err) return console.error('Error changing language', err);
-                updateUIWithTranslations();
-            });
-        });
-
-        function updateUIWithTranslations() {
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (key.startsWith('[placeholder]')) {
-                    el.setAttribute('placeholder', i18next.t(key.substring('[placeholder]'.length)));
-                } else {
-                    el.innerHTML = i18next.t(key);
-                }
-            });
-            // Update title specifically
-            document.title = i18next.t('SafetyHelp - Your Partner in OHS Excellence'); // Example, adjust key
         }
 
+        function startTimelineScroll() {
+            if (!timelineContainer) return;
+            let scrollAmount = 1;
+            timelineScrollInterval = setInterval(() => {
+                if (timelineContainer.scrollTop + timelineContainer.clientHeight >= timelineContainer.scrollHeight) {
+                    scrollAmount = -1; // Scroll up
+                } else if (timelineContainer.scrollTop <= 0) {
+                    scrollAmount = 1; // Scroll down
+                }
+                timelineContainer.scrollTop += scrollAmount;
+            }, 70); // Adjust speed as needed
+        }
+        function stopTimelineScroll() {
+            clearInterval(timelineScrollInterval);
+        }
+        if (timelineContainer) {
+            timelineContainer.addEventListener('mouseenter', stopTimelineScroll);
+            timelineContainer.addEventListener('mouseleave', startTimelineScroll);
+            // startTimelineScroll(); // Start scrolling initially
+        }
 
-        // --- Mobile Menu Toggle ---
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+        // --- Daily Safety Tip ---
+        const safetyTips = [
+            "index.safetyTip.tip1", "index.safetyTip.tip2", "index.safetyTip.tip3",
+            "index.safetyTip.tip4", "index.safetyTip.tip5"
+        ];
+        const safetyTipTextEl = document.getElementById('safety-tip-text');
+        const nextTipBtn = document.getElementById('next-tip-btn');
+        function showRandomTip() {
+            if (!safetyTipTextEl || !i18next.isInitialized) return;
+            const randomIndex = Math.floor(Math.random() * safetyTips.length);
+            safetyTipTextEl.innerHTML = `<i class="fas fa-bolt text-yellow-500 mr-1"></i> ${i18next.t(safetyTips[randomIndex])}`;
+        }
+        if(nextTipBtn) nextTipBtn.addEventListener('click', showRandomTip);
 
-        // --- Countdown Timer ---
-        const countdownElement = document.getElementById('countdown-timer');
+        // --- Module Countdown Timer ---
+        const countdownTimerEl = document.getElementById('countdown-timer');
         function updateCountdown() {
+            if (!countdownTimerEl) return;
             const now = new Date();
             const currentMonth = now.getMonth();
             const currentYear = now.getFullYear();
-            // Target the end of the current month
-            const nextMonth = new Date(currentYear, currentMonth + 1, 1); // First day of next month
-            const targetDate = new Date(nextMonth.getTime() - 1); // Last millisecond of current month
+            // Target the end of the current month for the next module launch
+            const nextLaunchDate = new Date(currentYear, currentMonth + 1, 1, 0, 0, 0, 0); // First day of next month
+            
+            const timeRemaining = nextLaunchDate.getTime() - now.getTime();
 
-            const diff = targetDate - now;
-
-            if (diff <= 0) {
-                countdownElement.innerHTML = "New Module Launched!";
-                // Potentially trigger logic for new month here
+            if (timeRemaining < 0) { // Should not happen if logic is correct, but as a fallback
+                countdownTimerEl.textContent = i18next.t('index.moduleLaunched') || "New Module Soon!";
                 return;
             }
 
-            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((diff % (1000 * 60)) / 1000);
+            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
-            countdownElement.innerHTML = `${d}d ${h}h ${m}m ${s}s`;
+            countdownTimerEl.textContent = `${String(days).padStart(2,'0')}d ${String(hours).padStart(2,'0')}h ${String(minutes).padStart(2,'0')}m ${String(seconds).padStart(2,'0')}s`;
         }
-        setInterval(updateCountdown, 1000);
-        updateCountdown(); // Initial call
-
-        // --- "Did you know..." Tips ---
-        const didYouKnowTextElement = document.getElementById('did-you-know-text');
-        const mockTips = [
-            "⚡ Regular safety briefings can reduce accidents by up to 30%.",
-            "💡 Proper ergonomic setups prevent long-term musculoskeletal disorders.",
-            "🔧 Ensuring machinery is regularly maintained significantly lowers breakdown risks.",
-            "⚠️ Clear labeling of hazardous materials is crucial for workplace safety."
-        ];
-
-        async function fetchRandomTip() {
-            if (db) {
-                try {
-                    const tipsCollection = collection(db, "did_you_know_tips");
-                    const snapshot = await getDocs(tipsCollection);
-                    if (!snapshot.empty) {
-                        const tips = snapshot.docs.map(doc => doc.data().tip_text);
-                        const randomIndex = Math.floor(Math.random() * tips.length);
-                        didYouKnowTextElement.textContent = tips[randomIndex];
-                    } else {
-                        didYouKnowTextElement.textContent = mockTips[Math.floor(Math.random() * mockTips.length)];
-                    }
-                } catch (error) {
-                    console.error("Error fetching tip:", error);
-                    didYouKnowTextElement.textContent = mockTips[Math.floor(Math.random() * mockTips.length)];
-                }
-            } else {
-                 didYouKnowTextElement.textContent = mockTips[Math.floor(Math.random() * mockTips.length)];
-            }
-        }
-        fetchRandomTip();
-        setInterval(fetchRandomTip, 30000); // Change tip every 30 seconds
-
+        // setInterval(updateCountdown, 1000); // Update every second
 
         // --- Brain of SafetyHelp Quiz ---
         const quizArea = document.getElementById('quiz-area');
-        const quizQuestionArea = document.getElementById('quiz-question-area');
-        const quizUserInput = document.getElementById('quiz-user-input');
-        const quizUserNameInput = document.getElementById('quiz-user-name');
-        const quizUserEmailInput = document.getElementById('quiz-user-email');
-        const quizSubmitScoreButton = document.getElementById('quiz-submit-score');
-        const quizResultsArea = document.getElementById('quiz-results');
-        const quizAnswersArea = document.getElementById('quiz-answers');
-        const quizStartButton = document.getElementById('quiz-start-button');
-        const quizNextButton = document.getElementById('quiz-next-button');
-        const quizContinueButton = document.getElementById('quiz-continue-button');
+        const quizFeedback = document.getElementById('quiz-feedback');
+        const leaderboardNameEl = document.getElementById('leaderboard-name');
+        const leaderboardScoreEl = document.getElementById('leaderboard-score');
+        let currentQuizSet = 0;
+        let userQuizScore = 0;
+        let quizUserName = "";
 
-        let currentQuestions = [];
-        let currentQuestionIndex = 0;
-        let score = 0;
-        let questionsAnsweredInSet = 0;
-        const questionsPerSet = 5;
-
-        const mockQuizQuestions = [
-            { id: "q1", question_text: "What does PPE stand for?", options: ["Personal Protective Equipment", "People Protecting Environment", "Productive Process Enhancement"], correct_answer_index: 0 },
-            { id: "q2", question_text: "Which color typically signifies 'danger' or 'stop' on safety signs?", options: ["Green", "Yellow", "Red", "Blue"], correct_answer_index: 2 },
-            { id: "q3", question_text: "What is a primary goal of a risk assessment?", options: ["To assign blame after an incident", "To identify and control hazards", "To complete paperwork", "To increase insurance premiums"], correct_answer_index: 1 },
-            { id: "q4", question_text: "An emergency exit should always be:", options: ["Locked for security", "Clearly marked and unobstructed", "Used for storage", "Painted yellow"], correct_answer_index: 1 },
-            { id: "q5", question_text: "What does 'COIDA' stand for in South Africa?", options: ["Company of International Development Aid", "Compensation for Occupational Injuries and Diseases Act", "Council of Industrial Development and Assistance"], correct_answer_index: 1 },
-            { id: "q6", question_text: "What is the first step in using a fire extinguisher (PASS method)?", options: ["Aim", "Squeeze", "Sweep", "Pull"], correct_answer_index: 3 },
-            { id: "q7", question_text: "A 'Toolbox Talk' is typically a:", options: ["Long training seminar", "Formal audit process", "Short, informal safety meeting", "Disciplinary hearing"], correct_answer_index: 2 },
-            { id: "q8", question_text: "Who is responsible for workplace safety?", options: ["Only the employer", "Only the employees", "Everyone in the workplace", "The safety officer only"], correct_answer_index: 2 },
-            { id: "q9", question_text: "What is a common hazard in an office environment?", options: ["Falling objects from height", "Chemical spills", "Trailing cables", "Loud machinery noise"], correct_answer_index: 2 },
-            { id: "q10", question_text: "The OHS Act in South Africa was promulgated in:", options: ["1970", "1993", "2003", "2015"], correct_answer_index: 1 },
+        const quizQuestions = [
+            // Set 1
+            [
+                { qKey: "quiz.q1.question", aKey: "quiz.q1.ansA", bKey: "quiz.q1.ansB", cKey: "quiz.q1.ansC", correct: "A" },
+                { qKey: "quiz.q2.question", aKey: "quiz.q2.ansA", bKey: "quiz.q2.ansB", cKey: "quiz.q2.ansC", correct: "B" },
+                // Add 3 more for a set of 5
+                { qKey: "quiz.q3.question", aKey: "quiz.q3.ansA", bKey: "quiz.q3.ansB", cKey: "quiz.q3.ansC", correct: "C" },
+                { qKey: "quiz.q4.question", aKey: "quiz.q4.ansA", bKey: "quiz.q4.ansB", cKey: "quiz.q4.ansC", correct: "A" },
+                { qKey: "quiz.q5.question", aKey: "quiz.q5.ansA", bKey: "quiz.q5.ansB", cKey: "quiz.q5.ansC", correct: "B" },
+            ],
+            // Set 2 (add more sets as needed)
+            [
+                { qKey: "quiz.q6.question", aKey: "quiz.q6.ansA", bKey: "quiz.q6.ansB", cKey: "quiz.q6.ansC", correct: "A" },
+                // ... more questions
+            ]
         ];
-        let allQuizQuestions = []; // To store fetched or mock questions
-        let usedQuestionIds = new Set();
 
-
-        async function fetchQuizQuestions() {
-            quizStartButton.disabled = true;
-            quizStartButton.textContent = "Loading Questions...";
-            if (db) {
-                try {
-                    const questionsCollection = collection(db, "quiz_questions");
-                    const snapshot = await getDocs(questionsCollection);
-                    if (!snapshot.empty) {
-                        allQuizQuestions = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                    } else {
-                        allQuizQuestions = [...mockQuizQuestions]; // Use a copy
-                    }
-                } catch (error) {
-                    console.error("Error fetching quiz questions:", error);
-                    allQuizQuestions = [...mockQuizQuestions]; // Use a copy
-                }
-            } else {
-                allQuizQuestions = [...mockQuizQuestions]; // Use a copy
-            }
-            quizStartButton.disabled = false;
-            quizStartButton.textContent = "Start Quiz";
-        }
-
-        function startNewQuizSet() {
-            currentQuestions = [];
-            const availableQuestions = allQuizQuestions.filter(q => !usedQuestionIds.has(q.id));
-            
-            if (availableQuestions.length < questionsPerSet) {
-                quizQuestionArea.innerHTML = "<p>You've attempted all available questions! Check back later for more.</p>";
-                quizNextButton.classList.add('hidden');
-                quizContinueButton.classList.add('hidden');
-                quizUserInput.classList.remove('hidden'); // Allow score submission if any questions were answered
+        function loadQuizSet(setIndex) {
+            if (!quizArea || !quizQuestions[setIndex] || !i18next.isInitialized) {
+                 if(quizArea) quizArea.innerHTML = `<p>${i18next.t('quiz.noMoreQuestions') || 'No more questions for now!'}</p>`;
                 return;
             }
-
-            // Shuffle and pick questionsPerSet
-            const shuffled = availableQuestions.sort(() => 0.5 - Math.random());
-            currentQuestions = shuffled.slice(0, questionsPerSet);
-            currentQuestions.forEach(q => usedQuestionIds.add(q.id));
-
-            currentQuestionIndex = 0;
-            questionsAnsweredInSet = 0;
-            quizResultsArea.classList.add('hidden');
-            quizAnswersArea.classList.add('hidden');
-            quizUserInput.classList.add('hidden');
-            quizNextButton.classList.remove('hidden');
-            quizNextButton.textContent = "Submit Answer";
-            quizContinueButton.classList.add('hidden');
-            displayQuestion();
-        }
-        
-        quizStartButton.addEventListener('click', async () => {
-            await fetchQuizQuestions(); // Ensure questions are loaded
-            if (allQuizQuestions.length === 0) {
-                 quizQuestionArea.innerHTML = "<p>No quiz questions available at the moment. Please try again later.</p>";
-                 return;
-            }
-            score = 0; // Reset score for a new full quiz session
-            usedQuestionIds.clear(); // Clear used questions for a new session
-            quizStartButton.classList.add('hidden');
-            startNewQuizSet();
-        });
-
-        function displayQuestion() {
-            if (currentQuestionIndex < currentQuestions.length) {
-                const q = currentQuestions[currentQuestionIndex];
-                let optionsHTML = "";
-                q.options.forEach((option, index) => {
-                    optionsHTML += `
-                        <label class="block p-2 my-1 border rounded hover:bg-gray-100 cursor-pointer">
-                            <input type="radio" name="quizOption" value="${index}" class="mr-2"> ${option}
-                        </label>
-                    `;
-                });
-                quizQuestionArea.innerHTML = `
-                    <p class="quiz-question font-semibold">${currentQuestionIndex + 1}. ${q.question_text}</p>
-                    <div class="quiz-options">${optionsHTML}</div>
+            const questions = quizQuestions[setIndex];
+            quizArea.innerHTML = ''; // Clear previous
+            questions.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'mb-3 text-sm';
+                questionDiv.innerHTML = `
+                    <p class="font-semibold quiz-question">${index + 1}. ${i18next.t(q.qKey)}</p>
+                    <div class="quiz-options mt-1 space-y-1">
+                        <button data-answer="A">${i18next.t(q.aKey)}</button>
+                        <button data-answer="B">${i18next.t(q.bKey)}</button>
+                        <button data-answer="C">${i18next.t(q.cKey)}</button>
+                    </div>
+                    <p class="text-xs text-green-600 mt-1 correct-answer hidden">Correct Answer: ${q.correct}</p>
                 `;
-            }
-        }
-
-        quizNextButton.addEventListener('click', () => {
-            const selectedOption = quizArea.querySelector('input[name="quizOption"]:checked');
-            if (!selectedOption) {
-                alert("Please select an answer.");
-                return;
-            }
-
-            const answerIndex = parseInt(selectedOption.value);
-            const currentQ = currentQuestions[currentQuestionIndex];
-            currentQ.userAnswerIndex = answerIndex; // Store user's answer
-
-            if (answerIndex === currentQ.correct_answer_index) {
-                score++;
-            }
-            
-            questionsAnsweredInSet++;
-            currentQuestionIndex++;
-
-            if (questionsAnsweredInSet >= questionsPerSet || currentQuestionIndex >= currentQuestions.length) {
-                showSetResults();
-            } else {
-                displayQuestion();
-            }
-        });
-
-        function showSetResults() {
-            quizQuestionArea.innerHTML = ""; // Clear question
-            quizNextButton.classList.add('hidden');
-            
-            quizResultsArea.innerHTML = `<p class="font-bold">Set Complete! Your current total score: ${score}</p>`;
-            quizResultsArea.classList.remove('hidden');
-
-            let answersHTML = '<h4 class="font-semibold mt-2 mb-1">Answers for this set:</h4>';
-            currentQuestions.slice(currentQuestionIndex - questionsAnsweredInSet, currentQuestionIndex).forEach((q, idx) => {
-                const userAnswer = q.options[q.userAnswerIndex];
-                const correctAnswer = q.options[q.correct_answer_index];
-                const isCorrect = q.userAnswerIndex === q.correct_answer_index;
-                answersHTML += `
-                    <p><strong>Q${idx + 1}: ${q.question_text}</strong></p>
-                    <p>Your answer: <span class="${isCorrect ? 'correct-answer' : 'incorrect-answer'}">${userAnswer}</span></p>
-                    ${!isCorrect ? `<p>Correct answer: <span class="correct-answer">${correctAnswer}</span></p>` : ''}
-                    <hr class="my-1">
-                `;
+                quizArea.appendChild(questionDiv);
             });
-            quizAnswersArea.innerHTML = answersHTML;
-            quizAnswersArea.classList.remove('hidden');
 
-            quizUserInput.classList.remove('hidden');
-            if (allQuizQuestions.filter(q => !usedQuestionIds.has(q.id)).length >= questionsPerSet) {
-                quizContinueButton.classList.remove('hidden');
+            quizArea.querySelectorAll('.quiz-options button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const questionDiv = this.closest('.mb-3');
+                    // Disable other options for this question
+                    questionDiv.querySelectorAll('.quiz-options button').forEach(btn => btn.disabled = true);
+                    this.classList.add(this.dataset.answer === questionDiv.querySelector('.correct-answer').textContent.slice(-1) ? 'bg-green-200' : 'bg-red-200');
+                    if (this.dataset.answer === questionDiv.querySelector('.correct-answer').textContent.slice(-1)) {
+                        userQuizScore += 10; // Add points
+                    }
+                });
+            });
+
+            const submitSetBtn = document.createElement('button');
+            submitSetBtn.className = 'btn-submit bg-green-600 hover:bg-green-700 text-xs py-2 mt-3';
+            submitSetBtn.textContent = i18next.t('quiz.submitSet') || 'Submit Answers for this Set';
+            submitSetBtn.onclick = () => handleSubmitQuizSet(setIndex);
+            quizArea.appendChild(submitSetBtn);
+        }
+
+        function handleSubmitQuizSet(setIndex) {
+            quizArea.querySelectorAll('.correct-answer').forEach(el => el.classList.remove('hidden'));
+            quizArea.querySelectorAll('.quiz-options button').forEach(btn => btn.disabled = true);
+            quizArea.querySelector('button.btn-submit').remove(); // Remove submit button for this set
+
+            if (quizFeedback) quizFeedback.innerHTML = i18next.t('quiz.currentScore', { score: userQuizScore });
+
+            if (setIndex === 0 && !quizUserName) { // After first set, prompt for name
+                promptForUserName();
+            } else if (quizQuestions[setIndex + 1]) { // If more sets exist
+                const nextSetBtn = document.createElement('button');
+                nextSetBtn.className = 'btn-submit bg-blue-600 hover:bg-blue-700 text-xs py-2 mt-3';
+                nextSetBtn.textContent = i18next.t('quiz.nextSet') || 'Next 5 Questions';
+                nextSetBtn.onclick = () => { currentQuizSet++; loadQuizSet(currentQuizSet); };
+                quizArea.appendChild(nextSetBtn);
             } else {
-                quizContinueButton.classList.add('hidden');
-                quizResultsArea.innerHTML += "<p>You've attempted all available questions!</p>";
+                if(quizArea) quizArea.innerHTML += `<p class="mt-3 font-semibold">${i18next.t('quiz.finalScore', {score: userQuizScore})}</p>`;
+                // Potentially submit score to backend here if user provided name
+                if(quizUserName && leaderboardNameEl && leaderboardScoreEl){
+                    // This is a simulation. In real app, fetch and update leaderboard.
+                    leaderboardNameEl.textContent = quizUserName;
+                    leaderboardScoreEl.textContent = userQuizScore;
+                }
             }
         }
         
-        quizContinueButton.addEventListener('click', () => {
-            questionsAnsweredInSet = 0; // Reset for the new set
-            startNewQuizSet();
-        });
+        function promptForUserName() {
+            const namePromptDiv = document.createElement('div');
+            namePromptDiv.className = 'mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-md';
+            namePromptDiv.innerHTML = `
+                <p class="text-sm font-semibold mb-2">${i18next.t('quiz.enterNamePrompt')}</p>
+                <input type="text" id="quiz-user-name" class="quiz-input" placeholder="${i18next.t('quiz.namePlaceholder')}">
+                <input type="email" id="quiz-user-email" class="quiz-input mt-1" placeholder="${i18next.t('quiz.emailOptionalPlaceholder')}">
+                <button id="submit-quiz-name" class="btn-submit bg-yellow-500 hover:bg-yellow-600 text-xs py-1.5 mt-2">${i18next.t('quiz.submitNameAndContinue')}</button>
+                <button id="continue-quiz-guest" class="btn-submit bg-slate-400 hover:bg-slate-500 text-xs py-1.5 mt-1">${i18next.t('quiz.continueAsGuest')}</button>
+            `;
+            quizArea.appendChild(namePromptDiv);
 
-        quizSubmitScoreButton.addEventListener('click', async () => {
-            const userName = quizUserNameInput.value.trim();
-            const userEmail = quizUserEmailInput.value.trim();
-
-            if (!userName) {
-                alert("Please enter your name to register your score.");
-                return;
-            }
-            if (db) {
-                try {
-                    await addDoc(collection(db, "quiz_leaderboard"), {
-                        user_name: userName,
-                        user_email: userEmail || null,
-                        score: score,
-                        timestamp: serverTimestamp()
-                    });
-                    alert("Score submitted successfully!");
-                    quizUserInput.classList.add('hidden');
-                    quizContinueButton.classList.add('hidden'); // Hide continue after submitting
-                    quizStartButton.classList.remove('hidden'); // Show start button for a new session
-                    fetchBrainOfTheDay(); // Refresh leader
-                } catch (error) {
-                    console.error("Error submitting score:", error);
-                    alert("Failed to submit score. Please try again.");
+            document.getElementById('submit-quiz-name').addEventListener('click', () => {
+                quizUserName = document.getElementById('quiz-user-name').value.trim();
+                const email = document.getElementById('quiz-user-email').value.trim();
+                if (!quizUserName) {
+                    alert(i18next.t('quiz.nameRequiredError')); return;
                 }
-            } else {
-                alert("Database not available. Score not submitted. Mock submission logged.");
-                console.log(`Mock Score Submission: Name: ${userName}, Email: ${userEmail}, Score: ${score}`);
-                quizUserInput.classList.add('hidden');
-                quizContinueButton.classList.add('hidden');
-                quizStartButton.classList.remove('hidden');
-            }
-        });
-
-
-        // --- Brain of the Day Display ---
-        const brainOfTheDayElement = document.getElementById('brain-of-the-day');
-        async function fetchBrainOfTheDay() {
-            if (db) {
-                try {
-                    const q = query(collection(db, "quiz_leaderboard"), orderBy("score", "desc"), orderBy("timestamp", "asc"), limit(1));
-                    const snapshot = await getDocs(q);
-                    if (!snapshot.empty) {
-                        const leader = snapshot.docs[0].data();
-                        brainOfTheDayElement.textContent = `${leader.user_name} (${leader.score} points)`;
-                    } else {
-                        brainOfTheDayElement.textContent = "No scores yet. Be the first!";
-                    }
-                } catch (error) {
-                    console.error("Error fetching brain of the day:", error);
-                    brainOfTheDayElement.textContent = "Could not load leader.";
-                }
-            } else {
-                 brainOfTheDayElement.textContent = "Leaderboard unavailable.";
-            }
-        }
-        fetchBrainOfTheDay(); // Initial fetch
-
-
-        // --- Chatbot Functionality ---
-        const chatToggleButton = document.getElementById('chat-toggle-button');
-        const chatWidget = document.getElementById('chat-widget');
-        const chatCloseButton = document.getElementById('chat-close-button');
-        const chatMessages = document.getElementById('chat-messages');
-        const chatUserInput = document.getElementById('chat-user-input');
-        const chatSendButton = document.getElementById('chat-send-button');
-
-        chatToggleButton.addEventListener('click', () => {
-            chatWidget.classList.toggle('hidden');
-            if (!chatWidget.classList.contains('hidden')) {
-                chatUserInput.focus();
-            }
-        });
-
-        chatCloseButton.addEventListener('click', () => {
-            chatWidget.classList.add('hidden');
-        });
-
-        async function handleChatbotSendMessage() {
-            const messageText = chatUserInput.value.trim();
-            if (messageText === "") return;
-
-            appendChatMessage(messageText, 'user-message');
-            chatUserInput.value = "";
-            
-            // Simulate bot thinking and response
-            appendChatMessage("Thinking...", 'bot-message', true); // Add thinking indicator
-
-            // Call Gemini API
-            try {
-                let chatHistory = [{ role: "user", parts: [{ text: messageText }] }];
-                const payload = { contents: chatHistory };
-                const apiKey = ""; // Leave empty, Canvas will provide
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-                
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                if (!response.ok) {
-                    throw new Error(`API request failed with status ${response.status}`);
-                }
-                
-                const result = await response.json();
-                
-                // Remove "Thinking..." message
-                const thinkingMessageElement = chatMessages.querySelector('.thinking');
-                if (thinkingMessageElement) thinkingMessageElement.remove();
-
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0) {
-                    const botResponse = result.candidates[0].content.parts[0].text;
-                    appendChatMessage(botResponse, 'bot-message');
+                // Here you could add logic to register the user if email is provided or link to existing account
+                console.log("User:", quizUserName, "Email:", email);
+                namePromptDiv.remove();
+                if (quizQuestions[currentQuizSet + 1]) {
+                    currentQuizSet++; loadQuizSet(currentQuizSet);
                 } else {
-                    appendChatMessage("Sorry, I couldn't get a response. Please try again.", 'bot-message');
+                     if(quizArea) quizArea.innerHTML += `<p class="mt-3 font-semibold">${i18next.t('quiz.finalScore', {score: userQuizScore})}</p>`;
                 }
-            } catch (error) {
-                console.error("Error calling Gemini API:", error);
-                 const thinkingMessageElement = chatMessages.querySelector('.thinking');
-                if (thinkingMessageElement) thinkingMessageElement.remove();
-                appendChatMessage("Sorry, there was an error processing your request.", 'bot-message');
-            }
+            });
+            document.getElementById('continue-quiz-guest').addEventListener('click', () => {
+                namePromptDiv.remove();
+                 if (quizQuestions[currentQuizSet + 1]) {
+                    currentQuizSet++; loadQuizSet(currentQuizSet);
+                } else {
+                     if(quizArea) quizArea.innerHTML += `<p class="mt-3 font-semibold">${i18next.t('quiz.finalScore', {score: userQuizScore})}</p>`;
+                }
+            });
         }
 
-        chatSendButton.addEventListener('click', handleChatbotSendMessage);
-        chatUserInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                handleChatbotSendMessage();
+
+        // --- Chatbot ---
+        const chatToggle = document.getElementById('chat-toggle');
+        const chatWindow = document.getElementById('chat-window');
+        const chatOutput = document.getElementById('chat-output');
+        const chatInput = document.getElementById('chat-input');
+        const chatSend = document.getElementById('chat-send');
+        let isChatExpanded = false;
+
+        if(chatToggle) chatToggle.addEventListener('click', () => {
+            isChatExpanded = !isChatExpanded;
+            chatWindow.classList.toggle('hidden', !isChatExpanded); // Use Tailwind hidden
+            chatWindow.classList.toggle('active', isChatExpanded);
+            if (isChatExpanded) chatInput.focus();
+        });
+        
+        // --- Document Ready ---
+        document.addEventListener('DOMContentLoaded', async () => {
+            await initializeI18next();
+            const footerYearEl = document.getElementById('footer-copyright-year');
+            if(footerYearEl && i18next.isInitialized) footerYearEl.textContent = i18next.t('footer.copyright', { year: new Date().getFullYear() });
+
+            const langSelect = document.getElementById('language-select');
+            if (langSelect && i18next.isInitialized) {
+                 const currentLang = i18next.language;
+                 if (currentLang) {
+                    const baseLang = currentLang.split('-')[0];
+                    if (Array.from(langSelect.options).some(opt => opt.value === baseLang)) langSelect.value = baseLang;
+                    else if (Array.from(langSelect.options).some(opt => opt.value === currentLang)) langSelect.value = currentLang;
+                 }
+                langSelect.addEventListener('change', (e) => {
+                    i18next.changeLanguage(e.target.value, (err) => {
+                        if (err) { console.error('Error changing language:', err); return; }
+                        updateContent(); // This will re-translate static parts
+                        // Re-initialize dynamic parts that depend on translated text
+                        showRandomTip(); 
+                        loadQuizSet(currentQuizSet); 
+                        if(footerYearEl) footerYearEl.textContent = i18next.t('footer.copyright', { year: new Date().getFullYear() });
+                    });
+                });
+            }
+            
+            populateTimeline(); // Populate timeline on load
+            if (timelineData.length > 0) startTimelineScroll(); // Start timeline scroll
+
+            showRandomTip(); // Show initial tip
+            updateCountdown(); // Initial countdown display
+            setInterval(updateCountdown, 1000); // Update countdown every second
+            loadQuizSet(currentQuizSet); // Load first set of quiz questions
+
+            // Newsletter
+            const newsletterForm = document.getElementById('newsletterFormIndex');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    const email = document.getElementById('newsletterEmailIndex').value;
+                    const messageDivId = document.querySelector('#auth-message-login') ? 'auth-message-login' : (document.querySelector('#auth-message-signup') ? 'auth-message-signup' : null);
+
+                    if (email && messageDivId) {
+                        displayMessage('footer.newsletter.success', "success", messageDivId, false, {email: email});
+                        document.getElementById('newsletterEmailIndex').value = '';
+                    } else if (messageDivId) {
+                        displayMessage('footer.newsletter.error', "error", messageDivId);
+                    } else { // Fallback if no message div is found
+                        alert(email ? i18next.t('footer.newsletter.success', {email: email}) : i18next.t('footer.newsletter.error'));
+                         if(email) document.getElementById('newsletterEmailIndex').value = '';
+                    }
+                });
             }
         });
-
-        function appendChatMessage(text, type, isThinking = false) {
-            const messageDiv = document.createElement('div');
-            messageDiv.classList.add('chat-message', type);
-            if (isThinking) {
-                messageDiv.classList.add('thinking'); // Class to identify the thinking message
-            }
-            messageDiv.textContent = text;
-            chatMessages.appendChild(messageDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        // Initial setup calls
-        fetchQuizQuestions(); // Load quiz questions on page load
-
     </script>
 </body>
 </html>
