@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SafetyHelp - Your OHS Partner</title>
+    <title>SafetyHelp - Launching Soon!</title>
     <style>
         /* --- Reset & Base Styles --- */
         * {
@@ -20,7 +20,7 @@
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 1200px; /* Adjusted for potentially wider hero content */
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -30,12 +30,12 @@
             --brand-primary-blue: #005A9C;
             --brand-secondary-orange: #FFA500;
             --brand-hover-green: #28a745;
-            --brand-light-blue: #e0efff; /* For announcement bar */
             --text-color-light: #ffffff;
             --text-color-dark: #333333;
             --border-color: #ddd;
             --card-bg: #ffffff;
             --panel-bg: #f9f9f9;
+            --hero-overlay-color: rgba(0, 90, 156, 0.7); /* Primary blue with transparency */
         }
 
         /* --- Header --- */
@@ -44,13 +44,15 @@
             color: var(--text-color-light);
             padding: 15px 0;
             border-bottom: 3px solid var(--brand-secondary-orange);
+            position: relative; /* To ensure it's above hero if needed, though not overlapping by default */
+            z-index: 100;
         }
 
         .site-header .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap; /* For smaller screens */
+            flex-wrap: wrap;
         }
 
         .logo-text {
@@ -65,14 +67,13 @@
         .header-right {
             display: flex;
             align-items: center;
-            margin-top: 10px; /* Space on smaller screens */
+            margin-top: 10px;
         }
         @media (min-width: 768px) {
             .header-right {
                 margin-top: 0;
             }
         }
-
 
         .search-bar {
             padding: 8px;
@@ -91,115 +92,209 @@
             font-size: 14px;
         }
 
-        /* --- Launch Announcement Bar --- */
-        .launch-announcement {
-            background-color: var(--brand-light-blue);
-            color: var(--text-color-dark);
-            padding: 20px;
+        /* --- Hero Section --- */
+        .hero-section {
+            background-image: url('https://placehold.co/1920x700/333366/CCCCCC?text=Diverse+SA+Workforce+Safety'); /* Placeholder */
+            background-size: cover;
+            background-position: center;
+            color: var(--text-color-light);
+            padding: 80px 20px;
             text-align: center;
             position: relative;
-            border-bottom: 1px solid var(--border-color);
-            display: block; /* Initially visible */
-            transition: opacity 0.5s ease, max-height 0.5s ease;
-            overflow: hidden;
-            max-height: 500px; /* Adjust as needed */
+            min-height: 70vh; /* Ensure it takes a good portion of viewport */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
-        .launch-announcement.dismissed {
-            opacity: 0;
-            max-height: 0;
-            padding-top: 0;
-            padding-bottom: 0;
-            border-bottom: none;
+        .hero-section::before { /* Overlay */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--hero-overlay-color);
+            z-index: 1;
         }
 
-        .launch-announcement h2 {
-            font-size: 1.4em;
-            margin-bottom: 8px;
-            color: var(--brand-primary-blue);
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
         }
 
-        .launch-announcement p {
-            font-size: 0.95em;
-            margin-bottom: 12px;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
+        .hero-content h1 {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            font-weight: 700;
+            line-height: 1.2;
         }
 
-        .launch-cta-button {
+        .hero-content .sub-headline {
+            font-size: 1.3em;
+            margin-bottom: 25px;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .beta-callout {
+            background-color: rgba(255, 165, 0, 0.15); /* Light orange, slightly transparent */
+            border: 2px solid var(--brand-secondary-orange);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px auto;
+            max-width: 650px;
+        }
+
+        .beta-callout p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .hero-cta-button {
             background-color: var(--brand-secondary-orange);
-            color: var(--text-color-light);
-            padding: 10px 20px;
+            color: var(--text-color-dark); /* Dark text on orange for contrast */
+            padding: 15px 30px;
             text-decoration: none;
             border-radius: 5px;
             font-weight: bold;
-            transition: background-color 0.3s ease;
-            border: none;
-            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
             display: inline-block;
-        }
-
-        .launch-cta-button:hover {
-            background-color: #e09500; /* Darker orange */
-        }
-
-        .dismiss-button {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            background: none;
             border: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: var(--text-color-dark);
-            line-height: 1;
         }
-        .dismiss-button:hover {
-            color: var(--brand-primary-blue);
+
+        .hero-cta-button:hover {
+            background-color: #ff8c00; /* Darker orange */
+            transform: translateY(-2px);
+        }
+
+        .countdown-timer {
+            margin-top: 30px;
+            font-size: 1.2em;
+        }
+        .countdown-timer span {
+            display: inline-block;
+            background-color: rgba(0,0,0,0.3);
+            padding: 10px 15px;
+            border-radius: 4px;
+            margin: 0 5px;
+            min-width: 70px; /* Ensure consistent width */
+        }
+        .countdown-timer .label {
+            font-size: 0.7em;
+            display: block;
+            text-transform: uppercase;
+            opacity: 0.8;
         }
 
         /* --- Main Content Area --- */
-        .main-content-area .container {
-            display: flex;
-            flex-wrap: wrap; /* Allow stacking on mobile */
-            padding-top: 20px;
-            gap: 20px; /* Space between columns */
+        .main-content-section {
+            padding: 40px 0;
+            background-color: var(--card-bg); /* Default background for sections */
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .main-content-section:nth-child(odd) {
+             background-color: #fdfdfd; /* Alternate slightly for visual separation */
+        }
+        .main-content-section:last-child {
+            border-bottom: none;
         }
 
-        /* Shared Sidebar Styles */
-        .sidebar {
-            background-color: var(--card-bg);
+        .section-title {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 30px;
+            color: var(--brand-primary-blue);
+        }
+        .section-title .safety { color: var(--brand-primary-blue); }
+        .section-title .help { color: var(--brand-secondary-orange); }
+
+
+        /* Section 1: Welcome & Interactive Quick-Engage */
+        .quick-engage-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        .quick-engage-column {
+            flex: 1;
+            min-width: 300px; /* Ensure columns don't get too narrow */
+            background-color: var(--panel-bg);
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            height: fit-content;
-            width: 100%; /* Full width on mobile */
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
-        @media (min-width: 992px) { /* Desktop: fixed width */
-            .sidebar {
-                width: 260px;
-                flex-shrink: 0; /* Prevent shrinking */
-            }
-        }
-
-
-        .sidebar-title {
-            font-size: 1.5em;
+        .quick-engage-column h3 {
+            font-size: 1.4em;
             margin-bottom: 15px;
-            font-weight: bold;
+            color: var(--brand-primary-blue);
         }
-        .sidebar-title .safety { color: var(--brand-primary-blue); }
-        .sidebar-title .help { color: var(--brand-secondary-orange); }
+         .quick-engage-column .welcome-text .safety { color: var(--brand-primary-blue); }
+         .quick-engage-column .welcome-text .help { color: var(--brand-secondary-orange); font-weight:bold; }
+        .quick-engage-column p { font-size: 0.95em; margin-bottom: 10px; }
+        .quick-engage-column button {
+            background-color: var(--brand-secondary-orange);
+            color: var(--text-color-light);
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+        .quick-engage-column button:hover { background-color: #e09500; }
+        .quick-engage-column input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+        .quiz-feedback { font-size: 0.9em; margin-top:10px; font-weight: bold; }
 
-        /* Left Column (Tools Sidebar) */
-        .tool-list {
-            list-style: none;
+        /* Section 2: Core Platform Pillars */
+        .core-pillars-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
         }
+        .pillar-panel {
+            flex: 1;
+            min-width: 320px; /* Minimum width before stacking */
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column; /* Ensure title is above list */
+        }
+        .pillar-panel h3 { /* For "SafetyHelp Tools" and "OHS Milestones" */
+            font-size: 1.6em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .pillar-panel h3 .safety { color: var(--brand-primary-blue); }
+        .pillar-panel h3 .help { color: var(--brand-secondary-orange); }
+
+        .scrollable-list {
+            list-style: none;
+            max-height: 350px; /* Fixed height for scrollable area */
+            overflow-y: auto;
+            padding-right: 10px; /* Space for scrollbar */
+        }
+        /* Custom scrollbar for pillar panels */
+        .scrollable-list::-webkit-scrollbar { width: 6px; }
+        .scrollable-list::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+        .scrollable-list::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
+        .scrollable-list::-webkit-scrollbar-thumb:hover { background: #aaa; }
 
         .tool-list li a {
             display: block;
-            padding: 10px 15px;
+            padding: 10px 12px;
             text-decoration: none;
             color: var(--brand-primary-blue);
             border-radius: 4px;
@@ -207,241 +302,20 @@
             transition: background-color 0.3s ease, color 0.3s ease;
             font-weight: 500;
         }
-
-        .tool-list li a:hover,
-        .tool-list li a.active {
+        .tool-list li a:hover, .tool-list li a.active {
             background-color: var(--brand-hover-green);
             color: var(--text-color-light);
         }
-        .tool-list li a.active {
-            font-weight: bold;
-        }
-
-        /* Central Column (Flexible Width) */
-        .central-column {
-            flex: 1; /* Takes remaining space */
-            min-width: 0; /* Allows shrinking below content size if needed */
-            background-color: transparent; /* No background, content cards will have it */
-            padding: 0; /* Padding will be on individual cards */
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        
-        .central-content-card {
-            background-color: var(--card-bg);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-
-        .welcome-message {
-            font-size: 1.8em;
-            margin-bottom: 20px; /* Reduced margin as it's in a card */
-            color: var(--text-color-dark);
-        }
-        .welcome-message .safety-help-brand {
-            font-weight: bold;
-        }
-        .welcome-message .safety-help-brand .safety { color: var(--brand-primary-blue); }
-        .welcome-message .safety-help-brand .help { color: var(--brand-secondary-orange); }
-
-
-        .mini-panels-container {
-            display: flex;
-            flex-wrap: wrap; /* Stack on smaller screens */
-            gap: 20px; /* Space between panels */
-            margin-bottom: 0; /* No margin as it's the last element in its card */
-        }
-
-        .mini-panel {
-            flex: 1; /* Each panel takes equal space */
-            min-width: 280px; /* Minimum width before stacking */
-            background-color: var(--panel-bg);
-            padding: 20px;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
-        }
-
-        .mini-panel h3 {
-            font-size: 1.2em;
-            margin-bottom: 10px;
-            color: var(--brand-primary-blue);
-        }
-        .mini-panel p {
-            font-size: 0.9em;
-            margin-bottom: 10px;
-            min-height: 40px; /* Ensure some space for text */
-        }
-        .mini-panel input[type="text"], .mini-panel input[type="number"], .mini-panel select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-        }
-        .mini-panel button {
-            background-color: var(--brand-secondary-orange);
-            color: var(--text-color-light);
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            font-size: 0.9em;
-            margin-top: 5px;
-        }
-        .mini-panel button:hover {
-            background-color: #e09500;
-        }
-        .quiz-feedback {
-            font-size: 0.9em;
-            margin-top:10px;
-            font-weight: bold;
-        }
-        .quiz-feedback .score { color: var(--brand-hover-green); }
-        .quiz-feedback .leader { color: var(--brand-primary-blue); }
-
-
-        .key-features-section h2 {
-            font-size: 1.6em;
-            margin-bottom: 20px;
-            text-align: center;
-            color: var(--text-color-dark);
-        }
-
-        .feature-tiles {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .feature-tile {
-            background-color: var(--panel-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            overflow: hidden; /* For smooth expansion */
-        }
-
-        .feature-tile-header {
-            padding: 15px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: #f0f0f0;
-            transition: background-color 0.3s ease;
-        }
-        .feature-tile-header:hover {
-            background-color: #e9e9e9;
-        }
-
-        .feature-tile-header h4 {
-            font-size: 1.1em;
-            margin: 0;
-            color: var(--brand-primary-blue);
-        }
-        .feature-tile-header .icon {
-            font-size: 1.5em;
-            margin-right: 10px;
-        }
-        .feature-tile-header .toggle-icon {
-            font-size: 1.2em;
-            transition: transform 0.3s ease;
-        }
-        .feature-tile.expanded .toggle-icon {
-            transform: rotate(180deg);
-        }
-
-        .feature-tile-teaser {
-            padding: 0 15px 10px 15px;
-            font-size: 0.9em;
-            color: #555;
-        }
-
-        .feature-tile-details {
-            padding: 0 15px 15px 15px;
-            font-size: 0.9em;
-            max-height: 0;
-            opacity: 0;
-            transition: max-height 0.5s ease-out, opacity 0.3s ease-out, padding 0.5s ease-out;
-        }
-
-        .feature-tile.expanded .feature-tile-details {
-            max-height: 300px; /* Adjust as needed */
-            opacity: 1;
-            padding-top: 10px;
-        }
-
-        .quick-access-section h2 {
-            font-size: 1.6em;
-            margin-bottom: 20px;
-            text-align: center;
-            color: var(--text-color-dark);
-        }
-        .quick-access-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: center;
-        }
-        .quick-access-button {
-            background-color: var(--brand-primary-blue);
-            color: var(--text-color-light);
-            padding: 12px 25px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: 500;
-            transition: background-color 0.3s ease;
-            text-align: center;
-            flex-grow: 1; /* Allow buttons to grow */
-        }
-        @media (min-width: 768px) {
-            .quick-access-button {
-                flex-grow: 0; /* Prevent full width on larger screens */
-            }
-        }
-        .quick-access-button:hover {
-            background-color: #00487a; /* Darker blue */
-        }
-
-
-        /* Right Column (OHS Snippets Timeline) */
-        .timeline-list {
-            list-style: none;
-            max-height: 500px; /* Adjust as needed for auto-scroll */
-            overflow-y: auto; /* Hidden initially, JS will handle scroll */
-            padding-right: 10px; /* For scrollbar */
-        }
-
-        /* Custom scrollbar for timeline (optional) */
-        .timeline-list::-webkit-scrollbar {
-            width: 8px;
-        }
-        .timeline-list::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
-        }
-        .timeline-list::-webkit-scrollbar-thumb {
-            background: var(--border-color);
-            border-radius: 10px;
-        }
-        .timeline-list::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
-
 
         .timeline-item {
             background-color: var(--panel-bg);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             border-radius: 4px;
-            border: 1px solid var(--border-color);
+            border: 1px solid #e0e0e0;
             overflow: hidden;
         }
-
         .timeline-item-header {
-            padding: 10px 15px;
+            padding: 10px 12px;
             cursor: pointer;
             background-color: var(--brand-primary-blue);
             color: var(--text-color-light);
@@ -450,89 +324,198 @@
             align-items: center;
             transition: background-color 0.3s ease;
         }
-        .timeline-item-header:hover {
-             background-color: #00487a;
-        }
-        .timeline-item.expanded .timeline-item-header {
-            background-color: var(--brand-hover-green);
-        }
-
-
-        .timeline-item-header h5 {
-            margin: 0;
-            font-size: 1em;
-        }
-        .timeline-item-header .toggle-icon-timeline {
-            font-size: 1em;
-            transition: transform 0.3s ease;
-        }
-        .timeline-item.expanded .toggle-icon-timeline {
-            transform: rotate(180deg);
-        }
-
+        .timeline-item-header:hover { background-color: #00487a; }
+        .timeline-item.expanded .timeline-item-header { background-color: var(--brand-hover-green); }
+        .timeline-item-header h5 { margin: 0; font-size: 0.95em; }
+        .timeline-item-header .toggle-icon-timeline { font-size: 0.9em; transition: transform 0.3s ease; }
+        .timeline-item.expanded .toggle-icon-timeline { transform: rotate(180deg); }
         .timeline-item-summary {
-            padding: 0 15px 15px 15px;
+            padding: 0 12px 12px 12px;
             font-size: 0.85em;
             max-height: 0;
             opacity: 0;
             transition: max-height 0.4s ease-out, opacity 0.3s ease-out, padding 0.4s ease-out;
         }
-        .timeline-item.expanded .timeline-item-summary {
-            max-height: 200px; /* Adjust as needed */
-            opacity: 1;
-            padding-top: 10px;
+        .timeline-item.expanded .timeline-item-summary { max-height: 150px; opacity: 1; padding-top: 8px; }
+        .timeline-item-summary a { color: var(--brand-secondary-orange); font-weight: bold; }
+
+        /* Section 3: Key Features (Carousel) */
+        .features-carousel-container {
+            position: relative;
+            overflow: hidden; /* Hide parts of cards that are off-screen */
+            padding: 0 40px; /* Space for nav buttons */
         }
-        .timeline-item-summary a {
-            color: var(--brand-secondary-orange);
-            font-weight: bold;
+        .features-carousel {
+            display: flex;
+            overflow-x: auto; /* Allows horizontal scrolling */
+            scroll-snap-type: x mandatory; /* Snaps items into view */
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+            padding-bottom: 20px; /* Space for scrollbar if visible */
+            gap: 20px;
+        }
+        /* Hide scrollbar visually but keep functionality */
+        .features-carousel::-webkit-scrollbar { display: none; }
+        .features-carousel { -ms-overflow-style: none;  scrollbar-width: none; }
+
+
+        .feature-card {
+            flex: 0 0 auto; /* Prevent shrinking/growing, auto width based on content */
+            width: 280px; /* Fixed width for cards */
+            scroll-snap-align: start; /* Snap to start of card */
+            background-color: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+        .feature-card .icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: var(--brand-primary-blue);
+        }
+        .feature-card h4 {
+            font-size: 1.2em;
+            margin-bottom: 8px;
+            color: var(--text-color-dark);
+        }
+        .feature-card p {
+            font-size: 0.9em;
+            color: #555;
+        }
+        .carousel-nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 90, 156, 0.8);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5em;
+            z-index: 10;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .carousel-nav-button:hover { background-color: var(--brand-primary-blue); }
+        .carousel-prev { left: 5px; }
+        .carousel-next { right: 5px; }
+
+
+        /* Section 4: Quick Access */
+        .quick-access-buttons-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .quick-access-button {
+            background-color: var(--brand-primary-blue);
+            color: var(--text-color-light);
+            padding: 15px 30px;
             text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            font-size: 1.05em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-align: center;
+            min-width: 220px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-        .timeline-item-summary a:hover {
-            text-decoration: underline;
+        .quick-access-button:hover {
+            background-color: #00487a; /* Darker blue */
+            transform: translateY(-2px);
         }
 
+        /* Modal Styling */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6); /* Dim background */
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 30px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 8px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            animation: slideIn 0.3s ease-out;
+        }
+        @keyframes slideIn {
+            from {transform: translateY(-50px); opacity: 0;}
+            to {transform: translateY(0); opacity: 1;}
+        }
+        .close-modal-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            line-height: 1;
+        }
+        .close-modal-button:hover,
+        .close-modal-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .modal-content h3 {
+            margin-top: 0;
+            color: var(--brand-primary-blue);
+            font-size: 1.8em;
+        }
+        .modal-content p {
+            font-size: 1em;
+            line-height: 1.7;
+        }
+
+
         /* Responsive Adjustments */
-        @media (max-width: 991px) { /* Tablet and below */
-            .main-content-area .container {
-                flex-direction: column;
-            }
-            .sidebar {
-                width: 100%; /* Full width for sidebars */
-                margin-bottom: 20px;
-            }
-            .central-column {
-                order: 0; /* Ensure central content is first or as desired */
-            }
-            .left-sidebar { order: 1; }
-            .right-sidebar { order: 2; }
+        @media (max-width: 991px) { /* Tablet */
+            .hero-content h1 { font-size: 2.2em; }
+            .hero-content .sub-headline { font-size: 1.1em; }
+            .beta-callout p { font-size: 1em; }
+            .pillar-panel { min-width: calc(50% - 15px); } /* Two panels per row if space */
         }
 
         @media (max-width: 767px) { /* Mobile */
-            .site-header .container {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .header-right {
-                width: 100%;
-                margin-top: 15px;
-                justify-content: space-between;
-            }
-            .search-bar {
-                flex-grow: 1;
-                margin-right: 10px;
-            }
-            .language-selector select {
-                min-width: 100px;
-            }
+            .site-header .container { flex-direction: column; align-items: flex-start; }
+            .header-right { width: 100%; margin-top: 15px; justify-content: space-between; }
+            .search-bar { flex-grow: 1; margin-right: 10px; }
 
-            .welcome-message { font-size: 1.5em; }
-            .mini-panels-container { flex-direction: column; }
-            .quick-access-buttons { flex-direction: column; }
-            .quick-access-button { width: 100%; }
+            .hero-section { padding: 60px 15px; min-height: auto; }
+            .hero-content h1 { font-size: 1.8em; }
+            .hero-content .sub-headline { font-size: 1em; }
+            .beta-callout { padding: 15px; }
+            .beta-callout p { font-size: 0.95em; }
+            .hero-cta-button { font-size: 1em; padding: 12px 25px; }
+            .countdown-timer { font-size: 1em; }
+            .countdown-timer span { padding: 8px 10px; min-width: 60px; }
 
-            .launch-announcement h2 { font-size: 1.2em; }
-            .launch-announcement p { font-size: 0.9em; }
+            .quick-engage-column { min-width: 100%; }
+            .pillar-panel { min-width: 100%; }
+            .features-carousel-container { padding: 0 10px; } /* Less padding for nav buttons on mobile */
+            .feature-card { width: 250px; }
+            .carousel-nav-button { padding: 8px 12px; font-size: 1.2em; }
+            .quick-access-button { width: 100%; min-width: unset; }
+            .modal-content { width: 90%; margin: 20% auto; }
         }
+
     </style>
 </head>
 <body>
@@ -555,254 +538,231 @@
         </div>
     </header>
 
-    <div class="launch-announcement" id="launchAnnouncement">
-        <button class="dismiss-button" id="dismissAnnouncementBtn" aria-label="Dismiss announcement">&times;</button>
-        <h2>🚀 SafetyHelp Launches June 1, 2025! Be a Pioneer in OHS.</h2>
-        <p>Our core platform is coming soon! Advanced modules (Construction Compliance, Risk Assessment, etc.) will follow in phases. Register now to join our exclusive Beta Program: test new features, shape development, and get complimentary premium access during your testing period. Limited spots available – rigorous application process applies to ensure valuable contributions.</p>
-        <a href="login.html#signup-section" class="launch-cta-button">Join Beta & Register Now</a>
-    </div>
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1><span class="safety">Safety</span><span class="help">Help</span>: The Future of OHS in South Africa. Launching June 1, 2025!</h1>
+            <p class="sub-headline">AI-powered tools, phased module rollouts (Risk Assessment, Compliance, and more). Your expertise is needed!</p>
+            
+            <div class="beta-callout">
+                <p>Become a <span class="safety">Safety</span><span class="help">Help</span> Pioneer! Join our Beta Program to test upcoming modules, influence development, and receive complimentary premium access. Limited spots – rigorous application. Show us your value!</p>
+                <a href="login.html#signup-section" class="hero-cta-button">Apply for Beta & Register Account</a>
+            </div>
 
-    <main class="main-content-area">
-        <div class="container">
-
-            <aside class="left-sidebar sidebar">
-                <h2 class="sidebar-title"><span class="safety">Safety</span><span class="help">Help</span> Tools</h2>
-                <ul class="tool-list" id="toolList">
-                    <li><a href="#" data-tool="dashboard">Dashboard</a></li>
-                    <li><a href="#" data-tool="assessments">Risk Assessments</a></li>
-                    <li><a href="#" data-tool="incidents">Incident Reporting</a></li>
-                    <li><a href="#" data-tool="training">Training Modules</a></li>
-                    <li><a href="#" data-tool="documents">Document Management</a></li>
-                    <li><a href="#" data-tool="compliance">Compliance Checklists</a></li>
-                    <li><a href="#" data-tool="reports">Analytics & Reports</a></li>
-                </ul>
-            </aside>
-
-            <section class="central-column">
-                <div class="central-content-card">
-                    <h1 class="welcome-message">Welcome to <span class="safety-help-brand"><span class="safety">Safety</span><span class="help">Help</span></span>! Your partner in simplified OHS compliance.</h1>
+            <div class="countdown-timer" id="countdownTimer">
                 </div>
-
-                <div class="central-content-card">
-                    <div class="mini-panels-container">
-                        <div class="mini-panel" id="safetyTipPanel">
-                            <h3>💡 Daily Safety Tip</h3>
-                            <p id="safetyTipContent">Loading safety tip...</p>
-                            <button id="nextTipBtn">Next Tip</button>
-                        </div>
-
-                        <div class="mini-panel" id="quizPanel">
-                            <h3>🧠 Brain of SafetyHelp - Daily Challenge!</h3>
-                            <input type="text" id="quizUserName" placeholder="Enter your name">
-                            <p id="quizQuestion">Loading question...</p>
-                            <input type="text" id="quizAnswer" placeholder="Your answer here">
-                            <!-- Example for multiple choice (can be dynamically added by JS)
-                            <select id="quizAnswerOptions">
-                                <option value="">Select an answer</option>
-                            </select>
-                            -->
-                            <button id="submitQuizBtn">Submit Answer</button>
-                            <div class="quiz-feedback">
-                                <span id="quizScore">Your Score: 0</span> |
-                                <span id="quizLeader">Today's Leader: Jane D. (150 pts)</span>
-                            </div>
-                            <a href="#" style="font-size:0.8em; margin-top:5px; display:inline-block;">View Full Ranking</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="central-content-card key-features-section">
-                    <h2>Why Choose SafetyHelp?</h2>
-                    <div class="feature-tiles" id="featureTilesContainer">
-                        </div>
-                </div>
-
-                <div class="central-content-card quick-access-section">
-                    <h2>Quick Access</h2>
-                    <div class="quick-access-buttons">
-                        <a href="#" class="quick-access-button">Start a Risk Assessment</a>
-                        <a href="#" class="quick-access-button">View OHS Resources</a>
-                        <a href="#" class="quick-access-button">Latest Safety News</a>
-                        <a href="#" class="quick-access-button">Contact Support</a>
-                    </div>
-                </div>
-            </section>
-
-            <aside class="right-sidebar sidebar">
-                <h2 class="sidebar-title">OHS Milestones</h2>
-                <ul class="timeline-list" id="timelineList">
-                    </ul>
-            </aside>
-
         </div>
+    </section>
+
+    <main>
+        <section class="main-content-section">
+            <div class="container">
+                <div class="quick-engage-container">
+                    <div class="quick-engage-column">
+                        <h3 class="welcome-text">Welcome to <span class="safety">Safety</span><span class="help">Help</span></h3>
+                        <p>Your new partner in simplifying Occupational Health and Safety. Explore our upcoming platform and get ready for a safer tomorrow.</p>
+                        <h4>💡 Today's Safety Tip</h4>
+                        <p id="safetyTipContent">Loading safety tip...</p>
+                        <button id="nextTipBtn">Refresh Tip</button>
+                    </div>
+                    <div class="quick-engage-column">
+                        <h3>🧠 Brain of <span class="safety">Safety</span><span class="help">Help</span> - Daily Challenge!</h3>
+                        <input type="text" id="quizUserName" placeholder="Enter your name">
+                        <p id="quizQuestion">Loading question...</p>
+                        <input type="text" id="quizAnswer" placeholder="Your answer here">
+                        <button id="submitQuizBtn">Submit Answer</button>
+                        <div class="quiz-feedback">
+                            <span id="quizScore">Your Score: 0</span> |
+                            <span id="quizLeader">Today's Leader: A. Nony (0 pts)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="main-content-section">
+            <div class="container">
+                <div class="core-pillars-container">
+                    <div class="pillar-panel">
+                        <h3><span class="safety">Safety</span><span class="help">Help</span> Tools</h3>
+                        <ul class="tool-list scrollable-list" id="toolList">
+                            <li><a href="#" data-tool="dashboard">Dashboard</a></li>
+                            <li><a href="#" data-tool="assessments">Risk Assessments</a></li>
+                            <li><a href="#" data-tool="incidents">Incident Reporting</a></li>
+                            <li><a href="#" data-tool="training">Training Modules</a></li>
+                            <li><a href="#" data-tool="documents">Document Management</a></li>
+                            <li><a href="#" data-tool="compliance">Compliance Checklists</a></li>
+                            <li><a href="#" data-tool="sds">SDS Management</a></li>
+                            <li><a href="#" data-tool="audits">Safety Audits</a></li>
+                            <li><a href="#" data-tool="reports">Analytics & Reports</a></li>
+                        </ul>
+                    </div>
+                    <div class="pillar-panel">
+                        <h3>OHS Milestones</h3>
+                        <ul class="timeline-list scrollable-list" id="timelineList">
+                            </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="main-content-section">
+            <div class="container">
+                <h2 class="section-title">Why Choose <span class="safety">Safety</span><span class="help">Help</span>?</h2>
+                <div class="features-carousel-container">
+                    <button class="carousel-nav-button carousel-prev" aria-label="Previous Feature">&#10094;</button>
+                    <div class="features-carousel" id="featuresCarousel">
+                        </div>
+                    <button class="carousel-nav-button carousel-next" aria-label="Next Feature">&#10095;</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="main-content-section">
+            <div class="container">
+                <h2 class="section-title">Quick Access</h2>
+                <div class="quick-access-buttons-container">
+                    <a href="#" class="quick-access-button">Start Risk Assessment</a>
+                    <a href="#" class="quick-access-button">View OHS Resources</a>
+                    <a href="#" class="quick-access-button">Explore Modules (Coming Soon)</a>
+                    <a href="login.html#signup-section" class="quick-access-button">Register Interest</a>
+                </div>
+            </div>
+        </section>
     </main>
+
+    <div id="featureModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal-button" id="closeModalBtn">&times;</span>
+            <h3 id="modalTitle">Feature Title</h3>
+            <p id="modalDescription">Detailed description of the feature...</p>
+        </div>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // --- Dismiss Launch Announcement ---
-            const announcementBar = document.getElementById('launchAnnouncement');
-            const dismissBtn = document.getElementById('dismissAnnouncementBtn');
-            if (dismissBtn && announcementBar) {
-                dismissBtn.addEventListener('click', () => {
-                    announcementBar.classList.add('dismissed');
-                     // Optional: remove from DOM after animation if not needed anymore
-                    setTimeout(() => {
-                        if(announcementBar.classList.contains('dismissed')) {
-                           // announcementBar.style.display = 'none'; // Alternative to full removal
-                        }
-                    }, 500); // Match CSS transition time
+            // --- Countdown Timer ---
+            const countdownTimerEl = document.getElementById('countdownTimer');
+            const launchDate = new Date("June 1, 2025 00:00:00").getTime();
+
+            function updateCountdown() {
+                if (!countdownTimerEl) return;
+                const now = new Date().getTime();
+                const distance = launchDate - now;
+
+                if (distance < 0) {
+                    countdownTimerEl.innerHTML = "Launched!";
+                    clearInterval(countdownInterval);
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                countdownTimerEl.innerHTML = `
+                    <span>${days}<span class="label">Days</span></span>
+                    <span>${hours}<span class="label">Hours</span></span>
+                    <span>${minutes}<span class="label">Minutes</span></span>
+                    <span>${seconds}<span class="label">Seconds</span></span>
+                `;
+            }
+            const countdownInterval = setInterval(updateCountdown, 1000);
+            updateCountdown(); // Initial call
+
+            // --- Daily Safety Tip ---
+            const safetyTips = [
+                "Plan your work. Plan for safety.",
+                "Always use the right tool for the job.",
+                "Ensure proper ventilation when working with chemicals.",
+                "Never take shortcuts when it comes to safety procedures.",
+                "Stay hydrated, especially when working in warm conditions.",
+                "Report all injuries, no matter how small.",
+                "Familiarize yourself with the location of first aid kits and emergency exits."
+            ];
+            const safetyTipContentEl = document.getElementById('safetyTipContent');
+            const nextTipBtn = document.getElementById('nextTipBtn');
+            let currentTipIdx = -1;
+
+            function showRandomTip() {
+                if (!safetyTipContentEl) return;
+                let newIdx;
+                do {
+                    newIdx = Math.floor(Math.random() * safetyTips.length);
+                } while (newIdx === currentTipIdx && safetyTips.length > 1);
+                currentTipIdx = newIdx;
+                safetyTipContentEl.textContent = safetyTips[currentTipIdx];
+            }
+            if (nextTipBtn) nextTipBtn.addEventListener('click', showRandomTip);
+            showRandomTip();
+
+            // --- Brain of SafetyHelp Quiz ---
+            // (Simplified quiz logic, similar to Concept A)
+            const quizQuestionEl = document.getElementById('quizQuestion');
+            const quizAnswerEl = document.getElementById('quizAnswer');
+            const submitQuizBtn = document.getElementById('submitQuizBtn');
+            const quizScoreEl = document.getElementById('quizScore');
+            // Add more quiz questions as needed
+             const quizQuestions = [
+                { question: "What is a primary goal of OHS?", answer: "Prevent accidents", type: "input" },
+                { question: "True or False: Near misses should be reported.", answer: "True", type: "input" },
+            ];
+            let currentQuizQ = null; let userQuizScore = 0;
+
+            function displayQuizQ() {
+                if(!quizQuestionEl) return;
+                currentQuizQ = quizQuestions[Math.floor(Math.random() * quizQuestions.length)];
+                quizQuestionEl.textContent = currentQuizQ.question;
+                if(quizAnswerEl) quizAnswerEl.value = '';
+            }
+             if (submitQuizBtn) {
+                submitQuizBtn.addEventListener('click', () => {
+                    if (!currentQuizQ || !quizAnswerEl || !quizScoreEl ) return;
+                    const userAnswer = quizAnswerEl.value.trim();
+                    if (userAnswer.toLowerCase() === currentQuizQ.answer.toLowerCase()) {
+                        userQuizScore += 5;
+                        quizScoreEl.textContent = `Your Score: ${userQuizScore}`;
+                        // In a real app, use a less intrusive notification
+                        alert(`Correct! You earned 5 points.`);
+                    } else {
+                         alert(`Incorrect. The answer was: ${currentQuizQ.answer}`);
+                    }
+                    displayQuizQ(); 
                 });
             }
+            displayQuizQ();
 
-            // --- SafetyHelp Tools Link Activation ---
+
+            // --- Tool List Activation ---
             const toolLinks = document.querySelectorAll('#toolList a');
             toolLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
                     toolLinks.forEach(l => l.classList.remove('active'));
                     this.classList.add('active');
-                    // Future: Add logic to filter content based on this.dataset.tool
                     console.log('Tool selected:', this.dataset.tool);
                 });
             });
-            if (toolLinks.length > 0) toolLinks[0].classList.add('active'); // Activate first tool by default
+             if (toolLinks.length > 0) toolLinks[0].classList.add('active');
 
 
-            // --- Daily Safety Tip ---
-            const safetyTips = [
-                "Always wear appropriate Personal Protective Equipment (PPE).",
-                "Report any unsafe conditions to your supervisor immediately.",
-                "Keep walkways clear to prevent slips, trips, and falls.",
-                "Understand emergency procedures and evacuation routes.",
-                "Practice good housekeeping in your work area.",
-                "Use tools and equipment correctly and only if trained.",
-                "Take regular breaks to avoid fatigue, especially on long shifts.",
-                "Lift correctly: bend your knees, keep your back straight.",
-                "Be aware of chemical safety and SDS information.",
-                "Using reputable ethical suppliers enhances overall workplace safety culture."
-            ];
-            const safetyTipContent = document.getElementById('safetyTipContent');
-            const nextTipBtn = document.getElementById('nextTipBtn');
-            let currentTipIndex = -1;
-
-            function showRandomTip() {
-                let newIndex;
-                do {
-                    newIndex = Math.floor(Math.random() * safetyTips.length);
-                } while (newIndex === currentTipIndex && safetyTips.length > 1);
-                currentTipIndex = newIndex;
-                if (safetyTipContent) safetyTipContent.textContent = safetyTips[currentTipIndex];
-            }
-            if (nextTipBtn) nextTipBtn.addEventListener('click', showRandomTip);
-            showRandomTip(); // Initial tip
-
-            // --- Brain of SafetyHelp Quiz ---
-            const quizQuestions = [
-                { question: "What does PPE stand for?", answer: "Personal Protective Equipment", type: "input" },
-                { question: "Which color typically signifies 'danger' or 'stop' on safety signs?", answer: "Red", type: "input" },
-                { question: "What is the first step in a fire emergency?", answer: "Raise the alarm", type: "input" },
-                { question: "The acronym SDS stands for Safety Data ____?", answer: "Sheet", type: "input"}
-            ];
-            const quizQuestionEl = document.getElementById('quizQuestion');
-            const quizAnswerEl = document.getElementById('quizAnswer');
-            const submitQuizBtn = document.getElementById('submitQuizBtn');
-            const quizScoreEl = document.getElementById('quizScore');
-            const quizUserNameEl = document.getElementById('quizUserName');
-            let currentQuizQuestion = null;
-            let userScore = 0;
-
-            function displayQuizQuestion() {
-                currentQuizQuestion = quizQuestions[Math.floor(Math.random() * quizQuestions.length)];
-                if (quizQuestionEl) quizQuestionEl.textContent = currentQuizQuestion.question;
-                if (quizAnswerEl) quizAnswerEl.value = '';
-            }
-
-            if (submitQuizBtn) {
-                submitQuizBtn.addEventListener('click', () => {
-                    if (!currentQuizQuestion || !quizAnswerEl || !quizScoreEl || !quizUserNameEl) return;
-                    const userAnswer = quizAnswerEl.value.trim();
-                    const userName = quizUserNameEl.value.trim() || "Anonymous";
-
-                    if (userAnswer.toLowerCase() === currentQuizQuestion.answer.toLowerCase()) {
-                        userScore += 10;
-                        quizScoreEl.textContent = `Your Score: ${userScore}`;
-                        quizScoreEl.classList.add('score');
-                        setTimeout(()=> quizScoreEl.classList.remove('score'), 1000);
-                        alert(`Correct, ${userName}! You earned 10 points.`); // Replace with modal in production
-                    } else {
-                        alert(`Incorrect, ${userName}. The answer was: ${currentQuizQuestion.answer}`); // Replace with modal
-                    }
-                    displayQuizQuestion(); // Display next question
-                });
-            }
-            displayQuizQuestion(); // Initial question
-
-            // --- Key Features Section (Accordion) ---
-            const featureTilesData = [
-                { 
-                    icon: '🤖', title: 'AI-Powered Automation', 
-                    teaser: 'Streamline compliance tasks with intelligent automation.', 
-                    details: 'Our AI algorithms help identify potential risks, suggest corrective actions, and automate repetitive reporting tasks, saving you time and resources.' 
-                },
-                { 
-                    icon: '📊', title: 'Comprehensive Analytics', 
-                    teaser: 'Gain actionable insights from your safety data.', 
-                    details: 'Visualize trends, track incident rates, and measure the effectiveness of your safety programs with our intuitive dashboards and reporting tools.' 
-                },
-                { 
-                    icon: '📱', title: 'Mobile-First Access', 
-                    teaser: 'Manage OHS on-the-go, anytime, anywhere.', 
-                    details: 'Our platform is fully responsive, allowing your team to report incidents, complete checklists, and access safety documents directly from their mobile devices in the field.' 
-                },
-                 { 
-                    icon: '📚', title: 'Centralized Resources', 
-                    teaser: 'All your OHS documents and training in one place.', 
-                    details: 'Keep policies, procedures, SDS, and training materials organized and easily accessible to all employees, ensuring everyone has the latest information.' 
-                }
-            ];
-            const featureTilesContainer = document.getElementById('featureTilesContainer');
-            if (featureTilesContainer) {
-                featureTilesData.forEach(feature => {
-                    const tile = document.createElement('div');
-                    tile.className = 'feature-tile';
-                    tile.innerHTML = `
-                        <div class="feature-tile-header">
-                            <div>
-                                <span class="icon">${feature.icon}</span>
-                                <h4>${feature.title}</h4>
-                            </div>
-                            <span class="toggle-icon">▼</span>
-                        </div>
-                        <p class="feature-tile-teaser">${feature.teaser}</p>
-                        <div class="feature-tile-details">
-                            <p>${feature.details}</p>
-                        </div>
-                    `;
-                    featureTilesContainer.appendChild(tile);
-
-                    const header = tile.querySelector('.feature-tile-header');
-                    header.addEventListener('click', () => {
-                        tile.classList.toggle('expanded');
-                    });
-                });
-            }
-
-            // --- OHS Snippets Timeline ---
+            // --- OHS Snippets Timeline (Scroll & Expand) ---
             const timelineItemsData = [
-                { year: "1911", title: "Mines & Works Act", summary: "Early legislation in South Africa focusing on safety in mining environments, laying groundwork for future OHS regulations.", learnMore: "#" },
-                { year: "1970", title: "OSHA (USA)", summary: "The Occupational Safety and Health Act was enacted in the USA, a landmark for federal worker protection standards.", learnMore: "#" },
-                { year: "1993", title: "OHS Act (SA)", summary: "South Africa's Occupational Health and Safety Act No. 85 established comprehensive duties for employers and rights for employees.", learnMore: "#" },
-                { year: "2003", title: "COIDA Amendment", summary: "Amendments to the Compensation for Occupational Injuries and Diseases Act in SA, refining worker compensation.", learnMore: "#" },
-                { year: "2015", title: "Global Harmonization", summary: "Increased focus on aligning OHS standards internationally, e.g., GHS for chemical classification.", learnMore: "#" },
-                { year: "2022", title: "Mental Health Focus", summary: "Growing recognition and inclusion of psychosocial risks and mental well-being in OHS frameworks globally.", learnMore: "#" },
-                { year: "Future", title: "Predictive Safety", summary: "Leveraging AI and big data to predict and prevent workplace incidents before they occur.", learnMore: "#" }
+                { year: "1911", title: "Mines & Works Act", summary: "Early SA legislation for mine safety.", learnMore: "#" },
+                { year: "1970", title: "OSHA (USA)", summary: "US Occupational Safety and Health Act.", learnMore: "#" },
+                { year: "1993", title: "OHS Act (SA)", summary: "SA's core OHS Act No. 85.", learnMore: "#" },
+                { year: "2003", title: "COIDA Amendment", summary: "Refined worker compensation in SA.", learnMore: "#" },
+                { year: "2015", title: "GHS Adoption", summary: "Global chemical harmonization focus.", learnMore: "#" },
+                { year: "2020s", title: "Tech in OHS", summary: "Rise of wearables, AI for safety.", learnMore: "#" },
+                { year: "Future", title: "Proactive Safety", summary: "Focus on predictive analytics.", learnMore: "#" }
             ];
-            const timelineList = document.getElementById('timelineList');
+            const timelineListEl = document.getElementById('timelineList');
             let timelineScrollInterval;
-            let scrollPaused = false;
+            let timelineScrollPaused = false;
 
             function populateTimeline() {
-                if (!timelineList) return;
+                if (!timelineListEl) return;
+                timelineListEl.innerHTML = ''; // Clear existing
                 timelineItemsData.forEach(item => {
                     const li = document.createElement('li');
                     li.className = 'timeline-item';
@@ -813,15 +773,13 @@
                         </div>
                         <div class="timeline-item-summary">
                             <p>${item.summary}</p>
-                            ${item.learnMore ? `<a href="${item.learnMore}">Learn More</a>` : ''}
+                            ${item.learnMore ? `<a href="${item.learnMore}" target="_blank">Learn More</a>` : ''}
                         </div>
                     `;
-                    timelineList.appendChild(li);
-
+                    timelineListEl.appendChild(li);
                     const header = li.querySelector('.timeline-item-header');
                     header.addEventListener('click', () => {
-                        // Close other expanded items
-                        timelineList.querySelectorAll('.timeline-item.expanded').forEach(openItem => {
+                        timelineListEl.querySelectorAll('.timeline-item.expanded').forEach(openItem => {
                             if (openItem !== li) openItem.classList.remove('expanded');
                         });
                         li.classList.toggle('expanded');
@@ -830,34 +788,76 @@
             }
 
             function startTimelineScroll() {
-                if (!timelineList || scrollPaused) return;
-                timelineScrollInterval = setInterval(() => {
-                    if (timelineList.scrollTop + timelineList.clientHeight >= timelineList.scrollHeight -1) { // -1 for potential rounding issues
-                        timelineList.scrollTop = 0; // Loop to top
-                    } else {
-                        timelineList.scrollTop += 1; // Scroll speed
-                    }
-                }, 50); // Scroll interval
-            }
-
-            function stopTimelineScroll() {
-                clearInterval(timelineScrollInterval);
-            }
-
-            if (timelineList) {
-                populateTimeline();
-                // Only start auto-scroll if there's enough content to scroll
-                if (timelineList.scrollHeight > timelineList.clientHeight) {
-                    startTimelineScroll();
-                    timelineList.addEventListener('mouseenter', () => {
-                        scrollPaused = true;
-                        stopTimelineScroll();
-                    });
-                    timelineList.addEventListener('mouseleave', () => {
-                        scrollPaused = false;
-                        startTimelineScroll();
-                    });
+                if (!timelineListEl || timelineScrollPaused || timelineListEl.children.length === 0) return;
+                 // Check if content is scrollable
+                if (timelineListEl.scrollHeight <= timelineListEl.clientHeight) {
+                    stopTimelineScroll(); // No need to scroll if content fits
+                    return;
                 }
+                timelineScrollInterval = setInterval(() => {
+                    if (timelineListEl.scrollTop + timelineListEl.clientHeight >= timelineListEl.scrollHeight -1 ) {
+                        timelineListEl.scrollTop = 0;
+                    } else {
+                        timelineListEl.scrollTop += 1;
+                    }
+                }, 70); // Slower scroll
+            }
+
+            function stopTimelineScroll() { clearInterval(timelineScrollInterval); }
+
+            if (timelineListEl) {
+                populateTimeline();
+                startTimelineScroll();
+                timelineListEl.addEventListener('mouseenter', () => { timelineScrollPaused = true; stopTimelineScroll(); });
+                timelineListEl.addEventListener('mouseleave', () => { timelineScrollPaused = false; startTimelineScroll(); });
+            }
+
+            // --- Key Features Carousel & Modal ---
+            const featuresData = [
+                { icon: '🤖', title: 'AI Automation', shortDesc: 'Intelligent task streamlining.', longDesc: 'Leverage AI to automate compliance checks, risk identification, and reporting, freeing up valuable time for your OHS professionals to focus on proactive safety measures.' },
+                { icon: '📊', title: 'Insightful Analytics', shortDesc: 'Data-driven safety decisions.', longDesc: 'Our comprehensive analytics dashboard provides deep insights into safety trends, incident patterns, and training effectiveness, empowering you to make informed decisions.' },
+                { icon: '📱', title: 'Mobile Accessibility', shortDesc: 'OHS management on the go.', longDesc: 'Access critical safety information, report incidents, and conduct inspections from anywhere with our fully responsive, mobile-first platform design.' },
+                { icon: '🔗', title: 'Integrated Modules', shortDesc: 'Holistic OHS ecosystem.', longDesc: 'Our platform features interconnected modules for risk assessment, incident management, training, compliance, and more, creating a seamless OHS management experience.' },
+                { icon: '🇿🇦', title: 'SA Focused', shortDesc: 'Tailored for local laws.', longDesc: 'Specifically designed with South African OHS legislation and industry needs in mind, ensuring your compliance and operational relevance.' }
+            ];
+            const carouselEl = document.getElementById('featuresCarousel');
+            const modalEl = document.getElementById('featureModal');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            const modalTitleEl = document.getElementById('modalTitle');
+            const modalDescEl = document.getElementById('modalDescription');
+            const carouselPrevBtn = document.querySelector('.carousel-prev');
+            const carouselNextBtn = document.querySelector('.carousel-next');
+
+            if (carouselEl) {
+                featuresData.forEach(feature => {
+                    const card = document.createElement('div');
+                    card.className = 'feature-card';
+                    card.innerHTML = `
+                        <div class="icon">${feature.icon}</div>
+                        <h4>${feature.title}</h4>
+                        <p>${feature.shortDesc}</p>
+                    `;
+                    card.addEventListener('click', () => {
+                        if(modalTitleEl) modalTitleEl.textContent = feature.title;
+                        if(modalDescEl) modalDescEl.textContent = feature.longDesc;
+                        if(modalEl) modalEl.style.display = "block";
+                    });
+                    carouselEl.appendChild(card);
+                });
+            }
+
+            if(closeModalBtn && modalEl) closeModalBtn.onclick = () => modalEl.style.display = "none";
+            if(modalEl) window.onclick = (event) => { if (event.target == modalEl) modalEl.style.display = "none"; }
+
+            // Carousel Navigation
+            if (carouselPrevBtn && carouselNextBtn && carouselEl) {
+                const scrollAmount = 290; // Approx width of card + gap
+                carouselPrevBtn.addEventListener('click', () => {
+                    carouselEl.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                });
+                carouselNextBtn.addEventListener('click', () => {
+                    carouselEl.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                });
             }
         });
     </script>
