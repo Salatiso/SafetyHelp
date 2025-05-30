@@ -3,873 +3,1018 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SafetyHelp - Your Partner in OHS Compliance</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide-react@latest/dist/umd/lucide-react.js"></script>
-    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone@7/babel.min.js"></script>
-
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        // These are for V9, modular SDK. For V8 (compat), use firebase.initializeApp etc.
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, getDocs, query, orderBy, limit, setDoc, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-        import { getAnalytics, setUserId as setAnalyticsUserId } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
-
-        // Your web app's Firebase configuration
-        // IMPORTANT: Replace with your actual Firebase config if you have one.
-        // For demonstration, using placeholder values.
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
-            apiKey: "YOUR_API_KEY", // Replace if not using __firebase_config
-            authDomain: "YOUR_AUTH_DOMAIN",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_STORAGE_BUCKET",
-            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-            appId: "YOUR_APP_ID",
-            measurementId: "YOUR_MEASUREMENT_ID"
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-        // const analytics = getAnalytics(app); // Enable if you need analytics
-
-        // Expose Firebase services to global scope for easier access in other scripts if needed
-        window.firebaseDB = db;
-        window.firebaseAuth = auth;
-
-        // Firestore App ID (replace with your actual app ID if not using __app_id)
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'safetyhelp-app';
-        window.appId = appId; // Make appId globally available
-
-        // Authentication
-        let currentUserId = null;
-        onAuthStateChanged(auth, async (user) => {
-            if (user) {
-                currentUserId = user.uid;
-                console.log("User is signed in:", currentUserId);
-                // If using analytics and you want to set user ID
-                // if (typeof analytics !== 'undefined') {
-                //     setAnalyticsUserId(analytics, currentUserId);
-                // }
-            } else {
-                console.log("User is signed out or not yet signed in.");
-                // Attempt to sign in with custom token if available, otherwise anonymously
-                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                    try {
-                        await signInWithCustomToken(auth, __initial_auth_token);
-                        console.log("Signed in with custom token.");
-                    } catch (error) {
-                        console.error("Error signing in with custom token, trying anonymous:", error);
-                        await signInAnonymously(auth);
-                        console.log("Signed in anonymously after custom token failure.");
-                    }
-                } else {
-                    await signInAnonymously(auth);
-                    console.log("Signed in anonymously.");
-                }
-            }
-            window.currentUserId = auth.currentUser ? auth.currentUser.uid : crypto.randomUUID(); // Ensure userId is set
-        });
-
-
-    </script>
-
-
+    <title>SafetyHelp - Your OHS Partner</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
     <style>
+        /* --- Reset & Base Styles --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            overflow: hidden; /* Prevent scrolling on the body */
-            height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Branding Guidelines --- */
+        :root {
+            --brand-primary-blue: #005A9C;
+            --brand-secondary-orange: #FFA500;
+            --brand-hover-green: #28a745;
+            --brand-light-blue: #e0efff;
+            --text-color-light: #ffffff;
+            --text-color-dark: #333333;
+            --border-color: #ddd;
+            --card-bg: #ffffff;
+            --panel-bg: #f9f9f9;
+        }
+
+        /* --- Header --- */
+        .site-header {
+            background-color: var(--brand-primary-blue);
+            color: var(--text-color-light);
+            padding: 15px 0;
+            border-bottom: 3px solid var(--brand-secondary-orange);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .site-header .container {
             display: flex;
-            flex-direction: column;
-            background-color: #f0f4f8; /* Light background for the page */
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
         }
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
+
+        .logo-text {
+            font-size: 28px;
+            font-weight: bold;
+            text-decoration: none;
         }
-        .no-scrollbar {
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
+        .logo-text .safety { color: var(--text-color-light); }
+        .logo-text .help { color: var(--brand-secondary-orange); }
+
+        .nav-links {
+            display: flex;
+            gap: 10px;
         }
-        .header-bg {
-            background-color: #1E3A8A; /* Dark blue for header */
+
+        .nav-links a {
+            color: var(--brand-primary-blue);
+            background-color: var(--text-color-light);
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
-        .welcome-bg {
-            background-color: #3B82F6; /* Lighter blue for welcome section */
+
+        .nav-links a:hover {
+            background-color: var(--brand-secondary-orange);
+            color: var(--text-color-light);
         }
-        .nav-button {
-            transition: all 0.3s ease;
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
         }
-        .nav-button:hover {
-            background-color: #2563EB; /* Slightly darker blue on hover */
-            transform: translateY(-2px);
+        @media (min-width: 768px) {
+            .header-right {
+                margin-top: 0;
+            }
         }
-        .icon-placeholder {
-            width: 24px;
-            height: 24px;
+
+        .search-bar {
+            padding: 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            margin-right: 15px;
+            font-size: 14px;
+        }
+
+        .language-selector select {
+            padding: 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background-color: var(--text-color-light);
+            color: var(--text-color-dark);
+            font-size: 14px;
+        }
+
+        /* --- Welcome Section --- */
+        .welcome-section {
+            background: linear-gradient(to bottom, var(--brand-light-blue), #ffffff);
+            padding: 50px 20px;
+            text-align: center;
+            margin-top: 70px;
+        }
+
+        .welcome-section h1 {
+            font-size: 36px;
+            color: var(--brand-primary-blue);
+            margin-bottom: 10px;
+        }
+
+        .welcome-section .slogan {
+            font-size: 20px;
+            color: var(--brand-secondary-orange);
+            margin-bottom: 10px;
+        }
+
+        .welcome-section p {
+            font-size: 16px;
+            color: var(--text-color-dark);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* --- Launch Announcement Bar --- */
+        .launch-announcement {
+            background-color: var(--brand-light-blue);
+            color: var(--text-color-dark);
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            border-bottom: 1px solid var(--border-color);
+            transition: opacity 0.5s ease, max-height 0.5s ease;
+            overflow: hidden;
+            max-height: 500px;
+        }
+
+        .launch-announcement.dismissed {
+            opacity: 0;
+            max-height: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .launch-announcement h2 {
+            font-size: 1.4em;
+            margin-bottom: 8px;
+            color: var(--brand-primary-blue);
+        }
+
+        .launch-announcement p {
+            font-size: 0.95em;
+            margin-bottom: 12px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .launch-cta-button {
+            background-color: var(--brand-secondary-orange);
+            color: var(--text-color-light);
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
             display: inline-block;
         }
-        .clickable-box {
-            padding: 0.5rem 1rem;
-            border-radius: 0.375rem;
-            transition: background-color 0.2s ease-in-out;
+
+        .launch-cta-button:hover {
+            background-color: #e09500;
         }
-        .clickable-box:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+
+        .dismiss-button {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-color-dark);
+            line-height: 1;
         }
-        /* Chatbot styling */
-        #chatbotContainer {
+        .dismiss-button:hover {
+            color: var(--brand-primary-blue);
+        }
+
+        /* --- Main Content Area --- */
+        .main-content-area .container {
+            display: flex;
+            flex-wrap: wrap;
+            padding-top: 20px;
+            gap: 20px;
+        }
+
+        /* --- Shared Sidebar Styles --- */
+        .sidebar {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            height: 400px;
+            width: 100%;
+        }
+        @media (min-width: 992px) {
+            .sidebar {
+                width: 260px;
+                flex-shrink: 0;
+            }
+        }
+
+        .sidebar-title {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        .sidebar-title .safety { color: var(--brand-primary-blue); }
+        .sidebar-title .help { color: var(--brand-secondary-orange); }
+
+        /* --- Left Sidebar (SafetyHelp Tools) --- */
+        .tool-list {
+            list-style: none;
+        }
+
+        .tool-list li a {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: var(--brand-primary-blue);
+            border-radius: 4px;
+            margin-bottom: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .tool-list li a i {
+            margin-right: 10px;
+        }
+
+        .tool-list li a:hover,
+        .tool-list li a.active {
+            background-color: var(--brand-hover-green);
+            color: var(--text-color-light);
+        }
+        .tool-list li a.active {
+            font-weight: bold;
+        }
+
+        /* --- Right Sidebar (OHS Milestones) --- */
+        .timeline-list {
+            list-style: none;
+            max-height: 340px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .timeline-list::-webkit-scrollbar {
+            width: 8px;
+        }
+        .timeline-list::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .timeline-list::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 10px;
+        }
+        .timeline-list::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        .timeline-item {
+            background-color: var(--panel-bg);
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .timeline-item-header {
+            padding: 10px 15px;
+            cursor: pointer;
+            background-color: var(--brand-primary-blue);
+            color: var(--text-color-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+        .timeline-item-header:hover {
+            background-color: #00487a;
+        }
+        .timeline-item.expanded .timeline-item-header {
+            background-color: var(--brand-hover-green);
+        }
+
+        .timeline-item-header h5 {
+            margin: 0;
+            font-size: 1em;
+            display: flex;
+            align-items: center;
+        }
+        .timeline-item-header h5 i {
+            margin-right: 10px;
+        }
+        .timeline-item-header .toggle-icon-timeline {
+            font-size: 1em;
+            transition: transform 0.3s ease;
+        }
+        .timeline-item.expanded .toggle-icon-timeline {
+            transform: rotate(180deg);
+        }
+
+        .timeline-item-summary {
+            padding: 0 15px 15px 15px;
+            font-size: 0.85em;
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 0.4s ease-out, opacity 0.3s ease-out, padding 0.4s ease-out;
+        }
+        .timeline-item.expanded .timeline-item-summary {
+            max-height: 200px;
+            opacity: 1;
+            padding-top: 10px;
+        }
+        .timeline-item-summary a {
+            color: var(--brand-secondary-orange);
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .timeline-item-summary a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Central Column --- */
+        .central-column {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .central-content-card {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .mini-panels-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 0;
+        }
+
+        .mini-panel {
+            flex: 1;
+            min-width: 280px;
+            background-color: var(--panel-bg);
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .mini-panel h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color: var(--brand-primary-blue);
+            display: flex;
+            align-items: center;
+        }
+        .mini-panel h3 i {
+            margin-right: 10px;
+        }
+        .mini-panel p {
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            min-height: 40px;
+        }
+        .mini-panel input[type="text"],
+        .mini-panel input[type="number"],
+        .mini-panel select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+        .mini-panel button {
+            background-color: var(--brand-secondary-orange);
+            color: var(--text-color-light);
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        .mini-panel button:hover {
+            background-color: #e09500;
+        }
+        .quiz-feedback {
+            font-size: 0.9em;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .quiz-feedback .score { color: var(--brand-hover-green); }
+        .quiz-feedback .leader { color: var(--brand-primary-blue); }
+
+        /* --- Why Choose SafetyHelp --- */
+        .key-features-section h2 {
+            font-size: 1.6em;
+            margin-bottom: 20px;
+            text-align: center;
+            color: var(--text-color-dark);
+        }
+
+        .feature-tiles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-tile {
+            background-color: #f0f0f0;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 15px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .feature-tile:hover {
+            background-color: var(--brand-light-blue);
+        }
+
+        .feature-tile i {
+            font-size: 24px;
+            color: var(--brand-primary-blue);
+            margin-bottom: 10px;
+        }
+
+        .feature-tile h4 {
+            font-size: 1.1em;
+            color: var(--brand-primary-blue);
+            margin-bottom: 5px;
+        }
+
+        .feature-tile p {
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--brand-primary-blue);
+            color: var(--text-color-light);
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        footer a {
+            color: var(--brand-secondary-orange);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Chatbot --- */
+        .chatbot {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            z-index: 1000;
-        }
-        #chatbotToggle {
-            background-color: #1E3A8A; /* Dark blue */
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            font-size: 24px;
-            cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        #chatbotWindow {
-            width: 350px;
-            height: 450px;
-            background-color: white;
+            background-color: var(--card-bg);
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-            transform-origin: bottom right;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            width: 300px;
         }
-        #chatbotWindow.hidden {
-            transform: scale(0);
-            opacity: 0;
-        }
-        #chatHeader {
-            background-color: #1E3A8A; /* Dark blue */
-            color: white;
+
+        .chatbot.collapsed {
+            width: auto;
             padding: 10px;
-            font-weight: bold;
+        }
+
+        .chatbot-header {
+            background-color: var(--brand-primary-blue);
+            color: var(--text-color-light);
+            padding: 10px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        #closeChat {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 20px;
+
+        .chatbot-header i {
             cursor: pointer;
         }
-        #chatMessages {
-            flex-grow: 1;
+
+        .chatbot-content {
             padding: 10px;
-            overflow-y: auto;
-            background-color: #f9fafb; /* Light gray for messages background */
-        }
-        .message {
-            margin-bottom: 10px;
-            padding: 8px 12px;
-            border-radius: 15px;
-            max-width: 80%;
-            word-wrap: break-word;
-        }
-        .user-message {
-            background-color: #3B82F6; /* Lighter blue */
-            color: white;
-            align-self: flex-end;
-            margin-left: auto;
-            border-bottom-right-radius: 5px;
-        }
-        .bot-message {
-            background-color: #e5e7eb; /* Light gray for bot messages */
-            color: #1f2937; /* Dark gray text */
-            align-self: flex-start;
-            margin-right: auto;
-            border-bottom-left-radius: 5px;
-        }
-        #chatInputContainer {
             display: flex;
-            padding: 10px;
-            border-top: 1px solid #e5e7eb; /* Light gray border */
+            flex-direction: column;
+            gap: 10px;
         }
-        #chatInput {
-            flex-grow: 1;
-            border: 1px solid #d1d5db; /* Gray border */
-            border-radius: 20px;
-            padding: 10px 15px;
-            margin-right: 10px;
-            outline: none;
+
+        .chatbot.collapsed .chatbot-content {
+            display: none;
         }
-        #sendButton {
-            background-color: #1E3A8A; /* Dark blue */
-            color: white;
+
+        .chatbot input {
+            padding: 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .chatbot button {
+            background-color: var(--brand-secondary-orange);
+            color: var(--text-color-light);
+            padding: 8px;
             border: none;
-            border-radius: 20px;
-            padding: 10px 15px;
+            border-radius: 4px;
             cursor: pointer;
-            transition: background-color 0.2s;
         }
-        #sendButton:hover {
-            background-color: #1D4ED8; /* Slightly lighter blue on hover */
+        .chatbot button:hover {
+            background-color: #e09500;
         }
-        /* Quiz Modal */
-        .quiz-modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1100; /* Higher than chatbot */
+
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 991px) {
+            .main-content-area .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                margin-bottom: 20px;
+                height: auto;
+            }
+            .central-column {
+                order: 0;
+            }
+            .left-sidebar { order: 1; }
+            .right-sidebar { order: 2; }
         }
-        .quiz-modal-content {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 0.5rem;
-            width: 90%;
-            max-width: 500px;
-            max-height: 90vh;
-            overflow-y: auto;
+
+        @media (max-width: 767px) {
+            .site-header .container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+                margin-top: 10px;
+            }
+            .nav-links a {
+                width: 100%;
+                text-align: center;
+            }
+            .header-right {
+                width: 100%;
+                margin-top: 15px;
+                justify-content: space-between;
+            }
+            .search-bar {
+                flex-grow: 1;
+                margin-right: 10px;
+            }
+            .language-selector select {
+                min-width: 100px;
+            }
+            .welcome-section h1 { font-size: 1.5em; }
+            .mini-panels-container { flex-direction: column; }
+            .launch-announcement h2 { font-size: 1.2em; }
+            .launch-announcement p { font-size: 0.9em; }
         }
     </style>
 </head>
-<body class="flex flex-col h-screen">
-
-    <header class="header-bg text-white shadow-md sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
-            <a href="#" class="flex items-center space-x-2">
-                <img src="https://placehold.co/120x40/ffffff/1E3A8A?text=SafetyHelp&font=Inter" alt="SafetyHelp Logo" id="logoLink" class="h-8 md:h-10">
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <a href="index.htm" class="logo-text">
+                <span class="safety">Safety</span><span class="help">Help</span>
             </a>
-
-            <nav class="hidden md:flex items-center space-x-2">
-                <a href="#" class="clickable-box nav-button">
-                    <span class="lucide icon-placeholder" data-lucide="Home"></span> Home
-                </a>
-                <a href="#" class="clickable-box nav-button">
-                    <span class="lucide icon-placeholder" data-lucide="BookOpen"></span> Resources
-                </a>
-                <a href="#" class="clickable-box nav-button">
-                    <span class="lucide icon-placeholder" data-lucide="Briefcase"></span> Services
-                </a>
-                <a href="#" class="clickable-box nav-button">
-                    <span class="lucide icon-placeholder" data-lucide="Users"></span> Community
-                </a>
-                <a href="#" class="clickable-box nav-button">
-                    <span class="lucide icon-placeholder" data-lucide="Info"></span> About
-                </a>
-                <a href="#" class="clickable-box nav-button">
-                    <span class="lucide icon-placeholder" data-lucide="Mail"></span> Contact
-                </a>
-            </nav>
-
-            <div class="flex items-center space-x-3">
-                <div class="hidden sm:flex items-center bg-white bg-opacity-20 rounded-full px-2 py-1">
-                    <span class="lucide text-white mr-1" data-lucide="Search" style="width: 18px; height: 18px;"></span>
-                    <input type="search" placeholder="Search..." class="bg-transparent text-white placeholder-gray-300 text-sm focus:outline-none w-24 md:w-32">
-                </div>
-                <div class="relative">
-                    <select id="languageSelector" class="bg-white bg-opacity-20 text-white text-sm rounded-full py-1 px-2 focus:outline-none appearance-none">
-                        <option value="en">EN</option>
-                        <option value="zu">ZU</option>
-                        <option value="xh">XH</option>
-                        <option value="af">AF</option>
-                    </select>
-                    <span class="lucide text-white absolute right-1 top-1/2 transform -translate-y-1/2 pointer-events-none" data-lucide="ChevronDown" style="width: 16px; height: 16px;"></span>
-                </div>
-                 <a href="login.html" id="loginLink" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg text-sm">
-                    Login/Signup
-                </a>
+            <div class="nav-links">
+                <a href="index.htm">Home</a>
+                <a href="resources.htm">Resources</a>
+                <a href="community.htm">Community</a>
+                <a href="about.htm">About</a>
             </div>
-            <button id="mobileMenuButton" class="md:hidden text-white">
-                <span class="lucide" data-lucide="Menu"></span>
-            </button>
-        </div>
-         <div id="mobileMenu" class="hidden md:hidden bg-gray-700 text-white py-2">
-            <a href="#" class="block px-4 py-2 hover:bg-gray-600">Home</a>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-600">Resources</a>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-600">Services</a>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-600">Community</a>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-600">About</a>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-600">Contact</a>
-            <div class="px-4 py-2">
-                <input type="search" placeholder="Search..." class="bg-gray-600 text-white placeholder-gray-300 text-sm focus:outline-none w-full rounded-md p-1">
+            <div class="header-right">
+                <input type="search" class="search-bar" placeholder="Search...">
+                <div class="language-selector">
+                    <select name="language" id="language">
+                        <option value="en">English</option>
+                        <option value="af">Afrikaans</option>
+                    </select>
+                </div>
             </div>
         </div>
     </header>
 
-    <section class="welcome-bg text-white py-4 shadow-inner">
-        <div class="container mx-auto px-4 text-center">
-            <h1 class="text-2xl font-bold">Welcome to SafetyHelp</h1>
-            <p class="text-sm mt-1">Your trusted partner for OHS compliance and a safer tomorrow. Slogan: Safety Personalized, Compliance Simplified—Anytime, Anywhere.</p>
-        </div>
+    <!-- Welcome Section -->
+    <section class="welcome-section">
+        <h1>Welcome to SafetyHelp</h1>
+        <div class="slogan">Empowering Safety, Ensuring Compliance</div>
+        <p>Your trusted platform for occupational health and safety (OHS) in South Africa. We provide intuitive, AI-enhanced tools to ensure safety and compliance in workplaces, schools, churches, and informal sectors. Join our community to access resources, services, and support tailored to your needs.</p>
     </section>
 
-    <main class="flex-grow flex overflow-hidden">
-        <aside class="w-1/5 bg-slate-100 p-3 overflow-y-auto no-scrollbar shadow-lg">
-            <h2 class="text-lg font-semibold mb-3 text-gray-700 border-b pb-2">SafetyHelp Tools</h2>
-            <ul class="space-y-2 text-sm">
-                <li><a href="#" class="flex items-center text-gray-600 hover:text-blue-600 hover:bg-blue-100 p-2 rounded-md transition-colors"><span class="lucide mr-2 icon-placeholder" data-lucide="ShieldCheck"></span>Dashboard</a></li>
-                <li><a href="#" class="flex items-center text-gray-600 hover:text-blue-600 hover:bg-blue-100 p-2 rounded-md transition-colors"><span class="lucide mr-2 icon-placeholder" data-lucide="ClipboardList"></span>Risk Assessments</a></li>
-                <li><a href="#" class="flex items-center text-gray-600 hover:text-blue-600 hover:bg-blue-100 p-2 rounded-md transition-colors"><span class="lucide mr-2 icon-placeholder" data-lucide="AlertTriangle"></span>Incident Reporting</a></li>
-                <li><a href="#" class="flex items-center text-gray-600 hover:text-blue-600 hover:bg-blue-100 p-2 rounded-md transition-colors"><span class="lucide mr-2 icon-placeholder" data-lucide="BookMarked"></span>Training Modules</a></li>
-                <li><a href="#" class="flex items-center text-gray-600 hover:text-blue-600 hover:bg-blue-100 p-2 rounded-md transition-colors"><span class="lucide mr-2 icon-placeholder" data-lucide="FolderKanban"></span>Document Management</a></li>
-                <li><a href="#" class="flex items-center text-gray-600 hover:text-blue-600 hover:bg-blue-100 p-2 rounded-md transition-colors"><span class="lucide mr-2 icon-placeholder" data-lucide="ListChecks"></span>Compliance Checklists</a></li>
-                <li><a href="#" class="flex items-center text-gray-600 hover:text-blue-600 hover:bg-blue-100 p-2 rounded-md transition-colors"><span class="lucide mr-2 icon-placeholder" data-lucide="BarChart3"></span>Analytics & Reports</a></li>
-            </ul>
-        </aside>
+    <!-- Launch Announcement -->
+    <div class="launch-announcement" id="launchAnnouncement">
+        <button class="dismiss-button" id="dismissAnnouncementBtn" aria-label="Dismiss announcement">×</button>
+        <h2>🚀 SafetyHelp Launched June 1, 2025! Be a Pioneer in OHS</h2>
+        <p>Our core platform is now live! Upcoming modules will launch monthly – see the countdown on the dashboard. Join our exclusive Beta Program: test new features, shape development, and get complimentary premium access during your testing period. Register now to be part of the future of OHS!</p>
+        <a href="login.htm#signup-section" class="launch-cta-button">Join Beta & Register Now</a>
+    </div>
 
-        <section class="flex-grow w-3/5 bg-white p-3 overflow-y-auto no-scrollbar flex flex-col space-y-3">
-            <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-3 rounded-md shadow">
-                <p class="font-semibold flex items-center"><span class="text-2xl mr-2">⚡</span> Did you know?</p>
-                <p class="text-sm" id="safetyTip">Using reputable ethical suppliers can reduce workplace hazards by ensuring work is done on time and to the highest quality and safety standards.</p>
-            </div>
+    <!-- Main Content -->
+    <main class="main-content-area">
+        <div class="container">
+            <!-- Left Sidebar (SafetyHelp Tools) -->
+            <aside class="left-sidebar sidebar">
+                <h2 class="sidebar-title"><span class="safety">Safety</span><span class="help">Help</span> Tools</h2>
+                <ul class="tool-list" id="toolList">
+                    <li><a href="dashboard.htm" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="risk-assessments.htm"><i class="fas fa-exclamation-triangle"></i> Risk Assessments</a></li>
+                    <li><a href="incident-reporting.htm"><i class="fas fa-file-alt"></i> Incident Reporting</a></li>
+                    <li><a href="training-modules.htm"><i class="fas fa-graduation-cap"></i> Training Modules</a></li>
+                    <li><a href="document-management.htm"><i class="fas fa-folder-open"></i> Document Management</a></li>
+                    <li><a href="compliance-checklists.htm"><i class="fas fa-check-square"></i> Compliance Checklists</a></li>
+                    <li><a href="analytics-reports.htm"><i class="fas fa-chart-bar"></i> Analytics & Reports</a></li>
+                </ul>
+            </aside>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                <div class="bg-blue-50 p-3 rounded-lg shadow-md">
-                    <h3 class="text-md font-semibold text-blue-700 mb-1">Next Module Countdown</h3>
-                    <div id="countdownTimer" class="text-2xl font-bold text-blue-600">00d 00h 00m 00s</div>
-                    <p class="text-xs text-gray-500 mt-1">New module launches at the start of each month!</p>
-                </div>
-                <div class="bg-green-50 p-3 rounded-lg shadow-md">
-                    <h3 class="text-md font-semibold text-green-700 mb-1">SafetyHelp Brain of the Day</h3>
-                    <p id="brainOfTheDay" class="text-xl font-bold text-green-600">Salatiso M. (150 pts)</p>
-                    <p class="text-xs text-gray-500 mt-1">Top score in today's challenge!</p>
-                </div>
-            </div>
+            <!-- Central Column -->
+            <section class="central-column">
+                <!-- Did You Know and Dashboard -->
+                <div class="central-content-card">
+                    <div class="mini-panels-container">
+                        <div class="mini-panel" id="didYouKnowPanel">
+                            <h3><i class="fas fa-bolt"></i> Did You Know...</h3>
+                            <p id="didYouKnowContent">Using reputable ethical suppliers can reduce workplace hazards by ensuring work is done on time and to the highest quality and safety standards.</p>
+                            <button id="nextTipBtn">Next Tip</button>
+                        </div>
 
-            <div class="bg-indigo-50 p-3 rounded-lg shadow-md">
-                <h3 class="text-md font-semibold text-indigo-700 mb-2">Brain of SafetyHelp - Daily Challenge!</h3>
-                <div id="quizArea">
+                        <div class="mini-panel" id="dashboardPanel">
+                            <h3><i class="fas fa-tachometer-alt"></i> Dashboard</h3>
+                            <div class="timer">
+                                <p>Next Module Launch: <span id="countdown" style="color: var(--brand-secondary-orange); font-weight: bold;"></span></p>
+                            </div>
+                            <div class="brain-of-day">
+                                <p>SafetyHelp Brain of the Day: <span id="brain-of-day">Loading...</span></p>
+                            </div>
+                            <div class="podcast">
+                                <p>Latest Podcast: <a href="podcast.htm" style="color: var(--brand-secondary-orange);">Episode 10: Safety in 2025</a></p>
+                            </div>
+                            <div class="article">
+                                <p>Latest Article: <a href="article.htm" style="color: var(--brand-secondary-orange);">Top 5 OHS Trends for 2025</a></p>
+                            </div>
+                        </div>
                     </div>
-                <button id="startQuizButton" class="mt-2 bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg text-sm transition-colors">
-                    <span class="lucide icon-placeholder mr-1" data-lucide="Brain"></span> Start Daily Challenge
-                </button>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                <div class="bg-purple-50 p-3 rounded-lg shadow-md">
-                    <h3 class="text-md font-semibold text-purple-700 mb-1">Latest Podcast</h3>
-                    <a href="#" class="text-purple-600 hover:text-purple-800 hover:underline flex items-center text-sm">
-                        <span class="lucide icon-placeholder mr-2" data-lucide="Podcast"></span> Episode 5: Mastering Risk Communication
-                    </a>
                 </div>
-                <div class="bg-teal-50 p-3 rounded-lg shadow-md">
-                    <h3 class="text-md font-semibold text-teal-700 mb-1">Latest Article</h3>
-                    <a href="#" class="text-teal-600 hover:text-teal-800 hover:underline flex items-center text-sm">
-                        <span class="lucide icon-placeholder mr-2" data-lucide="FileText"></span> Top 10 OHS Trends for 2025
-                    </a>
+
+                <!-- Brain of SafetyHelp -->
+                <div class="central-content-card">
+                    <div class="mini-panel" id="quizPanel">
+                        <h3><i class="fas fa-brain"></i> Brain of SafetyHelp - Daily Challenge!</h3>
+                        <div id="quiz-container"></div>
+                        <button id="submitQuizBtn">Submit Answers</button>
+                        <div class="quiz-feedback">
+                            <span id="quizScore">Your Score: 0</span> |
+                            <span id="quizLeader">Today's Leader: Loading...</span>
+                        </div>
+                        <a href="#" style="font-size:0.8em; margin-top:5px; display:inline-block; color: var(--brand-secondary-orange);">View Full Ranking</a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="bg-sky-50 p-3 rounded-lg shadow-md mt-3">
-                <h3 class="text-md font-semibold text-sky-700 mb-1">🚀 SafetyHelp Has Launched!</h3>
-                <p class="text-sm text-gray-700">Our core platform officially launched on <strong>June 1, 2025!</strong> We're excited to bring you a new era of OHS management.</p>
-                <p class="text-sm text-gray-700 mt-1">Stay tuned for upcoming modules, including Advanced Construction Compliance and AI-Powered Risk Assessments, launching monthly (check the countdown!).</p>
-                <p class="text-sm text-gray-700 mt-2">Be a pioneer! <a href="#" class="text-sky-600 hover:underline font-semibold">Join our Beta Program</a> to test new features, influence development, and get complimentary premium access. <a href="#" class="text-sky-600 hover:underline font-semibold">Register Now!</a></p>
-            </div>
-        </section>
+                <!-- Why Choose SafetyHelp -->
+                <div class="central-content-card key-features-section">
+                    <h2>Why Choose SafetyHelp?</h2>
+                    <div class="feature-tiles">
+                        <div class="feature-tile">
+                            <i class="fas fa-robot"></i>
+                            <h4>AI Automation</h4>
+                            <p>Intelligent task streamlining.</p>
+                        </div>
+                        <div class="feature-tile">
+                            <i class="fas fa-lightbulb"></i>
+                            <h4>Intelligent Analytics</h4>
+                            <p>Data-driven safety decisions.</p>
+                        </div>
+                        <div class="feature-tile">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h4>Mobile Accessibility</h4>
+                            <p>OHS management on the go.</p>
+                        </div>
+                        <div class="feature-tile">
+                            <i class="fas fa-link"></i>
+                            <h4>Integrated Modules</h4>
+                            <p>Holistic OHS ecosystem.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-        <aside class="w-1/5 bg-slate-100 p-3 overflow-y-auto no-scrollbar shadow-lg">
-            <h2 class="text-lg font-semibold mb-3 text-gray-700 border-b pb-2">OHS Milestones</h2>
-            <ul class="space-y-2 text-sm">
-                <li class="text-gray-600"><span class="font-semibold text-gray-700">1970:</span> OSHA (USA)</li>
-                <li class="text-gray-600"><span class="font-semibold text-gray-700">1993:</span> OHS Act (SA)</li>
-                <li class="text-gray-600"><span class="font-semibold text-gray-700">2003:</span> COIDA Amendment</li>
-                <li class="text-gray-600"><span class="font-semibold text-gray-700">2015:</span> Global Harmonization</li>
-                <li class="text-gray-600"><span class="font-semibold text-gray-700">2022:</span> Mental Health Focus</li>
-                <li class="text-gray-600"><span class="font-semibold text-gray-700">Future:</span> Predictive Safety</li>
-            </ul>
-        </aside>
+            <!-- Right Sidebar (OHS Milestones) -->
+            <aside class="right-sidebar sidebar">
+                <h2 class="sidebar-title">OHS Milestones</h2>
+                <ul class="timeline-list" id="timelineList"></ul>
+            </aside>
+        </div>
     </main>
 
-    <footer class="bg-gray-800 text-white py-3 text-center text-xs shadow-inner">
-        <p>&copy; <span id="currentYear"></span> SafetyHelp. All Rights Reserved. | <a href="privacy.html" class="hover:underline">Privacy Policy</a> | <a href="terms.html" class="hover:underline">Terms of Service</a></p>
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 SafetyHelp. All Rights Reserved.</p>
+        <p>
+            <a href="privacy.htm">Privacy Policy</a> |
+            <a href="terms.htm">Terms of Service</a> |
+            <a href="contact.htm">Contact Us</a>
+        </p>
     </footer>
 
-    <div id="chatbotContainer">
-        <div id="chatbotWindow" class="hidden">
-            <div id="chatHeader">
-                <span>SafetyHelp Assistant</span>
-                <button id="closeChat">&times;</button>
-            </div>
-            <div id="chatMessages" class="no-scrollbar">
-                <div class="message bot-message">Hello! How can I assist you with OHS today?</div>
-            </div>
-            <div id="chatInputContainer">
-                <input type="text" id="chatInput" placeholder="Type your question...">
-                <button id="sendButton">
-                    <span class="lucide" data-lucide="SendHorizonal" style="width:18px; height:18px;"></span>
-                </button>
-            </div>
+    <!-- Chatbot -->
+    <div class="chatbot" id="chatbot">
+        <div class="chatbot-header">
+            <span>SafetyHelp Chat</span>
+            <i class="fas fa-chevron-down" id="chatbotToggle"></i>
         </div>
-        <button id="chatbotToggle">
-            <span class="lucide" data-lucide="MessageCircle" id="chatIconOpen"></span>
-            <span class="lucide hidden" data-lucide="X" id="chatIconClose"></span>
-        </button>
-    </div>
-
-    <div id="quizModalOverlay" class="quiz-modal-overlay hidden">
-        <div class="quiz-modal-content no-scrollbar">
-            <div id="quizModalQuestionArea">
-                </div>
-            <div id="quizModalRegistrationArea" class="hidden mt-4">
-                <h3 class="text-lg font-semibold mb-2">Quiz Set Complete!</h3>
-                <p class="mb-2">Register to save your score and compete on the leaderboard, or continue as a guest.</p>
-                <input type="text" id="quizUserName" placeholder="Your Name (for leaderboard)" class="w-full p-2 border rounded mb-2">
-                <input type="email" id="quizUserEmail" placeholder="Your Email (optional)" class="w-full p-2 border rounded mb-3">
-                <div class="flex justify-between">
-                    <button id="registerQuizUser" class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded text-sm">Register & Continue</button>
-                    <button id="continueQuizGuest" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded text-sm">Continue as Guest</button>
-                </div>
-                 <button id="closeQuizModal" class="mt-4 bg-gray-300 hover:bg-gray-400 text-gray-800 py-2 px-4 rounded text-sm w-full">Close Quiz</button>
-            </div>
-            <div id="quizModalResultsArea" class="hidden mt-4">
-                </div>
+        <div class="chatbot-content">
+            <p>Welcome to SafetyHelp Chat! How can I assist you today?</p>
+            <input type="text" placeholder="Type your message...">
+            <button onclick="sendMessage()">Send</button>
         </div>
     </div>
 
+    <script>
+        // --- Firebase Configuration (Replace with your Firebase config) ---
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
 
-    <script type="text/babel">
-        const { useEffect, useState, useCallback } = React;
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
 
-        function App() {
-            // Mobile menu state
-            const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-            // Countdown timer state
-            const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
-
-            // Chatbot state
-            const [chatOpen, setChatOpen] = useState(false);
-            const [messages, setMessages] = useState([{ sender: 'bot', text: 'Hello! How can I assist you with OHS today?' }]);
-            const [inputValue, setInputValue] = useState('');
-
-            // Quiz state
-            const [quizActive, setQuizActive] = useState(false);
-            const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-            const [quizQuestions, setQuizQuestions] = useState([]);
-            const [userAnswers, setUserAnswers] = useState([]);
-            const [quizSetComplete, setQuizSetComplete] = useState(false);
-            const [showQuizResults, setShowQuizResults] = useState(false);
-            const [quizScore, setQuizScore] = useState(0);
-            const [quizUserName, setQuizUserName] = useState('');
-            const [quizUserEmail, setQuizUserEmail] = useState('');
-
-
-            const allQuizQuestions = [
-                {
-                    question: "What does OHS stand for?",
-                    options: ["Occupational Health and Safety", "Optimal Health Standards", "Operational Hazard Systems", "Office Health and Security"],
-                    answer: "Occupational Health and Safety",
-                    explanation: "OHS stands for Occupational Health and Safety, which is concerned with the safety, health, and welfare of people engaged in work or employment."
-                },
-                {
-                    question: "Which color typically signifies 'danger' or 'stop' on safety signs?",
-                    options: ["Red", "Yellow", "Green", "Blue"],
-                    answer: "Red",
-                    explanation: "Red is universally used on safety signs to indicate danger, prohibition (stop), or fire-fighting equipment."
-                },
-                {
-                    question: "What is a 'Risk Assessment'?",
-                    options: ["A fun team-building exercise", "A systematic process of evaluating potential risks", "A type of insurance policy", "A daily weather report"],
-                    answer: "A systematic process of evaluating potential risks",
-                    explanation: "A risk assessment is a careful examination of what, in your work, could cause harm to people, so that you can weigh up whether you have taken enough precautions or should do more."
-                },
-                {
-                    question: "What is PPE?",
-                    options: ["Personal Protective Equipment", "Public Protection Exercise", "Primary Prevention Effort", "Professional Performance Evaluation"],
-                    answer: "Personal Protective Equipment",
-                    explanation: "PPE refers to Personal Protective Equipment, such as helmets, gloves, eye protection, respirators, and safety footwear, designed to protect the wearer from injury or infection."
-                },
-                {
-                    question: "An 'incident' in OHS terms typically refers to:",
-                    options: ["A planned safety drill", "An unplanned event that could have led to, or did result in, harm", "A company picnic", "A scheduled maintenance check"],
-                    answer: "An unplanned event that could have led to, or did result in, harm",
-                    explanation: "An incident is an unplanned, undesired event that hinders completion of a task and may cause injury or other damage. This includes near misses."
-                },
-                // Add more questions for subsequent sets
-                 {
-                    question: "What is the primary goal of an Emergency Evacuation Plan?",
-                    options: ["To test the fire alarm system", "To ensure everyone gets a day off", "To safely and quickly move people from a dangerous area", "To count office supplies"],
-                    answer: "To safely and quickly move people from a dangerous area",
-                    explanation: "The primary goal of an Emergency Evacuation Plan is to ensure the safe and orderly evacuation of all personnel from a hazardous area to a designated safe location."
-                },
-                {
-                    question: "Which of these is a common workplace ergonomic hazard?",
-                    options: ["Loud music", "Poorly designed workstation", "Spilled coffee", "Bright sunlight"],
-                    answer: "Poorly designed workstation",
-                    explanation: "A poorly designed workstation can lead to musculoskeletal disorders (MSDs) due to awkward postures, repetitive motions, or excessive force, making it an ergonomic hazard."
-                },
-                {
-                    question: "What does 'COIDA' stand for in South African OHS?",
-                    options: ["Council of Industrial Development and Advancement", "Compensation for Occupational Injuries and Diseases Act", "Committee for Operational Incident Data Analysis", "Construction Oversight and Inspection Department Agency"],
-                    answer: "Compensation for Occupational Injuries and Diseases Act",
-                    explanation: "COIDA stands for the Compensation for Occupational Injuries and Diseases Act, which provides for compensation for disablement caused by occupational injuries or diseases sustained or contracted by employees in the course of their employment, or for death resulting from such injuries or diseases."
-                },
-                {
-                    question: "A 'Safety Data Sheet (SDS)' provides information about:",
-                    options: ["Company financial performance", "Employee work schedules", "Hazardous chemicals", "Office cleaning procedures"],
-                    answer: "Hazardous chemicals",
-                    explanation: "A Safety Data Sheet (SDS), formerly known as MSDS, provides comprehensive information about a hazardous chemical, including its properties, hazards, safe handling, and emergency control measures."
-                },
-                {
-                    question: "What is the 'Hierarchy of Controls' in risk management?",
-                    options: ["A list of company managers", "A ranking of control measures from most to least effective", "A schedule for safety meetings", "A system for organizing safety documents"],
-                    answer: "A ranking of control measures from most to least effective",
-                    explanation: "The Hierarchy of Controls is a system used in workplace safety to minimize or eliminate exposure to hazards. It ranks controls from most effective to least effective: Elimination, Substitution, Engineering Controls, Administrative Controls, and PPE."
-                }
-            ];
-
-            const loadQuizSet = () => {
-                const setSize = 5;
-                const start = (Math.floor(currentQuestionIndex / setSize)) * setSize;
-                const end = Math.min(start + setSize, allQuizQuestions.length);
-                const newSet = allQuizQuestions.slice(start, end);
-                if (newSet.length > 0) {
-                    setQuizQuestions(newSet);
-                    setUserAnswers(new Array(newSet.length).fill(null));
-                    setCurrentQuestionIndex(start); // Reset to the start of the new set for internal tracking
-                    setShowQuizResults(false);
-                    setQuizSetComplete(false);
-                } else {
-                    // No more questions
-                    setQuizActive(false);
-                    alert("You've completed all available questions!");
-                }
-            };
-            
-            const startQuiz = () => {
-                setCurrentQuestionIndex(0); // Start from the very beginning of all questions
-                setQuizScore(0);
-                loadQuizSet();
-                setQuizActive(true);
-                setQuizSetComplete(false);
-                setShowQuizResults(false);
-            };
-
-
-            const handleAnswer = (optionIndex) => {
-                const currentSetQuestionIndex = currentQuestionIndex % 5; // Index within the current set of 5
-                const newAnswers = [...userAnswers];
-                newAnswers[currentSetQuestionIndex] = quizQuestions[currentSetQuestionIndex].options[optionIndex];
-                setUserAnswers(newAnswers);
-
-                if (newAnswers[currentSetQuestionIndex] === quizQuestions[currentSetQuestionIndex].answer) {
-                    setQuizScore(prevScore => prevScore + 10); // Add 10 points for correct answer
-                }
-
-                // Move to next question or end set
-                if (currentSetQuestionIndex < quizQuestions.length - 1) {
-                    setCurrentQuestionIndex(prev => prev + 1);
-                } else {
-                    setQuizSetComplete(true); // Mark set as complete to show registration/results
-                }
-            };
-            
-            const handleRegisterAndContinue = async () => {
-                const name = document.getElementById('quizUserName').value.trim();
-                const email = document.getElementById('quizUserEmail').value.trim();
-
-                if (name) {
-                     setQuizUserName(name); // Store for potential display
-                    // Save to Firestore
-                    if (window.firebaseDB && window.currentUserId && window.appId) {
-                        try {
-                            const userScoreRef = doc(window.firebaseDB, `artifacts/${window.appId}/public/data/quizLeaderboard`, window.currentUserId);
-                            await setDoc(userScoreRef, {
-                                name: name,
-                                email: email, // Optional
-                                score: quizScore, // Save current total score
-                                lastPlayed: new Date()
-                            }, { merge: true });
-                            console.log("User score saved for:", name);
-                            // Potentially update Brain of the Day display
-                            updateBrainOfTheDay();
-                        } catch (error) {
-                            console.error("Error saving user score: ", error);
-                        }
-                    }
-                }
-                // Proceed to show results, then offer next set or close
-                setShowQuizResults(true);
-                setQuizSetComplete(false); // Allow next set
-            };
-
-            const handleContinueGuest = () => {
-                // Proceed to show results, then offer next set or close
-                setShowQuizResults(true);
-                setQuizSetComplete(false); // Allow next set
-            };
-
-            const handleCloseQuiz = () => {
-                setQuizActive(false);
-                setQuizSetComplete(false);
-                setShowQuizResults(false);
-                setCurrentQuestionIndex(0);
-                setQuizScore(0);
-            };
-            
-            const handleNextQuizSet = () => {
-                // Determine if there are more questions
-                const nextQuestionGlobalIndex = (Math.floor(currentQuestionIndex / 5) + 1) * 5;
-                if (nextQuestionGlobalIndex < allQuizQuestions.length) {
-                    setCurrentQuestionIndex(nextQuestionGlobalIndex); // Set to the start of the next set
-                    loadQuizSet(); // This will load the next set of questions
-                    setShowQuizResults(false);
-                    setQuizSetComplete(false);
-                } else {
-                    alert("You've completed all available questions!");
-                    handleCloseQuiz();
-                }
-            };
-
-
-            // Mobile menu toggle
-            const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
-            useEffect(() => {
-                const menu = document.getElementById('mobileMenu');
-                if (mobileMenuOpen) {
-                    menu.classList.remove('hidden');
-                } else {
-                    menu.classList.add('hidden');
-                }
-            }, [mobileMenuOpen]);
-
-
-            // Countdown timer logic
-            function calculateTimeLeft() {
-                const now = new Date();
-                const year = now.getFullYear();
-                const month = now.getMonth();
-                // End of the current month
-                const endOfMonth = new Date(year, month + 1, 0, 23, 59, 59, 999);
-
-                const difference = +endOfMonth - +now;
-                let timeLeftData = {};
-
-                if (difference > 0) {
-                    timeLeftData = {
-                        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-                        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-                        minutes: Math.floor((difference / 1000 / 60) % 60),
-                        seconds: Math.floor((difference / 1000) % 60),
-                    };
-                } else { // Timer ended for this month
-                     timeLeftData = { days: 0, hours: 0, minutes: 0, seconds: 0 };
-                }
-                return timeLeftData;
-            }
-
-            useEffect(() => {
-                const timer = setTimeout(() => {
-                    setTimeLeft(calculateTimeLeft());
-                }, 1000);
-                return () => clearTimeout(timer);
+        // --- Dismiss Launch Announcement ---
+        const announcementBar = document.getElementById('launchAnnouncement');
+        const dismissBtn = document.getElementById('dismissAnnouncementBtn');
+        if (dismissBtn && announcementBar) {
+            dismissBtn.addEventListener('click', () => {
+                announcementBar.classList.add('dismissed');
             });
-
-            const formatTime = (value) => String(value).padStart(2, '0');
-
-
-            // Chatbot logic
-            const toggleChat = () => {
-                setChatOpen(!chatOpen);
-                document.getElementById('chatIconOpen').classList.toggle('hidden', !chatOpen);
-                document.getElementById('chatIconClose').classList.toggle('hidden', chatOpen);
-            };
-            
-            const handleSendMessage = async () => {
-                if (inputValue.trim() === '') return;
-                const newMessages = [...messages, { sender: 'user', text: inputValue }];
-                setMessages(newMessages);
-                const currentInput = inputValue;
-                setInputValue('');
-
-                // Simple bot response (can be expanded with Gemini API later)
-                let botResponse = "I'm processing your request...";
-                 if (window.firebaseDB && window.appId) {
-                    // Placeholder for Gemini API call or Firestore query
-                    // For now, a simple echo or canned response
-                    if (currentInput.toLowerCase().includes("safety tip")) {
-                        botResponse = "Always wear appropriate PPE for your task!";
-                    } else if (currentInput.toLowerCase().includes("risk assessment")) {
-                        botResponse = "Risk assessment involves identifying hazards, analyzing risks, and implementing controls.";
-                    } else {
-                        botResponse = `I received your message: "${currentInput}". I am still learning!`;
-                    }
-                } else {
-                    botResponse = "Sorry, my connection to the knowledge base is unavailable right now.";
-                }
-
-
-                // Simulate API call delay
-                setTimeout(() => {
-                    setMessages(prevMessages => [...prevMessages, { sender: 'bot', text: botResponse }]);
-                    const chatMessagesDiv = document.getElementById('chatMessages');
-                    if (chatMessagesDiv) chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight;
-                }, 1000);
-            };
-            
-            useEffect(() => {
-                const chatMessagesDiv = document.getElementById('chatMessages');
-                if (chatMessagesDiv) chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight;
-            }, [messages]);
-
-            // Update Brain of the Day from Firestore
-            const updateBrainOfTheDay = async () => {
-                if (window.firebaseDB && window.appId) {
-                    try {
-                        const q = query(collection(window.firebaseDB, `artifacts/${window.appId}/public/data/quizLeaderboard`), orderBy("score", "desc"), limit(1));
-                        const querySnapshot = await getDocs(q);
-                        if (!querySnapshot.empty) {
-                            const topScorer = querySnapshot.docs[0].data();
-                            document.getElementById('brainOfTheDay').textContent = `${topScorer.name} (${topScorer.score} pts)`;
-                        } else {
-                             document.getElementById('brainOfTheDay').textContent = `Be the first!`;
-                        }
-                    } catch (error) {
-                        console.error("Error fetching leaderboard: ", error);
-                        document.getElementById('brainOfTheDay').textContent = `Leaderboard unavailable`;
-                    }
-                }
-            };
-
-            useEffect(() => {
-                updateBrainOfTheDay(); // Initial load
-                // Optionally, set up a listener for real-time updates if desired
-            }, []);
-
-
-            // Dynamic year in footer
-            useEffect(() => {
-                document.getElementById('currentYear').textContent = new Date().getFullYear();
-            }, []);
-            
-            // Lucide icons replacement
-            useEffect(() => {
-                if (window.lucide) {
-                    window.lucide.createIcons();
-                }
-            }, [chatOpen, mobileMenuOpen, quizActive]); // Re-run if chat/menu opens to catch new icons
-
-            // Click listener for logo
-            useEffect(() => {
-                const logo = document.getElementById('logoLink');
-                const handleLogoClick = () => {
-                    // For a single page app, this might reset view or scroll to top
-                    // For multi-page, it would be window.location.href = 'index.html';
-                    console.log("Logo clicked, returning to homepage/top.");
-                    if (window.scrollTo) window.scrollTo({ top: 0, behavior: 'smooth' });
-                };
-                logo.addEventListener('click', handleLogoClick);
-                return () => logo.removeEventListener('click', handleLogoClick);
-            }, []);
-
-
-            return (
-                <>
-                    {/* Mobile Menu Button in Header */}
-                    {/* Chatbot Toggle and Window in Body */}
-                    {/* Quiz Modal in Body */}
-                </>
-            );
         }
 
-        ReactDOM.render(<App />, document.getElementById('root'));
-
-        // Separate script for non-React dependent JS for simplicity here
-        document.addEventListener('DOMContentLoaded', () => {
-            // Mobile menu
-            const mobileMenuButton = document.getElementById('mobileMenuButton');
-            const mobileMenu = document.getElementById('mobileMenu');
-            if (mobileMenuButton) {
-                mobileMenuButton.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
-                });
-            }
-
-            // Chatbot
-            const chatbotToggle = document.getElementById('chatbotToggle');
-            const chatbotWindow = document.getElementById('chatbotWindow');
-            const closeChat = document.getElementById('closeChat');
-            const sendButton = document.getElementById('sendButton');
-            const chatInput = document.getElementById('chatInput');
-            const chatIconOpen = document.getElementById('chatIconOpen');
-            const chatIconClose = document.getElementById('chatIconClose');
-
-            if (chatbotToggle) {
-                chatbotToggle.addEventListener('click', () => {
-                    chatbotWindow.classList.toggle('hidden');
-                    chatIconOpen.classList.toggle('hidden');
-                    chatIconClose.classList.toggle('hidden');
-                });
-            }
-            if (closeChat) {
-                closeChat.addEventListener('click', () => {
-                    chatbotWindow.classList.add('hidden');
-                    chatIconOpen.classList.remove('hidden');
-                    chatIconClose.classList.add('hidden');
-                });
-            }
-            // Send message functionality would be handled by React state,
-            // but if you need a non-React way:
-            if (sendButton && chatInput) {
-                 sendButton.addEventListener('click', () => {
-                    // This is a placeholder, React handles the actual send
-                    console.log("Send button clicked (non-React):", chatInput.value);
-                });
-                chatInput.addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') {
-                        // Placeholder
-                         console.log("Enter pressed (non-React):", chatInput.value);
-                    }
-                });
-            }
-
-
-            // Countdown Timer Display (React handles logic)
-            const countdownDiv = document.getElementById('countdownTimer');
-            // React will update this, but for initial non-JS view or as fallback:
-            if (countdownDiv && !countdownDiv.textContent.includes('d')) { // Check if React hasn't populated it
-                 countdownDiv.textContent = "Loading timer...";
-            }
-            
-            // Lucide icons (React handles this via useEffect, but ensure it runs)
-            if (window.lucide) {
-                window.lucide.createIcons();
-            }
-
-            // Quiz Modal elements (React handles logic)
-            const startQuizButton = document.getElementById('startQuizButton');
-            const quizModalOverlay = document.getElementById('quizModalOverlay');
-            const closeQuizModalButton = document.getElementById('closeQuizModal'); // In registration area
-            
-            if(startQuizButton) {
-                // React's startQuiz function will be called via its own event handler
-            }
-
-            if(quizModalOverlay && closeQuizModalButton) {
-                 // React's handleCloseQuiz will be called
-            }
+        // --- SafetyHelp Tools Link Activation ---
+        const toolLinks = document.querySelectorAll('#toolList a');
+        toolLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                toolLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
         });
 
+        // --- Did You Know Tips ---
+        let currentTipIndex = 0;
+        const tips = [];
+        const didYouKnowContent = document.getElementById('didYouKnowContent');
+        const nextTipBtn = document.getElementById('nextTipBtn');
+
+        async function fetchTips() {
+            const snapshot = await db.collection('didYouKnowTips').get();
+            snapshot.forEach(doc => tips.push(doc.data().tip));
+            displayTip();
+        }
+
+        function displayTip() {
+            if (tips.length > 0) {
+                didYouKnowContent.textContent = tips[currentTipIndex];
+            }
+        }
+
+        function fetchNextTip() {
+            currentTipIndex = (currentTipIndex + 1) % tips.length;
+            displayTip();
+        }
+
+        if (nextTipBtn) nextTipBtn.addEventListener('click', fetchNextTip);
+        fetchTips();
+
+        // --- Countdown Timer ---
+        function updateCountdown() {
+            const now = new Date();
+            const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+            const timeLeft = endOfMonth - now;
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById('countdown').textContent = `${days}d ${hours}h ${minutes}m`;
+        }
+
+        setInterval(updateCountdown, 60000);
+        updateCountdown();
+
+        // --- Brain of SafetyHelp Quiz ---
+        let currentQuestionSet = 1;
+        let userAnswers = [];
+        let questions = [];
+        let userScore = 0;
+
+        const quizContainer = document.getElementById('quiz-container');
+        const quizScoreEl = document.getElementById('quizScore');
+        const quizLeaderEl = document.getElementById('quizLeader');
+        const submitQuizBtn = document.getElementById('submitQuizBtn');
+
+        async function fetchQuestions() {
+            const snapshot = await db.collection('quizQuestions').where('set', '==', currentQuestionSet).get();
+            questions = [];
+            snapshot.forEach(doc => questions.push(doc.data()));
+            displayQuestions();
+        }
+
+        function displayQuestions() {
+            quizContainer.innerHTML = '';
+            questions.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+                questionDiv.innerHTML = `
+                    <p>${index + 1}. ${q.question}</p>
+                    <div class="options">
+                        ${q.options.map(option => `
+                            <label>
+                                <input type="radio" name="q${index}" value="${option}">
+                                ${option}
+                            </label>
+                        `).join('')}
+                    </div>
+                `;
+                quizContainer.appendChild(questionDiv);
+            });
+        }
+
+        async function submitQuiz() {
+            const correctAnswers = questions.map(q => q.correctAnswer);
+            userAnswers = [];
+            questions.forEach((q, index) => {
+                const selected = document.querySelector(`input[name="q${index}"]:checked`);
+                userAnswers.push(selected ? selected.value : null);
+            });
+
+            let score = 0;
+            userAnswers.forEach((answer, i) => {
+                if (answer === correctAnswers[i]) score += 10;
+                alert(`Question ${i + 1}: Correct Answer: ${correctAnswers[i]}`);
+            });
+
+            userScore += score;
+            quizScoreEl.textContent = `Your Score: ${userScore}`;
+
+            const name = prompt('Enter your name to register or continue (leave blank to skip):');
+            const email = name ? prompt('Enter your email (optional):') : null;
+
+            if (name) {
+                await db.collection('quizScores').add({
+                    name,
+                    email,
+                    score: userScore,
+                    date: new Date().toISOString()
+                });
+            }
+
+            // Fetch Brain of the Day
+            const topScore = await db.collection('quizScores')
+                .orderBy('score', 'desc')
+                .orderBy('date', 'desc')
+                .limit(1)
+                .get();
+            if (!topScore.empty) {
+                const topUser = topScore.docs[0].data();
+                quizLeaderEl.textContent = `Today's Leader: ${topUser.name} (${topUser.score} pts)`;
+                document.getElementById('brain-of-day').textContent = `${topUser.name} (${topUser.score} pts)`;
+            }
+
+            const continueQuiz = confirm('Continue with the next set of questions?');
+            if (continueQuiz) {
+                currentQuestionSet++;
+                fetchQuestions();
+            }
+        }
+
+        if (submitQuizBtn) submitQuizBtn.addEventListener('click', submitQuiz);
+        fetchQuestions();
+
+        // --- OHS Milestones Timeline ---
+        const timelineItemsData = [
+            { year: "1970", title: "OSHA (USA)", summary: "The Occupational Safety and Health Act was enacted in the USA, a landmark for federal worker protection standards.", learnMore: "#", icon: "fas fa-history" },
+            { year: "1993", title: "OHS Act (SA)", summary: "South Africa's Occupational Health and Safety Act No. 85 established comprehensive duties for employers and rights for employees.", learnMore: "#", icon: "fas fa-gavel" },
+            { year: "2003", title: "COIDA Amendment", summary: "Amendments to the Compensation for Occupational Injuries and Diseases Act in SA, refining worker compensation.", learnMore: "#", icon: "fas fa-briefcase" },
+            { year: "2015", title: "Global Harmonization", summary: "Increased focus on aligning OHS standards internationally, e.g., GHS for chemical classification.", learnMore: "#", icon: "fas fa-globe" },
+            { year: "2022", title: "Mental Health Focus", summary: "Growing recognition and inclusion of psychosocial risks and mental well-being in OHS frameworks globally.", learnMore: "#", icon: "fas fa-heart" },
+            { year: "Future", title: "Predictive Safety", summary: "Leveraging AI and big data to predict and prevent workplace incidents before they occur.", learnMore: "#", icon: "fas fa-forward" }
+        ];
+
+        const timelineList = document.getElementById('timelineList');
+        let timelineScrollInterval;
+        let scrollPaused = false;
+
+        function populateTimeline() {
+            if (!timelineList) return;
+            timelineItemsData.forEach(item => {
+                const li = document.createElement('li');
+                li.className = 'timeline-item';
+                li.innerHTML = `
+                    <div class="timeline-item-header">
+                        <h5><i class="${item.icon}"></i> ${item.year}: ${item.title}</h5>
+                        <span class="toggle-icon-timeline">▼</span>
+                    </div>
+                    <div class="timeline-item-summary">
+                        <p>${item.summary}</p>
+                        ${item.learnMore ? `<a href="${item.learnMore}">Learn More</a>` : ''}
+                    </div>
+                `;
+                timelineList.appendChild(li);
+
+                const header = li.querySelector('.timeline-item-header');
+                header.addEventListener('click', () => {
+                    timelineList.querySelectorAll('.timeline-item.expanded').forEach(openItem => {
+                        if (openItem !== li) openItem.classList.remove('expanded');
+                    });
+                    li.classList.toggle('expanded');
+                });
+            });
+        }
+
+        function startTimelineScroll() {
+            if (!timelineList || scrollPaused) return;
+            timelineScrollInterval = setInterval(() => {
+                if (timelineList.scrollTop + timelineList.clientHeight >= timelineList.scrollHeight - 1) {
+                    timelineList.scrollTop = 0;
+                } else {
+                    timelineList.scrollTop += 1;
+                }
+            }, 50);
+        }
+
+        function stopTimelineScroll() {
+            clearInterval(timelineScrollInterval);
+        }
+
+        if (timelineList) {
+            populateTimeline();
+            if (timelineList.scrollHeight > timelineList.clientHeight) {
+                startTimelineScroll();
+                timelineList.addEventListener('mouseenter', () => {
+                    scrollPaused = true;
+                    stopTimelineScroll();
+                });
+                timelineList.addEventListener('mouseleave', () => {
+                    scrollPaused = false;
+                    startTimelineScroll();
+                });
+            }
+        }
+
+        // --- Chatbot Toggle ---
+        const chatbot = document.getElementById('chatbot');
+        const chatbotToggle = document.getElementById('chatbotToggle');
+        chatbotToggle.addEventListener('click', () => {
+            chatbot.classList.toggle('collapsed');
+            chatbotToggle.classList.toggle('fa-chevron-down');
+            chatbotToggle.classList.toggle('fa-chevron-up');
+        });
+
+        function sendMessage() {
+            alert('Chatbot functionality coming soon!');
+        }
     </script>
-    <div id="root"></div> </body>
+</body>
 </html>
