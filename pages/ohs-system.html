@@ -10,6 +10,9 @@
   <script src="https://unpkg.com/i18next-browser-languagedetector@8.0.0/dist/i18nextBrowserLanguageDetector.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.3/jspdf.plugin.autotable.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
 
   <style>
     /* Reset & Base */
@@ -43,7 +46,7 @@
       align-items: center;
       color: #fff; 
     }
-    .logo-container img {
+    .logo-container img { /* Placeholder if you add an image logo */
         height: 40px; 
         margin-right: 10px;
     }
@@ -234,7 +237,12 @@
         font-size: 1.5rem;
         color: #007BFF;
         margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
     }
+     .section-block h3 .fa-fw { width: 1.25em; text-align: center;}
+
     .legal-obligations-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -260,14 +268,15 @@
         border-radius: 6px;
         padding: 1rem;
     }
-    .category-card details summary { font-size: 1.1rem; font-weight: 600; color: #007BFF; cursor: pointer; margin-bottom: 0.5rem; }
-    .category-card details summary::before { content: '► '; font-size: 0.8em; margin-right: 4px; }
-    .category-card details[open] > summary::before { content: '▼ '; }
+    .category-card details summary { font-size: 1.1rem; font-weight: 600; color: #007BFF; cursor: pointer; margin-bottom: 0.5rem; list-style: none; }
+    .category-card details summary::-webkit-details-marker { display: none; }
+    .category-card details summary::before { content: '► '; font-size: 0.8em; margin-right: 8px; transition: transform 0.2s; }
+    .category-card details[open] > summary::before { transform: rotate(90deg); }
     .category-card p.category-description { font-size: 0.9rem; color: #555; margin-bottom: 0.75rem; }
     .category-card ul { list-style: none; padding-left: 0; }
     .category-card li { display: flex; align-items: center; margin-bottom: 0.5rem; font-size: 0.9rem; }
     .category-card li .emoji { margin-right: 0.5rem; }
-    .category-card button.doc-link { background: none; border: none; color: #333; text-decoration: underline; cursor: pointer; padding: 0; font-size: 0.9rem; }
+    .category-card button.doc-link { background: none; border: none; color: #333; text-decoration: underline; cursor: pointer; padding: 0; font-size: 0.9rem; text-align: left; }
     .category-card button.doc-link:hover { color: #0056b3; }
     .category-card a.page-link { color: #FF8C00; text-decoration: underline; font-size: 0.85rem; margin-left: 0.5rem; }
     .category-card a.page-link:hover { color: #e07b00; }
@@ -302,7 +311,16 @@
         padding: 1.5rem;
         border-radius: 8px;
         border: 1px solid #cce7ff;
+        display: flex; /* For side-by-side layout */
+        gap: 1.5rem;
     }
+     #wizard-content { flex: 3; } /* Main wizard steps area */
+    #wizard-sidebar { flex: 1; background-color: #e6f3ff; padding: 1rem; border-radius: 6px; border: 1px solid #b3d9ff; }
+    #wizard-sidebar h4 { font-size: 1.1rem; color: #0056b3; margin-bottom: 0.75rem; border-bottom: 1px solid #b3d9ff; padding-bottom: 0.5rem;}
+    #selected-documents { list-style: none; padding-left: 0; }
+    #selected-documents li { font-size: 0.9rem; margin-bottom: 0.4rem; color: #333; background-color: #fff; padding: 0.3rem 0.5rem; border-radius: 4px; border: 1px solid #ddd;}
+    #selected-documents li .emoji { margin-right: 0.3rem; }
+
     .wizard-step {
         margin-bottom: 1.5rem;
         padding-bottom: 1.5rem;
@@ -321,6 +339,7 @@
     .document-table th, .document-table td { border: 1px solid #ddd; padding: 0.5rem; text-align: left; font-size: 0.9rem; }
     .document-table th { background-color: #f0f0f0; font-weight: 600; }
     .document-name .emoji { margin-right: 0.5rem; }
+    .checkbox-item input[type="checkbox"] { margin-right: 0.5rem; }
     .nav-buttons { display: flex; justify-content: space-between; margin-top: 1.5rem; }
     .nav-buttons button { padding: 0.7rem 1.3rem; border: none; border-radius: 6px; font-weight: 500; cursor: pointer; transition: background-color 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem; }
     .nav-buttons button.back-btn { background-color: #6c757d; color: white; }
@@ -330,9 +349,6 @@
     .nav-buttons button:disabled { background-color: #ccc; cursor: not-allowed; }
     .error { color: red; font-size: 0.85rem; margin-top: 0.25rem; }
     .hidden { display: none !important; }
-    #wizard-sidebar { background-color: #f0f8ff; padding: 1rem; border-radius: 6px; border: 1px solid #cce7ff; margin-top: 1.5rem; }
-    #wizard-sidebar h4 { font-size: 1.1rem; color: #0056b3; margin-bottom: 0.5rem; }
-    #selected-documents li { font-size: 0.9rem; margin-bottom: 0.3rem; }
     .cart-container { margin-top: 2rem; background-color: #f9f9f9; padding: 1.5rem; border-radius: 8px; border: 1px solid #e0e0e0; }
     .cart-container h3 { font-size: 1.5rem; color: #0056b3; margin-bottom: 1rem; }
     .cart-container #cart-items td { vertical-align: middle; }
@@ -440,11 +456,12 @@
 
     <main class="main-ohs-system">
         <h2 class="page-section-title" data-i18n="ohs_system.main_title"><i class="fas fa-shield-virus section-icon"></i>Build Your OHS Management System</h2>
-        <p class="intro-text" data-i18n="ohs_system.intro_text">Ensure compliance with South African OHS legislation and international standards like ISO 45001 by compiling a comprehensive OHS management system for your organization. Use our interactive wizard to create essential documents, including the OHS Management System Manual, policies, procedures, and supporting forms. Customize templates with your company details and download them as PDFs, all while aligning with ISO 9000 quality management principles.</p>
+        <p class="intro-text" data-i18n="ohs_system.intro_text_line1">Ensure compliance with South African OHS legislation and international standards like ISO 45001 by compiling a comprehensive OHS management system for your organization.</p>
+        <p class="intro-text" data-i18n="ohs_system.intro_text_line2">Use our interactive wizard to create essential documents, including the OHS Management System Manual, policies, procedures, and supporting forms. Customize templates with your company details and download them as PDFs, all while aligning with ISO 9000 quality management principles.</p>
         <p class="intro-text" data-i18n="ohs_system.download_link">Download a Sample OHS Management System Manual: <a href="/SafetyHelp/resources/ohs-management-system-manual-sample.pdf" target="_blank">Click Here</a></p>
 
         <section class="section-block legal-obligations">
-            <h3 data-i18n="legal_obligations.title"><i class="fas fa-balance-scale"></i> Key Legal & Standard Obligations</h3>
+            <h3 data-i18n="legal_obligations.title"><i class="fas fa-balance-scale fa-fw"></i> Key Legal & Standard Obligations</h3>
             <div class="legal-obligations-grid">
                 <div class="legal-card">
                     <h4 data-i18n="legal_obligations.ohs_act.title">OHS Act Obligations</h4>
@@ -468,24 +485,24 @@
         </section>
 
         <section class="section-block document-categories">
-            <h3 data-i18n="document_categories.title"><i class="fas fa-folder-open"></i> Compile Your OHS Management System Documents</h3>
+            <h3 data-i18n="document_categories.title"><i class="fas fa-folder-open fa-fw"></i> Compile Your OHS Management System Documents</h3>
             <p data-i18n="document_categories.description">Select and compile the documents you need for your OHS management system. Choose from policies, procedures, standards, and more, tailored to your organization’s needs.</p>
             <div id="categories-grid" class="categories-grid">
                 </div>
         </section>
 
         <section class="section-block selection-method">
-            <h3 data-i18n="selection_method.title"><i class="fas fa-cogs"></i> Select Your Compilation Method</h3>
+            <h3 data-i18n="selection_method.title"><i class="fas fa-cogs fa-fw"></i> Select Your Compilation Method</h3>
             <p data-i18n="selection_method.description">Choose how you’d like to compile your OHS documents: let our wizard suggest documents based on your industry, select from categories, or manually pick specific documents.</p>
             <div class="action-buttons">
-                <button onclick="startWizard('automated')" data-i18n="selection_method.automated_wizard"><i class="fas fa-magic"></i> Automated Wizard</button>
-                <button onclick="startWizard('semi-automated')" data-i18n="selection_method.semi_automated"><i class="fas fa-tasks"></i> Semi-Automated Selection</button>
-                <button onclick="startWizard('manual')" data-i18n="selection_method.manual"><i class="fas fa-hand-pointer"></i> Manual Selection</button>
+                <button id="startAutomatedWizardBtn"><i class="fas fa-magic"></i> <span data-i18n="selection_method.automated_wizard">Automated Wizard</span></button>
+                <button id="startSemiAutomatedBtn"><i class="fas fa-tasks"></i> <span data-i18n="selection_method.semi_automated">Semi-Automated Selection</span></button>
+                <button id="startManualBtn"><i class="fas fa-hand-pointer"></i> <span data-i18n="selection_method.manual">Manual Selection</span></button>
             </div>
         </section>
 
         <div id="wizard-container" class="wizard-container hidden">
-            <div id="wizard-content" style="flex: 3;">
+            <div id="wizard-content">
                 <h3 data-i18n="wizard.title">OHS System Wizard</h3>
                 <div id="progress-bar" class="progress-bar">
                     <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
@@ -498,7 +515,7 @@
                     <button id="wizard-add-to-cart" class="next-btn" style="display: none;" data-i18n="wizard.nav.add_to_cart"><i class="fas fa-shopping-cart"></i> Add to Cart & Customize</button>
                 </div>
             </div>
-            <div id="wizard-sidebar" style="flex: 1;">
+            <div id="wizard-sidebar">
                 <h4 data-i18n="wizard.sidebar.title">Selected Documents</h4>
                 <ul id="selected-documents"></ul>
             </div>
@@ -553,11 +570,11 @@
                 <p id="compiled-by-contact-error" class="error hidden" data-i18n="cart.compiled_by.contact_error">Please enter a valid contact number (e.g., +27123456789).</p>
             </div>
             <p data-i18n="cart.disclaimer" style="font-size: 0.85rem; color: #555; margin-top:1rem;">SafetyHelp Disclaimer: These documents are templates for informational purposes only and do not constitute professional advice. For tailored OHS solutions, contact SafetyHelp at <a href='mailto:support@safetyhelp.co.za'>support@safetyhelp.co.za</a> or visit our <a href='/SafetyHelp/contact.html'>Contact Page</a>.</p>
-            <button id="generate-documents" class="action-buttons button" style="margin-top: 1rem;"><i class="fas fa-file-archive"></i> <span data-i18n="cart.generate">Generate Documents (ZIP)</span></button>
+            <button id="generate-documents-btn" class="action-buttons button" style="margin-top: 1rem;"><i class="fas fa-file-archive"></i> <span data-i18n="cart.generate">Generate Documents (ZIP)</span></button>
         </div>
 
         <section class="section-block resources">
-            <h3 data-i18n="resources.title"><i class="fas fa-link"></i> Additional Resources</h3>
+            <h3 data-i18n="resources.title"><i class="fas fa-link fa-fw"></i> Additional Resources</h3>
             <p data-i18n="resources.iso_45001_guide"></p>
             <p data-i18n="resources.ohs_act"></p>
             <p data-i18n="resources.contact_us"></p>
