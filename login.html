@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SafetyHelp | Resources</title>
+  <title>SafetyHelp | Login / SignUp</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
@@ -65,7 +65,7 @@
     .search-language input { padding: 0.6rem; border: 1px solid #ddd; border-radius: 6px; font-family: 'Montserrat', sans-serif; }
     .search-language select { padding: 0.6rem; border-radius: 6px; border: 1px solid #ddd; font-family: 'Montserrat', sans-serif; }
 
-    /* Welcome / Page Title Area */
+    /* Page Title Area */
     .page-title-section { 
       background: #F3F4F6; 
       padding: 1.5rem 2rem; 
@@ -74,7 +74,6 @@
       flex-shrink: 0;
     }
     .page-title-section h1 { font-size: 2.2rem; color: #1f2937; margin-bottom: 0.5rem; }
-    .page-title-section .slogan { font-size: 1.1rem; color: #FF8C00; font-weight: 600; margin-bottom: 0.5rem;}
     .page-title-section p { font-size: 1rem; color: #374151; max-width: 800px; margin-left: auto; margin-right: auto; }
 
     /* Layout */
@@ -176,86 +175,184 @@
         text-align: center;
     }
     
-    /* Main content specific to Resources Page */
-    .main-resources { 
-      padding: 1rem; /* Add padding if needed, or rely on container */
+    /* Main content specific to Login Page */
+    .main-login { 
+      padding: 1rem; 
       overflow-y: auto; 
-      background-color: #fff; /* White background for the main content area */
+      background-color: #fff; 
       border-radius: 8px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Center login container and benefits table */
     }
-    .main-resources h2 {
-        font-size: 1.8rem;
-        color: #0056b3;
-        margin-bottom: 1rem;
-        padding-bottom: 0.5rem;
-        border-bottom: 2px solid #FF8C00;
-    }
-    .main-resources .resource-category {
-        margin-bottom: 2rem;
-    }
-    .main-resources .resource-category h3 {
-        font-size: 1.4rem;
-        color: #007BFF;
-        margin-bottom: 0.75rem;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-    .main-resources .resource-category h3 .category-icon {
-        color: #FF8C00;
-    }
-    .resource-item {
-        background-color: #f9f9f9;
-        padding: 1rem;
-        border-radius: 6px;
-        margin-bottom: 1rem;
-        border: 1px solid #e0e0e0;
+    .login-container {
+        background-color: #f9f9f9; /* Light background for the form area */
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        padding: 2rem;
+        margin-bottom: 2rem; /* Space between form and benefits table */
+        width: 100%;
+        max-width: 480px; /* Max width for the form */
         display: flex;
         flex-direction: column;
-        gap: 0.5rem;
-    }
-    @media (min-width: 768px) {
-      .resource-item {
-        flex-direction: row;
-        justify-content: space-between;
         align-items: center;
-      }
+        gap: 1.5rem; /* Gap between form elements */
     }
-    .resource-item-info {
-        flex-grow: 1;
+    .login-container h2 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.8rem; /* Slightly smaller than page title h1 */
+        color: #0056b3; /* Darker blue */
+        margin-bottom: 0.5rem; /* Reduced margin */
+        text-align: center;
     }
-    .resource-item-info h4 {
-        font-size: 1.1rem;
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    .form-group label {
         color: #333;
-        font-weight: 600;
-        margin-bottom: 0.25rem;
+        font-size: 0.9rem;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
     }
-    .resource-item-info p {
+    .form-input {
+        width: 100%;
+        border-radius: 6px;
+        color: #333;
+        outline: 0;
+        border: 1px solid #cbd5e1; 
+        background-color: #fff; 
+        height: 48px; /* Consistent height */
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .form-input::placeholder { 
+        color: #94a3b8; 
+    }
+    .login-button {
+        display: flex;
+        width: 100%;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+        height: 48px;
+        padding: 0 1rem;
+        background-color: #007BFF; /* Primary Blue */
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+        border: none; 
+    }
+    .login-button:hover {
+        background-color: #0056b3; /* Darker Blue */
+    }
+    .login-button .btn-icon { margin-right: 0.5rem; }
+
+    .social-login-text {
+        color: #555;
+        font-size: 0.9rem;
+        text-align: center;
+        margin-top: 0.5rem;
+    }
+    .social-buttons-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        width: 100%;
+        justify-content: center;
+    }
+    .social-button {
+        display: flex;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+        height: 44px;
+        padding: 0 1rem;
+        background-color: #e7edf4;
+        color: #0d141c;
+        font-size: 0.9rem;
+        font-weight: 500;
+        flex-grow: 1; /* Allow buttons to grow if space allows */
+        min-width: 150px; /* Minimum width for social buttons */
+        transition: background-color 0.3s ease;
+        border: 1px solid #cbd5e1; 
+    }
+    .social-button:hover {
+        background-color: #d0d6e0;
+    }
+    .social-button .fab { margin-right: 0.5rem; font-size: 1.1em; }
+    
+    #auth-message {
+        width: 100%;
+        padding: 0.75rem; 
+        margin-top: 1rem; 
+        border-radius: 6px; 
+        text-align: center;
+        font-size: 0.9rem;
+    }
+    .message-success { background-color: #d1fae5; color: #065f46; }
+    .message-error { background-color: #fee2e2; color: #991b1b; }
+
+    .login-links {
+        text-align: center;
         font-size: 0.9rem;
         color: #555;
-        line-height: 1.4;
+        margin-top: 1rem;
     }
-    .resource-item .btn-resource {
-        padding: 0.6rem 1.2rem;
-        background-color: #FF8C00;
-        color: white;
-        border-radius: 5px;
-        text-decoration: none;
+    .login-links a {
+        color: #007BFF;
         font-weight: 500;
-        transition: background-color 0.3s ease;
-        display: inline-flex; /* For icon alignment */
-        align-items: center;
-        gap: 0.5rem;
-        margin-top: 0.5rem; /* For mobile stacking */
+        text-decoration: underline;
     }
-    .resource-item .btn-resource:hover {
-        background-color: #e07b00;
+    .login-links a:hover {
+        color: #0056b3;
     }
-    .resource-item .btn-resource .btn-icon {
-        font-size: 0.9em;
+
+    /* Benefits Table styles */
+    .benefits-section {
+        width: 100%;
+        max-width: 900px; /* Wider for table */
+        margin-top: 2rem;
+        padding: 1.5rem;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
-    
+    .benefits-section h3 {
+        font-size: 1.5rem;
+        color: #0056b3;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+    .benefits-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+    }
+    .benefits-table th, .benefits-table td {
+        border: 1px solid #e0e0e0;
+        padding: 0.75rem;
+        text-align: left;
+        font-size: 0.9rem;
+    }
+    .benefits-table th {
+        background-color: #007BFF;
+        color: white;
+        font-weight: 600;
+    }
+    .benefits-table tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    .benefits-table .yes { color: #28a745; font-weight: bold; text-align: center; }
+    .benefits-table .no { color: #DC3545; font-weight: bold; text-align: center; }
+    .benefits-table .limited { color: #FF8C00; text-align: center; }
+
     /* Footer */
     footer {
       background: #343a40; 
@@ -270,7 +367,7 @@
     footer a { color: #FF8C00; transition: color 0.3s ease; }
     footer a:hover { color: #fff; }
     
-    /* Modal Styles (Copied from indexCGPTSH_updated) */
+    /* Modal Styles */
     .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); padding-top: 60px; }
     .modal-content { background-color: #fefefe; margin: 5% auto; padding: 25px; border: 1px solid #888; width: 80%; max-width: 600px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative; }
     .modal-header { padding-bottom: 10px; border-bottom: 1px solid #eee; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
@@ -284,7 +381,7 @@
     .modal-footer button { background-color: #6c757d; color:white; border:none; padding: 0.7rem 1.3rem; border-radius:6px; cursor:pointer; } 
     .modal-footer button:hover { background-color: #5a6268; }
 
-    /* Chatbot Styles (Copied from indexCGPTSH_updated) */
+    /* Chatbot Styles */
     .chatbot-container { position: fixed; bottom: 20px; right: 20px; z-index: 1050; }
     #chat-toggle { background-color: #FF8C00; color: white; border: none; border-radius: 50%; width: 60px; height: 60px; font-size: 1.8rem; box-shadow: 0 4px 8px rgba(0,0,0,0.2); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background-color 0.3s ease, transform 0.3s ease; }
     #chat-toggle:hover { background-color: #e07b00; transform: scale(1.1); }
@@ -310,12 +407,12 @@
     </a>
     <nav>
       <a href="/SafetyHelp/index.html"><i class="fas fa-home nav-icon"></i>Home</a>
-      <a href="/SafetyHelp/resources.html" style="background-color: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.3);"><i class="fas fa-book nav-icon"></i>Resources</a>
+      <a href="/SafetyHelp/resources.html"><i class="fas fa-book nav-icon"></i>Resources</a>
       <a href="/SafetyHelp/services.html"><i class="fas fa-concierge-bell nav-icon"></i>Services</a>
       <a href="/SafetyHelp/community.html"><i class="fas fa-users nav-icon"></i>Community</a>
       <a href="/SafetyHelp/about.html"><i class="fas fa-info-circle nav-icon"></i>About</a>
       <a href="/SafetyHelp/contact.html"><i class="fas fa-envelope nav-icon"></i>Contact</a>
-      <a href="/SafetyHelp/login.html"><i class="fas fa-sign-in-alt nav-icon"></i>SignUp / Login</a>
+      <a href="/SafetyHelp/login.html" style="background-color: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.3);"><i class="fas fa-sign-in-alt nav-icon"></i>SignUp / Login</a>
     </nav>
     <div class="search-language">
       <input type="text" placeholder="Search...">
@@ -328,8 +425,8 @@
   </header>
 
   <div class="page-title-section">
-    <h1>OHS Resources</h1>
-    <p>Access a wide range of occupational health and safety (OHS) resources to support your safety initiatives. SafetyHelp offers book chapters, downloadable templates, legislation links, training materials, and community-contributed guides to empower workplaces, schools, churches, and informal sectors in South Africa with the tools they need to ensure safety and compliance.</p>
+    <h1>Login or Sign Up</h1>
+    <p>Access your SafetyHelp account or create a new one to unlock a range of OHS tools and community features.</p>
   </div>
 
 <div class="page-content">
@@ -354,78 +451,115 @@
       </div>
     </aside>
 
-    <main class="main-resources">
-        <h2>Explore Our Resources</h2>
+    <main class="main-login">
+        <div class="login-container">
+            <h2>Log In to Your Account</h2>
+            <div id="auth-message" style="display:none;"></div> 
+            <form id="login-form" class="flex flex-col w-full gap-4" style="width:100%;">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" placeholder="Enter your email" class="form-input" required />
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" placeholder="Enter your password" class="form-input" required />
+                </div>
+                <button type="submit" class="login-button">
+                    <i class="fas fa-sign-in-alt btn-icon"></i>Log In
+                </button>
+            </form>
 
-        <div class="resource-category">
-            <h3><i class="fas fa-book-open category-icon"></i>Book Chapters</h3>
-            <div class="resource-item">
-                <div class="resource-item-info">
-                    <h4>Safety First: The Essentials of OHS Plans - Chapter 1</h4>
-                    <p>An introduction to the fundamental concepts and importance of OHS plans in the workplace.</p>
+            <p class="social-login-text">Or log in with</p>
+            <div class="social-buttons-container">
+                <button id="google-login-btn" class="social-button">
+                    <i class="fab fa-google"></i> <span class="truncate">Continue with Google</span>
+                </button>
                 </div>
-                <a href="/SafetyHelp/resources/book-safetyplans-ch1.html" class="btn-resource"><i class="fas fa-eye btn-icon"></i>Read Chapter</a>
-            </div>
-            <div class="resource-item">
-                <div class="resource-item-info">
-                    <h4>Safety First: Essentials for Your OHS Career Journey - Chapter 9</h4>
-                    <p>Practical tips and strategies for advancing your career in the occupational health and safety field.</p>
-                </div>
-                <a href="/SafetyHelp/resources/book-safetycareer-ch9.html" class="btn-resource"><i class="fas fa-eye btn-icon"></i>Read Chapter</a>
+
+            <div class="login-links">
+                <p>Don't have an account? <a href="/SafetyHelp/signup.html">Sign Up for Free!</a></p>
+                <p>Forgot your password? <a href="#">Reset Password</a></p>
             </div>
         </div>
 
-        <div class="resource-category">
-            <h3><i class="fas fa-file-alt category-icon"></i>Templates</h3>
-            <div class="resource-item">
-                <div class="resource-item-info">
-                    <h4>Risk Assessment Template (General)</h4>
-                    <p>A downloadable template to guide your general workplace risk assessments. (Format: DOCX)</p>
-                </div>
-                <a href="/SafetyHelp/resources/templates/risk-assessment-general.docx" download class="btn-resource"><i class="fas fa-download btn-icon"></i>Download</a>
-            </div>
-            <div class="resource-item">
-                <div class="resource-item-info">
-                    <h4>Emergency Response Plan Template</h4>
-                    <p>A customizable template for creating an emergency response plan for your workplace. (Format: PDF)</p>
-                </div>
-                <a href="/SafetyHelp/resources/templates/emergency-response-plan.pdf" download class="btn-resource"><i class="fas fa-download btn-icon"></i>Download</a>
-            </div>
-        </div>
-
-        <div class="resource-category">
-            <h3><i class="fas fa-balance-scale-left category-icon"></i>Legislation</h3>
-            <div class="resource-item">
-                <div class="resource-item-info">
-                    <h4>Occupational Health and Safety Act 85 of 1993</h4>
-                    <p>Direct link to the primary South African legislation governing workplace health and safety.</p>
-                </div>
-                <a href="https://www.gov.za/documents/occupational-health-and-safety-act" target="_blank" rel="noopener noreferrer" class="btn-resource"><i class="fas fa-external-link-alt btn-icon"></i>View Act</a>
-            </div>
-        </div>
-
-        <div class="resource-category">
-            <h3><i class="fas fa-chalkboard-teacher category-icon"></i>Training Materials</h3>
-            <div class="resource-item">
-                <div class="resource-item-info">
-                    <h4>Basic OHS Training Guide for Informal Sectors</h4>
-                    <p>A beginner-friendly guide to introduce OHS practices in informal workplaces like spaza shops.</p>
-                </div>
-                <a href="/SafetyHelp/resources/training/ohs-informal-guide.pdf" download class="btn-resource"><i class="fas fa-download btn-icon"></i>Download</a>
-            </div>
-        </div>
-
-        <div class="resource-category">
-            <h3><i class="fas fa-users-cog category-icon"></i>Community Guides</h3>
-            <div class="resource-item">
-                <div class="resource-item-info">
-                    <h4>Safety Checklist for Schools and Churches</h4>
-                    <p>A community-contributed checklist for ensuring safety in public spaces like schools and churches.</p>
-                </div>
-                <a href="/SafetyHelp/resources/community/safety-checklist-schools-churches.pdf" download class="btn-resource"><i class="fas fa-download btn-icon"></i>Download</a>
-            </div>
-        </div>
-
+        <section class="benefits-section">
+            <h3>Choose the Right Plan for Your Needs</h3>
+            <table class="benefits-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Non-Registered User (Guest/Visitor)</th>
+                        <th>Registered User (Free)</th>
+                        <th>Subscribed Member (Paid)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Access to Basic Tools</td>
+                        <td class="yes">Yes</td>
+                        <td class="yes">Yes</td>
+                        <td class="yes">Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Document Downloads</td>
+                        <td class="limited">Limited (Temp. Access, 7 Days)</td>
+                        <td class="yes">Permanent Access</td>
+                        <td class="yes">Permanent Access</td>
+                    </tr>
+                    <tr>
+                        <td>Cost Per Document</td>
+                        <td>Standard Price (e.g., R50)</td>
+                        <td>Standard Price (e.g., R50)</td>
+                        <td class="yes">Discounted (e.g., R40)</td>
+                    </tr>
+                    <tr>
+                        <td>Early Access to New Features</td>
+                        <td class="no">No</td>
+                        <td class="no">No</td>
+                        <td class="yes">Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Access to Book & Product Launches</td>
+                        <td class="no">No</td>
+                        <td class="no">No</td>
+                        <td class="yes">Yes (Early Access)</td>
+                    </tr>
+                    <tr>
+                        <td>Exclusive Discounts</td>
+                        <td class="no">No</td>
+                        <td class="no">No</td>
+                        <td class="yes">Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Website Trusted Seal (Visible to Others)</td>
+                        <td class="no">No</td>
+                        <td class="no">No</td>
+                        <td class="yes">Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Preference in Content Featuring (Articles, Services)</td>
+                        <td class="no">No</td>
+                        <td class="no">No</td>
+                        <td class="yes">Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Personalized Dashboard</td>
+                        <td class="no">No</td>
+                        <td class="yes">Yes</td>
+                        <td class="yes">Yes (Enhanced)</td>
+                    </tr>
+                    <tr>
+                        <td>Community Participation</td>
+                        <td class="limited">Limited</td>
+                        <td class="yes">Full Access</td>
+                        <td class="yes">Full Access + Priority</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="text-align: center; margin-top: 1rem; font-size: 0.9em; color: #555;">
+                Registering for a Free account unlocks a range of benefits. You can upgrade to a Subscribed Member (Paid) plan anytime from your dashboard!
+            </p>
+        </section>
     </main>
 
     <aside class="sidebar-milestones">
@@ -499,7 +633,6 @@
         if (listId === 'ohs-milestones-list') {
              clone.addEventListener('click', () => showMilestoneDetail(clone));
         }
-        // For safetyhelp-tools-list, the <a> tag handles navigation.
         listElement.appendChild(clone);
     });
     
@@ -569,11 +702,7 @@
       let botResponse = "I'm still learning! For detailed OHS info, explore our resources or contact support.";
       if (message.toLowerCase().includes("hello") || message.toLowerCase().includes("hi")) {
           botResponse = "Hello there! How can I assist you with safety today?";
-      } else if (message.toLowerCase().includes("risk assessment")) {
-          botResponse = "Risk assessments involve identifying hazards and evaluating risks. We have tools and templates to help! Check the 'SafetyHelp Tools' sidebar.";
-      } else if (message.toLowerCase().includes("ohs act")) {
-          botResponse = "The OHS Act 85 of 1993 is the primary legislation for workplace safety in South Africa. You can find more details in our 'OHS Milestones'.";
-      }
+      } // More responses can be added here
       
       setTimeout(() => {
           addChatMessageToUI("Salatiso", botResponse, false);
@@ -590,6 +719,49 @@
         }
     });
   }
+  
+  // --- Login Form Functionality (Placeholder) ---
+  const loginForm = document.getElementById('login-form');
+  const authMessageEl = document.getElementById('auth-message');
+
+  if (loginForm) {
+    loginForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
+        
+        // Placeholder for actual login logic
+        console.log('Login attempt with:', email, password);
+
+        // Simulate API call
+        authMessageEl.style.display = 'block';
+        authMessageEl.textContent = 'Attempting login...';
+        authMessageEl.className = ''; // Reset classes
+
+        setTimeout(() => {
+            if (email === "user@example.com" && password === "password") {
+                authMessageEl.textContent = 'Login successful! Redirecting...';
+                authMessageEl.classList.add('message-success');
+                // window.location.href = '/SafetyHelp/member-dashboard.html'; // Example redirect
+            } else {
+                authMessageEl.textContent = 'Invalid email or password. Please try again.';
+                authMessageEl.classList.add('message-error');
+            }
+        }, 1500);
+    });
+  }
+
+  // Placeholder for Google Login
+  const googleLoginBtn = document.getElementById('google-login-btn');
+  if (googleLoginBtn) {
+    googleLoginBtn.addEventListener('click', function() {
+        authMessageEl.style.display = 'block';
+        authMessageEl.textContent = 'Google login is not yet implemented.';
+        authMessageEl.className = 'message-error';
+        console.log('Google login button clicked');
+    });
+  }
+
 
   // --- Initial calls ---
   window.onload = function() {
