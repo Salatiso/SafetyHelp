@@ -1,422 +1,267 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SafetyHelp | Home</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
   <style>
-    /* Reset & Base */
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { 
-      height: 100%; 
-      font-family: 'Montserrat', sans-serif; 
-      background: #E8F0FE; 
-      color: #333; 
-      display: flex;
-      flex-direction: column;
-    }
+    html, body { height: 100%; font-family: Arial, sans-serif; background: #E8F0FE; color: #333; overflow: hidden; }
     a { text-decoration: none; color: inherit; }
 
     /* Header */
-    header { 
-      background: #007BFF; 
-      color: #fff; 
-      padding: 1rem 2rem; 
-      display: flex; 
-      align-items: center; 
-      justify-content: space-between; 
-      flex-shrink: 0; /* Prevent header from shrinking */
+    header {
+      background: #007BFF; color: #fff;
+      padding: 1rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
     }
-    .logo { font-weight: 700; font-size: 1.75rem; letter-spacing: -0.025em; } 
-    .logo .help { font-weight: 900; color: #FF8C00; }
+    .logo { font-weight: bold; font-size: 1.75rem; }
+    .logo .help { color: #FF8C00; }
     nav { display: flex; gap: 1rem; }
-    nav a { color: white; font-weight: 500; padding: 0.5rem; border-radius: 4px; transition: background-color 0.3s ease; }
-    nav a:hover { background-color: rgba(255,255,255,0.1); }
-    .search-language { display: flex; align-items: center; gap: 1rem; }
-    .search-language input { padding: 0.5rem; border: none; border-radius: 4px; font-family: 'Montserrat', sans-serif; }
-    .search-language select { padding: 0.5rem; border-radius: 4px; border: none; font-family: 'Montserrat', sans-serif; }
-
-    /* Welcome */
-    .welcome { 
-      background: #F3F4F6; 
-      padding: 1rem 2rem; 
-      text-align: center; 
-      border-bottom: 1px solid #e0e0e0;
-      flex-shrink: 0; /* Prevent welcome section from shrinking */
+    nav a { font-weight: 500; color: white; }
+    .search-language { display: flex; align-items: center; gap: 0.5rem; }
+    .search-language input, .search-language select {
+      padding: 0.5rem; border-radius: 4px; border: none;
     }
-    .welcome h1 { font-size: 2rem; color: #1f2937; }
-    .welcome p { margin-top: 0.5rem; font-size: 1rem; color: #374151; }
+
+    /* Welcome Section */
+    .welcome {
+      background: #F3F4F6;
+      padding: 0.75rem 2rem;
+      text-align: center;
+    }
+    .welcome h1 { font-size: 1.75rem; }
+    .welcome p { font-size: 1rem; margin-top: 0.25rem; }
 
     /* Layout */
-    .page-content {
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1; /* Allow this container to grow and fill available space */
-      overflow: hidden; /* Prevent overall page scroll if content overflows, individual sections will scroll */
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 3fr 1fr;
+      height: calc(100% - 14rem); /* Header + welcome + banner + footer */
     }
-    .container { 
-      display: grid; 
-      grid-template-columns: 1fr 3fr 1fr; 
-      flex-grow: 1; /* Make container take available vertical space */
-      overflow: hidden; /* Prevent container itself from scrolling, sidebars will scroll */
-      min-height: 0; /* Important for flex children in some browsers */
+
+    .sidebar {
+      background: white;
+      overflow: hidden;
+      position: relative;
+      padding-top: 2rem;
     }
-    
-    .sidebar-tools, .sidebar-milestones { 
-      background: #fff; 
-      overflow-y: auto; /* Allow vertical scroll within sidebars */
-      padding-top: 0.5rem; /* Space for the heading */
-      border-left: 1px solid #e0e0e0;
-      border-right: 1px solid #e0e0e0;
-    }
-    .sidebar-heading {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #007BFF;
-      padding: 0.75rem 1rem;
-      border-bottom: 1px solid #e5e7eb;
-      background-color: #f9f9f9;
-      position: sticky; /* Keep heading visible while scrolling list */
+
+    .sidebar h3 {
+      position: absolute;
       top: 0;
-      z-index: 10;
+      left: 0;
+      right: 0;
+      padding: 0.5rem;
+      background: #007BFF;
+      color: white;
+      font-size: 1rem;
+      text-align: center;
     }
-    .sidebar-tools ul, .sidebar-milestones ul { 
-      list-style: none; 
-      /* Removed absolute positioning and animations for stable headings, can be re-added carefully */
-    }
-    .sidebar-tools li, .sidebar-milestones li { 
-      padding: 0.75rem 1rem; 
-      border-bottom: 1px solid #e5e7eb; 
-      cursor: pointer; 
-      transition: background-color 0.3s ease;
-    }
-    .sidebar-tools li:hover, .sidebar-milestones li:hover { background: #e8f0fe; }
 
-    /* Main content panels */
-    .main { 
-      padding: 1rem; 
-      overflow-y: auto; /* Allow main content to scroll if it overflows */
-      display: flex; 
-      flex-direction: column; 
-      gap: 1rem; /* Added gap between panels and banner */
+    .sidebar ul {
+      list-style: none;
+      position: absolute;
+      width: 100%;
+      padding: 2.5rem 0 0;
     }
-    .panels { 
-      display: flex; 
-      gap: 1rem; 
-      /* flex: 1; Removed to allow natural sizing, can be adjusted */
-      min-height: 150px; /* Minimum height for panels */
+
+    /* Scroll Effects */
+    @keyframes scrollUp { 0% { top: -50%; } 100% { top: 0; } }
+    @keyframes scrollDown { 0% { top: 0; } 100% { top: -50%; } }
+
+    .sidebar-left ul { animation: scrollUp 18s linear infinite; }
+    .sidebar-right ul { animation: scrollDown 18s linear infinite; }
+    .sidebar ul:hover { animation-play-state: paused; }
+
+    .sidebar li {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
     }
-    .panel { 
-      background: #fff; 
-      flex: 1; 
-      padding: 1rem; 
-      border-radius: 8px; 
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    .sidebar li:hover {
+      background: #f0f8ff;
+    }
+
+    /* Main Panels */
+    .main {
+      padding: 1rem;
       display: flex;
       flex-direction: column;
-    }
-    .panel h3 {
-      margin-bottom: 0.75rem;
-      color: #0056b3;
-    }
-    .panel p {
-      font-size: 0.9rem;
-      line-height: 1.4;
-      flex-grow: 1; /* Allow p to take space before button */
-    }
-    .daily-tip button, .challenge button { 
-      margin-top: 0.5rem; 
-      padding: 0.6rem 1.2rem; 
-      border: none; 
-      background: #FF8C00; 
-      color: #fff; 
-      border-radius: 4px; 
-      cursor: pointer; 
-      font-weight: 500;
-      transition: background-color 0.3s ease;
-      align-self: flex-start; /* Align button to the start of the flex container */
-    }
-    .daily-tip button:hover, .challenge button:hover { background: #e07b00; }
-    .challenge input[type="text"] {
-        width: calc(100% - 1.2rem); /* Adjust width considering padding */
-        padding: 0.6rem;
-        margin-top: 0.5rem;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        font-family: 'Montserrat', sans-serif;
+      justify-content: space-between;
     }
 
+    .panels {
+      display: flex;
+      gap: 1rem;
+      flex: 1;
+    }
+
+    .panel {
+      background: #fff;
+      flex: 1;
+      padding: 1rem;
+      border-radius: 8px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .panel input {
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    .panel button {
+      margin-top: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: #FF8C00;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
 
     /* Launch Banner */
-    .banner { 
-      background: #007BFF; 
-      color: #fff; 
-      text-align: center; 
-      padding: 1rem; 
-      border-radius: 8px;
-      flex-shrink: 0; /* Prevent banner from shrinking */
-      margin-top: auto; /* Pushes banner towards the bottom of the main flex container */
+    .banner {
+      background: #007BFF;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      border-radius: 0 0 8px 8px;
+      margin-top: 1rem;
     }
-    .banner button { 
-      margin-top: 0.5rem; 
-      padding: 0.6rem 1.2rem; 
-      border: none; 
-      background: #FD7E14; 
-      color: #fff; 
-      border-radius: 4px; 
-      cursor: pointer; 
-      font-weight: 500;
-      transition: background-color 0.3s ease;
-    }
-    .banner button:hover { background: #e06f10; }
 
-    /* Bottom features */
-    .features { 
-      display: flex; 
-      background: #fff; 
-      padding: 1rem; 
-      gap: 1rem; 
-      border-top: 1px solid #e0e0e0;
-      flex-shrink: 0; /* Prevent features section from shrinking */
+    .banner button {
+      margin-top: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: #FD7E14;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      cursor: pointer;
     }
-    .feature { 
-      flex: 1; 
-      text-align: center; 
-      padding: 0.5rem; 
-      border-radius: 8px; 
-    }
-    .feature h4 { margin-bottom: 0.3rem; color: #007BFF; }
-    .feature p { font-size: 0.85rem; }
 
     /* Footer */
     footer {
-      background: #007BFF; /* Same as header */
-      color: #fff;
+      background: #007BFF;
+      color: white;
       text-align: center;
-      padding: 1rem 2rem;
-      font-size: 0.9rem;
-      flex-shrink: 0; /* Prevent footer from shrinking */
+      padding: 1rem;
+      font-size: 0.875rem;
     }
-    
-    /* Dashboard specific */
-    .dashboard p {
-        margin-bottom: 0.5rem;
-    }
-    #leaderboard-name {
-        font-weight: bold;
-        color: #FF8C00;
-    }
-    #countdown-timer {
-        font-weight: bold;
-        color: #0056b3;
-    }
-
   </style>
-</head><body>
+</head>
+<body>
+
+  <!-- HEADER -->
   <header>
     <div class="logo">Safety<span class="help">Help</span></div>
     <nav>
-      <a href="#">Home</a><a href="#">Resources</a><a href="#">Services</a><a href="#">Community</a><a href="#">About</a><a href="#">Contact</a>
+      <a href="#">Home</a>
+      <a href="#">Resources</a>
+      <a href="#">Services</a>
+      <a href="#">Community</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
     </nav>
     <div class="search-language">
-      <input type="text" placeholder="Search...">
+      <input type="text" placeholder="Search..." />
       <select><option>English</option><option>isiXhosa</option></select>
     </div>
   </header>
 
+  <!-- WELCOME -->
   <div class="welcome">
     <h1>Welcome to SafetyHelp</h1>
-    <p>Your trusted AI-powered OHS companion in South Africa. Simplifying safety, compliance, and community engagement.</p>
+    <p>Your AI-powered OHS platform for safer schools, churches, and communities in South Africa.</p>
   </div>
 
-<div class="page-content">
+  <!-- MAIN CONTAINER -->
   <div class="container">
-    <aside class="sidebar-tools">
-      <h3 class="sidebar-heading">SafetyHelp Tools</h3>
+    <!-- TOOLS SIDEBAR -->
+    <aside class="sidebar sidebar-left">
+      <h3>SafetyHelp Tools</h3>
       <ul>
-        <li onclick="location.href='#'">Dashboard</li>
-        <li onclick="location.href='#'">Risk Assessments</li>
-        <li onclick="location.href='#'">Incident Reporting</li>
-        <li onclick="location.href='#'">Training Modules</li>
-        <li onclick="location.href='#'">Document Management</li>
-        <li onclick="location.href='#'">Compliance Checklists</li>
-        <li onclick="location.href='#'">Analytics & Reports</li>
-        <li onclick="location.href='#'">Community Forums</li>
-        <li onclick="location.href='#'">Emergency Contacts</li>
-        <li onclick="location.href='#'">Safety News Feed</li>
-        <li onclick="location.href='#'">User Profile</li>
-        <li onclick="location.href='#'">Settings</li>
-        <li onclick="location.href='#'">Tool Item 13</li>
-        <li onclick="location.href='#'">Tool Item 14</li>
-        <li onclick="location.href='#'">Tool Item 15</li>
+        <li onclick="window.location='#'">Dashboard</li>
+        <li onclick="window.location='#'">Risk Assessments</li>
+        <li onclick="window.location='#'">Incident Reporting</li>
+        <li onclick="window.location='#'">Training Modules</li>
+        <li onclick="window.location='#'">Document Management</li>
+        <li onclick="window.location='#'">Compliance Checklists</li>
+        <li onclick="window.location='#'">Analytics & Reports</li>
+        <li onclick="window.location='#'">Community Tools</li>
       </ul>
     </aside>
 
+    <!-- CENTER PANELS -->
     <main class="main">
       <div class="panels">
-        <section class="panel daily-tip">
+        <div class="panel">
           <h3>Daily Safety Tip</h3>
-          <p id="safetyTipText">Always ensure proper ventilation when working with chemicals. If you feel dizzy, move to fresh air immediately.</p>
-          <button onclick="nextSafetyTip()">Next Tip</button>
-        </section>
-        <section class="panel dashboard">
+          <p>Take regular breaks to avoid fatigue and maintain focus.</p>
+          <button>Next Tip</button>
+        </div>
+        <div class="panel">
           <h3>Dashboard</h3>
-          <p>Top Performer (Brain of SafetyHelp): <span id="leaderboard-name">Loading...</span></p>
-          <p>Next Module Launch In: <span id="countdown-timer">Calculating...</span></p>
-          <p>Other relevant metrics and quick access widgets can go here.</p>
-        </section>
-        <section class="panel challenge">
+          <p><strong>Top Scorer:</strong> Jane Doe (480 pts)</p>
+          <p><strong>Next Module Launch In:</strong> <span id="countdown"></span></p>
+        </div>
+        <div class="panel">
           <h3>Brain of SafetyHelp</h3>
-          <p id="challengeQuestion">What does a yellow and black diagonal striped sign typically indicate?</p>
-          <input type="text" placeholder="Your answer...">
-          <button onclick="submitChallengeAnswer()">Submit</button>
-        </section>
+          <p>Which color signifies “danger” or “stop” on safety signs?</p>
+          <input type="text" placeholder="Your answer..." />
+          <button>Submit</button>
+        </div>
       </div>
+
+      <!-- LAUNCH BANNER -->
       <div class="banner">
-        <strong>🚀 Platform Launching June 1, 2025! Modules updated monthly.</strong><br>
-        <button onclick="location.href='#'">Join Beta & Register Now</button>
+        <h4>🚀 Launching June 1, 2025!</h4>
+        <p>Join our Beta Testing community today.</p>
+        <button>Join Beta & Register Now</button>
       </div>
     </main>
 
-    <aside class="sidebar-milestones">
-      <h3 class="sidebar-heading">OHS Milestones</h3>
+    <!-- MILESTONES SIDEBAR -->
+    <aside class="sidebar sidebar-right">
+      <h3>OHS Milestones</h3>
       <ul>
-        <li onclick="showMilestoneDetail('1970: OSHA (USA)', 'The Occupational Safety and Health Act was enacted in the USA, establishing standards for workplace safety.')">1970: OSHA (USA)</li>
-        <li onclick="showMilestoneDetail('1993: OHS Act (SA)', 'South Africa\'s Occupational Health and Safety Act No. 85 of 1993 was established, laying the groundwork for current OHS practices.')">1993: OHS Act (SA)</li>
-        <li onclick="showMilestoneDetail('2003: COIDA Amendment', 'The Compensation for Occupational Injuries and Diseases Act was amended, refining worker compensation.')">2003: COIDA Amendment</li>
-        <li onclick="showMilestoneDetail('2014: Construction Regulations (SA)', 'Specific regulations for construction work were updated in South Africa, enhancing safety on construction sites.')">2014: Construction Regs (SA)</li>
-        <li onclick="showMilestoneDetail('2015: Global Harmonization (GHS)', 'Adoption of the Globally Harmonized System for classification and labeling of chemicals.')">2015: Global Harmonization</li>
-        <li onclick="showMilestoneDetail('2020: COVID-19 Workplace Protocols', 'Global and national directives for managing COVID-19 in the workplace were introduced.')">2020: COVID-19 Protocols</li>
-        <li onclick="showMilestoneDetail('2022: Mental Health Focus', 'Increased emphasis on psychological health and safety in workplaces.')">2022: Mental Health Focus</li>
-        <li onclick="showMilestoneDetail('Future: Predictive Safety', 'Ongoing development towards using AI and big data for predictive safety analytics and proactive risk mitigation.')">Future: Predictive Safety</li>
-        <li onclick="showMilestoneDetail('Milestone 9', 'Details for milestone 9...')">Milestone 9</li>
-        <li onclick="showMilestoneDetail('Milestone 10', 'Details for milestone 10...')">Milestone 10</li>
-        <li onclick="showMilestoneDetail('Milestone 11', 'Details for milestone 11...')">Milestone 11</li>
+        <li onclick="alert('1970: OSHA - US workplace law established.')">1970: OSHA (USA)</li>
+        <li onclick="alert('1993: SA adopts OHS Act.')">1993: OHS Act (SA)</li>
+        <li onclick="alert('2003: COIDA Amendment protects workers.')">2003: COIDA Amendment</li>
+        <li onclick="alert('2015: Global Harmonization of safety standards.')">2015: Global Harmonization</li>
+        <li onclick="alert('2022: Mental health added to OHS standards.')">2022: Mental Health Focus</li>
+        <li onclick="alert('Future: Predictive tech in safety analytics.')">Future: Predictive Safety</li>
       </ul>
     </aside>
   </div>
 
-  <div class="features">
-    <div class="feature">🤖<h4>AI Automation</h4><p>Streamline tasks and compliance.</p></div>
-    <div class="feature">📊<h4>Insightful Analytics</h4><p>Data-driven safety decisions.</p></div>
-    <div class="feature">📱<h4>Mobile Access</h4><p>Manage OHS on the go.</p></div>
-    <div class="feature">🔗<h4>Integrated Modules</h4><p>All tools in one ecosystem.</p></div>
-  </div>
-</div> <footer>
-  <p>&copy; <span id="copyright-year"></span> SafetyHelp (Pty) Ltd. All rights reserved. Your Partner in Occupational Health and Safety.</p>
-</footer>
+  <!-- FOOTER -->
+  <footer>
+    &copy; 2025 SafetyHelp. All rights reserved.
+  </footer>
 
-<script>
-  // Set current year in footer
-  document.getElementById('copyright-year').textContent = new Date().getFullYear();
+  <!-- JS for countdown -->
+  <script>
+    function updateCountdown() {
+      const now = new Date();
+      const end = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+      const diff = end - now;
 
-  // --- Dashboard Countdown Timer ---
-  function updateCountdown() {
-    const now = new Date();
-    const currentYear = now.getFullYear();
-    const currentMonth = now.getMonth();
-    
-    // Calculate the first day of the next month
-    let nextMonthDate;
-    if (currentMonth === 11) { // December
-      nextMonthDate = new Date(currentYear + 1, 0, 1); // January of next year
-    } else {
-      nextMonthDate = new Date(currentYear, currentMonth + 1, 1);
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+
+      document.getElementById('countdown').textContent = `${days}d ${hours}h ${minutes}m`;
     }
 
-    const timeRemaining = nextMonthDate - now;
+    setInterval(updateCountdown, 60000); // update every minute
+    updateCountdown();
+  </script>
 
-    if (timeRemaining <= 0) {
-      // This case should ideally not be hit if checked frequently,
-      // but handles if the month just ticked over.
-      document.getElementById('countdown-timer').textContent = "New module released! Updates soon.";
-      // Optionally, you could force a recalculation for the *next* next month.
-      // For simplicity, we'll let the next interval handle it.
-      return;
-    }
-
-    const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-
-    document.getElementById('countdown-timer').textContent = 
-      `${days}d ${hours}h ${minutes}m ${seconds}s`;
-  }
-  
-  // --- Placeholder for Leaderboard ---
-  function updateLeaderboard() {
-    // In a real application, you would fetch this data.
-    // For now, it's a placeholder.
-    const topPerformers = ["SafetyChampion23", "RiskMasterFlex", "ComplianceGuruSA", "WellnessWarrior"];
-    const randomPerformer = topPerformers[Math.floor(Math.random() * topPerformers.length)];
-    document.getElementById('leaderboard-name').textContent = randomPerformer;
-  }
-
-  // --- Daily Safety Tip ---
-  const safetyTips = [
-    "Take regular breaks to avoid fatigue and improve focus.",
-    "Always ensure proper ventilation when working with chemicals. If you feel dizzy, move to fresh air immediately.",
-    "Use Personal Protective Equipment (PPE) correctly every time.",
-    "Report any unsafe conditions or near misses to your supervisor immediately.",
-    "Keep your workspace tidy to prevent slips, trips, and falls.",
-    "Familiarize yourself with emergency exits and procedures.",
-    "Lift objects correctly: bend your knees, keep your back straight, and hold the load close.",
-    "Stay hydrated, especially when working in warm environments or performing physical tasks."
-  ];
-  let currentTipIndex = 0;
-  function nextSafetyTip() {
-    currentTipIndex = (currentTipIndex + 1) % safetyTips.length;
-    document.getElementById('safetyTipText').textContent = safetyTips[currentTipIndex];
-  }
-   // Set initial tip
-  document.getElementById('safetyTipText').textContent = safetyTips[currentTipIndex];
-
-
-  // --- Brain of SafetyHelp Challenge ---
-   const challengeQuestions = [
-    { question: "Which color signifies 'danger' or 'stop' on safety signs?", answer: "Red" },
-    { question: "What does a blue circle with a white pictogram generally indicate on a safety sign?", answer: "Mandatory action" },
-    { question: "What shape is typically used for prohibition signs?", answer: "Circle with a diagonal line" },
-    { question: "What does a yellow triangle with a black border usually warn about?", answer: "Hazard or warning" },
-    { question: "What is the primary purpose of an SDS (Safety Data Sheet)?", answer: "Provide information on hazardous chemicals" }
-  ];
-  let currentChallengeIndex = 0;
-  function submitChallengeAnswer() {
-    const userAnswer = document.querySelector('.challenge input[type="text"]').value;
-    // Basic feedback for now. In a real app, you'd have proper validation and scoring.
-    alert(`You answered: ${userAnswer}. Thanks for participating!`); 
-    // Load next question
-    currentChallengeIndex = (currentChallengeIndex + 1) % challengeQuestions.length;
-    document.getElementById('challengeQuestion').textContent = challengeQuestions[currentChallengeIndex].question;
-    document.querySelector('.challenge input[type="text"]').value = ''; // Clear input
-  }
-  // Set initial question
-  document.getElementById('challengeQuestion').textContent = challengeQuestions[currentChallengeIndex].question;
-
-
-  // --- Milestone Details ---
-  function showMilestoneDetail(title, detail) {
-    // For now, using alert. Could be a modal or a dedicated display area.
-    alert(`${title}\n\n${detail}`);
-  }
-
-  // --- Initial calls and interval timers ---
-  window.onload = function() {
-    updateLeaderboard();
-    updateCountdown(); // Initial call
-    setInterval(updateCountdown, 1000); // Update countdown every second
-
-    // Initial setup for tips and challenges
-    if (safetyTips.length > 0) {
-        document.getElementById('safetyTipText').textContent = safetyTips[currentTipIndex];
-    }
-    if (challengeQuestions.length > 0) {
-        document.getElementById('challengeQuestion').textContent = challengeQuestions[currentChallengeIndex].question;
-    }
-  };
-
-</script>
 </body>
 </html>
