@@ -33,7 +33,7 @@
     .logo-container {
       display: flex;
       align-items: center;
-      color: #fff; /* Ensure logo text is white */
+      color: #fff; 
     }
     .logo-container img {
         height: 40px; 
@@ -128,26 +128,23 @@
       list-style: none; 
       padding: 0;
       margin: 0;
-      /* Animations are applied here */
     }
 
-    /* Continuous Scroll Animations */
-    @keyframes continuousScrollUp {
+    /* Alternating Scroll Animations */
+    @keyframes alternatingScrollUp {
         0% { transform: translateY(0%); }
-        100% { transform: translateY(-100%); } /* Scroll one full height of the original list */
+        100% { transform: translateY(-50%); } /* Adjust if list height vs container height differs */
     }
-    @keyframes continuousScrollDown {
-        0% { transform: translateY(-100%); } /* Start from the duplicated content */
+    @keyframes alternatingScrollDown {
+        0% { transform: translateY(-50%); } 
         100% { transform: translateY(0%); }
     }
 
-    /* Apply to the UL elements */
-    /* Durations might need adjustment based on list length */
     .sidebar-tools ul { 
-        animation: continuousScrollDown 45s linear infinite; 
+        animation: alternatingScrollDown 45s linear infinite alternate; 
     }
     .sidebar-milestones ul { 
-        animation: continuousScrollUp 40s linear infinite; 
+        animation: alternatingScrollUp 40s linear infinite alternate; 
     }
     
     .sidebar-tools:hover ul, .sidebar-milestones:hover ul {
@@ -155,30 +152,31 @@
     }
 
     .sidebar-tools li, .sidebar-milestones li { 
-      padding: 0.85rem 1rem; 
+      padding: 0; /* Remove padding from li as 'a' tag will handle it */
       border-bottom: 1px solid #e5e7eb; 
       cursor: pointer; 
-      transition: background-color 0.3s ease;
+      display: flex; /* Ensure li itself is flex if 'a' doesn't fill it */
+    }
+    .sidebar-tools li a, .sidebar-milestones li { /* Apply link styles to 'a' in tools, and li in milestones */
       display: flex;
       align-items: center;
       gap: 0.75rem;
       font-size: 0.9rem;
+      padding: 0.85rem 1rem; /* Padding now on 'a' or 'li' */
+      width: 100%; /* Make 'a' tag fill the li */
+      transition: background-color 0.3s ease;
+      color: #333; /* Default link color */
     }
-    .sidebar-tools li .list-icon, .sidebar-milestones li .list-icon {
+    .sidebar-tools li a:hover, .sidebar-milestones li:hover { 
+        background: #e8f0fe; 
+    }
+     .sidebar-tools li a .list-icon, .sidebar-milestones li .list-icon { /* Target icons within 'a' or 'li' */
         color: #007BFF;
         font-size: 1em;
         width: 20px; 
         text-align: center;
     }
-    .sidebar-tools li:hover, .sidebar-milestones li:hover { background: #e8f0fe; }
-    .sidebar-tools li.active-tool {
-        background-color: #cce7ff; 
-        color: #0056b3;
-        font-weight: 600;
-    }
-     .sidebar-tools li.active-tool .list-icon {
-        color: #0056b3;
-     }
+    /* No active-tool class needed if navigation occurs directly */
 
     /* Main content panels */
     .main { 
@@ -498,7 +496,8 @@
   </style>
 </head><body>
   <header>
-    <a href="index.html" class="logo-container"> <div class="logo">Safety<span class="help">Help</span></div>
+    <a href="index.html" class="logo-container"> 
+        <div class="logo">Safety<span class="help">Help</span></div>
     </a>
     <nav>
       <a href="index.html"><i class="fas fa-home nav-icon"></i>Home</a>
@@ -531,18 +530,18 @@
       <h3 class="sidebar-heading"><i class="fas fa-tools heading-icon"></i>SafetyHelp Tools</h3>
       <div class="sidebar-list-container">
         <ul id="safetyhelp-tools-list">
-          <li data-detail="Comprehensive safety management for construction projects, ensuring compliance with regulations."><i class="fas fa-hard-hat list-icon"></i>Construction Safety</li>
-          <li data-detail="Develop and implement effective emergency preparedness and response plans."><i class="fas fa-bell list-icon"></i>Emergency Planning</li>
-          <li data-detail="Identify, analyze, and control workplace hazards with our systematic risk assessment tools."><i class="fas fa-shield-alt list-icon"></i>Risk Assessment</li>
-          <li data-detail="Manage and document all legally required OHS appointments for your organization."><i class="fas fa-gavel list-icon"></i>Legal Appointments</li>
-          <li data-detail="Streamline the reporting, investigation, and prevention of workplace incidents."><i class="fas fa-file-medical-alt list-icon"></i>Incident Management</li>
-          <li data-detail="Access and manage OHS training programs and records for your workforce."><i class="fas fa-graduation-cap list-icon"></i>Training</li>
-          <li data-detail="Conduct thorough workplace inspections and audits to ensure safety standards are met."><i class="fas fa-clipboard-check list-icon"></i>Inspections & Audits</li>
-          <li data-detail="Manage OHS information and compliance for your suppliers and contractors."><i class="fas fa-truck list-icon"></i>Suppliers</li>
-          <li data-detail="Stay updated with the latest OHS acts, regulations, and legal requirements."><i class="fas fa-balance-scale list-icon"></i>Legislation</li>
-          <li data-detail="Engage with the OHS community, share resources, and access forums."><i class="fas fa-users list-icon"></i>Community Tools</li>
-          <li data-detail="Your personalized dashboard for managing OHS activities, tracking progress, and accessing key information."><i class="fas fa-tachometer-alt list-icon"></i>Member Dashboard</li>
-          <li data-detail="Explore various modules to build and maintain a comprehensive OHS system."><i class="fas fa-cogs list-icon"></i>OHS System Modules</li>
+          <li><a href="/SafetyHelp/pages/construction-compliance.html" data-detail="Comprehensive safety management for construction projects, ensuring compliance with regulations."><i class="fas fa-hard-hat list-icon"></i>Construction Safety</a></li>
+          <li><a href="/SafetyHelp/pages/emergency-response-plan.html" data-detail="Develop and implement effective emergency preparedness and response plans."><i class="fas fa-bell list-icon"></i>Emergency Planning</a></li>
+          <li><a href="/SafetyHelp/pages/risk-assessment.html" data-detail="Identify, analyze, and control workplace hazards with our systematic risk assessment tools."><i class="fas fa-shield-alt list-icon"></i>Risk Assessment</a></li>
+          <li><a href="/SafetyHelp/pages/legal-appointments.html" data-detail="Manage and document all legally required OHS appointments for your organization."><i class="fas fa-gavel list-icon"></i>Legal Appointments</a></li>
+          <li><a href="/SafetyHelp/pages/incident-management.html" data-detail="Streamline the reporting, investigation, and prevention of workplace incidents."><i class="fas fa-file-medical-alt list-icon"></i>Incident Management</a></li>
+          <li><a href="/SafetyHelp/pages/training.html" data-detail="Access and manage OHS training programs and records for your workforce."><i class="fas fa-graduation-cap list-icon"></i>Training</a></li>
+          <li><a href="/SafetyHelp/pages/inspections-audits.html" data-detail="Conduct thorough workplace inspections and audits to ensure safety standards are met."><i class="fas fa-clipboard-check list-icon"></i>Inspections & Audits</a></li>
+          <li><a href="/SafetyHelp/pages/suppliers.html" data-detail="Manage OHS information and compliance for your suppliers and contractors."><i class="fas fa-truck list-icon"></i>Suppliers</a></li>
+          <li><a href="/SafetyHelp/pages/legislation.html" data-detail="Stay updated with the latest OHS acts, regulations, and legal requirements."><i class="fas fa-balance-scale list-icon"></i>Legislation</a></li>
+          <li><a href="/SafetyHelp/pages/community-tools.html" data-detail="Engage with the OHS community, share resources, and access forums."><i class="fas fa-users list-icon"></i>Community Tools</a></li>
+          <li><a href="/SafetyHelp/member-dashboard.html" data-detail="Your personalized dashboard for managing OHS activities, tracking progress, and accessing key information."><i class="fas fa-tachometer-alt list-icon"></i>Member Dashboard</a></li>
+          <li><a href="/SafetyHelp/pages/ohs-system.html" data-detail="Explore various modules to build and maintain a comprehensive OHS system."><i class="fas fa-cogs list-icon"></i>OHS System Modules</a></li>
         </ul>
       </div>
     </aside>
@@ -574,7 +573,8 @@
       <div class="banner">
         <strong><i class="fas fa-rocket"></i> SafetyHelp Launched June 1, 2025!</strong>
         <p>Our core platform is live! New exciting modules are launching every month - check the countdown on your dashboard.</p>
-        <button onclick="location.href='login.html'"><i class="fas fa-user-plus btn-icon"></i>Join Beta & Register for Updates</button> </div>
+        <button onclick="location.href='login.html'"><i class="fas fa-user-plus btn-icon"></i>Join Beta & Register for Updates</button> 
+      </div>
     </main>
 
     <aside class="sidebar-milestones">
@@ -602,7 +602,8 @@
   </div>
 </div> <footer>
   <p>&copy; <span id="copyright-year"></span> SafetyHelp (Pty) Ltd. All rights reserved. Your Partner in Occupational Health and Safety.</p>
-  <p><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a> | <a href="contact.html">Contact Us</a></p> </footer>
+  <p><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a> | <a href="contact.html">Contact Us</a></p> 
+</footer>
 
 <div id="infoModal" class="modal">
   <div class="modal-content">
@@ -702,53 +703,23 @@
     if (!listElement || listElement.children.length === 0) return;
 
     const originalItems = Array.from(listElement.children);
-    // Duplicate items for seamless infinite scrolling
     originalItems.forEach(item => {
         const clone = item.cloneNode(true);
-        // Re-attach event listeners to cloned items
         if (listId === 'ohs-milestones-list') {
              clone.addEventListener('click', () => showMilestoneDetail(clone));
-        } else if (listId === 'safetyhelp-tools-list') {
-            clone.addEventListener('click', (event) => {
-                handleToolClick(event.currentTarget, listId);
-            });
         }
+        // For safetyhelp-tools-list, the <a> tag handles navigation, so no specific click listener needed on clone for navigation.
+        // If a modal or other action was needed on click for tools (besides navigation), it would be added here.
         listElement.appendChild(clone);
     });
     
-    // Attach event listeners to original items as well
      originalItems.forEach(item => {
         if (listId === 'ohs-milestones-list') {
             item.addEventListener('click', () => showMilestoneDetail(item));
-        } else if (listId === 'safetyhelp-tools-list') {
-            item.addEventListener('click', (event) => {
-                handleToolClick(event.currentTarget, listId);
-            });
         }
+        // No specific JS click handler needed for safetyhelp-tools-list original items if <a> tags handle navigation.
     });
-
-    // Adjust animation duration based on content height if needed, or keep it fixed
-    // For continuous scroll, the translateY should go to -100% of the *original* content height
-    // If the listElement itself is the direct parent for animation, and it contains duplicated items,
-    // then -50% of its new total height would be correct.
-    // The CSS animation `continuousScrollUp` and `continuousScrollDown` are set to -100% / 0%
-    // assuming the JS duplicates the content once, effectively making the animated element twice as tall.
   }
-
-
-  function handleToolClick(clickedItem, listId) {
-    const listElement = document.getElementById(listId);
-    listElement.querySelectorAll('li').forEach(item => item.classList.remove('active-tool'));
-    clickedItem.classList.add('active-tool');
-    
-    const toolName = clickedItem.textContent.trim().replace(/^.*? /,''); // Get text, remove icon part
-    const detail = clickedItem.dataset.detail || `More information about the ${toolName} tool will be available soon.`;
-    
-    document.getElementById('modalTitle').textContent = `SafetyHelp Tool: ${toolName}`;
-    document.getElementById('modalBody').innerHTML = `<p>${detail}</p>`;
-    document.getElementById('infoModal').style.display = 'block';
-  }
-
 
   // --- Modal Functionality ---
   const modal = document.getElementById('infoModal');
@@ -762,7 +733,7 @@
   function closeModal() {
     modal.style.display = 'none';
     const quizRegistrationDiv = document.getElementById('quizRegistration');
-    const quizResultsDiv = document.getElementById('quizResults'); // Assuming you might have this
+    const quizResultsDiv = document.getElementById('quizResults'); 
     if(quizRegistrationDiv) quizRegistrationDiv.style.display = 'none';
     if(quizResultsDiv) quizResultsDiv.style.display = 'none';
     document.getElementById('modalFooter').style.display = 'block'; 
@@ -775,6 +746,7 @@
 
   // --- Brain of SafetyHelp Challenge ---
   const challengeQuestions = [
+    // Existing 10 questions
     { question: "What does a RED circular sign with a horizontal bar generally indicate?", options: ["Mandatory action", "Prohibition", "Warning", "Safe condition"], answer: "Prohibition", icon: "fas fa-ban" },
     { question: "Which color is typically used for 'Warning' signs (e.g., risk of electric shock)?", options: ["Blue", "Green", "Red", "Yellow/Amber"], answer: "Yellow/Amber", icon: "fas fa-exclamation-triangle" },
     { question: "What is the primary purpose of a Safety Data Sheet (SDS)?", options: ["To list emergency contacts", "To provide information on hazardous chemicals", "To outline company safety policy", "To record accident statistics"], answer: "To provide information on hazardous chemicals", icon: "fas fa-file-alt" },
@@ -784,7 +756,48 @@
     { question: "Which of these is a common cause of slips, trips, and falls in the workplace?", options: ["Good lighting", "Clear pathways", "Poor housekeeping", "Regular safety briefings"], answer: "Poor housekeeping", icon: "fas fa-shoe-prints" },
     { question: "What is the emergency telephone number in South Africa for police?", options: ["112", "10111", "999", "10177"], answer: "10111", icon: "fas fa-phone-volume" },
     { question: "When lifting a heavy object, you should primarily use your:", options: ["Back muscles", "Arm muscles", "Leg muscles", "Shoulder muscles"], answer: "Leg muscles", icon: "fas fa-dumbbell" },
-    { question: "What does a GREEN square or rectangular sign usually indicate?", options: ["Danger", "Mandatory action", "Safe condition / Emergency escape / First aid", "Warning"], answer: "Safe condition / Emergency escape / First aid", icon: "fas fa-medkit" }
+    { question: "What does a GREEN square or rectangular sign usually indicate?", options: ["Danger", "Mandatory action", "Safe condition / Emergency escape / First aid", "Warning"], answer: "Safe condition / Emergency escape / First aid", icon: "fas fa-medkit" },
+    // Adding 40 more questions
+    { question: "Which of these is NOT a type of workplace hazard?", options: ["Physical", "Chemical", "Financial", "Ergonomic"], answer: "Financial", icon: "fas fa-dollar-sign" },
+    { question: "What is the main goal of an OHS management system?", options: ["To increase profits", "To minimize workplace risks", "To reduce employee holidays", "To speed up production"], answer: "To minimize workplace risks", icon: "fas fa-tasks" },
+    { question: "What does 'COIDA' stand for in South Africa?", options: ["Council of Industrial Development and Accidents", "Compensation for Occupational Injuries and Diseases Act", "Committee for Operational Incidents and Dangerous Activities", "Control of Infectious Diseases Act"], answer: "Compensation for Occupational Injuries and Diseases Act", icon: "fas fa-book-medical" },
+    { question: "Which body is primarily responsible for enforcing OHS legislation in South Africa?", options: ["South African Police Service", "Department of Health", "Department of Employment and Labour", "National Treasury"], answer: "Department of Employment and Labour", icon: "fas fa-building-shield" },
+    { question: "A 'near miss' in OHS terms is an event that:", options: ["Caused a major injury", "Resulted in property damage only", "Had the potential to cause harm, but did not", "Is not reportable"], answer: "Had the potential to cause harm, but did not", icon: "fas fa-exclamation-circle" },
+    { question: "What is a common health effect of prolonged exposure to loud noise?", options: ["Improved hearing", "Noise-Induced Hearing Loss (NIHL)", "Better concentration", "Reduced stress"], answer: "Noise-Induced Hearing Loss (NIHL)", icon: "fas fa-assistive-listening-systems" },
+    { question: "Which of the following is a key principle of ergonomics?", options: ["Making tasks more difficult", "Fitting the job to the worker", "Increasing physical strain", "Ignoring worker comfort"], answer: "Fitting the job to the worker", icon: "fas fa-chair" },
+    { question: "What is the 'Hierarchy of Controls' in risk management?", options: ["A list of preferred PPE", "A system for ranking employees by safety record", "A step-by-step approach to eliminating or reducing risks", "A financial budget for safety equipment"], answer: "A step-by-step approach to eliminating or reducing risks", icon: "fas fa-layer-group" },
+    { question: "What is the most effective control measure in the Hierarchy of Controls?", options: ["Personal Protective Equipment (PPE)", "Administrative controls", "Elimination", "Engineering controls"], answer: "Elimination", icon: "fas fa-times-circle" },
+    { question: "What does 'Lockout/Tagout' (LOTO) procedure prevent?", options: ["Unauthorized access to buildings", "Theft of equipment", "Accidental start-up of machinery during maintenance", "Data breaches"], answer: "Accidental start-up of machinery during maintenance", icon: "fas fa-lock" },
+    { question: "Which of these is an example of an administrative control?", options: ["Installing machine guards", "Providing safety training", "Using a less hazardous chemical", "Wearing safety goggles"], answer: "Providing safety training", icon: "fas fa-clipboard-list" },
+    { question: "What is the primary purpose of a workplace safety inspection?", options: ["To assign blame for accidents", "To identify and correct potential hazards", "To complete paperwork", "To discipline employees"], answer: "To identify and correct potential hazards", icon: "fas fa-search-plus" },
+    { question: "In South Africa, who is generally responsible for providing PPE?", options: ["The employee", "The employer", "The government", "The trade union"], answer: "The employer", icon: "fas fa-hard-hat" },
+    { question: "What is a common hazard associated with manual handling?", options: ["Burns", "Musculoskeletal disorders (MSDs)", "Electric shock", "Hearing loss"], answer: "Musculoskeletal disorders (MSDs)", icon: "fas fa-user-injured" },
+    { question: "Which of these is a requirement for effective fire safety?", options: ["Blocked fire exits", "Regular fire drills", "Storing flammable materials near heat sources", "Disabled smoke detectors"], answer: "Regular fire drills", icon: "fas fa-fire-extinguisher" },
+    { question: "What information is NOT typically found on an SDS?", options: ["Chemical product identifier", "Hazard identification", "First-aid measures", "Price of the chemical"], answer: "Price of the chemical", icon: "fas fa-tag" },
+    { question: "What is 'asbestos' known to cause?", options: ["Common cold", "Lung diseases like asbestosis and mesothelioma", "Skin rashes", "Improved athletic performance"], answer: "Lung diseases like asbestosis and mesothelioma", icon: "fas fa-lungs-virus" },
+    { question: "What is a 'Toolbox Talk'?", options: ["A formal disciplinary meeting", "A long training course", "A short, informal safety meeting on a specific topic", "A discussion about new tools"], answer: "A short, informal safety meeting on a specific topic", icon: "fas fa-toolbox" },
+    { question: "Which of these is a psychosocial hazard?", options: ["Slippery floor", "Unguarded machine", "Workplace bullying", "Poor lighting"], answer: "Workplace bullying", icon: "fas fa-comments" },
+    { question: "What is the purpose of an emergency stop button on machinery?", options: ["To start the machine quickly", "To halt machine operation in an emergency", "To adjust machine speed", "To clean the machine"], answer: "To halt machine operation in an emergency", icon: "fas fa-stop-circle" },
+    { question: "What is a 'permit-to-work' system used for?", options: ["Gaining entry to the workplace", "Authorizing high-risk tasks", "Requesting annual leave", "Ordering new equipment"], answer: "Authorizing high-risk tasks", icon: "fas fa-file-signature" },
+    { question: "Which factor is LEAST likely to contribute to workplace stress?", options: ["High workload", "Clear job roles", "Lack of control", "Poor work-life balance"], answer: "Clear job roles", icon: "fas fa-briefcase" },
+    { question: "What is the primary hazard associated with working at height?", options: ["Noise", "Falls from height", "Chemical exposure", "Vibration"], answer: "Falls from height", icon: "fas fa-users-slash" },
+    { question: "What does 'HIRA' stand for in OHS?", options: ["Hazard Identification and Risk Assessment", "Health Inspection and Report Analysis", "High Impact Risk Area", "Hazardous Incident Reporting Act"], answer: "Hazard Identification and Risk Assessment", icon: "fas fa-binoculars" },
+    { question: "Which of these is a leading indicator for safety performance?", options: ["Number of accidents", "Lost time injury rate", "Number of safety training sessions completed", "Cost of accidents"], answer: "Number of safety training sessions completed", icon: "fas fa-chart-line" },
+    { question: "What is the role of a Safety Representative in the workplace?", options: ["To manage the company's finances", "To represent employees on health and safety matters", "To conduct all disciplinary hearings", "To approve all new hires"], answer: "To represent employees on health and safety matters", icon: "fas fa-user-friends" },
+    { question: "Which of these is a confined space hazard?", options: ["Good ventilation", "Oxygen deficiency or enrichment", "Ample lighting", "Easy entry and exit"], answer: "Oxygen deficiency or enrichment", icon: "fas fa-compress-arrows-alt" },
+    { question: "What is the 'flash point' of a chemical?", options: ["The temperature at which it boils", "The lowest temperature at which its vapors can ignite", "The temperature at which it freezes", "The pH value of the chemical"], answer: "The lowest temperature at which its vapors can ignite", icon: "fas fa-fire" },
+    { question: "What is a common control for electrical hazards?", options: ["Using damaged cords", "Working on live equipment", "Proper grounding and insulation", "Overloading circuits"], answer: "Proper grounding and insulation", icon: "fas fa-bolt" },
+    { question: "What should be your first action if you discover a fire?", options: ["Try to fight it yourself, regardless of size", "Raise the alarm", "Finish your work", "Look for your belongings"], answer: "Raise the alarm", icon: "fas fa-bullhorn" },
+    { question: "Which type of fire extinguisher is suitable for electrical fires?", options: ["Water-based", "Foam-based", "Carbon Dioxide (CO2) or Dry Powder", "Wet chemical"], answer: "Carbon Dioxide (CO2) or Dry Powder", icon: "fas fa-fire-extinguisher" },
+    { question: "What is the 'ALARP' principle in risk management?", options: ["All Levels Are Risky & Problematic", "As Low As Reasonably Practicable", "Always Look And React Promptly", "Assess, Limit, Act, Report, Prevent"], answer: "As Low As Reasonably Practicable", icon: "fas fa-balance-scale-right" },
+    { question: "What is a key element of a positive safety culture?", options: ["Blaming individuals for accidents", "Open communication and reporting of safety concerns", "Ignoring near misses", "Prioritizing speed over safety"], answer: "Open communication and reporting of safety concerns", icon: "fas fa-hands-helping" },
+    { question: "Which of these is a biological hazard?", options: ["Loud noise", "Toxic chemical", "Bacteria or viruses", "Slippery surface"], answer: "Bacteria or viruses", icon: "fas fa-microscope" },
+    { question: "What is the purpose of machine guarding?", options: ["To make the machine look better", "To prevent contact with dangerous moving parts", "To increase machine speed", "To store tools"], answer: "To prevent contact with dangerous moving parts", icon: "fas fa-shield-halved" },
+    { question: "What is the recommended way to store gas cylinders?", options: ["Lying down horizontally", "In direct sunlight", "Upright and secured to prevent falling", "Near heat sources"], answer: "Upright and secured to prevent falling", icon: "fas fa-compress" },
+    { question: "What does 'ergonomics' primarily focus on?", options: ["Emergency procedures", "Chemical safety", "Designing the workplace to fit the worker", "Fire prevention"], answer: "Designing the workplace to fit the worker", icon: "fas fa-user-check" },
+    { question: "Which of these is a critical component of a lone worker safety policy?", options: ["Ensuring they have no contact with supervisors", "Regular check-in procedures", "Providing them with extra work", "Limiting their access to communication devices"], answer: "Regular check-in procedures", icon: "fas fa-mobile-alt" },
+    { question: "What is the primary goal of first aid in the workplace?", options: ["To replace professional medical treatment", "To provide immediate care until professional help arrives", "To diagnose complex medical conditions", "To administer prescription medication"], answer: "To provide immediate care until professional help arrives", icon: "fas fa-first-aid" },
+    { question: "What is a common hazard in office environments?", options: ["Falling from height", "Exposure to heavy machinery", "Poor ergonomics leading to MSDs", "Chemical spills"], answer: "Poor ergonomics leading to MSDs", icon: "fas fa-laptop-medical" }
   ];
   let currentChallengeSet = 0;
   let currentQuestionInSet = 0;
