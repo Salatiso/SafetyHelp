@@ -1,803 +1,419 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Conduct thorough risk assessments with Salatiso OHS Tools to ensure workplace safety.">
-    <meta name="keywords" content="OHS tools, risk assessment, occupational health and safety, safety plans, South Africa OHS, Salatiso">
-    <meta name="author" content="SafetyHelp Team">
-    <title data-i18n="page_title.risk_assessment">Salatiso OHS Tools - Risk Assessment</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/i18next@23.15.2/dist/umd/i18next.min.js"></script>
-    <script src="https://unpkg.com/i18next-browser-languagedetector@8.0.0/dist/i18nextBrowserLanguageDetector.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.3/jspdf.plugin.autotable.min.js"></script>
-    <style>
-        /* Global Styles */
-        body {
-            font-family: 'Open Sans', sans-serif;
-            background-color: #E8F0FE;
-            color: #333;
-            margin: 0;
-            padding-top: 100px;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        header h1, .sidebar h2, .sidebar h3, .intro h2, footer h3, .risk-assessment-form h2, .risk-assessment-form h3, .risk-assessment-form h4 {
-            font-family: 'Montserrat', sans-serif;
-        }
-        /* Header */
-        header {
-            background-color: #007BFF;
-            color: white;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 50;
-            width: 100%;
-        }
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-        }
-        .header-left {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-        .search-language-container {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-        .search-bar button {
-            background-color: #FD7E14;
-            color: white;
-        }
-        .search-bar button:hover {
-            background-color: #e06b00;
-        }
-        .language-selector {
-            margin-bottom: 5px;
-        }
-        .language-selector select {
-            padding: 4px;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-        .nav-links {
-            text-align: center;
-            flex: 1;
-        }
-        .nav-links a {
-            color: white;
-            margin: 0 15px;
-            font-family: 'Montserrat', sans-serif;
-            text-decoration: none;
-        }
-        .nav-links a:hover {
-            color: #FD7E14;
-        }
-        .header-right {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-        }
-        .logo-container img {
-            height: 50px;
-        }
-        .tagline {
-            font-size: 14px;
-            margin-top: 5px;
-        }
-        /* Sidebar */
-        .sidebar {
-            position: fixed;
-            top: 100px;
-            left: 0;
-            bottom: 0;
-            width: 250px;
-            background-color: #F4F4F4;
-            overflow-y: auto;
-            z-index: 40;
-            padding: 15px;
-        }
-        .sidebar h2 {
-            color: #007BFF;
-            font-size: 24px;
-            margin-bottom: 15px;
-            text-align: right;
-        }
-        .sidebar a {
-            color: white;
-            background-color: #007BFF;
-            padding: 8px;
-            border-radius: 4px;
-            margin-bottom: 5px;
-            display: block;
-            text-decoration: none;
-            font-size: 14px;
-            transition: font-weight 0.3s;
-        }
-        .sidebar a:hover {
-            font-weight: bold;
-            background-color: #0056b3;
-        }
-        .sidebar a.active {
-            background-color: #28A745;
-        }
-        .step-info {
-            background-color: #E8F0FE;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 20px;
-        }
-        .step-info h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 18px;
-            color: #007BFF;
-            margin-bottom: 10px;
-        }
-        .step-info p {
-            font-size: 14px;
-        }
-        .fun-fact {
-            color: #28A745;
-        }
-        /* Main Content */
-        .main-content {
-            margin-left: 250px;
-            flex-grow: 1;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-        }
-        .risk-assessment-form {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin-bottom: 24px;
-            flex: 1;
-        }
-        .risk-assessment-form h2 {
-            font-size: 24px;
-            color: #333;
-            margin-bottom: 10px;
-        }
-        .risk-assessment-form h3 {
-            font-size: 20px;
-            color: #333;
-            margin-bottom: 10px;
-        }
-        .risk-assessment-form h4 {
-            font-size: 16px;
-            color: #333;
-            margin-top: 15px;
-            margin-bottom: 10px;
-        }
-        .risk-assessment-form p {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 15px;
-        }
-        .risk-assessment-form ul {
-            list-style-type: disc;
-            padding-left: 20px;
-            margin-bottom: 15px;
-        }
-        .risk-assessment-form ul li {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 5px;
-        }
-        .risk-assessment-form a {
-            color: #007BFF;
-            text-decoration: none;
-        }
-        .risk-assessment-form a:hover {
-            text-decoration: underline;
-        }
-        .step {
-            margin-bottom: 20px;
-        }
-        .step.hidden {
-            display: none;
-        }
-        .form-desc {
-            font-size: 12px;
-            color: #666;
-            margin-top: 5px;
-        }
-        .risk-assessment-form label {
-            display: block;
-            font-size: 14px;
-            font-weight: 500;
-            color: #374151;
-            margin-bottom: 5px;
-        }
-        .risk-assessment-form input,
-        .risk-assessment-form select,
-        .risk-assessment-form textarea {
-            width: 100%;
-            padding: 8px 12px;
-            border: 1px solid #d1d5db;
-            border-radius: 4px;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-        .risk-assessment-form input:focus,
-        .risk-assessment-form select:focus,
-        .risk-assessment-form textarea:focus {
-            outline: none;
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        }
-        .risk-assessment-form textarea {
-            height: 100px;
-        }
-        .risk-assessment-form button {
-            background-color: #007BFF;
-            color: white;
-            padding: 8px 16px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-            margin-right: 10px;
-        }
-        .risk-assessment-form button:hover {
-            background-color: #0056b3;
-        }
-        .risk-assessment-form button:disabled {
-            background-color: #cccccc;
-            cursor: not-allowed;
-        }
-        .risk-assessment-form .back-btn {
-            background-color: #6b7280;
-        }
-        .risk-assessment-form .back-btn:hover {
-            background-color: #4b5563;
-        }
-        .ratings-table,
-        .review-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-            margin-bottom: 20px;
-        }
-        .ratings-table th,
-        .ratings-table td,
-        .review-table th,
-        .review-table td {
-            border: 1px solid #d1d5db;
-            padding: 8px;
-            text-align: left;
-            font-size: 14px;
-        }
-        .ratings-table th,
-        .review-table th {
-            background-color: #f4f4f4;
-            font-weight: 600;
-            color: #333;
-        }
-        .ratings-table select {
-            width: 100%;
-            padding: 4px;
-            border: 1px solid #d1d5db;
-            border-radius: 4px;
-        }
-        .compliance-note {
-            font-size: 12px;
-            color: #e3342f;
-            margin-top: 10px;
-        }
-        .compliance-note.hidden {
-            display: none;
-        }
-        /* Activity Groups */
-        .activity-group details {
-            margin-bottom: 10px;
-        }
-        .activity-group summary {
-            background-color: #f4f4f4;
-            padding: 8px;
-            cursor: pointer;
-            font-weight: 500;
-            color: #333;
-        }
-        .activity-group summary:hover {
-            background-color: #e5e7eb;
-        }
-        .activity-group details > summary {
-            list-style: none;
-        }
-        .activity-group details > summary::-webkit-details-marker {
-            display: none;
-        }
-        .activity-group details > summary::before {
-            content: '► ';
-            font-size: 0.8em;
-            margin-right: 4px;
-        }
-        .activity-group details[open] > summary::before {
-            content: '▼ ';
-        }
-        .activity-group .category-content {
-            padding: 10px;
-        }
-        .activity-group .checkbox-item {
-            margin-bottom: 5px;
-        }
-        .activity-group input[type="checkbox"] {
-            margin-right: 5px;
-        }
-        /* Footer */
-        footer {
-            background-color: #007BFF;
-            color: white;
-            padding: 15px;
-            text-align: center;
-            width: 100%;
-            margin-top: auto;
-        }
-        footer p {
-            font-size: 14px;
-            margin: 5px 0;
-        }
-        footer a {
-            color: #FD7E14;
-            text-decoration: none;
-        }
-        footer a:hover {
-            color: #e06b00;
-        }
-        .newsletter h3 {
-            font-size: 14px;
-            margin-bottom: 8px;
-        }
-        .newsletter input {
-            padding: 8px;
-            border: none;
-            border-radius: 2px;
-            margin-right: 10px;
-            font-size: 14px;
-            width: 150px;
-        }
-        .newsletter button {
-            padding: 8px 16px;
-            background-color: #FD7E14;
-            color: white;
-            border: none;
-            border-radius: 2px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        .newsletter button:hover {
-            background-color: #e06b00;
-        }
-        /* Chatbot */
-        .chatbot-container {
-            position: fixed;
-            bottom: 1.25rem;
-            right: 1.25rem;
-            z-index: 1000;
-        }
-        #chat-window {
-            width: 300px;
-            max-height: 400px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-        }
-        .chat-hidden {
-            display: none;
-        }
-        #chat-output {
-            flex-grow: 1;
-        }
-        #chat-input-container {
-            display: flex;
-            border-top-width: 1px;
-        }
-        #chat-input {
-            flex-grow: 1;
-            border: none;
-            padding: 0.5rem;
-        }
-        #chat-send {
-            border: none;
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-            background-color: #007BFF;
-            color: white;
-        }
-        #chat-send:hover {
-            background-color: #0056b3;
-        }
-        .chat-toggle-btn {
-            background-color: #FD7E14;
-        }
-        .chat-toggle-btn:hover {
-            background-color: #e06b00;
-        }
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            body {
-                padding-top: 0;
-                flex-direction: column;
-            }
-            header {
-                position: relative;
-            }
-            .header-container {
-                flex-direction: column;
-                align-items: center;
-            }
-            .header-left {
-                align-items: center;
-                margin-bottom: 10px;
-            }
-            .nav-links {
-                margin: 10px 0;
-            }
-            .nav-links a {
-                margin: 5px 10px;
-            }
-            .header-right {
-                align-items: center;
-            }
-            .sidebar {
-                position: relative;
-                top: 0;
-                width: 100%;
-                height: auto;
-                bottom: auto;
-                z-index: 1;
-            }
-            .sidebar h2 {
-                text-align: center;
-            }
-            .main-content {
-                margin-left: 0;
-                flex-direction: column;
-            }
-            .risk-assessment-form {
-                margin: 1rem 0;
-            }
-            .ratings-table,
-            .review-table {
-                display: block;
-                overflow-x: auto;
-            }
-        }
-        /* Chatbot */
-    .chatbot-container {
-        position: fixed;
-        bottom: 1.25rem;
-        right: 1.25rem;
-        z-index: 1000;
-    }
-    #chat-window {
-        width: 300px;
-        max-height: 400px;
-        overflow-y: auto;
-        display: flex;
-        flex-direction: column;
-        transition: all 0.3s ease;
-    }
-    .chat-hidden {
-        display: none;
-    }
-    .chat-expanded {
-        display: flex;
-    }
-    #chat-output {
-        flex-grow: 1;
-    }
-    #chat-input-container {
-        display: flex;
-        border-top-width: 1px;
-    }
-    #chat-input {
-        flex-grow: 1;
-        border: none;
-        padding: 0.5rem;
-    }
-    #chat-send {
-        border: none;
-        padding: 0.5rem 1rem;
-        cursor: pointer;
-        background-color: #007BFF;
-        color: white;
-    }
-    #chat-send:hover {
-        background-color: #0056b3;
-    }
-    .chat-toggle-btn {
-        background-color: #FD7E14;
-    }
-    .chat-toggle-btn:hover {
-        background-color: #e06b00;
-    }
-    .chat-toggle-btn.collapsed {
-        padding: 0.75rem;
-        font-size: 0.875rem;
-    }
-    .chat-toggle-btn.collapsed #chat-toggle-text {
-        display: none;
-    }
-    </style>
-</head>
-<body>
-    <!-- Header -->
-    <header>
-        <div class="container mx-auto header-container">
-            <div class="header-left">
-                <div class="logo-container">
-                    <img src="/safety-plans/assets/images/logo.png" alt="SafetyHelp Logo">
-                    <p class="tagline" data-i18n="header.tagline">Safety Personalized, Compliance Simplified—Anytime, Anywhere</p>
-                </div>
-            </div>
-            <div class="nav-links">
-                <a href="/safety-plans/index.html" data-i18n="header.nav.home">Home</a>
-                <a href="/safety-plans/resources.html" data-i18n="header.nav.resources">Resources</a>
-                <a href="/safety-plans/services.html" data-i18n="header.nav.services">Services</a>
-                <a href="/safety-plans/community.html" data-i18n="header.nav.community">Community</a>
-                <a href="/safety-plans/about.html" data-i18n="header.nav.about">About</a>
-                <a href="/safety-plans/contact.html" data-i18n="header.nav.contact">Contact</a>
-                <a href="/safety-plans/login.html" id="login-link" data-i18n="header.nav.login">Login</a>
-            </div>
-            <div class="header-right">
-                <div class="search-language-container">
-                    <div class="language-selector">
-                        <select id="language-select" aria-label="Select language">
-                            <option value="en" data-i18n="language_selector.en">English</option>
-                            <option value="af" data-i18n="language_selector.af">Afrikaans</option>
-                            <option value="zu" data-i18n="language_selector.zu">isiZulu</option>
-                            <option value="xh" data-i18n="language_selector.xh">isiXhosa</option>
-                            <option value="st" data-i18n="language_selector.st">Sesotho</option>
-                            <option value="tn" data-i18n="language_selector.tn">Setswana</option>
-                            <option value="nso" data-i18n="language_selector.nso">Sepedi</option>
-                            <option value="ts" data-i18n="language_selector.ts">Xitsonga</option>
-                            <option value="ss" data-i18n="language_selector.ss">siSwati</option>
-                            <option value="ve" data-i18n="language_selector.ve">Tshivenda</option>
-                            <option value="nr" data-i18n="language_selector.nr">isiNdebele</option>
-                            <option value="es" data-i18n="language_selector.es">Español</option>
-                            <option value="fr" data-i18n="language_selector.fr">French</option>
-                            <option value="sn" data-i18n="language_selector.sn">Shona</option>
-                            <option value="sw" data-i18n="language_selector.sw">Swahili</option>
-                            <option value="zh" data-i18n="language_selector.zh">Mandarin</option>
-                        </select>
-                    </div>
-                    <div class="search-bar">
-                        <form role="search" class="flex">
-                            <input type="text" data-i18n="[placeholder]header.search.placeholder" placeholder="Search OHS Tools..." aria-label="Search OHS Tools" class="px-3 py-1 border border-gray-300 rounded-l text-gray-800">
-                            <button type="submit" aria-label="Search" data-i18n="header.search.button" class="px-4 py-1 bg-blue-500 hover:bg-blue-600 text-white rounded-r">Search</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SafetyHelp | Risk Assessment</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://unpkg.com/i18next@23.15.2/dist/umd/i18next.min.js"></script>
+  <script src="https://unpkg.com/i18next-browser-languagedetector@8.0.0/dist/i18nextBrowserLanguageDetector.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.3/jspdf.plugin.autotable.min.js"></script>
 
-    <!-- Sidebar -->
-    <aside class="sidebar">
-        <h2 data-i18n="sidebar.ohs_tools">SafetyHelp OHS Tools</h2>
-        <ul class="space-y-2">
-            <li><a href="/safety-plans/pages/construction-compliance.html" data-i18n="sidebar.construction_safety">Construction Safety</a></li>
-            <li><a href="/safety-plans/pages/emergency-response-plan.html" data-i18n="sidebar.emergency_planning">Emergency Planning</a></li>
-            <li><a href="/safety-plans/pages/risk-assessment.html" data-i18n="sidebar.risk_assessment" class="active">Risk Assessment</a></li>
-            <li><a href="/safety-plans/pages/legal-appointments.html" data-i18n="sidebar.legal_appointments">Legal Appointments</a></li>
-            <li><a href="/safety-plans/pages/incident-management.html" data-i18n="sidebar.incident_management">Incident Management</a></li>
-            <li><a href="/safety-plans/pages/training.html" data-i18n="sidebar.training">Training</a></li>
-            <li><a href="/safety-plans/pages/inspections-audits.html" data-i18n="sidebar.inspections_audits">Inspections & Audits</a></li>
-            <li><a href="/safety-plans/pages/suppliers.html" data-i18n="sidebar.suppliers">Suppliers</a></li>
-            <li><a href="/safety-plans/pages/legislation.html" data-i18n="sidebar.legislation">Legislation</a></li>
-            <li><a href="/safety-plans/pages/community-tools.html" data-i18n="sidebar.community_tools">Community Tools</a></li>
-            <li><a href="/safety-plans/pages/member-dashboard.html" data-i18n="sidebar.member_dashboard">Member Dashboard</a></li>
-            <li><a href="/safety-plans/pages/ohs-system.html" data-i18n="sidebar.ohs_system">OHS System</a></li>
+  <style>
+    /* Reset & Base */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { 
+      height: 100%; 
+      font-family: 'Montserrat', sans-serif; 
+      background: #E8F0FE; 
+      color: #333; 
+      display: flex;
+      flex-direction: column;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* Header */
+    header { 
+      background: #007BFF; 
+      color: #fff; 
+      padding: 0.8rem 2rem; 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between; 
+      flex-shrink: 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky; 
+      top: 0;
+      z-index: 1000; 
+    }
+    .logo-container {
+      display: flex;
+      align-items: center;
+      color: #fff; 
+    }
+    .logo-container img {
+        height: 40px; 
+        margin-right: 10px;
+    }
+    .logo { font-weight: 700; font-size: 1.75rem; letter-spacing: -0.025em; } 
+    .logo .help { font-weight: 900; color: #FF8C00; }
+    nav { display: flex; gap: 0.5rem; }
+    nav a { 
+      color: white; 
+      font-weight: 500; 
+      padding: 0.6rem 1rem; 
+      border-radius: 6px; 
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid transparent; 
+    }
+    nav a:hover, nav a.active-nav-link { 
+      background-color: rgba(255,255,255,0.15); 
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,0.3);
+    }
+    nav a .nav-icon {
+        font-size: 0.9em;
+    }
+    .search-language { display: flex; align-items: center; gap: 1rem; }
+    .search-language input { padding: 0.6rem; border: 1px solid #ddd; border-radius: 6px; font-family: 'Montserrat', sans-serif; }
+    .search-language select { padding: 0.6rem; border-radius: 6px; border: 1px solid #ddd; font-family: 'Montserrat', sans-serif; }
+
+    /* Page Title Area */
+    .page-title-section { 
+      background: #F3F4F6; 
+      padding: 1.5rem 2rem; 
+      text-align: center; 
+      border-bottom: 1px solid #e0e0e0;
+      flex-shrink: 0;
+    }
+    .page-title-section h1 { font-size: 2.2rem; color: #1f2937; margin-bottom: 0.5rem; }
+    .page-title-section p.subtitle { font-size: 1rem; color: #374151; max-width: 800px; margin-left: auto; margin-right: auto; }
+
+    /* Layout */
+    .page-content {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      overflow: auto; 
+    }
+    .container { 
+      display: grid; 
+      grid-template-columns: 1fr 3fr 1fr; 
+      flex-grow: 1; 
+      min-height: 0;
+      gap: 1rem; 
+      padding: 1rem; 
+    }
+    
+    .sidebar-tools, .sidebar-milestones { 
+      background: #fff; 
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden; 
+      max-height: calc(100vh - 120px); 
+    }
+    .sidebar-heading {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #007BFF;
+      padding: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      background-color: #f9f9f9;
+      flex-shrink: 0;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .sidebar-heading .heading-icon { color: #FF8C00; }
+
+    .sidebar-list-container {
+        flex-grow: 1;
+        overflow: hidden; 
+        position: relative; 
+    }
+
+    .sidebar-tools ul, .sidebar-milestones ul { 
+      list-style: none; 
+      padding: 0;
+      margin: 0;
+    }
+
+    @keyframes alternatingScrollUp {
+        0% { transform: translateY(0%); }
+        100% { transform: translateY(-50%); }
+    }
+    @keyframes alternatingScrollDown {
+        0% { transform: translateY(-50%); } 
+        100% { transform: translateY(0%); }
+    }
+
+    .sidebar-tools ul { 
+        animation: alternatingScrollDown 45s linear infinite alternate; 
+    }
+    .sidebar-milestones ul { 
+        animation: alternatingScrollUp 40s linear infinite alternate; 
+    }
+    
+    .sidebar-tools:hover ul, .sidebar-milestones:hover ul {
+        animation-play-state: paused;
+    }
+
+    .sidebar-tools li, .sidebar-milestones li { 
+      padding: 0; 
+      border-bottom: 1px solid #e5e7eb; 
+      cursor: pointer; 
+      display: flex; 
+    }
+    .sidebar-tools li a, .sidebar-milestones li { 
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      padding: 0.85rem 1rem; 
+      width: 100%; 
+      transition: background-color 0.3s ease;
+      color: #333; 
+    }
+    .sidebar-tools li a:hover, .sidebar-milestones li:hover { 
+        background: #e8f0fe; 
+    }
+     .sidebar-tools li a .list-icon, .sidebar-milestones li .list-icon { 
+        color: #007BFF;
+        font-size: 1em;
+        width: 20px; 
+        text-align: center;
+    }
+    .sidebar-tools li a.active-tool-link { 
+        background-color: #ddeaff;
+        font-weight: 600;
+        color: #0056b3;
+    }
+    
+    /* Main content specific to Risk Assessment Page */
+    .main-risk-assessment { 
+      padding: 1.5rem; 
+      overflow-y: auto; 
+      background-color: #fff; 
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .main-risk-assessment h2.page-section-title {
+        font-size: 1.8rem;
+        color: #0056b3;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 2px solid #FF8C00;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+     .main-risk-assessment h2.page-section-title .section-icon {
+        color: #FF8C00;
+    }
+    .main-risk-assessment p.intro-text {
+        font-size: 1rem;
+        line-height: 1.7;
+        color: #374151;
+        margin-bottom: 1rem;
+    }
+    
+    /* Wizard Styles (from risk-assessment.html, adapted) */
+    .risk-assessment-form { /* This class was on the main section in original, now using .wizard-container */
+        background-color: #f9f9f9;
+        padding: 1.5rem;
+        border-radius: 8px;
+        border: 1px solid #e0e0e0;
+    }
+    .step {
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px dashed #ccc;
+    }
+    .step:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+    .step h3 { /* Wizard step titles */
+        font-size: 1.3rem;
+        color: #007BFF;
+        margin-bottom: 1rem;
+    }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label { display: block; font-weight: 500; color: #333; margin-bottom: 0.5rem; font-size: 0.95rem; }
+    .form-input, .form-select, .form-textarea { width: 100%; padding: 0.75rem 1rem; border: 1px solid #ccc; border-radius: 6px; font-family: 'Montserrat', sans-serif; font-size: 0.95rem; transition: border-color 0.3s ease; }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: #007BFF; outline: none; box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); }
+    .form-textarea { min-height: 100px; resize: vertical; }
+    .form-desc { font-size: 0.8rem; color: #666; margin-top: 0.25rem; }
+
+    .activity-group details { margin-bottom: 0.5rem; }
+    .activity-group summary { font-weight: 500; cursor: pointer; padding: 0.5rem; background-color: #e8f0fe; border-radius: 4px; }
+    .activity-group summary::before { content: '► '; font-size: 0.8em; margin-right: 4px; }
+    .activity-group details[open] > summary::before { content: '▼ '; }
+    .activity-group .category-content { padding: 0.5rem 0 0.5rem 1rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 0.5rem; }
+    .checkbox-item { display: flex; align-items: center; margin-bottom: 0.3rem; }
+    .checkbox-item input[type="checkbox"] { margin-right: 0.5rem; width: 1rem; height: 1rem; }
+    
+    .ratings-table, .review-table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; font-size: 0.9rem; }
+    .ratings-table th, .ratings-table td, .review-table th, .review-table td { border: 1px solid #ddd; padding: 0.6rem; text-align: left; }
+    .ratings-table th, .review-table th { background-color: #f0f0f0; font-weight: 600; }
+    .ratings-table select { width: 100%; padding: 0.4rem; border: 1px solid #ccc; border-radius: 4px; }
+
+    .compliance-note { font-size: 0.85rem; color: #c0392b; margin-top: 1rem; padding: 0.5rem; background-color: #fdecea; border: 1px solid #f5c6cb; border-radius: 4px;}
+    
+    .nav-buttons { display: flex; justify-content: space-between; margin-top: 1.5rem; }
+    .nav-buttons button { padding: 0.7rem 1.3rem; border: none; border-radius: 6px; font-weight: 500; cursor: pointer; transition: background-color 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem; }
+    .nav-buttons button.back-btn { background-color: #6c757d; color: white; }
+    .nav-buttons button.back-btn:hover { background-color: #5a6268; }
+    .nav-buttons button.next-btn { background-color: #007BFF; color: white; }
+    .nav-buttons button.next-btn:hover { background-color: #0056b3; }
+    .nav-buttons button:disabled { background-color: #ccc; cursor: not-allowed; }
+    .error { color: red; font-size: 0.85rem; margin-top: 0.25rem; }
+    .hidden { display: none !important; }
+
+    /* Footer */
+    footer {
+      background: #343a40; 
+      color: #adb5bd; 
+      text-align: center;
+      padding: 1.5rem 2rem;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      border-top: 3px solid #FF8C00;
+    }
+    footer p { margin-bottom: 0.5rem; }
+    footer a { color: #FF8C00; transition: color 0.3s ease; }
+    footer a:hover { color: #fff; }
+    
+    /* Modal Styles */
+    .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); padding-top: 60px; }
+    .modal-content { background-color: #fefefe; margin: 5% auto; padding: 25px; border: 1px solid #888; width: 80%; max-width: 600px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative; }
+    .modal-header { padding-bottom: 10px; border-bottom: 1px solid #eee; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
+    .modal-header h4 { margin: 0; font-size: 1.4rem; color: #007BFF; }
+    .close-btn { color: #aaa; font-size: 28px; font-weight: bold; cursor: pointer; transition: color 0.3s; }
+    .close-btn:hover, .close-btn:focus { color: #333; text-decoration: none; }
+    .modal-body p { font-size: 1rem; line-height: 1.6; margin-bottom: 1rem; }
+    .modal-body strong { color: #333; }
+    .modal-body ul { list-style-type: disc; margin-left: 20px; margin-bottom: 1rem;}
+    .modal-footer { padding-top: 15px; border-top: 1px solid #eee; margin-top: 20px; text-align: right; }
+    .modal-footer button { background-color: #6c757d; color:white; border:none; padding: 0.7rem 1.3rem; border-radius:6px; cursor:pointer; } 
+    .modal-footer button:hover { background-color: #5a6268; }
+
+    /* Chatbot Styles */
+    .chatbot-container { position: fixed; bottom: 20px; right: 20px; z-index: 1050; }
+    #chat-toggle { background-color: #FF8C00; color: white; border: none; border-radius: 50%; width: 60px; height: 60px; font-size: 1.8rem; box-shadow: 0 4px 8px rgba(0,0,0,0.2); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background-color 0.3s ease, transform 0.3s ease; }
+    #chat-toggle:hover { background-color: #e07b00; transform: scale(1.1); }
+    #chat-window { width: 320px; max-height: 450px; background-color: #fff; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); display: flex; flex-direction: column; overflow: hidden; transition: opacity 0.3s ease, transform 0.3s ease; position: absolute; bottom: 75px; right: 0; opacity: 0; transform: translateY(10px); pointer-events: none; }
+    #chat-window.chat-expanded { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .chat-hidden { display: none !important; }
+    #chat-header { background-color: #007BFF; color: white; padding: 10px 15px; font-weight: 600; border-top-left-radius: 10px; border-top-right-radius: 10px; display: flex; justify-content: space-between; align-items: center; }
+    #chat-header .close-chat-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; }
+    #chat-output { flex-grow: 1; padding: 15px; overflow-y: auto; font-size: 0.9rem; background-color: #f9f9f9; }
+    #chat-output p { margin-bottom: 0.8rem; line-height: 1.4; }
+    #chat-output p strong { color: #007BFF; }
+    #chat-output p strong:first-child { color: #FF8C00; } 
+    #chat-input-container { display: flex; border-top: 1px solid #eee; padding: 10px; background-color: #fff; }
+    #chat-input { flex-grow: 1; padding: 0.7rem; border: 1px solid #ddd; border-radius: 6px; margin-right: 8px; font-family: 'Montserrat', sans-serif; }
+    #chat-send { background-color: #007BFF; color: white; padding: 0.7rem 1rem; border: none; border-radius: 6px; cursor: pointer; font-weight: 500; transition: background-color 0.3s ease; }
+    #chat-send:hover { background-color: #0056b3; }
+
+  </style>
+</head><body>
+  <header>
+    <a href="/SafetyHelp/index.html" class="logo-container"> 
+        <div class="logo">Safety<span class="help">Help</span></div>
+    </a>
+    <nav>
+      <a href="/SafetyHelp/index.html"><i class="fas fa-home nav-icon"></i>Home</a>
+      <a href="/SafetyHelp/resources.html"><i class="fas fa-book nav-icon"></i>Resources</a>
+      <a href="/SafetyHelp/services.html"><i class="fas fa-concierge-bell nav-icon"></i>Services</a>
+      <a href="/SafetyHelp/community.html"><i class="fas fa-users nav-icon"></i>Community</a>
+      <a href="/SafetyHelp/about.html"><i class="fas fa-info-circle nav-icon"></i>About</a>
+      <a href="/SafetyHelp/contact.html"><i class="fas fa-envelope nav-icon"></i>Contact</a>
+      <a href="/SafetyHelp/login.html"><i class="fas fa-sign-in-alt nav-icon"></i>SignUp / Login</a>
+    </nav>
+    <div class="search-language">
+      <input type="text" placeholder="Search...">
+      <select id="language-switcher-header">
+        <option value="en">English</option>
+        <option value="xh">isiXhosa</option>
+        <option value="af">Afrikaans</option>
+      </select>
+    </div>
+  </header>
+
+  <div class="page-title-section">
+    <h1 data-i18n="page_title.risk_assessment">Risk Assessment</h1>
+    <p class="subtitle" data-i18n="risk_assessment.description">Conduct thorough risk assessments to identify hazards, evaluate risks, and implement control measures for a safer workplace.</p>
+  </div>
+
+<div class="page-content">
+  <div class="container">
+    <aside class="sidebar-tools">
+      <h3 class="sidebar-heading"><i class="fas fa-tools heading-icon"></i>SafetyHelp Tools</h3>
+      <div class="sidebar-list-container">
+        <ul id="safetyhelp-tools-list">
+          <li><a href="/SafetyHelp/pages/construction-compliance.html" data-detail="Comprehensive safety management for construction projects, ensuring compliance with regulations."><i class="fas fa-hard-hat list-icon"></i>Construction Safety</a></li>
+          <li><a href="/SafetyHelp/pages/emergency-response-plan.html" data-detail="Develop and implement effective emergency preparedness and response plans."><i class="fas fa-bell list-icon"></i>Emergency Planning</a></li>
+          <li><a href="/SafetyHelp/pages/risk-assessment.html" class="active-tool-link" data-detail="Identify, analyze, and control workplace hazards with our systematic risk assessment tools."><i class="fas fa-shield-alt list-icon"></i>Risk Assessment</a></li>
+          <li><a href="/SafetyHelp/pages/legal-appointments.html" data-detail="Manage and document all legally required OHS appointments for your organization."><i class="fas fa-gavel list-icon"></i>Legal Appointments</a></li>
+          <li><a href="/SafetyHelp/pages/incident-management.html" data-detail="Streamline the reporting, investigation, and prevention of workplace incidents."><i class="fas fa-file-medical-alt list-icon"></i>Incident Management</a></li>
+          <li><a href="/SafetyHelp/pages/training.html" data-detail="Access and manage OHS training programs and records for your workforce."><i class="fas fa-graduation-cap list-icon"></i>Training</a></li>
+          <li><a href="/SafetyHelp/pages/inspections-audits.html" data-detail="Conduct thorough workplace inspections and audits to ensure safety standards are met."><i class="fas fa-clipboard-check list-icon"></i>Inspections & Audits</a></li>
+          <li><a href="/SafetyHelp/pages/suppliers.html" data-detail="Manage OHS information and compliance for your suppliers and contractors."><i class="fas fa-truck list-icon"></i>Suppliers</a></li>
+          <li><a href="/SafetyHelp/pages/legislation.html" data-detail="Stay updated with the latest OHS acts, regulations, and legal requirements."><i class="fas fa-balance-scale list-icon"></i>Legislation</a></li>
+          <li><a href="/SafetyHelp/pages/community-tools.html" data-detail="Engage with the OHS community, share resources, and access forums."><i class="fas fa-users list-icon"></i>Community Tools</a></li>
+          <li><a href="/SafetyHelp/member-dashboard.html" data-detail="Your personalized dashboard for managing OHS activities, tracking progress, and accessing key information."><i class="fas fa-tachometer-alt list-icon"></i>Member Dashboard</a></li>
+          <li><a href="/SafetyHelp/pages/ohs-system.html" data-detail="Explore various modules to build and maintain a comprehensive OHS system."><i class="fas fa-cogs list-icon"></i>OHS System Modules</a></li>
         </ul>
-        <div id="sidebar-step-info" class="step-info">
-            <h3 data-i18n="sidebar.step_0.title">📜 Welcome to SafetyHelp</h3>
-            <p data-i18n="sidebar.step_0.description" class="text-sm mb-3">Explore our comprehensive tools and resources to enhance occupational health and safety in your workplace.</p>
-            <p class="fun-fact text-sm" data-i18n="sidebar.step_0.fun_fact">⚡ Did you know using reputable ethical suppliers can reduce workplace hazards by ensuring work is done on time and to the highest quality and safety standards?</p>
-        </div>
+      </div>
     </aside>
 
-    <!-- Main Content -->
-    <div class="main-content">
-        <section class="risk-assessment-form">
-            <h2 data-i18n="form.title">Risk Assessment</h2>
-            <p data-i18n="form.description">Create a customized risk assessment by selecting the type, activities, and assigning risk ratings.</p>
-            
-            <!-- Step 1: Select Risk Assessment Type -->
+    <main class="main-risk-assessment">
+        <h2 class="page-section-title" data-i18n="form.title"><i class="fas fa-exclamation-triangle section-icon"></i>Risk Assessment Wizard</h2>
+        <p class="intro-text" data-i18n="form.description">Create a customized risk assessment by selecting the type, activities, and assigning risk ratings.</p>
+        
+        <div class="risk-assessment-form">
             <div class="step" id="step-1">
                 <h3 data-i18n="form.step_1.title">Step 1: Select Risk Assessment Type</h3>
                 <form id="risk-assessment-type-form">
-                    <label for="assessment-type" data-i18n="form.step_1.label">What type of risk assessment are you conducting?</label>
-                    <select id="assessment-type" name="assessment-type" required aria-describedby="assessment-type-desc">
-                        <option value="" disabled selected data-i18n="form.step_1.option_default">Select a risk assessment type</option>
-                        <option value="baseline" data-i18n="form.step_1.option_baseline">Baseline Risk Assessment</option>
-                        <option value="issue-based" data-i18n="form.step_1.option_issue_based">Issue-Based Risk Assessment</option>
-                        <option value="continuous" data-i18n="form.step_1.option_continuous">Continuous Risk Assessment</option>
-                        <option value="periodic" data-i18n="form.step_1.option_periodic">Periodic/Regular Risk Assessment</option>
-                        <option value="ergonomic" data-i18n="form.step_1.option_ergonomic">Ergonomic Risk Assessment</option>
-                        <option value="chemical" data-i18n="form.step_1.option_chemical">Chemical Risk Assessment</option>
-                        <option value="noise" data-i18n="form.step_1.option_noise">Noise Risk Assessment</option>
-                    </select>
-                    <p id="assessment-type-desc" class="form-desc" data-i18n="form.step_1.desc">Choose the type that best matches your needs (e.g., Baseline for new projects, Ergonomic for office tasks).</p>
-                    <button type="submit" data-i18n="form.step_1.next">Next: Select Activities</button>
+                    <div class="form-group">
+                        <label for="assessment-type" data-i18n="form.step_1.label">What type of risk assessment are you conducting?</label>
+                        <select id="assessment-type" name="assessment-type" required aria-describedby="assessment-type-desc" class="form-select">
+                            <option value="" disabled selected data-i18n="form.step_1.option_default">Select a risk assessment type</option>
+                            <option value="baseline" data-i18n="form.step_1.option_baseline">Baseline Risk Assessment</option>
+                            <option value="issue-based" data-i18n="form.step_1.option_issue_based">Issue-Based Risk Assessment</option>
+                            <option value="continuous" data-i18n="form.step_1.option_continuous">Continuous Risk Assessment</option>
+                            <option value="periodic" data-i18n="form.step_1.option_periodic">Periodic/Regular Risk Assessment</option>
+                            <option value="ergonomic" data-i18n="form.step_1.option_ergonomic">Ergonomic Risk Assessment</option>
+                            <option value="chemical" data-i18n="form.step_1.option_chemical">Chemical Risk Assessment</option>
+                            <option value="noise" data-i18n="form.step_1.option_noise">Noise Risk Assessment</option>
+                        </select>
+                        <p id="assessment-type-desc" class="form-desc" data-i18n="form.step_1.desc">Choose the type that best matches your needs (e.g., Baseline for new projects, Ergonomic for office tasks).</p>
+                    </div>
+                    <div class="nav-buttons">
+                        <button type="submit" class="next-btn" data-i18n="form.step_1.next"><i class="fas fa-arrow-right"></i> Next: Select Activities</button>
+                    </div>
                 </form>
             </div>
 
-            <!-- Step 2: Choose Activities -->
             <div class="step hidden" id="step-2">
                 <h3 data-i18n="form.step_2.title">Step 2: Select Activities</h3>
                 <form id="activities-form">
                     <p data-i18n="form.step_2.description">Review suggested activities for your assessment, uncheck those that don’t apply, and search for additional tasks if needed.</p>
-                    <input type="text" id="activity-search" data-i18n="[placeholder]form.step_2.search_placeholder" placeholder="Search activities (e.g., scaffolding)" aria-label="Search activities" aria-describedby="activity-search-desc">
-                    <p id="activity-search-desc" class="form-desc" data-i18n="form.step_2.search_desc">Type to filter activities by name or hazard.</p>
-                    <div id="activity-groups" class="activity-group">
-                        <details>
-                            <summary>General Activities</summary>
-                            <div class="category-content grid grid-cols-1 md:grid-cols-2 gap-2">
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="security-guards" name="activities" value="security-guards" class="h-4 w-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500">
-                                    <label for="security-guards" data-i18n="form.step_2.activities.security_guards">Security guards</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="night-work" name="activities" value="night-work" class="h-4 w-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500">
-                                    <label for="night-work" data-i18n="form.step_2.activities.night_work">Night Work</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="moving-traffic" name="activities" value="moving-traffic" class="h-4 w-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500">
-                                    <label for="moving-traffic" data-i18n="form.step_2.activities.moving_traffic">Moving Traffic Work</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="vibration-exposure" name="activities" value="vibration-exposure" class="h-4 w-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500">
-                                    <label for="vibration-exposure" data-i18n="form.step_2.activities.vibration_exposure">Vibration Exposure</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="noise-exposure" name="activities" value="noise-exposure" class="h-4 w-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500">
-                                    <label for="noise-exposure" data-i18n="form.step_2.activities.noise_exposure">Noise Exposure</label>
-                                </div>
-                            </div>
-                        </details>
-                        <details>
-                            <summary>Hazardous Activities</summary>
-                            <div class="category-content grid grid-cols-1 md:grid-cols-2 gap-2">
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="welders" name="activities" value="welders" class="h-4 w-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500">
-                                    <label for="welders" data-i18n="form.step_2.activities.welders">Welders</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="welding" name="activities" value="welding" class="h-4 w-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500">
-                                    <label for="welding" data-i18n="form.step_2.activities.welding">Welding</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="hot-work" name="activities" value="hot-work" class="h-4 w-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500">
-                                    <label for="hot-work" data-i18n="form.step_2.activities.hot_work">Hot Work (e.g., cutting, grinding)</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="combustible-materials" name="activities" value="combustible-materials" class="h-4 w-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500">
-                                    <label for="combustible-materials" data-i18n="form.step_2.activities.combustible_materials">Combustible Materials</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="hazardous-substances" name="activities" value="hazardous-substances" class="h-4 w-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500">
-                                    <label for="hazardous-substances" data-i18n="form.step_2.activities.hazardous_substances">Handling Hazardous Substances</label>
-                                </div>
-                            </div>
-                        </details>
-                        <details>
-                            <summary>Office/Workplace Specific</summary>
-                            <div class="category-content grid grid-cols-1 md:grid-cols-2 gap-2">
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="office-fit-out" name="activities" value="office-fit-out" class="h-4 w-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500">
-                                    <label for="office-fit-out" data-i18n="form.step_2.activities.office_fit_out">Office Fit-Out</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="sensitive-it-equipment" name="activities" value="sensitive-it-equipment" class="h-4 w-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500">
-                                    <label for="sensitive-it-equipment" data-i18n="form.step_2.activities.sensitive_it_equipment">Sensitive IT Equipment</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="manual-handling" name="activities" value="manual-handling" class="h-4 w-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500">
-                                    <label for="manual-handling" data-i18n="form.step_2.activities.manual_handling">Manual Handling</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="working-electricity" name="activities" value="working-electricity" class="h-4 w-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500">
-                                    <label for="working-electricity" data-i18n="form.step_2.activities.working_electricity">Electricity Work</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="dust-exposure" name="activities" value="dust-exposure" class="h-4 w-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500">
-                                    <label for="dust-exposure" data-i18n="form.step_2.activities.dust_exposure">Dust Exposure</label>
-                                </div>
-                            </div>
-                        </details>
-                        <details>
-                            <summary>Construction Specific</summary>
-                            <div class="category-content grid grid-cols-1 md:grid-cols-2 gap-2">
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="civil-contractors" name="activities" value="civil-contractors" class="h-4 w-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500">
-                                    <label for="civil-contractors" data-i18n="form.step_2.activities.civil_contractors">Civil Contractors</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="excavation" name="activities" value="excavation" class="h-4 w-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500">
-                                    <label for="excavation" data-i18n="form.step_2.activities.excavation">Excavation</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="crane-operations" name="activities" value="crane-operations" class="h-4 w-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500">
-                                    <label for="crane-operations" data-i18n="form.step_2.activities.crane_operations">Crane Operations</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="working-near-water" name="activities" value="working-near-water" class="h-4 w-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500">
-                                    <label for="working-near-water" data-i18n="form.step_2.activities.working_near_water">Work Near Water</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="pile-driving" name="activities" value="pile-driving" class="h-4 w-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500">
-                                    <label for="pile-driving" data-i18n="form.step_2.activities.pile_driving">Pile Driving</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="working-tunnels" name="activities" value="working-tunnels" class="h-4 w-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500">
-                                    <label for="working-tunnels" data-i18n="form.step_2.activities.working_tunnels">Tunnel Work</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="general-construction" name="activities" value="general-construction" class="h-4 w-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500">
-                                    <label for="general-construction" data-i18n="form.step_2.activities.general_construction">General Construction</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="working-from-heights" name="activities" value="working-from-heights" class="h-4 w-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500">
-                                    <label for="working-from-heights" data-i18n="form.step_2.activities.working_from_heights">Working from Heights</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="scaffolding" name="activities" value="scaffolding" class="h-4 w-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500">
-                                    <label for="scaffolding" data-i18n="form.step_2.activities.scaffolding">Scaffolding</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="multi-storey" name="activities" value="multi-storey" class="h-4 w-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500">
-                                    <label for="multi-storey" data-i18n="form.step_2.activities.multi_storey">Multi-Storey Construction</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="asbestos" name="activities" value="asbestos" class="h-4 w-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500">
-                                    <label for="asbestos" data-i18n="form.step_2.activities.asbestos">Asbestos Removal</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="confined-space" name="activities" value="confined-space" class="h-4 w-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500">
-                                    <label for="confined-space" data-i18n="form.step_2.activities.confined_space">Confined Space Entry</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="demolition" name="activities" value="demolition" class="h-4 w-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500">
-                                    <label for="demolition" data-i18n="form.step_2.activities.demolition">Demolition</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="roof-work" name="activities" value="roof-work" class="h-4 w-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500">
-                                    <label for="roof-work" data-i18n="form.step_2.activities.roof_work">Roof Work</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="temporary-works" name="activities" value="temporary-works" class="h-4 w-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500">
-                                    <label for="temporary-works" data-i18n="form.step_2.activities.temporary_works">Temporary Works</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="live-voltage" name="activities" value="live-voltage" class="h-4 w-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500">
-                                    <label for="live-voltage" data-i18n="form.step_2.activities.live_voltage">Live Voltage Work</label>
-                                </div>
-                            </div>
-                        </details>
+                    <div class="form-group">
+                        <label for="activity-search" data-i18n="form.step_2.search_placeholder_label">Search Activities:</label>
+                        <input type="text" id="activity-search" data-i18n="[placeholder]form.step_2.search_placeholder" placeholder="Search activities (e.g., scaffolding)" aria-label="Search activities" aria-describedby="activity-search-desc" class="form-input">
+                        <p id="activity-search-desc" class="form-desc" data-i18n="form.step_2.search_desc">Type to filter activities by name or hazard.</p>
                     </div>
-                    <button type="button" class="back-btn" data-i18n="form.back">Back</button>
-                    <button type="submit" disabled data-i18n="form.step_2.next">Next: Assign Ratings</button>
+                    <div id="activity-groups" class="activity-group">
+                        </div>
+                    <div class="nav-buttons">
+                        <button type="button" class="back-btn" data-step="1" data-i18n="form.back"><i class="fas fa-arrow-left"></i> Back</button>
+                        <button type="submit" class="next-btn" disabled data-i18n="form.step_2.next"><i class="fas fa-arrow-right"></i> Next: Assign Ratings</button>
+                    </div>
                 </form>
             </div>
 
-            <!-- Step 3: Assign Ratings -->
             <div class="step hidden" id="step-3">
                 <h3 data-i18n="form.step_3.title">Step 3: Assign Risk Ratings</h3>
                 <form id="ratings-form">
@@ -815,47 +431,76 @@
                         </thead>
                         <tbody id="ratings-table-body"></tbody>
                     </table>
-                    <button type="button" class="back-btn" data-i18n="form.back">Back</button>
-                    <button type="submit" disabled data-i18n="form.step_3.next">Next: Review</button>
+                    <div class="nav-buttons">
+                        <button type="button" class="back-btn" data-step="2" data-i18n="form.back"><i class="fas fa-arrow-left"></i> Back</button>
+                        <button type="submit" class="next-btn" disabled data-i18n="form.step_3.next"><i class="fas fa-arrow-right"></i> Next: Review</button>
+                    </div>
                 </form>
             </div>
 
-            <!-- Step 4: Review and Customize -->
             <div class="step hidden" id="step-4">
                 <h3 data-i18n="form.step_4.title">Step 4: Review and Customize</h3>
                 <form id="review-form">
                     <p data-i18n="form.step_4.description">Verify your selections and add site/project and personnel details.</p>
-                    <h4 data-i18n="form.step_4.site_details">Site/Project Details</h4>
-                    <label for="site-name" data-i18n="form.step_4.site_name_label">Site/Project Name</label>
-                    <input type="text" id="site-name" name="site-name" data-i18n="[placeholder]form.step_4.site_name_placeholder" placeholder="e.g., Office Renovation 2025" required aria-describedby="site-name-desc">
-                    <p id="site-name-desc" class="form-desc" data-i18n="form.step_4.site_name_desc">Required for document naming.</p>
-                    <label for="site-address" data-i18n="form.step_4.site_address_label">Address</label>
-                    <input type="text" id="site-address" name="site-address" data-i18n="[placeholder]form.step_4.site_address_placeholder" placeholder="e.g., 123 Main St, Cape Town">
-                    <label for="site-location" data-i18n="form.step_4.site_location_label">Location</label>
-                    <input type="text" id="site-location" name="site-location" data-i18n="[placeholder]form.step_4.site_location_placeholder" placeholder="e.g., Cape Town CBD">
-                    <h4 data-i18n="form.step_4.conducted_by">Conducted By</h4>
-                    <label for="conductor-name" data-i18n="form.step_4.conductor_name_label">Name & Surname</label>
-                    <input type="text" id="conductor-name" name="conductor-name" data-i18n="[placeholder]form.step_4.conductor_name_placeholder" placeholder="e.g., John Doe">
-                    <label for="conductor-role" data-i18n="form.step_4.conductor_role_label">Role/Title</label>
-                    <input type="text" id="conductor-role" name="conductor-role" data-i18n="[placeholder]form.step_4.conductor_role_placeholder" placeholder="e.g., Safety Officer">
-                    <label for="conductor-email" data-i18n="form.step_4.conductor_email_label">Email Address</label>
-                    <input type="email" id="conductor-email" name="conductor-email" data-i18n="[placeholder]form.step_4.conductor_email_placeholder" placeholder="e.g., john@safetyfirst.help">
-                    <label for="conductor-phone" data-i18n="form.step_4.conductor_phone_label">Telephone</label>
-                    <input type="tel" id="conductor-phone" name="conductor-phone" data-i18n="[placeholder]form.step_4.conductor_phone_placeholder" placeholder="e.g., +27 123 456 789">
-                    <h4 data-i18n="form.step_4.conducted_for">Conducted On Behalf Of/For</h4>
-                    <label for="company-name" data-i18n="form.step_4.company_name_label">Company Name</label>
-                    <input type="text" id="company-name" name="company-name" data-i18n="[placeholder]form.step_4.company_name_placeholder" placeholder="e.g., ABC Construction">
-                    <label for="company-contact" data-i18n="form.step_4.company_contact_label">Contact Person</label>
-                    <input type="text" id="company-contact" name="company-contact" data-i18n="[placeholder]form.step_4.company_contact_placeholder" placeholder="e.g., Jane Smith">
-                    <label for="company-role" data-i18n="form.step_4.company_role_label">Role</label>
-                    <input type="text" id="company-role" name="company-role" data-i18n="[placeholder]form.step_4.company_role_placeholder" placeholder="e.g., Project Manager">
-                    <label for="company-details" data-i18n="form.step_4.company_details_label">Contact Details</label>
-                    <input type="text" id="company-details" name="company-details" data-i18n="[placeholder]form.step_4.company_details_placeholder" placeholder="e.g., jane@abc.co.za, +27 987 654 321">
-                    <h4 data-i18n="form.step_4.notes">Additional Notes</h4>
-                    <label for="custom-notes" data-i18n="form.step_4.notes_label">Custom Notes</label>
-                    <textarea id="custom-notes" name="custom-notes" data-i18n="[placeholder]form.step_4.notes_placeholder" placeholder="e.g., Check underground cables" aria-describedby="custom-notes-desc"></textarea>
-                    <p id="custom-notes-desc" class="form-desc" data-i18n="form.step_4.notes_desc">Add any additional instructions or notes (will appear in table).</p>
-                    <h4 data-i18n="form.step_4.selected_activities">Selected Activities</h4>
+                    <h4 data-i18n="form.step_4.site_details" style="font-size: 1.1rem; color: #0056b3; margin-top: 1rem; margin-bottom: 0.5rem;">Site/Project Details</h4>
+                    <div class="form-group">
+                        <label for="site-name" data-i18n="form.step_4.site_name_label">Site/Project Name</label>
+                        <input type="text" id="site-name" name="site-name" data-i18n="[placeholder]form.step_4.site_name_placeholder" placeholder="e.g., Office Renovation 2025" required aria-describedby="site-name-desc" class="form-input">
+                        <p id="site-name-desc" class="form-desc" data-i18n="form.step_4.site_name_desc">Required for document naming.</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="site-address" data-i18n="form.step_4.site_address_label">Address</label>
+                        <input type="text" id="site-address" name="site-address" data-i18n="[placeholder]form.step_4.site_address_placeholder" placeholder="e.g., 123 Main St, Cape Town" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="site-location" data-i18n="form.step_4.site_location_label">Location</label>
+                        <input type="text" id="site-location" name="site-location" data-i18n="[placeholder]form.step_4.site_location_placeholder" placeholder="e.g., Cape Town CBD" class="form-input">
+                    </div>
+                    
+                    <h4 data-i18n="form.step_4.conducted_by" style="font-size: 1.1rem; color: #0056b3; margin-top: 1rem; margin-bottom: 0.5rem;">Conducted By</h4>
+                    <div class="form-group">
+                        <label for="conductor-name" data-i18n="form.step_4.conductor_name_label">Name & Surname</label>
+                        <input type="text" id="conductor-name" name="conductor-name" data-i18n="[placeholder]form.step_4.conductor_name_placeholder" placeholder="e.g., John Doe" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="conductor-role" data-i18n="form.step_4.conductor_role_label">Role/Title</label>
+                        <input type="text" id="conductor-role" name="conductor-role" data-i18n="[placeholder]form.step_4.conductor_role_placeholder" placeholder="e.g., Safety Officer" class="form-input">
+                    </div>
+                     <div class="form-group">
+                        <label for="conductor-email" data-i18n="form.step_4.conductor_email_label">Email Address</label>
+                        <input type="email" id="conductor-email" name="conductor-email" data-i18n="[placeholder]form.step_4.conductor_email_placeholder" placeholder="e.g., john@safetyfirst.help" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="conductor-phone" data-i18n="form.step_4.conductor_phone_label">Telephone</label>
+                        <input type="tel" id="conductor-phone" name="conductor-phone" data-i18n="[placeholder]form.step_4.conductor_phone_placeholder" placeholder="e.g., +27 123 456 789" class="form-input">
+                    </div>
+
+                    <h4 data-i18n="form.step_4.conducted_for" style="font-size: 1.1rem; color: #0056b3; margin-top: 1rem; margin-bottom: 0.5rem;">Conducted On Behalf Of/For</h4>
+                    <div class="form-group">
+                        <label for="company-name-client" data-i18n="form.step_4.company_name_label">Company Name</label>
+                        <input type="text" id="company-name-client" name="company-name-client" data-i18n="[placeholder]form.step_4.company_name_placeholder" placeholder="e.g., ABC Construction" class="form-input">
+                    </div>
+                     <div class="form-group">
+                        <label for="company-contact" data-i18n="form.step_4.company_contact_label">Contact Person</label>
+                        <input type="text" id="company-contact" name="company-contact" data-i18n="[placeholder]form.step_4.company_contact_placeholder" placeholder="e.g., Jane Smith" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="company-role" data-i18n="form.step_4.company_role_label">Role</label>
+                        <input type="text" id="company-role" name="company-role" data-i18n="[placeholder]form.step_4.company_role_placeholder" placeholder="e.g., Project Manager" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="company-details" data-i18n="form.step_4.company_details_label">Contact Details</label>
+                        <input type="text" id="company-details" name="company-details" data-i18n="[placeholder]form.step_4.company_details_placeholder" placeholder="e.g., jane@abc.co.za, +27 987 654 321" class="form-input">
+                    </div>
+                    
+                    <h4 data-i18n="form.step_4.notes" style="font-size: 1.1rem; color: #0056b3; margin-top: 1rem; margin-bottom: 0.5rem;">Additional Notes</h4>
+                    <div class="form-group">
+                        <label for="custom-notes" data-i18n="form.step_4.notes_label">Custom Notes</label>
+                        <textarea id="custom-notes" name="custom-notes" data-i18n="[placeholder]form.step_4.notes_placeholder" placeholder="e.g., Check underground cables" aria-describedby="custom-notes-desc" class="form-textarea"></textarea>
+                        <p id="custom-notes-desc" class="form-desc" data-i18n="form.step_4.notes_desc">Add any additional instructions or notes (will appear in table).</p>
+                    </div>
+
+                    <h4 data-i18n="form.step_4.selected_activities" style="font-size: 1.1rem; color: #0056b3; margin-top: 1rem; margin-bottom: 0.5rem;">Selected Activities & Ratings</h4>
                     <table class="review-table">
                         <thead>
                             <tr>
@@ -870,12 +515,13 @@
                         <tbody id="review-table-body"></tbody>
                     </table>
                     <p class="compliance-note hidden" data-i18n="form.step_4.compliance_note">Note: Projects over R40,000 or 180 days require Department of Labour notification (Construction Regulation 4).</p>
-                    <button type="button" class="back-btn" data-i18n="form.back">Back</button>
-                    <button type="submit" data-i18n="form.step_4.generate">Generate Document</button>
+                    <div class="nav-buttons">
+                        <button type="button" class="back-btn" data-step="3" data-i18n="form.back"><i class="fas fa-arrow-left"></i> Back</button>
+                        <button type="submit" class="next-btn" data-i18n="form.step_4.generate"><i class="fas fa-file-pdf"></i> Generate Document</button>
+                    </div>
                 </form>
             </div>
 
-            <!-- Step 5: Guidance (Post-Download) -->
             <div class="step hidden" id="step-5">
                 <h3 data-i18n="form.step_5.title">Step 5: Next Steps</h3>
                 <p data-i18n="form.step_5.description">Your risk assessment has been generated. Follow these steps to ensure safety:</p>
@@ -884,890 +530,174 @@
                     <li data-i18n="form.step_5.step_2">Conduct toolbox talks to brief staff on hazards.</li>
                     <li data-i18n="form.step_5.step_3">Review the assessment if the scope changes (OHSA Section 8).</li>
                     <li data-i18n="form.step_5.step_4">For large projects, notify the Department of Labour if required.</li>
-                    <li data-i18n="form.step_5.step_5">Contact us for support: <a href='/safety-plans/contact.html'>Contact Page</a>.</li>
+                    <li data-i18n="form.step_5.step_5">Contact us for support: <a href='/SafetyHelp/contact.html'>Contact Page</a>.</li>
                 </ul>
-                <p>
-                    <a href="#" id="download-again" data-i18n="form.step_5.download_again">Download Again</a> | 
-                    <a href="#" id="start-new" data-i18n="form.step_5.start_new">Start New Assessment</a>
-                </p>
-            </div>
-        </section>
-
-        <footer>
-            <div class="container mx-auto px-6 text-center">
-                <p class="mb-2" data-i18n="footer.copyright">© 2025 SafetyHelp. All rights reserved.</p>
-                <p class="mb-4">
-                    <a href="/safety-plans/privacy.html" data-i18n="footer.links.privacy" class="mx-2">Privacy Policy</a> |
-                    <a href="/safety-plans/terms.html" data-i18n="footer.links.terms" class="mx-2">Terms of Service</a> |
-                    <a href="/safety-plans/contact.html" data-i18n="footer.links.contact" class="mx-2">Contact Us</a>
-                </p>
-                <div class="newsletter mt-6">
-                    <h3 class="text-lg font-semibold mb-3" data-i18n="footer.newsletter.title">Stay Updated</h3>
-                    <form class="flex justify-center">
-                        <input type="email" data-i18n="[placeholder]footer.newsletter.placeholder" placeholder="Enter your email" aria-label="Email for newsletter" class="px-3 py-2 border border-gray-300 rounded-l text-gray-800 w-64">
-                        <button type="submit" data-i18n="footer.newsletter.button" class="px-4 py-2 rounded-r">Subscribe</button>
-                    </form>
+                <div class="nav-buttons" style="justify-content: flex-start;">
+                    <a href="#" id="download-again" class="next-btn" style="background-color: #28a745;" data-i18n="form.step_5.download_again"><i class="fas fa-redo"></i> Download Again</a> 
+                    <a href="#" id="start-new" class="next-btn" data-i18n="form.step_5.start_new"><i class="fas fa-plus-circle"></i> Start New Assessment</a>
                 </div>
             </div>
-        </footer>
-    </div>
+        </div>
+    </main>
 
-    <!-- Chatbot Container -->
-    <div class="chatbot-container fixed bottom-5 right-5 z-50">
-        <button id="chat-toggle" class="chat-toggle-btn p-3 rounded-full shadow-lg flex items-center justify-center bg-orange-500 text-white hover:bg-orange-600 transition duration-300">
-            <span class="chat-icon text-2xl mr-1">⛑️</span> 
-            <span id="chat-toggle-text" data-i18n="chatbot.button">Ask Salatiso</span>
-        </button>
-        <div id="chat-window" class="chat-hidden bg-white border border-gray-300 rounded-lg shadow-xl mt-2">
-            <div id="chat-output" class="p-3 text-sm h-80 overflow-y-scroll">
-                <p><strong>Salatiso:</strong> <span data-i18n="chatbot.welcome">Hello! How can I help you with OHS today?</span></p>
-            </div>
-            <div id="chat-input-container" class="flex border-t border-gray-200">
-                <input id="chat-input" type="text" data-i18n="[placeholder]chatbot.input_placeholder" placeholder="Ask about OHS..." aria-label="Ask about OHS" class="flex-grow p-2 border-none focus:outline-none">
-                <button id="chat-send" aria-label="Send message" data-i18n="chatbot.send" class="px-4 py-2 bg-blue-500 text-white hover:bg-blue-600">Send</button>
-            </div>
+    <aside class="sidebar-milestones">
+      <h3 class="sidebar-heading"><i class="fas fa-flag-checkered heading-icon"></i>OHS Milestones</h3>
+      <div class="sidebar-list-container">
+        <ul id="ohs-milestones-list">
+          <li data-detail="The Occupational Safety and Health Act was enacted in the USA, establishing standards for workplace safety and influencing global OHS practices."><i class="fas fa-landmark list-icon"></i>1970: OSHA (USA)</li>
+          <li data-detail="South Africa's Occupational Health and Safety Act No. 85 of 1993 was established, laying the groundwork for current OHS practices and emphasizing employer responsibility."><i class="fas fa-landmark list-icon"></i>1993: OHS Act (SA)</li>
+          <li data-detail="The Compensation for Occupational Injuries and Diseases Act (COIDA) was amended, refining worker compensation and rehabilitation processes."><i class="fas fa-landmark list-icon"></i>2003: COIDA Amendment (SA)</li>
+          <li data-detail="Specific regulations for construction work were updated in South Africa, enhancing safety on construction sites through detailed requirements for planning and execution."><i class="fas fa-landmark list-icon"></i>2014: Construction Regs (SA)</li>
+          <li data-detail="Adoption of the Globally Harmonized System (GHS) for classification and labeling of chemicals, promoting international consistency in hazard communication."><i class="fas fa-landmark list-icon"></i>2015: Global Harmonization (GHS)</li>
+          <li data-detail="Global and national directives for managing COVID-19 in the workplace were introduced, highlighting the importance of infectious disease preparedness."><i class="fas fa-landmark list-icon"></i>2020: COVID-19 Protocols</li>
+          <li data-detail="Increased emphasis on psychological health and safety in workplaces, recognizing mental well-being as a critical component of OHS."><i class="fas fa-landmark list-icon"></i>2022: Mental Health Focus</li>
+          <li data-detail="Ongoing development towards using AI and big data for predictive safety analytics and proactive risk mitigation, aiming to prevent incidents before they occur."><i class="fas fa-landmark list-icon"></i>Future: Predictive Safety & AI</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+</div> <footer>
+  <p>&copy; <span id="copyright-year"></span> SafetyHelp (Pty) Ltd. All rights reserved. Your Partner in Occupational Health and Safety.</p>
+  <p><a href="/SafetyHelp/privacy.html">Privacy Policy</a> | <a href="/SafetyHelp/terms.html">Terms of Service</a> | <a href="/SafetyHelp/contact.html">Contact Us</a></p> 
+</footer>
+
+<div id="infoModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 id="modalTitle">Milestone Detail</h4>
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+    </div>
+    <div class="modal-body" id="modalBody">
+      </div>
+    <div class="modal-footer" id="modalFooter">
+      <button onclick="closeModal()"><i class="fas fa-times btn-icon"></i>Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="chatbot-container">
+    <div id="chat-window" class="chat-hidden"> 
+        <div id="chat-header">
+            <span>Salatiso - Your OHS Assistant</span>
+            <button class="close-chat-btn" onclick="toggleChatbot(false)">&times;</button>
+        </div>
+        <div id="chat-output">
+            <p><strong>Salatiso:</strong> Hello! How can I help you with OHS today?</p>
+        </div>
+        <div id="chat-input-container">
+            <input id="chat-input" type="text" placeholder="Ask about OHS...">
+            <button id="chat-send"><i class="fas fa-paper-plane"></i></button>
         </div>
     </div>
+    <button id="chat-toggle" onclick="toggleChatbot()">
+        <i class="fas fa-headset"></i> 
+    </button>
+</div>
 
-   <!-- Scripts -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-    <script>
-        // Translation Initialization with Debugging
-        document.addEventListener('DOMContentLoaded', async () => {
-            const languages = ['en', 'af', 'zu', 'xh', 'st', 'tn', 'nso', 'ts', 'ss', 've', 'nr', 'es', 'fr', 'sn', 'sw'];
-            const resources = {};
+<script type="module" src="/SafetyHelp/assets/js/common.js"></script>
+<script type="module" src="/SafetyHelp/assets/js/risk-assessment.js"></script> 
 
-            // Load English translations as a fallback
-            const defaultTranslations = {
-                "header.nav.home": "Home",
-                "header.nav.resources": "Resources",
-                "header.nav.services": "Services",
-                "header.nav.community": "Community",
-                "header.nav.about": "About",
-                "header.nav.contact": "Contact",
-                "header.nav.login": "Login",
-                "header.search.placeholder": "Search OHS Tools...",
-                "header.search.button": "Search",
-                "language_selector.en": "English",
-                "language_selector.af": "Afrikaans",
-                "language_selector.zu": "isiZulu",
-                "language_selector.xh": "isiXhosa",
-                "language_selector.st": "Sesotho",
-                "language_selector.tn": "Setswana",
-                "language_selector.nso": "Sepedi",
-                "language_selector.ts": "Xitsonga",
-                "language_selector.ss": "siSwati",
-                "language_selector.ve": "Tshivenda",
-                "language_selector.nr": "isiNdebele",
-                "language_selector.es": "Español",
-                "language_selector.fr": "French",
-                "language_selector.sn": "Shona",
-                "language_selector.sw": "Swahili",
-                "language_selector.zh": "Mandarin",
-                "sidebar.ohs_tools": "SafetyHelp OHS Tools",
-                "sidebar.construction_safety": "Construction Safety",
-                "sidebar.emergency_planning": "Emergency Planning",
-                "sidebar.risk_assessment": "Risk Assessment",
-                "sidebar.legal_appointments": "Legal Appointments",
-                "sidebar.incident_management": "Incident Management",
-                "sidebar.training": "Training",
-                "sidebar.inspections_audits": "Inspections & Audits",
-                "sidebar.suppliers": "Suppliers",
-                "sidebar.legislation": "Legislation",
-                "sidebar.community_tools": "Community Tools",
-                "sidebar.member_dashboard": "Member Dashboard",
-                "sidebar.ohs_system": "OHS System",
-                "sidebar.step_0.title": "📜 Welcome to SafetyHelp",
-                "sidebar.step_0.description": "Explore our comprehensive tools and resources to enhance occupational health and safety in your workplace.",
-                "sidebar.step_0.fun_fact": "⚡ Did you know using reputable ethical suppliers can reduce workplace hazards by ensuring work is done on time and to the highest quality and safety standards?",
-                "form.title": "Risk Assessment",
-                "form.description": "Create a customized risk assessment by selecting the type, activities, and assigning risk ratings.",
-                "form.step_1.title": "Step 1: Select Risk Assessment Type",
-                "form.step_1.label": "What type of risk assessment are you conducting?",
-                "form.step_1.option_default": "Select a risk assessment type",
-                "form.step_1.option_baseline": "Baseline Risk Assessment",
-                "form.step_1.option_issue_based": "Issue-Based Risk Assessment",
-                "form.step_1.option_continuous": "Continuous Risk Assessment",
-                "form.step_1.option_periodic": "Periodic/Regular Risk Assessment",
-                "form.step_1.option_ergonomic": "Ergonomic Risk Assessment",
-                "form.step_1.option_chemical": "Chemical Risk Assessment",
-                "form.step_1.option_noise": "Noise Risk Assessment",
-                "form.step_1.desc": "Choose the type that best matches your needs (e.g., Baseline for new projects, Ergonomic for office tasks).",
-                "form.step_1.next": "Next: Select Activities",
-                "form.step_2.title": "Step 2: Select Activities",
-                "form.step_2.description": "Review suggested activities for your assessment, uncheck those that don’t apply, and search for additional tasks if needed.",
-                "form.step_2.search_placeholder": "Search activities (e.g., scaffolding)",
-                "form.step_2.search_desc": "Type to filter activities by name or hazard.",
-                "form.step_2.activities.security_guards": "Security guards",
-                "form.step_2.activities.night_work": "Night Work",
-                "form.step_2.activities.moving_traffic": "Moving Traffic Work",
-                "form.step_2.activities.vibration_exposure": "Vibration Exposure",
-                "form.step_2.activities.noise_exposure": "Noise Exposure",
-                "form.step_2.activities.welders": "Welders",
-                "form.step_2.activities.welding": "Welding",
-                "form.step_2.activities.hot_work": "Hot Work (e.g., cutting, grinding)",
-                "form.step_2.activities.combustible_materials": "Combustible Materials",
-                "form.step_2.activities.hazardous_substances": "Handling Hazardous Substances",
-                "form.step_2.activities.office_fit_out": "Office Fit-Out",
-                "form.step_2.activities.sensitive_it_equipment": "Sensitive IT Equipment",
-                "form.step_2.activities.manual_handling": "Manual Handling",
-                "form.step_2.activities.working_electricity": "Electricity Work",
-                "form.step_2.activities.dust_exposure": "Dust Exposure",
-                "form.step_2.activities.civil_contractors": "Civil Contractors",
-                "form.step_2.activities.excavation": "Excavation",
-                "form.step_2.activities.crane_operations": "Crane Operations",
-                "form.step_2.activities.working_near_water": "Work Near Water",
-                "form.step_2.activities.pile_driving": "Pile Driving",
-                "form.step_2.activities.working_tunnels": "Tunnel Work",
-                "form.step_2.activities.general_construction": "General Construction",
-                "form.step_2.activities.working_from_heights": "Working from Heights",
-                "form.step_2.activities.scaffolding": "Scaffolding",
-                "form.step_2.activities.multi_storey": "Multi-Storey Construction",
-                "form.step_2.activities.asbestos": "Asbestos Removal",
-                "form.step_2.activities.confined_space": "Confined Space Entry",
-                "form.step_2.activities.demolition": "Demolition",
-                "form.step_2.activities.roof_work": "Roof Work",
-                "form.step_2.activities.temporary_works": "Temporary Works",
-                "form.step_2.activities.live_voltage": "Live Voltage Work",
-                "form.step_2.next": "Next: Assign Ratings",
-                "form.step_3.title": "Step 3: Assign Risk Ratings",
-                "form.step_3.description": "Assign a risk rating (High, Medium, Low) for each selected activity. High = serious injury possible, Medium = moderate injury, Low = minimal risk.",
-                "form.step_3.table.activity": "Activity",
-                "form.step_3.table.hazard": "Hazard",
-                "form.step_3.table.risk": "Risk",
-                "form.step_3.table.controls": "Control Measures",
-                "form.step_3.table.legal": "Legal Reference",
-                "form.step_3.table.rating": "Rating",
-                "form.step_3.next": "Next: Review",
-                "form.step_4.title": "Step 4: Review and Customize",
-                "form.step_4.description": "Verify your selections and add site/project and personnel details.",
-                "form.step_4.site_details": "Site/Project Details",
-                "form.step_4.site_name_label": "Site/Project Name",
-                "form.step_4.site_name_placeholder": "e.g., Office Renovation 2025",
-                "form.step_4.site_name_desc": "Required for document naming.",
-                "form.step_4.site_address_label": "Address",
-                "form.step_4.site_address_placeholder": "e.g., 123 Main St, Cape Town",
-                "form.step_4.site_location_label": "Location",
-                "form.step_4.site_location_placeholder": "e.g., Cape Town CBD",
-                "form.step_4.conducted_by": "Conducted By",
-                "form.step_4.conductor_name_label": "Name & Surname",
-                "form.step_4.conductor_name_placeholder": "e.g., John Doe",
-                "form.step_4.conductor_role_label": "Role/Title",
-                "form.step_4.conductor_role_placeholder": "e.g., Safety Officer",
-                "form.step_4.conductor_email_label": "Email Address",
-                "form.step_4.conductor_email_placeholder": "e.g., john@safetyfirst.help",
-                "form.step_4.conductor_phone_label": "Telephone",
-                "form.step_4.conductor_phone_placeholder": "e.g., +27 123 456 789",
-                "form.step_4.conducted_for": "Conducted On Behalf Of/For",
-                "form.step_4.company_name_label": "Company Name",
-                "form.step_4.company_name_placeholder": "e.g., ABC Construction",
-                "form.step_4.company_contact_label": "Contact Person",
-                "form.step_4.company_contact_placeholder": "e.g., Jane Smith",
-                "form.step_4.company_role_label": "Role",
-                "form.step_4.company_role_placeholder": "e.g., Project Manager",
-                "form.step_4.company_details_label": "Contact Details",
-                "form.step_4.company_details_placeholder": "e.g., jane@abc.co.za, +27 987 654 321",
-                "form.step_4.notes": "Additional Notes",
-                "form.step_4.notes_label": "Custom Notes",
-                "form.step_4.notes_placeholder": "e.g., Check underground cables",
-                "form.step_4.notes_desc": "Add any additional instructions or notes (will appear in table).",
-                "form.step_4.selected_activities": "Selected Activities",
-                "form.step_4.table.activity": "Activity",
-                "form.step_4.table.hazard": "Hazard",
-                "form.step_4.table.risk": "Risk",
-                "form.step_4.table.controls": "Control Measures",
-                "form.step_4.table.legal": "Legal Reference",
-                "form.step_4.table.rating": "Rating",
-                "form.step_4.compliance_note": "Note: Projects over R40,000 or 180 days require Department of Labour notification (Construction Regulation 4).",
-                "form.step_4.generate": "Generate Document",
-                "form.step_5.title": "Step 5: Next Steps",
-                "form.step_5.description": "Your risk assessment has been generated. Follow these steps to ensure safety:",
-                "form.step_5.step_1": "Implement control measures (e.g., provide PPE, train workers).",
-                "form.step_5.step_2": "Conduct toolbox talks to brief staff on hazards.",
-                "form.step_5.step_3": "Review the assessment if the scope changes (OHSA Section 8).",
-                "form.step_5.step_4": "For large projects, notify the Department of Labour if required.",
-                "form.step_5.step_5": "Contact us for support: <a href='/safety-plans/contact.html'>Contact Page</a>.",
-                "form.step_5.download_again": "Download Again",
-                "form.step_5.start_new": "Start New Assessment",
-                "form.back": "Back",
-                "footer.copyright": "© 2025 SafetyHelp. All rights reserved.",
-                "footer.links.privacy": "Privacy Policy",
-                "footer.links.terms": "Terms of Service",
-                "footer.links.contact": "Contact Us",
-                "footer.newsletter.title": "Stay Updated",
-                "footer.newsletter.placeholder": "Enter your email",
-                "footer.newsletter.button": "Subscribe",
-                "chatbot.button": "Ask Salatiso",
-                "chatbot.input_placeholder": "Ask about OHS...",
-                "chatbot.send": "Send"
-            };
-            resources['en'] = { translation: defaultTranslations };
+<script>
+  document.getElementById('copyright-year').textContent = new Date().getFullYear();
 
-            // Attempt to load translations for all languages
-            for (const lang of languages) {
-                if (lang === 'en') continue; // Skip English as it's already added
-                try {
-                    const response = await fetch(`/safety-plans/assets/locales/${lang}/translation.json`);
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    const data = await response.json();
-                    resources[lang] = { translation: data };
-                    console.log(`Loaded translations for ${lang}:`, data);
-                } catch (error) {
-                    console.error(`Failed to load translations for ${lang}:`, error);
-                    // Fallback to English for this language
-                    resources[lang] = { translation: defaultTranslations };
-                }
-            }
+  function setupMilestonesSidebar() {
+    const listElement = document.getElementById('ohs-milestones-list');
+    if (!listElement || listElement.children.length === 0) return;
+    const originalItems = Array.from(listElement.children);
+    originalItems.forEach(item => {
+        const clone = item.cloneNode(true);
+        clone.addEventListener('click', () => showMilestoneDetail(clone));
+        listElement.appendChild(clone);
+    });
+     originalItems.forEach(item => {
+        item.addEventListener('click', () => showMilestoneDetail(item));
+    });
+  }
+  
+  const modal = document.getElementById('infoModal');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalBody = document.getElementById('modalBody');
 
-            if (Object.keys(resources).length === 0) {
-                console.error("No translation files loaded. Using default English translations.");
-            }
+  function showMilestoneDetail(element) {
+    if (!modal || !modalTitle || !modalBody) return;
+    const title = element.textContent.trim().replace(/^.*? /,''); 
+    const detail = element.dataset.detail || "More information about this milestone will be available soon.";
+    modalTitle.textContent = `OHS Milestone: ${title}`;
+    modalBody.innerHTML = `<p>${detail}</p>`;
+    modal.style.display = 'block';
+  }
+  function closeModal() {
+    if (modal) modal.style.display = 'none';
+  }
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      closeModal();
+    }
+  }
+  
+  const chatWindow = document.getElementById('chat-window');
+  const chatToggleBtn = document.getElementById('chat-toggle');
+  const chatInputEl = document.getElementById('chat-input'); 
+  const chatSendBtn = document.getElementById('chat-send'); 
+  const chatOutputEl = document.getElementById('chat-output'); 
 
-            await i18next.init({
-                lng: 'en',
-                resources,
-                fallbackLng: 'en',
-                debug: true
-            });
+  function toggleChatbot(forceOpen) {
+    if (!chatWindow || !chatToggleBtn) return;
+    const isHidden = chatWindow.classList.contains('chat-hidden');
+    if (forceOpen === true || isHidden) {
+        chatWindow.classList.remove('chat-hidden');
+        chatWindow.classList.add('chat-expanded');
+        chatToggleBtn.innerHTML = '<i class="fas fa-times"></i>'; 
+        if (chatInputEl) chatInputEl.focus();
+    } else if (forceOpen === false || !isHidden) {
+        chatWindow.classList.add('chat-hidden');
+        chatWindow.classList.remove('chat-expanded');
+        chatToggleBtn.innerHTML = '<i class="fas fa-headset"></i>'; 
+    }
+  }
 
-            updateContent();
+  function addChatMessageToUI(sender, message, isUser) {
+      if (!chatOutputEl) return;
+      const messageEl = document.createElement('p');
+      messageEl.innerHTML = `<strong>${sender}:</strong> ${message}`;
+      if(isUser) messageEl.style.textAlign = "right"; 
+      chatOutputEl.appendChild(messageEl);
+      chatOutputEl.scrollTop = chatOutputEl.scrollHeight;
+  }
 
-            document.getElementById('language-select').addEventListener('change', (e) => {
-                i18next.changeLanguage(e.target.value, (err) => {
-                    if (err) {
-                        console.error('Error changing language:', err);
-                        return;
-                    }
-                    updateContent();
-                });
-            });
+  async function handleChatSend() {
+      if (!chatInputEl || !chatOutputEl) return;
+      const message = chatInputEl.value.trim();
+      if (!message) return;
+      addChatMessageToUI("You", message, true);
+      chatInputEl.value = '';
+      let botResponse = "I'm here to help with risk assessments. Ask me anything! (Chatbot placeholder)";
+      if (message.toLowerCase().includes("what is hira")) {
+          botResponse = "HIRA stands for Hazard Identification and Risk Assessment. It's a process to find potential dangers and evaluate their risks.";
+      }
+      setTimeout(() => {
+          addChatMessageToUI("Salatiso", botResponse, false);
+      }, 500);
+  }
 
-            // Chatbot Functionality
-    const chatToggle = document.getElementById('chat-toggle');
-    const chatWindow = document.getElementById('chat-window');
-    const chatOutput = document.getElementById('chat-output');
-    const chatInput = document.getElementById('chat-input');
-    const chatSend = document.getElementById('chat-send');
-    let isExpanded = false;
-
-    chatToggle.addEventListener('click', () => {
-        isExpanded = !isExpanded;
-        chatWindow.classList.toggle('chat-hidden', !isExpanded);
-        chatWindow.classList.toggle('chat-expanded', isExpanded);
-        chatToggle.classList.toggle('collapsed', !isExpanded);
-        if (isExpanded) {
-            chatInput.focus();
+  if (chatSendBtn) { 
+    chatSendBtn.addEventListener('click', handleChatSend);
+  }
+  if (chatInputEl) {
+    chatInputEl.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            handleChatSend();
         }
     });
-
-    async function sendQuery() {
-        if (!db) {
-            addChatMessage('Salatiso', 'Sorry, I am currently unavailable.');
-            return;
-        }
-        const input = chatInput.value.trim();
-        if (!input) return;
-        addChatMessage('You', input);
-        chatInput.value = '';
-        addChatMessage('Salatiso', 'Searching...');
-        const query = input.toLowerCase();
-
-        try {
-            const snapshot = await db.collection('ohs-knowledge')
-                                     .where('keywords', 'array-contains', query)
-                                     .limit(1)
-                                     .get();
-            let responseFound = false;
-            let response = "Sorry, I couldn’t find specific information on that topic. Please try rephrasing or ask a different question.";
-
-            if (!snapshot.empty) {
-                snapshot.forEach(doc => {
-                    const data = doc.data();
-                    response = `Based on information from ${data.book || 'our resources'} (Chapter ${data.chapter || 'N/A'}), here's a summary: <br>${data.content.substring(0, 250)}...`;
-                    if (data.file) {
-                        response += ` (See <a href="/safety-plans/resources/${data.file}" target="_blank" class="text-blue-500 hover:underline">full chapter</a>)`;
-                    }
-                    responseFound = true;
-                });
-            }
-            const searchingMessage = chatOutput.querySelector('p:last-child');
-            if (searchingMessage && searchingMessage.textContent.includes('Searching...')) {
-                searchingMessage.innerHTML = `<strong>Salatiso:</strong> ${response}`;
-            } else {
-                addChatMessage('Salatiso', response);
-            }
-        } catch (error) {
-            console.error("Firestore query failed:", error);
-            const searchingMessage = chatOutput.querySelector('p:last-child');
-            if (searchingMessage && searchingMessage.textContent.includes('Searching...')) {
-                searchingMessage.innerHTML = `<strong>Salatiso:</strong> Oops, something went wrong while searching. Please try again!`;
-            } else {
-                addChatMessage('Salatiso', 'Oops, something went wrong while searching. Please try again!');
-            }
-        }
-    }
-
-    function addChatMessage(sender, message) {
-        if (chatOutput) {
-            const messageElement = document.createElement('p');
-            messageElement.classList.add('mb-2');
-            messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
-            chatOutput.appendChild(messageElement);
-            chatOutput.scrollTop = chatOutput.scrollHeight;
-        }
-    }
-
-    chatSend.addEventListener('click', sendQuery);
-    chatInput.addEventListener('keypress', (event) => {
-        if (event.key === 'Enter') sendQuery();
-    });
-
-            // Risk Assessment Script
-            let currentStep = 1;
-            let assessmentType = '';
-            let selectedActivities = [];
-
-            const activitiesData = {
-                baseline: [
-                    { category: "Construction Specific", activity: "Scaffolding", hazard: "Falls", risk: "Injury from falling", controls: "Guardrails, harnesses", legal: "CR 10" },
-                    { category: "Construction Specific", activity: "Excavation", hazard: "Collapse", risk: "Burial, injury", controls: "Shoring, barriers", legal: "CR 13" },
-                    { category: "Construction Specific", activity: "Crane Operations", hazard: "Overhead loads", risk: "Struck by load", controls: "Signalman, PPE", legal: "CR 22" },
-                    { category: "Construction Specific", activity: "Working from Heights", hazard: "Falls", risk: "Injury from falling", controls: "Fall protection, training", legal: "CR 10" }
-                ],
-                "issue-based": [
-                    { category: "Hazardous Activities", activity: "Chemical Spill", hazard: "Exposure", risk: "Chemical burns, poisoning", controls: "Spill kits, PPE", legal: "HCS Reg" },
-                    { category: "Hazardous Activities", activity: "Fire Hazard", hazard: "Flammables", risk: "Burns, smoke inhalation", controls: "Fire extinguishers, evacuation", legal: "OHSA 8" },
-                    { category: "Hazardous Activities", activity: "Electrical Fault", hazard: "Live wires", risk: "Electrocution", controls: "Lockout/tagout, PPE", legal: "EIR" }
-                ],
-                continuous: [
-                    { category: "General Activities", activity: "Daily Inspections", hazard: "Equipment failure", risk: "Injury from malfunction", controls: "Checklists, maintenance", legal: "OHSA 8" },
-                    { category: "General Activities", activity: "Housekeeping", hazard: "Tripping", risk: "Falls, injuries", controls: "Regular cleaning, signage", legal: "OHSA 8" }
-                ],
-                periodic: [
-                    { category: "General Activities", activity: "Annual Audit", hazard: "Non-compliance", risk: "Fines, injuries", controls: "Audit checklist, training", legal: "OHSA 8" },
-                    { category: "General Activities", activity: "Equipment Review", hazard: "Wear and tear", risk: "Malfunction, injury", controls: "Maintenance, replacement", legal: "OHSA 8" }
-                ],
-                ergonomic: [
-                    { category: "Office/Workplace Specific", activity: "Office Work", hazard: "Poor posture", risk: "Musculoskeletal issues", controls: "Ergonomic chairs, breaks", legal: "OHSA 8" },
-                    { category: "Office/Workplace Specific", activity: "Repetitive Tasks", hazard: "Strain", risk: "RSI", controls: "Rotation, ergonomic tools", legal: "OHSA 8" }
-                ],
-                chemical: [
-                    { category: "Hazardous Activities", activity: "Handling Chemicals", hazard: "Exposure", risk: "Burns, poisoning", controls: "PPE, ventilation", legal: "HCS Reg" },
-                    { category: "Hazardous Activities", activity: "Storage", hazard: "Leaks", risk: "Fire, exposure", controls: "Bunded storage, labels", legal: "HCS Reg" }
-                ],
-                noise: [
-                    { category: "Construction Specific", activity: "Machinery Operation", hazard: "High noise", risk: "Hearing loss", controls: "Ear protection, barriers", legal: "Noise Reg" },
-                    { category: "Construction Specific", activity: "Construction Noise", hazard: "Prolonged exposure", risk: "Hearing damage", controls: "Ear muffs, scheduling", legal: "Noise Reg" }
-                ]
-            };
-
-            // Step 1: Select Risk Assessment Type
-            const riskAssessmentForm = document.getElementById('risk-assessment-type-form');
-            if (riskAssessmentForm) {
-                riskAssessmentForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    console.log("Step 1 form submitted");
-                    assessmentType = document.getElementById('assessment-type').value;
-                    console.log("Selected assessment type:", assessmentType);
-                    if (assessmentType) {
-                        currentStep = 2;
-                        updateStep();
-                        populateActivities();
-                    } else {
-                        console.error("No assessment type selected");
-                    }
-                });
-            } else {
-                console.error("Risk assessment form not found");
-            }
-
-            // Step 2: Choose Activities
-            function populateActivities() {
-                console.log("Populating activities for type:", assessmentType);
-                const activityGroups = document.getElementById('activity-groups');
-                if (!activityGroups) {
-                    console.error("Activity groups container not found");
-                    return;
-                }
-
-                // Get existing activities from the DOM
-                const allCheckboxes = activityGroups.querySelectorAll('input[type="checkbox"]');
-                const existingActivities = Array.from(allCheckboxes).map(checkbox => ({
-                    id: checkbox.id,
-                    value: checkbox.value,
-                    checked: checkbox.checked,
-                    label: checkbox.nextElementSibling.textContent
-                }));
-
-                // Filter activities based on the selected assessment type
-                const relevantActivities = activitiesData[assessmentType] || [];
-                console.log("Relevant activities:", relevantActivities);
-
-                // Merge existing activities with relevant ones
-                const mergedActivities = [...existingActivities];
-                relevantActivities.forEach((item, index) => {
-                    const activityValue = item.activity.toLowerCase().replace(/\s+/g, '-');
-                    const existing = mergedActivities.find(activity => activity.value === activityValue);
-                    if (!existing) {
-                        mergedActivities.push({
-                            id: `activity-${activityValue}-${index}`,
-                            value: activityValue,
-                            checked: true,
-                            label: `${item.activity} (Hazard: ${item.hazard})`,
-                            category: item.category,
-                            data: item
-                        });
-                    }
-                });
-
-                // Group activities by category
-                const categories = [...new Set(mergedActivities.map(item => item.category))];
-                activityGroups.innerHTML = '';
-
-                if (categories.length === 0) {
-                    activityGroups.innerHTML = '<p>No activities available for this assessment type.</p>';
-                } else {
-                    categories.forEach(category => {
-                        const categoryActivities = mergedActivities.filter(activity => activity.category === category);
-                        if (categoryActivities.length > 0) {
-                            const details = document.createElement('details');
-                            details.innerHTML = `
-                                <summary>${category}</summary>
-                                <div class="category-content grid grid-cols-1 md:grid-cols-2 gap-2"></div>
-                            `;
-                            const contentDiv = details.querySelector('.category-content');
-                            categoryActivities.forEach(activity => {
-                                const div = document.createElement('div');
-                                div.className = 'checkbox-item';
-                                div.innerHTML = `
-                                    <input type="checkbox" id="${activity.id}" name="activities" value="${activity.value}" ${activity.checked ? 'checked' : ''} class="h-4 w-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500">
-                                    <label for="${activity.id}">${activity.label}</label>
-                                `;
-                                contentDiv.appendChild(div);
-                            });
-                            activityGroups.appendChild(details);
-                        }
-                    });
-                }
-
-                // Enable/disable Next button based on selection
-                const nextButton = document.getElementById('activities-form').querySelector('button[type="submit"]');
-                const checkboxes = document.querySelectorAll('#activities-form input[name="activities"]');
-                const updateNextButton = () => {
-                    const atLeastOneChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
-                    nextButton.disabled = !atLeastOneChecked;
-                    console.log("Next button disabled:", nextButton.disabled);
-                };
-                checkboxes.forEach(checkbox => {
-                    checkbox.addEventListener('change', updateNextButton);
-                });
-                updateNextButton();
-
-                // Search functionality
-                const activitySearch = document.getElementById('activity-search');
-                if (activitySearch) {
-                    activitySearch.addEventListener('input', (e) => {
-                        const searchTerm = e.target.value.toLowerCase();
-                        console.log("Searching for:", searchTerm);
-                        const checkboxItems = document.querySelectorAll('.checkbox-item');
-                        checkboxItems.forEach(item => {
-                            const label = item.querySelector('label').textContent.toLowerCase();
-                            item.style.display = label.includes(searchTerm) ? 'block' : 'none';
-                        });
-
-                        // Hide categories with no visible activities
-                        const detailsElements = document.querySelectorAll('#activity-groups details');
-                        detailsElements.forEach(details => {
-                            const visibleItems = Array.from(details.querySelectorAll('.checkbox-item')).filter(item => item.style.display !== 'none');
-                            details.style.display = visibleItems.length > 0 ? 'block' : 'none';
-                        });
-                    });
-                } else {
-                    console.error("Activity search input not found");
-                }
-            }
-
-            document.getElementById('activities-form').addEventListener('submit', (e) => {
-                e.preventDefault();
-                console.log("Step 2 form submitted");
-                selectedActivities = [];
-                const checkboxes = document.querySelectorAll('#activities-form input[name="activities"]:checked');
-                checkboxes.forEach(checkbox => {
-                    const activityValue = checkbox.value;
-                    const allActivities = Object.values(activitiesData).flat();
-                    const activity = allActivities.find(item => item.activity.toLowerCase().replace(/\s+/g, '-') === activityValue);
-                    if (activity) {
-                        selectedActivities.push({ ...activity, rating: '' });
-                    }
-                });
-                console.log("Selected activities:", selectedActivities);
-                currentStep = 3;
-                updateStep();
-                populateRatings();
-            });
-
-            // Step 3: Assign Ratings
-            function populateRatings() {
-                console.log("Populating ratings for selected activities:", selectedActivities);
-                const tbody = document.getElementById('ratings-table-body');
-                tbody.innerHTML = '';
-                selectedActivities.forEach((activity, index) => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${activity.activity}</td>
-                        <td>${activity.hazard}</td>
-                        <td>${activity.risk}</td>
-                        <td>${activity.controls}</td>
-                        <td>${activity.legal}</td>
-                        <td>
-                            <select name="rating-${index}" required>
-                                <option value="" disabled selected>Select rating</option>
-                                <option value="High">High</option>
-                                <option value="Medium">Medium</option>
-                                <option value="Low">Low</option>
-                            </select>
-                        </td>
-                    `;
-                    tbody.appendChild(row);
-                });
-
-                // Enable/disable Next button based on ratings
-                const nextButton = document.getElementById('ratings-form').querySelector('button[type="submit"]');
-                const selects = document.querySelectorAll('#ratings-form select');
-                const updateNextButton = () => {
-                    const allSelected = Array.from(selects).every(select => select.value !== '');
-                    nextButton.disabled = !allSelected;
-                    console.log("Ratings Next button disabled:", nextButton.disabled);
-                };
-                selects.forEach(select => {
-                    select.addEventListener('change', updateNextButton);
-                });
-                updateNextButton();
-            }
-
-            document.getElementById('ratings-form').addEventListener('submit', (e) => {
-                e.preventDefault();
-                console.log("Step 3 form submitted");
-                selectedActivities.forEach((activity, index) => {
-                    activity.rating = document.querySelector(`select[name="rating-${index}"]`).value;
-                });
-                currentStep = 4;
-                updateStep();
-                populateReview();
-            });
-
-            // Step 4: Review and Customize
-            function populateReview() {
-                console.log("Populating review table with activities:", selectedActivities);
-                const tbody = document.getElementById('review-table-body');
-                tbody.innerHTML = '';
-                selectedActivities.forEach(activity => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${activity.activity}</td>
-                        <td>${activity.hazard}</td>
-                        <td>${activity.risk}</td>
-                        <td>${activity.controls}</td>
-                        <td>${activity.legal}</td>
-                        <td>${activity.rating}</td>
-                    `;
-                    tbody.appendChild(row);
-                });
-
-                // Show compliance note if applicable
-                const complianceNote = document.querySelector('.compliance-note');
-                if (assessmentType === 'baseline') {
-                    complianceNote.classList.remove('hidden');
-                } else {
-                    complianceNote.classList.add('hidden');
-                }
-            }
-
-           document.getElementById('review-form').addEventListener('submit', (e) => {
-                e.preventDefault();
-                console.log("Step 4 form submitted");
-                // Basic validation for required fields
-                const siteName = document.getElementById('site-name').value.trim();
-                if (!siteName) {
-                    alert('Please enter a Site/Project Name.');
-                    return;
-                }
-                generatePDF();
-                currentStep = 5;
-                updateStep();
-            });
-
-            // Step 5: Guidance
-            document.getElementById('download-again').addEventListener('click', (e) => {
-                e.preventDefault();
-                console.log("Downloading PDF again");
-                generatePDF();
-            });
-
-            document.getElementById('start-new').addEventListener('click', (e) => {
-                e.preventDefault();
-                console.log("Starting new assessment");
-                currentStep = 1;
-                assessmentType = '';
-                selectedActivities = [];
-                updateStep();
-                // Reset form fields
-                document.getElementById('review-form').reset();
-                document.getElementById('activity-search').value = '';
-                populateActivities();
-            });
-
-            // Back Buttons
-            document.querySelectorAll('.back-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    console.log("Back button clicked, current step:", currentStep);
-                    currentStep--;
-                    updateStep();
-                    if (currentStep === 2) populateActivities();
-                    if (currentStep === 3) populateRatings();
-                    if (currentStep === 4) populateReview();
-                });
-            });
-
-            // Update Step Display
-            function updateStep() {
-                console.log("Updating step to:", currentStep);
-                document.querySelectorAll('.step').forEach(step => step.classList.add('hidden'));
-                const stepElement = document.getElementById(`step-${currentStep}`);
-                if (stepElement) {
-                    stepElement.classList.remove('hidden');
-                } else {
-                    console.error(`Step element not found for step-${currentStep}`);
-                }
-            }
-
-            // Generate PDF
-            function generatePDF() {
-                console.log("Generating PDF");
-                const { jsPDF } = window.jspdf;
-                const doc = new jsPDF();
-                let yOffset = 10;
-
-                // Title
-                doc.setFontSize(16);
-                doc.text('Risk Assessment Report', 10, yOffset);
-                yOffset += 10;
-
-                // Site/Project Details
-                doc.setFontSize(12);
-                doc.text('Site/Project Details', 10, yOffset);
-                yOffset += 5;
-                doc.text(`Name: ${document.getElementById('site-name').value}`, 10, yOffset);
-                yOffset += 5;
-                doc.text(`Address: ${document.getElementById('site-address').value || 'N/A'}`, 10, yOffset);
-                yOffset += 5;
-                doc.text(`Location: ${document.getElementById('site-location').value || 'N/A'}`, 10, yOffset);
-                yOffset += 10;
-
-                // Conducted By
-                doc.text('Conducted By', 10, yOffset);
-                yOffset += 5;
-                doc.text(`Name: ${document.getElementById('conductor-name').value || 'N/A'}`, 10, yOffset);
-                yOffset += 5;
-                doc.text(`Role: ${document.getElementById('conductor-role').value || 'N/A'}`, 10, yOffset);
-                yOffset += 5;
-                doc.text(`Email: ${document.getElementById('conductor-email').value || 'N/A'}`, 10, yOffset);
-                yOffset += 5;
-                doc.text(`Phone: ${document.getElementById('conductor-phone').value || 'N/A'}`, 10, yOffset);
-                yOffset += 10;
-
-                // Conducted For
-                doc.text('Conducted For', 10, yOffset);
-                yOffset += 5;
-                doc.text(`Company: ${document.getElementById('company-name').value || 'N/A'}`, 10, yOffset);
-                yOffset += 5;
-                doc.text(`Contact: ${document.getElementById('company-contact').value || 'N/A'}`, 10, yOffset);
-                yOffset += 5;
-                doc.text(`Role: ${document.getElementById('company-role').value || 'N/A'}`, 10, yOffset);
-                yOffset += 5;
-                doc.text(`Details: ${document.getElementById('company-details').value || 'N/A'}`, 10, yOffset);
-                yOffset += 10;
-
-                // Additional Notes
-                const customNotes = document.getElementById('custom-notes').value;
-                if (customNotes) {
-                    doc.text('Additional Notes', 10, yOffset);
-                    yOffset += 5;
-                    doc.text(customNotes, 10, yOffset, { maxWidth: 190 });
-                    yOffset += doc.splitTextToSize(customNotes, 190).length * 5 + 10;
-                }
-
-                // Risk Assessment Table
-                doc.text('Risk Assessment Details', 10, yOffset);
-                yOffset += 5;
-                doc.autoTable({
-                    startY: yOffset,
-                    head: [['Activity', 'Hazard', 'Risk', 'Control Measures', 'Legal Reference', 'Rating']],
-                    body: selectedActivities.map(activity => [
-                        activity.activity,
-                        activity.hazard,
-                        activity.risk,
-                        activity.controls,
-                        activity.legal,
-                        activity.rating
-                    ]),
-                    theme: 'striped',
-                    headStyles: { fillColor: [0, 123, 255] },
-                    styles: { fontSize: 10 }
-                });
-
-                doc.save(`${document.getElementById('site-name').value || 'RiskAssessment'}.pdf`);
-            }
-        });
-
-        // Firebase and Chatbot
-        const firebaseConfig = {
-            apiKey: "AIzaSyDlzylJ0WF_WMZQA2bJeqbzkEMhihYcZW0",
-            authDomain: "safety-first-chatbot.firebaseapp.com",
-            projectId: "safety-first-chatbot",
-            storageBucket: "safety-first-chatbot.firebasestorage.app",
-            messagingSenderId: "741489856541",
-            appId: "1:741489856541:web:0833fa5deb60dd54c9b6f4",
-            measurementId: "G-04Y1PQDYVD"
-        };
-
-        let db;
-
-        try {
-            firebase.initializeApp(firebaseConfig);
-            db = firebase.firestore();
-            console.log("Firebase Initialized Successfully");
-        } catch (error) {
-            console.error("Firebase initialization failed:", error);
-            const chatOutput = document.getElementById('chat-output');
-            if (chatOutput) {
-                chatOutput.innerHTML += "<p class='text-red-600'><strong>Error:</strong> Chatbot unavailable due to configuration issue.</p>";
-            }
-            const chatInput = document.getElementById('chat-input');
-            const chatSend = document.getElementById('chat-send');
-            if (chatInput) chatInput.disabled = true;
-            if (chatSend) chatSend.disabled = true;
-        }
-
-        const chatToggle = document.getElementById('chat-toggle');
-        const chatWindow = document.getElementById('chat-window');
-        const chatOutput = document.getElementById('chat-output');
-        const chatInput = document.getElementById('chat-input');
-        const chatSend = document.getElementById('chat-send');
-
-        if (chatToggle) {
-            chatToggle.addEventListener('click', () => {
-                chatWindow.classList.toggle('chat-hidden');
-                if (!chatWindow.classList.contains('chat-hidden')) {
-                    chatInput.focus();
-                }
-            });
-        }
-
-        function addChatMessage(sender, message) {
-            if (chatOutput) {
-                const messageElement = document.createElement('p');
-                messageElement.classList.add('mb-2');
-                messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
-                chatOutput.appendChild(messageElement);
-                chatOutput.scrollTop = chatOutput.scrollHeight;
-            }
-        }
-
-        async function sendQuery() {
-            if (!db) {
-                addChatMessage('Chatbot', 'Sorry, the chatbot is currently unavailable.');
-                return;
-            }
-
-            const input = chatInput.value.trim();
-            if (!input) return;
-
-            addChatMessage('You', input);
-            chatInput.value = '';
-            addChatMessage('Chatbot', 'Searching...');
-
-            const query = input.toLowerCase();
-
-            try {
-                const snapshot = await db.collection('ohs-knowledge')
-                    .where('keywords', 'array-contains', query)
-                    .limit(1)
-                    .get();
-
-                let responseFound = false;
-                let response = "Sorry, I couldn’t find specific information on that topic. Please try rephrasing or ask a different question.";
-
-                if (!snapshot.empty) {
-                    snapshot.forEach(doc => {
-                        const data = doc.data();
-                        response = `Based on information from ${data.book || 'our resources'} (Chapter ${data.chapter || 'N/A'}), here's a summary: <br>${data.content.substring(0, 250)}...`;
-                        if (data.file) {
-                            response += ` (See <a href="/safety-plans/resources/${data.file}" target="_blank" class="text-blue-500 hover:underline">full chapter</a>)`;
-                        }
-                        responseFound = true;
-                    });
-                }
-
-                const searchingMessage = chatOutput.querySelector('p:last-child');
-                if(searchingMessage && searchingMessage.textContent.includes('Searching...')) {
-                    searchingMessage.innerHTML = `<strong>Chatbot:</strong> ${response}`;
-                } else {
-                    addChatMessage('Chatbot', response);
-                }
-            } catch (error) {
-                console.error("Firestore query failed:", error);
-                const searchingMessage = chatOutput.querySelector('p:last-child');
-                if(searchingMessage && searchingMessage.textContent.includes('Searching...')) {
-                    searchingMessage.innerHTML = `<strong>Chatbot:</strong> Oops, something went wrong while searching. Please try again!`;
-                } else {
-                    addChatMessage('Chatbot', 'Oops, something went wrong while searching. Please try again!');
-                }
-            }
-        }
-
-        if (chatSend) {
-            chatSend.addEventListener('click', sendQuery);
-        }
-        if (chatInput) {
-            chatInput.addEventListener('keypress', (event) => {
-                if (event.key === 'Enter') {
-                    sendQuery();
-                }
-            });
-        }
-
-        // Adjust Layout
-        window.addEventListener('load', adjustLayout);
-        window.addEventListener('resize', adjustLayout);
-        function adjustLayout() {
-            const headerHeight = document.querySelector('header').offsetHeight || 0;
-            const sidebar = document.querySelector('.sidebar');
-            const mainContent = document.querySelector('.main-content');
-            if (sidebar && mainContent) {
-                sidebar.style.top = `${headerHeight}px`;
-                sidebar.style.height = `calc(100vh - ${headerHeight}px)`;
-                mainContent.style.marginLeft = `${sidebar.offsetWidth}px`;
-                mainContent.style.paddingTop = `${headerHeight}px`;
-                mainContent.style.minHeight = `calc(100vh - ${headerHeight}px)`;
-            }
-        }
-
-        // Ensure content updates after dynamic DOM changes
-        function updateContent() {
-            document.querySelectorAll('[data-i18n]').forEach(element => {
-                const key = element.getAttribute('data-i18n');
-                const translation = i18next.t(key);
-                if (translation === key) {
-                    console.warn(`Translation missing for key: ${key}`);
-                }
-                element.innerHTML = translation; // Use innerHTML to render HTML content in translations
-                console.log(`Translating ${key} to ${translation}`);
-            });
-        }
-    </script>
+  }
+  
+  window.onload = function() {
+    setupMilestonesSidebar(); 
+    if (chatWindow) chatWindow.classList.add('chat-hidden');
+    if (chatToggleBtn) chatToggleBtn.style.display = 'flex'; 
+    // The risk-assessment.js should handle its own i18next initialization and specific UI logic.
+  };
+</script>
 </body>
-</html> 
+</html>
