@@ -1,605 +1,1102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SafetyHelp | Resources</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <style>
-    /* Reset & Base */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { 
-      height: 100%; 
-      font-family: 'Montserrat', sans-serif; 
-      background: #E8F0FE; 
-      color: #333; 
-      display: flex;
-      flex-direction: column;
-    }
-    a { text-decoration: none; color: inherit; }
-
-    /* Header */
-    header { 
-      background: #007BFF; 
-      color: #fff; 
-      padding: 0.8rem 2rem; 
-      display: flex; 
-      align-items: center; 
-      justify-content: space-between; 
-      flex-shrink: 0;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    .logo-container {
-      display: flex;
-      align-items: center;
-      color: #fff; 
-    }
-    .logo-container img {
-        height: 40px; 
-        margin-right: 10px;
-    }
-    .logo { font-weight: 700; font-size: 1.75rem; letter-spacing: -0.025em; } 
-    .logo .help { font-weight: 900; color: #FF8C00; }
-    nav { display: flex; gap: 0.5rem; }
-    nav a { 
-      color: white; 
-      font-weight: 500; 
-      padding: 0.6rem 1rem; 
-      border-radius: 6px; 
-      transition: background-color 0.3s ease, transform 0.2s ease;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      border: 1px solid transparent; 
-    }
-    nav a:hover { 
-      background-color: rgba(255,255,255,0.15); 
-      transform: translateY(-2px);
-      border-color: rgba(255,255,255,0.3);
-    }
-    nav a .nav-icon {
-        font-size: 0.9em;
-    }
-    .search-language { display: flex; align-items: center; gap: 1rem; }
-    .search-language input { padding: 0.6rem; border: 1px solid #ddd; border-radius: 6px; font-family: 'Montserrat', sans-serif; }
-    .search-language select { padding: 0.6rem; border-radius: 6px; border: 1px solid #ddd; font-family: 'Montserrat', sans-serif; }
-
-    /* Welcome / Page Title Area */
-    .page-title-section { 
-      background: #F3F4F6; 
-      padding: 1.5rem 2rem; 
-      text-align: center; 
-      border-bottom: 1px solid #e0e0e0;
-      flex-shrink: 0;
-    }
-    .page-title-section h1 { font-size: 2.2rem; color: #1f2937; margin-bottom: 0.5rem; }
-    .page-title-section .slogan { font-size: 1.1rem; color: #FF8C00; font-weight: 600; margin-bottom: 0.5rem;}
-    .page-title-section p { font-size: 1rem; color: #374151; max-width: 800px; margin-left: auto; margin-right: auto; }
-
-    /* Layout */
-    .page-content {
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-      overflow: hidden;
-    }
-    .container { 
-      display: grid; 
-      grid-template-columns: 1fr 3fr 1fr; 
-      flex-grow: 1; 
-      overflow: hidden; 
-      min-height: 0;
-      gap: 1rem; 
-      padding: 1rem; 
-    }
-    
-    .sidebar-tools, .sidebar-milestones { 
-      background: #fff; 
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden; 
-    }
-    .sidebar-heading {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: #007BFF;
-      padding: 1rem;
-      border-bottom: 1px solid #e5e7eb;
-      background-color: #f9f9f9;
-      flex-shrink: 0;
-      border-top-left-radius: 8px;
-      border-top-right-radius: 8px;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .sidebar-heading .heading-icon { color: #FF8C00; }
-
-    .sidebar-list-container {
-        flex-grow: 1;
-        overflow: hidden; 
-        position: relative; 
-    }
-
-    .sidebar-tools ul, .sidebar-milestones ul { 
-      list-style: none; 
-      padding: 0;
-      margin: 0;
-    }
-
-    @keyframes alternatingScrollUp {
-        0% { transform: translateY(0%); }
-        100% { transform: translateY(-50%); }
-    }
-    @keyframes alternatingScrollDown {
-        0% { transform: translateY(-50%); } 
-        100% { transform: translateY(0%); }
-    }
-
-    .sidebar-tools ul { 
-        animation: alternatingScrollDown 45s linear infinite alternate; 
-    }
-    .sidebar-milestones ul { 
-        animation: alternatingScrollUp 40s linear infinite alternate; 
-    }
-    
-    .sidebar-tools:hover ul, .sidebar-milestones:hover ul {
-        animation-play-state: paused;
-    }
-
-    .sidebar-tools li, .sidebar-milestones li { 
-      padding: 0; 
-      border-bottom: 1px solid #e5e7eb; 
-      cursor: pointer; 
-      display: flex; 
-    }
-    .sidebar-tools li a, .sidebar-milestones li { 
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-size: 0.9rem;
-      padding: 0.85rem 1rem; 
-      width: 100%; 
-      transition: background-color 0.3s ease;
-      color: #333; 
-    }
-    .sidebar-tools li a:hover, .sidebar-milestones li:hover { 
-        background: #e8f0fe; 
-    }
-     .sidebar-tools li a .list-icon, .sidebar-milestones li .list-icon { 
-        color: #007BFF;
-        font-size: 1em;
-        width: 20px; 
-        text-align: center;
-    }
-    
-    /* Main content specific to Resources Page */
-    .main-resources { 
-      padding: 1rem; /* Add padding if needed, or rely on container */
-      overflow-y: auto; 
-      background-color: #fff; /* White background for the main content area */
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
-    .main-resources h2 {
-        font-size: 1.8rem;
-        color: #0056b3;
-        margin-bottom: 1rem;
-        padding-bottom: 0.5rem;
-        border-bottom: 2px solid #FF8C00;
-    }
-    .main-resources .resource-category {
-        margin-bottom: 2rem;
-    }
-    .main-resources .resource-category h3 {
-        font-size: 1.4rem;
-        color: #007BFF;
-        margin-bottom: 0.75rem;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-    .main-resources .resource-category h3 .category-icon {
-        color: #FF8C00;
-    }
-    .resource-item {
-        background-color: #f9f9f9;
-        padding: 1rem;
-        border-radius: 6px;
-        margin-bottom: 1rem;
-        border: 1px solid #e0e0e0;
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-    @media (min-width: 768px) {
-      .resource-item {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-      }
-    }
-    .resource-item-info {
-        flex-grow: 1;
-    }
-    .resource-item-info h4 {
-        font-size: 1.1rem;
-        color: #333;
-        font-weight: 600;
-        margin-bottom: 0.25rem;
-    }
-    .resource-item-info p {
-        font-size: 0.9rem;
-        color: #555;
-        line-height: 1.4;
-    }
-    .resource-item .btn-resource {
-        padding: 0.6rem 1.2rem;
-        background-color: #FF8C00;
-        color: white;
-        border-radius: 5px;
-        text-decoration: none;
-        font-weight: 500;
-        transition: background-color 0.3s ease;
-        display: inline-flex; /* For icon alignment */
-        align-items: center;
-        gap: 0.5rem;
-        margin-top: 0.5rem; /* For mobile stacking */
-    }
-    .resource-item .btn-resource:hover {
-        background-color: #e07b00;
-    }
-    .resource-item .btn-resource .btn-icon {
-        font-size: 0.9em;
-    }
-    
-    /* Footer */
-    footer {
-      background: #343a40; 
-      color: #adb5bd; 
-      text-align: center;
-      padding: 1.5rem 2rem;
-      font-size: 0.9rem;
-      flex-shrink: 0;
-      border-top: 3px solid #FF8C00;
-    }
-    footer p { margin-bottom: 0.5rem; }
-    footer a { color: #FF8C00; transition: color 0.3s ease; }
-    footer a:hover { color: #fff; }
-    
-    /* Modal Styles (Copied from indexCGPTSH_updated) */
-    .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); padding-top: 60px; }
-    .modal-content { background-color: #fefefe; margin: 5% auto; padding: 25px; border: 1px solid #888; width: 80%; max-width: 600px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative; }
-    .modal-header { padding-bottom: 10px; border-bottom: 1px solid #eee; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
-    .modal-header h4 { margin: 0; font-size: 1.4rem; color: #007BFF; }
-    .close-btn { color: #aaa; font-size: 28px; font-weight: bold; cursor: pointer; transition: color 0.3s; }
-    .close-btn:hover, .close-btn:focus { color: #333; text-decoration: none; }
-    .modal-body p { font-size: 1rem; line-height: 1.6; margin-bottom: 1rem; }
-    .modal-body strong { color: #333; }
-    .modal-body ul { list-style-type: disc; margin-left: 20px; margin-bottom: 1rem;}
-    .modal-footer { padding-top: 15px; border-top: 1px solid #eee; margin-top: 20px; text-align: right; }
-    .modal-footer button { background-color: #6c757d; color:white; border:none; padding: 0.7rem 1.3rem; border-radius:6px; cursor:pointer; } 
-    .modal-footer button:hover { background-color: #5a6268; }
-
-    /* Chatbot Styles (Copied from indexCGPTSH_updated) */
-    .chatbot-container { position: fixed; bottom: 20px; right: 20px; z-index: 1050; }
-    #chat-toggle { background-color: #FF8C00; color: white; border: none; border-radius: 50%; width: 60px; height: 60px; font-size: 1.8rem; box-shadow: 0 4px 8px rgba(0,0,0,0.2); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background-color 0.3s ease, transform 0.3s ease; }
-    #chat-toggle:hover { background-color: #e07b00; transform: scale(1.1); }
-    #chat-window { width: 320px; max-height: 450px; background-color: #fff; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); display: flex; flex-direction: column; overflow: hidden; transition: opacity 0.3s ease, transform 0.3s ease; position: absolute; bottom: 75px; right: 0; opacity: 0; transform: translateY(10px); pointer-events: none; }
-    #chat-window.chat-expanded { opacity: 1; transform: translateY(0); pointer-events: auto; }
-    .chat-hidden { display: none !important; }
-    #chat-header { background-color: #007BFF; color: white; padding: 10px 15px; font-weight: 600; border-top-left-radius: 10px; border-top-right-radius: 10px; display: flex; justify-content: space-between; align-items: center; }
-    #chat-header .close-chat-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; }
-    #chat-output { flex-grow: 1; padding: 15px; overflow-y: auto; font-size: 0.9rem; background-color: #f9f9f9; }
-    #chat-output p { margin-bottom: 0.8rem; line-height: 1.4; }
-    #chat-output p strong { color: #007BFF; }
-    #chat-output p strong:first-child { color: #FF8C00; } 
-    #chat-input-container { display: flex; border-top: 1px solid #eee; padding: 10px; background-color: #fff; }
-    #chat-input { flex-grow: 1; padding: 0.7rem; border: 1px solid #ddd; border-radius: 6px; margin-right: 8px; font-family: 'Montserrat', sans-serif; }
-    #chat-send { background-color: #007BFF; color: white; padding: 0.7rem 1rem; border: none; border-radius: 6px; cursor: pointer; font-weight: 500; transition: background-color 0.3s ease; }
-    #chat-send:hover { background-color: #0056b3; }
-
-  </style>
-</head><body>
-  <header>
-    <a href="/SafetyHelp/index.html" class="logo-container"> 
-        <div class="logo">Safety<span class="help">Help</span></div>
-    </a>
-    <nav>
-      <a href="/SafetyHelp/index.html"><i class="fas fa-home nav-icon"></i>Home</a>
-      <a href="/SafetyHelp/resources.html" style="background-color: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.3);"><i class="fas fa-book nav-icon"></i>Resources</a>
-      <a href="/SafetyHelp/services.html"><i class="fas fa-concierge-bell nav-icon"></i>Services</a>
-      <a href="/SafetyHelp/community.html"><i class="fas fa-users nav-icon"></i>Community</a>
-      <a href="/SafetyHelp/about.html"><i class="fas fa-info-circle nav-icon"></i>About</a>
-      <a href="/SafetyHelp/contact.html"><i class="fas fa-envelope nav-icon"></i>Contact</a>
-      <a href="/SafetyHelp/login.html"><i class="fas fa-sign-in-alt nav-icon"></i>SignUp / Login</a>
-    </nav>
-    <div class="search-language">
-      <input type="text" placeholder="Search...">
-      <select>
-        <option>English</option>
-        <option>isiXhosa</option>
-        <option>Afrikaans</option>
-      </select>
-    </div>
-  </header>
-
-  <div class="page-title-section">
-    <h1>OHS Resources</h1>
-    <p>Access a wide range of occupational health and safety (OHS) resources to support your safety initiatives. SafetyHelp offers book chapters, downloadable templates, legislation links, training materials, and community-contributed guides to empower workplaces, schools, churches, and informal sectors in South Africa with the tools they need to ensure safety and compliance.</p>
-  </div>
-
-<div class="page-content">
-  <div class="container">
-    <aside class="sidebar-tools">
-      <h3 class="sidebar-heading"><i class="fas fa-tools heading-icon"></i>SafetyHelp Tools</h3>
-      <div class="sidebar-list-container">
-        <ul id="safetyhelp-tools-list">
-          <li><a href="/SafetyHelp/pages/construction-compliance.html" data-detail="Comprehensive safety management for construction projects, ensuring compliance with regulations."><i class="fas fa-hard-hat list-icon"></i>Construction Safety</a></li>
-          <li><a href="/SafetyHelp/pages/emergency-response-plan.html" data-detail="Develop and implement effective emergency preparedness and response plans."><i class="fas fa-bell list-icon"></i>Emergency Planning</a></li>
-          <li><a href="/SafetyHelp/pages/risk-assessment.html" data-detail="Identify, analyze, and control workplace hazards with our systematic risk assessment tools."><i class="fas fa-shield-alt list-icon"></i>Risk Assessment</a></li>
-          <li><a href="/SafetyHelp/pages/legal-appointments.html" data-detail="Manage and document all legally required OHS appointments for your organization."><i class="fas fa-gavel list-icon"></i>Legal Appointments</a></li>
-          <li><a href="/SafetyHelp/pages/incident-management.html" data-detail="Streamline the reporting, investigation, and prevention of workplace incidents."><i class="fas fa-file-medical-alt list-icon"></i>Incident Management</a></li>
-          <li><a href="/SafetyHelp/pages/training.html" data-detail="Access and manage OHS training programs and records for your workforce."><i class="fas fa-graduation-cap list-icon"></i>Training</a></li>
-          <li><a href="/SafetyHelp/pages/inspections-audits.html" data-detail="Conduct thorough workplace inspections and audits to ensure safety standards are met."><i class="fas fa-clipboard-check list-icon"></i>Inspections & Audits</a></li>
-          <li><a href="/SafetyHelp/pages/suppliers.html" data-detail="Manage OHS information and compliance for your suppliers and contractors."><i class="fas fa-truck list-icon"></i>Suppliers</a></li>
-          <li><a href="/SafetyHelp/pages/legislation.html" data-detail="Stay updated with the latest OHS acts, regulations, and legal requirements."><i class="fas fa-balance-scale list-icon"></i>Legislation</a></li>
-          <li><a href="/SafetyHelp/pages/community-tools.html" data-detail="Engage with the OHS community, share resources, and access forums."><i class="fas fa-users list-icon"></i>Community Tools</a></li>
-          <li><a href="/SafetyHelp/member-dashboard.html" data-detail="Your personalized dashboard for managing OHS activities, tracking progress, and accessing key information."><i class="fas fa-tachometer-alt list-icon"></i>Member Dashboard</a></li>
-          <li><a href="/SafetyHelp/pages/ohs-system.html" data-detail="Explore various modules to build and maintain a comprehensive OHS system."><i class="fas fa-cogs list-icon"></i>OHS System Modules</a></li>
-        </ul>
-      </div>
-    </aside>
-
-    <main class="main-resources">
-        <h2>Explore Our Resources</h2>
-
-        <div class="resource-category">
-            <h3><i class="fas fa-book-open category-icon"></i>Book Chapters</h3>
-            <div class="resource-item">
-                <div class="resource-item-info">
-                    <h4>Safety First: The Essentials of OHS Plans - Chapter 1</h4>
-                    <p>An introduction to the fundamental concepts and importance of OHS plans in the workplace.</p>
-                </div>
-                <a href="/SafetyHelp/resources/book-safetyplans-ch1.html" class="btn-resource"><i class="fas fa-eye btn-icon"></i>Read Chapter</a>
-            </div>
-            <div class="resource-item">
-                <div class="resource-item-info">
-                    <h4>Safety First: Essentials for Your OHS Career Journey - Chapter 9</h4>
-                    <p>Practical tips and strategies for advancing your career in the occupational health and safety field.</p>
-                </div>
-                <a href="/SafetyHelp/resources/book-safetycareer-ch9.html" class="btn-resource"><i class="fas fa-eye btn-icon"></i>Read Chapter</a>
-            </div>
-        </div>
-
-        <div class="resource-category">
-            <h3><i class="fas fa-file-alt category-icon"></i>Templates</h3>
-            <div class="resource-item">
-                <div class="resource-item-info">
-                    <h4>Risk Assessment Template (General)</h4>
-                    <p>A downloadable template to guide your general workplace risk assessments. (Format: DOCX)</p>
-                </div>
-                <a href="/SafetyHelp/resources/templates/risk-assessment-general.docx" download class="btn-resource"><i class="fas fa-download btn-icon"></i>Download</a>
-            </div>
-            <div class="resource-item">
-                <div class="resource-item-info">
-                    <h4>Emergency Response Plan Template</h4>
-                    <p>A customizable template for creating an emergency response plan for your workplace. (Format: PDF)</p>
-                </div>
-                <a href="/SafetyHelp/resources/templates/emergency-response-plan.pdf" download class="btn-resource"><i class="fas fa-download btn-icon"></i>Download</a>
-            </div>
-        </div>
-
-        <div class="resource-category">
-            <h3><i class="fas fa-balance-scale-left category-icon"></i>Legislation</h3>
-            <div class="resource-item">
-                <div class="resource-item-info">
-                    <h4>Occupational Health and Safety Act 85 of 1993</h4>
-                    <p>Direct link to the primary South African legislation governing workplace health and safety.</p>
-                </div>
-                <a href="https://www.gov.za/documents/occupational-health-and-safety-act" target="_blank" rel="noopener noreferrer" class="btn-resource"><i class="fas fa-external-link-alt btn-icon"></i>View Act</a>
-            </div>
-        </div>
-
-        <div class="resource-category">
-            <h3><i class="fas fa-chalkboard-teacher category-icon"></i>Training Materials</h3>
-            <div class="resource-item">
-                <div class="resource-item-info">
-                    <h4>Basic OHS Training Guide for Informal Sectors</h4>
-                    <p>A beginner-friendly guide to introduce OHS practices in informal workplaces like spaza shops.</p>
-                </div>
-                <a href="/SafetyHelp/resources/training/ohs-informal-guide.pdf" download class="btn-resource"><i class="fas fa-download btn-icon"></i>Download</a>
-            </div>
-        </div>
-
-        <div class="resource-category">
-            <h3><i class="fas fa-users-cog category-icon"></i>Community Guides</h3>
-            <div class="resource-item">
-                <div class="resource-item-info">
-                    <h4>Safety Checklist for Schools and Churches</h4>
-                    <p>A community-contributed checklist for ensuring safety in public spaces like schools and churches.</p>
-                </div>
-                <a href="/SafetyHelp/resources/community/safety-checklist-schools-churches.pdf" download class="btn-resource"><i class="fas fa-download btn-icon"></i>Download</a>
-            </div>
-        </div>
-
-    </main>
-
-    <aside class="sidebar-milestones">
-      <h3 class="sidebar-heading"><i class="fas fa-flag-checkered heading-icon"></i>OHS Milestones</h3>
-      <div class="sidebar-list-container">
-        <ul id="ohs-milestones-list">
-          <li data-detail="The Occupational Safety and Health Act was enacted in the USA, establishing standards for workplace safety and influencing global OHS practices."><i class="fas fa-landmark list-icon"></i>1970: OSHA (USA)</li>
-          <li data-detail="South Africa's Occupational Health and Safety Act No. 85 of 1993 was established, laying the groundwork for current OHS practices and emphasizing employer responsibility."><i class="fas fa-landmark list-icon"></i>1993: OHS Act (SA)</li>
-          <li data-detail="The Compensation for Occupational Injuries and Diseases Act (COIDA) was amended, refining worker compensation and rehabilitation processes."><i class="fas fa-landmark list-icon"></i>2003: COIDA Amendment (SA)</li>
-          <li data-detail="Specific regulations for construction work were updated in South Africa, enhancing safety on construction sites through detailed requirements for planning and execution."><i class="fas fa-landmark list-icon"></i>2014: Construction Regs (SA)</li>
-          <li data-detail="Adoption of the Globally Harmonized System (GHS) for classification and labeling of chemicals, promoting international consistency in hazard communication."><i class="fas fa-landmark list-icon"></i>2015: Global Harmonization (GHS)</li>
-          <li data-detail="Global and national directives for managing COVID-19 in the workplace were introduced, highlighting the importance of infectious disease preparedness."><i class="fas fa-landmark list-icon"></i>2020: COVID-19 Protocols</li>
-          <li data-detail="Increased emphasis on psychological health and safety in workplaces, recognizing mental well-being as a critical component of OHS."><i class="fas fa-landmark list-icon"></i>2022: Mental Health Focus</li>
-          <li data-detail="Ongoing development towards using AI and big data for predictive safety analytics and proactive risk mitigation, aiming to prevent incidents before they occur."><i class="fas fa-landmark list-icon"></i>Future: Predictive Safety & AI</li>
-        </ul>
-      </div>
-    </aside>
-  </div>
-
-</div> <footer>
-  <p>&copy; <span id="copyright-year"></span> SafetyHelp (Pty) Ltd. All rights reserved. Your Partner in Occupational Health and Safety.</p>
-  <p><a href="/SafetyHelp/privacy.html">Privacy Policy</a> | <a href="/SafetyHelp/terms.html">Terms of Service</a> | <a href="/SafetyHelp/contact.html">Contact Us</a></p> 
-</footer>
-
-<div id="infoModal" class="modal">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h4 id="modalTitle">Milestone Detail</h4>
-      <span class="close-btn" onclick="closeModal()">&times;</span>
-    </div>
-    <div class="modal-body" id="modalBody">
-      </div>
-    <div class="modal-footer" id="modalFooter">
-      <button onclick="closeModal()"><i class="fas fa-times btn-icon"></i>Close</button>
-    </div>
-  </div>
-</div>
-
-<div class="chatbot-container">
-    <div id="chat-window" class="chat-hidden"> 
-        <div id="chat-header">
-            <span>Salatiso - Your OHS Assistant</span>
-            <button class="close-chat-btn" onclick="toggleChatbot(false)">&times;</button>
-        </div>
-        <div id="chat-output">
-            <p><strong>Salatiso:</strong> Hello! How can I help you with OHS today?</p>
-        </div>
-        <div id="chat-input-container">
-            <input id="chat-input" type="text" placeholder="Ask about OHS...">
-            <button id="chat-send"><i class="fas fa-paper-plane"></i></button>
-        </div>
-    </div>
-    <button id="chat-toggle" onclick="toggleChatbot()">
-        <i class="fas fa-headset"></i> 
-    </button>
-</div>
-
-
-<script>
-  // Set current year in footer
-  document.getElementById('copyright-year').textContent = new Date().getFullYear();
-
-  // --- Sidebar Auto-Scrolling & Item Click ---
-  function setupScrollingSidebar(listId) {
-    const listElement = document.getElementById(listId);
-    if (!listElement || listElement.children.length === 0) return;
-
-    const originalItems = Array.from(listElement.children);
-    originalItems.forEach(item => {
-        const clone = item.cloneNode(true);
-        if (listId === 'ohs-milestones-list') {
-             clone.addEventListener('click', () => showMilestoneDetail(clone));
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafetyHelp OHS Resources</title> <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&family=Epilogue:wght@400;500;700;900&family=Noto+Sans:wght@400;500;700;900" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_6_319)'%3E%3Cpath d='M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4987 36.3314 44.1494 32.3462C45.8002 28.361 46.2321 23.9758 45.3905 19.7452C44.549 15.5145 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z' fill='%231c180d'%3E%3C/path%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_6_319'%3E%3Crect width='48' height='48' fill='white'%3E%3C/rect%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E">
+    <style>
+        :root {
+            --bg-main: #fcfbf8;
+            --text-dark: #1c180d;
+            --text-muted: #9e8747;
+            --accent-primary: #fac638;
+            --accent-secondary: #f4f0e6;
+            --border-color: #f4f0e6;
+            --text-on-accent: #1c180d;
+            --text-white: #ffffff;
         }
-        // For safetyhelp-tools-list, the <a> tag handles navigation.
-        listElement.appendChild(clone);
-    });
-    
-     originalItems.forEach(item => {
-        if (listId === 'ohs-milestones-list') {
-            item.addEventListener('click', () => showMilestoneDetail(item));
+
+        body {
+            font-family: 'Epilogue', 'Noto Sans', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
-    });
-  }
 
-  // --- Modal Functionality ---
-  const modal = document.getElementById('infoModal');
-  function showMilestoneDetail(element) {
-    const title = element.textContent.trim().replace(/^.*? /,''); 
-    const detail = element.dataset.detail || "More information about this milestone will be available soon.";
-    document.getElementById('modalTitle').textContent = `OHS Milestone: ${title}`;
-    document.getElementById('modalBody').innerHTML = `<p>${detail}</p>`;
-    modal.style.display = 'block';
-  }
-  function closeModal() {
-    modal.style.display = 'none';
-  }
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      closeModal();
-    }
-  }
-
-  // --- Chatbot Functionality ---
-  const chatWindow = document.getElementById('chat-window');
-  const chatToggleBtn = document.getElementById('chat-toggle');
-  const chatInputEl = document.getElementById('chat-input');
-  const chatSendBtn = document.getElementById('chat-send');
-  const chatOutputEl = document.getElementById('chat-output');
-
-  function toggleChatbot(forceOpen) {
-    const isHidden = chatWindow.classList.contains('chat-hidden');
-    if (forceOpen === true || isHidden) {
-        chatWindow.classList.remove('chat-hidden');
-        chatWindow.classList.add('chat-expanded');
-        chatToggleBtn.innerHTML = '<i class="fas fa-times"></i>'; 
-        if (chatInputEl) chatInputEl.focus();
-    } else if (forceOpen === false || !isHidden) {
-        chatWindow.classList.add('chat-hidden');
-        chatWindow.classList.remove('chat-expanded');
-        chatToggleBtn.innerHTML = '<i class="fas fa-headset"></i>'; 
-    }
-  }
-
-  function addChatMessageToUI(sender, message, isUser) {
-      if (!chatOutputEl) return;
-      const messageEl = document.createElement('p');
-      messageEl.innerHTML = `<strong>${sender}:</strong> ${message}`;
-      if(isUser) messageEl.style.textAlign = "right"; 
-      chatOutputEl.appendChild(messageEl);
-      chatOutputEl.scrollTop = chatOutputEl.scrollHeight;
-  }
-
-  async function handleChatSend() {
-      if (!chatInputEl || !chatOutputEl) return;
-      const message = chatInputEl.value.trim();
-      if (!message) return;
-
-      addChatMessageToUI("You", message, true);
-      chatInputEl.value = '';
-
-      let botResponse = "I'm still learning! For detailed OHS info, explore our resources or contact support.";
-      if (message.toLowerCase().includes("hello") || message.toLowerCase().includes("hi")) {
-          botResponse = "Hello there! How can I assist you with safety today?";
-      } else if (message.toLowerCase().includes("risk assessment")) {
-          botResponse = "Risk assessments involve identifying hazards and evaluating risks. We have tools and templates to help! Check the 'SafetyHelp Tools' sidebar.";
-      } else if (message.toLowerCase().includes("ohs act")) {
-          botResponse = "The OHS Act 85 of 1993 is the primary legislation for workplace safety in South Africa. You can find more details in our 'OHS Milestones'.";
-      }
-      
-      setTimeout(() => {
-          addChatMessageToUI("Salatiso", botResponse, false);
-      }, 500);
-  }
-
-  if (chatSendBtn) { 
-    chatSendBtn.addEventListener('click', handleChatSend);
-  }
-  if (chatInputEl) {
-    chatInputEl.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            handleChatSend();
+        .app-header {
+            background-color: var(--bg-main);
+            border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
         }
-    });
-  }
 
-  // --- Initial calls ---
-  window.onload = function() {
-    setupScrollingSidebar('safetyhelp-tools-list'); 
-    setupScrollingSidebar('ohs-milestones-list');
+        .header-primary-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            white-space: nowrap;
+            padding: 0.75rem 2.5rem;
+        }
 
-    if (chatWindow) chatWindow.classList.add('chat-hidden');
-    if (chatToggleBtn) chatToggleBtn.style.display = 'flex'; 
-  };
+        .header-logo-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
 
-</script>
+        .header-logo-icon { width: 1.5rem; height: 1.5rem; color: var(--accent-primary); } /* Adjusted icon size and color */
+
+        .header-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            line-height: 1.25;
+            letter-spacing: -0.015em;
+            color: var(--text-dark);
+        }
+
+        .header-actions-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .header-icon-btn {
+            display: flex;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.75rem;
+            height: 2.5rem;
+            width: 2.5rem;
+            background-color: var(--accent-secondary);
+            color: var(--text-dark);
+            transition: background-color 0.2s ease;
+            padding: 0.625rem;
+        }
+
+        .header-icon-btn:hover { background-color: #e0dacf; }
+
+        .header-icon-btn svg, .header-icon-btn i { width: 20px; height: 20px; } /* Adjusted for FontAwesome */
+
+        #google_translate_element select {
+            background-color: var(--accent-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--text-dark);
+        }
+
+        .spa-nav-tabs {
+            display: flex;
+            overflow-x: auto;
+            white-space: nowrap;
+            background-color: var(--bg-main);
+            padding: 0.25rem 1rem;
+            border-top: 1px solid var(--border-color);
+            scrollbar-width: none;
+        }
+
+        .spa-nav-tabs::-webkit-scrollbar { display: none; }
+
+        .spa-tab-button {
+            padding: 0.6rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            border-bottom: 3px solid transparent;
+            transition: color 0.2s ease, border-color 0.2s ease;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .spa-tab-button.active {
+            color: var(--text-dark);
+            font-weight: 700;
+            border-bottom-color: var(--accent-primary);
+        }
+
+        .spa-tab-button:hover:not(.active) { color: var(--text-dark); }
+
+        .main-content-wrapper {
+            flex-grow: 1;
+            padding-top: 5rem; /* Adjusted for fixed header height */
+            display: flex;
+            justify-content: center;
+        }
+        
+        .main-scroll-container-outer {
+            width: 100%;
+            max-width: 1200px; /* Increased max-width for better readability of resources */
+            height: calc(100vh - 5rem - 3.5rem); /* Adjust based on header and footer height */
+            overflow: hidden;
+        }
+
+        .main-scroll-container-inner {
+            display: flex;
+            /* width: 1200%; */ /* This will be adjusted by JS if multiple sections are used */
+            width: 100%; /* Assuming resources page is the only active section for now */
+            height: 100%;
+            transition: transform 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+
+        .content-section {
+            width: 100%; /* Adjusted for single section view */
+            max-width: 1200px; /* Consistent with outer container */
+            height: 100%;
+            overflow-y: auto;
+            padding: 1rem 1.5rem; /* Adjusted padding */
+            box-sizing: border-box;
+            background-color: var(--bg-main);
+        }
+
+        @media (min-width: 640px) { .content-section { padding: 1.5rem 2.5rem; } }
+
+        .content-section::-webkit-scrollbar { width: 8px; }
+        .content-section::-webkit-scrollbar-thumb { background-color: var(--accent-secondary); border-radius: 4px; }
+
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.033em;
+            color: var(--text-dark); /* Changed for better contrast on light bg */
+            margin-bottom: 1.5rem;
+        }
+
+        @media (min-width: 640px) { h1 { font-size: 2.5rem; } } /* Slightly reduced h1 */
+
+        h2 {
+            font-size: 1.75rem; /* Increased h2 size */
+            font-weight: 700;
+            line-height: 1.25;
+            letter-spacing: -0.015em;
+            color: var(--text-dark);
+            padding: 1.5rem 0 1rem; /* Adjusted padding */
+            border-bottom: 2px solid var(--accent-primary);
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            font-size: 1.25rem; /* Increased h3 size */
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.75rem; /* Adjusted margin */
+            margin-top: 1rem;
+        }
+         h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+
+        p, li {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .text-muted { color: var(--text-muted); }
+        .text-sm { font-size: 0.875rem; }
+
+        .content-card { /* General card for resource items */
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            padding: 1.25rem; /* Increased padding */
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 12px rgba(28, 24, 13, 0.05);
+            border: 1px solid var(--border-color);
+        }
+        .content-card ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+        }
+        .content-card ul li {
+            margin-bottom: 0.5rem;
+        }
+        .content-card a {
+            color: #007BFF; /* Standard link blue */
+            text-decoration: underline;
+        }
+        .content-card a:hover {
+            color: #0056b3;
+        }
+
+        .btn {
+            display: inline-flex;
+            min-width: 84px;
+            max-width: 480px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.75rem;
+            height: 2.5rem;
+            padding: 0 1rem;
+            font-size: 0.875rem;
+            font-weight: 700;
+            line-height: 1.5;
+            letter-spacing: 0.015em;
+            transition: all 0.2s ease;
+        }
+
+        @media (min-width: 640px) {
+            .btn { height: 3rem; padding: 0 1.25rem; font-size: 1rem; }
+        }
+
+        .btn-primary {
+            background-color: var(--accent-primary);
+            color: var(--text-on-accent);
+        }
+        .btn-primary:hover { background-color: #eab308; transform: translateY(-2px); }
+
+        .btn-secondary {
+            background-color: var(--accent-secondary);
+            color: var(--text-dark);
+            border: 1px solid var(--border-color);
+        }
+        .btn-secondary:hover { background-color: #e0dacf; transform: translateY(-2px); }
+        
+        .btn-link {
+            background-color: transparent;
+            color: #007BFF;
+            padding: 0.25rem 0.5rem;
+            font-weight: 500;
+            text-decoration: underline;
+        }
+        .btn-link:hover { color: #0056b3; }
+
+
+        .expand-button { /* For accordion category headers */
+            background-color: var(--accent-secondary);
+            color: var(--text-dark);
+            padding: 1rem 1.5rem; /* Increased padding */
+            border-radius: 0.5rem;
+            font-weight: 700; /* Bolder font */
+            font-size: 1.1rem; /* Slightly larger font */
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid var(--border-color);
+            width: 100%;
+            text-align: left;
+            transition: background-color 0.2s ease;
+        }
+        .expand-button:hover { background-color: #e0dacf; }
+        .expand-button i.fas { transition: transform 0.3s ease; }
+        .expand-button.expanded i.fas { transform: rotate(180deg); }
+
+
+        .expandable-content { /* For accordion content and resource details */
+            display: none;
+            margin-top: 1rem;
+            padding: 1.5rem; /* Increased padding */
+            background-color: #fff;
+            border-radius: 0.5rem;
+            border: 1px solid var(--border-color);
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .resource-item { /* Styling for individual resource entries */
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background-color: #f9f9f9; /* Lighter than content-card for nesting */
+            border: 1px solid #eee;
+            border-radius: 0.5rem;
+        }
+        .resource-item h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+         .resource-item h4 i {
+            margin-right: 0.75rem;
+            color: var(--accent-primary);
+         }
+        .resource-item p {
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+        .resource-item .links a {
+            margin-right: 1rem;
+            font-size: 0.9rem;
+        }
+        .resource-item-details { /* Initially hidden, shown on expand */
+            display: none;
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px dashed var(--border-color);
+        }
+        .resource-item-details p {
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+
+        .footer {
+            padding: 2rem 1rem;
+            text-align: center;
+            background-color: var(--accent-secondary);
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            margin-top: auto; /* Pushes footer to bottom */
+        }
+        .footer p { margin: 0.25rem 0; font-size: 0.875rem; }
+
+        /* Book section specific styles */
+        .books-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        @media (min-width: 768px) {
+            .books-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        .book-card {
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(28, 24, 13, 0.05);
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .book-cover {
+            width: 150px;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .book-card h3 { /* Overriding general h3 for book titles */
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+        .book-card .book-snippet {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            max-height: 70px; /* Limit snippet height */
+            overflow: hidden;
+        }
+        .book-card .google-play-link {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            background-color: var(--accent-primary);
+            color: var(--text-on-accent);
+            border-radius: 0.5rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+        }
+        .book-card .google-play-link:hover {
+            background-color: #eab308;
+        }
+        .book-card .google-play-link i {
+            margin-left: 0.5rem;
+        }
+        .book-chapters-toggle {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #007BFF;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        .book-chapters-content {
+            display: none;
+            margin-top: 0.75rem;
+            text-align: left;
+            max-height: 200px;
+            overflow-y: auto;
+            padding: 0.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.25rem;
+            background-color: #f9f9f9;
+        }
+         .book-chapters-content ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .book-chapters-content li {
+            font-size: 0.85rem;
+            padding: 0.25rem 0;
+            border-bottom: 1px dashed #eee;
+        }
+         .book-chapters-content li:last-child {
+            border-bottom: none;
+        }
+
+
+        @media (max-width: 768px) {
+            .header-primary-content { padding: 0.75rem 1rem; gap: 0.5rem; }
+            .header-logo-group { gap: 0.5rem; }
+            .header-title { font-size: 1rem; }
+            .header-actions-group { gap: 0.5rem; }
+            .header-icon-btn { height: 2.25rem; width: 2.25rem; padding: 0.5rem; }
+            .spa-nav-tabs { padding: 0.25rem 0.5rem; }
+            .spa-tab-button { padding: 0.5rem 0.75rem; font-size: 0.8rem; }
+            h2 { font-size: 1.5rem; } /* Adjusted h2 for mobile */
+            .content-section { padding: 1rem; }
+            .main-content-wrapper { padding-top: calc(2.25rem + 2.5rem + 2px); } /* Adjust based on actual header height on mobile */
+            .main-scroll-container-outer { height: calc(100vh - (2.25rem + 2.5rem + 2px) - 3.5rem); }
+        }
+
+        @media (max-width: 480px) {
+            .header-title { display: none; }
+            .content-section { padding: 0.75rem; }
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.3rem; }
+            h3 { font-size: 1.1rem; }
+            .main-content-wrapper { padding-top: calc(2.25rem + 2.5rem + 2px); } /* Re-check this for smallest screens */
+             .main-scroll-container-outer { height: calc(100vh - (2.25rem + 2.5rem + 2px) - 3.5rem); }
+        }
+    </style>
+</head>
+<body>
+    <div class="relative flex size-full min-h-screen flex-col bg-[#fcfbf8] group/design-root overflow-x-hidden">
+        <header class="app-header">
+            <div class="header-primary-content">
+                <div class="header-logo-group">
+                    <div class="header-logo-icon">
+                        <i class="fas fa-hard-hat"></i>
+                    </div>
+                    <h2 class="header-title">SafetyHelp OHS Hub</h2>
+                </div>
+                <div class="header-actions-group">
+                    <button class="header-icon-btn" aria-label="Search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <div id="google_translate_element"></div>
+                </div>
+            </div>
+            <div class="spa-nav-tabs">
+                <button class="spa-tab-button" onclick="navigateToSection(0)"><i class="fas fa-home mr-1 sm:mr-2"></i>Home</button>
+                <button class="spa-tab-button active" onclick="navigateToSection(1)"><i class="fas fa-book-reader mr-1 sm:mr-2"></i>OHS Resources</button>
+                <button class="spa-tab-button" onclick="navigateToSection(2)"><i class="fas fa-tools mr-1 sm:mr-2"></i>Tools</button>
+                <button class="spa-tab-button" onclick="navigateToSection(3)"><i class="fas fa-question-circle mr-1 sm:mr-2"></i>FAQ</button>
+                <button class="spa-tab-button" onclick="navigateToSection(4)"><i class="fas fa-users mr-1 sm:mr-2"></i>Community</button>
+                 </div>
+        </header>
+
+        <div class="main-content-wrapper">
+            <div class="main-scroll-container-outer">
+                <div id="mainScrollContainer" class="main-scroll-container-inner">
+                    <section id="homePlaceholder" class="content-section" style="display:none;">
+                        <h1>Welcome to SafetyHelp</h1>
+                        <p>Navigate to OHS Resources to find valuable information.</p>
+                    </section>
+
+                    <section id="resources" class="content-section">
+                        <h1>Occupational Health & Safety Resources</h1>
+                        <p class="text-muted text-lg mb-6">Your comprehensive guide to OHS legislation, standards, organizations, and learning materials in South Africa.</p>
+
+                        <div class="accordion-container space-y-4">
+                            <div>
+                                <button class="expand-button" onclick="toggleAccordion(this)">
+                                    <span><i class="fas fa-gavel mr-3 text-yellow-500"></i>Foundational OHS Legal Framework</span>
+                                    <i class="fas fa-chevron-down transition-transform ml-auto"></i>
+                                </button>
+                                <div class="expandable-content">
+                                    <div class="resource-item">
+                                        <h4><i class="fas fa-landmark"></i>The Constitution of South Africa, 1996</h4>
+                                        <p><strong>OHS Relevance:</strong> The supreme law providing the fundamental basis for OHS rights. Section 24 enshrines the right to an environment not harmful to health or well-being, and Section 27 guarantees access to healthcare, underpinning all OHS legislation.</p>
+                                        <button class="btn btn-secondary btn-sm mt-2" onclick="toggleExpandable(this.nextElementSibling)">Details <i class="fas fa-plus-circle ml-1"></i></button>
+                                        <div class="resource-item-details">
+                                            <p><strong>Summary:</strong> The Constitution mandates the protection of health and well-being, which extends to the workplace. It forms the ethical and legal backbone for specialized OHS laws like OHSA and COIDA, ensuring that work environments do not compromise fundamental human rights to dignity, life, and security of person.</p>
+                                            <div class="links mt-2">
+                                                <a href="https://www.justice.gov.za/constitution/SAConstitution-web-eng.pdf" target="_blank" class="btn-link"><i class="fas fa-file-pdf mr-1"></i>Full Constitution</a>
+                                                <a href="https://www.gov.za/documents/constitution-republic-south-africa-1996" target="_blank" class="btn-link"><i class="fas fa-globe mr-1"></i>Gov.za Page</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="resource-item">
+                                        <h4><i class="fas fa-hard-hat"></i>Occupational Health and Safety Act (OHSA), No. 85 of 1993</h4>
+                                        <p><strong>OHS Relevance:</strong> Principal legislation for health and safety in most SA workplaces (excluding mines). Mandates employer duties for a safe environment and employee responsibilities.</p>
+                                        <button class="btn btn-secondary btn-sm mt-2" onclick="toggleExpandable(this.nextElementSibling)">Details <i class="fas fa-plus-circle ml-1"></i></button>
+                                        <div class="resource-item-details">
+                                            <p><strong>Summary:</strong> OHSA aims to protect all persons at work from hazards. Key provisions include employer duties (risk assessments, training, safe equipment - Section 8), employee duties (Section 14), H&S Reps/Committees (Sections 17-20), incident reporting (Section 24), and CEO accountability (Section 16). It operates on the principle of "reasonably practicable".</p>
+                                            <div class="links mt-2">
+                                                <a href="https://www.gov.za/sites/default/files/gcis_document/201409/act85of1993.pdf" target="_blank" class="btn-link"><i class="fas fa-file-pdf mr-1"></i>Original Act</a>
+                                                <a href="https://www.nioh.ac.za/wp-content/uploads/2020/04/Amended-Act-Occupational-Health-and-Safety.pdf" target="_blank" class="btn-link"><i class="fas fa-file-pdf mr-1"></i>Amended Act (NIOH)</a>
+                                                <a href="https://www.gov.za/documents/occupational-health-and-safety-act" target="_blank" class="btn-link"><i class="fas fa-globe mr-1"></i>Gov.za Page</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="resource-item">
+                                        <h4><i class="fas fa-medkit"></i>Compensation for Occupational Injuries and Diseases Act (COIDA), No. 130 of 1993</h4>
+                                        <p><strong>OHS Relevance:</strong> Establishes a no-fault compensation system for employees injured or who contract diseases at work.</p>
+                                         <button class="btn btn-secondary btn-sm mt-2" onclick="toggleExpandable(this.nextElementSibling)">Details <i class="fas fa-plus-circle ml-1"></i></button>
+                                        <div class="resource-item-details">
+                                            <p><strong>Summary:</strong> COIDA provides financial compensation and medical benefits via the Compensation Fund. Employers register and pay assessments. It generally limits civil liability of employers for occupational injuries/diseases (Section 35). The COIDA Amendment Act, 2022, aims to expand coverage for employer-arranged transport.</p>
+                                            <div class="links mt-2">
+                                                <a href="https://www.labour.gov.za/DocumentCenter/Publications/Compensation%20for%20Occupational%20Injuries%20and%20Diseases/COIDA_SERVICE_BOOK_VERSION_23.pdf" target="_blank" class="btn-link"><i class="fas fa-book mr-1"></i>COIDA Service Book</a>
+                                                <a href="https://www.labour.gov.za/DocumentCenter/Acts/Compensation%20for%20Occupational%20Injuries%20and%20Diseases/Amendments/Amended%20Act%20-%20Compensation%20for%20Occupational%20Injuries%20and%20Diseases.pdf" target="_blank" class="btn-link"><i class="fas fa-file-pdf mr-1"></i>Amended Act</a>
+                                                <a href="https://www.labour.gov.za/" target="_blank" class="btn-link"><i class="fas fa-globe mr-1"></i>DoEL Website</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="resource-item">
+                                        <h4><i class="fas fa-mountain"></i>Mine Health and Safety Act (MHSA), No. 29 of 1996</h4>
+                                        <p><strong>OHS Relevance:</strong> Specific legislation for the high-risk mining industry, addressing its unique hazards.</p>
+                                        <button class="btn btn-secondary btn-sm mt-2" onclick="toggleExpandable(this.nextElementSibling)">Details <i class="fas fa-plus-circle ml-1"></i></button>
+                                        <div class="resource-item-details">
+                                            <p><strong>Summary:</strong> MHSA aims to protect all persons at mines. It mandates risk assessments, Codes of Practice (CoPs), tripartite participation, and gives employees the right to refuse dangerous work. It's more detailed than OHSA for mining operations.</p>
+                                            <div class="links mt-2">
+                                                <a href="https://www.gov.za/documents/mine-health-and-safety-act" target="_blank" class="btn-link"><i class="fas fa-globe mr-1"></i>Gov.za Page</a>
+                                                <a href="https://www.saflii.org/za/legis/consol_act/mhasa1996192/" target="_blank" class="btn-link"><i class="fas fa-balance-scale mr-1"></i>SAFLII (Amended Act)</a>
+                                                <a href="https://www.dmre.gov.za/" target="_blank" class="btn-link"><i class="fas fa-globe mr-1"></i>DMRE Website</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <button class="expand-button" onclick="toggleAccordion(this)">
+                                     <span><i class="fas fa-scroll mr-3 text-green-500"></i>Key OHS Regulations & Standards</span>
+                                     <i class="fas fa-chevron-down transition-transform ml-auto"></i>
+                                </button>
+                                <div class="expandable-content">
+                                    <p class="mb-4">Primary Acts are supported by specific regulations. Always consult the Department of Employment and Labour (DoEL) or Department of Mineral Resources and Energy (DMRE) for the latest versions.</p>
+                                    
+                                    <h3>OHSA Regulations:</h3>
+                                    <div class="resource-item">
+                                        <h4>General Administrative Regulations (GAR)</h4>
+                                        <p><strong>OHS Relevance:</strong> Detail administrative procedures for OHSA, including H&S committee functions, incident reporting (WCL forms), and investigations.</p>
+                                        <button class="btn btn-secondary btn-sm mt-2" onclick="toggleExpandable(this.nextElementSibling)">Details <i class="fas fa-plus-circle ml-1"></i></button>
+                                        <div class="resource-item-details">
+                                            <p><strong>Summary:</strong> GAR provides the "how-to" for many OHSA administrative requirements, ensuring consistent processes for inspector access, H&S representative nominations, and incident management documentation.</p>
+                                            <div class="links mt-2">
+                                                <a href="https://www.labour.gov.za/DocumentCenter/Regulations%20and%20Notices/Regulations/Occupational%20Health%20and%20Safety/Regulation%20-%20929%20-%20OHS%20-%20General%20Administrative%20Regulations.doc" target="_blank" class="btn-link"><i class="fas fa-file-word mr-1"></i>GAR Document</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="resource-item">
+                                        <h4>General Safety Regulations (GSR)</h4>
+                                        <p><strong>OHS Relevance:</strong> Cover a wide range of general workplace safety issues like PPE, first aid, ladder safety, housekeeping, and fire precautions.</p>
+                                         <button class="btn btn-secondary btn-sm mt-2" onclick="toggleExpandable(this.nextElementSibling)">Details <i class="fas fa-plus-circle ml-1"></i></button>
+                                        <div class="resource-item-details">
+                                            <p><strong>Summary:</strong> GSR sets baseline safety standards for common workplace hazards, ensuring fundamental protective measures are in place.</p>
+                                            <div class="links mt-2">
+                                                <a href="https://www.labour.gov.za/DocumentCenter/Regulations%20and%20Notices/Regulations/Occupational%20Health%20and%20Safety/Regulation%20-%201031%20-%20OHS%20-%20General%20Safety%20Regulations.doc" target="_blank" class="btn-link"><i class="fas fa-file-word mr-1"></i>GSR (1986 Example)</a>
+                                                 <a href="https://www.gov.za/sites/default/files/gcis_document/202503/52226gon5954.pdf" target="_blank" class="btn-link"><i class="fas fa-file-pdf mr-1"></i>GSR (2025 Example)</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="resource-item">
+                                        <h4>Construction Regulations</h4>
+                                        <p><strong>OHS Relevance:</strong> Critical for the high-risk construction sector. Detail duties for clients, designers, contractors; requirements for permits, safety files, risk assessments, and competent person appointments (e.g., CHS Officer).</p>
+                                        <button class="btn btn-secondary btn-sm mt-2" onclick="toggleExpandable(this.nextElementSibling)">Details <i class="fas fa-plus-circle ml-1"></i></button>
+                                        <div class="resource-item-details">
+                                            <p><strong>Summary:</strong> These regulations aim to manage complex safety risks on construction sites through structured planning, clear responsibilities, and specific controls for high-risk activities like excavation and working at height.</p>
+                                            <div class="links mt-2">
+                                                <a href="https://www.labour.gov.za/DocumentCenter/Regulations%20and%20Notices/Regulations/Occupational%20Health%20and%20Safety/Construction%20Regulations,%202024%20Invitation%20of%20Public%20Comments%20on%20the%20Draft%20Construction%20Regulations.pdf" target="_blank" class="btn-link"><i class="fas fa-file-pdf mr-1"></i>Draft Construction Regs (2025)</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="resource-item">
+                                        <h4>Ergonomics Regulations, 2019</h4>
+                                        <p><strong>OHS Relevance:</strong> Address risks from poor ergonomic design, aiming to prevent musculoskeletal disorders through assessments, controls, training, and medical surveillance.</p>
+                                         <button class="btn btn-secondary btn-sm mt-2" onclick="toggleExpandable(this.nextElementSibling)">Details <i class="fas fa-plus-circle ml-1"></i></button>
+                                        <div class="resource-item-details">
+                                            <p><strong>Summary:</strong> These regulations require employers to proactively manage ergonomic hazards to ensure tasks, equipment, and workstations are designed to fit the worker, reducing strain and injury.</p>
+                                            <div class="links mt-2">
+                                                <a href="https://www.rmi.org.za/occupational-health-and-safety-act-regulations-ergonomics/" target="_blank" class="btn-link"><i class="fas fa-globe mr-1"></i>RMI Summary</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="resource-item">
+                                        <h4>Noise Exposure Regulations, 2024</h4>
+                                        <p><strong>OHS Relevance:</strong> Protect against noise-induced hearing loss by setting limits, requiring assessments, monitoring, controls, medical surveillance (audiometry), and HPDs.</p>
+                                        <button class="btn btn-secondary btn-sm mt-2" onclick="toggleExpandable(this.nextElementSibling)">Details <i class="fas fa-plus-circle ml-1"></i></button>
+                                        <div class="resource-item-details">
+                                            <p><strong>Summary:</strong> These regulations mandate a comprehensive hearing conservation program where noise levels are hazardous, including a Code of Practice for Audiometry.</p>
+                                            <div class="links mt-2">
+                                                <a href="https://www.labour.gov.za/DocumentCenter/Regulations%20and%20Notices/Regulations/Occupational%20Health%20and%20Safety/Noise%20Exposure%20Regulations,%20Code%20of%20Practice%20for%20Audiometry%20and%20Explanatory%20notes.pdf" target="_blank" class="btn-link"><i class="fas fa-file-pdf mr-1"></i>Noise Exposure Regs & CoP</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="mt-3 text-sm"><em>Other important OHSA regulations include: Hazardous Chemical Substances, Driven Machinery, Electrical Machinery, Electrical Installation, Facilities, and Draft Lead Regulations. Find these on the DoEL website.</em></p>
+
+                                    <h3 class="mt-6">National Building Regulations & SANS Standards:</h3>
+                                     <div class="resource-item">
+                                        <h4>National Building Regulations and Building Standards Act (NBRBSA)</h4>
+                                        <p><strong>OHS Relevance:</strong> Ensures safety of physical structures (workplaces) by prescribing minimum building standards for structural integrity, fire safety, ventilation etc.</p>
+                                         <button class="btn btn-secondary btn-sm mt-2" onclick="toggleExpandable(this.nextElementSibling)">Details <i class="fas fa-plus-circle ml-1"></i></button>
+                                        <div class="resource-item-details">
+                                            <p><strong>Summary:</strong> NBRBSA compliance is fundamental to an employer's duty under OHSA Section 8 to provide a safe working environment. It ensures buildings are designed and constructed safely.</p>
+                                            <div class="links mt-2">
+                                                 <a href="https://www.gov.za/documents/national-building-regulations-and-building-standards-act-16-apr-2015-1302" target="_blank" class="btn-link"><i class="fas fa-globe mr-1"></i>Gov.za Page (NBRBSA)</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="resource-item">
+                                        <h4>SANS 10400 & SANS/ISO 45001</h4>
+                                        <p><strong>OHS Relevance:</strong> SANS 10400 provides technical specs for NBRBSA compliance ("deemed-to-satisfy"). SANS/ISO 45001 is the national standard for OHS management systems.</p>
+                                         <button class="btn btn-secondary btn-sm mt-2" onclick="toggleExpandable(this.nextElementSibling)">Details <i class="fas fa-plus-circle ml-1"></i></button>
+                                        <div class="resource-item-details">
+                                            <p><strong>Summary:</strong> SANS 10400 details how to meet building regulations (e.g., Part T for Fire Protection). SANS/ISO 45001 offers a framework for organizations to systematically manage OHS risks and improve performance.</p>
+                                            <div class="links mt-2">
+                                                <a href="https://www.sabs.co.za/" target="_blank" class="btn-link"><i class="fas fa-globe mr-1"></i>SABS Website (to purchase standards)</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <h3 class="mt-6">MHSA Regulations:</h3>
+                                     <p class="text-sm">Extensive, chapter-based regulations specific to mining hazards (e.g., machinery, explosives, rescue). Access via DMRE.</p>
+                                     <div class="links mt-2">
+                                         <a href="https://www.dmre.gov.za/mineral-resources/mine-health-and-safety/resource-center" target="_blank" class="btn-link"><i class="fas fa-globe mr-1"></i>DMRE MHSA Resource Centre</a>
+                                     </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <button class="expand-button" onclick="toggleAccordion(this)">
+                                    <span><i class="fas fa-link mr-3 text-blue-500"></i>Associated Legislation Impacting OHS</span>
+                                    <i class="fas fa-chevron-down transition-transform ml-auto"></i>
+                                </button>
+                                <div class="expandable-content">
+                                    <div class="resource-item">
+                                        <h4>Basic Conditions of Employment Act (BCEA)</h4>
+                                        <p><strong>OHS Relevance:</strong> Regulates working hours, leave, and night work, which are crucial for preventing fatigue and stress, known contributors to workplace incidents.</p>
+                                        <button class="btn btn-secondary btn-sm mt-2" onclick="toggleExpandable(this.nextElementSibling)">Details <i class="fas fa-plus-circle ml-1"></i></button>
+                                        <div class="resource-item-details">
+                                            <p><strong>Summary:</strong> Provisions on maximum working hours, rest periods, various types of leave (annual, sick, maternity), and protections for night workers indirectly support OHS by promoting worker well-being and alertness.</p>
+                                            <div class="links mt-2">
+                                                <a href="https://www.gov.za/documents/basic-conditions-employment-act" target="_blank" class="btn-link"><i class="fas fa-globe mr-1"></i>Gov.za Page (BCEA)</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="resource-item">
+                                        <h4>Labour Relations Act (LRA)</h4>
+                                        <p><strong>OHS Relevance:</strong> Provides frameworks for dispute resolution (CCMA, Labour Court) that can address OHS-related dismissals or grievances. Protects union representatives who may advocate for safety.</p>
+                                        <button class="btn btn-secondary btn-sm mt-2" onclick="toggleExpandable(this.nextElementSibling)">Details <i class="fas fa-plus-circle ml-1"></i></button>
+                                        <div class="resource-item-details">
+                                            <p><strong>Summary:</strong> The LRA empowers employees to assert OHS rights (e.g., refusing unsafe work) without fear of unfair dismissal. OHS conditions can also be part of collective bargaining under the LRA.</p>
+                                            <div class="links mt-2">
+                                                <a href="https://www.gov.za/documents/labour-relations-act-66-1995" target="_blank" class="btn-link"><i class="fas fa-globe mr-1"></i>Gov.za Page (LRA)</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="mt-3 text-sm"><em>Other relevant acts include NEMA, Hazardous Substances Act, National Water Act, Fire Brigade Services Act, Disaster Management Act, National Health Act. Find these on www.gov.za/documents.</em></p>
+                                </div>
+                            </div>
+
+                            <div>
+                                <button class="expand-button" onclick="toggleAccordion(this)">
+                                    <span><i class="fas fa-bullhorn mr-3 text-purple-500"></i>OHS Directives & Official Guidance</span>
+                                    <i class="fas fa-chevron-down transition-transform ml-auto"></i>
+                                </button>
+                                <div class="expandable-content">
+                                    <div class="resource-item">
+                                        <h4>DoEL Directives (e.g., COVID-19 Directions)</h4>
+                                        <p><strong>OHS Relevance:</strong> Specific instructions from the Department of Employment and Labour for emerging OHS issues or clarifying existing laws.</p>
+                                         <button class="btn btn-secondary btn-sm mt-2" onclick="toggleExpandable(this.nextElementSibling)">Details <i class="fas fa-plus-circle ml-1"></i></button>
+                                        <div class="resource-item-details">
+                                            <p><strong>Summary:</strong> COVID-19 directives mandated risk assessments, controls (ventilation, PPE), screening, etc. These showed how the legal system can respond to novel OHS threats. Always check DoEL website for current directives.</p>
+                                            <div class="links mt-2">
+                                                 <a href="https://www.nioh.ac.za/wp-content/uploads/2021/06/Consolidated-Direction-on-Occupational-Health-and-Safety-measures-in-certain-workplaces_May2021.pdf" target="_blank" class="btn-link"><i class="fas fa-file-pdf mr-1"></i>COVID-19 Directive (May 2021 Example)</a>
+                                                 <a href="https://www.labour.gov.za/" target="_blank" class="btn-link"><i class="fas fa-globe mr-1"></i>DoEL Website</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="resource-item">
+                                        <h4>National Department of Health (NDoH) OHS Policy</h4>
+                                        <p><strong>OHS Relevance:</strong> An example of a comprehensive OHS policy for a large government department, showing commitment to legal OHS obligations.</p>
+                                        <button class="btn btn-secondary btn-sm mt-2" onclick="toggleExpandable(this.nextElementSibling)">Details <i class="fas fa-plus-circle ml-1"></i></button>
+                                        <div class="resource-item-details">
+                                            <p><strong>Summary:</strong> This policy outlines how the NDoH manages OHS, drawing on the Constitution, OHSA, COIDA, etc. It serves as a model for public sector OHS management.</p>
+                                            <div class="links mt-2">
+                                                 <a href="https://www.gov.za/sites/default/files/gcis_document/201409/ohs.pdf" target="_blank" class="btn-link"><i class="fas fa-file-pdf mr-1"></i>NDoH OHS Policy</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="resource-item">
+                                        <h4>International Guidelines (ILO, ISO 45001)</h4>
+                                        <p><strong>OHS Relevance:</strong> Influence SA practices. ILO Conventions (C155, C161, C187) provide frameworks. ISO 45001 is the global standard for OHS management systems (adopted as SANS/ISO 45001).</p>
+                                        <button class="btn btn-secondary btn-sm mt-2" onclick="toggleExpandable(this.nextElementSibling)">Details <i class="fas fa-plus-circle ml-1"></i></button>
+                                        <div class="resource-item-details">
+                                            <p><strong>Summary:</strong> Adherence to international guidelines like ISO 45001 helps organizations align with global best practices, improve OHS performance systematically, and gain international recognition.</p>
+                                            <div class="links mt-2">
+                                                 <a href="https://www.ilo.org/topics-and-sectors/safety-and-health-work" target="_blank" class="btn-link"><i class="fas fa-globe mr-1"></i>ILO Safety & Health</a>
+                                                 <a href="https://www.iso.org/iso-45001-occupational-health-and-safety.html" target="_blank" class="btn-link"><i class="fas fa-globe mr-1"></i>ISO 45001 Overview</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <button class="expand-button" onclick="toggleAccordion(this)">
+                                    <span><i class="fas fa-city mr-3 text-teal-500"></i>Local Government OHS-Related Bylaws</span>
+                                    <i class="fas fa-chevron-down transition-transform ml-auto"></i>
+                                </button>
+                                <div class="expandable-content">
+                                    <p>Municipal bylaws address local OHS conditions (public health, building control, fire services). Businesses must comply with national laws and local bylaws.</p>
+                                    <div class="resource-item">
+                                        <h4>Finding Local Bylaws</h4>
+                                        <p>Consult your specific local municipality's website or use databases like Sabinet.</p>
+                                        <div class="links mt-2">
+                                            <a href="https://sabinet.co.za/south-african-municipal-by-laws/" target="_blank" class="btn-link"><i class="fas fa-database mr-1"></i>Sabinet Municipal By-Laws</a>
+                                        </div>
+                                    </div>
+                                    <p class="mt-3 text-sm"><em>Examples: City of Johannesburg Public Health By-laws (sanitation, offensive trades, laundries referencing OHSA), City of Cape Town (NBR enforcement, Events By-law, Waste Management By-law), eThekwini (Public Health By-law, contractor OHS agreements). Check respective municipal websites for details.</em></p>
+                                </div>
+                            </div>
+
+                            <div>
+                                <button class="expand-button" onclick="toggleAccordion(this)">
+                                    <span><i class="fas fa-landmark mr-3 text-indigo-500"></i>OHS Case Law</span>
+                                    <i class="fas fa-chevron-down transition-transform ml-auto"></i>
+                                </button>
+                                <div class="expandable-content">
+                                    <p>Court judgments interpret OHS laws and influence their application. Case law is dynamic.</p>
+                                    <div class="resource-item">
+                                        <h4>Truworths v Chief Inspector (ZALCJHB 108, 2025)</h4>
+                                        <p><strong>OHS Relevance:</strong> Addressed inspector designation (Sec 28 OHSA), "reasonably practicable" for facilities (seating), and appeal processes.</p>
+                                        <button class="btn btn-secondary btn-sm mt-2" onclick="toggleExpandable(this.nextElementSibling)">Details <i class="fas fa-plus-circle ml-1"></i></button>
+                                        <div class="resource-item-details">
+                                            <p><strong>Outcome:</strong> Appeal upheld due to lack of proof of inspector certification and misapplication of "reasonably practicable". Highlights importance of procedural correctness by regulators.</p>
+                                            <div class="links mt-2">
+                                                <a href="https://www.saflii.org/za/cases/ZALCJHB/2025/108.html" target="_blank" class="btn-link"><i class="fas fa-balance-scale mr-1"></i>Full Judgment (SAFLII)</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="resource-item">
+                                        <h4>Mahlangu v Minister of Mineral Resources (ZALMPPHC 72, 2025)</h4>
+                                        <p><strong>OHS Relevance:</strong> Dealt with applicability of COIDA (Sec 35 precluding civil action) vs. delictual claims, and OHSA vs. MHSA for mines.</p>
+                                         <button class="btn btn-secondary btn-sm mt-2" onclick="toggleExpandable(this.nextElementSibling)">Details <i class="fas fa-plus-circle ml-1"></i></button>
+                                        <div class="resource-item-details">
+                                            <p><strong>Outcome:</strong> Exception to plaintiff's claim upheld. Emphasizes correct identification of legislative framework for workplace injury claims.</p>
+                                            <div class="links mt-2">
+                                                <a href="https://www1.saflii.org/za/cases/ZALMPPHC/2025/72.pdf" target="_blank" class="btn-link"><i class="fas fa-balance-scale mr-1"></i>Full Judgment (SAFLII)</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="resource-item">
+                                        <h4>Finding More Case Law</h4>
+                                        <p>The Southern African Legal Information Institute (SAFLII) is a primary free resource.</p>
+                                        <div class="links mt-2">
+                                            <a href="https://www.saflii.org/" target="_blank" class="btn-link"><i class="fas fa-search mr-1"></i>SAFLII Website</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <button class="expand-button" onclick="toggleAccordion(this)">
+                                    <span><i class="fas fa-sitemap mr-3 text-orange-500"></i>Key OHS Organizations & Services</span>
+                                    <i class="fas fa-chevron-down transition-transform ml-auto"></i>
+                                </button>
+                                <div class="expandable-content">
+                                    <div class="resource-item">
+                                        <h4>Department of Employment and Labour (DoEL)</h4>
+                                        <p><strong>OHS Role:</strong> Enforces OHSA, conducts inspections, develops policy, promotes awareness.</p>
+                                        <div class="links mt-2"><a href="https://www.labour.gov.za/" target="_blank" class="btn-link"><i class="fas fa-globe mr-1"></i>DoEL Website</a></div>
+                                    </div>
+                                    <div class="resource-item">
+                                        <h4>Department of Mineral Resources and Energy (DMRE)</h4>
+                                        <p><strong>OHS Role:</strong> Enforces MHSA for the mining sector, publishes mine regulations.</p>
+                                        <div class="links mt-2"><a href="https://www.dmre.gov.za/mineral-resources/mine-health-and-safety/resource-center" target="_blank" class="btn-link"><i class="fas fa-globe mr-1"></i>DMRE MHSA Centre</a></div>
+                                    </div>
+                                    <div class="resource-item">
+                                        <h4>National Institute for Occupational Health (NIOH)</h4>
+                                        <p><strong>OHS Role:</strong> Conducts research, provides specialized services, training, expert advice. WHO Collaborating Centre.</p>
+                                        <div class="links mt-2"><a href="https://www.nioh.ac.za/" target="_blank" class="btn-link"><i class="fas fa-flask mr-1"></i>NIOH Website</a></div>
+                                    </div>
+                                    <div class="resource-item">
+                                        <h4>South African Bureau of Standards (SABS)</h4>
+                                        <p><strong>OHS Role:</strong> Develops SANS standards (e.g., SANS 10400, SANS/ISO 45001), offers training.</p>
+                                        <div class="links mt-2"><a href="https://www.sabs.co.za/" target="_blank" class="btn-link"><i class="fas fa-certificate mr-1"></i>SABS Website</a></div>
+                                    </div>
+                                     <div class="resource-item">
+                                        <h4>South African Council for Project and Construction Management Professions (SACPCMP)</h4>
+                                        <p><strong>OHS Role:</strong> Statutory body registering Construction Health and Safety Professionals.</p>
+                                        <div class="links mt-2"><a href="https://sacpcmp.org.za/" target="_blank" class="btn-link"><i class="fas fa-hard-hat mr-1"></i>SACPCMP Website</a></div>
+                                    </div>
+                                     <div class="resource-item">
+                                        <h4>Southern African Institute for Occupational Hygiene (SAIOH)</h4>
+                                        <p><strong>OHS Role:</strong> Professional body for occupational hygienists, offers certification (PCC).</p>
+                                        <div class="links mt-2"><a href="http://www.saioh.co.za" target="_blank" class="btn-link"><i class="fas fa-wind mr-1"></i>SAIOH Website</a></div>
+                                    </div>
+                                     <div class="resource-item">
+                                        <h4>South African Institute of Occupational Safety and Health (SAIOSH)</h4>
+                                        <p><strong>OHS Role:</strong> Largest OHS professional body in Africa, offers registration, CPD, events.</p>
+                                        <div class="links mt-2"><a href="http://www.saiosh.co.za" target="_blank" class="btn-link"><i class="fas fa-user-shield mr-1"></i>SAIOSH Website</a></div>
+                                    </div>
+                                     <div class="resource-item">
+                                        <h4>Master Builders South Africa (MBSA)</h4>
+                                        <p><strong>OHS Role:</strong> Represents employers in construction, provides OHS support and training to members.</p>
+                                        <div class="links mt-2"><a href="https://www.masterbuilders.org.za/" target="_blank" class="btn-link"><i class="fas fa-tools mr-1"></i>MBSA Website</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <button class="expand-button" onclick="toggleAccordion(this)">
+                                    <span><i class="fas fa-folder-open mr-3 text-cyan-500"></i>Free OHS Resources</span>
+                                    <i class="fas fa-chevron-down transition-transform ml-auto"></i>
+                                </button>
+                                <div class="expandable-content">
+                                    <div class="resource-item">
+                                        <h4>SafetyHelp Platform Resources</h4>
+                                        <p><strong>OHS Relevance:</strong> Offers various OHS document templates (appointment letters, risk assessments, construction H&S plans, emergency plans, incident management forms) and guides.</p>
+                                        <button class="btn btn-secondary btn-sm mt-2" onclick="toggleExpandable(this.nextElementSibling)">Details <i class="fas fa-plus-circle ml-1"></i></button>
+                                        <div class="resource-item-details">
+                                            <p><strong>Summary:</strong> Access LaTeX templates for OHS system documents, internal data files (legislation, municipalities, suppliers), and book chapter HTMLs. Explore tools for construction OHS, risk management, and training.</p>
+                                            <div class="links mt-2">
+                                                <a href="https://salatiso.github.io/safety-plans/" target="_blank" class="btn-link"><i class="fas fa-laptop-code mr-1"></i>SafetyHelp Platform</a>
+                                                <p class="text-xs mt-1">Templates typically found under `/safety-plans/assets/templates/ohs-system/` on the platform's GitHub repository.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="resource-item">
+                                        <h4>Government & Official Body Resources</h4>
+                                        <p><strong>OHS Relevance:</strong> DoEL provides "OHS State Safety In South Africa" reports and free legislation. NDoH offers its OHS policy as an example. NIOH shares research and COVID-19 resources. DMRE provides mining CoP guidelines.</p>
+                                        <button class="btn btn-secondary btn-sm mt-2" onclick="toggleExpandable(this.nextElementSibling)">Details <i class="fas fa-plus-circle ml-1"></i></button>
+                                        <div class="resource-item-details">
+                                            <p><strong>Summary:</strong> These official sources offer valuable statistics, policy examples, research findings, and specific guidance for high-risk sectors like mining, all crucial for informed OHS practice.</p>
+                                            <div class="links mt-2">
+                                                <a href="https://www.labour.gov.za/DocumentCenter/Publications/Occupational%20Health%20and%20Safety/OHS%20State%20Safety%20In%20South%20Africa.pdf" target="_blank" class="btn-link"><i class="fas fa-chart-bar mr-1"></i>DoEL State of Safety Report (Example)</a>
+                                                <a href="https://www.nioh.ac.za/wp-content/uploads/2022/02/NIOH-Annual-Review-2020_2021-HR-16.02.21.pdf" target="_blank" class="btn-link"><i class="fas fa-book-medical mr-1"></i>NIOH Annual Review (Example)</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="resource-item">
+                                        <h4>Other Free Templates & Guides</h4>
+                                        <p><strong>OHS Relevance:</strong> Platforms like Genie AI and PDFFiller offer various SA-compliant safety plan templates and policy examples. Always verify suitability with current legislation.</p>
+                                         <button class="btn btn-secondary btn-sm mt-2" onclick="toggleExpandable(this.nextElementSibling)">Details <i class="fas fa-plus-circle ml-1"></i></button>
+                                        <div class="resource-item-details">
+                                            <p><strong>Summary:</strong> These can be useful starting points for developing OHS documentation for diverse needs like construction, restaurants, or general hazard assessments, but require careful adaptation.</p>
+                                            <div class="links mt-2">
+                                                <a href="https://www.genieai.co/en-za/template-type/safety-plan" target="_blank" class="btn-link"><i class="fas fa-magic mr-1"></i>Genie AI Templates</a>
+                                                <a href="https://www.pdffiller.com/en/micro-catalog/hr/14549-health-and-safety-policy-template-south-africa.htm" target="_blank" class="btn-link"><i class="fas fa-file-alt mr-1"></i>PDFFiller Templates</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                             <div>
+                                <button class="expand-button" onclick="toggleAccordion(this)">
+                                    <span><i class="fas fa-book-reader mr-3 text-pink-500"></i>Books & Articles</span>
+                                    <i class="fas fa-chevron-down transition-transform ml-auto"></i>
+                                </button>
+                                <div class="expandable-content">
+                                    <div class="books-container">
+                                        <div class="book-card">
+                                            <img src="./assets/images/SF_Career.jpg" alt="Safety First: Essentials for Your OHS Career Journey" class="book-cover" onerror="this.onerror=null;this.src='https://placehold.co/150x220/fac638/1c180d?text=SF+Career';">
+                                            <h3>Safety First: The Comprehensive Blueprint for Your OHS Career</h3>
+                                            <p class="book-snippet">A pivotal guide for aspiring and established OHS professionals, offering a streamlined path to a fulfilling career. From school leaver to career changer, unlock your potential while saving lives.</p>
+                                            <a href="https://play.google.com/books/reader?id=vscJEQAAQBAJ&pg=GBS.PA1&hl=en_IE" target="_blank" class="google-play-link">View on Google Play <i class="fas fa-external-link-alt"></i></a>
+                                            <div class="book-chapters-toggle" onclick="toggleExpandable(this.nextElementSibling)">View Chapters <i class="fas fa-chevron-down ml-1"></i></div>
+                                            <div class="book-chapters-content">
+                                                <ul>
+                                                    <li>Introduction: Why OHS Matters</li>
+                                                    <li>Part 1: Evolution of OHS (Ch 1-4)</li>
+                                                    <li>Part 2: Getting Started (Ch 5-9)</li>
+                                                    <li>Part 3: Putting it to Work (Ch 10-15)</li>
+                                                    <li>Part 4: Reflections & Future (Ch 16)</li>
+                                                    <li>Part 5: My Journey (Ch 17)</li>
+                                                    <li>Part 6: OHS Toolbox & Templates (Ch 18)</li>
+                                                    <li>Appendices & Conclusion</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="book-card">
+                                            <img src="./assets/images/SF_Plans.jpg" alt="Safety First: The Essentials of OHS Plans" class="book-cover" onerror="this.onerror=null;this.src='https://placehold.co/150x220/fac638/1c180d?text=SF+Plans';">
+                                            <h3>Safety First: The Essentials of OHS Plans</h3>
+                                            <p class="book-snippet">Essential knowledge and tools to establish a safe and healthy workplace, irrespective of geographic location, focusing on robust OHS plan creation, implementation, and assessment.</p>
+                                            <a href="https://play.google.com/books/reader?id=psgJEQAAQBAJ&pg=GBS.PA1&hl=en_IE" target="_blank" class="google-play-link">View on Google Play <i class="fas fa-external-link-alt"></i></a>
+                                            <div class="book-chapters-toggle" onclick="toggleExpandable(this.nextElementSibling)">View Chapters <i class="fas fa-chevron-down ml-1"></i></div>
+                                            <div class="book-chapters-content">
+                                                <ul>
+                                                    <li>Ch 1: Understanding OHS Plans</li>
+                                                    <li>Ch 2: Legal Framework & Compliance</li>
+                                                    <li>Ch 3: Critical Stakeholders</li>
+                                                    <li>Ch 4: Developing an OHS Plan</li>
+                                                    <li>Ch 5: Key Components of an OHS Plan</li>
+                                                    <li>Ch 6: Implementing the OHS Plan</li>
+                                                    <li>Ch 7: Monitoring, Reviewing, Auditing</li>
+                                                    <li>Ch 8: OHS Plan Templates & Checklists</li>
+                                                    <li>Ch 9: OHS Plan for Small Businesses</li>
+                                                    <li>Ch 10: OHS Plan for Specific Industries</li>
+                                                    <li>Ch 11: Future Trends in OHS Planning</li>
+                                                    <li>Ch 12: OHS Plan Assessment Tool</li>
+                                                    <li>Conclusion & Appendices</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div> </section>
+
+                    <section id="toolsPlaceholder" class="content-section" style="display:none;"><h1>Tools Page</h1></section>
+                    <section id="faqPlaceholder" class="content-section" style="display:none;"><h1>FAQ Page</h1></section>
+                    <section id="communityPlaceholder" class="content-section" style="display:none;"><h1>Community Page</h1></section>
+
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>© 2025 SafetyHelp OHS Hub. Safety First, Always! <i class="fas fa-shield-alt" style="color:var(--accent-primary);"></i></p>
+            <p class="text-xs">Disclaimer: Information provided is for guidance only. Always consult with qualified OHS professionals and refer to the latest official legislation for specific compliance requirements.</p>
+        </footer>
+    </div>
+
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'af,xh,zu,st,tn,nr,ss,ve,ts,sn,sw,pt,fr', // Added popular SA languages
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+
+        let currentSectionIndex = 1; // Default to OHS Resources section
+        const sections = document.querySelectorAll('.content-section');
+        const mainScrollContainer = document.getElementById('mainScrollContainer');
+        const navButtons = document.querySelectorAll('.spa-tab-button');
+        const numSections = navButtons.length; // Use navButtons length for SPA navigation
+
+        function navigateToSection(sectionIndex) {
+            if (sectionIndex >= 0 && sectionIndex < numSections) {
+                 // Hide all sections first
+                sections.forEach(sec => sec.style.display = 'none');
+                
+                // Determine which actual content section to show based on nav button index
+                // This mapping needs to be explicit if nav buttons don't directly map to section IDs
+                let targetSectionId;
+                switch(sectionIndex) {
+                    case 0: targetSectionId = 'homePlaceholder'; break;
+                    case 1: targetSectionId = 'resources'; break; // This is our main OHS resources
+                    case 2: targetSectionId = 'toolsPlaceholder'; break;
+                    case 3: targetSectionId = 'faqPlaceholder'; break;
+                    case 4: targetSectionId = 'communityPlaceholder'; break;
+                    default: targetSectionId = 'homePlaceholder'; // Fallback
+                }
+
+                const targetSection = document.getElementById(targetSectionId);
+                if (targetSection) {
+                    targetSection.style.display = 'block';
+                    // If using the horizontal scroll effect:
+                    // mainScrollContainer.style.transform = `translateX(-${sectionIndex * (100 / numSections)}%)`;
+                }
+                
+                currentSectionIndex = sectionIndex;
+                navButtons.forEach((btn, index) => btn.classList.toggle('active', index === sectionIndex));
+                
+                const activeButton = navButtons[sectionIndex];
+                if (activeButton) {
+                    const navScrollable = document.querySelector('.spa-nav-tabs');
+                    const scrollLeft = activeButton.offsetLeft - (navScrollable.offsetWidth / 2) + (activeButton.offsetWidth / 2);
+                    navScrollable.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+                }
+            }
+        }
+        
+        // Accordion and expandable content toggle
+        function toggleAccordion(buttonElement) {
+            const content = buttonElement.nextElementSibling;
+            const icon = buttonElement.querySelector('i.fa-chevron-down, i.fa-chevron-up');
+            const isExpanded = content.style.display === "block";
+            
+            content.style.display = isExpanded ? "none" : "block";
+            if (icon) {
+                icon.classList.toggle('fa-chevron-down', isExpanded);
+                icon.classList.toggle('fa-chevron-up', !isExpanded);
+            }
+            // For main accordion buttons, also add/remove 'expanded' class for styling arrow
+            buttonElement.classList.toggle('expanded', !isExpanded);
+        }
+
+        // Generic toggle for resource item details and book chapters
+        function toggleExpandable(elementToToggle) {
+            const icon = elementToToggle.previousElementSibling.querySelector('i.fa-plus-circle, i.fa-minus-circle, i.fa-chevron-down, i.fa-chevron-up');
+            const isExpanded = elementToToggle.style.display === "block";
+            elementToToggle.style.display = isExpanded ? "none" : "block";
+
+            if (icon) { // Handle different icon types
+                 if (icon.classList.contains('fa-plus-circle') || icon.classList.contains('fa-minus-circle')) {
+                    icon.classList.toggle('fa-plus-circle', isExpanded);
+                    icon.classList.toggle('fa-minus-circle', !isExpanded);
+                 } else if (icon.classList.contains('fa-chevron-down') || icon.classList.contains('fa-chevron-up')) {
+                    icon.classList.toggle('fa-chevron-down', isExpanded);
+                    icon.classList.toggle('fa-chevron-up', !isExpanded);
+                 }
+            }
+        }
+
+
+        window.onload = () => {
+            navigateToSection(1); // Default to OHS Resources section
+            
+            const headerElement = document.querySelector('.app-header');
+            if (headerElement) {
+                document.querySelector('.main-content-wrapper').style.paddingTop = `${headerElement.offsetHeight}px`;
+                 const mainScrollOuter = document.querySelector('.main-scroll-container-outer');
+                 const footerElement = document.querySelector('.footer');
+                 if(mainScrollOuter && footerElement){
+                    mainScrollOuter.style.height = `calc(100vh - ${headerElement.offsetHeight}px - ${footerElement.offsetHeight}px)`;
+                 }
+            }
+        };
+
+        window.onresize = () => {
+            const headerElement = document.querySelector('.app-header');
+            if (headerElement) {
+                 document.querySelector('.main-content-wrapper').style.paddingTop = `${headerElement.offsetHeight}px`;
+                 const mainScrollOuter = document.querySelector('.main-scroll-container-outer');
+                 const footerElement = document.querySelector('.footer');
+                 if(mainScrollOuter && footerElement){
+                    mainScrollOuter.style.height = `calc(100vh - ${headerElement.offsetHeight}px - ${footerElement.offsetHeight}px)`;
+                 }
+            }
+            const navScrollable = document.querySelector('.spa-nav-tabs');
+            const activeButton = navButtons[currentSectionIndex];
+            if (activeButton && navScrollable) {
+                const scrollLeft = activeButton.offsetLeft - (navScrollable.offsetWidth / 2) + (activeButton.offsetWidth / 2);
+                navScrollable.scrollTo({ left: scrollLeft, behavior: 'auto' });
+            }
+        };
+    </script>
 </body>
 </html>
