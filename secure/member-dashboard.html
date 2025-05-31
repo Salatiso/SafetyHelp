@@ -4,69 +4,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Manage your OHS compliance, RMPs, supplier reviews, and community reports with SafetyHelp's Member Dashboard.">
-    <meta name="keywords" content="member dashboard, OHS compliance, risk management plans, supplier reviews, community reports, SafetyHelp">
-    <meta name="author" content="SafetyHelp Team">
     <title data-i18n="page_title.member_dashboard">SafetyHelp - Member Dashboard</title>
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
     <link
       rel="stylesheet"
       as="style"
       onload="this.rel='stylesheet'"
-      href="https://fonts.googleapis.com/css2?display=swap&family=Inter%3Awght%40400%3B500%3B700%3B900&family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&family=Montserrat:wght@400;500;600;700"
+      href="https://fonts.googleapis.com/css2?display=swap&family=Montserrat:wght@400;500;600;700;900&family=Inter:wght@400;500;700"
     />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://unpkg.com/i18next@23.15.2/dist/umd/i18next.min.js"></script>
     <script src="https://unpkg.com/i18next-http-backend@2.5.2/dist/umd/i18nextHttpBackend.min.js"></script>
     <script src="https://unpkg.com/i18next-browser-languagedetector@8.0.0/dist/umd/i18nextBrowserLanguageDetector.min.js"></script>
     <style>
-        /* Consistent Global Styles */
-        body {
-            font-family: 'Inter', "Noto Sans", sans-serif;
-            background-color: #E8F0FE; /* Consistent light blue-gray background */
-            color: #374151; /* Tailwind gray-700 for body text */
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        h1, h2, h3, h4 {
-            font-family: 'Montserrat', sans-serif;
-            color: #1f2937; /* Tailwind gray-800 for headings */
+        /* Global Styles */
+        :root {
+            --primary-blue: #007BFF;
+            --primary-orange: #FF8C00; /* Deeper Orange from branding */
+            --secondary-orange: #FD7E14; /* Brighter Orange for CTA */
+            --text-dark: #1f2937; /* gray-800 */
+            --text-medium: #374151; /* gray-700 */
+            --text-light: #6b7280; /* gray-500 */
+            --bg-light: #E8F0FE;
+            --bg-white: #FFFFFF;
+            --sidebar-bg: #1e293b; /* Tailwind slate-800, darker for contrast */
+            --sidebar-text: #cbd5e1; /* slate-300 */
+            --sidebar-hover-bg: #334155; /* slate-700 */
+            --sidebar-active-bg: #0056b3; /* Darker primary blue for active */
         }
 
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { 
+          height: 100%; 
+          font-family: 'Inter', 'Montserrat', sans-serif; 
+          background-color: var(--bg-light); 
+          color: var(--text-medium); 
+          display: flex;
+          flex-direction: column;
+          overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+        a { text-decoration: none; color: var(--primary-blue); }
+        a:hover { color: #0056b3; }
+        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; color: var(--text-dark); }
+
         .dashboard-header {
-            background-color: #1e293b; /* Tailwind slate-800 */
+            background-color: var(--primary-blue);
             color: white;
-            padding: 0 1rem; /* px-4 */
-            box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1); /* shadow-md */
+            padding: 0 1rem; 
+            box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             z-index: 1000;
             height: 64px;
             display: flex;
             align-items: center;
         }
+        .dashboard-header .logo-container .logo { color: white; }
+        .dashboard-header .logo-container .help { color: var(--primary-orange); }
+
         .dashboard-layout {
             display: flex;
             flex-grow: 1;
-            padding-top: 64px;
+            padding-top: 64px; /* Height of header */
         }
         .sidebar {
             width: 260px;
-            background-color: #334155; /* Tailwind slate-700 */
-            color: #e2e8f0; /* Tailwind slate-200 */
+            background-color: var(--sidebar-bg);
+            color: var(--sidebar-text);
             padding: 1.5rem 1rem;
             height: calc(100vh - 64px);
             position: fixed;
-            left: 0;
-            top: 64px;
+            left: 0; top: 64px;
             overflow-y: auto;
             transition: width 0.3s ease;
             display: flex;
             flex-direction: column;
+            z-index: 900; /* Below header, above main content overlay on small screens */
         }
         .sidebar.collapsed {
             width: 70px;
@@ -80,285 +93,200 @@
         }
         .sidebar.collapsed .sidebar-link .fa-fw {
             margin-right: 0;
+            font-size: 1.2rem; /* Make icons slightly larger when collapsed */
         }
         .sidebar.collapsed .notification-badge {
-            min-width: auto;
-            padding: 0.25rem;
-            font-size: 0.6rem; /* Make badge smaller when sidebar is collapsed */
-            line-height: 1;
+            min-width: auto; padding: 0.2rem; font-size: 0.6rem; line-height: 1;
+            position: absolute; top: 8px; right: 8px;
         }
-        .sidebar.collapsed .sidebar-title .fa-tachometer-alt {
-             margin: 0 auto; /* Center the dashboard icon */
-        }
+        .sidebar.collapsed .sidebar-title .fas { margin: 0 auto; font-size: 1.5rem; }
 
 
         .sidebar-title {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            color: white;
-            padding: 0 0.5rem;
+            display: flex; align-items: center; gap: 0.75rem;
+            font-size: 1.25rem; font-weight: 600; margin-bottom: 1.5rem;
+            color: white; padding: 0 0.5rem;
         }
-        .sidebar nav {
-            flex-grow: 1;
-        }
+        .sidebar nav { flex-grow: 1; }
         .sidebar-link {
-            display: flex;
-            align-items: center;
-            padding: 0.875rem 1rem;
-            color: #cbd5e1;
-            border-radius: 0.375rem;
-            margin-bottom: 0.5rem;
-            transition: background-color 0.2s ease, color 0.2s ease;
-            white-space: nowrap;
+            display: flex; align-items: center; padding: 0.875rem 1rem;
+            color: var(--sidebar-text); border-radius: 0.375rem;
+            margin-bottom: 0.5rem; transition: background-color 0.2s ease, color 0.2s ease;
+            white-space: nowrap; position: relative; /* For notification badge positioning */
         }
         .sidebar-link:hover, .sidebar-link.active {
-            background-color: #475569; /* slate-600 */
-            color: white;
+            background-color: var(--sidebar-hover-bg); color: white;
         }
-        .sidebar-link .fa-fw {
-            margin-right: 0.875rem;
-            width: 1.25em;
-            text-align: center;
-        }
+        .sidebar-link.active { background-color: var(--sidebar-active-bg); }
+        .sidebar-link .fa-fw { margin-right: 0.875rem; width: 1.25em; text-align: center; }
+        
         .main-content {
-            flex-grow: 1;
-            padding: 1.5rem; /* p-6 */
-            margin-left: 260px;
+            flex-grow: 1; padding: 1.5rem; 
+            margin-left: 260px; /* Default sidebar width */
             transition: margin-left 0.3s ease;
-            background-color: #f0f4f8; /* Consistent with body background */
+            background-color: var(--bg-light);
+            overflow-y: auto; /* Ensure main content area scrolls */
         }
         .main-content.sidebar-collapsed {
-            margin-left: 70px;
+            margin-left: 70px; /* Collapsed sidebar width */
         }
         .dashboard-section {
-            background-color: white;
-            padding: 1.5rem; /* p-6 */
-            border-radius: 0.5rem; /* rounded-lg */
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Softer shadow */
-            margin-bottom: 1.5rem; /* mb-6 */
+            background-color: var(--bg-white); padding: 1.5rem; 
+            border-radius: 0.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
+            margin-bottom: 1.5rem; 
         }
         .dashboard-section h2 {
-            font-size: 1.5rem; /* text-2xl */
-            font-weight: 600; /* font-semibold */
-            margin-bottom: 1rem; /* mb-4 */
-            color: #111827; /* gray-900 */
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
+            font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; 
+            color: var(--primary-blue); display: flex; align-items: center; gap: 0.75rem;
+            border-bottom: 1px solid #e0e0e0; padding-bottom: 0.75rem;
         }
-        .dashboard-section h2 .fas, .dashboard-section h2 .far { /* Icon color in section titles */
-            color: #4b5563; /* gray-600 */
-        }
+        .dashboard-section h2 .fas, .dashboard-section h2 .far { color: var(--primary-orange); }
         .dashboard-section h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-top: 1.5rem;
-            margin-bottom: 0.75rem;
-            color: #1f2937; /* gray-800 */
+            font-size: 1.25rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.75rem;
+            color: var(--text-dark);
         }
         .profile-completeness {
-            background-color: #e5e7eb; /* gray-200 */
-            border-radius: 0.375rem;
-            height: 12px;
-            overflow: hidden; /* Ensures bar stays within rounded corners */
+            background-color: #e5e7eb; border-radius: 0.375rem;
+            height: 12px; overflow: hidden; 
         }
         .profile-completeness-bar {
-            background-color: #4f46e5; /* indigo-600 */
-            height: 100%;
-            border-radius: 0.375rem; /* Match parent for smooth look */
-            transition: width 0.5s ease-in-out;
+            background-color: var(--primary-blue); height: 100%;
+            border-radius: 0.375rem; transition: width 0.5s ease-in-out;
         }
         .language-selector-container {
-            position: absolute;
-            top: 50%;
-            right: 1rem;
-            transform: translateY(-50%);
-            z-index: 1050;
+            position: absolute; top: 50%; right: 1rem;
+            transform: translateY(-50%); z-index: 1050;
         }
         .language-selector-container select {
-            background-color: #4b5563; /* gray-600 */
-            color: white;
-            padding: 0.375rem 0.75rem; /* py-1.5 px-3 */
-            border-radius: 0.375rem;
-            border: 1px solid #6b7280; /* gray-500 */
-            font-size: 0.875rem; /* text-sm */
+            background-color: rgba(255,255,255,0.1); color: white;
+            padding: 0.375rem 0.75rem; border-radius: 0.375rem;
+            border: 1px solid rgba(255,255,255,0.3); font-size: 0.875rem; 
         }
+         .language-selector-container select option { background-color: var(--sidebar-bg); color: white; }
         .sidebar-toggle {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.5rem;
+            background: none; border: none; color: white;
+            font-size: 1.5rem; cursor: pointer; padding: 0.5rem;
         }
         .sidebar-user-info {
-            margin-top: auto; /* Pushes to the bottom */
-            padding-top: 1rem;
+            margin-top: auto; padding-top: 1rem;
             border-top: 1px solid #475569; /* slate-600 */
         }
         .notification-badge {
-            margin-left: auto;
-            padding: 0.125rem 0.5rem;
-            font-size: 0.75rem;
-            font-weight: bold;
-            border-radius: 9999px;
+            margin-left: auto; padding: 0.125rem 0.5rem;
+            font-size: 0.75rem; font-weight: bold;
+            border-radius: 9999px; background-color: var(--secondary-orange); color:white;
         }
         .btn {
-            padding: 0.625rem 1.25rem; /* py-2.5 px-5 for slightly larger buttons */
-            border-radius: 0.375rem;
-            font-weight: 500; /* medium */
-            transition: background-color 0.2s ease, box-shadow 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
+            padding: 0.625rem 1.25rem; border-radius: 0.375rem;
+            font-weight: 500; transition: background-color 0.2s ease, box-shadow 0.2s ease;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05); border: none; cursor:pointer;
         }
-        .btn:hover {
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
-        }
-        .btn-sm {
-            padding: 0.375rem 0.75rem; /* py-1.5 px-3 */
-            font-size: 0.875rem; /* text-sm */
-        }
-        .btn-primary { background-color: #2563eb; color: white; }
-        .btn-primary:hover { background-color: #1d4ed8; }
-        .btn-secondary { background-color: #64748b; color: white; }
-        .btn-secondary:hover { background-color: #475569; }
-        .btn-success { background-color: #16a34a; color: white; }
-        .btn-success:hover { background-color: #15803d; }
-        .btn-danger { background-color: #dc2626; color: white; }
-        .btn-danger:hover { background-color: #b91c1c; }
-        .btn-warning { background-color: #f59e0b; color: #422006; }
-        .btn-warning:hover { background-color: #d97706; }
-        .btn-info { background-color: #0ea5e9; /* sky-500 */ color: white; }
-        .btn-info:hover { background-color: #0284c7; /* sky-600 */ }
-        .btn-light { background-color: #f1f5f9; /* slate-100 */ color: #1e293b; /* slate-800 */ border: 1px solid #e2e8f0; /* slate-200 */ }
-        .btn-light:hover { background-color: #e2e8f0; /* slate-200 */ }
-
+        .btn:hover { box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06); }
+        .btn-sm { padding: 0.375rem 0.75rem; font-size: 0.875rem; }
+        .btn-primary { background-color: var(--primary-blue); color: white; }
+        .btn-primary:hover { background-color: #0056b3; }
+        .btn-secondary { background-color: #64748b; color: white; } /* slate-500 */
+        .btn-secondary:hover { background-color: #475569; } /* slate-600 */
+        .btn-success { background-color: #16a34a; color: white; } /* green-600 */
+        .btn-success:hover { background-color: #15803d; } /* green-700 */
+        .btn-danger { background-color: #dc2626; color: white; } /* red-600 */
+        .btn-danger:hover { background-color: #b91c1c; } /* red-700 */
+        .btn-warning { background-color: var(--primary-orange); color: white; }
+        .btn-warning:hover { background-color: #c2410c; } /* orange-700 */
 
         .form-input, .form-select, .form-textarea {
-            width: 100%;
-            padding: 0.625rem 0.875rem; /* py-2.5 px-3.5 */
+            width: 100%; padding: 0.625rem 0.875rem; 
             border: 1px solid #d1d5db; /* gray-300 */
-            border-radius: 0.375rem;
-            box-shadow: inset 0 1px 2px 0 rgb(0 0 0 / 0.05);
-            font-size: 0.875rem; /* text-sm */
-            color: #1f2937; /* gray-800 */
+            border-radius: 0.375rem; box-shadow: inset 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            font-size: 0.875rem; color: var(--text-dark);
+            font-family: 'Inter', sans-serif;
         }
         .form-input::placeholder, .form-textarea::placeholder { color: #9ca3af; /* gray-400 */ }
         .form-input:focus, .form-select:focus, .form-textarea:focus {
-            outline: 2px solid transparent;
-            outline-offset: 2px;
-            border-color: #2563eb;
-            box-shadow: 0 0 0 2px #bfdbfe;
+            outline: 2px solid transparent; outline-offset: 2px;
+            border-color: var(--primary-blue); box-shadow: 0 0 0 2px #bfdbfe; /* blue-200 */
         }
-        .form-label {
-            display: block;
-            margin-bottom: 0.375rem; /* mb-1.5 */
-            font-weight: 500;
-            color: #374151; /* gray-700 */
-            font-size: 0.875rem; /* text-sm */
-        }
+        .form-label { display: block; margin-bottom: 0.375rem; font-weight: 500; color: var(--text-medium); font-size: 0.875rem; }
         .form-checkbox {
-            height: 1rem; /* h-4 */
-            width: 1rem; /* w-4 */
-            border-radius: 0.25rem; /* rounded */
-            border-color: #d1d5db; /* gray-300 */
-            color: #2563eb; /* blue-600 */
+            height: 1rem; width: 1rem; border-radius: 0.25rem; 
+            border-color: #d1d5db; /* gray-300 */ color: var(--primary-blue);
         }
-        .form-checkbox:focus {
-            ring: 2px;
-            ring-offset: 2px;
-            ring-color: #93c5fd; /* blue-300 */
-        }
-
+        .form-checkbox:focus { ring: 2px; ring-offset: 2px; ring-color: #93c5fd; /* blue-300 */ }
 
         /* Modal Styles */
         .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             background-color: rgba(17, 24, 39, 0.75); /* gray-900 with opacity */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-            padding: 1rem;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 2000; padding: 1rem;
         }
         .modal-content {
-            background-color: white;
-            padding: 1.5rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04); /* shadow-2xl */
-            width: 100%;
-            max-width: 560px; /* lg:max-w-lg */
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative; /* For close button positioning */
+            background-color: white; padding: 1.5rem; border-radius: 0.5rem;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04); 
+            width: 100%; max-width: 560px; 
+            max-height: 90vh; overflow-y: auto;
+            position: relative; 
         }
         .modal-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: #111827; /* gray-900 */
+            font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;
+            color: var(--primary-blue);
         }
         .modal-close-btn {
-            position: absolute;
-            top: 0.75rem;
-            right: 0.75rem;
-            background: none;
-            border: none;
-            font-size: 1.75rem; /* text-3xl */
-            line-height: 1;
-            cursor: pointer;
-            color: #9ca3af; /* gray-400 */
+            position: absolute; top: 0.75rem; right: 0.75rem;
+            background: none; border: none; font-size: 1.75rem; 
+            line-height: 1; cursor: pointer; color: #9ca3af; /* gray-400 */
         }
         .modal-close-btn:hover { color: #1f2937; }
 
         /* Chatbot Styles */
-        .chatbot-container { position: fixed; bottom: 1.25rem; right: 1.25rem; z-index: 1000; }
+        .chatbot-container { position: fixed; bottom: 1.25rem; right: 1.25rem; z-index: 1050; }
         #chat-window {
             width: 320px; max-height: 450px; overflow-y: auto; display: flex; flex-direction: column;
             transition: all 0.3s ease; background-color: white; border-radius: 0.5rem;
             box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+            position: absolute; bottom: calc(56px + 0.75rem); /* Button height + margin */ right: 0;
         }
         .chat-hidden { display: none !important; }
         .chat-expanded { display: flex !important; }
-        #chat-output { flex-grow: 1; padding: 0.75rem; overflow-y: auto; }
+        #chat-header { 
+            background-color: var(--primary-blue); color: white; padding: 0.5rem 0.75rem; 
+            font-weight: 600; border-top-left-radius: 0.5rem; border-top-right-radius: 0.5rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        #chat-header .close-chat-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; }
+        #chat-output { flex-grow: 1; padding: 0.75rem; overflow-y: auto; font-size: 0.875rem; background-color: #f9fafb; }
+        #chat-output p { margin-bottom: 0.5rem; line-height: 1.5; }
+        #chat-output p strong { color: var(--primary-blue); }
+        #chat-output p strong:first-child { color: var(--primary-orange); } 
         #chat-input-container { display: flex; border-top: 1px solid #e5e7eb; }
         #chat-input {
             flex-grow: 1; border: none; padding: 0.75rem; border-bottom-left-radius: 0.5rem;
             font-size: 0.875rem;
         }
-        #chat-input:focus { outline: none; box-shadow: 0 0 0 2px #bfdbfe; } /* blue-200 ring */
+        #chat-input:focus { outline: none; box-shadow: inset 0 0 0 2px var(--primary-blue); }
         #chat-send {
-            border: none; padding: 0.75rem 1rem; cursor: pointer; background-color: #2563eb;
+            border: none; padding: 0.75rem 1rem; cursor: pointer; background-color: var(--primary-blue);
             color: white; border-bottom-right-radius: 0.5rem;
         }
-        #chat-send:hover { background-color: #1d4ed8; }
+        #chat-send:hover { background-color: #0056b3; }
         #chat-toggle {
-            background-color: #2563eb; color: white; border: none; padding: 0.75rem; /* Adjusted padding */
-            border-radius: 9999px; /* rounded-full */ cursor: pointer; font-size: 1.25rem; /* text-xl for icon */
-            width: 56px; /* h-14 w-14 */ height: 56px; display: flex; align-items: center; justify-content: center;
+            background-color: var(--primary-orange); color: white; border: none; 
+            border-radius: 9999px; cursor: pointer; font-size: 1.5rem; 
+            width: 56px; height: 56px; display: flex; align-items: center; justify-content: center;
             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
         }
-        #chat-toggle:hover { background-color: #1d4ed8; }
+        #chat-toggle:hover { background-color: #c2410c; }
 
-        /* Table styles */
         .table-auto { width: 100%; border-collapse: collapse; }
         .table-auto th, .table-auto td {
             border: 1px solid #e5e7eb; /* gray-200 */
-            padding: 0.75rem; /* p-3 */
-            text-align: left;
+            padding: 0.75rem; text-align: left;
             font-size: 0.875rem; /* text-sm */
         }
         .table-auto th {
             background-color: #f9fafb; /* gray-50 */
-            font-weight: 600;
-            color: #374151; /* gray-700 */
+            font-weight: 600; color: #374151; /* gray-700 */
         }
         .table-auto tbody tr:nth-child(odd) { background-color: white; }
         .table-auto tbody tr:nth-child(even) { background-color: #f9fafb; }
@@ -368,28 +296,35 @@
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
-            .sidebar { width: 70px; }
-            .sidebar .sidebar-text, .sidebar .sidebar-title-text, .sidebar .notification-badge-text { display: none; }
+            .sidebar { width: 70px; /* Start collapsed on small screens */ }
+            .sidebar .sidebar-text, .sidebar .sidebar-title-text, 
+            .sidebar .sidebar-user-info .sidebar-text, 
+            .sidebar .notification-badge-text { display: none; }
             .main-content { margin-left: 70px; padding: 1rem; }
             .dashboard-section h2 { font-size: 1.25rem; }
             .dashboard-section h3 { font-size: 1.125rem; }
-            .grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3 > div { margin-bottom: 1rem; } /* Stack quick stats on mobile */
-            .md\\:col-span-2 { grid-column: span 1 / span 1; } /* Stack profile form elements */
+            .dashboard-header .logo-container a { font-size: 1.25rem;}
+            .language-selector-container { display:none; } /* Hide header lang selector on mobile dashboard */
+            .dashboard-layout .container { grid-template-columns: 1fr; } /* Stack columns if needed */
+            .grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3 > div { margin-bottom: 1rem; } 
+            .md\\:col-span-2 { grid-column: span 1 / span 1; } 
         }
     </style>
 </head>
 <body>
 
     <header class="dashboard-header">
-        <div class="container mx-auto flex justify-between items-center h-full">
+        <div class="container mx-auto flex justify-between items-center h-full" style="max-width: 100%; padding: 0 1rem;">
             <div class="flex items-center">
                 <button id="sidebar-toggle" class="sidebar-toggle mr-2 text-xl" aria-label="Toggle sidebar">
                     <i class="fas fa-bars"></i>
                 </button>
-                <a href="index.html" class="text-2xl font-bold" data-i18n="header.titleSafetyHelp">SafetyHelp</a>
+                <a href="/SafetyHelp/index.html" class="logo-container">
+                     <div class="logo">Safety<span class="help">Help</span></div>
+                </a>
             </div>
             <div id="user-welcome-container" class="text-sm hidden md:block">
-                 <span data-i18n="dashboard.loggedInAs">Logged in as:</span> <strong id="user-display-name" class="font-medium">User</strong>
+                <span data-i18n="dashboard.loggedInAs">Logged in as:</span> <strong id="user-display-name" class="font-medium">User</strong>
             </div>
             <div class="language-selector-container">
                 <select id="language-select" aria-label="Select language">
@@ -431,7 +366,7 @@
                 <a href="#training" class="sidebar-link" data-section="training">
                     <i class="fas fa-graduation-cap fa-fw"></i> <span class="sidebar-text" data-i18n="dashboard.trainingManagement">Training Management</span>
                 </a>
-                <a href="#superuser" class="sidebar-link" data-section="superuser" id="superuser-link">
+                <a href="#superuser" class="sidebar-link hidden" data-section="superuser" id="superuser-link">
                     <i class="fas fa-star fa-fw"></i> <span class="sidebar-text" data-i18n="dashboard.superuserTools">Superuser Tools</span>
                 </a>
                 <a href="#community" class="sidebar-link" data-section="community">
@@ -440,7 +375,7 @@
                 <a href="#notifications" class="sidebar-link" data-section="notifications">
                     <i class="fas fa-bell fa-fw"></i>
                     <span class="sidebar-text" data-i18n="dashboard.notificationsTasks">Notifications</span>
-                    <span class="notification-badge bg-red-500 text-white" id="notification-count">
+                    <span class="notification-badge" id="notification-count">
                         <span class="notification-badge-text">3</span>
                     </span>
                 </a>
@@ -457,7 +392,7 @@
 
         <main class="main-content" id="main-content-area">
             <section class="dashboard-section" id="welcome-section" data-title="Welcome">
-                <h2 id="welcome-user-heading"><i class="fas fa-hand-sparkles text-yellow-500"></i> <span data-i18n="dashboard.welcome" data-i18n-options='{"name": "User"}'>Welcome, User!</span></h2>
+                <h2 id="welcome-user-heading"><i class="fas fa-hand-sparkles"></i> <span data-i18n="dashboard.welcome" data-i18n-options='{"name": "User"}'>Welcome, User!</span></h2>
                 <p class="text-slate-600" data-i18n="dashboard.welcomeMessage">Here's an overview of your safety management activities. Select an option from the sidebar to get started.</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
                     <div class="bg-blue-50 p-6 rounded-lg shadow-md border border-blue-200">
@@ -541,7 +476,7 @@
                             <input type="file" id="cvUpload" name="cvUpload" class="form-input text-sm" accept=".csv,.pdf">
                             <p class="text-xs text-slate-500 mt-1" data-i18n="dashboard.cvUploadNote">CSV recommended for best import. PDF text extraction is experimental.</p>
                             <button id="uploadCvBtn" class="btn btn-success mt-2 w-full btn-sm"><i class="fas fa-upload"></i> <span data-i18n="button.uploadFile">Upload CV</span></button>
-                            <a href="#" class="text-xs text-blue-600 hover:underline mt-1 block" data-i18n="dashboard.downloadCsvTemplate">Download CSV Template</a>
+                            <a href="/SafetyHelp/assets/templates/cv_template.csv" download="SafetyHelp_CV_Template.csv" class="text-xs text-blue-600 hover:underline mt-1 block" data-i18n="dashboard.downloadCsvTemplate">Download CSV Template</a>
                         </div>
                         <div>
                             <h3 data-i18n="dashboard.profile.privacySettings">Privacy Settings</h3>
@@ -586,7 +521,7 @@
                             <button class="btn btn-secondary btn-sm"><i class="fas fa-cog"></i> <span data-i18n="button.manage">Manage</span></button>
                         </div>
                     </div>
-                    <div class="mt-6 p-4 border rounded-md bg-slate-50 text-center hidden col-span-full" id="noWorkspacesMessage">
+                     <div class="mt-6 p-4 border rounded-md bg-slate-50 text-center hidden col-span-full" id="noWorkspacesMessage">
                         <i class="fas fa-folder-minus fa-3x text-slate-400 mb-3"></i>
                         <p class="text-slate-500" data-i18n="dashboard.noWorkspaces">No workspaces created yet. Click "Create New Workspace" to get started.</p>
                     </div>
@@ -597,9 +532,8 @@
                 <h2><i class="fas fa-file-alt"></i> <span data-i18n="dashboard.documentControlTitle">Document Control</span></h2>
                 <p class="text-slate-600 mb-6" data-i18n="dashboard.documentControlDesc">Access, manage, and generate OHS documents. Ensure compliance with ISO 45001 and other standards.</p>
                 <div class="flex flex-col sm:flex-row justify-between items-center mb-4 gap-3">
-                    <button class="btn btn-primary w-full sm:w-auto">
-                        <i class="fas fa-file-medical"></i> <span data-i18n="dashboard.generateDocument">Generate New Document</span>
-                    </button>
+                    <a href="/SafetyHelp/pages/ohs-system.html" class="btn btn-primary w-full sm:w-auto"> <i class="fas fa-file-medical"></i> <span data-i18n="dashboard.generateDocument">Generate New Document</span>
+                    </a>
                     <input type="search" class="form-input w-full sm:w-1/3" placeholder="Search documents..." aria-label="Search documents">
                 </div>
                 <div class="overflow-x-auto">
@@ -637,9 +571,8 @@
             <section class="dashboard-section hidden" id="incidents-section" data-title="Incident Management">
                 <h2><i class="fas fa-medkit"></i> <span data-i18n="dashboard.incidentManagementTitle">Incident Management</span></h2>
                 <p class="text-slate-600 mb-6" data-i18n="dashboard.incidentManagementDesc">Report, track, and manage incidents. Implement corrective actions and analyze trends.</p>
-                <button class="btn btn-danger mb-6">
-                    <i class="fas fa-plus-circle"></i> <span data-i18n="dashboard.reportIncident">Report New Incident</span>
-                </button>
+                <a href="/SafetyHelp/pages/incident-management.html" class="btn btn-danger mb-6"> <i class="fas fa-plus-circle"></i> <span data-i18n="dashboard.reportIncident">Report New Incident</span>
+                </a>
                 <div class="overflow-x-auto">
                     <table class="table-auto w-full">
                         <thead>
@@ -666,7 +599,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="mt-4 text-center text-slate-500 hidden" id="noIncidentsMessage">
+                 <div class="mt-4 text-center text-slate-500 hidden" id="noIncidentsMessage">
                     <i class="fas fa-shield-alt fa-3x text-slate-400 mb-3"></i>
                     <p data-i18n="dashboard.noIncidents">No incidents reported recently. Keep up the safe work!</p>
                 </div>
@@ -675,9 +608,8 @@
             <section class="dashboard-section hidden" id="risks-section" data-title="Risk Assessment (RMP)">
                 <h2><i class="fas fa-tasks"></i> <span data-i18n="dashboard.riskAssessmentTitle">Risk Assessment (RMP)</span></h2>
                 <p class="text-slate-600 mb-6" data-i18n="dashboard.riskAssessmentDesc">Conduct risk assessments using our guided wizard. Identify hazards and implement control measures.</p>
-                <button class="btn btn-warning mb-6">
-                    <i class="fas fa-clipboard-list"></i> <span data-i18n="dashboard.startNewRMP">Start New RMP</span>
-                </button>
+                <a href="/SafetyHelp/pages/risk-assessment.html" class="btn btn-warning mb-6"> <i class="fas fa-clipboard-list"></i> <span data-i18n="dashboard.startNewRMP">Start New RMP</span>
+                </a>
                 <div class="mt-4 text-center text-slate-500" id="noRMPsMessage">
                     <i class="fas fa-search-plus fa-3x text-slate-400 mb-3"></i>
                     <p data-i18n="dashboard.noRMPs">No Risk Management Plans initiated yet for this workspace.</p>
@@ -687,10 +619,9 @@
             <section class="dashboard-section hidden" id="training-section" data-title="Training Management">
                 <h2><i class="fas fa-chalkboard-teacher"></i> <span data-i18n="dashboard.trainingManagementTitle">Training Management</span></h2>
                 <p class="text-slate-600 mb-6" data-i18n="dashboard.trainingManagementDesc">Access training guides, track employee training records (future), and link to online training resources.</p>
-                <button class="btn btn-info mb-6">
-                    <i class="fas fa-book-open"></i> <span data-i18n="dashboard.accessTrainingWizard">Access Training Wizard</span>
-                </button>
-                <div class="mt-4 text-center text-slate-500" id="noTrainingRecordsMessage">
+                 <a href="/SafetyHelp/pages/training.html" class="btn btn-info mb-6"> <i class="fas fa-book-open"></i> <span data-i18n="dashboard.accessTrainingWizard">Access Training Wizard</span>
+                </a>
+                 <div class="mt-4 text-center text-slate-500" id="noTrainingRecordsMessage">
                     <i class="fas fa-user-graduate fa-3x text-slate-400 mb-3"></i>
                     <p data-i18n="dashboard.noTrainingRecords">Training management features are evolving. Check back soon for updates on record tracking!</p>
                 </div>
@@ -703,15 +634,15 @@
                     <div class="bg-teal-50 p-4 rounded-md border border-teal-200">
                         <h4 class="font-semibold text-teal-700" data-i18n="dashboard.superuser.clientManagement">Client Engagement Management</h4>
                         <p class="text-sm text-teal-600" data-i18n="dashboard.superuser.clientManagementDesc">Manage your OHS consultancy clients through SafetyHelp.</p>
-                        <button class="btn btn-primary mt-2 bg-teal-600 hover:bg-teal-700"><i class="fas fa-users-cog"></i> <span data-i18n="button.manageClients">Manage Clients</span></button>
+                        <button class="btn btn-primary mt-2" style="background-color: #0d9488; hover:background-color: #0f766e;"><i class="fas fa-users-cog"></i> <span data-i18n="button.manageClients">Manage Clients</span></button>
                     </div>
                     <div class="bg-orange-50 p-4 rounded-md border border-orange-200 mt-4">
                         <h4 class="font-semibold text-orange-700" data-i18n="dashboard.superuser.accreditationHub">Accreditation & Resource Hub</h4>
                         <p class="text-sm text-orange-600" data-i18n="dashboard.superuser.accreditationHubDesc">Manage your SafetyHelp accreditation and access exclusive resources.</p>
-                        <button class="btn btn-primary mt-2 bg-orange-500 hover:bg-orange-600"><i class="fas fa-id-badge"></i> <span data-i18n="button.viewAccreditation">View Accreditation</span></button>
+                        <button class="btn btn-primary mt-2" style="background-color: #c2410c; hover:background-color: #9a3412;"><i class="fas fa-id-badge"></i> <span data-i18n="button.viewAccreditation">View Accreditation</span></button>
                     </div>
                 </div>
-                <div id="non-superuser-message-area" class="hidden">
+                 <div id="non-superuser-message-area" class="hidden">
                     <p class="text-slate-500 p-4 bg-slate-100 rounded-md"><i class="fas fa-lock mr-2"></i><span data-i18n="dashboard.superuser.notAuthorized">This section is available for accredited superusers only. Contact support for more information on our Accreditation Program.</span></p>
                 </div>
             </section>
@@ -719,7 +650,7 @@
             <section class="dashboard-section hidden" id="community-section" data-title="Community Hub">
                 <h2><i class="fas fa-comments"></i> <span data-i18n="dashboard.communityHubTitle">Community Hub</span></h2>
                 <p class="text-slate-600 mb-6" data-i18n="dashboard.communityHubDesc">Connect with other OHS professionals, share best practices, and access community resources.</p>
-                <a href="community.html" class="btn btn-primary bg-cyan-600 hover:bg-cyan-700">
+                <a href="/SafetyHelp/community.html" class="btn btn-primary" style="background-color: #0891b2; hover:background-color: #0e7490;">
                     <i class="fas fa-external-link-alt"></i> <span data-i18n="dashboard.goToCommunity">Go to Community Page</span>
                 </a>
                 <div class="mt-6 border-t pt-4">
@@ -745,7 +676,7 @@
                         <button class="ml-auto text-slate-400 hover:text-slate-600 text-lg" aria-label="Dismiss notification">&times;</button>
                     </div>
                 </div>
-                <div class="mt-4 p-4 border rounded-md bg-slate-50 text-center hidden" id="noNotificationsMessage">
+                 <div class="mt-4 p-4 border rounded-md bg-slate-50 text-center hidden" id="noNotificationsMessage">
                     <i class="fas fa-check-circle fa-3x text-slate-400 mb-3"></i>
                     <p class="text-slate-500" data-i18n="dashboard.noNewNotifications">No new notifications or tasks at the moment.</p>
                 </div>
@@ -774,6 +705,10 @@
 
     <div class="chatbot-container">
         <div id="chat-window" class="chat-hidden">
+             <div id="chat-header">
+                <span>Salatiso - OHS Assistant</span>
+                <button class="close-chat-btn" onclick="toggleChatbot(false)">&times;</button>
+            </div>
             <div id="chat-output" class="p-3">
                 <div class="mb-2 text-sm text-slate-600" data-i18n="chatbot.welcome">Welcome to Salatiso! How can I help you today?</div>
             </div>
@@ -783,7 +718,7 @@
             </div>
         </div>
         <button id="chat-toggle" aria-label="Toggle Chatbot">
-            <i class="fas fa-comments"></i> <span class="sr-only" data-i18n="chatbot.toggle">Toggle Chat</span>
+            <i class="fas fa-headset"></i> <span class="sr-only" data-i18n="chatbot.toggle">Toggle Chat</span>
         </button>
     </div>
 
@@ -831,7 +766,7 @@
                     <label for="certIssuer" class="form-label" data-i18n="modal.addCertification.issuer">Issuing Body</label>
                     <input type="text" id="certIssuer" name="certIssuer" class="form-input" required>
                 </div>
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label for="certIssueDate" class="form-label" data-i18n="modal.addCertification.issueDate">Issue Date</label>
                         <input type="date" id="certIssueDate" name="certIssueDate" class="form-input">
@@ -853,567 +788,6 @@
         </div>
     </div>
 
-
-    <script type="module">
-        // Firebase SDK Imports (Ensure these are correct for your Firebase version)
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
-        import {
-            getAuth,
-            onAuthStateChanged,
-            signOut
-        } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
-        import {
-            getFirestore,
-            doc,
-            getDoc,
-            setDoc,
-            updateDoc,
-            collection,
-            addDoc,
-            query,
-            where,
-            getDocs,
-            serverTimestamp
-        } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
-
-        // Firebase configuration (Replace with your actual config)
-        const firebaseConfig = {
-            apiKey: "AIzaSyDASGZnUyav23Mte5Q96H0j-T3LlGzVK-k",
-            authDomain: "safetyfirst2025-aea34.firebaseapp.com",
-            projectId: "safetyfirst2025-aea34",
-            storageBucket: "safetyfirst2025-aea34.appspot.com",
-            messagingSenderId: "620306944192",
-            appId: "1:620306944192:web:ddadeef6825901068a9d25",
-            measurementId: "G-VQL1FCD8NN"
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
-        // --- Global Variables & Initial Setup ---
-        let currentUser = null; // Will hold Firebase auth user object
-        let currentUserData = null; // Will hold Firestore user data
-        let currentUserRole = 'client'; // Default role, to be updated from Firestore
-
-        // --- UI Elements ---
-        const sidebar = document.getElementById('sidebar');
-        const mainContent = document.getElementById('main-content-area');
-        const sidebarToggle = document.getElementById('sidebar-toggle');
-        const welcomeUserHeading = document.getElementById('welcome-user-heading');
-        const userDisplayNameHeader = document.getElementById('user-display-name');
-
-        // --- Sidebar Toggle Functionality ---
-        if (sidebarToggle && sidebar && mainContent) {
-            sidebarToggle.addEventListener('click', () => {
-                sidebar.classList.toggle('collapsed');
-                mainContent.classList.toggle('sidebar-collapsed');
-                localStorage.setItem('sidebarCollapsed', sidebar.classList.contains('collapsed'));
-            });
-            if (localStorage.getItem('sidebarCollapsed') === 'true') {
-                sidebar.classList.add('collapsed');
-                mainContent.classList.add('sidebar-collapsed');
-            }
-             if (window.innerWidth <= 768 && !sidebar.classList.contains('collapsed-manual')) {
-                sidebar.classList.add('collapsed');
-                mainContent.classList.add('sidebar-collapsed');
-            }
-        }
-
-        // --- Dashboard Section Navigation ---
-        const sidebarLinks = document.querySelectorAll('.sidebar-link');
-        const sections = document.querySelectorAll('.dashboard-section');
-
-        function showSection(sectionIdToShow) {
-            sections.forEach(section => {
-                section.classList.toggle('hidden', section.id !== sectionIdToShow + '-section');
-            });
-            sidebarLinks.forEach(link => {
-                link.classList.toggle('active', link.getAttribute('data-section') === sectionIdToShow);
-            });
-            if(mainContent) mainContent.scrollTop = 0;
-            // Update Superuser section visibility based on role when its tab is clicked
-            if (sectionIdToShow === 'superuser') updateSuperuserSectionVisibility();
-        }
-
-        sidebarLinks.forEach(link => {
-            link.addEventListener('click', (event) => {
-                const sectionId = link.getAttribute('data-section');
-                if (link.id === 'logout-button') { // Handle logout separately
-                    event.preventDefault();
-                    handleLogout();
-                    return;
-                }
-                if (sectionId && document.getElementById(sectionId + '-section')) {
-                    event.preventDefault();
-                    showSection(sectionId);
-                    window.location.hash = sectionId;
-                } else if (!link.getAttribute('href').startsWith('#')) {
-                    return; // Allow normal navigation for external links
-                }
-            });
-        });
-
-        // --- i18next Initialization and Content Update ---
-        async function initializeI18next() {
-            // ... (Full i18next initialization as in login.html)
-            if (typeof i18next !== 'undefined' && typeof i18nextHttpBackend !== 'undefined' && typeof i18nextBrowserLanguageDetector !== 'undefined') {
-                try {
-                    await i18next
-                        .use(i18nextHttpBackend)
-                        .use(i18nextBrowserLanguageDetector)
-                        .init({
-                            fallbackLng: 'en',
-                            debug: true, // Set to false in production
-                            ns: ['translation'],
-                            defaultNS: 'translation',
-                            backend: { loadPath: './assets/locales/{{lng}}/{{ns}}.json' },
-                            detection: { order: ['querystring', 'cookie', 'localStorage', 'sessionStorage', 'navigator', 'htmlTag'], caches: ['localStorage', 'cookie'] }
-                        });
-                    updateUIForLanguage();
-                } catch (error) { console.error("Error initializing i18next for dashboard:", error); }
-            } else { console.error("i18next or its plugins are not loaded for dashboard."); }
-        }
-
-        function updateUIForLanguage() {
-            // ... (Full updateContent function as in login.html, adapted for dashboard elements)
-             document.querySelectorAll('[data-i18n]').forEach(element => {
-                const key = element.getAttribute('data-i18n');
-                const optionsAttr = element.getAttribute('data-i18n-options');
-                let options = {};
-                if (optionsAttr) {
-                    try { options = JSON.parse(optionsAttr); } catch (e) { console.error(`Error parsing i18n options for key "${key}":`, e); }
-                }
-
-                if (key === 'dashboard.welcome' && element.id === 'welcome-user-heading') {
-                    const username = currentUserData?.displayName || currentUserData?.email || "User";
-                    element.innerHTML = `<i class="fas fa-hand-sparkles text-yellow-500"></i> ${i18next.t(key, { name: username, ...options })}`;
-                    return;
-                }
-
-                if (key.startsWith('[placeholder]')) {
-                     element.setAttribute('placeholder', i18next.t(key.substring('[placeholder]'.length), options));
-                } else if (element.tagName === 'TITLE') {
-                    document.title = i18next.t(key, options);
-                } else {
-                    const icon = element.querySelector('i.fas, i.fab, i.far, i.fal');
-                    let textContent = i18next.t(key, options);
-                    if (icon && (element.classList.contains('sidebar-text') || element.classList.contains('btn') || element.closest('.sidebar-link'))) {
-                         let textNode = icon.nextSibling;
-                        while(textNode && textNode.nodeType !== Node.TEXT_NODE) { textNode = textNode.nextSibling; }
-                        if (textNode) { textNode.textContent = ' ' + textContent; }
-                        else { element.appendChild(document.createTextNode(' ' + textContent));}
-                    } else if (!icon) {
-                        element.innerHTML = textContent;
-                    }
-                    // If only icon, textContent might be empty, so icon is preserved.
-                }
-            });
-             // Update dynamic elements like profile completeness prompt
-            if (currentUserData) updateProfileCompletenessUI(calculateProfileCompleteness(currentUserData));
-
-        }
-
-        const langSelect = document.getElementById('language-select');
-        if (langSelect) {
-            langSelect.addEventListener('change', (e) => {
-                if (i18next.isInitialized) {
-                    i18next.changeLanguage(e.target.value, (err) => {
-                        if (err) { console.error('Error changing language:', err); return; }
-                        updateUIForLanguage();
-                    });
-                }
-            });
-        }
-
-        // --- Authentication State Management ---
-        onAuthStateChanged(auth, async (user) => {
-            if (user) {
-                currentUser = user;
-                await fetchUserData(user.uid); // Fetch additional user data from Firestore
-                if (userDisplayNameHeader) userDisplayNameHeader.textContent = currentUserData?.displayName || currentUserData?.email || "User";
-                updateSuperuserSectionVisibility(); // Update superuser section based on role
-                // Load initial dashboard data relevant to the user
-                loadProfileData();
-                loadWorkspaces(); // Example: load user's workspaces
-                // Default section to show after login
-                const initialHash = window.location.hash.substring(1);
-                if (initialHash && document.getElementById(initialHash + '-section')) {
-                    showSection(initialHash);
-                } else {
-                    showSection('welcome');
-                }
-            } else {
-                currentUser = null;
-                currentUserData = null;
-                currentUserRole = 'guest'; // Reset role
-                // Redirect to login page if not authenticated
-                window.location.href = 'login.html'; // Ensure this path is correct
-            }
-        });
-
-        async function fetchUserData(uid) {
-            const userDocRef = doc(db, "users", uid);
-            const docSnap = await getDoc(userDocRef);
-            if (docSnap.exists()) {
-                currentUserData = docSnap.data();
-                currentUserRole = currentUserData.role || 'client'; // Assuming 'role' field in user document
-                console.log("User data loaded:", currentUserData);
-            } else {
-                console.log("No such user document in Firestore!");
-                currentUserRole = 'client'; // Fallback role
-            }
-        }
-
-        async function handleLogout() {
-            try {
-                await signOut(auth);
-                console.log("User signed out");
-                // Redirect to login page handled by onAuthStateChanged
-            } catch (error) {
-                console.error("Error signing out:", error);
-                // Display error to user if needed
-            }
-        }
-
-
-        // --- Profile Section Logic ---
-        const profileForm = document.getElementById('profileForm');
-        const profileFirstName = document.getElementById('profileFirstName');
-        const profileSurname = document.getElementById('profileSurname');
-        const profileEmail = document.getElementById('profileEmail');
-        const profileContactNumber = document.getElementById('profileContactNumber');
-        const profileCompanyName = document.getElementById('profileCompanyName');
-        const profileOhsRole = document.getElementById('profileOhsRole');
-        const profileProfSummary = document.getElementById('profileProfSummary');
-        const profileMessageDiv = document.getElementById('profile-message');
-
-        function loadProfileData() {
-            if (currentUserData) {
-                if(profileFirstName) profileFirstName.value = currentUserData.firstName || '';
-                if(profileSurname) profileSurname.value = currentUserData.surname || '';
-                if(profileEmail) profileEmail.value = currentUser.email || ''; // Email from auth object
-                if(profileContactNumber) profileContactNumber.value = currentUserData.contactNumber || '';
-                if(profileCompanyName) profileCompanyName.value = currentUserData.companyName || '';
-                if(profileOhsRole) profileOhsRole.value = currentUserData.ohsRole || '';
-                if(profileProfSummary) profileProfSummary.value = currentUserData.profSummary || '';
-                updateProfileCompletenessUI(calculateProfileCompleteness(currentUserData));
-                loadCertifications();
-            }
-        }
-
-        if (profileForm) {
-            profileForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                if (!currentUser) return;
-
-                const updatedProfileData = {
-                    firstName: profileFirstName.value,
-                    surname: profileSurname.value,
-                    contactNumber: profileContactNumber.value,
-                    companyName: profileCompanyName.value,
-                    ohsRole: profileOhsRole.value,
-                    profSummary: profileProfSummary.value,
-                    // email is not updated here as it's usually handled separately or read-only
-                };
-
-                try {
-                    const userDocRef = doc(db, "users", currentUser.uid);
-                    await updateDoc(userDocRef, updatedProfileData);
-                    // Update local currentUserData and re-calculate completeness
-                    currentUserData = { ...currentUserData, ...updatedProfileData };
-                    updateProfileCompletenessUI(calculateProfileCompleteness(currentUserData));
-                    if(profileMessageDiv) {
-                        profileMessageDiv.textContent = i18next.t('alert.profileUpdated');
-                        profileMessageDiv.className = 'text-sm text-green-600 p-2 bg-green-50 rounded-md';
-                        setTimeout(() => { profileMessageDiv.textContent = ''; }, 3000);
-                    }
-                } catch (error) {
-                    console.error("Error updating profile:", error);
-                     if(profileMessageDiv) {
-                        profileMessageDiv.textContent = i18next.t('alert.profileUpdateError');
-                        profileMessageDiv.className = 'text-sm text-red-600 p-2 bg-red-50 rounded-md';
-                    }
-                }
-            });
-        }
-
-        // Profile Completeness
-        const profileCompletenessBar = document.getElementById('profile-completeness-bar-element');
-        const profileCompletenessValue = document.getElementById('profile-completeness-value');
-        const profileCompletenessPrompt = document.getElementById('profile-completeness-prompt');
-
-        function calculateProfileCompleteness(data) {
-            if (!data) return 0;
-            const fields = ['firstName', 'surname', 'contactNumber', 'ohsRole', 'profSummary']; // Add more fields as needed
-            let completedFields = 0;
-            fields.forEach(field => {
-                if (data[field] && data[field].trim() !== '') completedFields++;
-            });
-            // Add more complex checks, e.g., for certifications array
-            if (data.certifications && data.certifications.length > 0) completedFields++; // Count certifications as one block for now
-            const totalPotentialFields = fields.length + 1; // +1 for certifications block
-            return Math.round((completedFields / totalPotentialFields) * 100);
-        }
-
-        function updateProfileCompletenessUI(percentage) {
-            if (profileCompletenessBar) profileCompletenessBar.style.width = percentage + '%';
-            if (profileCompletenessValue) profileCompletenessValue.textContent = percentage;
-            if (profileCompletenessPrompt) {
-                let promptKey = 'dashboard.profile.completenessPromptStart';
-                if (percentage >= 80) promptKey = 'dashboard.profile.completenessPromptHigh';
-                else if (percentage >= 50) promptKey = 'dashboard.profile.completenessPromptMedium';
-                profileCompletenessPrompt.textContent = i18next.t(promptKey);
-            }
-        }
-
-        // Certifications Modal & List
-        const addCertificationModal = document.getElementById('addCertificationModal');
-        const openAddCertificationBtn = document.getElementById('addCertificationBtn');
-        const closeAddCertificationModalBtn = document.getElementById('closeAddCertificationModalBtn');
-        const cancelAddCertificationBtn = document.getElementById('cancelAddCertificationBtn');
-        const addCertificationForm = document.getElementById('addCertificationForm');
-        const certificationsListDiv = document.getElementById('certificationsList');
-        const noCertMessage = document.getElementById('no-certifications-message');
-
-        function openModal(modalElement) { if (modalElement) modalElement.classList.remove('hidden'); }
-        function closeModal(modalElement) { if (modalElement) modalElement.classList.add('hidden'); }
-
-        if(openAddCertificationBtn) openAddCertificationBtn.addEventListener('click', () => openModal(addCertificationModal));
-        if(closeAddCertificationModalBtn) closeAddCertificationModalBtn.addEventListener('click', () => closeModal(addCertificationModal));
-        if(cancelAddCertificationBtn) cancelAddCertificationBtn.addEventListener('click', () => closeModal(addCertificationModal));
-
-        if(addCertificationForm) {
-            addCertificationForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                if(!currentUser) return;
-                const newCert = {
-                    name: document.getElementById('certName').value,
-                    issuer: document.getElementById('certIssuer').value,
-                    issueDate: document.getElementById('certIssueDate').value,
-                    expiryDate: document.getElementById('certExpiryDate').value || null,
-                    // fileURL: will handle file upload separately if implemented
-                };
-                try {
-                    const userDocRef = doc(db, "users", currentUser.uid);
-                    const currentCerts = currentUserData.certifications || [];
-                    currentCerts.push(newCert);
-                    await updateDoc(userDocRef, { certifications: currentCerts });
-                    currentUserData.certifications = currentCerts; // Update local cache
-                    loadCertifications(); // Re-render list
-                    updateProfileCompletenessUI(calculateProfileCompleteness(currentUserData));
-                    closeModal(addCertificationModal);
-                    addCertificationForm.reset();
-                } catch (error) { console.error("Error adding certification:", error); }
-            });
-        }
-
-        function loadCertifications() {
-            if (!certificationsListDiv || !currentUserData) return;
-            certificationsListDiv.innerHTML = ''; // Clear existing
-            const certs = currentUserData.certifications || [];
-            if (certs.length === 0) {
-                if(noCertMessage) noCertMessage.classList.remove('hidden');
-                return;
-            }
-            if(noCertMessage) noCertMessage.classList.add('hidden');
-
-            certs.forEach((cert, index) => {
-                const certDiv = document.createElement('div');
-                certDiv.className = 'p-3 bg-slate-100 rounded-md border border-slate-200 text-sm';
-                certDiv.innerHTML = `
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h5 class="font-semibold text-slate-700">${cert.name}</h5>
-                            <p class="text-xs text-slate-500">${i18next.t('dashboard.profile.issuedBy')}: ${cert.issuer}</p>
-                            ${cert.issueDate ? `<p class="text-xs text-slate-500">${i18next.t('dashboard.profile.issuedOn')}: ${cert.issueDate}</p>` : ''}
-                            ${cert.expiryDate ? `<p class="text-xs text-slate-500">${i18next.t('dashboard.profile.expiresOn')}: ${cert.expiryDate}</p>` : ''}
-                        </div>
-                        <button class="text-red-500 hover:text-red-700 text-xs delete-cert-btn" data-index="${index}" aria-label="${i18next.t('button.delete')}"><i class="fas fa-trash"></i></button>
-                    </div>
-                `;
-                certificationsListDiv.appendChild(certDiv);
-            });
-             // Add event listeners for delete buttons
-            document.querySelectorAll('.delete-cert-btn').forEach(btn => {
-                btn.addEventListener('click', async (e) => {
-                    const indexToDelete = parseInt(e.currentTarget.dataset.index);
-                    if (confirm(i18next.t('confirm.deleteCertification'))) {
-                        currentUserData.certifications.splice(indexToDelete, 1);
-                        try {
-                            const userDocRef = doc(db, "users", currentUser.uid);
-                            await updateDoc(userDocRef, { certifications: currentUserData.certifications });
-                            loadCertifications(); // Re-render
-                            updateProfileCompletenessUI(calculateProfileCompleteness(currentUserData));
-                        } catch (error) { console.error("Error deleting certification:", error); }
-                    }
-                });
-            });
-        }
-
-
-        // --- Workspace Management ---
-        const createWorkspaceModal = document.getElementById('createWorkspaceModal');
-        const openCreateWorkspaceModalBtn = document.getElementById('openCreateWorkspaceModalBtn');
-        const closeCreateWorkspaceModalBtn = document.getElementById('closeCreateWorkspaceModalBtn');
-        const cancelCreateWorkspaceBtn = document.getElementById('cancelCreateWorkspaceBtn');
-        const createWorkspaceForm = document.getElementById('createWorkspaceForm');
-        const workspaceListContainer = document.getElementById('workspaceListContainer');
-        const noWorkspacesMessage = document.getElementById('noWorkspacesMessage');
-
-        if(openCreateWorkspaceModalBtn) openCreateWorkspaceModalBtn.addEventListener('click', () => openModal(createWorkspaceModal));
-        if(closeCreateWorkspaceModalBtn) closeCreateWorkspaceModalBtn.addEventListener('click', () => closeModal(createWorkspaceModal));
-        if(cancelCreateWorkspaceBtn) cancelCreateWorkspaceBtn.addEventListener('click', () => closeModal(createWorkspaceModal));
-
-        if(createWorkspaceForm) {
-            createWorkspaceForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                if (!currentUser) return;
-                const workspaceData = {
-                    name: document.getElementById('workspaceName').value,
-                    type: document.getElementById('workspaceType').value,
-                    description: document.getElementById('workspaceDescription').value,
-                    ownerId: currentUser.uid,
-                    members: [currentUser.uid], // Owner is a member
-                    createdAt: serverTimestamp()
-                };
-                try {
-                    await addDoc(collection(db, "workspaces"), workspaceData);
-                    closeModal(createWorkspaceModal);
-                    createWorkspaceForm.reset();
-                    loadWorkspaces(); // Refresh list
-                    // Show success message (using a generic alert for now, ideally a styled message div)
-                    alert(i18next.t('alert.workspaceCreated') || 'Workspace created successfully!');
-                } catch (error) {
-                    console.error("Error creating workspace:", error);
-                    alert(i18next.t('alert.workspaceCreateError') || 'Error creating workspace.');
-                }
-            });
-        }
-
-        async function loadWorkspaces() {
-            if (!currentUser || !workspaceListContainer) return;
-            workspaceListContainer.innerHTML = ''; // Clear current list
-
-            const q = query(collection(db, "workspaces"), where("members", "array-contains", currentUser.uid));
-            try {
-                const querySnapshot = await getDocs(q);
-                if (querySnapshot.empty) {
-                    if(noWorkspacesMessage) noWorkspacesMessage.classList.remove('hidden');
-                    return;
-                }
-                if(noWorkspacesMessage) noWorkspacesMessage.classList.add('hidden');
-
-                querySnapshot.forEach((doc) => {
-                    const ws = doc.data();
-                    const wsDiv = document.createElement('div');
-                    wsDiv.className = 'bg-white p-4 rounded-lg shadow border border-slate-200';
-                    wsDiv.innerHTML = `
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h4 class="text-lg font-semibold text-purple-700">${ws.name}</h4>
-                                <p class="text-sm text-slate-500">${i18next.t('dashboard.workspace.type')}: ${i18next.t('modal.createWorkspace.type' + ws.type.charAt(0).toUpperCase() + ws.type.slice(1)) || ws.type}</p>
-                            </div>
-                            <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">${i18next.t('dashboard.workspace.statusActive')}</span>
-                        </div>
-                        <p class="text-sm text-slate-600 mt-2 truncate">${ws.description || i18next.t('dashboard.workspace.noDescription')}</p>
-                        <div class="mt-3 flex gap-2">
-                            <button class="btn btn-info btn-sm view-workspace-details" data-id="${doc.id}"><i class="fas fa-eye"></i> <span data-i18n="button.viewDetails">Details</span></button>
-                            <button class="btn btn-secondary btn-sm manage-workspace" data-id="${doc.id}"><i class="fas fa-cog"></i> <span data-i18n="button.manage">Manage</span></button>
-                        </div>
-                    `;
-                    workspaceListContainer.appendChild(wsDiv);
-                });
-                 // Add event listeners for new buttons if needed
-            } catch (error) {
-                console.error("Error loading workspaces: ", error);
-                if(noWorkspacesMessage) noWorkspacesMessage.classList.remove('hidden');
-            }
-        }
-
-
-        // --- Superuser Section Visibility ---
-        function updateSuperuserSectionVisibility() {
-            const superuserLink = document.getElementById('superuser-link');
-            const superuserContentArea = document.getElementById('superuser-content-area');
-            const nonSuperuserMessageArea = document.getElementById('non-superuser-message-area');
-
-            if (currentUserRole === 'superuser') {
-                if (superuserLink) superuserLink.classList.remove('hidden');
-                if (superuserContentArea) superuserContentArea.classList.remove('hidden');
-                if (nonSuperuserMessageArea) nonSuperuserMessageArea.classList.add('hidden');
-            } else {
-                if (superuserLink) superuserLink.classList.add('hidden');
-                // If the section is currently visible (e.g. direct hash link), hide its content and show message
-                const superuserSection = document.getElementById('superuser-section');
-                if (superuserSection && !superuserSection.classList.contains('hidden')) {
-                    if (superuserContentArea) superuserContentArea.classList.add('hidden');
-                    if (nonSuperuserMessageArea) nonSuperuserMessageArea.classList.remove('hidden');
-                }
-            }
-        }
-
-
-        // --- Chatbot Functionality ---
-        const chatWindow = document.getElementById('chat-window');
-        const chatToggle = document.getElementById('chat-toggle');
-        const chatInput = document.getElementById('chat-input');
-        const chatSendButton = document.getElementById('chat-send');
-        const chatOutput = document.getElementById('chat-output');
-
-        if (chatToggle && chatWindow) {
-            chatToggle.addEventListener('click', () => {
-                chatWindow.classList.toggle('chat-hidden');
-                chatWindow.classList.toggle('chat-expanded');
-                if (chatWindow.classList.contains('chat-expanded')) chatInput.focus();
-            });
-        }
-        function addChatMessage(message, sender = 'user') {
-            // ... (addChatMessage function from sample)
-            const messageDiv = document.createElement('div');
-            messageDiv.classList.add('mb-2', 'p-2', 'rounded-lg', 'text-sm', 'max-w-[80%]');
-            if (sender === 'user') {
-                messageDiv.classList.add('bg-blue-500', 'text-white', 'ml-auto', 'text-right');
-                messageDiv.textContent = message;
-            } else {
-                messageDiv.classList.add('bg-slate-200', 'text-slate-800', 'mr-auto');
-                messageDiv.innerHTML = `<strong class="font-semibold">Salatiso:</strong> ${message}`;
-            }
-            chatOutput.appendChild(messageDiv);
-            chatOutput.scrollTop = chatOutput.scrollHeight;
-        }
-        function handleSendMessage() {
-            // ... (handleSendMessage function from sample, using i18next for dummyResponse)
-             const message = chatInput.value.trim();
-            if (message) {
-                addChatMessage(message, 'user');
-                chatInput.value = '';
-                setTimeout(() => {
-                    const botResponse = i18next.isInitialized ? i18next.t('chatbot.dummyResponse', {query: message}) : `Thinking about "${message}"...`;
-                    addChatMessage(botResponse, 'bot');
-                }, 1000);
-            }
-        }
-        if (chatSendButton && chatInput && chatOutput) {
-            chatSendButton.addEventListener('click', handleSendMessage);
-            chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleSendMessage(); });
-        }
-
-        // --- Initial Load and DOMContentLoaded ---
-        document.addEventListener('DOMContentLoaded', async () => {
-            await initializeI18next();
-            // Auth state will trigger further UI updates via onAuthStateChanged
-            // Set initial language dropdown value after i18next is ready
-            if (i18next.isInitialized && langSelect) {
-                const currentLang = i18next.language;
-                if (currentLang) {
-                    const baseLang = currentLang.split('-')[0];
-                    if (Array.from(langSelect.options).some(opt => opt.value === baseLang)) langSelect.value = baseLang;
-                    else if (Array.from(langSelect.options).some(opt => opt.value === currentLang)) langSelect.value = currentLang;
-                }
-            }
-        });
-    </script>
-</body>
+    <script type="module" src="/SafetyHelp/assets/js/member-dashboard.js"></script>
+    </body>
 </html>
