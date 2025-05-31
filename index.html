@@ -1,200 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SafetyHelp - OHS Compliance Platform</title>
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- React and ReactDOM CDNs -->
-  <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
-  <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
-  <!-- Babel CDN -->
-  <script src="https://unpkg.com/@babel/standalone@7.22.5/babel.min.js"></script>
-  <style>
-    body { margin: 0; padding: 0; min-height: 100vh; font-family: Arial, sans-serif; }
-    .timeline { animation: scrollTimeline 20s linear infinite; }
-    .timeline:hover { animation-play-state: paused; }
-    @keyframes scrollTimeline {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-50%); }
-    }
-    .carousel { transition: transform 0.5s ease-in-out; display: flex; }
-    .carousel-item { flex: 0 0 25%; min-width: 25%; box-sizing: border-box; }
-    /* Fallback styles if Tailwind fails */
-    .fallback-bg { background-color: #f3e8d6; }
-    .fallback-header { background-color: #8b5a2b; color: white; padding: 16px; }
-    .fallback-button { background-color: #8b5a2b; color: white; padding: 8px; border-radius: 4px; }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SafetyHelp - Your OHS Companion</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100 fallback-bg">
-  <div id="root"></div>
-  <!-- Fallback content if React fails to load -->
-  <div id="fallback" style="display: none; text-align: center; padding: 20px;">
-    <h1>SafetyHelp - OHS Compliance Platform</h1>
-    <p>Loading failed. Please ensure JavaScript is enabled and try refreshing the page.</p>
-  </div>
-  <script type="text/babel">
-    const { useState, useEffect } = React;
+<body class="bg-gray-50 font-sans">
+  <!-- Header -->
+  <header class="bg-blue-900 text-white p-4 flex justify-between items-center">
+    <div class="text-2xl font-bold text-white">Safety<span class="text-yellow-400">Help</span></div>
+    <nav class="space-x-4">
+      <a href="#" class="hover:underline">Home</a>
+      <a href="#" class="hover:underline">Resources</a>
+      <a href="#" class="hover:underline">Services</a>
+      <a href="#" class="hover:underline">Community</a>
+      <a href="#" class="hover:underline">About</a>
+      <a href="#" class="hover:underline">Contact</a>
+      <select class="bg-blue-700 text-white rounded px-2 py-1">
+        <option>English</option>
+      </select>
+    </nav>
+  </header>
 
-    const modules = [
-      { id: 1, name: "Compliance Audits", icon: "📋", url: "/audits" },
-      { id: 2, name: "Risk Assessments", icon: "⚠️", url: "/risk" },
-      { id: 3, name: "Safety Training", icon: "🎓", url: "/training" },
-      { id: 4, name: "Emergency Plans", icon: "🚨", url: "/emergency" },
-      { id: 5, name: "Fire Safety", icon: "🔥", url: "/fire" },
-      { id: 6, name: "First Aid Systems", icon: "🩺", url: "/firstaid" },
-      { id: 7, name: "Hazard Control", icon: "☣️", url: "/hazard" },
-      { id: 8, name: "Safety Reports", icon: "📊", url: "/reports" },
-      { id: 9, name: "Legal Appointments", icon: "📜", url: "/appointments" },
-      { id: 10, name: "Incident Tracking", icon: "🚑", url: "/incidents" },
-    ];
+  <!-- Hero Section -->
+  <section class="text-center bg-blue-100 py-6">
+    <h1 class="text-3xl font-semibold">Welcome to SafetyHelp</h1>
+    <p class="mt-2 max-w-3xl mx-auto">Your trusted platform for occupational health and safety (OHS) in South Africa. AI-enhanced tools for safety, compliance, and support in schools, churches, and informal sectors.</p>
+  </section>
 
-    const milestones = [
-      { year: 1993, title: "OHS Act Enacted", desc: "Occupational Health and Safety Act 85 of 1993 established in South Africa." },
-      { year: 2015, title: "Fall Protection Training", desc: "Mandatory fall protection training introduced for high-risk work." },
-      { year: 2023, title: "Airborne Hazards Regulation", desc: "New regulations for managing airborne hazards in mining." },
-      { year: 2024, title: "Digital Compliance Tools", desc: "Rise of platforms like SafetyHelp for automated OHS compliance." },
-      { year: 2025, title: "Workplace Violence Campaign", desc: "Nationwide campaign to prevent workplace violence." },
-    ];
+  <!-- Main Content -->
+  <main class="grid grid-cols-1 lg:grid-cols-5 gap-6 p-6">
+    <!-- Left Sidebar -->
+    <aside class="lg:col-span-1 space-y-2">
+      <div class="bg-white p-4 rounded shadow">
+        <h2 class="text-xl font-semibold mb-2">Safety<span class="text-yellow-400">Help</span> Tools</h2>
+        <ul class="space-y-1">
+          <li class="bg-green-200 px-2 py-1 rounded">Dashboard</li>
+          <li>Risk Assessments</li>
+          <li>Incident Reporting</li>
+          <li>Training Modules</li>
+          <li>Document Management</li>
+          <li>Compliance Checklists</li>
+          <li>Analytics & Reports</li>
+        </ul>
+      </div>
+    </aside>
 
-    const quizQuestions = [
-      { q: "Does your workplace have a safety officer?", a: ["Yes", "No"], correct: 0 },
-      { q: "Is your OHS Act copy accessible?", a: ["Yes", "No"], correct: 0 },
-      { q: "Do you conduct regular risk assessments?", a: ["Yes", "No"], correct: 0 },
-      { q: "Are safety posters displayed?", a: ["Yes", "No"], correct: 0 },
-      { q: "Have employees received safety training?", a: ["Yes", "No"], correct: 0 },
-    ];
-
-    function App() {
-      const [carouselIndex, setCarouselIndex] = useState(0);
-      const [quizOpen, setQuizOpen] = useState(false);
-      const [quizStep, setQuizStep] = useState(0);
-      const [quizScore, setQuizScore] = useState(0);
-      const [selectedMilestone, setSelectedMilestone] = useState(null);
-
-      const nextCarousel = () => setCarouselIndex((carouselIndex + 1) % Math.ceil(modules.length / 4));
-      const prevCarousel = () => setCarouselIndex((carouselIndex - 1 + Math.ceil(modules.length / 4)) % Math.ceil(modules.length / 4));
-
-      const handleQuizAnswer = (answerIndex) => {
-        if (answerIndex === quizQuestions[quizStep].correct) setQuizScore(quizScore + 1);
-        if (quizStep < quizQuestions.length - 1) {
-          setQuizStep(quizStep + 1);
-        } else {
-          setQuizOpen(false);
-          alert(`Quiz complete! Your compliance score: ${quizScore + 1}/${quizQuestions.length}`);
-        }
-      };
-
-      useEffect(() => {
-        const root = document.getElementById('root');
-        const fallback = document.getElementById('fallback');
-        if (!root || !root.hasChildNodes()) {
-          console.warn("React rendering issue detected. Showing fallback content.");
-          if (fallback) fallback.style.display = 'block';
-        }
-      }, []);
-
-      return (
-        <div className="min-h-screen bg-gray-100 text-gray-800">
-          {/* Header */}
-          <header className="bg-amber-800 text-white p-4 flex justify-between items-center fallback-header">
-            <h1 className="text-2xl font-bold">SafetyHelp</h1>
-            <nav>
-              <a href="#home" className="mx-2 hover:underline">Home</a>
-              <a href="#modules" className="mx-2 hover:underline">Modules</a>
-              <a href="#quiz" className="mx-2 hover:underline" onClick={() => setQuizOpen(true)}>Compliance Quiz</a>
-              <a href="#about" className="mx-2 hover:underline">About</a>
-              <a href="#contact" className="mx-2 hover:underline">Contact</a>
-            </nav>
-          </header>
-
-          {/* Main Content */}
-          <main className="flex p-8">
-            {/* Modules Carousel */}
-            <div className="w-1/2">
-              <h2 className="text-xl font-semibold mb-4">OHS Tools</h2>
-              <div className="relative overflow-hidden">
-                <div className="carousel" style={{ transform: `translateX(-${carouselIndex * 100}%)` }}>
-                  {modules.map(module => (
-                    <a href={module.url} key={module.id} className="carousel-item p-4 bg-white rounded-lg shadow m-2 flex flex-col items-center hover:bg-amber-200">
-                      <span className="text-4xl">{module.icon}</span>
-                      <span className="mt-2 text-center">{module.name}</span>
-                    </a>
-                  ))}
-                </div>
-                <button onClick={prevCarousel} className="absolute left-0 top-1/2 bg-amber-800 text-white p-2 rounded-full fallback-button">←</button>
-                <button onClick={nextCarousel} className="absolute right-0 top-1/2 bg-amber-800 text-white p-2 rounded-full fallback-button">→</button>
-              </div>
-            </div>
-
-            {/* Timeline */}
-            <div className="w-1/2 pl-8">
-              <h2 className="text-xl font-semibold mb-4">OHS Milestones</h2>
-              <div className="relative h-96 overflow-hidden">
-                <div className="timeline absolute w-full">
-                  {milestones.map((milestone, index) => (
-                    <div key={index} className="mb-8 p-4 bg-white rounded-lg shadow cursor-pointer hover:bg-amber-200" onClick={() => setSelectedMilestone(milestone)}>
-                      <h3 className="font-bold">{milestone.year}: {milestone.title}</h3>
-                      <p>{milestone.desc.substring(0, 50)}...</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              {selectedMilestone && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                  <div className="bg-white p-6 rounded-lg text-gray-800">
-                    <h3 className="font-bold">{selectedMilestone.year}: {selectedMilestone.title}</h3>
-                    <p>{selectedMilestone.desc}</p>
-                    <button onClick={() => setSelectedMilestone(null)} className="mt-4 bg-amber-800 text-white p-2 rounded fallback-button">Close</button>
-                  </div>
-                </div>
-              )}
-            </div>
-          </main>
-
-          {/* Quiz Modal */}
-          {quizOpen && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-              <div className="bg-white p-6 rounded-lg w-1/2 text-gray-800">
-                <h2 className="text-xl font-semibold mb-4">Compliance Quiz</h2>
-                <p>{quizQuestions[quizStep].q}</p>
-                <div className="mt-4">
-                  {quizQuestions[quizStep].a.map((answer, index) => (
-                    <button key={index} onClick={() => handleQuizAnswer(index)} className="m-2 p-2 bg-amber-800 text-white rounded hover:bg-amber-900 fallback-button">{answer}</button>
-                  ))}
-                </div>
-                <button onClick={() => setQuizOpen(false)} className="mt-4 bg-gray-500 text-white p-2 rounded fallback-button">Close</button>
-              </div>
-            </div>
-          )}
-
-          {/* Footer */}
-          <footer className="bg-amber-800 text-white p-4 text-center fallback-header">
-            <p>© 2025 SafetyHelp. All rights reserved.</p>
-            <p>Contact: info@safetyhelp.co.za | <a href="/privacy" className="underline">Privacy Policy</a></p>
-          </footer>
+    <!-- Center Panel -->
+    <section class="lg:col-span-3 space-y-6">
+      <div class="grid md:grid-cols-3 gap-4">
+        <!-- Safety Tip -->
+        <div class="bg-yellow-100 p-4 rounded shadow">
+          <h3 class="font-semibold text-lg">Daily Safety Tip</h3>
+          <p class="mt-2">Take regular breaks to avoid fatigue, especially on long shifts.</p>
+          <button class="mt-2 bg-yellow-400 text-white px-3 py-1 rounded">Next Tip</button>
         </div>
-      );
-    }
 
-    // Ensure DOM is ready and render React
-    document.addEventListener('DOMContentLoaded', () => {
-      const root = document.getElementById('root');
-      const fallback = document.getElementById('fallback');
-      if (root) {
-        try {
-          ReactDOM.render(<App />, root);
-          fallback.style.display = 'none';
-        } catch (e) {
-          console.error('React rendering failed:', e);
-          fallback.style.display = 'block';
-        }
-      } else {
-        console.error('Root element not found.');
-        fallback.style.display = 'block';
-      }
-    });
-  </script>
+        <!-- Dashboard Placeholder -->
+        <div class="bg-blue-100 p-4 rounded shadow flex items-center justify-center">
+          <span class="text-xl font-medium text-blue-700">Dashboard</span>
+        </div>
+
+        <!-- Brain Challenge -->
+        <div class="bg-pink-100 p-4 rounded shadow">
+          <h3 class="font-semibold text-lg">Brain of SafetyHelp - Daily Challenge</h3>
+          <input type="text" placeholder="Which color signifies 'danger' or 'stop'?" class="w-full mt-2 p-2 rounded border">
+          <button class="mt-2 bg-pink-400 text-white px-3 py-1 rounded">Submit Answer</button>
+          <p class="text-sm mt-2">Your Score: 0 | Today's Leader: Jane D. (150 pts)</p>
+        </div>
+      </div>
+
+      <!-- Launch Banner -->
+      <div class="bg-blue-200 p-4 text-center rounded shadow">
+        <h3 class="font-semibold">SafetyHelp Launches June 1, 2025! Be a Pioneer in OHS.</h3>
+        <p class="mt-1">Join our exclusive Beta Program to test features and shape the platform.</p>
+        <button class="mt-2 bg-yellow-400 text-white px-4 py-2 rounded">Join Beta & Register Now</button>
+      </div>
+    </section>
+
+    <!-- Right Sidebar -->
+    <aside class="lg:col-span-1">
+      <div class="bg-white p-4 rounded shadow">
+        <h2 class="text-xl font-semibold mb-2">OHS Milestones</h2>
+        <ul class="space-y-1">
+          <li>1970: OSHA (USA)</li>
+          <li>1993: OHS Act (SA)</li>
+          <li>2003: COIDA Amendment</li>
+          <li>2015: Global Harmonization</li>
+          <li>2022: Mental Health Focus</li>
+          <li>Future: Predictive Safety</li>
+        </ul>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Why Choose Section -->
+  <section class="bg-white p-6 mt-6">
+    <h2 class="text-2xl font-semibold text-center mb-6">Why Choose <span class="text-yellow-400">SafetyHelp</span>?</h2>
+    <div class="grid md:grid-cols-4 gap-4 text-center">
+      <div class="p-4 border rounded">
+        <div class="text-4xl mb-2">🤖</div>
+        <h3 class="font-bold">AI Automation</h3>
+        <p class="text-sm">Intelligent task streamlining.</p>
+      </div>
+      <div class="p-4 border rounded">
+        <div class="text-4xl mb-2">📊</div>
+        <h3 class="font-bold">Insightful Analytics</h3>
+        <p class="text-sm">Data-driven safety decisions.</p>
+      </div>
+      <div class="p-4 border rounded">
+        <div class="text-4xl mb-2">📱</div>
+        <h3 class="font-bold">Mobile Accessibility</h3>
+        <p class="text-sm">OHS on the go.</p>
+      </div>
+      <div class="p-4 border rounded">
+        <div class="text-4xl mb-2">🔗</div>
+        <h3 class="font-bold">Integrated Modules</h3>
+        <p class="text-sm">Holistic OHS ecosystem.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-blue-900 text-white text-center p-4 mt-6">
+    <p>© 2025 SafetyHelp. All Rights Reserved.</p>
+    <div class="space-x-4 text-sm mt-2">
+      <a href="#" class="underline">Privacy Policy</a>
+      <a href="#" class="underline">Terms of Service</a>
+      <a href="#" class="underline">Contact Us</a>
+    </div>
+  </footer>
 </body>
 </html>
