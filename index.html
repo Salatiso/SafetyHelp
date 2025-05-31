@@ -1,221 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SafetyHelp | OHS Dashboard</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SafetyHelp | Home</title>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-    }
-    header {
-      background-color: #222;
-      color: #fff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-    }
-    .logo {
-      font-size: 1.8em;
-    }
-    .logo span {
-      color: yellow;
-    }
-    nav ul {
-      display: flex;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    nav ul li {
-      margin: 0 10px;
-    }
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-    }
-    .search-lang {
-      display: flex;
-      align-items: center;
-    }
-    .search-box input {
-      padding: 5px;
-      margin-right: 10px;
-    }
-    main {
-      display: grid;
-      grid-template-columns: 1fr 2fr 1fr;
-      gap: 20px;
-      padding: 20px;
-    }
-    .sidebar, .milestones {
-      background: white;
-      padding: 10px;
-      height: calc(100vh - 150px);
-      overflow-y: auto;
-    }
-    .tools ul, .milestones ul {
-      list-style: none;
-      padding: 0;
-    }
-    .tools li, .milestones li {
-      padding: 10px;
-      border-bottom: 1px solid #ddd;
-      cursor: pointer;
-    }
-    .tools li.active {
-      background-color: #d4ffd4;
-      font-weight: bold;
-    }
-    .dashboard, .tip, .challenge {
-      background: white;
-      padding: 20px;
-      margin-bottom: 20px;
-    }
-    .challenge input {
-      width: 100%;
-      padding: 8px;
-      margin-top: 10px;
-    }
-    .banner {
-      background-color: #004d99;
-      color: white;
-      text-align: center;
-      padding: 20px;
-    }
-    .features {
-      display: flex;
-      justify-content: space-around;
-      background: #fff;
-      padding: 20px;
-    }
-    .feature {
-      flex: 1;
-      text-align: center;
-    }
-    footer {
-      background: #222;
-      color: white;
-      text-align: center;
-      padding: 10px;
-    }
-    .milestones ul {
-      animation: scrollMilestones 20s linear infinite;
-    }
-    .milestones ul:hover {
-      animation-play-state: paused;
-    }
-    .milestones li:hover {
-      background-color: #f0f8ff;
-    }
-    @keyframes scrollMilestones {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-50%); }
-    }
+    /* Reset & Base */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; overflow: hidden; font-family: 'Montserrat', sans-serif; background: #E8F0FE; color: #333; }
+    a { text-decoration: none; color: inherit; }
+    /* Header */
+    header { background: #007BFF; color: #fff; padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-weight: 700; font-size: 1.75rem; letter-spacing: -0.025em; } .logo .help { font-weight: 900; color: #FF8C00; }
+    nav { display: flex; gap: 1rem; }
+    nav a { color: white; font-weight: 500; }
+    .search-language { display: flex; align-items: center; gap: 1rem; }
+    .search-language input { padding: 0.5rem; border: none; border-radius: 4px; }
+    .search-language select { padding: 0.4rem; border-radius: 4px; }
+    /* Welcome */
+    .welcome { background: #F3F4F6; padding: 1rem 2rem; text-align: center; }
+    .welcome h1 { font-size: 2rem; color: #1f2937; }
+    .welcome p { margin-top: 0.5rem; font-size: 1rem; color: #374151; }
+    /* Layout */
+    .container { display: grid; grid-template-columns: 1fr 3fr 1fr; height: calc(100% - 7rem); /* header + welcome height approx 7rem */ }
+    .sidebar-tools, .sidebar-milestones { background: #fff; overflow: hidden; position: relative; }
+    .sidebar-tools ul, .sidebar-milestones ul { list-style: none; position: absolute; top: 0; width: 100%; }
+    /* Scroll animations */
+    @keyframes scrollDown { 0% { top: 0; } 100% { top: -50%; } }
+    @keyframes scrollUp { 0% { top: -50%; } 100% { top: 0; } }
+    .sidebar-tools ul { animation: scrollUp 15s linear infinite; }
+    .sidebar-milestones ul { animation: scrollDown 20s linear infinite; }
+    .sidebar-tools:hover ul, .sidebar-milestones:hover ul { animation-play-state: paused; }
+    .sidebar-tools li, .sidebar-milestones li { padding: 0.75rem 1rem; border-bottom: 1px solid #e5e7eb; cursor: pointer; }
+    .sidebar-tools li:hover, .sidebar-milestones li:hover { background: #f0f8ff; }
+    /* Main content panels */
+    .main { padding: 1rem; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; }
+    .panels { display: flex; gap: 1rem; flex: 1; }
+    .panel { background: #fff; flex: 1; padding: 1rem; border-radius: 8px; }
+    .daily-tip button, .challenge button { margin-top: 0.5rem; padding: 0.5rem 1rem; border: none; background: #FF8C00; color: #fff; border-radius: 4px; cursor: pointer; }
+    /* Launch Banner */
+    .banner { background: #007BFF; color: #fff; text-align: center; padding: 1rem; }
+    .banner button { margin-top: 0.5rem; padding: 0.5rem 1rem; border: none; background: #FD7E14; color: #fff; border-radius: 4px; cursor: pointer; }
+    /* Bottom features */
+    .features { display: flex; background: #fff; padding: 1rem; gap: 1rem; }
+    .feature { flex: 1; text-align: center; padding: 0.5rem; border-radius: 8px; }
+    /* Footer hidden to save space */
   </style>
 </head>
 <body>
   <header>
-    <div class="logo">Safety<span>Help</span></div>
+    <div class="logo">Safety<span class="help">Help</span></div>
     <nav>
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Resources</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">Community</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
+      <a href="#">Home</a><a href="#">Resources</a><a href="#">Services</a><a href="#">Community</a><a href="#">About</a><a href="#">Contact</a>
     </nav>
-    <div class="search-lang">
-      <div class="search-box">
-        <input type="text" placeholder="Search..." />
-      </div>
-      <select>
-        <option>English</option>
-        <option>IsiXhosa</option>
-        <option>Zulu</option>
-      </select>
+    <div class="search-language">
+      <input type="text" placeholder="Search...">
+      <select><option>English</option><option>isiXhosa</option></select>
     </div>
   </header>
-  <main>
-    <aside class="sidebar">
-      <h3>SafetyHelp Tools</h3>
-      <ul class="tools">
-        <li class="active">Dashboard</li>
-        <li>Risk Assessments</li>
-        <li>Incident Reporting</li>
-        <li>Training Modules</li>
-        <li>Document Management</li>
-        <li>Compliance Checklists</li>
-        <li>Analytics & Reports</li>
-      </ul>
-    </aside>
 
-    <section>
-      <div class="tip">
-        <h3>Daily Safety Tip</h3>
-        <p>Take regular breaks to avoid fatigue and improve focus.</p>
-        <button>Next Tip</button>
-      </div>
-      <div class="dashboard">
-        <h3>Dashboard</h3>
-        <p>[User-specific info will appear here]</p>
-      </div>
-      <div class="challenge">
-        <h3>Brain of SafetyHelp</h3>
-        <p>Which color typically signifies "danger" or "stop" on safety signs?</p>
-        <input type="text" placeholder="Your answer...">
-        <p>Leaderboard: [Names & Scores]</p>
-      </div>
-    </section>
-
-    <aside class="milestones">
-      <h3>OHS Milestones</h3>
-      <ul>
-        <li onclick="expandFact('1970')">1970: OSHA (USA)</li>
-        <li onclick="expandFact('1993')">1993: OHS Act (SA)</li>
-        <li onclick="expandFact('2003')">2003: COIDA Amendment</li>
-        <li onclick="expandFact('2015')">2015: Global Harmonization</li>
-        <li onclick="expandFact('2022')">2022: Mental Health Focus</li>
-        <li onclick="expandFact('future')">Future: Predictive Safety</li>
-      </ul>
-    </aside>
-  </main>
-  <div class="banner">
-    <h2>🚀 Launching June 1, 2025!</h2>
-    <p>Join our Beta Testing Phase Today</p>
-    <button>Join Beta & Register Now</button>
+  <div class="welcome">
+    <h1>Welcome to SafetyHelp</h1>
+    <p>Your trusted AI-powered OHS companion in South Africa. Simplifying safety, compliance, and community engagement.</p>
   </div>
-  <section class="features">
-    <div class="feature">
-      <h4>AI Automation</h4>
-      <p>Task streamlining for safety teams</p>
-    </div>
-    <div class="feature">
-      <h4>Insightful Analytics</h4>
-      <p>Smart data for better decisions</p>
-    </div>
-    <div class="feature">
-      <h4>Mobile Accessibility</h4>
-      <p>OHS on-the-go from any device</p>
-    </div>
-    <div class="feature">
-      <h4>Integrated Modules</h4>
-      <p>Everything you need, all in one place</p>
-    </div>
-  </section>
-  <footer>
-    <p>©2025 SafetyHelp. All Rights Reserved. | <a href="#" style="color:white;">Privacy Policy</a> | <a href="#" style="color:white;">Terms of Service</a> | <a href="#" style="color:white;">Contact Us</a></p>
-  </footer>
-  <script>
-    function expandFact(year) {
-      alert(`You clicked on ${year}. Redirecting to full milestone detail...`);
-      // Replace alert with modal logic or redirect as needed
-    }
-  </script>
+
+  <div class="container">
+    <!-- Left Tools Sidebar -->
+    <aside class="sidebar-tools">
+      <ul>
+        <li onclick="location.href='#'">Dashboard</li>
+        <li onclick="location.href='#'">Risk Assessments</li>
+        <li onclick="location.href='#'">Incident Reporting</li>
+        <li onclick="location.href='#'">Training Modules</li>
+        <li onclick="location.href='#'">Document Management</li>
+        <li onclick="location.href='#'">Compliance Checklists</li>
+        <li onclick="location.href='#'">Analytics & Reports</li>
+        <li onclick="location.href='#'">Community Tools</li>
+      </ul>
+    </aside>
+
+    <!-- Center Panels -->
+    <main class="main">
+      <div class="panels">
+        <section class="panel daily-tip">
+          <h3>Daily Safety Tip</h3>
+          <p>Take regular breaks to avoid fatigue and improve focus.</p>
+          <button>Next Tip</button>
+        </section>
+        <section class="panel dashboard">
+          <h3>Dashboard</h3>
+          <p>[Your metrics and widgets here]</p>
+        </section>
+        <section class="panel challenge">
+          <h3>Brain of SafetyHelp</h3>
+          <p>Which color signifies “danger” or “stop” on safety signs?</p>
+          <input type="text" placeholder="Your answer...">
+          <button>Submit</button>
+        </section>
+      </div>
+      <div class="banner">
+        <strong>🚀 Launching June 1, 2025!</strong><br>
+        <button>Join Beta & Register Now</button>
+      </div>
+    </main>
+
+    <!-- Right Milestones Sidebar -->
+    <aside class="sidebar-milestones">
+      <ul>
+        <li onclick="alert('1970: OSHA details...')">1970: OSHA (USA)</li>
+        <li onclick="alert('1993: OHS Act details...')">1993: OHS Act (SA)</li>
+        <li onclick="alert('2003: COIDA details...')">2003: COIDA Amendment</li>
+        <li onclick="alert('2015: Harmonization details...')">2015: Global Harmonization</li>
+        <li onclick="alert('2022: Mental Health details...')">2022: Mental Health Focus</li>
+        <li onclick="alert('Future: Predictive Safety details...')">Future: Predictive Safety</li>
+      </ul>
+    </aside>
+  </div>
+
+  <!-- Bottom Key Features (fits in view) -->
+  <div class="features">
+    <div class="feature">🤖<h4>AI Automation</h4><p>Streamline tasks and compliance.</p></div>
+    <div class="feature">📊<h4>Insightful Analytics</h4><p>Data-driven safety decisions.</p></div>
+    <div class="feature">📱<h4>Mobile Access</h4><p>Manage OHS on the go.</p></div>
+    <div class="feature">🔗<h4>Integrated Modules</h4><p>All tools in one ecosystem.</p></div>
+  </div>
+
 </body>
 </html>
