@@ -33,12 +33,13 @@
     .logo-container {
       display: flex;
       align-items: center;
+      color: #fff; /* Ensure logo text is white */
     }
     .logo-container img {
-        height: 40px; /* Adjust as needed */
+        height: 40px; 
         margin-right: 10px;
     }
-    .logo { font-weight: 700; font-size: 1.75rem; letter-spacing: -0.025em; color: #fff; } 
+    .logo { font-weight: 700; font-size: 1.75rem; letter-spacing: -0.025em; } 
     .logo .help { font-weight: 900; color: #FF8C00; }
     nav { display: flex; gap: 0.5rem; }
     nav a { 
@@ -50,7 +51,7 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      border: 1px solid transparent; /* For hover effect */
+      border: 1px solid transparent; 
     }
     nav a:hover { 
       background-color: rgba(255,255,255,0.15); 
@@ -89,8 +90,8 @@
       flex-grow: 1; 
       overflow: hidden; 
       min-height: 0;
-      gap: 1rem; /* Add gap between columns */
-      padding: 1rem; /* Add padding around the container */
+      gap: 1rem; 
+      padding: 1rem; 
     }
     
     .sidebar-tools, .sidebar-milestones { 
@@ -99,7 +100,7 @@
       box-shadow: 0 2px 5px rgba(0,0,0,0.05);
       display: flex;
       flex-direction: column;
-      overflow: hidden; /* Important for scrolling effect */
+      overflow: hidden; 
     }
     .sidebar-heading {
       font-size: 1.2rem;
@@ -119,28 +120,35 @@
 
     .sidebar-list-container {
         flex-grow: 1;
-        overflow: hidden; /* This is crucial for the scrolling animation to be contained */
-        position: relative; /* For pseudo-elements if needed for fading */
+        overflow: hidden; 
+        position: relative; 
     }
 
     .sidebar-tools ul, .sidebar-milestones ul { 
       list-style: none; 
       padding: 0;
       margin: 0;
-      /* Animation will be applied here */
+      /* Animations are applied here */
     }
 
-    @keyframes scrollUp {
+    /* Continuous Scroll Animations */
+    @keyframes continuousScrollUp {
         0% { transform: translateY(0%); }
-        100% { transform: translateY(-50%); } /* Adjust based on content height vs container */
+        100% { transform: translateY(-100%); } /* Scroll one full height of the original list */
     }
-    @keyframes scrollDown {
-        0% { transform: translateY(-50%); } /* Adjust based on content height vs container */
+    @keyframes continuousScrollDown {
+        0% { transform: translateY(-100%); } /* Start from the duplicated content */
         100% { transform: translateY(0%); }
     }
 
-    .sidebar-tools ul { animation: scrollUp 30s linear infinite alternate; }
-    .sidebar-milestones ul { animation: scrollDown 35s linear infinite alternate; }
+    /* Apply to the UL elements */
+    /* Durations might need adjustment based on list length */
+    .sidebar-tools ul { 
+        animation: continuousScrollDown 45s linear infinite; 
+    }
+    .sidebar-milestones ul { 
+        animation: continuousScrollUp 40s linear infinite; 
+    }
     
     .sidebar-tools:hover ul, .sidebar-milestones:hover ul {
         animation-play-state: paused;
@@ -159,12 +167,12 @@
     .sidebar-tools li .list-icon, .sidebar-milestones li .list-icon {
         color: #007BFF;
         font-size: 1em;
-        width: 20px; /* Ensure consistent icon alignment */
+        width: 20px; 
         text-align: center;
     }
     .sidebar-tools li:hover, .sidebar-milestones li:hover { background: #e8f0fe; }
     .sidebar-tools li.active-tool {
-        background-color: #cce7ff; /* Light blue highlight */
+        background-color: #cce7ff; 
         color: #0056b3;
         font-weight: 600;
     }
@@ -172,15 +180,14 @@
         color: #0056b3;
      }
 
-
     /* Main content panels */
     .main { 
       overflow-y: auto; 
       display: flex; 
       flex-direction: column; 
       gap: 1rem;
-      background-color: transparent; /* No background for main, panels have it */
-      padding: 0; /* Remove padding from main, container has it */
+      background-color: transparent; 
+      padding: 0; 
     }
     .panels { 
       display: flex; 
@@ -242,7 +249,7 @@
     }
     .challenge .option:hover { background-color: #f0f0f0; }
     .challenge .option.selected { background-color: #d1e7fd; border-color: #007bff; }
-    .challenge input[type="text"] { /* For name/email input */
+    .challenge input[type="text"] { 
         width: 100%;
         padding: 0.7rem;
         margin-top: 0.5rem;
@@ -300,8 +307,8 @@
 
     /* Footer */
     footer {
-      background: #343a40; /* Darker footer */
-      color: #adb5bd; /* Lighter text for contrast */
+      background: #343a40; 
+      color: #adb5bd; 
       text-align: center;
       padding: 1.5rem 2rem;
       font-size: 0.9rem;
@@ -319,7 +326,7 @@
 
     /* Modal Styles */
     .modal {
-        display: none; /* Hidden by default */
+        display: none; 
         position: fixed; 
         z-index: 1000; 
         left: 0;
@@ -374,7 +381,7 @@
         margin-top: 20px;
         text-align: right;
     }
-    .modal-footer button { background-color: #6c757d; } /* Secondary color for close */
+    .modal-footer button { background-color: #6c757d; } 
     .modal-footer button:hover { background-color: #5a6268; }
 
     /* Quiz Results in Modal */
@@ -383,21 +390,21 @@
     .quiz-results .correct-answer { color: green; }
     .quiz-results .incorrect-answer { color: red; }
 
-    /* Chatbot Styles (from user's index.html, adapted) */
+    /* Chatbot Styles */
     .chatbot-container {
         position: fixed;
         bottom: 20px;
         right: 20px;
-        z-index: 1050; /* Ensure it's above other content */
+        z-index: 1050; 
     }
     #chat-toggle {
         background-color: #FF8C00;
         color: white;
         border: none;
-        border-radius: 50%; /* Make it circular */
+        border-radius: 50%; 
         width: 60px;
         height: 60px;
-        font-size: 1.8rem; /* Larger icon */
+        font-size: 1.8rem; 
         box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         cursor: pointer;
         display: flex;
@@ -410,8 +417,8 @@
         transform: scale(1.1);
     }
     #chat-window {
-        width: 320px; /* Slightly wider */
-        max-height: 450px; /* Slightly taller */
+        width: 320px; 
+        max-height: 450px; 
         background-color: #fff;
         border-radius: 10px;
         box-shadow: 0 5px 15px rgba(0,0,0,0.3);
@@ -419,19 +426,19 @@
         flex-direction: column;
         overflow: hidden;
         transition: opacity 0.3s ease, transform 0.3s ease;
-        position: absolute; /* Position relative to container */
-        bottom: 75px; /* Position above the toggle button */
+        position: absolute; 
+        bottom: 75px; 
         right: 0;
         opacity: 0;
         transform: translateY(10px);
-        pointer-events: none; /* Initially not interactive */
+        pointer-events: none; 
     }
     #chat-window.chat-expanded {
         opacity: 1;
         transform: translateY(0);
-        pointer-events: auto; /* Interactive when expanded */
+        pointer-events: auto; 
     }
-    .chat-hidden { /* Used to control visibility via JS */
+    .chat-hidden { 
         display: none !important; 
     }
     #chat-header {
@@ -461,7 +468,7 @@
     }
     #chat-output p { margin-bottom: 0.8rem; line-height: 1.4; }
     #chat-output p strong { color: #007BFF; }
-    #chat-output p strong:first-child { color: #FF8C00; } /* Differentiate user */
+    #chat-output p strong:first-child { color: #FF8C00; } 
     #chat-input-container {
         display: flex;
         border-top: 1px solid #eee;
@@ -491,16 +498,16 @@
   </style>
 </head><body>
   <header>
-    <a href="#" class="logo-container" onclick="window.location.href='index.html'"> <div class="logo">Safety<span class="help">Help</span></div>
+    <a href="index.html" class="logo-container"> <div class="logo">Safety<span class="help">Help</span></div>
     </a>
     <nav>
-      <a href="#"><i class="fas fa-home nav-icon"></i>Home</a>
-      <a href="#"><i class="fas fa-book nav-icon"></i>Resources</a>
-      <a href="#"><i class="fas fa-concierge-bell nav-icon"></i>Services</a>
-      <a href="#"><i class="fas fa-users nav-icon"></i>Community</a>
-      <a href="#"><i class="fas fa-info-circle nav-icon"></i>About</a>
-      <a href="#"><i class="fas fa-envelope nav-icon"></i>Contact</a>
-      <a href="#"><i class="fas fa-sign-in-alt nav-icon"></i>SignUp / Login</a>
+      <a href="index.html"><i class="fas fa-home nav-icon"></i>Home</a>
+      <a href="resources.html"><i class="fas fa-book nav-icon"></i>Resources</a>
+      <a href="services.html"><i class="fas fa-concierge-bell nav-icon"></i>Services</a>
+      <a href="community.html"><i class="fas fa-users nav-icon"></i>Community</a>
+      <a href="about.html"><i class="fas fa-info-circle nav-icon"></i>About</a>
+      <a href="contact.html"><i class="fas fa-envelope nav-icon"></i>Contact</a>
+      <a href="login.html"><i class="fas fa-sign-in-alt nav-icon"></i>SignUp / Login</a>
     </nav>
     <div class="search-language">
       <input type="text" placeholder="Search...">
@@ -524,18 +531,18 @@
       <h3 class="sidebar-heading"><i class="fas fa-tools heading-icon"></i>SafetyHelp Tools</h3>
       <div class="sidebar-list-container">
         <ul id="safetyhelp-tools-list">
-          <li><i class="fas fa-tachometer-alt list-icon"></i>Dashboard</li>
-          <li><i class="fas fa-shield-alt list-icon"></i>Risk Assessments</li>
-          <li><i class="fas fa-file-medical-alt list-icon"></i>Incident Reporting</li>
-          <li><i class="fas fa-graduation-cap list-icon"></i>Training Modules</li>
-          <li><i class="fas fa-folder-open list-icon"></i>Document Management</li>
-          <li><i class="fas fa-tasks list-icon"></i>Compliance Checklists</li>
-          <li><i class="fas fa-chart-bar list-icon"></i>Analytics & Reports</li>
-          <li><i class="fas fa-comments list-icon"></i>Community Forums</li>
-          <li><i class="fas fa-phone-alt list-icon"></i>Emergency Contacts</li>
-          <li><i class="fas fa-newspaper list-icon"></i>Safety News Feed</li>
-          <li><i class="fas fa-user-circle list-icon"></i>User Profile</li>
-          <li><i class="fas fa-cog list-icon"></i>Settings</li>
+          <li data-detail="Comprehensive safety management for construction projects, ensuring compliance with regulations."><i class="fas fa-hard-hat list-icon"></i>Construction Safety</li>
+          <li data-detail="Develop and implement effective emergency preparedness and response plans."><i class="fas fa-bell list-icon"></i>Emergency Planning</li>
+          <li data-detail="Identify, analyze, and control workplace hazards with our systematic risk assessment tools."><i class="fas fa-shield-alt list-icon"></i>Risk Assessment</li>
+          <li data-detail="Manage and document all legally required OHS appointments for your organization."><i class="fas fa-gavel list-icon"></i>Legal Appointments</li>
+          <li data-detail="Streamline the reporting, investigation, and prevention of workplace incidents."><i class="fas fa-file-medical-alt list-icon"></i>Incident Management</li>
+          <li data-detail="Access and manage OHS training programs and records for your workforce."><i class="fas fa-graduation-cap list-icon"></i>Training</li>
+          <li data-detail="Conduct thorough workplace inspections and audits to ensure safety standards are met."><i class="fas fa-clipboard-check list-icon"></i>Inspections & Audits</li>
+          <li data-detail="Manage OHS information and compliance for your suppliers and contractors."><i class="fas fa-truck list-icon"></i>Suppliers</li>
+          <li data-detail="Stay updated with the latest OHS acts, regulations, and legal requirements."><i class="fas fa-balance-scale list-icon"></i>Legislation</li>
+          <li data-detail="Engage with the OHS community, share resources, and access forums."><i class="fas fa-users list-icon"></i>Community Tools</li>
+          <li data-detail="Your personalized dashboard for managing OHS activities, tracking progress, and accessing key information."><i class="fas fa-tachometer-alt list-icon"></i>Member Dashboard</li>
+          <li data-detail="Explore various modules to build and maintain a comprehensive OHS system."><i class="fas fa-cogs list-icon"></i>OHS System Modules</li>
         </ul>
       </div>
     </aside>
@@ -567,8 +574,7 @@
       <div class="banner">
         <strong><i class="fas fa-rocket"></i> SafetyHelp Launched June 1, 2025!</strong>
         <p>Our core platform is live! New exciting modules are launching every month - check the countdown on your dashboard.</p>
-        <button onclick="location.href='#'"><i class="fas fa-user-plus btn-icon"></i>Join Beta & Register for Updates</button>
-      </div>
+        <button onclick="location.href='login.html'"><i class="fas fa-user-plus btn-icon"></i>Join Beta & Register for Updates</button> </div>
     </main>
 
     <aside class="sidebar-milestones">
@@ -596,8 +602,7 @@
   </div>
 </div> <footer>
   <p>&copy; <span id="copyright-year"></span> SafetyHelp (Pty) Ltd. All rights reserved. Your Partner in Occupational Health and Safety.</p>
-  <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Contact Us</a></p>
-</footer>
+  <p><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a> | <a href="contact.html">Contact Us</a></p> </footer>
 
 <div id="infoModal" class="modal">
   <div class="modal-content">
@@ -614,7 +619,8 @@
 </div>
 
 <div class="chatbot-container">
-    <div id="chat-window" class="chat-hidden"> <div id="chat-header">
+    <div id="chat-window" class="chat-hidden"> 
+        <div id="chat-header">
             <span>Salatiso - Your OHS Assistant</span>
             <button class="close-chat-btn" onclick="toggleChatbot(false)">&times;</button>
         </div>
@@ -627,7 +633,8 @@
         </div>
     </div>
     <button id="chat-toggle" onclick="toggleChatbot()">
-        <i class="fas fa-headset"></i> </button>
+        <i class="fas fa-headset"></i> 
+    </button>
 </div>
 
 
@@ -690,17 +697,18 @@
   document.getElementById('safetyTipText').textContent = safetyTips[currentTipIndex];
 
   // --- Sidebar Auto-Scrolling & Item Click ---
-  function setupScrollingSidebar(listId, scrollUp = false) {
+  function setupScrollingSidebar(listId) {
     const listElement = document.getElementById(listId);
-    if (!listElement) return;
+    if (!listElement || listElement.children.length === 0) return;
 
-    // Duplicate items for seamless scrolling illusion
     const originalItems = Array.from(listElement.children);
+    // Duplicate items for seamless infinite scrolling
     originalItems.forEach(item => {
         const clone = item.cloneNode(true);
-        if (listId === 'ohs-milestones-list') { // Attach event listener to clones for milestones
+        // Re-attach event listeners to cloned items
+        if (listId === 'ohs-milestones-list') {
              clone.addEventListener('click', () => showMilestoneDetail(clone));
-        } else if (listId === 'safetyhelp-tools-list') { // Attach event listener to clones for tools
+        } else if (listId === 'safetyhelp-tools-list') {
             clone.addEventListener('click', (event) => {
                 handleToolClick(event.currentTarget, listId);
             });
@@ -708,7 +716,7 @@
         listElement.appendChild(clone);
     });
     
-    // Attach event listeners to original items
+    // Attach event listeners to original items as well
      originalItems.forEach(item => {
         if (listId === 'ohs-milestones-list') {
             item.addEventListener('click', () => showMilestoneDetail(item));
@@ -718,20 +726,26 @@
             });
         }
     });
+
+    // Adjust animation duration based on content height if needed, or keep it fixed
+    // For continuous scroll, the translateY should go to -100% of the *original* content height
+    // If the listElement itself is the direct parent for animation, and it contains duplicated items,
+    // then -50% of its new total height would be correct.
+    // The CSS animation `continuousScrollUp` and `continuousScrollDown` are set to -100% / 0%
+    // assuming the JS duplicates the content once, effectively making the animated element twice as tall.
   }
+
 
   function handleToolClick(clickedItem, listId) {
     const listElement = document.getElementById(listId);
-    // Remove active class from all items in this list
     listElement.querySelectorAll('li').forEach(item => item.classList.remove('active-tool'));
-    // Add active class to the clicked item
     clickedItem.classList.add('active-tool');
-    // Show tool detail (similar to milestone detail or specific action)
-    const toolName = clickedItem.textContent.trim();
-    const modalTitle = document.getElementById('modalTitle');
-    const modalBody = document.getElementById('modalBody');
-    modalTitle.textContent = `SafetyHelp Tool: ${toolName.replace(/^.*? /,'')}`; // Remove icon text
-    modalBody.innerHTML = `<p>Details about the <strong>${toolName.replace(/^.*? /,'')}</strong> tool. This section would describe its functionality and benefits.</p><p>For example, the Dashboard provides an overview of your safety metrics and quick access to important features.</p>`;
+    
+    const toolName = clickedItem.textContent.trim().replace(/^.*? /,''); // Get text, remove icon part
+    const detail = clickedItem.dataset.detail || `More information about the ${toolName} tool will be available soon.`;
+    
+    document.getElementById('modalTitle').textContent = `SafetyHelp Tool: ${toolName}`;
+    document.getElementById('modalBody').innerHTML = `<p>${detail}</p>`;
     document.getElementById('infoModal').style.display = 'block';
   }
 
@@ -739,22 +753,20 @@
   // --- Modal Functionality ---
   const modal = document.getElementById('infoModal');
   function showMilestoneDetail(element) {
-    const title = element.textContent.trim().replace(/^.*? /,''); // Remove icon text
+    const title = element.textContent.trim().replace(/^.*? /,''); 
     const detail = element.dataset.detail || "More information about this milestone will be available soon.";
-    document.getElementById('modalTitle').textContent = title;
+    document.getElementById('modalTitle').textContent = `OHS Milestone: ${title}`;
     document.getElementById('modalBody').innerHTML = `<p>${detail}</p>`;
     modal.style.display = 'block';
   }
   function closeModal() {
     modal.style.display = 'none';
-    // If quiz modal elements are present, hide them too or reset quiz state
     const quizRegistrationDiv = document.getElementById('quizRegistration');
-    const quizResultsDiv = document.getElementById('quizResults');
+    const quizResultsDiv = document.getElementById('quizResults'); // Assuming you might have this
     if(quizRegistrationDiv) quizRegistrationDiv.style.display = 'none';
     if(quizResultsDiv) quizResultsDiv.style.display = 'none';
-    document.getElementById('modalFooter').style.display = 'block'; // Ensure default footer is visible
+    document.getElementById('modalFooter').style.display = 'block'; 
   }
-  // Close modal if user clicks outside of it
   window.onclick = function(event) {
     if (event.target == modal) {
       closeModal();
@@ -768,7 +780,6 @@
     { question: "What is the primary purpose of a Safety Data Sheet (SDS)?", options: ["To list emergency contacts", "To provide information on hazardous chemicals", "To outline company safety policy", "To record accident statistics"], answer: "To provide information on hazardous chemicals", icon: "fas fa-file-alt" },
     { question: "A BLUE circular sign with a white pictogram usually indicates a:", options: ["Prohibition", "Warning", "Mandatory action", "Fire equipment"], answer: "Mandatory action", icon: "fas fa-info-circle" },
     { question: "What does PPE stand for in OHS?", options: ["Personal Protective Equipment", "Primary Prevention Efforts", "Planned Procedural Execution", "People, Plant, Environment"], answer: "Personal Protective Equipment", icon: "fas fa-hard-hat" },
-    // Add more sets of 5
     { question: "What is the first step in a typical risk assessment process?", options: ["Implement controls", "Evaluate risks", "Identify hazards", "Review effectiveness"], answer: "Identify hazards", icon: "fas fa-search" },
     { question: "Which of these is a common cause of slips, trips, and falls in the workplace?", options: ["Good lighting", "Clear pathways", "Poor housekeeping", "Regular safety briefings"], answer: "Poor housekeeping", icon: "fas fa-shoe-prints" },
     { question: "What is the emergency telephone number in South Africa for police?", options: ["112", "10111", "999", "10177"], answer: "10111", icon: "fas fa-phone-volume" },
@@ -804,7 +815,6 @@
         optionEl.classList.add('option');
         optionEl.innerHTML = `<input type="radio" name="quizOption" value="${option}"> ${option}`;
         optionEl.addEventListener('click', () => {
-            // Basic selection visual cue
             document.querySelectorAll('.challenge .option').forEach(opt => opt.classList.remove('selected'));
             optionEl.classList.add('selected');
         });
@@ -817,17 +827,16 @@
 
   function nextChallengeQuestion() {
     const selectedOption = document.querySelector('.challenge input[name="quizOption"]:checked');
-    if (!selectedOption && currentQuestionInSet < questionsPerSet) { // Only require selection if not at end of set
+    if (!selectedOption && currentQuestionInSet < questionsPerSet) { 
         quizMessageEl.textContent = "Please select an answer.";
         quizMessageEl.style.display = 'block';
         return;
     }
     if (selectedOption) {
         userAnswers.push(selectedOption.value);
-    } else if (currentQuestionInSet < questionsPerSet) { // If no option selected and not end of set
-         userAnswers.push(null); // Store null if no answer for scoring
+    } else if (currentQuestionInSet < questionsPerSet) { 
+         userAnswers.push(null); 
     }
-
 
     currentQuestionInSet++;
 
@@ -843,9 +852,9 @@
     let resultsHTML = `<h4>Quiz Set ${currentChallengeSet + 1} Results</h4><ul>`;
     const startIndex = currentChallengeSet * questionsPerSet;
 
-    for (let i = 0; i < currentQuestionInSet; i++) { // Iterate up to questions answered in current set
+    for (let i = 0; i < currentQuestionInSet; i++) { 
         const qIndex = startIndex + i;
-        if (qIndex >= challengeQuestions.length) break; // Safety break
+        if (qIndex >= challengeQuestions.length) break; 
 
         const question = challengeQuestions[qIndex];
         const userAnswer = userAnswers[i];
@@ -861,7 +870,6 @@
     }
     resultsHTML += `</ul><p><strong>Your score for this set: ${score} out of ${currentQuestionInSet}</strong></p>`;
     
-    // Update modal for results and registration/continue prompt
     document.getElementById('modalTitle').textContent = "Quiz Results & Next Steps";
     document.getElementById('modalBody').innerHTML = resultsHTML + 
         `<div id="quizRegistration" style="margin-top: 20px; padding-top:15px; border-top:1px solid #eee;">
@@ -871,10 +879,9 @@
             <button onclick="submitScoreAndContinue()" style="margin-right:10px; background-color:#28a745;"><i class="fas fa-trophy btn-icon"></i>Submit Score & Next Set</button>
             <button onclick="continueQuizAnonymously()"><i class="fas fa-arrow-right btn-icon"></i>Next Set (Anonymous)</button>
          </div>`;
-    document.getElementById('modalFooter').style.display = 'none'; // Hide default footer
+    document.getElementById('modalFooter').style.display = 'none'; 
     modal.style.display = 'block';
 
-    // Reset for next set
     userAnswers = [];
     currentQuestionInSet = 0;
   }
@@ -882,9 +889,8 @@
   function submitScoreAndContinue() {
       const userName = document.getElementById('userNameQuiz').value.trim();
       if (userName) {
-          // Placeholder: In a real app, send userName and score to a backend
           console.log(`User: ${userName}, Score: ${score}`);
-          document.getElementById('leaderboard-name').textContent = `${userName} (${score} pts)`; // Update dashboard
+          document.getElementById('leaderboard-name').textContent = `${userName} (${score} pts)`; 
       } else {
           alert("Please enter a name or continue anonymously.");
           return;
@@ -900,51 +906,46 @@
     loadChallengeQuestion();
  }
 
-
   // --- Chatbot Functionality ---
   const chatWindow = document.getElementById('chat-window');
   const chatToggleBtn = document.getElementById('chat-toggle');
   const chatInputEl = document.getElementById('chat-input');
   const chatSendBtn = document.getElementById('chat-send');
   const chatOutputEl = document.getElementById('chat-output');
-  let chatbotInitialized = false; // To prevent multiple initializations if user script loads later
+  let chatbotInitialized = false; 
 
   function toggleChatbot(forceOpen) {
-    if (chatWindow.classList.contains('chat-hidden') || forceOpen === true) {
+    const isHidden = chatWindow.classList.contains('chat-hidden');
+    if (forceOpen === true || isHidden) {
         chatWindow.classList.remove('chat-hidden');
         chatWindow.classList.add('chat-expanded');
-        chatToggleBtn.innerHTML = '<i class="fas fa-times"></i>'; // Change to close icon
-        chatInputEl.focus();
-        if (!chatbotInitialized && typeof initializeSafetyHelpChatbot === "function") {
-            // This assumes initializeSafetyHelpChatbot is exposed from your chatbot.js
-            // and handles its own Firebase setup.
-            // initializeSafetyHelpChatbot(chatbotFirebaseConfigFromUserFile, predefinedResponsesFromUserFile); 
-            // For now, we'll just use the basic send/receive logic here.
-            chatbotInitialized = true;
-        }
-    } else if (forceOpen === false || !chatWindow.classList.contains('chat-hidden')) {
+        chatToggleBtn.innerHTML = '<i class="fas fa-times"></i>'; 
+        if (chatInputEl) chatInputEl.focus();
+        // chatbotInitialized logic can be added here if needed
+    } else if (forceOpen === false || !isHidden) {
         chatWindow.classList.add('chat-hidden');
         chatWindow.classList.remove('chat-expanded');
-        chatToggleBtn.innerHTML = '<i class="fas fa-headset"></i>'; // Change back to chat icon
+        chatToggleBtn.innerHTML = '<i class="fas fa-headset"></i>'; 
     }
   }
 
   function addChatMessageToUI(sender, message, isUser) {
+      if (!chatOutputEl) return;
       const messageEl = document.createElement('p');
       messageEl.innerHTML = `<strong>${sender}:</strong> ${message}`;
-      if(isUser) messageEl.style.textAlign = "right"; // Optional: align user messages differently
+      if(isUser) messageEl.style.textAlign = "right"; 
       chatOutputEl.appendChild(messageEl);
       chatOutputEl.scrollTop = chatOutputEl.scrollHeight;
   }
 
   async function handleChatSend() {
+      if (!chatInputEl || !chatOutputEl) return;
       const message = chatInputEl.value.trim();
       if (!message) return;
 
       addChatMessageToUI("You", message, true);
       chatInputEl.value = '';
 
-      // Simple predefined responses for demo; integrate with your chatbot.js logic
       let botResponse = "I'm still learning! For detailed OHS info, explore our resources or contact support.";
       if (message.toLowerCase().includes("hello") || message.toLowerCase().includes("hi")) {
           botResponse = "Hello there! How can I assist you with safety today?";
@@ -954,13 +955,12 @@
           botResponse = "The OHS Act 85 of 1993 is the primary legislation for workplace safety in South Africa. You can find more details in our 'OHS Milestones'.";
       }
       
-      // Simulate bot thinking
       setTimeout(() => {
           addChatMessageToUI("Salatiso", botResponse, false);
       }, 500);
   }
 
-  if (chatSendBtn) { // Ensure button exists before adding listener
+  if (chatSendBtn) { 
     chatSendBtn.addEventListener('click', handleChatSend);
   }
   if (chatInputEl) {
@@ -971,22 +971,19 @@
     });
   }
 
-
   // --- Initial calls and interval timers ---
   window.onload = function() {
     updateLeaderboard();
     updateCountdown(); 
     setInterval(updateCountdown, 1000); 
 
-    loadChallengeQuestion(); // Load first quiz question
+    loadChallengeQuestion(); 
 
-    // Setup scrolling sidebars
-    setupScrollingSidebar('safetyhelp-tools-list', true); // true for scrollUp
-    setupScrollingSidebar('ohs-milestones-list', false); // false for scrollDown (default)
+    setupScrollingSidebar('safetyhelp-tools-list'); 
+    setupScrollingSidebar('ohs-milestones-list');
 
-    // Ensure chatbot is initially hidden but toggle button is visible
     if (chatWindow) chatWindow.classList.add('chat-hidden');
-    if (chatToggleBtn) chatToggleBtn.style.display = 'flex'; // Ensure toggle is visible
+    if (chatToggleBtn) chatToggleBtn.style.display = 'flex'; 
   };
 
 </script>
