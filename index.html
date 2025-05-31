@@ -3,133 +3,219 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SafetyHelp - Your OHS Companion</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <title>SafetyHelp | OHS Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+    header {
+      background-color: #222;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+    .logo {
+      font-size: 1.8em;
+    }
+    .logo span {
+      color: yellow;
+    }
+    nav ul {
+      display: flex;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    nav ul li {
+      margin: 0 10px;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+    }
+    .search-lang {
+      display: flex;
+      align-items: center;
+    }
+    .search-box input {
+      padding: 5px;
+      margin-right: 10px;
+    }
+    main {
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
+      gap: 20px;
+      padding: 20px;
+    }
+    .sidebar, .milestones {
+      background: white;
+      padding: 10px;
+      height: calc(100vh - 150px);
+      overflow-y: auto;
+    }
+    .tools ul, .milestones ul {
+      list-style: none;
+      padding: 0;
+    }
+    .tools li, .milestones li {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+      cursor: pointer;
+    }
+    .tools li.active {
+      background-color: #d4ffd4;
+      font-weight: bold;
+    }
+    .dashboard, .tip, .challenge {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .challenge input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 10px;
+    }
+    .banner {
+      background-color: #004d99;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    .features {
+      display: flex;
+      justify-content: space-around;
+      background: #fff;
+      padding: 20px;
+    }
+    .feature {
+      flex: 1;
+      text-align: center;
+    }
+    footer {
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+    .milestones ul {
+      animation: scrollMilestones 20s linear infinite;
+    }
+    .milestones ul:hover {
+      animation-play-state: paused;
+    }
+    .milestones li:hover {
+      background-color: #f0f8ff;
+    }
+    @keyframes scrollMilestones {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-50%); }
+    }
+  </style>
 </head>
-<body class="bg-gray-50 font-sans">
-  <!-- Header -->
-  <header class="bg-blue-900 text-white p-4 flex justify-between items-center">
-    <div class="text-2xl font-bold text-white">Safety<span class="text-yellow-400">Help</span></div>
-    <nav class="space-x-4">
-      <a href="#" class="hover:underline">Home</a>
-      <a href="#" class="hover:underline">Resources</a>
-      <a href="#" class="hover:underline">Services</a>
-      <a href="#" class="hover:underline">Community</a>
-      <a href="#" class="hover:underline">About</a>
-      <a href="#" class="hover:underline">Contact</a>
-      <select class="bg-blue-700 text-white rounded px-2 py-1">
-        <option>English</option>
-      </select>
+<body>
+  <header>
+    <div class="logo">Safety<span>Help</span></div>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Resources</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Community</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
     </nav>
-  </header>
-
-  <!-- Hero Section -->
-  <section class="text-center bg-blue-100 py-6">
-    <h1 class="text-3xl font-semibold">Welcome to SafetyHelp</h1>
-    <p class="mt-2 max-w-3xl mx-auto">Your trusted platform for occupational health and safety (OHS) in South Africa. AI-enhanced tools for safety, compliance, and support in schools, churches, and informal sectors.</p>
-  </section>
-
-  <!-- Main Content -->
-  <main class="grid grid-cols-1 lg:grid-cols-5 gap-6 p-6">
-    <!-- Left Sidebar -->
-    <aside class="lg:col-span-1 space-y-2">
-      <div class="bg-white p-4 rounded shadow">
-        <h2 class="text-xl font-semibold mb-2">Safety<span class="text-yellow-400">Help</span> Tools</h2>
-        <ul class="space-y-1">
-          <li class="bg-green-200 px-2 py-1 rounded">Dashboard</li>
-          <li>Risk Assessments</li>
-          <li>Incident Reporting</li>
-          <li>Training Modules</li>
-          <li>Document Management</li>
-          <li>Compliance Checklists</li>
-          <li>Analytics & Reports</li>
-        </ul>
+    <div class="search-lang">
+      <div class="search-box">
+        <input type="text" placeholder="Search..." />
       </div>
+      <select>
+        <option>English</option>
+        <option>IsiXhosa</option>
+        <option>Zulu</option>
+      </select>
+    </div>
+  </header>
+  <main>
+    <aside class="sidebar">
+      <h3>SafetyHelp Tools</h3>
+      <ul class="tools">
+        <li class="active">Dashboard</li>
+        <li>Risk Assessments</li>
+        <li>Incident Reporting</li>
+        <li>Training Modules</li>
+        <li>Document Management</li>
+        <li>Compliance Checklists</li>
+        <li>Analytics & Reports</li>
+      </ul>
     </aside>
 
-    <!-- Center Panel -->
-    <section class="lg:col-span-3 space-y-6">
-      <div class="grid md:grid-cols-3 gap-4">
-        <!-- Safety Tip -->
-        <div class="bg-yellow-100 p-4 rounded shadow">
-          <h3 class="font-semibold text-lg">Daily Safety Tip</h3>
-          <p class="mt-2">Take regular breaks to avoid fatigue, especially on long shifts.</p>
-          <button class="mt-2 bg-yellow-400 text-white px-3 py-1 rounded">Next Tip</button>
-        </div>
-
-        <!-- Dashboard Placeholder -->
-        <div class="bg-blue-100 p-4 rounded shadow flex items-center justify-center">
-          <span class="text-xl font-medium text-blue-700">Dashboard</span>
-        </div>
-
-        <!-- Brain Challenge -->
-        <div class="bg-pink-100 p-4 rounded shadow">
-          <h3 class="font-semibold text-lg">Brain of SafetyHelp - Daily Challenge</h3>
-          <input type="text" placeholder="Which color signifies 'danger' or 'stop'?" class="w-full mt-2 p-2 rounded border">
-          <button class="mt-2 bg-pink-400 text-white px-3 py-1 rounded">Submit Answer</button>
-          <p class="text-sm mt-2">Your Score: 0 | Today's Leader: Jane D. (150 pts)</p>
-        </div>
+    <section>
+      <div class="tip">
+        <h3>Daily Safety Tip</h3>
+        <p>Take regular breaks to avoid fatigue and improve focus.</p>
+        <button>Next Tip</button>
       </div>
-
-      <!-- Launch Banner -->
-      <div class="bg-blue-200 p-4 text-center rounded shadow">
-        <h3 class="font-semibold">SafetyHelp Launches June 1, 2025! Be a Pioneer in OHS.</h3>
-        <p class="mt-1">Join our exclusive Beta Program to test features and shape the platform.</p>
-        <button class="mt-2 bg-yellow-400 text-white px-4 py-2 rounded">Join Beta & Register Now</button>
+      <div class="dashboard">
+        <h3>Dashboard</h3>
+        <p>[User-specific info will appear here]</p>
+      </div>
+      <div class="challenge">
+        <h3>Brain of SafetyHelp</h3>
+        <p>Which color typically signifies "danger" or "stop" on safety signs?</p>
+        <input type="text" placeholder="Your answer...">
+        <p>Leaderboard: [Names & Scores]</p>
       </div>
     </section>
 
-    <!-- Right Sidebar -->
-    <aside class="lg:col-span-1">
-      <div class="bg-white p-4 rounded shadow">
-        <h2 class="text-xl font-semibold mb-2">OHS Milestones</h2>
-        <ul class="space-y-1">
-          <li>1970: OSHA (USA)</li>
-          <li>1993: OHS Act (SA)</li>
-          <li>2003: COIDA Amendment</li>
-          <li>2015: Global Harmonization</li>
-          <li>2022: Mental Health Focus</li>
-          <li>Future: Predictive Safety</li>
-        </ul>
-      </div>
+    <aside class="milestones">
+      <h3>OHS Milestones</h3>
+      <ul>
+        <li onclick="expandFact('1970')">1970: OSHA (USA)</li>
+        <li onclick="expandFact('1993')">1993: OHS Act (SA)</li>
+        <li onclick="expandFact('2003')">2003: COIDA Amendment</li>
+        <li onclick="expandFact('2015')">2015: Global Harmonization</li>
+        <li onclick="expandFact('2022')">2022: Mental Health Focus</li>
+        <li onclick="expandFact('future')">Future: Predictive Safety</li>
+      </ul>
     </aside>
   </main>
-
-  <!-- Why Choose Section -->
-  <section class="bg-white p-6 mt-6">
-    <h2 class="text-2xl font-semibold text-center mb-6">Why Choose <span class="text-yellow-400">SafetyHelp</span>?</h2>
-    <div class="grid md:grid-cols-4 gap-4 text-center">
-      <div class="p-4 border rounded">
-        <div class="text-4xl mb-2">🤖</div>
-        <h3 class="font-bold">AI Automation</h3>
-        <p class="text-sm">Intelligent task streamlining.</p>
-      </div>
-      <div class="p-4 border rounded">
-        <div class="text-4xl mb-2">📊</div>
-        <h3 class="font-bold">Insightful Analytics</h3>
-        <p class="text-sm">Data-driven safety decisions.</p>
-      </div>
-      <div class="p-4 border rounded">
-        <div class="text-4xl mb-2">📱</div>
-        <h3 class="font-bold">Mobile Accessibility</h3>
-        <p class="text-sm">OHS on the go.</p>
-      </div>
-      <div class="p-4 border rounded">
-        <div class="text-4xl mb-2">🔗</div>
-        <h3 class="font-bold">Integrated Modules</h3>
-        <p class="text-sm">Holistic OHS ecosystem.</p>
-      </div>
+  <div class="banner">
+    <h2>🚀 Launching June 1, 2025!</h2>
+    <p>Join our Beta Testing Phase Today</p>
+    <button>Join Beta & Register Now</button>
+  </div>
+  <section class="features">
+    <div class="feature">
+      <h4>AI Automation</h4>
+      <p>Task streamlining for safety teams</p>
+    </div>
+    <div class="feature">
+      <h4>Insightful Analytics</h4>
+      <p>Smart data for better decisions</p>
+    </div>
+    <div class="feature">
+      <h4>Mobile Accessibility</h4>
+      <p>OHS on-the-go from any device</p>
+    </div>
+    <div class="feature">
+      <h4>Integrated Modules</h4>
+      <p>Everything you need, all in one place</p>
     </div>
   </section>
-
-  <!-- Footer -->
-  <footer class="bg-blue-900 text-white text-center p-4 mt-6">
-    <p>© 2025 SafetyHelp. All Rights Reserved.</p>
-    <div class="space-x-4 text-sm mt-2">
-      <a href="#" class="underline">Privacy Policy</a>
-      <a href="#" class="underline">Terms of Service</a>
-      <a href="#" class="underline">Contact Us</a>
-    </div>
+  <footer>
+    <p>©2025 SafetyHelp. All Rights Reserved. | <a href="#" style="color:white;">Privacy Policy</a> | <a href="#" style="color:white;">Terms of Service</a> | <a href="#" style="color:white;">Contact Us</a></p>
   </footer>
+  <script>
+    function expandFact(year) {
+      alert(`You clicked on ${year}. Redirecting to full milestone detail...`);
+      // Replace alert with modal logic or redirect as needed
+    }
+  </script>
 </body>
 </html>
