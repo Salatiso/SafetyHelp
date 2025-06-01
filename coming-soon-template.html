@@ -3,16 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SafetyHelp | Exciting Modules Coming Soon!</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <title>SafetyHelp | Coming Soon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
-  <script src="https://unpkg.com/i18next@23.15.2/dist/umd/i18next.min.js"></script>
-  <script src="https://unpkg.com/i18next-http-backend@2.5.2/dist/umd/i18nextHttpBackend.min.js"></script>
-  <script src="https://unpkg.com/i18next-browser-languagedetector@8.0.0/dist/umd/i18nextBrowserLanguageDetector.min.js"></script>
-
   <style>
-    /* Reset & Base (from established SafetyHelp template) */
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { 
       height: 100%; 
@@ -24,7 +18,6 @@
     }
     a { text-decoration: none; color: inherit; }
 
-    /* Header (from established SafetyHelp template) */
     header { 
       background: #007BFF; 
       color: #fff; 
@@ -34,11 +27,12 @@
       justify-content: space-between; 
       flex-shrink: 0;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      position: sticky; 
-      top: 0;
-      z-index: 1000; 
     }
-    .logo-container { display: flex; align-items: center; color: #fff; }
+    .logo-container {
+      display: flex;
+      align-items: center;
+      color: #fff; 
+    }
     .logo { font-weight: 700; font-size: 1.75rem; letter-spacing: -0.025em; } 
     .logo .help { font-weight: 900; color: #FF8C00; }
     nav { display: flex; gap: 0.5rem; }
@@ -53,17 +47,16 @@
       gap: 0.5rem;
       border: 1px solid transparent; 
     }
-    nav a:hover, nav a.active-nav-link { 
+    nav a:hover { 
       background-color: rgba(255,255,255,0.15); 
       transform: translateY(-2px);
       border-color: rgba(255,255,255,0.3);
     }
     nav a .nav-icon { font-size: 0.9em; }
     .search-language { display: flex; align-items: center; gap: 1rem; }
-    .search-language input { padding: 0.6rem; border: 1px solid #ddd; border-radius: 6px; font-family: 'Montserrat', sans-serif; }
-    .search-language select { padding: 0.6rem; border-radius: 6px; border: 1px solid #ddd; font-family: 'Montserrat', sans-serif; background-color: white; color:#333; }
+    .search-language input { padding: 0.6rem; border: 1px solid #ddd; border-radius: 6px; font-family: inherit; }
+    .search-language select { padding: 0.6rem; border-radius: 6px; border: 1px solid #ddd; font-family: inherit; }
 
-    /* Page Title Area */
     .page-title-section { 
       background: #F3F4F6; 
       padding: 1.5rem 2rem; 
@@ -72,111 +65,190 @@
       flex-shrink: 0;
     }
     .page-title-section h1 { font-size: 2.2rem; color: #1f2937; margin-bottom: 0.5rem; }
-    .page-title-section p.subtitle { font-size: 1rem; color: #374151; max-width: 800px; margin-left: auto; margin-right: auto; }
-    /* Layout (from established SafetyHelp template) */
-    .page-content { display: flex; flex-direction: column; flex-grow: 1; overflow: auto; }
+    .page-title-section p.subtitle { font-size: 1rem; color: #374151; max-width: 800px; margin: 0 auto; }
+
+    .page-content {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      overflow: hidden;
+    }
     .container { 
       display: grid; 
-      grid-template-columns: 1fr 3fr 1fr; /* Default for desktop */
+      grid-template-columns: 1fr 3fr 1fr; 
       flex-grow: 1; 
+      overflow: hidden; 
       min-height: 0;
       gap: 1rem; 
       padding: 1rem; 
     }
-    @media (max-width: 1024px) { 
-      .container { grid-template-columns: 1fr 4fr 1fr; }
+    .sidebar-tools, .sidebar-milestones { 
+      background: #fff; 
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden; 
     }
-    @media (max-width: 768px) { 
-      .container { grid-template-columns: 1fr; }
-      .sidebar-tools, .sidebar-milestones { display: none; } 
+    .sidebar-heading {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #007BFF;
+      padding: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      background-color: #f9f9f9;
+      flex-shrink: 0;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
-    .sidebar-tools, .sidebar-milestones { background: #fff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; flex-direction: column; overflow: hidden; max-height: calc(100vh - 120px); }
-    .sidebar-heading { font-size: 1.2rem; font-weight: 700; color: #007BFF; padding: 1rem; border-bottom: 1px solid #e5e7eb; background-color: #f9f9f9; flex-shrink: 0; border-top-left-radius: 8px; border-top-right-radius: 8px; display: flex; align-items: center; gap: 0.5rem; }
     .sidebar-heading .heading-icon { color: #FF8C00; }
-    .sidebar-list-container { flex-grow: 1; overflow: hidden; position: relative; }
-    .sidebar-tools ul, .sidebar-milestones ul { list-style: none; padding: 0; margin: 0; }
-    @keyframes alternatingScrollUp { 0% { transform: translateY(0%); } 100% { transform: translateY(-50%); } }
-    @keyframes alternatingScrollDown { 0% { transform: translateY(-50%); } 100% { transform: translateY(0%); } }
-    .sidebar-tools ul { animation: alternatingScrollDown 45s linear infinite alternate; }
-    .sidebar-milestones ul { animation: alternatingScrollUp 40s linear infinite alternate; }
-    .sidebar-tools:hover ul, .sidebar-milestones:hover ul { animation-play-state: paused; }
-    .sidebar-tools li, .sidebar-milestones li { padding: 0; border-bottom: 1px solid #e5e7eb; cursor: pointer; display: flex; }
-    .sidebar-tools li a, .sidebar-milestones li { display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; padding: 0.85rem 1rem; width: 100%; transition: background-color 0.3s ease; color: #333; }
-    .sidebar-tools li a:hover, .sidebar-milestones li:hover { background: #e8f0fe; }
-    .sidebar-tools li a .list-icon, .sidebar-milestones li .list-icon { color: #007BFF; font-size: 1em; width: 20px; text-align: center; }
-    .sidebar-tools li a.active-tool-link { background-color: #ddeaff; font-weight: 600; color: #0056b3; }
-
-    /* Main content specific to Coming Soon Page */
+    .sidebar-list-container {
+      flex-grow: 1;
+      overflow: hidden; 
+      position: relative; 
+    }
+    .sidebar-tools ul, .sidebar-milestones ul { 
+      list-style: none; 
+      padding: 0;
+      margin: 0;
+    }
+    @keyframes alternatingScrollUp {
+      0% { transform: translateY(0%); }
+      100% { transform: translateY(-50%); }
+    }
+    @keyframes alternatingScrollDown {
+      0% { transform: translateY(-50%); } 
+      100% { transform: translateY(0%); }
+    }
+    .sidebar-tools ul { 
+      animation: alternatingScrollDown 45s linear infinite alternate; 
+    }
+    .sidebar-milestones ul { 
+      animation: alternatingScrollUp 40s linear infinite alternate; 
+    }
+    .sidebar-tools:hover ul, .sidebar-milestones:hover ul {
+      animation-play-state: paused;
+    }
+    .sidebar-tools li, .sidebar-milestones li { 
+      padding: 0; 
+      border-bottom: 1px solid #e5e7eb; 
+      cursor: pointer; 
+      display: flex; 
+    }
+    .sidebar-tools li a, .sidebar-milestones li { 
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      padding: 0.85rem 1rem; 
+      width: 100%; 
+      transition: background-color 0.3s ease;
+      color: #333; 
+    }
+    .sidebar-tools li a:hover, .sidebar-milestones li:hover { 
+      background: #e8f0fe; 
+    }
+    .sidebar-tools li a .list-icon, .sidebar-milestones li .list-icon { 
+      color: #007BFF;
+      font-size: 1em;
+      width: 20px; 
+      text-align: center;
+    }
     .main-coming-soon { 
       padding: 1.5rem; 
       overflow-y: auto; 
       background-color: #fff; 
-      border-radius: 8px;
+      border-radius: 6px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-      grid-column: 1 / -1; 
     }
-    @media (min-width: 769px) { 
-      .main-coming-soon { grid-column: 2 / 3; }
+    .main-coming-soon section { margin-bottom: 2.5rem; }
+    .main-coming-soon h2 {
+      font-size: 1.8rem;
+      color: #0056b3;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #FF8C00;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
     }
-    .main-coming-soon h2.page-section-title { font-size: 1.8rem; color: #0056b3; margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 2px solid #FF8C00; display: flex; align-items: center; gap: 0.75rem; }
-    .main-coming-soon h2.page-section-title .section-icon { color: #FF8C00; }
-    .main-coming-soon p.intro-text { font-size: 1rem; line-height: 1.7; color: #374151; margin-bottom: 1rem; }
-    .main-coming-soon .section-block { margin-bottom: 2.5rem; padding: 1.5rem; background-color: #f9f9f9; border-radius: 8px; border: 1px solid #e0e0e0; }
-    .main-coming-soon .section-block h3 { font-size: 1.5rem; color: #007BFF; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
-    .main-coming-soon .section-block h3 .fa-fw { width: 1.25em; text-align: center; }
-
-    /* Poll Styles */
-    .poll-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;}
-    .poll-option { background-color: #fff; border: 1px solid #e0e0e0; border-radius: 6px; padding: 1rem; display: flex; justify-content: space-between; align-items: center; transition: box-shadow 0.2s ease; }
-    .poll-option:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-    .poll-option label { font-weight: 500; color: #333; flex-grow: 1; cursor: pointer;}
-    .poll-option button { background-color: #FF8C00; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer; transition: background-color 0.2s ease; font-size: 0.9rem;}
-    .poll-option button:hover { background-color: #e07b00; }
-    .poll-option button:disabled { background-color: #ccc; cursor: not-allowed; color: #666; }
-    #vote-feedback { margin-top: 1rem; font-size: 0.9rem; color: #166534; background-color: #dcfce7; padding: 0.75rem; border-radius: 6px; border: 1px solid #86efac; text-align:center;}
-
-    /* Graph Styles */
-    #popularityChartContainer { max-width: 100%; margin: 0 auto 2rem auto; background-color: #fff; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-
-    /* Carousel Styles */
-    .module-carousel-section { margin-top: 2rem; background-color: transparent; padding:0; border:none;}
-    .module-carousel-section h3 { text-align: center; padding-bottom: 0.5rem; border-bottom: 2px solid #FF8C00; display: block;}
-    .carousel-wrapper { position: relative; width: 100%; margin: 1.5rem auto 0 auto; }
-    .carousel-track-container { overflow: hidden; width: 100%; }
-    .carousel-track { display: flex; transition: transform 0.5s ease-in-out; }
-    .carousel-slide { 
-      min-width: calc(33.333% - 20px); /* Show 3 slides by default, adjust for margins */
-      max-width: calc(33.333% - 20px);
-      margin: 0 10px; 
-      background-color: #fff; border-radius: 8px; 
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
-      padding: 1.5rem; text-align: center; cursor: pointer; 
-      border: 1px solid #e0e0e0;
-      display: flex; flex-direction: column; justify-content: space-between;
+    .main-coming-soon h2 .section-icon { color: #FF8C00; }
+    .main-coming-soon p {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #374151;
+      margin-bottom: 1rem;
     }
-    @media (max-width: 900px) { /* 2 slides */
-      .carousel-slide { min-width: calc(50% - 20px); max-width: calc(50% - 20px); }
+    .voting-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
     }
-    @media (max-width: 600px) { /* 1 slide */
-      .carousel-slide { min-width: calc(100% - 20px); max-width: calc(100% - 20px); }
+    .voting-option {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem;
+      background: #f9f9f9;
+      border-radius: 6px;
+      transition: transform 0.2s ease;
     }
-    .carousel-slide h4 { font-size: 1.2rem; color: #007BFF; margin-bottom: 0.75rem; }
-    .carousel-slide p.summary { font-size: 0.9rem; color: #555; margin-bottom: 1rem; min-height: 60px; flex-grow: 1;}
-    .carousel-slide .details-icon-container { margin-top: auto; } /* Pushes icon to bottom */
-    .carousel-slide .details-icon { color: #FF8C00; font-size: 0.8rem; }
-    .module-details-content { display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #ccc; text-align: left; animation: fadeIn 0.5s; }
-    .module-details-content p {font-size: 0.85rem; line-height: 1.5; color: #444;}
-    .module-details-content strong { color: #0056b3;}
-    .carousel-slide.expanded .module-details-content { display: block; }
-    .carousel-slide.expanded { background-color: #f0f8ff; border-color: #007BFF; }
-
-    .carousel-arrow { position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(0, 123, 255, 0.7); color: white; border: none; padding: 0.8rem; border-radius: 50%; cursor: pointer; z-index: 10; font-size: 1.2rem; line-height: 1; }
-    .carousel-arrow:hover { background-color: #0056b3; }
-    .carousel-prev { left: -10px; } /* Adjust for better visibility */
-    .carousel-next { right: -10px; } /* Adjust for better visibility */
-    .hidden { display: none !important; }
-
-    /* Footer */
+    .voting-option:hover { transform: translateY(-2px); }
+    .voting-option h4 { font-size: 1.1rem; color: #007BFF; }
+    .vote-btn {
+      padding: 0.5rem 1rem;
+      background: #FF8C00;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .vote-btn:hover { background: #e07b00; }
+    .voting-dashboard { 
+      margin-top: 1.5rem; 
+      padding: 1rem; 
+      background: #f9f9f9; 
+      border-radius: 8px; 
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+    }
+    .voting-dashboard h3 { font-size: 1.4rem; color: #0056b3; margin-bottom: 1rem; }
+    .voting-dashboard .module-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+    .module-item .module-name { font-weight: 600; color: #333; }
+    .module-item .percentage { font-weight: 500; color: #007BFF; }
+    .carousel-container { 
+      display: flex; 
+      overflow-x: auto; 
+      scroll-snap-type: x mandatory; 
+      gap: 1rem; 
+      padding: 1rem; 
+    }
+    .carousel-item { 
+      flex: 0 0 300px; 
+      background: #fff; 
+      border-radius: 8px; 
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+      padding: 1rem; 
+      text-align: center; 
+      scroll-snap-align: start; 
+    }
+    .carousel-item i { font-size: 2rem; color: #007BFF; margin-bottom: 0.5rem; }
+    .carousel-item h4 { font-size: 1.2rem; color: #333; margin-bottom: 0.5rem; }
+    .carousel-item p { font-size: 0.9rem; color: #555; }
+    .carousel-item .learn-more { 
+      margin-top: 0.5rem; 
+      padding: 0.5rem 1rem; 
+      background: #007BFF; 
+      color: white; 
+      border: none; 
+      border-radius: 4px; 
+      cursor: pointer; 
+    }
+    .carousel-item .learn-more:hover { background: #0056b3; }
     footer {
       background: #343a40; 
       color: #adb5bd; 
@@ -186,46 +258,96 @@
       flex-shrink: 0;
       border-top: 3px solid #FF8C00;
     }
-    footer p { margin-bottom: 0.5rem; }
     footer a { color: #FF8C00; transition: color 0.3s ease; }
     footer a:hover { color: #fff; }
-
-    /* Modal Styles */
-    .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); padding-top: 60px; }
-    .modal-content { background-color: #fefefe; margin: 5% auto; padding: 25px; border: 1px solid #888; width: 80%; max-width: 600px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative; }
-    .modal-header { padding-bottom: 10px; border-bottom: 1px solid #eee; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
-    .modal-header h4 { margin: 0; font-size: 1.4rem; color: #007BFF; }
-    .close-btn { color: #aaa; font-size: 28px; font-weight: bold; cursor: pointer; transition: color 0.3s; }
-    .close-btn:hover, .close-btn:focus { color: #333; text-decoration: none; }
-    .modal-body p { font-size: 1rem; line-height: 1.6; margin-bottom: 1rem; }
-    .modal-body strong { color: #333; }
-    .modal-body ul { list-style-type: disc; margin-left: 20px; margin-bottom: 1rem;}
-    .modal-footer { padding-top: 15px; border-top: 1px solid #eee; margin-top: 20px; text-align: right; }
-    .modal-footer button { background-color: #6c757d; color:white; border:none; padding: 0.7rem 1.3rem; border-radius:6px; cursor:pointer; } 
-    .modal-footer button:hover { background-color: #5a6268; }
-
-    /* Chatbot Styles */
     .chatbot-container { position: fixed; bottom: 20px; right: 20px; z-index: 1050; }
-    #chat-toggle { background-color: #FF8C00; color: white; border: none; border-radius: 50%; width: 60px; height: 60px; font-size: 1.8rem; box-shadow: 0 4px 8px rgba(0,0,0,0.2); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background-color 0.3s ease, transform 0.3s ease; }
+    #chat-toggle { 
+      background-color: #FF8C00; 
+      color: white; 
+      border: none; 
+      border-radius: 50%; 
+      width: 60px; 
+      height: 60px; 
+      font-size: 1.8rem; 
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2); 
+      cursor: pointer; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      transition: background-color 0.3s ease, transform 0.3s ease; 
+    }
     #chat-toggle:hover { background-color: #e07b00; transform: scale(1.1); }
-    #chat-window { width: 320px; max-height: 450px; background-color: #fff; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); display: flex; flex-direction: column; overflow: hidden; transition: opacity 0.3s ease, transform 0.3s ease; position: absolute; bottom: 75px; right: 0; opacity: 0; transform: translateY(10px); pointer-events: none; }
+    #chat-window { 
+      width: 320px; 
+      max-height: 450px; 
+      background-color: #fff; 
+      border-radius: 8px; 
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3); 
+      display: flex; 
+      flex-direction: column; 
+      overflow: hidden; 
+      transition: opacity 0.3s ease, transform 0.3s ease; 
+      position: absolute; 
+      bottom: 75px; 
+      right: 0; 
+      opacity: 0; 
+      transform: translateY(10px); 
+      pointer-events: none; 
+    }
     #chat-window.chat-expanded { opacity: 1; transform: translateY(0); pointer-events: auto; }
     .chat-hidden { display: none !important; }
-    #chat-header { background-color: #007BFF; color: white; padding: 10px 15px; font-weight: 600; border-top-left-radius: 10px; border-top-right-radius: 10px; display: flex; justify-content: space-between; align-items: center; }
+    #chat-header { 
+      background-color: #007BFF; 
+      color: white; 
+      padding: 10px 15px; 
+      font-weight: 600; 
+      border-top-left-radius: 8px; 
+      border-top-right-radius: 8px; 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+    }
     #chat-header .close-chat-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; }
-    #chat-output { flex-grow: 1; padding: 15px; overflow-y: auto; font-size: 0.9rem; background-color: #f9f9f9; }
+    #chat-output { 
+      flex-grow: 1; 
+      padding: 15px; 
+      overflow-y: auto; 
+      font-size: 0.9rem; 
+      background-color: #f9f9f9; 
+    }
     #chat-output p { margin-bottom: 0.8rem; line-height: 1.4; }
     #chat-output p strong { color: #007BFF; }
     #chat-output p strong:first-child { color: #FF8C00; } 
-    #chat-input-container { display: flex; border-top: 1px solid #eee; padding: 10px; background-color: #fff; }
-    #chat-input { flex-grow: 1; padding: 0.7rem; border: 1px solid #ddd; border-radius: 6px; margin-right: 8px; font-family: 'Montserrat', sans-serif; }
-    #chat-send { background-color: #007BFF; color: white; padding: 0.7rem 1rem; border: none; border-radius: 6px; cursor: pointer; font-weight: 500; transition: background-color 0.3s ease; }
+    #chat-input-container { 
+      display: flex; 
+      border-top: 1px solid #eee; 
+      padding: 10px; 
+      background-color: #fff; 
+    }
+    #chat-input { 
+      flex-grow: 1; 
+      padding: 0.7rem; 
+      border: 1px solid #ddd; 
+      border-radius: 4px; 
+      margin-right: 8px; 
+      font-family: inherit; 
+    }
+    #chat-send { 
+      background-color: #007BFF; 
+      color: white; 
+      padding: 0.7rem 1rem; 
+      border: none; 
+      border-radius: 4px; 
+      cursor: pointer; 
+      font-weight: 500; 
+      transition: background-color 0.3s ease; 
+    }
     #chat-send:hover { background-color: #0056b3; }
   </style>
 </head>
 <body>
   <header>
-    <a href="/SafetyHelp/index.html" class="logo-container">
+    <a href="/SafetyHelp/index.html" class="logo-container"> 
       <div class="logo">Safety<span class="help">Help</span></div>
     </a>
     <nav>
@@ -235,438 +357,342 @@
       <a href="/SafetyHelp/community.html"><i class="fas fa-users nav-icon"></i>Community</a>
       <a href="/SafetyHelp/about.html"><i class="fas fa-info-circle nav-icon"></i>About</a>
       <a href="/SafetyHelp/contact.html"><i class="fas fa-envelope nav-icon"></i>Contact</a>
-      <a href="/SafetyHelp/login.html"><i class="fas fa-sign-in-alt nav-icon"></i>Sign In</a>
+      <a href="/SafetyHelp/login.html"><i class="fas fa-sign-in-alt nav-icon"></i>SignUp / Login</a>
     </nav>
     <div class="search-language">
-      <input type="search" placeholder="Search...">
+      <input type="text" placeholder="Search...">
       <select>
-        <option value="en">English</option>
-        <option value="es">Español</option>
-        <option value="fr">Français</option>
+        <option>English</option>
+        <option>isiXhosa</option>
+        <option>Afrikaans</option>
       </select>
     </div>
   </header>
 
-  <section class="page-title-section">
+  <div class="page-title-section">
     <h1>Exciting Modules Coming Soon!</h1>
     <p class="subtitle">Discover what’s new and help shape our next features with your feedback.</p>
-  </section>
+  </div>
 
   <div class="page-content">
     <div class="container">
       <aside class="sidebar-tools">
-  <div class="sidebar-heading">
-    <i class="fas fa-tools heading-icon"></i>SafetyHelp Tools
-  </div>
-  <div class="sidebar-list-container">
-    <ul id="safetyhelp-tools-list">
-      <li><a href="/SafetyHelp/pages/construction-compliance.html" data-detail="Comprehensive safety management for construction projects, ensuring compliance with regulations."><i class="fas fa-hard-hat list-icon"></i>Construction Safety</a></li>
-      <li><a href="/SafetyHelp/pages/emergency-response-plan.html" data-detail="Develop and implement effective emergency preparedness and response plans."><i class="fas fa-bell list-icon"></i>Emergency Planning</a></li>
-      <li><a href="/SafetyHelp/pages/risk-assessment.html" data-detail="Identify, analyze, and control workplace hazards with our systematic risk assessment tools."><i class="fas fa-shield-alt list-icon"></i>Risk Assessment</a></li>
-      <li><a href="/SafetyHelp/pages/legal-appointments.html" data-detail="Manage and document all legally required OHS appointments for your organization."><i class="fas fa-gavel list-icon"></i>Legal Appointments</a></li>
-      <li><a href="/SafetyHelp/pages/incident-management.html" data-detail="Streamline the reporting, investigation, and prevention of workplace incidents."><i class="fas fa-file-medical-alt list-icon"></i>Incident Management</a></li>
-      <li><a href="/SafetyHelp/pages/training.html" data-detail="Access and manage OHS training programs and records for your workforce."><i class="fas fa-graduation-cap list-icon"></i>Training</a></li>
-      <li><a href="/SafetyHelp/pages/inspections-audits.html" data-detail="Conduct thorough workplace inspections and audits to ensure safety standards are met."><i class="fas fa-clipboard-check list-icon"></i>Inspections & Audits</a></li>
-      <li><a href="/SafetyHelp/pages/suppliers.html" data-detail="Manage OHS information and compliance for your suppliers and contractors."><i class="fas fa-truck list-icon"></i>Suppliers</a></li>
-      <li><a href="/SafetyHelp/pages/legislation.html" data-detail="Stay updated with the latest OHS acts, regulations, and legal requirements."><i class="fas fa-balance-scale list-icon"></i>Legislation</a></li>
-      <li><a href="/SafetyHelp/pages/community-tools.html" data-detail="Engage with the OHS community, share resources, and access forums."><i class="fas fa-users list-icon"></i>Community Tools</a></li>
-      <li><a href="/SafetyHelp/member-dashboard.html" data-detail="Your personalized dashboard for managing OHS activities, tracking progress, and accessing key information."><i class="fas fa-tachometer-alt list-icon"></i>Member Dashboard</a></li>
-      <li><a href="/SafetyHelp/pages/ohs-system.html" data-detail="Explore various modules to build and maintain a comprehensive OHS system."><i class="fas fa-cogs list-icon"></i>OHS System Modules</a></li>
-    </ul>
-  </div>
-</aside>
-
+        <h3 class="sidebar-heading"><i class="fas fa-tools heading-icon"></i>SafetyHelp Tools</h3>
+        <div class="sidebar-list-container">
+          <ul id="safetyhelp-tools-list">
+            <li><a href="#"><i class="fas fa-hard-hat list-icon"></i>Construction Safety</a></li>
+            <li><a href="#"><i class="fas fa-bell list-icon"></i>Emergency Planning</a></li>
+            <li><a href="#"><i class="fas fa-shield-alt list-icon"></i>Risk Assessment</a></li>
+            <li><a href="#"><i class="fas fa-gavel list-icon"></i>Legal Appointments</a></li>
+            <li><a href="#"><i class="fas fa-file-medical-alt list-icon"></i>Incident Management</a></li>
+            <li><a href="#"><i class="fas fa-graduation-cap list-icon"></i>Training</a></li>
+            <li><a href="#"><i class="fas fa-clipboard-check list-icon"></i>Inspections & Audits</a></li>
+            <li><a href="#"><i class="fas fa-truck list-icon"></i>Suppliers</a></li>
+            <li><a href="#"><i class="fas fa-balance-scale list-icon"></i>Legislation</a></li>
+            <li><a href="#"><i class="fas fa-users list-icon"></i>Community Tools</a></li>
+            <li><a href="#"><i class="fas fa-tachometer-alt list-icon"></i>Member Dashboard</a></li>
+            <li><a href="#"><i class="fas fa-cogs list-icon"></i>OHS System Modules</a></li>
+            <li><a href="#"><i class="fas fa-robot list-icon"></i>Chatbot</a></li>
+          </ul>
+        </div>
+      </aside>
 
       <main class="main-coming-soon">
-        <h2 class="page-section-title">
-          <i class="fas fa-rocket section-icon"></i>Upcoming Features
-        </h2>
-        <p class="intro-text">
-          We’re working on several new modules to enhance your experience. Vote for your favorite below and let us know what you’d like to see next!
-        </p>
+        <section id="upcoming-features">
+          <h2><i class="fas fa-bullhorn section-icon"></i>Upcoming Features</h2>
+          <p>We’re working on several new modules to enhance your experience. Vote for your favorite below and let us know what you’d like to see next!</p>
+          <div class="voting-section">
+            <h3>Which SafetyHelp tool are you most excited about?</h3>
+            <div class="voting-options">
+              <div class="voting-option">
+                <h4>Construction Safety</h4>
+                <button class="vote-btn" data-module="construction-safety">Vote</button>
+              </div>
+              <div class="voting-option">
+                <h4>Emergency Planning</h4>
+                <button class="vote-btn" data-module="emergency-planning">Vote</button>
+              </div>
+              <div class="voting-option">
+                <h4>Risk Assessment</h4>
+                <button class="vote-btn" data-module="risk-assessment">Vote</button>
+              </div>
+              <div class="voting-option">
+                <h4>Legal Appointments</h4>
+                <button class="vote-btn" data-module="legal-appointments">Vote</button>
+              </div>
+              <div class="voting-option">
+                <h4>Incident Management</h4>
+                <button class="vote-btn" data-module="incident-management">Vote</button>
+              </div>
+              <div class="voting-option">
+                <h4>Training</h4>
+                <button class="vote-btn" data-module="training">Vote</button>
+              </div>
+              <div class="voting-option">
+                <h4>Inspections & Audits</h4>
+                <button class="vote-btn" data-module="inspections-audits">Vote</button>
+              </div>
+              <div class="voting-option">
+                <h4>Suppliers</h4>
+                <button class="vote-btn" data-module="suppliers">Vote</button>
+              </div>
+              <div class="voting-option">
+                <h4>Legislation</h4>
+                <button class="vote-btn" data-module="legislation">Vote</button>
+              </div>
+              <div class="voting-option">
+                <h4>Community Tools</h4>
+                <button class="vote-btn" data-module="community-tools">Vote</button>
+              </div>
+              <div class="voting-option">
+                <h4>Member Dashboard</h4>
+                <button class="vote-btn" data-module="member-dashboard">Vote</button>
+              </div>
+              <div class="voting-option">
+                <h4>OHS System Modules</h4>
+                <button class="vote-btn" data-module="ohs-system-modules">Vote</button>
+              </div>
+              <div class="voting-option">
+                <h4>Chatbot</h4>
+                <button class="vote-btn" data-module="chatbot">Vote</button>
+              </div>
+            </div>
+          </div>
+          <div class="voting-dashboard">
+            <h3>Top Voted Modules</h3>
+            <div id="top-modules"></div>
+          </div>
+        </section>
 
-        <div class="section-block">
-  <h3><i class="fas fa-poll-h fa-fw"></i>Which SafetyHelp tool are you most excited about?</h3>
-  <div class="poll-options">
-    <div class="poll-option">
-      <label>
-        <input type="radio" name="feature" value="construction-safety">
-        <i class="fas fa-hard-hat"></i> Construction Safety
-      </label>
-      <button onclick="vote('construction-safety')">Vote</button>
-    </div>
-    <div class="poll-option">
-      <label>
-        <input type="radio" name="feature" value="emergency-planning">
-        <i class="fas fa-bell"></i> Emergency Planning
-      </label>
-      <button onclick="vote('emergency-planning')">Vote</button>
-    </div>
-    <div class="poll-option">
-      <label>
-        <input type="radio" name="feature" value="risk-assessment">
-        <i class="fas fa-shield-alt"></i> Risk Assessment
-      </label>
-      <button onclick="vote('risk-assessment')">Vote</button>
-    </div>
-    <div class="poll-option">
-      <label>
-        <input type="radio" name="feature" value="legal-appointments">
-        <i class="fas fa-gavel"></i> Legal Appointments
-      </label>
-      <button onclick="vote('legal-appointments')">Vote</button>
-    </div>
-    <div class="poll-option">
-      <label>
-        <input type="radio" name="feature" value="incident-management">
-        <i class="fas fa-file-medical-alt"></i> Incident Management
-      </label>
-      <button onclick="vote('incident-management')">Vote</button>
-    </div>
-    <div class="poll-option">
-      <label>
-        <input type="radio" name="feature" value="training">
-        <i class="fas fa-graduation-cap"></i> Training
-      </label>
-      <button onclick="vote('training')">Vote</button>
-    </div>
-    <div class="poll-option">
-      <label>
-        <input type="radio" name="feature" value="inspections-audits">
-        <i class="fas fa-clipboard-check"></i> Inspections & Audits
-      </label>
-      <button onclick="vote('inspections-audits')">Vote</button>
-    </div>
-    <div class="poll-option">
-      <label>
-        <input type="radio" name="feature" value="suppliers">
-        <i class="fas fa-truck"></i> Suppliers
-      </label>
-      <button onclick="vote('suppliers')">Vote</button>
-    </div>
-    <div class="poll-option">
-      <label>
-        <input type="radio" name="feature" value="legislation">
-        <i class="fas fa-balance-scale"></i> Legislation
-      </label>
-      <button onclick="vote('legislation')">Vote</button>
-    </div>
-    <div class="poll-option">
-      <label>
-        <input type="radio" name="feature" value="community-tools">
-        <i class="fas fa-users"></i> Community Tools
-      </label>
-      <button onclick="vote('community-tools')">Vote</button>
-    </div>
-    <div class="poll-option">
-      <label>
-        <input type="radio" name="feature" value="member-dashboard">
-        <i class="fas fa-tachometer-alt"></i> Member Dashboard
-      </label>
-      <button onclick="vote('member-dashboard')">Vote</button>
-    </div>
-    <div class="poll-option">
-      <label>
-        <input type="radio" name="feature" value="ohs-system-modules">
-        <i class="fas fa-cogs"></i> OHS System Modules
-      </label>
-      <button onclick="vote('ohs-system-modules')">Vote</button>
-    </div>
-  </div>
-  <div id="vote-feedback" class="hidden">Thank you for your vote! Your feedback helps us prioritize new features.</div>
-</div>
-
-
-        <div id="popularityChartContainer">
-          <canvas id="popularityChart"></canvas>
-        </div>
-
-        <div class="module-carousel-section">
-  <h3><i class="fas fa-th-large"></i> Explore SafetyHelp Tools</h3>
-  <div class="carousel-wrapper">
-    <button class="carousel-arrow carousel-prev" onclick="moveSlide(-1)"><i class="fas fa-chevron-left"></i></button>
-    <div class="carousel-track-container">
-      <div class="carousel-track" id="carousel-track">
-        <div class="carousel-slide" onclick="toggleDetails(this)" data-detail="Comprehensive safety management for construction projects, ensuring compliance with regulations.">
-          <h4><i class="fas fa-hard-hat"></i> Construction Safety</h4>
-          <p class="summary">Manage construction safety and compliance.</p>
-          <div class="details-icon-container"><i class="fas fa-info-circle details-icon"></i></div>
-          <div class="module-details-content"></div>
-        </div>
-        <div class="carousel-slide" onclick="toggleDetails(this)" data-detail="Develop and implement effective emergency preparedness and response plans.">
-          <h4><i class="fas fa-bell"></i> Emergency Planning</h4>
-          <p class="summary">Emergency preparedness and response.</p>
-          <div class="details-icon-container"><i class="fas fa-info-circle details-icon"></i></div>
-          <div class="module-details-content"></div>
-        </div>
-        <div class="carousel-slide" onclick="toggleDetails(this)" data-detail="Identify, analyze, and control workplace hazards with our systematic risk assessment tools.">
-          <h4><i class="fas fa-shield-alt"></i> Risk Assessment</h4>
-          <p class="summary">Identify and manage workplace hazards.</p>
-          <div class="details-icon-container"><i class="fas fa-info-circle details-icon"></i></div>
-          <div class="module-details-content"></div>
-        </div>
-        <div class="carousel-slide" onclick="toggleDetails(this)" data-detail="Manage and document all legally required OHS appointments for your organization.">
-          <h4><i class="fas fa-gavel"></i> Legal Appointments</h4>
-          <p class="summary">Document legal OHS appointments.</p>
-          <div class="details-icon-container"><i class="fas fa-info-circle details-icon"></i></div>
-          <div class="module-details-content"></div>
-        </div>
-        <div class="carousel-slide" onclick="toggleDetails(this)" data-detail="Streamline the reporting, investigation, and prevention of workplace incidents.">
-          <h4><i class="fas fa-file-medical-alt"></i> Incident Management</h4>
-          <p class="summary">Report and prevent workplace incidents.</p>
-          <div class="details-icon-container"><i class="fas fa-info-circle details-icon"></i></div>
-          <div class="module-details-content"></div>
-        </div>
-        <div class="carousel-slide" onclick="toggleDetails(this)" data-detail="Access and manage OHS training programs and records for your workforce.">
-          <h4><i class="fas fa-graduation-cap"></i> Training</h4>
-          <p class="summary">Manage OHS training and records.</p>
-          <div class="details-icon-container"><i class="fas fa-info-circle details-icon"></i></div>
-          <div class="module-details-content"></div>
-        </div>
-        <div class="carousel-slide" onclick="toggleDetails(this)" data-detail="Conduct thorough workplace inspections and audits to ensure safety standards are met.">
-          <h4><i class="fas fa-clipboard-check"></i> Inspections & Audits</h4>
-          <p class="summary">Conduct workplace inspections and audits.</p>
-          <div class="details-icon-container"><i class="fas fa-info-circle details-icon"></i></div>
-          <div class="module-details-content"></div>
-        </div>
-        <div class="carousel-slide" onclick="toggleDetails(this)" data-detail="Manage OHS information and compliance for your suppliers and contractors.">
-          <h4><i class="fas fa-truck"></i> Suppliers</h4>
-          <p class="summary">Manage supplier OHS compliance.</p>
-          <div class="details-icon-container"><i class="fas fa-info-circle details-icon"></i></div>
-          <div class="module-details-content"></div>
-        </div>
-        <div class="carousel-slide" onclick="toggleDetails(this)" data-detail="Stay updated with the latest OHS acts, regulations, and legal requirements.">
-          <h4><i class="fas fa-balance-scale"></i> Legislation</h4>
-          <p class="summary">Stay updated with OHS legislation.</p>
-          <div class="details-icon-container"><i class="fas fa-info-circle details-icon"></i></div>
-          <div class="module-details-content"></div>
-        </div>
-        <div class="carousel-slide" onclick="toggleDetails(this)" data-detail="Engage with the OHS community, share resources, and access forums.">
-          <h4><i class="fas fa-users"></i> Community Tools</h4>
-          <p class="summary">Engage with the OHS community.</p>
-          <div class="details-icon-container"><i class="fas fa-info-circle details-icon"></i></div>
-          <div class="module-details-content"></div>
-        </div>
-        <div class="carousel-slide" onclick="toggleDetails(this)" data-detail="Your personalized dashboard for managing OHS activities, tracking progress, and accessing key information.">
-          <h4><i class="fas fa-tachometer-alt"></i> Member Dashboard</h4>
-          <p class="summary">Your personalized OHS dashboard.</p>
-          <div class="details-icon-container"><i class="fas fa-info-circle details-icon"></i></div>
-          <div class="module-details-content"></div>
-        </div>
-        <div class="carousel-slide" onclick="toggleDetails(this)" data-detail="Explore various modules to build and maintain a comprehensive OHS system.">
-          <h4><i class="fas fa-cogs"></i> OHS System Modules</h4>
-          <p class="summary">Build your OHS system.</p>
-          <div class="details-icon-container"><i class="fas fa-info-circle details-icon"></i></div>
-          <div class="module-details-content"></div>
-        </div>
-      </div>
-    </div>
-    <button class="carousel-arrow carousel-next" onclick="moveSlide(1)"><i class="fas fa-chevron-right"></i></button>
-  </div>
-</div>
-
+        <section id="explore-tools">
+          <h2><i class="fas fa-tools section-icon"></i>Explore SafetyHelp Tools</h2>
+          <div class="carousel-container">
+            <div class="carousel-item">
+              <i class="fas fa-hard-hat"></i>
+              <h4>Construction Safety</h4>
+              <p>Manage construction safety and compliance.</p>
+              <button class="learn-more">Learn More</button>
+            </div>
+            <div class="carousel-item">
+              <i class="fas fa-bell"></i>
+              <h4>Emergency Planning</h4>
+              <p>Emergency preparedness and response.</p>
+              <button class="learn-more">Learn More</button>
+            </div>
+            <div class="carousel-item">
+              <i class="fas fa-shield-alt"></i>
+              <h4>Risk Assessment</h4>
+              <p>Identify and manage workplace hazards.</p>
+              <button class="learn-more">Learn More</button>
+            </div>
+            <div class="carousel-item">
+              <i class="fas fa-gavel"></i>
+              <h4>Legal Appointments</h4>
+              <p>Document legal OHS appointments.</p>
+              <button class="learn-more">Learn More</button>
+            </div>
+            <div class="carousel-item">
+              <i class="fas fa-file-medical-alt"></i>
+              <h4>Incident Management</h4>
+              <p>Report and prevent workplace incidents.</p>
+              <button class="learn-more">Learn More</button>
+            </div>
+            <div class="carousel-item">
+              <i class="fas fa-graduation-cap"></i>
+              <h4>Training</h4>
+              <p>Manage OHS training and records.</p>
+              <button class="learn-more">Learn More</button>
+            </div>
+            <div class="carousel-item">
+              <i class="fas fa-clipboard-check"></i>
+              <h4>Inspections & Audits</h4>
+              <p>Conduct workplace inspections and audits.</p>
+              <button class="learn-more">Learn More</button>
+            </div>
+            <div class="carousel-item">
+              <i class="fas fa-truck"></i>
+              <h4>Suppliers</h4>
+              <p>Manage supplier OHS compliance.</p>
+              <button class="learn-more">Learn More</button>
+            </div>
+            <div class="carousel-item">
+              <i class="fas fa-balance-scale"></i>
+              <h4>Legislation</h4>
+              <p>Stay updated with OHS legislation.</p>
+              <button class="learn-more">Learn More</button>
+            </div>
+            <div class="carousel-item">
+              <i class="fas fa-users"></i>
+              <h4>Community Tools</h4>
+              <p>Engage with the OHS community.</p>
+              <button class="learn-more">Learn More</button>
+            </div>
+            <div class="carousel-item">
+              <i class="fas fa-tachometer-alt"></i>
+              <h4>Member Dashboard</h4>
+              <p>Your personalized OHS dashboard.</p>
+              <button class="learn-more">Learn More</button>
+            </div>
+            <div class="carousel-item">
+              <i class="fas fa-cogs"></i>
+              <h4>OHS System Modules</h4>
+              <p>Build your OHS system.</p>
+              <button class="learn-more">Learn More</button>
+            </div>
+            <div class="carousel-item">
+              <i class="fas fa-robot"></i>
+              <h4>Chatbot</h4>
+              <p>Get instant OHS assistance.</p>
+              <button class="learn-more">Learn More</button>
+            </div>
+          </div>
+        </section>
       </main>
 
       <aside class="sidebar-milestones">
-        <div class="sidebar-heading">
-          <i class="fas fa-flag-checkered heading-icon"></i>Milestones
-        </div>
+        <h3 class="sidebar-heading"><i class="fas fa-flag-checkered heading-icon"></i>Milestones</h3>
         <div class="sidebar-list-container">
-          <ul>
-            <li><i class="fas fa-check-circle list-icon"></i>Incident Reporting (Q3)</li>
-            <li><i class="fas fa-check-circle list-icon"></i>Risk Assessment (Q4)</li>
-            <li><i class="fas fa-check-circle list-icon"></i>Training Portal (Q1)</li>
-            <li><i class="fas fa-check-circle list-icon"></i>Analytics Dashboard (Q2)</li>
+          <ul id="milestones-list">
+            <li><i class="fas fa-check list-icon"></i>Base Platform Launch (Completed)</li>
+            <li><i class="fas fa-hourglass-half list-icon"></i>Member Dashboard (In Progress - June 2025)</li>
+            <li><i class="fas fa-hourglass-half list-icon"></i>Chatbot (In Progress - June 2025)</li>
+            <li><i class="fas fa-calendar-alt list-icon"></i>Incident Management (July 2025)</li>
+            <li><i class="fas fa-calendar-alt list-icon"></i>Risk Assessment (August 2025)</li>
+            <li><i class="fas fa-calendar-alt list-icon"></i>Training (September 2025)</li>
+            <li><i class="fas fa-calendar-alt list-icon"></i>Inspections & Audits (October 2025)</li>
+            <li><i class="fas fa-calendar-alt list-icon"></i>Suppliers (November 2025)</li>
+            <li><i class="fas fa-calendar-alt list-icon"></i>Legislation (December 2025)</li>
+            <li><i class="fas fa-calendar-alt list-icon"></i>Community Tools (January 2026)</li>
+            <li><i class="fas fa-calendar-alt list-icon"></i>OHS System Modules (February 2026)</li>
+            <li><i class="fas fa-calendar-alt list-icon"></i>Construction Safety (March 2026)</li>
+            <li><i class="fas fa-calendar-alt list-icon"></i>Legal Appointments (April 2026)</li>
           </ul>
         </div>
       </aside>
     </div>
   </div>
 
-  <div class="modal" id="featureModal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4>Feature Details</h4>
-        <span class="close-btn" onclick="closeModal()">&times;</span>
-      </div>
-      <div class="modal-body" id="modalBody">
-        <p>Details about the selected feature will appear here.</p>
-      </div>
-      <div class="modal-footer">
-        <button onclick="closeModal()">Close</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="chatbot-container">
-    <button id="chat-toggle" onclick="toggleChat()"><i class="fas fa-comment"></i></button>
-    <div id="chat-window">
-      <div id="chat-header">
-        <span>SafetyHelp Chat</span>
-        <button class="close-chat-btn" onclick="toggleChat()"><i class="fas fa-times"></i></button>
-      </div>
-      <div id="chat-output"></div>
-      <div id="chat-input-container">
-        <input type="text" id="chat-input" placeholder="Type your message...">
-        <button id="chat-send" onclick="sendMessage()">Send</button>
-      </div>
-    </div>
-  </div>
-
   <footer>
-    <p>&copy; 2025 SafetyHelp. All rights reserved.</p>
+    <p>© 2025 SafetyHelp. All rights reserved.</p>
     <p><a href="/SafetyHelp/privacy.html">Privacy Policy</a> | <a href="/SafetyHelp/terms.html">Terms of Service</a></p>
   </footer>
 
+  <div class="chatbot-container">
+    <div id="chat-window" class="chat-hidden">
+      <div id="chat-header">
+        <span>SafetyHelp Chat</span>
+        <button class="close-chat-btn" onclick="toggleChatbot(false)">×</button>
+      </div>
+      <div id="chat-output">
+        <p><strong>Salatiso:</strong> Hello! How can I help you with OHS today?</p>
+      </div>
+      <div id="chat-input-container">
+        <input id="chat-input" type="text" placeholder="Ask about OHS...">
+        <button id="chat-send"><i class="fas fa-paper-plane"></i></button>
+      </div>
+    </div>
+    <button id="chat-toggle" onclick="toggleChatbot()">
+      <i class="fas fa-headset"></i>
+    </button>
+  </div>
+
   <script>
-    // Poll and feedback
-    function vote(feature) {
-      document.querySelectorAll('.poll-option button').forEach(btn => btn.disabled = true);
-      document.getElementById('vote-feedback').classList.remove('hidden');
-      updateChart();
-    }
+    const voteCounts = {
+      "construction-safety": 0,
+      "emergency-planning": 0,
+      "risk-assessment": 0,
+      "legal-appointments": 0,
+      "incident-management": 0,
+      "training": 0,
+      "inspections-audits": 0,
+      "suppliers": 0,
+      "legislation": 0,
+      "community-tools": 0,
+      "member-dashboard": 0,
+      "ohs-system-modules": 0,
+      "chatbot": 0
+    };
 
-    // Carousel functionality
-    let currentIndex = 0;
-    const slides = document.querySelectorAll('.carousel-slide');
-    const track = document.getElementById('carousel-track');
-
-    function moveSlide(direction) {
-      currentIndex = (currentIndex + direction + slides.length) % slides.length;
-      updateCarousel();
-    }
-
-    function updateCarousel() {
-      const slideWidth = slides[0].offsetWidth + 20; // includes margin
-      track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-    }
-
-    function toggleDetails(slide) {
-      slide.classList.toggle('expanded');
-    }
-
-    // Modal
-    function closeModal() {
-      document.getElementById('featureModal').style.display = 'none';
-    }
-
-    // Chatbot
-    function toggleChat() {
-      document.getElementById('chat-window').classList.toggle('chat-expanded');
-    }
-
-    const moduleDetails = {
-  'construction safety': "Comprehensive safety management for construction projects, ensuring compliance with regulations.",
-  'emergency planning': "Develop and implement effective emergency preparedness and response plans.",
-  'risk assessment': "Identify, analyze, and control workplace hazards with our systematic risk assessment tools.",
-  'legal appointments': "Manage and document all legally required OHS appointments for your organization.",
-  'incident management': "Streamline the reporting, investigation, and prevention of workplace incidents.",
-  'training': "Access and manage OHS training programs and records for your workforce.",
-  'inspections & audits': "Conduct thorough workplace inspections and audits to ensure safety standards are met.",
-  'suppliers': "Manage OHS information and compliance for your suppliers and contractors.",
-  'legislation': "Stay updated with the latest OHS acts, regulations, and legal requirements.",
-  'community tools': "Engage with the OHS community, share resources, and access forums.",
-  'member dashboard': "Your personalized dashboard for managing OHS activities, tracking progress, and accessing key information.",
-  'ohs system modules': "Explore various modules to build and maintain a comprehensive OHS system."
-};
-
-function sendMessage() {
-  const input = document.getElementById('chat-input');
-  const output = document.getElementById('chat-output');
-  if (input.value.trim()) {
-    output.innerHTML += `<p><strong>You:</strong> ${input.value}</p>`;
-    // Check if message contains a module name
-    let foundModule = null;
-    for (const [module, detail] of Object.entries(moduleDetails)) {
-      if (input.value.toLowerCase().includes(module.toLowerCase())) {
-        foundModule = module;
-        break;
-      }
-    }
-    // Simulate bot response
-    setTimeout(() => {
-      if (foundModule) {
-        output.innerHTML += `<p><strong>SafetyHelp:</strong> ${moduleDetails[foundModule]}</p>`;
-      } else {
-        output.innerHTML += `<p><strong>SafetyHelp:</strong> Thanks for your message! How can I assist you today? Try asking about a specific SafetyHelp module (e.g., "Tell me about Construction Safety").</p>`;
-      }
-      output.scrollTop = output.scrollHeight;
-    }, 1000);
-    input.value = '';
-    output.scrollTop = output.scrollHeight;
-  }
-}
-
-
-    // Chart
-    function updateChart() {
-  const ctx = document.getElementById('popularityChart');
-  if (window.myChart) {
-    window.myChart.destroy();
-  }
-  window.myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: ['Construction Safety', 'Emergency Planning', 'Risk Assessment', 'Legal Appointments', 'Incident Management', 'Training', 'Inspections & Audits', 'Suppliers', 'Legislation', 'Community Tools', 'Member Dashboard', 'OHS System Modules'],
-      datasets: [{
-        label: 'Votes',
-        data: [
-          Math.floor(Math.random() * 100) + 30,
-          Math.floor(Math.random() * 100) + 20,
-          Math.floor(Math.random() * 100) + 40,
-          Math.floor(Math.random() * 100) + 25,
-          Math.floor(Math.random() * 100) + 35,
-          Math.floor(Math.random() * 100) + 45,
-          Math.floor(Math.random() * 100) + 30,
-          Math.floor(Math.random() * 100) + 20,
-          Math.floor(Math.random() * 100) + 25,
-          Math.floor(Math.random() * 100) + 15,
-          Math.floor(Math.random() * 100) + 40,
-          Math.floor(Math.random() * 100) + 20
-        ],
-        backgroundColor: [
-          'rgba(0, 123, 255, 0.7)', 'rgba(255, 140, 0, 0.7)', 'rgba(40, 167, 69, 0.7)', 'rgba(108, 117, 125, 0.7)',
-          'rgba(111, 66, 193, 0.7)', 'rgba(214, 51, 108, 0.7)', 'rgba(0, 123, 255, 0.7)', 'rgba(255, 140, 0, 0.7)',
-          'rgba(40, 167, 69, 0.7)', 'rgba(108, 117, 125, 0.7)', 'rgba(111, 66, 193, 0.7)', 'rgba(214, 51, 108, 0.7)'
-        ],
-        borderColor: [
-          'rgba(0, 123, 255, 1)', 'rgba(255, 140, 0, 1)', 'rgba(40, 167, 69, 1)', 'rgba(108, 117, 125, 1)',
-          'rgba(111, 66, 193, 1)', 'rgba(214, 51, 108, 1)', 'rgba(0, 123, 255, 1)', 'rgba(255, 140, 0, 1)',
-          'rgba(40, 167, 69, 1)', 'rgba(108, 117, 125, 1)', 'rgba(111, 66, 193, 1)', 'rgba(214, 51, 108, 1)'
-        ],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    }
-  });
-}
-
-    function toggleDetails(slide) {
-  // Toggle expanded class
-  slide.classList.toggle('expanded');
-  // Update the details content if not already set
-  const detailsContent = slide.querySelector('.module-details-content');
-  if (slide.classList.contains('expanded') && !detailsContent.innerHTML) {
-    const detail = slide.getAttribute('data-detail');
-    detailsContent.innerHTML = `<p><strong>Details:</strong> ${detail}</p>`;
-  }
-}
-
-    // Initialize
-    window.onload = function() {
-      updateCarousel();
-      updateChart();
-      // Enable carousel keyboard navigation
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'ArrowLeft') moveSlide(-1);
-        if (e.key === 'ArrowRight') moveSlide(1);
+    document.querySelectorAll('.vote-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const module = btn.getAttribute('data-module');
+        voteCounts[module]++;
+        updateDashboard();
+        alert("Thank you for your vote!");
       });
+    });
+
+    function updateDashboard() {
+      const totalVotes = Object.values(voteCounts).reduce((a, b) => a + b, 0);
+      const topModules = Object.entries(voteCounts)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 3)
+        .map(([module, votes]) => {
+          const percentage = totalVotes > 0 ? ((votes / totalVotes) * 100).toFixed(1) : 0;
+          return `<div class="module-item"><span class="module-name">${module.replace(/-/g, ' ').toUpperCase()}</span><span class="percentage">${percentage}%</span></div>`;
+        });
+      document.getElementById('top-modules').innerHTML = topModules.join('');
+    }
+
+    function toggleChatbot(forceOpen) {
+      const chatWindow = document.getElementById('chat-window');
+      const chatToggleBtn = document.getElementById('chat-toggle');
+      const isHidden = chatWindow.classList.contains('chat-hidden');
+      if (forceOpen === true || isHidden) {
+        chatWindow.classList.remove('chat-hidden');
+        chatWindow.classList.add('chat-expanded');
+        chatToggleBtn.innerHTML = '<i class="fas fa-times"></i>';
+      } else if (forceOpen === false || !isHidden) {
+        chatWindow.classList.add('chat-hidden');
+        chatWindow.classList.remove('chat-expanded');
+        chatToggleBtn.innerHTML = '<i class="fas fa-headset"></i>';
+      }
+    }
+
+    function addChatMessageToUI(sender, message, isUser) {
+      const chatOutputEl = document.getElementById('chat-output');
+      const messageEl = document.createElement('p');
+      messageEl.innerHTML = `<strong>${sender}:</strong> ${message}`;
+      if (isUser) messageEl.style.textAlign = "right";
+      chatOutputEl.appendChild(messageEl);
+      chatOutputEl.scrollTop = chatOutputEl.scrollHeight;
+    }
+
+    async function handleChatSend() {
+      const chatInputEl = document.getElementById('chat-input');
+      const message = chatInputEl.value.trim();
+      if (!message) return;
+      addChatMessageToUI("You", message, true);
+      chatInputEl.value = '';
+      let botResponse = "I'm still learning! For detailed OHS info, explore our resources.";
+      if (message.toLowerCase().includes("hello") || message.toLowerCase().includes("hi")) {
+        botResponse = "Hello! How can I assist you with safety today?";
+      }
+      setTimeout(() => {
+        addChatMessageToUI("Salatiso", botResponse, false);
+      }, 500);
+    }
+
+    document.getElementById('chat-send').addEventListener('click', handleChatSend);
+    document.getElementById('chat-input').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') handleChatSend();
+    });
+
+    function setupScrollingSidebar(listId) {
+      const listElement = document.getElementById(listId);
+      if (!listElement || listElement.children.length === 0) return;
+      const originalItems = Array.from(listElement.children);
+      originalItems.forEach(item => {
+        const clone = item.cloneNode(true);
+        listElement.appendChild(clone);
+      });
+    }
+
+    window.onload = function() {
+      setupScrollingSidebar('safetyhelp-tools-list');
+      setupScrollingSidebar('milestones-list');
+      document.getElementById('chat-window').classList.add('chat-hidden');
+      document.getElementById('chat-toggle').style.display = 'flex';
     };
   </script>
 </body>
