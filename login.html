@@ -1,14 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Login to SafetyHelp or create an account to explore plans. Access OHS tools, resources, and manage compliance.">
+  <meta name="keywords" content="SafetyHelp login, SafetyHelp signup, OHS plans, safety compliance, user registration, subscription benefits">
+  <meta name="author" content="SafetyHelp Team">
+  <title data-i18n="page_title.login_signup">Login / SignUp | SafetyHelp</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://unpkg.com/i18next@23.15.2/dist/umd/i18next.min.js"></script>
+  <script src="https://unpkg.com/i18next-http-backend@2.5.2/dist/umd/i18nextHttpBackend.min.js"></script>
+  <script src="https://unpkg.com/i18next-browser-languagedetector@8.0.0/dist/umd/i18nextBrowserLanguageDetector.min.js"></script>
+
+  <style>
+    /* Reset & Base (from established SafetyHelp template) */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { 
+      height: 100%; 
+      font-family: 'Montserrat', sans-serif; 
+      background: #E8F0FE; 
+      color: #333; 
+      display: flex;
+      flex-direction: column;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* Header (from established SafetyHelp template) */
+    header { 
+      background: #007BFF; 
+      color: #fff; 
+      padding: 0.8rem 2rem; 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between; 
+      flex-shrink: 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky; 
+      top: 0;
+      z-index: 1000; 
+    }
+    .logo-container { display: flex; align-items: center; color: #fff; }
+    .logo-container img { height: 40px; margin-right: 10px; }
+    .logo { font-weight: 700; font-size: 1.75rem; letter-spacing: -0.025em; } 
+    .logo .help { font-weight: 900; color: #FF8C00; }
+    nav { display: flex; gap: 0.5rem; }
+    nav a { 
+      color: white; 
+      font-weight: 500; 
+      padding: 0.6rem 1rem; 
+      border-radius: 6px; 
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid transparent; 
+    }
+    nav a:hover, nav a.active-nav-link { 
+      background-color: rgba(255,255,255,0.15); 
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,0.3);
+    }
+    nav a .nav-icon { font-size: 0.9em; }
+    .search-language { display: flex; align-items: center; gap: 1rem; }
+    .search-language input { padding: 0.6rem; border: 1px solid #ddd; border-radius: 6px; font-family: 'Montserrat', sans-serif; }
+    .search-language select { padding: 0.6rem; border-radius: 6px; border: 1px solid #ddd; font-family: 'Montserrat', sans-serif; background-color: white; color:#333; }
+
+    /* Page Title Area */
+    .page-title-section { 
+      background: #F3F4F6; 
+      padding: 1.5rem 2rem; 
+      text-align: center; 
+      border-bottom: 1px solid #e0e0e0;
+      flex-shrink: 0;
+    }
+    .page-title-section h1 { font-size: 2.2rem; color: #1f2937; margin-bottom: 0.5rem; }
+    .page-title-section p.subtitle { font-size: 1rem; color: #374151; max-width: 800px; margin-left: auto; margin-right: auto; }
+
+    /* Layout (from established SafetyHelp template) */
+    .page-content { display: flex; flex-direction: column; flex-grow: 1; overflow: auto; }
+    .container { 
+      display: grid; 
+      grid-template-columns: 1fr 3fr 1fr; /* Default for desktop */
+      flex-grow: 1; 
+      min-height: 0;
+      gap: 1rem; 
+      padding: 1rem; 
+    }
+    @media (max-width: 1024px) { 
+        .container { grid-template-columns: 1fr 4fr 1fr; }
+    }
+    @media (max-width: 768px) { 
+        .container { grid-template-columns: 1fr; }
+        .sidebar-tools, .sidebar-milestones { display: none; } 
+    }
+    
+    .sidebar-tools, .sidebar-milestones { 
+      background: #fff; 
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden; 
+      max-height: calc(100vh - 120px); 
+    }
+    .sidebar-heading {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #007BFF;
+      padding: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      background-color: #f9f9f9;
+      flex-shrink: 0;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .sidebar-heading .heading-icon { color: #FF8C00; }
+    .sidebar-list-container { flex-grow: 1; overflow: hidden; position: relative; }
+    .sidebar-tools ul, .sidebar-milestones ul { list-style: none; padding: 0; margin: 0; }
+    @keyframes alternatingScrollUp { 0% { transform: translateY(0%); } 100% { transform: translateY(-50%); } }
+    @keyframes alternatingScrollDown { 0% { transform: translateY(-50%); } 100% { transform: translateY(0%); } }
+    .sidebar-tools ul { animation: alternatingScrollDown 45s linear infinite alternate; }
+    .sidebar-milestones ul { animation: alternatingScrollUp 40s linear infinite alternate; }
+    .sidebar-tools:hover ul, .sidebar-milestones:hover ul { animation-play-state: paused; }
+    .sidebar-tools li, .sidebar-milestones li { padding: 0; border-bottom: 1px solid #e5e7eb; cursor: pointer; display: flex; }
+    .sidebar-tools li a, .sidebar-milestones li { display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; padding: 0.85rem 1rem; width: 100%; transition: background-color 0.3s ease; color: #333; }
+    .sidebar-tools li a:hover, .sidebar-milestones li:hover { background: #e8f0fe; }
+    .sidebar-tools li a .list-icon, .sidebar-milestones li .list-icon { color: #007BFF; font-size: 1em; width: 20px; text-align: center; }
+    .sidebar-tools li a.active-tool-link { background-color: #ddeaff; font-weight: 600; color: #0056b3; }
+    
+    /* Main content specific to Login/SignUp Page */
+    .main-login-signup { 
+      padding: 1rem; 
+      overflow-y: auto; 
+      background-color: transparent; 
+      display: flex;
+      flex-direction: column;
+      align-items: center; 
+      gap: 2rem; 
+    }
+    .auth-container {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        width: 100%;
+        max-width: 480px; 
+    }
+    .auth-container h2 {
+        font-size: 1.8rem;
+        color: #0056b3; 
+        margin-bottom: 1.5rem; 
+        text-align: center;
+    }
+    .form-toggle-buttons {
+        display: flex;
+        margin-bottom: 1.5rem;
+        border-radius: 0.375rem;
+        overflow: hidden;
+        border: 1px solid #007BFF;
+    }
+    .form-toggle-buttons button {
+        flex: 1;
+        padding: 0.75rem;
+        background-color: white;
+        color: #007BFF;
+        border: none;
+        cursor: pointer;
+        font-weight: 600; /* Bolder for tabs */
+        transition: background-color 0.3s ease, color 0.3s ease;
+        font-size: 1rem; /* Slightly larger */
+        font-family: 'Montserrat', sans-serif;
+    }
+    .form-toggle-buttons button.active {
+        background-color: #007BFF;
+        color: white;
+    }
+    .form-toggle-buttons button:not(.active):hover {
+        background-color: #e8f0fe;
+    }
+
+    .input-group {
+        position: relative;
+        margin-bottom: 1.25rem;
+    }
+    .input-group .fa-icon {
+        position: absolute;
+        left: 0.875rem; 
+        top: 50%;
+        transform: translateY(-50%);
+        color: #9ca3af; 
+        font-size: 0.9em;
+    }
+    .form-input { 
+        padding-left: 2.75rem; 
+        width: 100%;
+        border-radius: 6px; /* Consistent with main template */
+        border: 1px solid #ccc; /* Consistent with main template */
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+        padding-right: 0.75rem;
+        font-size: 1rem;
+        font-family: 'Montserrat', sans-serif;
+        color: #1f2937; 
+    }
+    .form-input::placeholder { color: #9ca3af; }
+    .form-input:focus {
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+        border-color: #007BFF; 
+        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); 
+    }
+    .auth-button { 
+        background-color: #007BFF;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 6px; /* Consistent */
+        font-weight: 600; 
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        transition: background-color 0.3s ease;
+        border: none;
+        font-size: 1rem;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .auth-button:hover {
+        background-color: #0056b3; 
+    }
+    .auth-button .btn-icon { margin-right: 0.5rem; }
+    .auth-button.google-btn {
+        background-color: #fff;
+        color: #374151; 
+        border: 1px solid #d1d5db; 
+    }
+    .auth-button.google-btn:hover {
+        background-color: #f9fafb; 
+    }
+    .auth-links {
+        text-align: center;
+        font-size: 0.9rem;
+        color: #555;
+        margin-top: 1.5rem;
+    }
+    .auth-links a { color: #007BFF; font-weight: 500; text-decoration: underline; }
+    .auth-links a:hover { color: #0056b3; }
+    #auth-message {
+        width: 100%;
+        padding: 0.85rem; /* Slightly more padding */
+        margin-bottom: 1.25rem; 
+        border-radius: 6px; 
+        text-align: center;
+        font-size: 0.95rem; /* Slightly larger */
+        font-weight: 500;
+        border-width: 1px;
+        border-style: solid;
+    }
+    .message-success { background-color: #d1fae5; color: #065f46; border-color: #6ee7b7;}
+    .message-error { background-color: #fee2e2; color: #991b1b; border-color: #fca5a5;}
+    .hidden { display: none !important; }
+
+    /* Plans Comparison Table */
+    .plans-container {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        width: 100%;
+        max-width: 900px; 
+    }
+    .plans-container h2 {
+        font-size: 1.8rem; color: #0056b3; margin-bottom: 1.5rem; text-align: center;
+        display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+    }
+     .plans-container h2 .section-icon { color: #FF8C00; }
+    .plan-table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+    .plan-table th, .plan-table td { padding: 0.85rem 1rem; text-align: left; border-bottom: 1px solid #e5e7eb; font-size: 0.9rem; vertical-align: middle; font-family: 'Inter', sans-serif; }
+    .plan-table th { background-color: #007BFF; color: white; font-weight: 600; font-family: 'Montserrat', sans-serif; }
+    .plan-table td.plan-table-feature-col { font-weight: 600; color: #1f2937; background-color: #f9fafb; white-space: nowrap; }
+    .plan-table tbody tr:hover { background-color: #e8f0fe; }
+    .plan-table td .fas { margin-right: 0.5rem; width: 1.1em; text-align: center; }
+    .plan-table td.yes .fa-check { color: #10b981; } 
+    .plan-table td.no .fa-times { color: #ef4444; } 
+    .plan-table td.limited .fa-info-circle { color: #f59e0b; } 
+    .plan-table td.discount .fa-percent { color: #007BFF; } 
+    .encouragement-message { margin-top: 1.5rem; padding: 1rem; background-color: #E8F0FE; color: #0056b3; border-left: 4px solid #007BFF; border-radius: 0.25rem; font-size: 0.9rem; }
+    .encouragement-message p strong { font-weight: 600; }
+    .encouragement-message a { color: #007BFF; text-decoration: underline; }
+    .encouragement-message a:hover { color: #0056b3; }
+    .plans-container .action-button {
+        background-color: #FF8C00;
+        color: white;
+    }
+     .plans-container .action-button:hover {
+        background-color: #e07b00;
+    }
+
+
+    /* Footer (from established SafetyHelp template) */
+    footer {
+      background: #343a40; 
+      color: #adb5bd; 
+      text-align: center;
+      padding: 1.5rem 2rem;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      border-top: 3px solid #FF8C00;
+    }
+    footer p { margin-bottom: 0.5rem; }
+    footer a { color: #FF8C00; transition: color 0.3s ease; }
+    footer a:hover { color: #fff; }
+    
+    /* Modal Styles (from established SafetyHelp template) */
+    .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); padding-top: 60px; }
+    .modal-content { background-color: #fefefe; margin: 5% auto; padding: 25px; border: 1px solid #888; width: 80%; max-width: 600px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative; }
+    .modal-header { padding-bottom: 10px; border-bottom: 1px solid #eee; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
+    .modal-header h4 { margin: 0; font-size: 1.4rem; color: #007BFF; }
+    .close-btn { color: #aaa; font-size: 28px; font-weight: bold; cursor: pointer; transition: color 0.3s; }
+    .close-btn:hover, .close-btn:focus { color: #333; text-decoration: none; }
+    .modal-body p { font-size: 1rem; line-height: 1.6; margin-bottom: 1rem; }
+    .modal-body strong { color: #333; }
+    .modal-body ul { list-style-type: disc; margin-left: 20px; margin-bottom: 1rem;}
+    .modal-footer { padding-top: 15px; border-top: 1px solid #eee; margin-top: 20px; text-align: right; }
+    .modal-footer button { background-color: #6c757d; color:white; border:none; padding: 0.7rem 1.3rem; border-radius:6px; cursor:pointer; } 
+    .modal-footer button:hover { background-color: #5a6268; }
+
+    /* Chatbot Styles (from established SafetyHelp template) */
+    .chatbot-container { position: fixed; bottom: 20px; right: 20px; z-index: 1050; }
+    #chat-toggle { background-color: #FF8C00; color: white; border: none; border-radius: 50%; width: 60px; height: 60px; font-size: 1.8rem; box-shadow: 0 4px 8px rgba(0,0,0,0.2); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background-color 0.3s ease, transform 0.3s ease; }
+    #chat-toggle:hover { background-color: #e07b00; transform: scale(1.1); }
+    #chat-window { width: 320px; max-height: 450px; background-color: #fff; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); display: flex; flex-direction: column; overflow: hidden; transition: opacity 0.3s ease, transform 0.3s ease; position: absolute; bottom: 75px; right: 0; opacity: 0; transform: translateY(10px); pointer-events: none; }
+    #chat-window.chat-expanded { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .chat-hidden { display: none !important; }
+    #chat-header { background-color: #007BFF; color: white; padding: 10px 15px; font-weight: 600; border-top-left-radius: 10px; border-top-right-radius: 10px; display: flex; justify-content: space-between; align-items: center; }
+    #chat-header .close-chat-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; }
+    #chat-output { flex-grow: 1; padding: 15px; overflow-y: auto; font-size: 0.9rem; background-color: #f9f9f9; }
+    #chat-output p { margin-bottom: 0.8rem; line-height: 1.4; }
+    #chat-output p strong { color: #007BFF; }
+    #chat-output p strong:first-child { color: #FF8C00; } 
+    #chat-input-container { display: flex; border-top: 1px solid #eee; padding: 10px; background-color: #fff; }
+    #chat-input { flex-grow: 1; padding: 0.7rem; border: 1px solid #ddd; border-radius: 6px; margin-right: 8px; font-family: 'Montserrat', sans-serif; }
+    #chat-send { background-color: #007BFF; color: white; padding: 0.7rem 1rem; border: none; border-radius: 6px; cursor: pointer; font-weight: 500; transition: background-color 0.3s ease; }
+    #chat-send:hover { background-color: #0056b3; }
+
+  </style>
+</head><body>
+  <header>
+    <a href="/SafetyHelp/index.html" class="logo-container"> 
+        <div class="logo">Safety<span class="help">Help</span></div>
+    </a>
+    <nav>
+      <a href="/SafetyHelp/index.html"><i class="fas fa-home nav-icon"></i>Home</a>
+      <a href="/SafetyHelp/resources.html"><i class="fas fa-book nav-icon"></i>Resources</a>
+      <a href="/SafetyHelp/services.html"><i class="fas fa-concierge-bell nav-icon"></i>Services</a>
+      <a href="/SafetyHelp/community.html"><i class="fas fa-users nav-icon"></i>Community</a>
+      <a href="/SafetyHelp/about.html"><i class="fas fa-info-circle nav-icon"></i>About</a>
+      <a href="/SafetyHelp/contact.html"><i class="fas fa-envelope nav-icon"></i>Contact</a>
+      <a href="/SafetyHelp/login.html" class="active-nav-link"><i class="fas fa-sign-in-alt nav-icon"></i>Login / SignUp</a>
+    </nav>
+    <div class="search-language">
+      <input type="text" placeholder="Search..." data-i18n="[placeholder]header.search_placeholder">
+      <select id="language-switcher-header" aria-label="Select language">
+        <option value="en" data-i18n="language_selector.en">English</option>
+        <option value="af" data-i18n="language_selector.af">Afrikaans</option>
+        <option value="zu" data-i18n="language_selector.zu">isiZulu</option>
+        <option value="xh" data-i18n="language_selector.xh">isiXhosa</option>
+         </select>
+    </div>
+  </header>
+
+  <div class="page-title-section">
+    <h1 data-i18n="page_title.login_signup_main">Access Your SafetyHelp Account</h1>
+    <p class="subtitle" data-i18n="login_signup.description">Log in to manage your OHS compliance, or sign up to unlock a suite of tools and resources designed for your safety needs.</p>
+  </div>
+
+<div class="page-content">
+  <div class="container">
+    <aside class="sidebar-tools">
+      <h3 class="sidebar-heading"><i class="fas fa-tools heading-icon"></i>SafetyHelp Tools</h3>
+      <div class="sidebar-list-container">
+        <ul id="safetyhelp-tools-list">
+          <li><a href="/SafetyHelp/pages/construction-compliance.html" data-detail="Comprehensive safety management for construction projects"><i class="fas fa-hard-hat list-icon"></i>Construction Safety</a></li>
+          <li><a href="/SafetyHelp/pages/emergency-response-plan.html" data-detail="Develop effective emergency plans"><i class="fas fa-bell list-icon"></i>Emergency Planning</a></li>
+          <li><a href="/SafetyHelp/pages/risk-assessment.html" data-detail="Identify and control workplace hazards"><i class="fas fa-shield-alt list-icon"></i>Risk Assessment</a></li>
+          <li><a href="/SafetyHelp/pages/legal-appointments.html" data-detail="Manage OHS legal appointments"><i class="fas fa-gavel list-icon"></i>Legal Appointments</a></li>
+          <li><a href="/SafetyHelp/pages/incident-management.html" data-detail="Report and manage incidents"><i class="fas fa-file-medical-alt list-icon"></i>Incident Management</a></li>
+          <li><a href="/SafetyHelp/pages/training.html" data-detail="OHS training programs and records"><i class="fas fa-graduation-cap list-icon"></i>Training</a></li>
+          <li><a href="/SafetyHelp/pages/inspections-audits.html" data-detail="Conduct OHS inspections and audits"><i class="fas fa-clipboard-check list-icon"></i>Inspections & Audits</a></li>
+          <li><a href="/SafetyHelp/pages/suppliers.html" data-detail="Manage supplier OHS compliance"><i class="fas fa-truck list-icon"></i>Suppliers</a></li>
+          <li><a href="/SafetyHelp/pages/legislation.html" data-detail="Stay updated on OHS legislation"><i class="fas fa-balance-scale list-icon"></i>Legislation</a></li>
+          <li><a href="/SafetyHelp/pages/community-tools.html" data-detail="Engage with the OHS community"><i class="fas fa-users list-icon"></i>Community Tools</a></li>
+          <li><a href="/SafetyHelp/secure/member-dashboard.html" data-detail="Your personalized OHS dashboard"><i class="fas fa-tachometer-alt list-icon"></i>Member Dashboard</a></li>
+          <li><a href="/SafetyHelp/pages/ohs-system.html" data-detail="Build your OHS system"><i class="fas fa-cogs list-icon"></i>OHS System Modules</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <main class="main-login-signup">
+        <div class="auth-container">
+            <div class="form-toggle-buttons">
+                <button id="show-login-btn" class="active" data-i18n="login.tab">Log In</button>
+                <button id="show-signup-btn" data-i18n="signup.tab">Sign Up</button>
+            </div>
+            <div id="auth-message" class="hidden"></div> 
+
+            <form id="loginForm">
+                <h2 data-i18n="login.title_form">Log In to Your Account</h2>
+                <div class="input-group">
+                    <span class="fa-icon"><i class="fas fa-envelope"></i></span>
+                    <input type="email" id="login-email" name="email" required class="form-input" data-i18n="[placeholder]login.email_placeholder" placeholder="your@email.com" aria-label="Email Address">
+                </div>
+                <div class="input-group">
+                    <span class="fa-icon"><i class="fas fa-lock"></i></span>
+                    <input type="password" id="login-password" name="password" required class="form-input" data-i18n="[placeholder]login.password_placeholder" placeholder="Password" aria-label="Password">
+                </div>
+                <button type="submit" class="auth-button mb-4">
+                    <i class="fas fa-sign-in-alt btn-icon"></i> <span data-i18n="login.loginButton">Log In</span>
+                </button>
+                <button type="button" id="google-login-btn" class="auth-button google-btn mb-6">
+                    <i class="fab fa-google btn-icon"></i> <span data-i18n="login.continueWithGoogle">Continue with Google</span>
+                </button>
+                <div class="auth-links">
+                    <a href="#" id="forgot-password-link" data-i18n="login.forgotPasswordLink"><i class="fas fa-key"></i> Forgot your Password?</a>
+                </div>
+            </form>
+
+            <form id="signupForm" class="hidden">
+                <h2 data-i18n="signup.title_form">Create Your Free Account</h2>
+                 <div class="input-group">
+                    <span class="fa-icon"><i class="fas fa-user"></i></span>
+                    <input type="text" id="signup-displayName" name="displayName" required class="form-input" data-i18n="[placeholder]signup.displayName_placeholder" placeholder="Full Name or Company Name" aria-label="Full Name or Company Name">
+                </div>
+                <div class="input-group">
+                    <span class="fa-icon"><i class="fas fa-envelope"></i></span>
+                    <input type="email" id="signup-email" name="email" required class="form-input" data-i18n="[placeholder]signup.email_placeholder" placeholder="your@email.com" aria-label="Email Address">
+                </div>
+                <div class="input-group">
+                    <span class="fa-icon"><i class="fas fa-lock"></i></span>
+                    <input type="password" id="signup-password" name="password" required class="form-input" data-i18n="[placeholder]signup.password_placeholder" placeholder="Create Password (min. 6 characters)" aria-label="Password">
+                </div>
+                 <div class="input-group">
+                    <span class="fa-icon"><i class="fas fa-building"></i></span>
+                    <input type="text" id="signup-company" name="companyName" class="form-input" data-i18n="[placeholder]signup.company_placeholder" placeholder="Company Name (Optional)" aria-label="Company Name">
+                </div>
+                <button type="submit" class="auth-button mb-4">
+                    <i class="fas fa-user-plus btn-icon"></i> <span data-i18n="signup.signupButton">Sign Up</span>
+                </button>
+                 <button type="button" id="google-signup-btn" class="auth-button google-btn mb-6">
+                    <i class="fab fa-google btn-icon"></i> <span data-i18n="signup.continueWithGoogle">Sign Up with Google</span>
+                </button>
+            </form>
+        </div>
+
+        <div class="plans-container">
+            <h2 data-i18n="login.plansTitle"><i class="fas fa-tags section-icon"></i> Choose the Right Plan for Your Needs</h2>
+            <div class="overflow-x-auto">
+                <table class="plan-table">
+                    <thead>
+                        <tr>
+                            <th class="plan-table-feature-col" data-i18n="login.plans.feature">Feature</th>
+                            <th data-i18n="login.plans.guest">Non-Registered User (Guest/Visitor)</th>
+                            <th data-i18n="login.plans.free">Registered User (Free)</th>
+                            <th data-i18n="login.plans.paid">Subscribed Member (Paid)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="plan-table-feature-col" data-i18n="login.plans.feature.basic_tools">Access to Basic Tools</td>
+                            <td class="yes"><i class="fas fa-check"></i> <span data-i18n="login.plans.yes">Yes</span></td>
+                            <td class="yes"><i class="fas fa-check"></i> <span data-i18n="login.plans.yes">Yes</span></td>
+                            <td class="yes"><i class="fas fa-check"></i> <span data-i18n="login.plans.yes">Yes</span></td>
+                        </tr>
+                        <tr>
+                            <td class="plan-table-feature-col" data-i18n="login.plans.feature.doc_downloads">Document Downloads</td>
+                            <td class="limited"><i class="fas fa-info-circle"></i> <span data-i18n="login.plans.guest.doc_downloads">Limited (Temp. Access, 7 Days)</span></td>
+                            <td class="yes"><i class="fas fa-check"></i> <span data-i18n="login.plans.free.doc_downloads">Permanent Access</span></td>
+                            <td class="yes"><i class="fas fa-check"></i> <span data-i18n="login.plans.paid.doc_downloads">Permanent Access</span></td>
+                        </tr>
+                        <tr>
+                            <td class="plan-table-feature-col" data-i18n="login.plans.feature.cost_per_doc">Cost Per Document</td>
+                            <td data-i18n="login.plans.guest.cost_per_doc_discount">Standard Price (No Discount)</td>
+                            <td class="discount"><i class="fas fa-percent"></i> <span data-i18n="login.plans.free.cost_per_doc_discount">Up to 5% Discount</span></td>
+                            <td class="discount"><i class="fas fa-percent"></i> <span data-i18n="login.plans.paid.cost_per_doc_discount">Up to 25% Discount</span></td>
+                        </tr>
+                        <tr>
+                            <td class="plan-table-feature-col" data-i18n="login.plans.feature.early_access">Early Access to New Features</td>
+                            <td class="no"><i class="fas fa-times"></i> <span data-i18n="login.plans.no">No</span></td>
+                            <td class="yes"><i class="fas fa-check"></i> <span data-i18n="login.plans.yes">Yes</span></td>
+                            <td class="yes"><i class="fas fa-check"></i> <span data-i18n="login.plans.yes">Yes</span></td>
+                        </tr>
+                        <tr>
+                            <td class="plan-table-feature-col" data-i18n="login.plans.feature.product_launches">Access to Book & Product Launches</td>
+                            <td class="no"><i class="fas fa-times"></i> <span data-i18n="login.plans.no">No</span></td>
+                            <td class="yes"><i class="fas fa-check"></i> <span data-i18n="login.plans.yes">Yes</span></td>
+                            <td class="yes"><i class="fas fa-check"></i> <span data-i18n="login.plans.paid.product_launches">Yes (Early Access)</span></td>
+                        </tr>
+                        <tr>
+                            <td class="plan-table-feature-col" data-i18n="login.plans.feature.discounts">Exclusive Discounts</td>
+                            <td class="no"><i class="fas fa-times"></i> <span data-i18n="login.plans.no">No</span></td>
+                            <td class="no"><i class="fas fa-times"></i> <span data-i18n="login.plans.no">No</span></td> <td class="yes"><i class="fas fa-check"></i> <span data-i18n="login.plans.yes">Yes</span></td>
+                        </tr>
+                        <tr>
+                            <td class="plan-table-feature-col" data-i18n="login.plans.feature.trusted_seal">Website Trusted Seal</td>
+                            <td class="no"><i class="fas fa-times"></i> <span data-i18n="login.plans.no">No</span></td>
+                            <td class="no"><i class="fas fa-times"></i> <span data-i18n="login.plans.no">No</span></td>
+                            <td class="yes"><i class="fas fa-check"></i> <span data-i18n="login.plans.yes">Yes</span></td>
+                        </tr>
+                        <tr>
+                            <td class="plan-table-feature-col" data-i18n="login.plans.feature.content_featuring">Preference in Content Featuring</td>
+                            <td class="no"><i class="fas fa-times"></i> <span data-i18n="login.plans.no">No</span></td>
+                            <td class="no"><i class="fas fa-times"></i> <span data-i18n="login.plans.no">No</span></td>
+                            <td class="yes"><i class="fas fa-check"></i> <span data-i18n="login.plans.yes">Yes</span></td>
+                        </tr>
+                        <tr>
+                            <td class="plan-table-feature-col" data-i18n="login.plans.feature.dashboard">Personalized Dashboard</td>
+                            <td class="no"><i class="fas fa-times"></i> <span data-i18n="login.plans.no">No</span></td>
+                            <td class="yes"><i class="fas fa-check"></i> <span data-i18n="login.plans.yes">Yes</span></td>
+                            <td class="yes"><i class="fas fa-check"></i> <span data-i18n="login.plans.paid.dashboard">Yes (Enhanced)</span></td>
+                        </tr>
+                        <tr>
+                            <td class="plan-table-feature-col" data-i18n="login.plans.feature.community">Community Participation</td>
+                            <td class="limited"><i class="fas fa-info-circle"></i> <span data-i18n="login.plans.guest.community">Limited</span></td>
+                            <td class="yes"><i class="fas fa-check"></i> <span data-i18n="login.plans.free.community">Full Access</span></td>
+                            <td class="yes"><i class="fas fa-check"></i> <span data-i18n="login.plans.paid.community">Full Access + Priority</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="mt-6 text-center">
+                <button onclick="document.getElementById('show-signup-btn').click();" class="auth-button" style="width:auto; background-color: #FF8C00;">
+                     <i class="fas fa-user-plus"></i> <span data-i18n="login.plans.getStarted">Sign Up Now & Get Started</span>
+                </button>
+            </div>
+             <div class="encouragement-message">
+                <p><strong data-i18n="login.encouragement.title">Unlock More with a Free Account!</strong></p>
+                <p data-i18n="login.encouragement.text_alt">While guests can explore many of our resources, signing up for a free Registered User account grants you permanent access to downloaded documents, a personalized dashboard, and full community participation. It's quick, easy, and enhances your SafetyHelp experience!</p>
+            </div>
+        </div>
+    </main>
+
+    <aside class="sidebar-milestones">
+      <h3 class="sidebar-heading"><i class="fas fa-flag-checkered heading-icon"></i>OHS Milestones</h3>
+      <div class="sidebar-list-container">
+        <ul id="ohs-milestones-list">
+          <li data-detail="The Occupational Safety and Health Act was enacted in the USA, establishing standards for workplace safety and influencing global OHS practices."><i class="fas fa-landmark list-icon"></i>1970: OSHA (USA)</li>
+          <li data-detail="South Africa's Occupational Health and Safety Act No. 85 of 1993 was established, laying the groundwork for current OHS practices and emphasizing employer responsibility."><i class="fas fa-landmark list-icon"></i>1993: OHS Act (SA)</li>
+          <li data-detail="The Compensation for Occupational Injuries and Diseases Act (COIDA) was amended, refining worker compensation and rehabilitation processes."><i class="fas fa-landmark list-icon"></i>2003: COIDA Amendment (SA)</li>
+          <li data-detail="Specific regulations for construction work were updated in South Africa, enhancing safety on construction sites through detailed requirements for planning and execution."><i class="fas fa-landmark list-icon"></i>2014: Construction Regs (SA)</li>
+          <li data-detail="Adoption of the Globally Harmonized System (GHS) for classification and labeling of chemicals, promoting international consistency in hazard communication."><i class="fas fa-landmark list-icon"></i>2015: Global Harmonization (GHS)</li>
+          <li data-detail="Global and national directives for managing COVID-19 in the workplace were introduced, highlighting the importance of infectious disease preparedness."><i class="fas fa-landmark list-icon"></i>2020: COVID-19 Protocols</li>
+          <li data-detail="Increased emphasis on psychological health and safety in workplaces, recognizing mental well-being as a critical component of OHS."><i class="fas fa-landmark list-icon"></i>2022: Mental Health Focus</li>
+          <li data-detail="Ongoing development towards using AI and big data for predictive safety analytics and proactive risk mitigation, aiming to prevent incidents before they occur."><i class="fas fa-landmark list-icon"></i>Future: Predictive Safety & AI</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+</div> 
+
+<footer>
+  <p>&copy; <span id="copyright-year">2025</span> SafetyHelp. All rights reserved. Your Partner in Occupational Health and Safety Compliance.</p>
+  <p><a href="/SafetyHelp/privacy.html" data-i18n="footer.links.privacy">Privacy Policy</a> | <a href="/SafetyHelp/terms.html" data-i18n="footer.links.terms">Terms of Service</a> | <a href="/SafetyHelp/contact.html" data-i18n="footer.links.contact">Contact Us</a></p> 
+  <div class="newsletter" style="margin-top: 1rem;">
+      <h4 data-i18n="footer.newsletter.title_alt" style="font-size: 1rem; margin-bottom: 0.5rem;">Stay Updated with SafetyHelp</h4>
+      <form id="newsletterForm" style="display: flex; justify-content: center; gap: 0.5rem;">
+          <input type="email" id="newsletterEmail" class="form-input" style="width: auto; max-width: 250px; padding: 0.5rem 0.75rem; font-size:0.9rem;" data-i18n="[placeholder]footer.newsletter.placeholder" placeholder="Enter your email">
+          <button type="submit" class="auth-button" style="width: auto; padding: 0.5rem 1rem; font-size:0.9rem; background-color: #FF8C00;"><i class="fas fa-envelope-open-text"></i> <span data-i18n="footer.newsletter.button">Subscribe</span></button>
+      </form>
+  </div>
+</footer>
+
+<div id="infoModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 id="modalTitle">Milestone Detail</h4>
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-footer" id="modalFooter">
+      <button onclick="closeModal()"><i class="fas fa-times btn-icon"></i>Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="chatbot-container">
+    <div id="chat-window" class="chat-hidden"> 
+        <div id="chat-header">
+            <span>Salatiso - Your OHS Assistant</span>
+            <button class="close-chat-btn" onclick="toggleChatbot(false)">&times;</button>
+        </div>
+        <div id="chat-output">
+            <p><strong>Salatiso:</strong> Hello! How can I help you with OHS today?</p>
+        </div>
+        <div id="chat-input-container">
+            <input id="chat-input" type="text" placeholder="Ask about OHS...">
+            <button id="chat-send"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+    <button id="chat-toggle" onclick="toggleChatbot()">
+        <i class="fas fa-headset"></i> 
+    </button>
+</div>
+
+<script type="module">
     // Firebase SDK Imports
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
     import {
         getAuth,
         createUserWithEmailAndPassword,
         signInWithEmailAndPassword,
-        signOut, // Kept for completeness, though not used on login page itself
-        onAuthStateChanged, // Useful for redirecting if already logged in
+        onAuthStateChanged,
         GoogleAuthProvider,
         signInWithPopup,
-        sendPasswordResetEmail
+        sendPasswordResetEmail,
+        updateProfile as updateFirebaseProfile
     } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
     import {
         getFirestore,
@@ -17,9 +627,9 @@
         getDoc
     } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
 
-    // Firebase configuration (ENSURE THESE ARE YOUR ACTUAL KEYS)
+    // Firebase configuration
     const firebaseConfig = {
-        apiKey: "AIzaSyDASGZnUyav23Mte5Q96H0j-T3LlGzVK-k",
+        apiKey: "AIzaSyDASGZnUyav23Mte5Q96H0j-T3LlGzVK-k", // REPLACE WITH YOUR ACTUAL API KEY
         authDomain: "safetyfirst2025-aea34.firebaseapp.com",
         projectId: "safetyfirst2025-aea34",
         storageBucket: "safetyfirst2025-aea34.appspot.com",
@@ -28,7 +638,6 @@
         measurementId: "G-VQL1FCD8NN"
     };
 
-    // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const db = getFirestore(app);
@@ -40,22 +649,19 @@
             const translatedMessage = (typeof i18next !== 'undefined' && i18next.isInitialized) ? i18next.t(messageKey) : messageKey;
             messageContainer.textContent = translatedMessage;
             messageContainer.className = ''; // Reset classes
-            messageContainer.classList.add('p-3', 'my-2', 'rounded-md', 'text-center', 'text-sm');
+            messageContainer.classList.add('p-3', 'my-2', 'rounded-md', 'text-center', 'text-sm', 'border');
             if (type === 'success') {
-                messageContainer.classList.add('message-success'); // Should be green
-            } else {
-                messageContainer.classList.add('message-error'); // Should be red
+                messageContainer.classList.add('bg-green-100', 'text-green-700', 'border-green-300', 'message-success');
+            } else { // error
+                messageContainer.classList.add('bg-red-100', 'text-red-700', 'border-red-300', 'message-error');
             }
             messageContainer.style.display = 'block';
 
-            if (!persistShort) { // Only hide if not persisting for redirect
-                setTimeout(() => {
-                    messageContainer.style.display = 'none';
-                }, 7000); // Slightly longer display for errors
+            if (!persistShort) {
+                setTimeout(() => { messageContainer.style.display = 'none'; }, 7000);
             }
-        } else {
-            console.warn(`Message container with ID '${elementId}' not found. Message: ${messageKey}`);
-        }
+             // If persistShort is true, message remains until page navigation
+        } else { console.warn(`Message container with ID '${elementId}' not found. Message: ${messageKey}`); }
     }
 
     // --- Authentication Functions ---
@@ -63,20 +669,24 @@
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
+            
+            // Update Firebase Auth profile (optional, but good for displayName)
+            await updateFirebaseProfile(user, { displayName: displayName || email.split('@')[0] });
+
             await setDoc(doc(db, "users", user.uid), {
                 uid: user.uid,
                 email: user.email,
-                displayName: displayName || user.email.split('@')[0], // Use part of email if display name is empty
+                displayName: displayName || user.email.split('@')[0],
                 companyName: companyName,
                 membershipPlan: 'free',
                 role: 'client',
                 createdAt: new Date()
             });
-            console.log("User registered and data saved to Firestore:", user.uid);
-            displayMessage("signup.emailSuccessRedirect", "success", "auth-message", true); // persistShort = true
+            console.log("User registered:", user.uid);
+            displayMessage("signup.emailSuccessRedirect", "success", "auth-message", true);
             setTimeout(() => { window.location.href = '/SafetyHelp/secure/member-dashboard.html'; }, 2000);
         } catch (error) {
-            console.error("Error during sign up:", error.code, error.message);
+            console.error("Error during sign up:", error);
             let errorMessageKey = "signup.errorGeneral";
             if (error.code === 'auth/email-already-in-use') errorMessageKey = "signup.errorEmailInUse";
             else if (error.code === 'auth/invalid-email') errorMessageKey = "signup.errorInvalidEmail";
@@ -88,11 +698,11 @@
     async function handleEmailPasswordSignIn(email, password) {
         try {
             await signInWithEmailAndPassword(auth, email, password);
-            console.log("User signed in successfully!");
-            displayMessage("login.emailSuccessRedirect", "success", "auth-message", true); // persistShort = true
+            console.log("User signed in!");
+            displayMessage("login.emailSuccessRedirect", "success", "auth-message", true);
             setTimeout(() => { window.location.href = '/SafetyHelp/secure/member-dashboard.html'; }, 2000);
         } catch (error) {
-            console.error("Error during sign in:", error.code, error.message);
+            console.error("Error during sign in:", error);
             let errorMessageKey = "login.errorGeneral";
             if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
                 errorMessageKey = "login.errorInvalidCredentials";
@@ -103,7 +713,7 @@
         }
     }
 
-    async function handleGoogleAuth(isSignUpFlow) { // isSignUpFlow helps tailor messages slightly
+    async function handleGoogleAuth() { // Combined for login/signup via Google
         try {
             const provider = new GoogleAuthProvider();
             const userCredential = await signInWithPopup(auth, provider);
@@ -129,10 +739,10 @@
                 console.log("Existing user signed in with Google:", user.uid);
                 successMessageKey = "login.googleSuccessRedirect";
             }
-            displayMessage(successMessageKey, "success", "auth-message", true); // persistShort = true
+            displayMessage(successMessageKey, "success", "auth-message", true);
             setTimeout(() => { window.location.href = '/SafetyHelp/secure/member-dashboard.html'; }, 2000);
         } catch (error) {
-            console.error("Error during Google sign in/up:", error.code, error.message);
+            console.error("Error during Google sign in/up:", error);
             let errorMessageKey = "login.errorGoogleGeneral";
             if (error.code === 'auth/popup-closed-by-user') errorMessageKey = "login.errorGooglePopupClosed";
             else if (error.code === 'auth/cancelled-popup-request') errorMessageKey = "login.errorGoogleCancelled";
@@ -141,7 +751,7 @@
     }
 
     async function handlePasswordReset(email) {
-        if (!email || !email.trim()) { // Check if email is empty or just whitespace
+        if (!email || !email.trim()) {
             displayMessage("login.errorEmailRequiredForReset", "error", "auth-message");
             return;
         }
@@ -157,7 +767,7 @@
         }
     }
 
-    // --- i18next Initialization and Content Update ---
+    // i18next Initialization
     async function initializeI18next() {
         if (typeof i18next !== 'undefined' && typeof i18nextHttpBackend !== 'undefined' && typeof i18nextBrowserLanguageDetector !== 'undefined') {
             try {
@@ -165,93 +775,71 @@
                     .use(i18nextHttpBackend)
                     .use(i18nextBrowserLanguageDetector)
                     .init({
-                        fallbackLng: 'en',
-                        debug: false, // Set to false in production for cleaner console
-                        ns: ['translation'],
-                        defaultNS: 'translation',
+                        fallbackLng: 'en', debug: true, ns: ['translation'], defaultNS: 'translation',
                         backend: { loadPath: '/SafetyHelp/assets/locales/{{lng}}/{{ns}}.json' },
                         detection: { order: ['querystring', 'cookie', 'localStorage', 'sessionStorage', 'navigator', 'htmlTag'], caches: ['localStorage', 'cookie'] }
                     });
                 updateContent();
-            } catch (error) {
-                console.error("Error initializing i18next:", error);
-                applyStaticTranslations(); 
-            }
-        } else {
-            console.error("i18next or its plugins are not loaded. Applying static translations.");
-            applyStaticTranslations();
-        }
+            } catch (error) { console.error("Error initializing i18next:", error); applyStaticTranslations(); }
+        } else { console.error("i18next or plugins not loaded."); applyStaticTranslations(); }
     }
 
     function updateContent() {
-        document.querySelectorAll('[data-i18n]').forEach(element => {
-            const key = element.getAttribute('data-i18n');
-            const optionsAttr = element.getAttribute('data-i18n-options');
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            const optionsAttr = el.getAttribute('data-i18n-options');
             let options = {};
             if (optionsAttr) { try { options = JSON.parse(optionsAttr); } catch (e) { console.error(`Error parsing i18n options for key "${key}":`, e); }}
-            
             let translation = i18next.t(key, options);
-
-            if (key.startsWith('[placeholder]')) {
-                 element.setAttribute('placeholder', translation);
-            } else if (element.tagName === 'TITLE') {
-                document.title = translation;
-            } else {
-                const icon = element.querySelector('i.fas, i.fab');
+            if (key.startsWith('[placeholder]')) { el.setAttribute('placeholder', translation); }
+            else if (el.tagName === 'TITLE') { document.title = translation; }
+            else {
+                const icon = el.querySelector('i.fas, i.fab');
                 if (icon) {
                     let textNode = icon.nextSibling;
                     while(textNode && textNode.nodeType !== Node.TEXT_NODE) { textNode = textNode.nextSibling; }
                     if (textNode) { textNode.textContent = ' ' + translation; }
-                    else { element.appendChild(document.createTextNode(' ' + translation));}
-                } else {
-                    element.innerHTML = translation;
-                }
+                    else { el.appendChild(document.createTextNode(' ' + translation));}
+                } else { el.innerHTML = translation; }
             }
         });
-        const footerYear = document.getElementById('copyright-year');
-        if(footerYear && i18next.isInitialized) footerYear.textContent = i18next.t('footer.copyright_year', { year: new Date().getFullYear() });
+        const footerYearEl = document.getElementById('copyright-year');
+        if(footerYearEl && i18next.isInitialized) { // Ensure i18next is ready
+             footerYearEl.textContent = i18next.t('footer.copyright_year_full.year', { year: new Date().getFullYear() });
+        } else if (footerYearEl) { // Fallback if i18next not ready
+            footerYearEl.textContent = new Date().getFullYear();
+        }
     }
-    
-    function applyStaticTranslations() { 
-        console.warn("Applying static/fallback translations for login page.");
-        document.title = "Login / SignUp | SafetyHelp";
-        // Add more static fallbacks if necessary for critical elements
-    }
+    function applyStaticTranslations() { /* Basic fallback */ document.title = "Login / SignUp | SafetyHelp"; }
 
-    // --- Form Toggling ---
+    // Form Toggling
     const loginFormEl = document.getElementById('loginForm');
     const signupFormEl = document.getElementById('signupForm');
-    const showLoginBtn = document.getElementById('show-login-btn');
-    const showSignupBtn = document.getElementById('show-signup-btn');
+    const showLoginBtnEl = document.getElementById('show-login-btn'); // Renamed for clarity
+    const showSignupBtnEl = document.getElementById('show-signup-btn'); // Renamed
     const authMessageDiv = document.getElementById('auth-message');
 
-    if (showLoginBtn && showSignupBtn && loginFormEl && signupFormEl) {
-        showLoginBtn.addEventListener('click', () => {
-            loginFormEl.classList.remove('hidden');
-            signupFormEl.classList.add('hidden');
-            showLoginBtn.classList.add('active');
-            showSignupBtn.classList.remove('active');
+    if (showLoginBtnEl && showSignupBtnEl && loginFormEl && signupFormEl) {
+        showLoginBtnEl.addEventListener('click', () => {
+            loginFormEl.classList.remove('hidden'); signupFormEl.classList.add('hidden');
+            showLoginBtnEl.classList.add('active'); showSignupBtnEl.classList.remove('active');
             if(authMessageDiv) authMessageDiv.style.display = 'none'; 
         });
-        showSignupBtn.addEventListener('click', () => {
-            signupFormEl.classList.remove('hidden');
-            loginFormEl.classList.add('hidden');
-            showSignupBtn.classList.add('active');
-            showLoginBtn.classList.remove('active');
+        showSignupBtnEl.addEventListener('click', () => {
+            signupFormEl.classList.remove('hidden'); loginFormEl.classList.add('hidden');
+            showSignupBtnEl.classList.add('active'); showLoginBtnEl.classList.remove('active');
             if(authMessageDiv) authMessageDiv.style.display = 'none';
         });
     }
 
-    // --- Event Listeners ---
+    // Event Listeners
     document.addEventListener('DOMContentLoaded', async () => {
         await initializeI18next();
         
-        // Check auth state on load - if user is already logged in, redirect to dashboard
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
+        onAuthStateChanged(auth, (user) => { // Redirect if already logged in
+            if (user && (window.location.pathname.endsWith('login.html') || window.location.pathname.endsWith('login'))) {
                 console.log("User already logged in, redirecting to dashboard.");
-                // Optional: Display a brief "Already logged in" message
-                // displayMessage("login.alreadyLoggedIn", "success", "auth-message", true);
+                // displayMessage("login.alreadyLoggedIn", "success", "auth-message", true); // Optional: Show message
                 // setTimeout(() => { window.location.href = '/SafetyHelp/secure/member-dashboard.html'; }, 1000);
             }
         });
@@ -259,9 +847,7 @@
         const langSelect = document.getElementById('language-switcher-header');
         if (langSelect && typeof i18next !== 'undefined' && i18next.isInitialized) {
             const currentLang = i18next.language.split('-')[0];
-            if (Array.from(langSelect.options).some(opt => opt.value === currentLang)) { 
-                langSelect.value = currentLang; 
-            }
+            if (Array.from(langSelect.options).some(opt => opt.value === currentLang)) { langSelect.value = currentLang; }
             langSelect.addEventListener('change', (e) => {
                 i18next.changeLanguage(e.target.value, (err) => {
                     if (err) { console.error('Error changing language:', err); return; }
@@ -271,41 +857,37 @@
         }
 
         if (loginFormEl) {
-            loginFormEl.addEventListener('submit', async (event) => {
+            loginFormEl.addEventListener('submit', (event) => {
                 event.preventDefault();
                 const email = document.getElementById('login-email').value;
                 const password = document.getElementById('login-password').value;
-                await handleEmailPasswordSignIn(email, password);
+                handleEmailPasswordSignIn(email, password);
             });
         }
-
         if (signupFormEl) {
-            signupFormEl.addEventListener('submit', async (event) => {
+            signupFormEl.addEventListener('submit', (event) => {
                 event.preventDefault();
                 const displayName = document.getElementById('signup-displayName').value;
                 const email = document.getElementById('signup-email').value;
                 const password = document.getElementById('signup-password').value;
                 const companyName = document.getElementById('signup-company').value;
-                await handleEmailPasswordSignUp(email, password, displayName, companyName);
+                handleEmailPasswordSignUp(email, password, displayName, companyName);
             });
         }
         
         const googleLoginButton = document.getElementById('google-login-btn');
-        if (googleLoginButton) {
-            googleLoginButton.addEventListener('click', () => handleGoogleAuth(false)); // false indicates a login attempt context
-        }
+        if (googleLoginButton) googleLoginButton.addEventListener('click', () => handleGoogleAuth(false));
+        
         const googleSignupButton = document.getElementById('google-signup-btn');
-        if (googleSignupButton) {
-            googleSignupButton.addEventListener('click', () => handleGoogleAuth(true)); // true indicates a signup attempt context
-        }
+        if (googleSignupButton) googleSignupButton.addEventListener('click', () => handleGoogleAuth(true));
 
         const forgotPasswordLink = document.getElementById('forgot-password-link');
         if (forgotPasswordLink) {
-            forgotPasswordLink.addEventListener('click', async (event) => {
+            forgotPasswordLink.addEventListener('click', (event) => {
                 event.preventDefault();
-                const promptMessage = i18next.isInitialized ? i18next.t('login.promptForgotPasswordEmail') : "Please enter your email address to reset your password:";
-                const email = prompt(promptMessage);
-                if (email) { await handlePasswordReset(email); }
+                const promptMsg = i18next.isInitialized ? i18next.t('login.promptForgotPasswordEmail') : "Please enter your email address to reset your password:";
+                const email = prompt(promptMsg);
+                if (email) { handlePasswordReset(email); }
                 else if (email === "") { displayMessage("login.errorEmailRequiredForReset", "error", "auth-message");}
             });
         }
@@ -316,98 +898,98 @@
                 event.preventDefault();
                 const emailEl = document.getElementById('newsletterEmail');
                 if (emailEl && emailEl.value) {
-                    const successMsgKey = i18next.isInitialized ? i18next.t('footer.newsletter.success', {email: emailEl.value}) : `Subscribed ${emailEl.value}!`;
-                    displayMessage(successMsgKey, "success", "auth-message"); // Use auth-message for newsletter feedback too
+                    const successMsg = i18next.isInitialized ? i18next.t('footer.newsletter.success', {email: emailEl.value}) : `Subscribed ${emailEl.value}!`;
+                    displayMessage(successMsg, "success", "auth-message"); 
                     emailEl.value = '';
                 } else {
-                    const errorMsgKey = i18next.isInitialized ? i18next.t('footer.newsletter.error') : "Please enter a valid email.";
-                    displayMessage(errorMsgKey, "error", "auth-message");
+                    const errorMsg = i18next.isInitialized ? i18next.t('footer.newsletter.error') : "Please enter a valid email.";
+                    displayMessage(errorMsg, "error", "auth-message");
                 }
             });
         }
         
-        if (loginFormEl && showLoginBtn) {
-            loginFormEl.classList.remove('hidden');
-            showLoginBtn.classList.add('active');
-        }
-        if (signupFormEl && showSignupBtn) {
-            signupFormEl.classList.add('hidden');
-            showSignupBtn.classList.remove('active');
-        }
+        // Initial form display
+        if (loginFormEl && showLoginBtnEl) { loginFormEl.classList.remove('hidden'); showLoginBtnEl.classList.add('active'); }
+        if (signupFormEl && showSignupBtnEl) { signupFormEl.classList.add('hidden'); showSignupBtnEl.classList.remove('active'); }
     });
     
-    // --- Sidebar and common UI (from existing template, simplified as not primary focus here) ---
-    document.getElementById('copyright-year').textContent = new Date().getFullYear();
+    // --- Standard Sidebar, Modal, Chatbot UI JS (from SafetyHelp template) ---
+    const copyrightYearEl = document.getElementById('copyright-year');
+    if(copyrightYearEl) copyrightYearEl.textContent = new Date().getFullYear();
 
-    function setupMilestonesSidebar() {
-        const listElement = document.getElementById('ohs-milestones-list');
+    function setupScrollingSidebar(listId) { // Adapted from template
+        const listElement = document.getElementById(listId);
         if (!listElement || listElement.children.length === 0) return;
         const originalItems = Array.from(listElement.children);
         originalItems.forEach(item => {
             const clone = item.cloneNode(true);
-            clone.addEventListener('click', () => showMilestoneDetail(clone));
+            if (listId === 'ohs-milestones-list') {
+                clone.addEventListener('click', () => showMilestoneDetail(clone));
+            }
             listElement.appendChild(clone);
         });
         originalItems.forEach(item => {
-            item.addEventListener('click', () => showMilestoneDetail(item));
+            if (listId === 'ohs-milestones-list') {
+                item.addEventListener('click', () => showMilestoneDetail(item));
+            }
         });
     }
     
-    const infoModal = document.getElementById('infoModal');
-    const infoModalTitle = document.getElementById('modalTitle');
-    const infoModalBody = document.getElementById('modalBody');
+    const infoModalEl = document.getElementById('infoModal'); // Renamed
+    const infoModalTitleEl = document.getElementById('modalTitle'); // Renamed
+    const infoModalBodyEl = document.getElementById('modalBody'); // Renamed
 
     function showMilestoneDetail(element) {
-        if (!infoModal || !infoModalTitle || !infoModalBody) return;
+        if (!infoModalEl || !infoModalTitleEl || !infoModalBodyEl) return;
         const title = element.textContent.trim().replace(/^.*? /,''); 
         const detail = element.dataset.detail || "More information about this milestone will be available soon.";
-        infoModalTitle.textContent = `OHS Milestone: ${title}`;
-        infoModalBody.innerHTML = `<p>${detail}</p>`;
-        infoModal.style.display = 'block';
+        infoModalTitleEl.textContent = `OHS Milestone: ${title}`;
+        infoModalBodyEl.innerHTML = `<p>${detail}</p>`;
+        infoModalEl.style.display = 'block';
     }
-    function closeModal() {
-        if (infoModal) infoModal.style.display = 'none';
+    function closeModal() { // General modal close
+        if (infoModalEl) infoModalEl.style.display = 'none';
     }
     window.onclick = function(event) {
-        if (event.target == infoModal) { closeModal(); }
+        if (event.target == infoModalEl) { closeModal(); }
     }
     
-    const chatWindowEl = document.getElementById('chat-window'); // Renamed to avoid conflict
-    const chatToggleBtnEl = document.getElementById('chat-toggle'); // Renamed
-    const chatInputElMain = document.getElementById('chat-input');  // Renamed
-    const chatSendBtnEl = document.getElementById('chat-send');    // Renamed
-    const chatOutputElMain = document.getElementById('chat-output'); // Renamed
+    const chatWindowGlobal = document.getElementById('chat-window'); // Renamed
+    const chatToggleBtnGlobal = document.getElementById('chat-toggle'); // Renamed
+    const chatInputGlobal = document.getElementById('chat-input');  
+    const chatSendBtnGlobal = document.getElementById('chat-send');    
+    const chatOutputGlobal = document.getElementById('chat-output'); 
 
-    function toggleChatbot(forceOpen) {
-        if (!chatWindowEl || !chatToggleBtnEl) return;
-        const isHidden = chatWindowEl.classList.contains('chat-hidden');
+    function toggleChatbot(forceOpen) { // General toggle
+        if (!chatWindowGlobal || !chatToggleBtnGlobal) return;
+        const isHidden = chatWindowGlobal.classList.contains('chat-hidden');
         if (forceOpen === true || isHidden) {
-            chatWindowEl.classList.remove('chat-hidden');
-            chatWindowEl.classList.add('chat-expanded');
-            chatToggleBtnEl.innerHTML = '<i class="fas fa-times"></i>'; 
-            if (chatInputElMain) chatInputElMain.focus();
+            chatWindowGlobal.classList.remove('chat-hidden');
+            chatWindowGlobal.classList.add('chat-expanded');
+            chatToggleBtnGlobal.innerHTML = '<i class="fas fa-times"></i>'; 
+            if (chatInputGlobal) chatInputGlobal.focus();
         } else if (forceOpen === false || !isHidden) {
-            chatWindowEl.classList.add('chat-hidden');
-            chatWindowEl.classList.remove('chat-expanded');
-            chatToggleBtnEl.innerHTML = '<i class="fas fa-headset"></i>'; 
+            chatWindowGlobal.classList.add('hidden'); // Use hidden directly
+            chatWindowGlobal.classList.remove('chat-expanded');
+            chatToggleBtnGlobal.innerHTML = '<i class="fas fa-headset"></i>'; 
         }
     }
 
     function addChatMessageToUIChatbot(sender, message, isUser) {
-        if (!chatOutputElMain) return;
+        if (!chatOutputGlobal) return;
         const p = document.createElement('p');
         p.innerHTML = `<strong>${sender}:</strong> ${message}`;
         if(isUser) p.style.textAlign = "right"; 
-        chatOutputElMain.appendChild(p);
-        chatOutputElMain.scrollTop = chatOutputElMain.scrollHeight;
+        chatOutputGlobal.appendChild(p);
+        chatOutputGlobal.scrollTop = chatOutputGlobal.scrollHeight;
     }
 
     async function handleChatSendMain() {
-        if(!chatInputElMain || !chatOutputElMain) return;
-        const message = chatInputElMain.value.trim();
+        if(!chatInputGlobal || !chatOutputGlobal) return;
+        const message = chatInputGlobal.value.trim();
         if (message) {
             addChatMessageToUIChatbot('You', message, true);
-            chatInputElMain.value = '';
+            chatInputGlobal.value = '';
             let botResponse = "How can I help you with login or signup? (Chatbot placeholder)";
             if (message.toLowerCase().includes("forgot password")) {
                 botResponse = "If you forgot your password, click the 'Forgot your Password?' link under the login form. You'll be prompted to enter your email to receive a reset link.";
@@ -416,14 +998,16 @@
         }
     }
 
-    if(chatSendBtnEl) chatSendBtnEl.addEventListener('click', handleChatSendMain);
-    if(chatInputElMain) chatInputElMain.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleChatSendMain(); });
+    if(chatSendBtnGlobal) chatSendBtnGlobal.addEventListener('click', handleChatSendMain);
+    if(chatInputGlobal) chatInputGlobal.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleChatSendMain(); });
     
     window.addEventListener('load', () => { 
-        setupMilestonesSidebar(); 
-        if (chatWindowEl) chatWindowEl.classList.add('chat-hidden');
-        if (chatToggleBtnEl) chatToggleBtnEl.style.display = 'flex'; 
+        setupScrollingSidebar('safetyhelp-tools-list'); 
+        setupScrollingSidebar('ohs-milestones-list'); 
+        if (chatWindowGlobal) chatWindowGlobal.classList.add('chat-hidden'); // Start hidden
+        if (chatToggleBtnGlobal) chatToggleBtnGlobal.style.display = 'flex'; 
     });
+
 </script>
 
 </body>
