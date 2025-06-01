@@ -172,7 +172,7 @@
       padding: 1.5rem; 
       overflow-y: auto; 
       background-color: #fff; 
-      border-radius: 8px;
+      border-radius: 6px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
     .main-community section {
@@ -318,11 +318,23 @@
     #chat-send { background-color: #007BFF; color: white; padding: 0.7rem 1rem; border: none; border-radius: 6px; cursor: pointer; font-weight: 500; transition: background-color 0.3s ease; }
     #chat-send:hover { background-color: #0056b3; }
     /* Career Wizard Styles */
-    .career-wizard { margin-top: 1rem; }
+    .career-wizard { margin-top: 1rem; background: #f9f9f9; padding: 1rem; border-radius: 6px; }
     .wizard-step { display: none; }
     .wizard-step.active { display: block; }
     .wizard-step select, .wizard-step input { width: 100%; padding: 0.6rem; margin-bottom: 0.5rem; border: 1px solid #ddd; border-radius: 6px; }
     .wizard-step button { margin-top: 0.5rem; }
+    /* Resource Section Styles */
+    .resource-categories { margin: 1rem 0; }
+    .resource-category { margin-bottom: 1.5rem; }
+    .resource-category h3 { font-size: 1.3rem; color: #0056b3; margin-bottom: 0.5rem; }
+    .resource-category p { font-size: 0.9rem; color: #374151; }
+    .resource-category ul { list-style: none; padding: 0; }
+    .resource-category li { margin: 0.75rem 0; font-size: 0.9rem; }
+    .cost.free { color: #28a745; font-weight: 600; }
+    .cost.premium { color: #dc3545; font-weight: 600; }
+    .testimonials { margin: 1.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .testimonials blockquote { border-left: 4px solid #007BFF; padding-left: 0.75rem; font-size: 0.9rem; color: #374151; }
+    @media (max-width: 768px) { .testimonials { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -362,7 +374,7 @@
           <ul id="safetyhelp-tools-list">
             <li><a href="/SafetyHelp/pages/construction-compliance.html" data-detail="Comprehensive safety management for construction projects, ensuring compliance with regulations."><i class="fas fa-hard-hat list-icon"></i>Construction Safety</a></li>
             <li><a href="/SafetyHelp/pages/emergency-response-plan.html" data-detail="Develop and implement effective emergency preparedness and response plans."><i class="fas fa-bell list-icon"></i>Emergency Planning</a></li>
-            <li><a href="/Safety procrastHelp/pages/risk-assessment.html" data-detail="Identify, analyze, and control workplace hazards with our systematic risk assessment tools."><i class="fas fa-shield-alt list-icon"></i>Risk Assessment</a></li>
+            <li><a href="/SafetyHelp/pages/risk-assessment.html" data-detail="Identify, analyze, and control workplace hazards with our systematic risk assessment tools."><i class="fas fa-shield-alt list-icon"></i>Risk Assessment</a></li>
             <li><a href="/SafetyHelp/pages/legal-appointments.html" data-detail="Manage and document all legally required OHS appointments for your organization."><i class="fas fa-gavel list-icon"></i>Legal Appointments</a></li>
             <li><a href="/SafetyHelp/pages/incident-management.html" data-detail="Streamline the reporting, investigation, and prevention of workplace incidents."><i class="fas fa-file-medical-alt list-icon"></i>Incident Management</a></li>
             <li><a href="/SafetyHelp/pages/training.html" data-detail="Access and manage OHS training programs and records for your workforce."><i class="fas fa-graduation-cap list-icon"></i>Training</a></li>
@@ -450,40 +462,108 @@
 
         <section id="careerWizardSection">
           <h2><i class="fas fa-map-signs section-icon"></i>Explore Your OHS Career Path</h2>
-          <p>Not sure where to start in OHS? Use our career wizard to find opportunities tailored to your stage, from high school students to experienced professionals. Inspired by the SafetyFirst series, this tool helps you discover jobs, training, and mentorships.</p>
+          <p>Whether you’re starting with no money and want to build skills to earn a living, or you’re a leader like a pastor making your church safe or a CEO growing a construction and trucking company without compliance worries, this section is for you. Explore free courses, certifications, and tools below, and use our wizard to find what fits your needs. SafetyHelp is here to support you every step of the way.</p>
+
+          <!-- Resource Categories -->
+          <div class="resource-categories">
+            <div class="resource-category">
+              <h3><i class="fas fa-laptop-code"></i> Courses</h3>
+              <p>Short, introductory, and online training—perfect for beginners or those on a budget.</p>
+              <ul>
+                <li><strong>EduCourse (South Africa)</strong> - Free online OHS course with downloadable certificate. <span class="cost free">Free</span> <a href="http://www.educourse.co.za/free-health-safety-certificate-ohs" target="_blank">Learn More</a><br>Ideal for learning basics like hazard identification—great for CV boosting.</li>
+                <li><strong>OSHAcademy</strong> - Full OHS course library (Safety Officer, Construction, etc.). <span class="cost free">Free to study</span> <a href="http://www.oshacademy.com" target="_blank">Learn More</a><br>Accessible worldwide, perfect for structured learning.</li>
+                <li><strong>Oxford Home Study Centre (UK)</strong> - Free health and safety courses (Fire Safety, Risk Assessment). <span class="cost free">Free</span> <a href="http://oxfordhomestudy.com" target="_blank">Learn More</a><br>Beginner-friendly, self-paced.</li>
+                <li><strong>Alison</strong> - Free courses on workplace safety, HAZMAT, and more. <span class="cost free">Free</span> <a href="http://alison.com" target="_blank">Learn More</a><br>Flexible 2-20 hour courses for all levels.</li>
+                <li><strong>Coursera</strong> - “Introduction to OSHA”, “Construction Safety”. <span class="cost free">Free to audit</span> <a href="http://coursera.org" target="_blank">Learn More</a><br>Top university content at no cost.</li>
+                <li><strong>NIOSH eLearning (CDC - USA)</strong> - Webinars for construction, healthcare. <span class="cost free">Free</span> <a href="http://cdc.gov/niosh" target="_blank">Learn More</a><br>Technical, research-driven learning.</li>
+                <li><strong>YouTube (OHS Channels)</strong> - Tutorials, toolbox talks, simulations. <span class="cost free">Free</span><br>Search “OHS training for beginners” or try channels like SafetySkills.</li>
+              </ul>
+            </div>
+            <div class="resource-category">
+              <h3><i class="fas fa-certificate"></i> Certifications</h3>
+              <p>Formal credentials to advance your career or ensure compliance.</p>
+              <ul>
+                <li><strong>SAMTRAC (South Africa)</strong> - Recognized OHS qualification. <span class="cost premium">Premium (R10,000+)</span> <a href="http://www.nosa.co.za" target="_blank">Learn More</a><br>Ideal for professionals in construction, logistics.</li>
+                <li><strong>NEBOSH (UK/Global)</strong> - International General Certificate. <span class="cost premium">Premium</span> <a href="http://nebosh.org.uk" target="_blank">Learn More</a><br>Globally respected for employers.</li>
+                <li><strong>OSHA Outreach (USA)</strong> - 10/30-Hour training cards. <span class="cost free">Low to Moderate</span> <a href="http://osha.gov/training" target="_blank">Learn More</a><br>Accepted safety orientation.</li>
+                <li><strong>Harvard Online (edX)</strong> - “Improving Workplace Culture”. <span class="cost free">Free to audit</span> <a href="http://edx.org/school/harvardx" target="_blank">Learn More</a><br>High-quality leadership training.</li>
+                <li><strong>University of Cape Town (GetSmarter)</strong> - OHS Management course. <span class="cost premium">Premium (R14,000+)</span> <a href="http://uct.getsmarter.com" target="_blank">Learn More</a><br>For OHS officers.</li>
+              </ul>
+            </div>
+            <div class="resource-category">
+              <h3><i class="fas fa-toolbox"></i> Tools & Resources</h3>
+              <p>Practical support for ongoing learning and safety management.</p>
+              <ul>
+                <li><strong>International Labour Organization (ILO)</strong> - OSH Encyclopaedia, Safety Cards. <span class="cost free">Free</span> <a href="http://ilo.org" target="_blank">Learn More</a><br>Industry-validated materials.</li>
+                <li><strong>ITC-ILO Training Centre</strong> - Safety Academy Courses. <span class="cost free">Some Free</span> <a href="http://itcilo.org" target="_blank">Learn More</a><br>UN-supported safety institute.</li>
+                <li><strong>NIOSH Mobile Apps</strong> - Ladder Safety, Heat Safety Tools. <span class="cost free">Free</span> <a href="http://cdc.gov/niosh/apps" target="_blank">Learn More</a><br>Real-time hazard checks.</li>
+                <li><strong>OSHA eTools & eMatrix</strong> - Guides for construction, healthcare. <span class="cost free">Free</span> <a href="http://osha.gov/apps-and-etools" target="_blank">Learn More</a><br>Step-by-step compliance.</li>
+                <li><strong>WHO – Healthy Workplaces</strong> - Manuals, frameworks. <span class="cost free">Free</span> <a href="http://who.int/occupational_health" target="_blank">Learn More</a><br>Healthy workplace strategies.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Wizard -->
           <div class="community-actions">
-            <button id="startWizardBtn" class="action-button action-button-primary"><i class="fas fa-play"></i>Start Career Wizard</button>
+            <button id="startWizardBtn" class="action-button action-button-primary"><i class="fas fa-play"></i> Start Wizard</button>
           </div>
           <div id="careerWizard" class="career-wizard" style="display: none;">
-            <div id="step1" class="wizard-step active">
-              <label for="careerStage">Select Your Current Stage:</label>
-              <select id="careerStage" class="form-input">
-                <option value="none">No OHS Knowledge</option>
-                <option value="student">High School Student</option>
-                <option value="trainee">OHS Trainee</option>
-                <option value="professional">Experienced OHS Professional</option>
+            <div id="step0" class="wizard-step active">
+              <label for="roleSelect">Your Role:</label>
+              <select id="roleSelect" class="form-input">
+                <option value="">-- Choose a role --</option>
+                <option value="pastor">Pastor</option>
+                <option value="ceo">CEO</option>
+                <option value="manager">Manager</option>
+                <option value="employee">Employee</option>
+                <option value="other">Other</option>
               </select>
-              <button id="nextStep1" class="action-button action-button-primary"><i class="fas fa-arrow-right"></i>Next</button>
+              <button id="nextStep0" class="action-button action-button-primary"><i class="fas fa-arrow-right"></i> Next</button>
+            </div>
+            <div id="step1" class="wizard-step">
+              <label for="knowledgeLevel">Your OHS Knowledge:</label>
+              <select id="knowledgeLevel" class="form-input">
+                <option value="beginner">Beginner (Little to no knowledge)</option>
+                <option value="intermediate">Intermediate (Some experience)</option>
+                <option value="advanced">Advanced (Professional experience)</option>
+              </select>
+              <button id="prevStep1" class="action-button action-button-secondary"><i class="fas fa-arrow-left"></i> Previous</button>
+              <button id="nextStep1" class="action-button action-button-primary"><i class="fas fa-arrow-right"></i> Next</button>
             </div>
             <div id="step2" class="wizard-step">
-              <label for="careerGoal">What’s Your Goal?</label>
-              <select id="careerGoal" class="form-input">
-                <option value="learn">Learn About OHS Careers</option>
-                <option value="train">Find Training or Courses</option>
-                <option value="job">Find a Job</option>
-                <option value="mentorship">Seek Mentorship</option>
-                <option value="diversify">Diversify Experience</option>
+              <label for="goalSelect">Your Goal:</label>
+              <select id="goalSelect" class="form-input">
+                <option value="learn">Learn OHS Basics</option>
+                <option value="cv">Boost My CV/Earn a Living</option>
+                <option value="safety">Improve Workplace Safety</option>
+                <option value="certify">Get Certified</option>
               </select>
-              <button id="prevStep2" class="action-button action-button-secondary"><i class="fas fa-arrow-left"></i>Previous</button>
-              <button id="nextStep2" class="action-button action-button-primary"><i class="fas fa-arrow-right"></i>Next</button>
+              <button id="prevStep2" class="action-button action-button-secondary"><i class="fas fa-arrow-left"></i> Previous</button>
+              <button id="submitWizard" class="action-button action-button-primary"><i class="fas fa-check"></i> Submit</button>
             </div>
-            <div id="step3" class="wizard-step">
-              <p id="wizardResult">Based on your inputs, here are recommended opportunities:</p>
+            <div id="wizardOutput" style="display: none;">
+              <p id="recommendationMessage"></p>
               <div id="wizardRecommendations" class="content-list"></div>
-              <button id="prevStep3" class="action-button action-button-secondary"><i class="fas fa-arrow-left"></i>Previous</button>
-              <button id="restartWizard" class="action-button action-button-primary"><i class="fas fa-redo"></i>Restart</button>
+              <div id="roleTipsContent"></div>
+              <button id="restartWizardBtn" class="action-button action-button-secondary"><i class="fas fa-redo"></i> Start Over</button>
             </div>
           </div>
+
+          <!-- Testimonials -->
+          <div class="testimonials">
+            <blockquote>
+              "With free courses like EduCourse, I learned enough to start offering safety workshops, turning my knowledge into a small income—all with no upfront cost!" - Thandi, Entrepreneur
+            </blockquote>
+            <blockquote>
+              "SafetyHelp’s free tools and guidance helped me keep my church safe with simple steps like fire safety checks—peace of mind for my congregation." - Pastor John
+            </blockquote>
+            <blockquote>
+              "As a CEO of a growing trucking company, SafetyHelp’s resources and support took the worry out of compliance, letting us focus on expansion." - Sarah, CEO
+            </blockquote>
+          </div>
+
+          <!-- SafetyHelp Support -->
+          <p id="safetyHelpSupport">SafetyHelp makes OHS easy and affordable. From free tools to expert compliance support, we’re here to help you succeed—whether you’re starting out or scaling up. <a href="/SafetyHelp/services.html">Explore Services</a> | <a href="/SafetyHelp/contact.html">Contact Us</a></p>
         </section>
       </main>
 
@@ -547,7 +627,7 @@
   </div>
 
   <footer>
-    <p>© <span id="copyright-year"></span> SafetyHelp. All rights reserved. Your Partner in Occupational Health and Safety Compliance.</p>
+    <p>© <span id="calendar-year"></span> SafetyHelp. All rights reserved. Your Partner in Occupational Health and Safety Compliance.</p>
     <p><a href="/SafetyHelp/privacy.html">Privacy Policy</a> | <a href="/SafetyHelp/terms.html">Terms of Service</a> | <a href="/SafetyHelp/contact.html">Contact Us</a></p>
   </footer>
 
@@ -555,11 +635,11 @@
     <div class="modal-content">
       <div class="modal-header">
         <h4 id="modalTitle">Community Action</h4>
-        <span class="close-btn" onclick="closeModal()">×</span>
+        <span class="close-btn"></span>
       </div>
       <div class="modal-body modal-form" id="modalBody"></div>
       <div class="modal-footer" id="modalFooter">
-        <button onclick="closeModal()" class="action-button-secondary"><i class="fas fa-times btn-icon"></i>Close</button>
+        <button class="action-button-secondary"><i class="fas fa-times btn-icon"></i>Close</button>
       </div>
     </div>
   </div>
@@ -568,7 +648,7 @@
     <div id="chat-window" class="chat-hidden">
       <div id="chat-header">
         <span>Salatiso - Your OHS Assistant</span>
-        <button class="close-chat-btn" onclick="toggleChatbot(false)">×</button>
+        <button class="close-chat-btn"></button>
       </div>
       <div id="chat-output">
         <p><strong>Salatiso:</strong> Hello! How can I help you with OHS today?</p>
@@ -578,14 +658,14 @@
         <button id="chat-send"><i class="fas fa-paper-plane"></i></button>
       </div>
     </div>
-    <button id="chat-toggle" onclick="toggleChatbot()">
+    <button id="chat-toggle">
       <i class="fas fa-headset"></i>
     </button>
   </div>
 
   <script>
     // Set current year in footer
-    document.getElementById('copyright-year').textContent = new Date().getFullYear();
+    document.getElementById('calendar-year').textContent = new Date().getFullYear();
 
     // --- Sidebar Auto-Scrolling & Item Click ---
     function setupScrollingSidebar(listId) {
@@ -611,6 +691,8 @@
     const modalTitle = document.getElementById('modalTitle');
     const modalBody = document.getElementById('modalBody');
     const modalFooter = document.getElementById('modalFooter');
+    const closeBtn = modal.querySelector('.close-btn');
+    const closeFooterBtn = modal.querySelector('.modal-footer button');
 
     function showMilestoneDetail(element) {
       const title = element.textContent.trim().replace(/^.*? /,'');
@@ -618,7 +700,7 @@
       modalTitle.textContent = `OHS Milestone: ${title}`;
       modalBody.innerHTML = `<p>${detail}</p>`;
       modalFooter.innerHTML = `<button onclick="closeModal()" class="action-button-secondary"><i class="fas fa-times btn-icon"></i>Close</button>`;
-      modal.style.display = 'block';
+      modal.style.display = 'flex';
     }
 
     function closeModal() {
@@ -626,6 +708,9 @@
       modalBody.innerHTML = '';
       modalFooter.innerHTML = `<button onclick="closeModal()" class="action-button-secondary"><i class="fas fa-times btn-icon"></i>Close</button>`;
     }
+
+    closeBtn.addEventListener('click', closeModal);
+    closeFooterBtn.addEventListener('click', closeModal);
 
     window.onclick = function(event) {
       if (event.target == modal) {
@@ -635,78 +720,11 @@
 
     // --- Community Page Specific JS ---
     // Mentorship
-    const offerMentorshipBtn = document.getElementById('offerMentorshipBtn');
-    const seekMentorshipBtn = document.getElementById('seekMentorshipBtn');
     const mentorshipList = document.getElementById('mentorshipList');
-
-    if (offerMentorshipBtn) {
-      offerMentorshipBtn.addEventListener('click', () => {
-        modalTitle.textContent = "Offer Mentorship";
-        modalBody.innerHTML = `
-          <form id="offerMentorshipForm" class="modal-form">
-            <div class="form-group">
-              <label for="mentorName">Your Name:</label>
-              <input type="text" id="mentorName" name="mentorName" class="form-input" required>
-            </div>
-            <div class="form-group">
-              <label for="mentorExpertise">Area of Expertise:</label>
-              <input type="text" id="mentorExpertise" name="mentorExpertise" class="form-input" required>
-            </div>
-            <div class="form-group">
-              <label for="mentorContact">Contact (Email/Phone):</label>
-              <input type="text" id="mentorContact" name="mentorContact" class="form-input" required>
-            </div>
-            <button type="submit" class="action-button action-button-primary"><i class="fas fa-paper-plane"></i>Submit Offer</button>
-          </form>
-        `;
-        modalFooter.innerHTML = `<button onclick="closeModal()" class="action-button-secondary"><i class="fas fa-times btn-icon"></i>Cancel</button>`;
-        modal.style.display = 'block';
-        document.getElementById('offerMentorshipForm').addEventListener('submit', (e) => {
-          e.preventDefault();
-          console.log("Mentorship offer submitted:", Object.fromEntries(new FormData(e.target)));
-          alert("Thank you for offering to mentor! We'll contact you to finalize your role.");
-          closeModal();
-        });
-      });
-    }
-
-    if (seekMentorshipBtn) {
-      seekMentorshipBtn.addEventListener('click', () => {
-        modalTitle.textContent = "Seek Mentorship";
-        modalBody.innerHTML = `
-          <form id="seekMentorshipForm" class="modal-form">
-            <div class="form-group">
-              <label for="menteeName">Your Name:</label>
-              <input type="text" id="menteeName" name="menteeName" class="form-input" required>
-            </div>
-            <div class="form-group">
-              <label for="menteeNeed">What kind of mentorship are you seeking?</label>
-              <textarea id="menteeNeed" name="menteeNeed" class="form-textarea" required></textarea>
-            </div>
-            <div class="form-group">
-              <label for="menteeContact">Contact (Email/Phone):</label>
-              <input type="text" id="menteeContact" name="menteeContact" class="form-input" required>
-            </div>
-            <button type="submit" class="action-button action-button-primary"><i class="fas fa-paper-plane"></i>Submit Request</button>
-          </form>
-        `;
-        modalFooter.innerHTML = `<button onclick="closeModal()" class="action-button-secondary"><i class="fas fa-times btn-icon"></i>Cancel</button>`;
-        modal.style.display = 'block';
-        document.getElementById('seekMentorshipForm').addEventListener('submit', (e) => {
-          e.preventDefault();
-          console.log("Mentorship request submitted:", Object.fromEntries(new FormData(e.target)));
-          alert("Thank you for your mentorship request! We'll match you with a mentor soon.");
-          closeModal();
-        });
-      });
-    }
 
     if (mentorshipList) mentorshipList.innerHTML = '<p class="list-item">Be the first to join our mentorship program! Sign up above.</p>';
 
     // Careers
-    const postJobBtn = document.getElementById('postJobBtn');
-    const submitCvBtn = document.getElementById('submitCvBtn');
-    const jobList = document.getElementById('jobList');
     const searchCareersBtn = document.getElementById('searchCareersBtn');
     const careerSearchForm = document.getElementById('careerSearchForm');
 
@@ -716,78 +734,9 @@
       });
     }
 
-    if (postJobBtn) {
-      postJobBtn.addEventListener('click', () => {
-        modalTitle.textContent = "Post a Job Opening";
-        modalBody.innerHTML = `
-          <form id="postJobForm" class="modal-form">
-            <div class="form-group">
-              <label for="jobTitle">Job Title:</label>
-              <input type="text" id="jobTitle" name="jobTitle" class="form-input" required>
-            </div>
-            <div class="form-group">
-              <label for="jobCompany">Company Name:</label>
-              <input type="text" id="jobCompany" name="jobCompany" class="form-input" required>
-            </div>
-            <div class="form-group">
-              <label for="jobDescription">Job Description:</label>
-              <textarea id="jobDescription" name="jobDescription" class="form-textarea" required></textarea>
-            </div>
-            <div class="form-group">
-              <label for="jobContact">Application Contact/Link:</label>
-              <input type="text" id="jobContact" name="jobContact" class="form-input" required>
-            </div>
-            <button type="submit" class="action-button action-button-primary"><i class="fas fa-paper-plane"></i>Post Job</button>
-          </form>
-        `;
-        modalFooter.innerHTML = `<button onclick="closeModal()" class="action-button-secondary"><i class="fas fa-times btn-icon"></i>Cancel</button>`;
-        modal.style.display = 'block';
-        document.getElementById('postJobForm').addEventListener('submit', (e) => {
-          e.preventDefault();
-          console.log("Job posting submitted:", Object.fromEntries(new FormData(e.target)));
-          alert("Job posting submitted! We'll review and post it soon.");
-          closeModal();
-        });
-      });
-    }
-
-    if (submitCvBtn) {
-      submitCvBtn.addEventListener('click', () => {
-        modalTitle.textContent = "Submit Your CV";
-        modalBody.innerHTML = `
-          <form id="submitCvForm" class="modal-form">
-            <div class="form-group">
-              <label for="cvName">Your Name:</label>
-              <input type="text" id="cvName" name="cvName" class="form-input" required>
-            </div>
-            <div class="form-group">
-              <label for="cvSkills">Key Skills/Area of Interest:</label>
-              <input type="text" id="cvSkills" name="cvSkills" class="form-input" required>
-            </div>
-            <div class="form-group">
-              <label for="cvFile">Upload CV (PDF, DOCX):</label>
-              <input type="file" id="cvFile" name="cvFile" class="form-input" accept=".pdf,.doc,.docx" required>
-            </div>
-            <div class="form-group">
-              <label for="cvContact">Your Contact Email:</label>
-              <input type="email" id="cvContact" name="cvContact" class="form-input" required>
-            </div>
-            <button type="submit" class="action-button action-button-primary"><i class="fas fa-paper-plane"></i>Submit CV</button>
-          </form>
-        `;
-        modalFooter.innerHTML = `<button onclick="closeModal()" class="action-button-secondary"><i class="fas fa-times btn-icon"></i>Cancel</button>`;
-        modal.style.display = 'block';
-        document.getElementById('submitCvForm').addEventListener('submit', (e) => {
-          e.preventDefault();
-          console.log("CV submitted:", Object.fromEntries(new FormData(e.target)));
-          alert("CV submitted! We'll share it with relevant employers.");
-          closeModal();
-        });
-      });
-    }
-
     // Adzuna API Integration
     const searchBtn = document.getElementById('searchBtn');
+    const jobList = document.getElementById('jobList');
     if (searchBtn) {
       searchBtn.addEventListener('click', async () => {
         const searchType = document.getElementById('searchType').value;
@@ -841,107 +790,146 @@
     }
 
     // Career Wizard
+    const resources = [
+      { title: "EduCourse (South Africa)", description: "Free online OHS course with certificate.", link: "http://www.educourse.co.za/free-health-safety-certificate-ohs", cost: "free", tags: ["beginner", "pastor", "employee", "learn", "cv"] },
+      { title: "OSHAcademy", description: "Full OHS course library.", link: "http://www.oshacademy.com", cost: "free", tags: ["beginner", "intermediate", "pastor", "manager", "learn", "safety"] },
+      { title: "Oxford Home Study Centre (UK)", description: "Free health and safety courses.", link: "http://oxfordhomestudy.com", cost: "free", tags: ["beginner", "pastor", "employee", "learn", "safety"] },
+      { title: "Alison", description: "Free courses on workplace safety.", link: "http://alison.com", cost: "free", tags: ["beginner", "intermediate", "employee", "learn", "cv"] },
+      { title: "Coursera", description: "Introduction to OSHA, Construction Safety.", link: "http://coursera.org", cost: "free", tags: ["beginner", "intermediate", "manager", "learn", "safety"] },
+      { title: "NIOSH eLearning (CDC)", description: "Webinars for construction, healthcare.", link: "http://cdc.gov/niosh", cost: "free", tags: ["intermediate", "advanced", "manager", "safety"] },
+      { title: "YouTube (OHS Channels)", description: "Free OHS tutorials and toolbox talks.", link: "#", cost: "free", tags: ["beginner", "pastor", "employee", "learn"] },
+      { title: "SAMTRAC (South Africa)", description: "Recognized OHS qualification.", link: "http://www.nosa.co.za", cost: "premium", tags: ["intermediate", "advanced", "ceo", "manager", "certify"] },
+      { title: "NEBOSH (UK/Global)", description: "International General Certificate.", link: "http://nebosh.org.uk", cost: "premium", tags: ["advanced", "ceo", "certify"] },
+      { title: "OSHA Outreach (USA)", description: "10/30-Hour training cards.", link: "http://osha.gov/training", cost: "free", tags: ["intermediate", "manager", "certify"] },
+      { title: "Harvard Online (edX)", description: "Improving Workplace Culture.", link: "http://edx.org/school/harvardx", cost: "free", tags: ["intermediate", "ceo", "manager", "safety"] },
+      { title: "UCT (GetSmarter)", description: "OHS Management course.", link: "http://uct.getsmarter.com", cost: "premium", tags: ["advanced", "ceo", "certify"] },
+      { title: "ILO", description: "OSH Encyclopaedia, Safety Cards.", link: "http://ilo.org", cost: "free", tags: ["intermediate", "advanced", "manager", "safety"] },
+      { title: "ITC-ILO Training Centre", description: "Safety Academy Courses.", link: "http://itcilo.org", cost: "free", tags: ["intermediate", "manager", "safety"] },
+      { title: "NIOSH Mobile Apps", description: "Ladder Safety, Heat Safety Tools.", link: "http://cdc.gov/niosh/apps", cost: "free", tags: ["beginner", "pastor", "employee", "safety"] },
+      { title: "OSHA eTools & eMatrix", description: "Guides for construction, healthcare.", link: "http://osha.gov/apps-and-etools", cost: "free", tags: ["intermediate", "ceo", "safety"] },
+      { title: "WHO – Healthy Workplaces", description: "Manuals, frameworks.", link: "http://who.int/occupational_health", cost: "free", tags: ["intermediate", "ceo", "manager", "safety"] }
+    ];
+
+    const roleTips = {
+      pastor: `
+        <h4>Tips for Pastors</h4>
+        <p>Make your church a safe haven with these steps:</p>
+        <ul>
+          <li>Use free tools like NIOSH Mobile Apps to check ladders or exits.</li>
+          <li>Learn fire safety basics from Oxford Home Study Centre to protect your congregation.</li>
+          <li>Create a simple emergency plan—SafetyHelp can guide you.</li>
+        </ul>
+      `,
+      ceo: `
+        <h4>Tips for CEOs</h4>
+        <p>Grow your company confidently with SafetyHelp:</p>
+        <ul>
+          <li>Start with free OSHA eTools to assess construction and trucking risks.</li>
+          <li>Train staff affordably with Alison courses to meet regulations.</li>
+          <li>Rely on SafetyHelp for compliance audits—focus on growth, not worries.</li>
+        </ul>
+      `,
+      manager: `
+        <h4>Tips for Managers</h4>
+        <p>Enhance workplace safety with these steps:</p>
+        <ul>
+          <li>Use Coursera’s free OSHA courses to train your team.</li>
+          <li>Implement safety checks with NIOSH Mobile Apps.</li>
+          <li>Partner with SafetyHelp for compliance support.</li>
+        </ul>
+      `,
+      employee: `
+        <h4>Tips for Employees</h4>
+        <p>Build your skills and career with these steps:</p>
+        <ul>
+          <li>Take free EduCourse to boost your CV.</li>
+          <li>Learn safety basics via YouTube OHS channels.</li>
+          <li>Explore job opportunities through SafetyHelp’s career tools.</li>
+        </ul>
+      `,
+      other: `
+        <h4>Tips for All</h4>
+        <p>Start your OHS journey with these steps:</p>
+        <ul>
+          <li>Explore free courses like Alison to learn basics.</li>
+          <li>Use WHO’s Healthy Workplaces resources for guidance.</li>
+          <li>Contact SafetyHelp for personalized support.</li>
+        </ul>
+      `
+    };
+
     const startWizardBtn = document.getElementById('startWizardBtn');
     const careerWizard = document.getElementById('careerWizard');
-    const step1 = document.getElementById('step1');
-    const step2 = document.getElementById('step2');
-    const step3 = document.getElementById('step3');
-    const nextStep1 = document.getElementById('nextStep1');
-    const nextStep2 = document.getElementById('nextStep2');
-    const prevStep2 = document.getElementById('prevStep2');
-    const prevStep3 = document.getElementById('prevStep3');
-    const restartWizard = document.getElementById('restartWizard');
 
     if (startWizardBtn) {
       startWizardBtn.addEventListener('click', () => {
         careerWizard.style.display = 'block';
-        step1.classList.add('active');
-        step2.classList.remove('active');
-        step3.classList.remove('active');
+        document.getElementById('step0').classList.add('active');
+        document.getElementById('step1').classList.remove('active');
+        document.getElementById('step2').classList.remove('active');
+        document.getElementById('wizardOutput').style.display = 'none';
       });
     }
 
-    if (nextStep1) {
-      nextStep1.addEventListener('click', () => {
-        step1.classList.remove('active');
-        step2.classList.add('active');
-      });
-    }
+    document.getElementById('nextStep0').addEventListener('click', () => {
+      document.getElementById('step0').classList.remove('active');
+      document.getElementById('step1').classList.add('active');
+    });
 
-    if (prevStep2) {
-      prevStep2.addEventListener('click', () => {
-        step2.classList.remove('active');
-        step1.classList.add('active');
-      });
-    }
+    document.getElementById('nextStep1').addEventListener('click', () => {
+      document.getElementById('step1').classList.remove('active');
+      document.getElementById('step2').classList.add('active');
+    });
 
-    if (nextStep2) {
-      nextStep2.addEventListener('click', async () => {
-        const careerStage = document.getElementById('careerStage').value;
-        const careerGoal = document.getElementById('careerGoal').value;
-        const recommendations = document.getElementById('wizardRecommendations');
-        recommendations.innerHTML = '';
-        
-        let suggestions = [];
-        if (careerStage === 'none') {
-          suggestions = [
-            { title: 'Introduction to OHS', description: 'Learn the basics with NOSA’s Introduction to OHS course.', link: 'https://www.nosa.co.za/training/introduction-to-ohs/' },
-            { title: 'OHS Awareness', description: 'Free OHS awareness resources from SA Department of Labour.', link: 'https://www.labour.gov.za/' }
-          ];
-        } else if (careerStage === 'student') {
-          suggestions = [
-            { title: 'UNISA OHS Short Course', description: 'Explore OHS certificates at UNISA.', link: 'https://www.unisa.ac.za/sites/corporate/default/Apply-for-admission/Short-Learning-Programmes' },
-            { title: 'NOSA School Safety Program', description: 'Safety programs for students.', link: 'https://www.nosa.co.za/' }
-          ];
-        } else if (careerStage === 'trainee') {
-          suggestions = [
-            { title: 'TUT OHS Diploma', description: 'Enroll in Tshwane University of Technology’s OHS program.', link: 'https://www.tut.ac.za/' },
-            { title: 'OHS Trainee Jobs', description: 'Search for trainee positions in OHS.', link: '#' }
-          ];
-        } else if (careerStage === 'professional') {
-          suggestions = [
-            { title: 'Advanced OHS Certification', description: 'Upskill with NOSA’s advanced courses.', link: 'https://www.nosa.co.za/' },
-            { title: 'Mentorship Opportunities', description: 'Offer or seek mentorship to diversify your experience.', link: '/SafetyHelp/community.html#mentorshipSection' }
-          ];
-        }
+    document.getElementById('prevStep1').addEventListener('click', () => {
+      document.getElementById('step1').classList.remove('active');
+      document.getElementById('step0').classList.add('active');
+    });
 
-        suggestions.forEach(suggestion => {
-          const item = document.createElement('div');
-          item.classList.add('list-item');
-          item.innerHTML = `
-            <h4>${suggestion.title}</h4>
-            <p>${suggestion.description}</p>
-            <p class="item-meta"><a href="${suggestion.link}" target="_blank">Learn More</a></p>
-          `;
-          recommendations.appendChild(item);
-        });
+    document.getElementById('prevStep2').addEventListener('click', () => {
+      document.getElementById('step2').classList.remove('active');
+      document.getElementById('step1').classList.add('active');
+    });
 
-        step2.classList.remove('active');
-        step3.classList.add('active');
-      });
-    }
+    document.getElementById('submitWizard').addEventListener('click', () => {
+      const role = document.getElementById('roleSelect').value;
+      const knowledge = document.getElementById('knowledgeLevel').value;
+      const goal = document.getElementById('goalSelect').value;
 
-    if (prevStep3) {
-      prevStep3.addEventListener('click', () => {
-        step3.classList.remove('active');
-        step2.classList.add('active');
-      });
-    }
+      let message = `Based on your role as a ${role || 'person'}, ${knowledge} knowledge, and goal to ${goal.replace(/([A-Z])/g, ' $1').toLowerCase()}, here are recommendations:`;
+      let matches = resources.filter(r => r.tags.includes(role) && r.tags.includes(knowledge) && r.tags.includes(goal));
+      if (!matches.length) {
+        matches = resources.filter(r => r.cost === 'free');
+        message = 'No exact matches found—here are some free resources to get you started:';
+      }
 
-    if (restartWizard) {
-      restartWizard.addEventListener('click', () => {
-        step3.classList.remove('active');
-        step1.classList.add('active');
-        careerWizard.style.display = 'none';
-      });
-    }
+      document.getElementById('recommendationMessage').textContent = message;
+      document.getElementById('wizardRecommendations').innerHTML = matches.map(r => `
+        <div class="list-item">
+          <h4>${r.title}</h4>
+          <p>${r.description}</p>
+          <p class="item-meta"><span class="cost ${r.cost}">${r.cost === 'free' ? 'Free' : 'Premium'}</span> <a href="${r.link}" target="_blank">Learn More</a></p>
+        </div>
+      `).join('');
+      document.getElementById('roleTipsContent').innerHTML = roleTips[role] || roleTips.other;
 
-    // --- Chatbot Functionality ---
+      document.getElementById('step2').classList.remove('active');
+      document.getElementById('wizardOutput').style.display = 'block';
+    });
+
+    document.getElementById('restartWizardBtn').addEventListener('click', () => {
+      document.getElementById('wizardOutput').style.display = 'none';
+      document.getElementById('step0').classList.add('active');
+      careerWizard.style.display = 'block';
+    });
+
+// --- Chatbot Functionality ---
     const chatWindow = document.getElementById('chat-window');
     const chatToggleBtn = document.getElementById('chat-toggle');
     const chatInputEl = document.getElementById('chat-input');
     const chatSendBtn = document.getElementById('chat-send');
     const chatOutputEl = document.getElementById('chat-output');
+    const closeChatBtn = document.querySelector('.close-chat-btn');
 
     function toggleChatbot(forceOpen) {
       const isHidden = chatWindow.classList.contains('chat-hidden');
@@ -975,15 +963,26 @@
       let botResponse = "I'm still learning! For detailed OHS info, explore our resources or contact support.";
       if (message.toLowerCase().includes("hello") || message.toLowerCase().includes("hi")) {
         botResponse = "Hello there! How can I assist you with safety today?";
+      } else if (message.toLowerCase().includes("career") || message.toLowerCase().includes("course")) {
+        botResponse = "Check out our 'Explore Your OHS Career Path' section for free courses and certifications to boost your skills!";
       }
       setTimeout(() => {
         addChatMessageToUI("Salatiso", botResponse, false);
       }, 500);
     }
 
+    if (chatToggleBtn) {
+      chatToggleBtn.addEventListener('click', () => toggleChatbot());
+    }
+
+    if (closeChatBtn) {
+      closeChatBtn.addEventListener('click', () => toggleChatbot(false));
+    }
+
     if (chatSendBtn) {
       chatSendBtn.addEventListener('click', handleChatSend);
     }
+
     if (chatInputEl) {
       chatInputEl.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
