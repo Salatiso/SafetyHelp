@@ -330,7 +330,6 @@
       padding: 1rem; 
       box-sizing: border-box; 
       cursor: pointer; 
-      background: #fff; 
       border-radius: 8px; 
       box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
       margin: 0 0.5rem; 
@@ -339,6 +338,7 @@
       display: flex; 
       flex-direction: column; 
       justify-content: space-between; 
+      position: relative;
     }
     .carousel-item:hover { 
       transform: translateY(-5px); 
@@ -348,6 +348,9 @@
       transform: scale(1.05); 
       box-shadow: 0 6px 12px rgba(0,0,0,0.2); 
     }
+    .carousel-item.courses { background-color: #E8F0FE; }
+    .carousel-item.certifications { background-color: #E6F7E6; }
+    .carousel-item.tools { background-color: #FFF3E0; }
     .carousel-item .item-header { 
       display: flex; 
       align-items: center; 
@@ -421,10 +424,6 @@
     @media (min-width: 769px) and (max-width: 1024px) {
       .carousel-item { flex: 0 0 50%; }
     }
-    /* Testimonials */
-    .testimonials { margin: 1.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .testimonials blockquote { border-left: 4px solid #007BFF; padding-left: 0.75rem; font-size: 0.9rem; color: #374151; }
-    @media (max-width: 768px) { .testimonials { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -559,7 +558,7 @@
           <div class="resource-carousel">
             <button class="carousel-nav prev"><i class="fas fa-chevron-left"></i></button>
             <div class="carousel-container" id="resourceCarousel">
-              <div class="carousel-item" data-icon="fa-laptop-code">
+              <div class="carousel-item courses" data-category="courses">
                 <div class="item-header">
                   <i class="fas fa-laptop-code item-icon"></i>
                   <h4>EduCourse (South Africa)</h4>
@@ -570,7 +569,7 @@
                   <p><a href="http://www.educourse.co.za/free-health-safety-certificate-ohs" target="_blank">Learn More</a></p>
                 </div>
               </div>
-              <div class="carousel-item" data-icon="fa-laptop-code">
+              <div class="carousel-item courses" data-category="courses">
                 <div class="item-header">
                   <i class="fas fa-laptop-code item-icon"></i>
                   <h4>OSHAcademy</h4>
@@ -581,7 +580,7 @@
                   <p><a href="http://www.oshacademy.com" target="_blank">Learn More</a></p>
                 </div>
               </div>
-              <div class="carousel-item" data-icon="fa-laptop-code">
+              <div class="carousel-item courses" data-category="courses">
                 <div class="item-header">
                   <i class="fas fa-laptop-code item-icon"></i>
                   <h4>Oxford Home Study Centre (UK)</h4>
@@ -592,7 +591,7 @@
                   <p><a href="http://oxfordhomestudy.com" target="_blank">Learn More</a></p>
                 </div>
               </div>
-              <div class="carousel-item" data-icon="fa-laptop-code">
+              <div class="carousel-item courses" data-category="courses">
                 <div class="item-header">
                   <i class="fas fa-laptop-code item-icon"></i>
                   <h4>Alison</h4>
@@ -603,7 +602,7 @@
                   <p><a href="http://alison.com" target="_blank">Learn More</a></p>
                 </div>
               </div>
-              <div class="carousel-item" data-icon="fa-laptop-code">
+              <div class="carousel-item courses" data-category="courses">
                 <div class="item-header">
                   <i class="fas fa-laptop-code item-icon"></i>
                   <h4>Coursera</h4>
@@ -614,7 +613,7 @@
                   <p><a href="http://coursera.org" target="_blank">Learn More</a></p>
                 </div>
               </div>
-              <div class="carousel-item" data-icon="fa-laptop-code">
+              <div class="carousel-item courses" data-category="courses">
                 <div class="item-header">
                   <i class="fas fa-laptop-code item-icon"></i>
                   <h4>NIOSH eLearning (CDC - USA)</h4>
@@ -625,7 +624,7 @@
                   <p><a href="http://cdc.gov/niosh" target="_blank">Learn More</a></p>
                 </div>
               </div>
-              <div class="carousel-item" data-icon="fa-laptop-code">
+              <div class="carousel-item courses" data-category="courses">
                 <div class="item-header">
                   <i class="fas fa-laptop-code item-icon"></i>
                   <h4>YouTube (OHS Channels)</h4>
@@ -635,7 +634,7 @@
                   <p>Search “OHS training for beginners” or try channels like SafetySkills.</p>
                 </div>
               </div>
-              <div class="carousel-item" data-icon="fa-certificate">
+              <div class="carousel-item certifications" data-category="certifications">
                 <div class="item-header">
                   <i class="fas fa-certificate item-icon"></i>
                   <h4>SAMTRAC (South Africa)</h4>
@@ -646,7 +645,7 @@
                   <p><a href="http://www.nosa.co.za" target="_blank">Learn More</a></p>
                 </div>
               </div>
-              <div class="carousel-item" data-icon="fa-certificate">
+              <div class="carousel-item certifications" data-category="certifications">
                 <div class="item-header">
                   <i class="fas fa-certificate item-icon"></i>
                   <h4>NEBOSH (UK/Global)</h4>
@@ -657,7 +656,7 @@
                   <p><a href="http://nebosh.org.uk" target="_blank">Learn More</a></p>
                 </div>
               </div>
-              <div class="carousel-item" data-icon="fa-certificate">
+              <div class="carousel-item certifications" data-category="certifications">
                 <div class="item-header">
                   <i class="fas fa-certificate item-icon"></i>
                   <h4>OSHA Outreach (USA)</h4>
@@ -668,7 +667,7 @@
                   <p><a href="http://osha.gov/training" target="_blank">Learn More</a></p>
                 </div>
               </div>
-              <div class="carousel-item" data-icon="fa-certificate">
+              <div class="carousel-item certifications" data-category="certifications">
                 <div class="item-header">
                   <i class="fas fa-certificate item-icon"></i>
                   <h4>Harvard Online (edX)</h4>
@@ -679,7 +678,7 @@
                   <p><a href="http://edx.org/school/harvardx" target="_blank">Learn More</a></p>
                 </div>
               </div>
-              <div class="carousel-item" data-icon="fa-certificate">
+              <div class="carousel-item certifications" data-category="certifications">
                 <div class="item-header">
                   <i class="fas fa-certificate item-icon"></i>
                   <h4>University of Cape Town (GetSmarter)</h4>
@@ -690,7 +689,7 @@
                   <p><a href="http://uct.getsmarter.com" target="_blank">Learn More</a></p>
                 </div>
               </div>
-              <div class="carousel-item" data-icon="fa-toolbox">
+              <div class="carousel-item tools" data-category="tools">
                 <div class="item-header">
                   <i class="fas fa-toolbox item-icon"></i>
                   <h4>International Labour Organization (ILO)</h4>
@@ -701,7 +700,7 @@
                   <p><a href="http://ilo.org" target="_blank">Learn More</a></p>
                 </div>
               </div>
-              <div class="carousel-item" data-icon="fa-toolbox">
+              <div class="carousel-item tools" data-category="tools">
                 <div class="item-header">
                   <i class="fas fa-toolbox item-icon"></i>
                   <h4>ITC-ILO Training Centre</h4>
@@ -712,7 +711,7 @@
                   <p><a href="http://itcilo.org" target="_blank">Learn More</a></p>
                 </div>
               </div>
-              <div class="carousel-item" data-icon="fa-toolbox">
+              <div class="carousel-item tools" data-category="tools">
                 <div class="item-header">
                   <i class="fas fa-toolbox item-icon"></i>
                   <h4>NIOSH Mobile Apps</h4>
@@ -723,7 +722,7 @@
                   <p><a href="http://cdc.gov/niosh/apps" target="_blank">Learn More</a></p>
                 </div>
               </div>
-              <div class="carousel-item" data-icon="fa-toolbox">
+              <div class="carousel-item tools" data-category="tools">
                 <div class="item-header">
                   <i class="fas fa-toolbox item-icon"></i>
                   <h4>OSHA eTools & eMatrix</h4>
@@ -734,7 +733,7 @@
                   <p><a href="http://osha.gov/apps-and-etools" target="_blank">Learn More</a></p>
                 </div>
               </div>
-              <div class="carousel-item" data-icon="fa-toolbox">
+              <div class="carousel-item tools" data-category="tools">
                 <div class="item-header">
                   <i class="fas fa-toolbox item-icon"></i>
                   <h4>WHO – Healthy Workplaces</h4>
@@ -749,64 +748,56 @@
             <button class="carousel-nav next"><i class="fas fa-chevron-right"></i></button>
           </div>
 
-          <!-- Wizard -->
-          <div id="careerWizard" class="career-wizard" style="display: none;">
-            <div id="step0" class="wizard-step active">
-              <label for="roleSelect">Your Role:</label>
-              <select id="roleSelect" class="form-input">
-                <option value="">-- Choose a role --</option>
-                <option value="pastor">Pastor</option>
-                <option value="ceo">CEO</option>
-                <option value="manager">Manager</option>
-                <option value="employee">Employee</option>
-                <option value="other">Other</option>
-              </select>
-              <button id="nextStep0" class="action-button action-button-primary"><i class="fas fa-arrow-right"></i> Next</button>
-            </div>
-            <div id="step1" class="wizard-step">
-              <label for="knowledgeLevel">Your OHS Knowledge:</label>
-              <select id="knowledgeLevel" class="form-input">
-                <option value="beginner">Beginner (Little to no knowledge)</option>
-                <option value="intermediate">Intermediate (Some experience)</option>
-                <option value="advanced">Advanced (Professional experience)</option>
-              </select>
-              <button id="prevStep1" class="action-button action-button-secondary"><i class="fas fa-arrow-left"></i> Previous</button>
-              <button id="nextStep1" class="action-button action-button-primary"><i class="fas fa-arrow-right"></i> Next</button>
-            </div>
-            <div id="step2" class="wizard-step">
-              <label for="goalSelect">Your Goal:</label>
-              <select id="goalSelect" class="form-input">
-                <option value="learn">Learn OHS Basics</option>
-                <option value="cv">Boost My CV/Earn a Living</option>
-                <option value="safety">Improve Workplace Safety</option>
-                <option value="certify">Get Certified</option>
-              </select>
-              <button id="prevStep2" class="action-button action-button-secondary"><i class="fas fa-arrow-left"></i> Previous</button>
-              <button id="submitWizard" class="action-button action-button-primary"><i class="fas fa-check"></i> Submit</button>
-            </div>
-            <div id="wizardOutput" style="display: none;">
-              <p id="recommendationMessage"></p>
-              <div id="wizardRecommendations" class="content-list"></div>
-              <div id="roleTipsContent"></div>
-              <button id="restartWizardBtn" class="action-button action-button-secondary"><i class="fas fa-redo"></i> Start Over</button>
+          <!-- Career Wizard Modal -->
+          <div id="careerWizard" class="modal">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4>Career Wizard</h4>
+                <span class="close-btn" onclick="closeWizard()">×</span>
+              </div>
+              <div class="modal-body">
+                <div id="step0" class="wizard-step">
+                  <label for="roleSelect">Your Role:</label>
+                  <select id="roleSelect" class="form-input">
+                    <option value="">-- Choose a role --</option>
+                    <option value="pastor">Pastor</option>
+                    <option value="ceo">CEO</option>
+                    <option value="manager">Manager</option>
+                    <option value="employee">Employee</option>
+                    <option value="other">Other</option>
+                  </select>
+                  <button id="nextStep0" class="action-button action-button-primary"><i class="fas fa-arrow-right"></i> Next</button>
+                </div>
+                <div id="step1" class="wizard-step">
+                  <label for="knowledgeLevel">Your OHS Knowledge:</label>
+                  <select id="knowledgeLevel" class="form-input">
+                    <option value="beginner">Beginner (Little to no knowledge)</option>
+                    <option value="intermediate">Intermediate (Some experience)</option>
+                    <option value="advanced">Advanced (Professional experience)</option>
+                  </select>
+                  <button id="prevStep1" class="action-button action-button-secondary"><i class="fas fa-arrow-left"></i> Previous</button>
+                  <button id="nextStep1" class="action-button action-button-primary"><i class="fas fa-arrow-right"></i> Next</button>
+                </div>
+                <div id="step2" class="wizard-step">
+                  <label for="goalSelect">Your Goal:</label>
+                  <select id="goalSelect" class="form-input">
+                    <option value="learn">Learn OHS Basics</option>
+                    <option value="cv">Boost My CV/Earn a Living</option>
+                    <option value="safety">Improve Workplace Safety</option>
+                    <option value="certify">Get Certified</option>
+                  </select>
+                  <button id="prevStep2" class="action-button action-button-secondary"><i class="fas fa-arrow-left"></i> Previous</button>
+                  <button id="submitWizard" class="action-button action-button-primary"><i class="fas fa-check"></i> Submit</button>
+                </div>
+                <div id="wizardOutput" style="display: none;">
+                  <p id="recommendationMessage"></p>
+                  <div id="wizardRecommendations" class="content-list"></div>
+                  <div id="roleTipsContent"></div>
+                  <button id="restartWizardBtn" class="action-button action-button-secondary"><i class="fas fa-redo"></i> Start Over</button>
+                </div>
+              </div>
             </div>
           </div>
-
-          <!-- Testimonials -->
-          <div class="testimonials">
-            <blockquote>
-              "With free courses like EduCourse, I learned enough to start offering safety workshops, turning my knowledge into a small income—all with no upfront cost!" - Thandi, Entrepreneur
-            </blockquote>
-            <blockquote>
-              "SafetyHelp’s free tools and guidance helped me keep my church safe with simple steps like fire safety checks—peace of mind for my congregation." - Pastor John
-            </blockquote>
-            <blockquote>
-              "As a CEO of a growing trucking company, SafetyHelp’s resources and support took the worry out of compliance, letting us focus on expansion." - Sarah, CEO
-            </blockquote>
-          </div>
-
-          <!-- SafetyHelp Support -->
-          <p id="safetyHelpSupport">SafetyHelp makes OHS easy and affordable. From free tools to expert compliance support, we’re here to help you succeed—whether you’re starting out or scaling up. <a href="/SafetyHelp/services.html">Explore Services</a> | <a href="/SafetyHelp/contact.html">Contact Us</a></p>
         </section>
       </main>
 
@@ -832,12 +823,12 @@
             <li data-detail="Safety audits began in SA mines, formalizing risk management practices. <a href='https://www.mhsc.org.za/about-us/history' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1960: Safety Audits (SA)</li>
             <li data-detail="US OSHA Act set workplace safety standards, influencing SA's later OHS laws. <a href='https://www.osha.gov/laws-regs/oshact/completeoshact' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1970: OSHA (USA)</li>
             <li data-detail="Global ergonomic standards emerged, later adopted in SA for workplace design. <a href='https://www.ergonomics.org/history' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1970: Ergonomics (Global)</li>
-            <li data-detail="UK Health and Safety at Work Act influenced SA's modern OHS framework. <a href='https://www.legislation.gov.uk/ukpga/1974/37/contents" target="_blank">Source</a>"><i class="fas fa-landmark list-icon"></i>1974: HSWA (UK)</li>
+            <li data-detail="UK Health and Safety at Work Act influenced SA's modern OHS framework. <a href='https://www.legislation.gov.uk/ukpga/1974/37/contents' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1974: HSWA (UK)</li>
             <li data-detail="SA hosted first OHS conferences, fostering local safety knowledge exchange. <a href='https://www.iosh.com/about-us/our-history' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1980: OHS Conferences (SA)</li>
             <li data-detail="Bhopal disaster highlighted chemical safety needs, prompting SA regulations. <a href='https://www.britannica.com/event/Bhopal-disaster' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1984: Bhopal Disaster (India)</li>
             <li data-detail="Chernobyl accident emphasized high-risk industry safety, impacting SA mining. <a href='https://www.world-nuclear.org/information-library/safety-and-security/safety-of-plants/chernobyl-accident.aspx' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1986: Chernobyl (USSR)</li>
             <li data-detail="Piper Alpha disaster led to offshore safety reforms, influencing SA's oil sector. <a href='https://www.hse.gov.uk/offshore/piper-alpha-disaster.htm' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1988: Piper Alpha (UK)</li>
-            <li data-detail="First OHS software tools developed globally, adopted later in SA for risk assessment. <a href='https://www.ehstoday.com/safety-technology/article/21917342-the-evolution-of-safety-technology' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1990: OHS Software (Global)</li>
+            <li data-detail="First OHS software tools developed globally, adopted later in SA for risk assessment. <a href='https://www.ehstoday.com/safety-technology/article/21917342/the-evolution-of-safety-technology' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1990: OHS Software (Global)</li>
             <li data-detail="SA OHS Act No. 85 of 1993 established modern safety responsibilities post-apartheid. <a href='https://www.gov.za/documents/occupational-health-and-safety-act' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1993: OHS Act (SA)</li>
             <li data-detail="SA COIDA amended, improving worker compensation and rehabilitation processes. <a href='https://www.gov.za/documents/compensation-occupational-injuries-and-diseases-act' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>2003: COIDA Amendment (SA)</li>
             <li data-detail="First mobile OHS apps emerged globally, enhancing SA's safety management. <a href='https://www.safetyandhealthmagazine.com/articles/18647-safety-apps' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>2010: OHS Mobile Apps (Global)</li>
@@ -878,11 +869,11 @@
     <div class="modal-content">
       <div class="modal-header">
         <h4 id="modalTitle">Community Action</h4>
-        <span class="close-btn">&times;</span>
+        <span class="close-btn" onclick="closeModal()">×</span>
       </div>
       <div class="modal-body modal-form" id="modalBody"></div>
       <div class="modal-footer" id="modalFooter">
-        <button class="action-button-secondary"><i class="fas fa-times btn-icon"></i>Close</button>
+        <button onclick="closeModal()" class="action-button-secondary"><i class="fas fa-times btn-icon"></i>Close</button>
       </div>
     </div>
   </div>
@@ -891,7 +882,7 @@
     <div id="chat-window" class="chat-hidden">
       <div id="chat-header">
         <span>Salatiso - Your OHS Assistant</span>
-        <button class="close-chat-btn">&times;</button>
+        <button class="close-chat-btn" onclick="toggleChatbot(false)">×</button>
       </div>
       <div id="chat-output">
         <p><strong>Salatiso:</strong> Hello! How can I help you with OHS today?</p>
@@ -901,7 +892,7 @@
         <button id="chat-send"><i class="fas fa-paper-plane"></i></button>
       </div>
     </div>
-    <button id="chat-toggle">
+    <button id="chat-toggle" onclick="toggleChatbot()">
       <i class="fas fa-headset"></i>
     </button>
   </div>
@@ -930,12 +921,10 @@
     }
 
     // --- Modal Functionality ---
-    const modal = document.getElementById('infoModal');
+    const infoModal = document.getElementById('infoModal');
     const modalTitle = document.getElementById('modalTitle');
     const modalBody = document.getElementById('modalBody');
     const modalFooter = document.getElementById('modalFooter');
-    const closeBtn = modal.querySelector('.close-btn');
-    const closeFooterBtn = modal.querySelector('.modal-footer button');
 
     function showMilestoneDetail(element) {
       const title = element.textContent.trim().replace(/^.*? /,'');
@@ -943,20 +932,19 @@
       modalTitle.textContent = `OHS Milestone: ${title}`;
       modalBody.innerHTML = `<p>${detail}</p>`;
       modalFooter.innerHTML = `<button onclick="closeModal()" class="action-button-secondary"><i class="fas fa-times btn-icon"></i>Close</button>`;
-      modal.style.display = 'flex';
+      infoModal.style.display = 'flex';
     }
 
     function closeModal() {
-      modal.style.display = 'none';
+      infoModal.style.display = 'none';
       modalBody.innerHTML = '';
       modalFooter.innerHTML = `<button onclick="closeModal()" class="action-button-secondary"><i class="fas fa-times btn-icon"></i>Close</button>`;
     }
 
-    closeBtn.addEventListener('click', closeModal);
-    closeFooterBtn.addEventListener('click', closeModal);
-
     window.onclick = function(event) {
-      if (event.target == modal) closeModal();
+      if (event.target == infoModal) {
+        closeModal();
+      }
     }
 
     // --- Community Page Specific JS ---
@@ -1029,85 +1017,22 @@
     }
 
     // Career Wizard
-    const resources = [
-      { title: "EduCourse (South Africa)", description: "Free online OHS course with certificate.", link: "http://www.educourse.co.za/free-health-safety-certificate-ohs", cost: "free", tags: ["beginner", "pastor", "employee", "learn", "cv"], icon: "fa-laptop-code" },
-      { title: "OSHAcademy", description: "Full OHS course library.", link: "http://www.oshacademy.com", cost: "free", tags: ["beginner", "intermediate", "pastor", "manager", "learn", "safety"], icon: "fa-laptop-code" },
-      { title: "Oxford Home Study Centre (UK)", description: "Free health and safety courses.", link: "http://oxfordhomestudy.com", cost: "free", tags: ["beginner", "pastor", "employee", "learn", "safety"], icon: "fa-laptop-code" },
-      { title: "Alison", description: "Free courses on workplace safety.", link: "http://alison.com", cost: "free", tags: ["beginner", "intermediate", "employee", "learn", "cv"], icon: "fa-laptop-code" },
-      { title: "Coursera", description: "Introduction to OSHA, Construction Safety.", link: "http://coursera.org", cost: "free", tags: ["beginner", "intermediate", "manager", "learn", "safety"], icon: "fa-laptop-code" },
-      { title: { title: "NIOSH eLearning (CDC)", description: "Webinars for construction, healthcare.", link: "http://cdc.gov/niosh", cost: "free", tags: ["intermediate", "advanced", "manager", "safety"], icon: "fa-laptop-code" },
-      { title: "YouTube (OHS Channels)", description: "Free OHS tutorials and toolbox talks.", link: "#", cost: "free", tags: ["beginner", "pastor", "employee", "learn"], icon: "fa-laptop-code" },
-      { title: "SAMTRAC (South Africa)", description: "Recognized OHS qualification.", link: "http://www.nosa.co.za", cost: "premium", tags: ["intermediate", "advanced", "ceo", "manager", "certify"], icon: "fa-certificate" },
-      { title: "NEBOSH (UK/Global)", description: "International General Certificate.", link: "http://nebosh.org.uk", cost: "premium", tags: ["advanced", "ceo", "certify"], icon: "fa-certificate" },
-      { title: "OSHA Outreach (USA)", description: "10/30-Hour training cards.", link: "http://osha.gov/training", cost: "free", tags: ["intermediate", "manager", "certify"], icon: "fa-certificate" },
-      { title: "Harvard Online (edX)", description: "Improving Workplace Culture.", link: "http://edx.org/school/harvardx", cost: "free", tags: ["intermediate", "ceo", "manager", "safety"], icon: "fa-certificate" },
-      { title: "UCT (GetSmarter)", description: "OHS Management course.", link: "http://uct.getsmarter.com", cost: "premium", tags: ["advanced", "ceo", "certify"], icon: "fa-certificate" },
-      { title: "ILO", description: "OSH Encyclopaedia, Safety Cards.", link: "http://ilo.org", cost: "free", tags: ["intermediate", "advanced", "manager", "safety"], icon: "fa-toolbox" },
-      { title: "ITC-ILO Training Centre", description: "Safety Academy Courses.", link: "http://itcilo.org", cost: "free", tags: ["intermediate", "manager", "safety"], icon: "fa-toolbox" },
-      { title: "NIOSH Mobile Apps", description: "Ladder Safety, Heat Safety Tools.", link: "http://cdc.gov/niosh/apps", cost: "free", tags: ["beginner", "pastor", "employee", "safety"], icon: "fa-toolbox" },
-      { title: "OSHA eTools & eMatrix", description: "Guides for construction, healthcare.", link: "http://osha.gov/apps-and-etools", cost: "free", tags: ["intermediate", "ceo", "safety"], icon: "fa-toolbox" },
-      { title: "WHO – Healthy Workplaces", description: "Manuals, frameworks.", link: "http://who.int/occupational_health", cost: "free", tags: ["intermediate", "ceo", "manager", "safety"], icon: "fa-toolbox" }
-    ];
-
-    const roleTips = {
-      pastor: `
-        <h4>Tips for Pastors</h4>
-        <p>Make your church a safe haven with these steps:</p>
-        <ul>
-          <li>Use free tools like NIOSH Mobile Apps to check ladders or exits.</li>
-          <li>Learn fire safety basics from Oxford Home Study Centre to protect your congregation.</li>
-          <li>Create a simple emergency plan—SafetyHelp can guide you.</li>
-        </ul>
-      `,
-      ceo: `
-        <h4>Tips for CEOs</h4>
-        <p>Grow your company confidently with SafetyHelp:</p>
-        <ul>
-          <li>Start with free OSHA eTools to assess construction and trucking risks.</li>
-          <li>Train staff affordably with Alison courses to meet regulations.</li>
-          <li>Rely on SafetyHelp for compliance audits—focus on growth, not worries.</li>
-        </ul>
-      `,
-      manager: `
-        <h4>Tips for Managers</h4>
-        <p>Enhance workplace safety with these steps:</p>
-        <ul>
-          <li>Use Coursera’s free OSHA courses to train your team.</li>
-          <li>Implement safety checks with NIOSH Mobile Apps.</li>
-          <li>Partner with SafetyHelp for compliance support.</li>
-        </ul>
-      `,
-      employee: `
-        <h4>Tips for Employees</h4>
-        <p>Build your skills and career with these steps:</p>
-        <ul>
-          <li>Take free EduCourse to boost your CV.</li>
-          <li>Learn safety basics via YouTube OHS channels.</li>
-          <li>Explore job opportunities through SafetyHelp’s career tools.</li>
-        </ul>
-      `,
-      other: `
-        <h4>Tips for All</h4>
-        <p>Start your OHS journey with these steps:</p>
-        <ul>
-          <li>Explore free courses like Alison to learn basics.</li>
-          <li>Use WHO’s Healthy Workplaces resources for guidance.</li>
-          <li>Contact SafetyHelp for personalized support.</li>
-        </ul>
-      `
-    };
-
-    const startWizardBtn = document.getElementById('startWizardBtn');
     const careerWizard = document.getElementById('careerWizard');
+    const startWizardBtn = document.getElementById('startWizardBtn');
+
+    function openWizard() {
+      careerWizard.style.display = 'flex';
+      document.getElementById('step0').classList.add('active');
+    }
+
+    function closeWizard() {
+      careerWizard.style.display = 'none';
+      document.querySelectorAll('.wizard-step').forEach(step => step.classList.remove('active'));
+      document.getElementById('wizardOutput').style.display = 'none';
+    }
 
     if (startWizardBtn) {
-      startWizardBtn.addEventListener('click', () => {
-        careerWizard.style.display = 'block';
-        document.getElementById('step0').classList.add('active');
-        document.getElementById('step1').classList.remove('active');
-        document.getElementById('step2').classList.remove('active');
-        document.getElementById('wizardOutput').style.display = 'none';
-      });
+      startWizardBtn.addEventListener('click', openWizard);
     }
 
     document.getElementById('nextStep0').addEventListener('click', () => {
@@ -1159,8 +1084,23 @@
     document.getElementById('restartWizardBtn').addEventListener('click', () => {
       document.getElementById('wizardOutput').style.display = 'none';
       document.getElementById('step0').classList.add('active');
-      careerWizard.style.display = 'block';
     });
+
+    // Resources for wizard
+    const resources = [
+      { title: "EduCourse (South Africa)", description: "Ideal for learning basics like hazard identification—great for CV boosting.", link: "http://www.educourse.co.za/free-health-safety-certificate-ohs", cost: "free", tags: ["pastor", "ceo", "manager", "employee", "other", "beginner", "learn", "cv"] },
+      { title: "OSHAcademy", description: "Accessible worldwide, perfect for structured learning.", link: "http://www.oshacademy.com", cost: "free", tags: ["pastor", "ceo", "manager", "employee", "other", "beginner", "intermediate", "learn", "cv"] },
+      { title: "SAMTRAC (South Africa)", description: "Ideal for professionals in construction, logistics.", link: "http://www.nosa.co.za", cost: "premium", tags: ["ceo", "manager", "advanced", "certify", "safety"] },
+      { title: "NEBOSH (UK/Global)", description: "Globally respected for employers.", link: "http://nebosh.org.uk", cost: "premium", tags: ["ceo", "manager", "advanced", "certify", "safety"] }
+    ];
+
+    const roleTips = {
+      pastor: "<p><strong>Tip:</strong> Start with free courses to ensure church safety and grow your community leadership.</p>",
+      ceo: "<p><strong>Tip:</strong> Explore premium certifications to scale your business safely and compliantly.</p>",
+      manager: "<p><strong>Tip:</strong> Use free tools and courses to enhance team safety and your leadership skills.</p>",
+      employee: "<p><strong>Tip:</strong> Boost your CV with free OHS courses to stand out in the job market.</p>",
+      other: "<p><strong>Tip:</strong> Begin with free resources to explore OHS and find your path.</p>"
+    };
 
     // --- Resource Carousel ---
     const carouselContainer = document.getElementById('resourceCarousel');
@@ -1168,15 +1108,17 @@
     const nextBtn = document.querySelector('.carousel-nav.next');
     let currentIndex = 0;
     let autoRotateInterval;
+    const totalItems = carouselContainer.children.length;
 
     function updateCarousel() {
-      const itemWidth = 100 / 3; // 33.33% per item for desktop
+      const itemWidth = 100 / 3; // 33.33% for desktop
       const offset = -currentIndex * itemWidth;
+      carouselContainer.style.transition = 'transform 0.5s ease';
       carouselContainer.style.transform = `translateX(${offset}%)`;
     }
 
     function rotateCarousel() {
-      currentIndex = (currentIndex + 1) % (carouselContainer.children.length / 2); // Loop through original items
+      currentIndex = (currentIndex + 1) % totalItems;
       updateCarousel();
     }
 
@@ -1190,14 +1132,14 @@
 
     prevBtn.addEventListener('click', () => {
       stopAutoRotate();
-      currentIndex = (currentIndex - 1 + carouselContainer.children.length) % (carouselContainer.children.length / 2);
+      currentIndex = (currentIndex - 1 + totalItems) % totalItems;
       updateCarousel();
       startAutoRotate();
     });
 
     nextBtn.addEventListener('click', () => {
       stopAutoRotate();
-      currentIndex = (currentIndex + 1) % (carouselContainer.children.length / 2);
+      currentIndex = (currentIndex + 1) % totalItems;
       updateCarousel();
       startAutoRotate();
     });
@@ -1218,13 +1160,6 @@
       }
     });
 
-    // Clone items for infinite loop
-    const carouselItems = Array.from(carouselContainer.children);
-    carouselItems.forEach(item => {
-      const clone = item.cloneNode(true);
-      carouselContainer.appendChild(clone);
-    });
-
     // Start auto-rotation
     startAutoRotate();
     carouselContainer.addEventListener('mouseenter', stopAutoRotate);
@@ -1236,7 +1171,6 @@
     const chatInputEl = document.getElementById('chat-input');
     const chatSendBtn = document.getElementById('chat-send');
     const chatOutputEl = document.getElementById('chat-output');
-    const closeChatBtn = document.querySelector('.close-chat-btn');
 
     function toggleChatbot(forceOpen) {
       const isHidden = chatWindow.classList.contains('chat-hidden');
@@ -1278,25 +1212,14 @@
       }, 500);
     }
 
-    if (chatToggleBtn) {
-      chatToggleBtn.addEventListener('click', () => toggleChatbot());
-    }
-
-    if (closeChatBtn) {
-      closeChatBtn.addEventListener('click', () => toggleChatbot(false));
-    }
-
-    if (chatSendBtn) {
-      chatSendBtn.addEventListener('click', handleChatSend);
-    }
-
-    if (chatInputEl) {
-      chatInputEl.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-          handleChatSend();
-        }
-      });
-    }
+    chatToggleBtn.addEventListener('click', () => toggleChatbot());
+    document.querySelector('.close-chat-btn').addEventListener('click', () => toggleChatbot(false));
+    chatSendBtn.addEventListener('click', handleChatSend);
+    chatInputEl.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        handleChatSend();
+      }
+    });
 
     // --- Initial calls ---
     window.onload = function() {
