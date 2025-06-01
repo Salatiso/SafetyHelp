@@ -62,8 +62,8 @@
       font-size: 0.9em;
     }
     .search-language { display: flex; align-items: center; gap: 1rem; }
-    .search-language input { padding: 0.6rem; border: 1px solid #ddd; border-radius: 6px; font-family: 'Montserrat', sans-serif; }
-    .search-language select { padding: 0.6rem; border-radius: 6px; border: 1px solid #ddd; font-family: 'Montserrat', sans-serif; }
+    .search-language input { padding: 0.6rem; border: 1px solid #ddd; border-radius: 6px; font-family: inherit; }
+    .search-language select { padding: 0.6rem; border-radius: 6px; border: 1px solid #ddd; font-family: inherit; }
 
     /* Page Title Area */
     .page-title-section { 
@@ -205,7 +205,7 @@
     }
     .community-actions .action-button {
       padding: 0.7rem 1.3rem;
-      border-radius: 6px;
+      border-radius: 4px;
       font-weight: 500;
       transition: background-color 0.3s ease, transform 0.2s ease;
       display: inline-flex;
@@ -233,7 +233,7 @@
     .content-list {
       margin-top: 1rem;
       border: 1px solid #e0e0e0;
-      border-radius: 6px;
+      border-radius: 4px;
       padding: 1rem;
       background-color: #f9f9f9;
     }
@@ -283,55 +283,145 @@
     footer a:hover { color: #fff; }
     /* Modal Styles */
     .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); padding-top: 60px; }
-    .modal-content { background-color: #fefefe; margin: 5% auto; padding: 25px; border: 1px solid #888; width: 80%; max-width: 600px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative; }
-    .modal-header { padding-bottom: 10px; border-bottom: 1px solid #eee; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
+    .modal-content { background-color: #fefefe; margin: 5% auto; padding: 20px; border: 1px solid #888; width: 90%; max-width: 600px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative; }
+    .modal-header { padding-bottom: 10px; border-bottom: 1px solid #eee; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
     .modal-header h4 { margin: 0; font-size: 1.4rem; color: #007BFF; }
-    .close-btn { color: #aaa; font-size: 28px; font-weight: bold; cursor: pointer; transition: color 0.3s; }
-    .close-btn:hover, .close-btn:focus { color: #333; text-decoration: none; }
-    .modal-body { /* General modal body */ }
+    .close-btn { color: #aaa; font-size: 24px; font-weight: bold; cursor: pointer; transition: color 0.3s; }
+    .close-btn:hover { color: #333; }
     .modal-body p { font-size: 1rem; line-height: 1.6; margin-bottom: 1rem; }
     .modal-body strong { color: #333; }
-    .modal-body ul { list-style-type: disc; margin-left: 20px; margin-bottom: 1rem;}
-    .modal-footer { padding-top: 15px; border-top: 1px solid #eee; margin-top: 20px; text-align: right; }
-    .modal-footer button { background-color: #6c757d; color:white; border:none; padding: 0.7rem 1.3rem; border-radius:6px; cursor:pointer; } 
+    .modal-body ul { list-style: disc; margin-left: 20px; margin-bottom: 1rem; }
+    .modal-footer { padding-top: 10px; border-top: 1px solid #eee; text-align: right; }
+    .modal-footer button { background-color: #6c757d; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; }
     .modal-footer button:hover { background-color: #5a6268; }
     /* Modal Form Styles */
     .modal-form .form-group { margin-bottom: 1rem; }
     .modal-form .form-group label { font-size: 0.9rem; margin-bottom: 0.3rem; }
     .modal-form .form-input, .modal-form .form-textarea { font-size: 0.95rem; padding: 0.6rem 0.8rem; }
-    .modal-form .form-textarea { min-height: 80px; }
+    .modal-form textarea { min-height: 80px; }
     /* Chatbot Styles */
     .chatbot-container { position: fixed; bottom: 20px; right: 20px; z-index: 1050; }
     #chat-toggle { background-color: #FF8C00; color: white; border: none; border-radius: 50%; width: 60px; height: 60px; font-size: 1.8rem; box-shadow: 0 4px 8px rgba(0,0,0,0.2); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background-color 0.3s ease, transform 0.3s ease; }
     #chat-toggle:hover { background-color: #e07b00; transform: scale(1.1); }
-    #chat-window { width: 320px; max-height: 450px; background-color: #fff; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); display: flex; flex-direction: column; overflow: hidden; transition: opacity 0.3s ease, transform 0.3s ease; position: absolute; bottom: 75px; right: 0; opacity: 0; transform: translateY(10px); pointer-events: none; }
+    #chat-window { width: 320px; max-height: 450px; background-color: #fff; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); display: flex; flex-direction: column; overflow: hidden; transition: opacity 0.3s ease, transform 0.3s ease; position: absolute; bottom: 75px; right: 0; opacity: 0; transform: translateY(10px); pointer-events: none; }
     #chat-window.chat-expanded { opacity: 1; transform: translateY(0); pointer-events: auto; }
     .chat-hidden { display: none !important; }
-    #chat-header { background-color: #007BFF; color: white; padding: 10px 15px; font-weight: 600; border-top-left-radius: 10px; border-top-right-radius: 10px; display: flex; justify-content: space-between; align-items: center; }
+    #chat-header { background-color: #007BFF; color: white; padding: 10px 15px; font-weight: 600; border-top-left-radius: 8px; border-top-right-radius: 8px; display: flex; justify-content: space-between; align-items: center; }
     #chat-header .close-chat-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; }
     #chat-output { flex-grow: 1; padding: 15px; overflow-y: auto; font-size: 0.9rem; background-color: #f9f9f9; }
     #chat-output p { margin-bottom: 0.8rem; line-height: 1.4; }
     #chat-output p strong { color: #007BFF; }
     #chat-output p strong:first-child { color: #FF8C00; } 
     #chat-input-container { display: flex; border-top: 1px solid #eee; padding: 10px; background-color: #fff; }
-    #chat-input { flex-grow: 1; padding: 0.7rem; border: 1px solid #ddd; border-radius: 6px; margin-right: 8px; font-family: 'Montserrat', sans-serif; }
-    #chat-send { background-color: #007BFF; color: white; padding: 0.7rem 1rem; border: none; border-radius: 6px; cursor: pointer; font-weight: 500; transition: background-color 0.3s ease; }
+    #chat-input { flex-grow: 1; padding: 0.7rem; border: 1px solid #ddd; border-radius: 4px; margin-right: 8px; font-family: inherit; }
+    #chat-send { background-color: #007BFF; color: white; padding: 0.7rem 1rem; border: none; border-radius: 4px; cursor: pointer; font-weight: 500; transition: background-color 0.3s ease; }
     #chat-send:hover { background-color: #0056b3; }
     /* Career Wizard Styles */
-    .career-wizard { margin-top: 1rem; background: #f9f9f9; padding: 1rem; border-radius: 6px; }
+    .career-wizard { margin-top: 1rem; background: #f9f9f9; padding: 1rem; border-radius: 4px; }
     .wizard-step { display: none; }
     .wizard-step.active { display: block; }
-    .wizard-step select, .wizard-step input { width: 100%; padding: 0.6rem; margin-bottom: 0.5rem; border: 1px solid #ddd; border-radius: 6px; }
+    .wizard-step select, .wizard-step input { width: 100%; padding: 0.6rem; margin-bottom: 0.5rem; border: 1px solid #ddd; border-radius: 4px; }
     .wizard-step button { margin-top: 0.5rem; }
-    /* Resource Section Styles */
-    .resource-categories { margin: 1rem 0; }
-    .resource-category { margin-bottom: 1.5rem; }
-    .resource-category h3 { font-size: 1.3rem; color: #0056b3; margin-bottom: 0.5rem; }
-    .resource-category p { font-size: 0.9rem; color: #374151; }
-    .resource-category ul { list-style: none; padding: 0; }
-    .resource-category li { margin: 0.75rem 0; font-size: 0.9rem; }
-    .cost.free { color: #28a745; font-weight: 600; }
-    .cost.premium { color: #dc3545; font-weight: 600; }
+    /* Resource Carousel Styles */
+    .resource-carousel { position: relative; margin: 1.5rem 0; overflow: hidden; }
+    .carousel-container { display: flex; transition: transform 0.5s ease; }
+    .carousel-item { 
+      flex: 0 0 33.33%; 
+      padding: 1rem; 
+      box-sizing: border-box; 
+      cursor: pointer; 
+      background: #fff; 
+      border-radius: 8px; 
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+      margin: 0 0.5rem; 
+      transition: transform 0.3s ease, box-shadow 0.3s ease; 
+      min-height: 180px; 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: space-between; 
+    }
+    .carousel-item:hover { 
+      transform: translateY(-5px); 
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15); 
+    }
+    .carousel-item.active { 
+      transform: scale(1.05); 
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2); 
+    }
+    .carousel-item .item-header { 
+      display: flex; 
+      align-items: center; 
+      gap: 0.75rem; 
+      margin-bottom: 0.5rem; 
+    }
+    .carousel-item .item-icon { 
+      font-size: 1.5rem; 
+      color: #007BFF; 
+    }
+    .carousel-item h4 { 
+      font-size: 1.1rem; 
+      color: #333; 
+      font-weight: 600; 
+      margin: 0; 
+      flex-grow: 1; 
+    }
+    .carousel-item .cost { 
+      font-size: 0.9rem; 
+      font-weight: 600; 
+    }
+    .carousel-item .cost.free { color: #28a745; }
+    .carousel-item .cost.premium { color: #dc3545; }
+    .carousel-item .item-details { 
+      display: none; 
+      font-size: 0.9rem; 
+      color: #555; 
+      line-height: 1.5; 
+      margin-top: 0.5rem; 
+    }
+    .carousel-item .item-details.active { 
+      display: block; 
+    }
+    .carousel-item .item-details a { 
+      color: #FF8C00; 
+      text-decoration: underline; 
+      font-weight: 500; 
+    }
+    .carousel-item .item-details a:hover { 
+      color: #e07b00; 
+    }
+    .carousel-nav { 
+      position: absolute; 
+      top: 50%; 
+      transform: translateY(-50%); 
+      background: rgba(0,123,255,0.8); 
+      color: white; 
+      border: none; 
+      border-radius: 50%; 
+      width: 40px; 
+      height: 40px; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      cursor: pointer; 
+      transition: background-color 0.3s ease; 
+      z-index: 10; 
+    }
+    .carousel-nav:hover { 
+      background: #0056b3; 
+    }
+    .carousel-nav.prev { 
+      left: 10px; 
+    }
+    .carousel-nav.next { 
+      right: 10px; 
+    }
+    @media (max-width: 768px) {
+      .carousel-item { flex: 0 0 100%; }
+    }
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .carousel-item { flex: 0 0 50%; }
+    }
+    /* Testimonials */
     .testimonials { margin: 1.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     .testimonials blockquote { border-left: 4px solid #007BFF; padding-left: 0.75rem; font-size: 0.9rem; color: #374151; }
     @media (max-width: 768px) { .testimonials { grid-template-columns: 1fr; } }
@@ -463,51 +553,203 @@
 
         <section id="careerWizardSection">
           <h2><i class="fas fa-map-signs section-icon"></i>Explore Your OHS Career Path</h2>
-          <p>Whether you’re starting with no money and want to build skills to earn a living, or you’re a leader like a pastor making your church safe or a CEO growing a construction and trucking company without compliance worries, this section is for you. Explore free courses, certifications, and tools below, and use our wizard to find what fits your needs. SafetyHelp is here to support you every step of the way.</p>
+          <p>Whether you’re starting with no money and want to build skills to earn a living, or you’re a leader like a pastor making your church safe or a CEO growing a construction and trucking company without compliance worries, this section is for you. Explore free courses, certifications, and tools in the carousel below, and use our wizard above to find what fits your needs. SafetyHelp is here to support you every step of the way.</p>
 
-          <!-- Resource Categories -->
-          <div class="resource-categories">
-            <div class="resource-category">
-              <h3><i class="fas fa-laptop-code"></i> Courses</h3>
-              <p>Short, introductory, and online training—perfect for beginners or those on a budget.</p>
-              <ul>
-                <li><strong>EduCourse (South Africa)</strong> - Free online OHS course with downloadable certificate. <span class="cost free">Free</span> <a href="http://www.educourse.co.za/free-health-safety-certificate-ohs" target="_blank">Learn More</a><br>Ideal for learning basics like hazard identification—great for CV boosting.</li>
-                <li><strong>OSHAcademy</strong> - Full OHS course library (Safety Officer, Construction, etc.). <span class="cost free">Free to study</span> <a href="http://www.oshacademy.com" target="_blank">Learn More</a><br>Accessible worldwide, perfect for structured learning.</li>
-                <li><strong>Oxford Home Study Centre (UK)</strong> - Free health and safety courses (Fire Safety, Risk Assessment). <span class="cost free">Free</span> <a href="http://oxfordhomestudy.com" target="_blank">Learn More</a><br>Beginner-friendly, self-paced.</li>
-                <li><strong>Alison</strong> - Free courses on workplace safety, HAZMAT, and more. <span class="cost free">Free</span> <a href="http://alison.com" target="_blank">Learn More</a><br>Flexible 2-20 hour courses for all levels.</li>
-                <li><strong>Coursera</strong> - “Introduction to OSHA”, “Construction Safety”. <span class="cost free">Free to audit</span> <a href="http://coursera.org" target="_blank">Learn More</a><br>Top university content at no cost.</li>
-                <li><strong>NIOSH eLearning (CDC - USA)</strong> - Webinars for construction, healthcare. <span class="cost free">Free</span> <a href="http://cdc.gov/niosh" target="_blank">Learn More</a><br>Technical, research-driven learning.</li>
-                <li><strong>YouTube (OHS Channels)</strong> - Tutorials, toolbox talks, simulations. <span class="cost free">Free</span><br>Search “OHS training for beginners” or try channels like SafetySkills.</li>
-              </ul>
+          <!-- Resource Carousel -->
+          <div class="resource-carousel">
+            <button class="carousel-nav prev"><i class="fas fa-chevron-left"></i></button>
+            <div class="carousel-container" id="resourceCarousel">
+              <div class="carousel-item" data-icon="fa-laptop-code">
+                <div class="item-header">
+                  <i class="fas fa-laptop-code item-icon"></i>
+                  <h4>EduCourse (South Africa)</h4>
+                  <span class="cost free">Free</span>
+                </div>
+                <div class="item-details">
+                  <p>Ideal for learning basics like hazard identification—great for CV boosting.</p>
+                  <p><a href="http://www.educourse.co.za/free-health-safety-certificate-ohs" target="_blank">Learn More</a></p>
+                </div>
+              </div>
+              <div class="carousel-item" data-icon="fa-laptop-code">
+                <div class="item-header">
+                  <i class="fas fa-laptop-code item-icon"></i>
+                  <h4>OSHAcademy</h4>
+                  <span class="cost free">Free</span>
+                </div>
+                <div class="item-details">
+                  <p>Accessible worldwide, perfect for structured learning.</p>
+                  <p><a href="http://www.oshacademy.com" target="_blank">Learn More</a></p>
+                </div>
+              </div>
+              <div class="carousel-item" data-icon="fa-laptop-code">
+                <div class="item-header">
+                  <i class="fas fa-laptop-code item-icon"></i>
+                  <h4>Oxford Home Study Centre (UK)</h4>
+                  <span class="cost free">Free</span>
+                </div>
+                <div class="item-details">
+                  <p>Beginner-friendly, self-paced.</p>
+                  <p><a href="http://oxfordhomestudy.com" target="_blank">Learn More</a></p>
+                </div>
+              </div>
+              <div class="carousel-item" data-icon="fa-laptop-code">
+                <div class="item-header">
+                  <i class="fas fa-laptop-code item-icon"></i>
+                  <h4>Alison</h4>
+                  <span class="cost free">Free</span>
+                </div>
+                <div class="item-details">
+                  <p>Flexible 2-20 hour courses for all levels.</p>
+                  <p><a href="http://alison.com" target="_blank">Learn More</a></p>
+                </div>
+              </div>
+              <div class="carousel-item" data-icon="fa-laptop-code">
+                <div class="item-header">
+                  <i class="fas fa-laptop-code item-icon"></i>
+                  <h4>Coursera</h4>
+                  <span class="cost free">Free</span>
+                </div>
+                <div class="item-details">
+                  <p>Top university content at no cost.</p>
+                  <p><a href="http://coursera.org" target="_blank">Learn More</a></p>
+                </div>
+              </div>
+              <div class="carousel-item" data-icon="fa-laptop-code">
+                <div class="item-header">
+                  <i class="fas fa-laptop-code item-icon"></i>
+                  <h4>NIOSH eLearning (CDC - USA)</h4>
+                  <span class="cost free">Free</span>
+                </div>
+                <div class="item-details">
+                  <p>Technical, research-driven learning.</p>
+                  <p><a href="http://cdc.gov/niosh" target="_blank">Learn More</a></p>
+                </div>
+              </div>
+              <div class="carousel-item" data-icon="fa-laptop-code">
+                <div class="item-header">
+                  <i class="fas fa-laptop-code item-icon"></i>
+                  <h4>YouTube (OHS Channels)</h4>
+                  <span class="cost free">Free</span>
+                </div>
+                <div class="item-details">
+                  <p>Search “OHS training for beginners” or try channels like SafetySkills.</p>
+                </div>
+              </div>
+              <div class="carousel-item" data-icon="fa-certificate">
+                <div class="item-header">
+                  <i class="fas fa-certificate item-icon"></i>
+                  <h4>SAMTRAC (South Africa)</h4>
+                  <span class="cost premium">Premium</span>
+                </div>
+                <div class="item-details">
+                  <p>Ideal for professionals in construction, logistics.</p>
+                  <p><a href="http://www.nosa.co.za" target="_blank">Learn More</a></p>
+                </div>
+              </div>
+              <div class="carousel-item" data-icon="fa-certificate">
+                <div class="item-header">
+                  <i class="fas fa-certificate item-icon"></i>
+                  <h4>NEBOSH (UK/Global)</h4>
+                  <span class="cost premium">Premium</span>
+                </div>
+                <div class="item-details">
+                  <p>Globally respected for employers.</p>
+                  <p><a href="http://nebosh.org.uk" target="_blank">Learn More</a></p>
+                </div>
+              </div>
+              <div class="carousel-item" data-icon="fa-certificate">
+                <div class="item-header">
+                  <i class="fas fa-certificate item-icon"></i>
+                  <h4>OSHA Outreach (USA)</h4>
+                  <span class="cost free">Low to Moderate</span>
+                </div>
+                <div class="item-details">
+                  <p>Accepted safety orientation.</p>
+                  <p><a href="http://osha.gov/training" target="_blank">Learn More</a></p>
+                </div>
+              </div>
+              <div class="carousel-item" data-icon="fa-certificate">
+                <div class="item-header">
+                  <i class="fas fa-certificate item-icon"></i>
+                  <h4>Harvard Online (edX)</h4>
+                  <span class="cost free">Free</span>
+                </div>
+                <div class="item-details">
+                  <p>High-quality leadership training.</p>
+                  <p><a href="http://edx.org/school/harvardx" target="_blank">Learn More</a></p>
+                </div>
+              </div>
+              <div class="carousel-item" data-icon="fa-certificate">
+                <div class="item-header">
+                  <i class="fas fa-certificate item-icon"></i>
+                  <h4>University of Cape Town (GetSmarter)</h4>
+                  <span class="cost premium">Premium</span>
+                </div>
+                <div class="item-details">
+                  <p>For OHS officers.</p>
+                  <p><a href="http://uct.getsmarter.com" target="_blank">Learn More</a></p>
+                </div>
+              </div>
+              <div class="carousel-item" data-icon="fa-toolbox">
+                <div class="item-header">
+                  <i class="fas fa-toolbox item-icon"></i>
+                  <h4>International Labour Organization (ILO)</h4>
+                  <span class="cost free">Free</span>
+                </div>
+                <div class="item-details">
+                  <p>Industry-validated materials.</p>
+                  <p><a href="http://ilo.org" target="_blank">Learn More</a></p>
+                </div>
+              </div>
+              <div class="carousel-item" data-icon="fa-toolbox">
+                <div class="item-header">
+                  <i class="fas fa-toolbox item-icon"></i>
+                  <h4>ITC-ILO Training Centre</h4>
+                  <span class="cost free">Some Free</span>
+                </div>
+                <div class="item-details">
+                  <p>UN-supported safety institute.</p>
+                  <p><a href="http://itcilo.org" target="_blank">Learn More</a></p>
+                </div>
+              </div>
+              <div class="carousel-item" data-icon="fa-toolbox">
+                <div class="item-header">
+                  <i class="fas fa-toolbox item-icon"></i>
+                  <h4>NIOSH Mobile Apps</h4>
+                  <span class="cost free">Free</span>
+                </div>
+                <div class="item-details">
+                  <p>Real-time hazard checks.</p>
+                  <p><a href="http://cdc.gov/niosh/apps" target="_blank">Learn More</a></p>
+                </div>
+              </div>
+              <div class="carousel-item" data-icon="fa-toolbox">
+                <div class="item-header">
+                  <i class="fas fa-toolbox item-icon"></i>
+                  <h4>OSHA eTools & eMatrix</h4>
+                  <span class="cost free">Free</span>
+                </div>
+                <div class="item-details">
+                  <p>Step-by-step compliance.</p>
+                  <p><a href="http://osha.gov/apps-and-etools" target="_blank">Learn More</a></p>
+                </div>
+              </div>
+              <div class="carousel-item" data-icon="fa-toolbox">
+                <div class="item-header">
+                  <i class="fas fa-toolbox item-icon"></i>
+                  <h4>WHO – Healthy Workplaces</h4>
+                  <span class="cost free">Free</span>
+                </div>
+                <div class="item-details">
+                  <p>Healthy workplace strategies.</p>
+                  <p><a href="http://who.int/occupational_health" target="_blank">Learn More</a></p>
+                </div>
+              </div>
             </div>
-            <div class="resource-category">
-              <h3><i class="fas fa-certificate"></i> Certifications</h3>
-              <p>Formal credentials to advance your career or ensure compliance.</p>
-              <ul>
-                <li><strong>SAMTRAC (South Africa)</strong> - Recognized OHS qualification. <span class="cost premium">Premium (R10,000+)</span> <a href="http://www.nosa.co.za" target="_blank">Learn More</a><br>Ideal for professionals in construction, logistics.</li>
-                <li><strong>NEBOSH (UK/Global)</strong> - International General Certificate. <span class="cost premium">Premium</span> <a href="http://nebosh.org.uk" target="_blank">Learn More</a><br>Globally respected for employers.</li>
-                <li><strong>OSHA Outreach (USA)</strong> - 10/30-Hour training cards. <span class="cost free">Low to Moderate</span> <a href="http://osha.gov/training" target="_blank">Learn More</a><br>Accepted safety orientation.</li>
-                <li><strong>Harvard Online (edX)</strong> - “Improving Workplace Culture”. <span class="cost free">Free to audit</span> <a href="http://edx.org/school/harvardx" target="_blank">Learn More</a><br>High-quality leadership training.</li>
-                <li><strong>University of Cape Town (GetSmarter)</strong> - OHS Management course. <span class="cost premium">Premium (R14,000+)</span> <a href="http://uct.getsmarter.com" target="_blank">Learn More</a><br>For OHS officers.</li>
-              </ul>
-            </div>
-            <div class="resource-category">
-              <h3><i class="fas fa-toolbox"></i> Tools & Resources</h3>
-              <p>Practical support for ongoing learning and safety management.</p>
-              <ul>
-                <li><strong>International Labour Organization (ILO)</strong> - OSH Encyclopaedia, Safety Cards. <span class="cost free">Free</span> <a href="http://ilo.org" target="_blank">Learn More</a><br>Industry-validated materials.</li>
-                <li><strong>ITC-ILO Training Centre</strong> - Safety Academy Courses. <span class="cost free">Some Free</span> <a href="http://itcilo.org" target="_blank">Learn More</a><br>UN-supported safety institute.</li>
-                <li><strong>NIOSH Mobile Apps</strong> - Ladder Safety, Heat Safety Tools. <span class="cost free">Free</span> <a href="http://cdc.gov/niosh/apps" target="_blank">Learn More</a><br>Real-time hazard checks.</li>
-                <li><strong>OSHA eTools & eMatrix</strong> - Guides for construction, healthcare. <span class="cost free">Free</span> <a href="http://osha.gov/apps-and-etools" target="_blank">Learn More</a><br>Step-by-step compliance.</li>
-                <li><strong>WHO – Healthy Workplaces</strong> - Manuals, frameworks. <span class="cost free">Free</span> <a href="http://who.int/occupational_health" target="_blank">Learn More</a><br>Healthy workplace strategies.</li>
-              </ul>
-            </div>
+            <button class="carousel-nav next"><i class="fas fa-chevron-right"></i></button>
           </div>
 
           <!-- Wizard -->
-          <div class="community-actions">
-            <button id="startWizardBtn" class="action-button action-button-primary"><i class="fas fa-play"></i> Start Wizard</button>
-          </div>
           <div id="careerWizard" class="career-wizard" style="display: none;">
             <div id="step0" class="wizard-step active">
               <label for="roleSelect">Your Role:</label>
@@ -590,12 +832,12 @@
             <li data-detail="Safety audits began in SA mines, formalizing risk management practices. <a href='https://www.mhsc.org.za/about-us/history' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1960: Safety Audits (SA)</li>
             <li data-detail="US OSHA Act set workplace safety standards, influencing SA's later OHS laws. <a href='https://www.osha.gov/laws-regs/oshact/completeoshact' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1970: OSHA (USA)</li>
             <li data-detail="Global ergonomic standards emerged, later adopted in SA for workplace design. <a href='https://www.ergonomics.org/history' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1970: Ergonomics (Global)</li>
-            <li data-detail="UK Health and Safety at Work Act influenced SA's modern OHS framework. <a href='https://www.legislation.gov.uk/ukpga/1974/37/contents' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1974: HSWA (UK)</li>
+            <li data-detail="UK Health and Safety at Work Act influenced SA's modern OHS framework. <a href='https://www.legislation.gov.uk/ukpga/1974/37/contents" target="_blank">Source</a>"><i class="fas fa-landmark list-icon"></i>1974: HSWA (UK)</li>
             <li data-detail="SA hosted first OHS conferences, fostering local safety knowledge exchange. <a href='https://www.iosh.com/about-us/our-history' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1980: OHS Conferences (SA)</li>
             <li data-detail="Bhopal disaster highlighted chemical safety needs, prompting SA regulations. <a href='https://www.britannica.com/event/Bhopal-disaster' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1984: Bhopal Disaster (India)</li>
             <li data-detail="Chernobyl accident emphasized high-risk industry safety, impacting SA mining. <a href='https://www.world-nuclear.org/information-library/safety-and-security/safety-of-plants/chernobyl-accident.aspx' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1986: Chernobyl (USSR)</li>
             <li data-detail="Piper Alpha disaster led to offshore safety reforms, influencing SA's oil sector. <a href='https://www.hse.gov.uk/offshore/piper-alpha-disaster.htm' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1988: Piper Alpha (UK)</li>
-            <li data-detail="First OHS software tools developed globally, adopted later in SA for risk assessment. <a href='https://www.ehstoday.com/safety-technology/article/21917342/the-evolution-of-safety-technology' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1990: OHS Software (Global)</li>
+            <li data-detail="First OHS software tools developed globally, adopted later in SA for risk assessment. <a href='https://www.ehstoday.com/safety-technology/article/21917342-the-evolution-of-safety-technology' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1990: OHS Software (Global)</li>
             <li data-detail="SA OHS Act No. 85 of 1993 established modern safety responsibilities post-apartheid. <a href='https://www.gov.za/documents/occupational-health-and-safety-act' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1993: OHS Act (SA)</li>
             <li data-detail="SA COIDA amended, improving worker compensation and rehabilitation processes. <a href='https://www.gov.za/documents/compensation-occupational-injuries-and-diseases-act' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>2003: COIDA Amendment (SA)</li>
             <li data-detail="First mobile OHS apps emerged globally, enhancing SA's safety management. <a href='https://www.safetyandhealthmagazine.com/articles/18647-safety-apps' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>2010: OHS Mobile Apps (Global)</li>
@@ -636,7 +878,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h4 id="modalTitle">Community Action</h4>
-        <span class="close-btn"></span>
+        <span class="close-btn">&times;</span>
       </div>
       <div class="modal-body modal-form" id="modalBody"></div>
       <div class="modal-footer" id="modalFooter">
@@ -649,7 +891,7 @@
     <div id="chat-window" class="chat-hidden">
       <div id="chat-header">
         <span>Salatiso - Your OHS Assistant</span>
-        <button class="close-chat-btn"></button>
+        <button class="close-chat-btn">&times;</button>
       </div>
       <div id="chat-output">
         <p><strong>Salatiso:</strong> Hello! How can I help you with OHS today?</p>
@@ -714,21 +956,17 @@
     closeFooterBtn.addEventListener('click', closeModal);
 
     window.onclick = function(event) {
-      if (event.target == modal) {
-        closeModal();
-      }
+      if (event.target == modal) closeModal();
     }
 
     // --- Community Page Specific JS ---
     // Mentorship
     const mentorshipList = document.getElementById('mentorshipList');
-
     if (mentorshipList) mentorshipList.innerHTML = '<p class="list-item">Be the first to join our mentorship program! Sign up above.</p>';
 
     // Careers
     const searchCareersBtn = document.getElementById('searchCareersBtn');
     const careerSearchForm = document.getElementById('careerSearchForm');
-
     if (searchCareersBtn) {
       searchCareersBtn.addEventListener('click', () => {
         careerSearchForm.style.display = careerSearchForm.style.display === 'none' ? 'block' : 'none';
@@ -792,23 +1030,23 @@
 
     // Career Wizard
     const resources = [
-      { title: "EduCourse (South Africa)", description: "Free online OHS course with certificate.", link: "http://www.educourse.co.za/free-health-safety-certificate-ohs", cost: "free", tags: ["beginner", "pastor", "employee", "learn", "cv"] },
-      { title: "OSHAcademy", description: "Full OHS course library.", link: "http://www.oshacademy.com", cost: "free", tags: ["beginner", "intermediate", "pastor", "manager", "learn", "safety"] },
-      { title: "Oxford Home Study Centre (UK)", description: "Free health and safety courses.", link: "http://oxfordhomestudy.com", cost: "free", tags: ["beginner", "pastor", "employee", "learn", "safety"] },
-      { title: "Alison", description: "Free courses on workplace safety.", link: "http://alison.com", cost: "free", tags: ["beginner", "intermediate", "employee", "learn", "cv"] },
-      { title: "Coursera", description: "Introduction to OSHA, Construction Safety.", link: "http://coursera.org", cost: "free", tags: ["beginner", "intermediate", "manager", "learn", "safety"] },
-      { title: "NIOSH eLearning (CDC)", description: "Webinars for construction, healthcare.", link: "http://cdc.gov/niosh", cost: "free", tags: ["intermediate", "advanced", "manager", "safety"] },
-      { title: "YouTube (OHS Channels)", description: "Free OHS tutorials and toolbox talks.", link: "#", cost: "free", tags: ["beginner", "pastor", "employee", "learn"] },
-      { title: "SAMTRAC (South Africa)", description: "Recognized OHS qualification.", link: "http://www.nosa.co.za", cost: "premium", tags: ["intermediate", "advanced", "ceo", "manager", "certify"] },
-      { title: "NEBOSH (UK/Global)", description: "International General Certificate.", link: "http://nebosh.org.uk", cost: "premium", tags: ["advanced", "ceo", "certify"] },
-      { title: "OSHA Outreach (USA)", description: "10/30-Hour training cards.", link: "http://osha.gov/training", cost: "free", tags: ["intermediate", "manager", "certify"] },
-      { title: "Harvard Online (edX)", description: "Improving Workplace Culture.", link: "http://edx.org/school/harvardx", cost: "free", tags: ["intermediate", "ceo", "manager", "safety"] },
-      { title: "UCT (GetSmarter)", description: "OHS Management course.", link: "http://uct.getsmarter.com", cost: "premium", tags: ["advanced", "ceo", "certify"] },
-      { title: "ILO", description: "OSH Encyclopaedia, Safety Cards.", link: "http://ilo.org", cost: "free", tags: ["intermediate", "advanced", "manager", "safety"] },
-      { title: "ITC-ILO Training Centre", description: "Safety Academy Courses.", link: "http://itcilo.org", cost: "free", tags: ["intermediate", "manager", "safety"] },
-      { title: "NIOSH Mobile Apps", description: "Ladder Safety, Heat Safety Tools.", link: "http://cdc.gov/niosh/apps", cost: "free", tags: ["beginner", "pastor", "employee", "safety"] },
-      { title: "OSHA eTools & eMatrix", description: "Guides for construction, healthcare.", link: "http://osha.gov/apps-and-etools", cost: "free", tags: ["intermediate", "ceo", "safety"] },
-      { title: "WHO – Healthy Workplaces", description: "Manuals, frameworks.", link: "http://who.int/occupational_health", cost: "free", tags: ["intermediate", "ceo", "manager", "safety"] }
+      { title: "EduCourse (South Africa)", description: "Free online OHS course with certificate.", link: "http://www.educourse.co.za/free-health-safety-certificate-ohs", cost: "free", tags: ["beginner", "pastor", "employee", "learn", "cv"], icon: "fa-laptop-code" },
+      { title: "OSHAcademy", description: "Full OHS course library.", link: "http://www.oshacademy.com", cost: "free", tags: ["beginner", "intermediate", "pastor", "manager", "learn", "safety"], icon: "fa-laptop-code" },
+      { title: "Oxford Home Study Centre (UK)", description: "Free health and safety courses.", link: "http://oxfordhomestudy.com", cost: "free", tags: ["beginner", "pastor", "employee", "learn", "safety"], icon: "fa-laptop-code" },
+      { title: "Alison", description: "Free courses on workplace safety.", link: "http://alison.com", cost: "free", tags: ["beginner", "intermediate", "employee", "learn", "cv"], icon: "fa-laptop-code" },
+      { title: "Coursera", description: "Introduction to OSHA, Construction Safety.", link: "http://coursera.org", cost: "free", tags: ["beginner", "intermediate", "manager", "learn", "safety"], icon: "fa-laptop-code" },
+      { title: { title: "NIOSH eLearning (CDC)", description: "Webinars for construction, healthcare.", link: "http://cdc.gov/niosh", cost: "free", tags: ["intermediate", "advanced", "manager", "safety"], icon: "fa-laptop-code" },
+      { title: "YouTube (OHS Channels)", description: "Free OHS tutorials and toolbox talks.", link: "#", cost: "free", tags: ["beginner", "pastor", "employee", "learn"], icon: "fa-laptop-code" },
+      { title: "SAMTRAC (South Africa)", description: "Recognized OHS qualification.", link: "http://www.nosa.co.za", cost: "premium", tags: ["intermediate", "advanced", "ceo", "manager", "certify"], icon: "fa-certificate" },
+      { title: "NEBOSH (UK/Global)", description: "International General Certificate.", link: "http://nebosh.org.uk", cost: "premium", tags: ["advanced", "ceo", "certify"], icon: "fa-certificate" },
+      { title: "OSHA Outreach (USA)", description: "10/30-Hour training cards.", link: "http://osha.gov/training", cost: "free", tags: ["intermediate", "manager", "certify"], icon: "fa-certificate" },
+      { title: "Harvard Online (edX)", description: "Improving Workplace Culture.", link: "http://edx.org/school/harvardx", cost: "free", tags: ["intermediate", "ceo", "manager", "safety"], icon: "fa-certificate" },
+      { title: "UCT (GetSmarter)", description: "OHS Management course.", link: "http://uct.getsmarter.com", cost: "premium", tags: ["advanced", "ceo", "certify"], icon: "fa-certificate" },
+      { title: "ILO", description: "OSH Encyclopaedia, Safety Cards.", link: "http://ilo.org", cost: "free", tags: ["intermediate", "advanced", "manager", "safety"], icon: "fa-toolbox" },
+      { title: "ITC-ILO Training Centre", description: "Safety Academy Courses.", link: "http://itcilo.org", cost: "free", tags: ["intermediate", "manager", "safety"], icon: "fa-toolbox" },
+      { title: "NIOSH Mobile Apps", description: "Ladder Safety, Heat Safety Tools.", link: "http://cdc.gov/niosh/apps", cost: "free", tags: ["beginner", "pastor", "employee", "safety"], icon: "fa-toolbox" },
+      { title: "OSHA eTools & eMatrix", description: "Guides for construction, healthcare.", link: "http://osha.gov/apps-and-etools", cost: "free", tags: ["intermediate", "ceo", "safety"], icon: "fa-toolbox" },
+      { title: "WHO – Healthy Workplaces", description: "Manuals, frameworks.", link: "http://who.int/occupational_health", cost: "free", tags: ["intermediate", "ceo", "manager", "safety"], icon: "fa-toolbox" }
     ];
 
     const roleTips = {
@@ -923,6 +1161,74 @@
       document.getElementById('step0').classList.add('active');
       careerWizard.style.display = 'block';
     });
+
+    // --- Resource Carousel ---
+    const carouselContainer = document.getElementById('resourceCarousel');
+    const prevBtn = document.querySelector('.carousel-nav.prev');
+    const nextBtn = document.querySelector('.carousel-nav.next');
+    let currentIndex = 0;
+    let autoRotateInterval;
+
+    function updateCarousel() {
+      const itemWidth = 100 / 3; // 33.33% per item for desktop
+      const offset = -currentIndex * itemWidth;
+      carouselContainer.style.transform = `translateX(${offset}%)`;
+    }
+
+    function rotateCarousel() {
+      currentIndex = (currentIndex + 1) % (carouselContainer.children.length / 2); // Loop through original items
+      updateCarousel();
+    }
+
+    function startAutoRotate() {
+      autoRotateInterval = setInterval(rotateCarousel, 5000);
+    }
+
+    function stopAutoRotate() {
+      clearInterval(autoRotateInterval);
+    }
+
+    prevBtn.addEventListener('click', () => {
+      stopAutoRotate();
+      currentIndex = (currentIndex - 1 + carouselContainer.children.length) % (carouselContainer.children.length / 2);
+      updateCarousel();
+      startAutoRotate();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      stopAutoRotate();
+      currentIndex = (currentIndex + 1) % (carouselContainer.children.length / 2);
+      updateCarousel();
+      startAutoRotate();
+    });
+
+    // Click-to-reveal details
+    carouselContainer.addEventListener('click', (e) => {
+      const item = e.target.closest('.carousel-item');
+      if (!item) return;
+      const details = item.querySelector('.item-details');
+      const isActive = details.classList.contains('active');
+      // Close all other details
+      document.querySelectorAll('.carousel-item .item-details').forEach(d => d.classList.remove('active'));
+      document.querySelectorAll('.carousel-item').forEach(i => i.classList.remove('active'));
+      // Toggle current item
+      if (!isActive) {
+        details.classList.add('active');
+        item.classList.add('active');
+      }
+    });
+
+    // Clone items for infinite loop
+    const carouselItems = Array.from(carouselContainer.children);
+    carouselItems.forEach(item => {
+      const clone = item.cloneNode(true);
+      carouselContainer.appendChild(clone);
+    });
+
+    // Start auto-rotation
+    startAutoRotate();
+    carouselContainer.addEventListener('mouseenter', stopAutoRotate);
+    carouselContainer.addEventListener('mouseleave', startAutoRotate);
 
     // --- Chatbot Functionality ---
     const chatWindow = document.getElementById('chat-window');
