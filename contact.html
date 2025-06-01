@@ -499,39 +499,81 @@
     }
   }
 
-  // --- Contact Form Submission (Modified for mailto) ---
-  const contactForm = document.getElementById('contactForm');
-  const formSubmissionMessageEl = document.getElementById('form-submission-message'); // You might not need this if mailto is used
+  // --- Contact Form Submission (Modified for mailto with CC) ---
+const contactForm = document.getElementById('contactForm');
+const formSubmissionMessageEl = document.getElementById('form-submission-message');
 
-  if (contactForm) {
-    contactForm.addEventListener('submit', function(event) {
-        // event.preventDefault(); // THIS LINE IS REMOVED to allow mailto action
+if (contactForm) {
+  contactForm.addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent default form submission to handle via JS
 
-        // The browser will now attempt to open the user's default email client.
-        // The JavaScript code below for displaying a message on *this* page
-        // might not execute as expected, or only briefly, as the browser
-        // focus shifts to the email client.
+    const nameInput = document.getElementById('contactName');
+    const emailInput = document.getElementById('contactEmail'); // Sender's email input
+    const subjectInput = document.getElementById('contactSubject');
+    const messageInput = document.getElementById('contactMessage');
 
-        const name = document.getElementById('contactName').value;
-        const email = document.getElementById('contactEmail').value;
-        const subject = document.getElementById('contactSubject').value;
-        const message = document.getElementById('contactMessage').value;
+    const name = nameInput.value;
+    const senderEmail = emailInput.value; // Get sender's email from the form
+    const subject = subjectInput.value;
+    const message = messageInput.value;
 
-        console.log('Attempting to send via mailto:', { name, email, subject, message });
-
-        // Consider removing or rethinking the on-page success message if using mailto,
-        // as its display will be inconsistent.
-        /*
+    // Basic validation (optional, but good practice)
+    if (!name || !senderEmail || !subject || !message) {
+      if (formSubmissionMessageEl) {
         formSubmissionMessageEl.style.display = 'block';
-        formSubmissionMessageEl.className = 'message-success';
-        formSubmissionMessageEl.textContent = 'Preparing your email...'; // Or similar
-        contactForm.reset(); // Resetting might happen before mail client opens
+        formSubmissionMessageEl.className = 'message-error'; // Ensure you have CSS for .message-error
+        formSubmissionMessageEl.textContent = 'Please fill out all fields.';
         setTimeout(() => {
+          formSubmissionMessageEl.style.display = 'none';
+        }, 3000);
+      }
+      return;
+    }
+
+    // Construct the email body for better readability in the email client
+    let emailBodyContent = `Dear SafetyHelp Team,\n\n`;
+    emailBodyContent += `You have received a new message from your website contact form:\n\n`;
+    emailBodyContent += `-------------------------------------------------\n`;
+    emailBodyContent += `Name: ${name}\n`;
+    emailBodyContent += `Email: ${senderEmail}\n`; // Sender's email
+    emailBodyContent += `Subject: ${subject}\n`;
+    emailBodyContent += `-------------------------------------------------\n\n`;
+    emailBodyContent += `Message:\n${message}\n\n`;
+    emailBodyContent += `-------------------------------------------------\n`;
+    emailBodyContent += `This email was generated from the SafetyHelp contact form.`;
+
+    // Construct the mailto link
+    // The primary recipient is still salatiso@salatiso.com
+    // We add the senderEmail (from the form) to the CC field.
+    let mailtoLink = `mailto:salatiso@salatiso.com`;
+    mailtoLink += `?cc=${encodeURIComponent(senderEmail)}`; // Add sender as CC
+    mailtoLink += `&subject=${encodeURIComponent("Website Contact: " + subject)}`; // Prepend to subject
+    mailtoLink += `&body=${encodeURIComponent(emailBodyContent)}`;
+
+    // Display an intermediary message to the user
+    if (formSubmissionMessageEl) {
+        formSubmissionMessageEl.style.display = 'block';
+        formSubmissionMessageEl.className = 'message-success'; // Or a neutral "processing" class
+        formSubmissionMessageEl.textContent = 'Your email application should open shortly. Please review the message and click "Send". A copy will be addressed to your email for your records.';
+    }
+
+    // Attempt to open the mail client.
+    // THIS MAY STILL TRIGGER THE "NOT SECURE" WARNING.
+    window.location.href = mailtoLink;
+
+    // Optionally reset the form after a short delay
+    setTimeout(() => {
+        contactForm.reset();
+    }, 1000);
+
+    // Hide the on-page message after a longer period
+    setTimeout(() => {
+        if (formSubmissionMessageEl) {
             formSubmissionMessageEl.style.display = 'none';
-        }, 5000);
-        */
-    });
-  }
+        }
+    }, 10000); // User might be interacting with their email client
+  });
+}
 
 
   // --- Chatbot Functionality ---
