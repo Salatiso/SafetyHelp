@@ -301,704 +301,230 @@
     .modal-form .form-input, .modal-form .form-textarea { font-size: 0.95rem; padding: 0.6rem 0.8rem; }
     .modal-form .form-textarea { min-height: 80px; }
     /* Chatbot Styles */
-    .chatbot-container { position: fixed; bottom: 20px; right: 20px; z-index: 1050; }
-    #chat-toggle { background-color: #FF8C00; color: white; border: none; border-radius: 50%; width: 60px; height: 60px; font-size: 1.8rem; box-shadow: 0 4px 8px rgba(0,0,0,0.2); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background-color 0.3s ease, transform 0.3s ease; }
-    #chat-toggle:hover { background-color: #e07b00; transform: scale(1.1); }
-    #chat-window { width: 320px; max-height: 450px; background-color: #fff; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); display: flex; flex-direction: column; overflow: hidden; transition: opacity 0.3s ease, transform 0.3s ease; position: absolute; bottom: 75px; right: 0; opacity: 0; transform: translateY(10px); pointer-events: none; }
-    #chat-window.chat-expanded { opacity: 1; transform: translateY(0); pointer-events: auto; }
-    .chat-hidden { display: none !important; }
-    #chat-header { background-color: #007BFF; color: white; padding: 10px 15px; font-weight: 600; border-top-left-radius: 10px; border-top-right-radius: 10px; display: flex; justify-content: space-between; align-items: center; }
-    #chat-header .close-chat-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; }
-    #chat-output { flex-grow: 1; padding: 15px; overflow-y: auto; font-size: 0.9rem; background-color: #f9f9f9; }
-    #chat-output p { margin-bottom: 0.8rem; line-height: 1.4; }
-    #chat-output p strong { color: #007BFF; }
-    #chat-output p strong:first-child { color: #FF8C00; } 
-    #chat-input-container { display: flex; border-top: 1px solid #eee; padding: 10px; background-color: #fff; }
-    #chat-input { flex-grow: 1; padding: 0.7rem; border: 1px solid #ddd; border-radius: 6px; margin-right: 8px; font-family: 'Montserrat', sans-serif; }
-    #chat-send { background-color: #007BFF; color: white; padding: 0.7rem 1rem; border: none; border-radius: 6px; cursor: pointer; font-weight: 500; transition: background-color 0.3s ease; }
-    #chat-send:hover { background-color: #0056b3; }
-    /* Career Wizard Styles */
-    .career-wizard { margin-top: 1rem; }
-    .wizard-step { display: none; }
-    .wizard-step.active { display: block; }
-    .wizard-step select, .wizard-step input { width: 100%; padding: 0.6rem; margin-bottom: 0.5rem; border: 1px solid #ddd; border-radius: 6px; }
-    .wizard-step button { margin-top: 0.5rem; }
-  </style>
-</head>
-<body>
-  <header>
-    <a href="/SafetyHelp/index.html" class="logo-container"> 
-      <div class="logo">Safety<span class="help">Help</span></div>
-    </a>
-    <nav>
-      <a href="/SafetyHelp/index.html"><i class="fas fa-home nav-icon"></i>Home</a>
-      <a href="/SafetyHelp/resources.html"><i class="fas fa-book nav-icon"></i>Resources</a>
-      <a href="/SafetyHelp/services.html"><i class="fas fa-concierge-bell nav-icon"></i>Services</a>
-      <a href="/SafetyHelp/community.html" class="active-nav-link"><i class="fas fa-users nav-icon"></i>Community</a>
-      <a href="/SafetyHelp/about.html"><i class="fas fa-info-circle nav-icon"></i>About</a>
-      <a href="/SafetyHelp/contact.html"><i class="fas fa-envelope nav-icon"></i>Contact</a>
-      <a href="/SafetyHelp/login.html"><i class="fas fa-sign-in-alt nav-icon"></i>SignUp / Login</a>
-    </nav>
-    <div class="search-language">
-      <input type="text" placeholder="Search...">
-      <select>
-        <option>English</option>
-        <option>isiXhosa</option>
-        <option>Afrikaans</option>
-      </select>
-    </div>
-  </header>
+    .chatbot-container { position: fixed; bottom: 20px; right: 20px; zស
 
-  <div class="page-title-section">
-    <h1>SafetyHelp OHS Community</h1>
-    <p class="subtitle">Join our growing community to shape the future of occupational health and safety in South Africa. Your input drives our platform—sign up to contribute and receive benefits like free book vouchers!</p>
-  </div>
+    <script>
+      // Set current year in footer
+      document.getElementById('copyright-year').textContent = new Date().getFullYear();
 
-  <div class="page-content">
-    <div class="container">
-      <aside class="sidebar-tools">
-        <h3 class="sidebar-heading"><i class="fas fa-tools heading-icon"></i>SafetyHelp Tools</h3>
-        <div class="sidebar-list-container">
-          <ul id="safetyhelp-tools-list">
-            <li><a href="/SafetyHelp/pages/construction-compliance.html" data-detail="Comprehensive safety management for construction projects, ensuring compliance with regulations."><i class="fas fa-hard-hat list-icon"></i>Construction Safety</a></li>
-            <li><a href="/SafetyHelp/pages/emergency-response-plan.html" data-detail="Develop and implement effective emergency preparedness and response plans."><i class="fas fa-bell list-icon"></i>Emergency Planning</a></li>
-            <li><a href="/SafetyHelp/pages/risk-assessment.html" data-detail="Identify, analyze, and control workplace hazards with our systematic risk assessment tools."><i class="fas fa-shield-alt list-icon"></i>Risk Assessment</a></li>
-            <li><a href="/SafetyHelp/pages/legal-appointments.html" data-detail="Manage and document all legally required OHS appointments for your organization."><i class="fas fa-gavel list-icon"></i>Legal Appointments</a></li>
-            <li><a href="/SafetyHelp/pages/incident-management.html" data-detail="Streamline the reporting, investigation, and prevention of workplace incidents."><i class="fas fa-file-medical-alt list-icon"></i>Incident Management</a></li>
-            <li><a href="/SafetyHelp/pages/training.html" data-detail="Access and manage OHS training programs and records for your workforce."><i class="fas fa-graduation-cap list-icon"></i>Training</a></li>
-            <li><a href="/SafetyHelp/pages/inspections-audits.html" data-detail="Conduct thorough workplace inspections and audits to ensure safety standards are met."><i class="fas fa-clipboard-check list-icon"></i>Inspections & Audits</a></li>
-            <li><a href="/SafetyHelp/pages/suppliers.html" data-detail="Manage OHS information and compliance for your suppliers and contractors."><i class="fas fa-truck list-icon"></i>Suppliers</a></li>
-            <li><a href="/SafetyHelp/pages/legislation.html" data-detail="Stay updated with the latest OHS acts, regulations, and legal requirements."><i class="fas fa-balance-scale list-icon"></i>Legislation</a></li>
-            <li><a href="/SafetyHelp/pages/community-tools.html" data-detail="Engage with the OHS community, share resources, and access forums."><i class="fas fa-users list-icon"></i>Community Tools</a></li>
-            <li><a href="/SafetyHelp/member-dashboard.html" data-detail="Your personalized dashboard for managing OHS activities, tracking progress, and accessing key information."><i class="fas fa-tachometer-alt list-icon"></i>Member Dashboard</a></li>
-            <li><a href="/SafetyHelp/pages/ohs-system.html" data-detail="Explore various modules to build and maintain a comprehensive OHS system."><i class="fas fa-cogs list-icon"></i>OHS System Modules</a></li>
-          </ul>
-        </div>
-      </aside>
-
-      <main class="main-community">
-        <section class="intro-community">
-          <h2><i class="fas fa-users-cog section-icon"></i>Welcome to the SafetyHelp OHS Community</h2>
-          <p>Join a vibrant community dedicated to occupational health and safety (OHS) in South Africa. Whether you're a professional, employer, mentor, trainee, or passionate about safety, SafetyHelp connects you with opportunities to contribute and grow. Sign up today to showcase your skills, express interest in roles like employer, mentor, or partner, and receive benefits like free book vouchers, even with our free membership. Be part of shaping a community-driven platform, launching fully in 2026!</p>
-          <div class="community-actions">
-            <a href="/SafetyHelp/login.html" class="action-button action-button-primary"><i class="fas fa-sign-in-alt"></i>Sign Up Now</a>
-            <a href="/SafetyHelp/contact.html" class="action-button action-button-secondary"><i class="fas fa-envelope"></i>Contact Us</a>
-          </div>
-        </section>
-
-        <section id="careersSection">
-          <h2><i class="fas fa-briefcase section-icon"></i>OHS and Related Career Opportunities</h2>
-          <p>Explore career opportunities in OHS and related fields. Search for jobs, training, mentorships, scholarships, or courses using our tool below. Employers, post your openings to reach talented professionals. Job seekers, submit your CV to showcase your skills. Sign up to stay updated on new opportunities!</p>
-          <div class="community-actions">
-            <button id="searchCareersBtn" class="action-button action-button-primary"><i class="fas fa-search"></i>Search Opportunities</button>
-            <a href="/SafetyHelp/login.html" class="action-button action-button-primary"><i class="fas fa-user-plus"></i>Sign Up to Participate</a>
-          </div>
-          <div id="careerSearchForm" class="career-wizard" style="display: none;">
-            <div id="searchStep" class="wizard-step active">
-              <label for="searchType">Select Opportunity Type:</label>
-              <select id="searchType" class="form-input">
-                <option value="job">Jobs</option>
-                <option value="training">Training & Courses</option>
-                <option value="mentorship">Mentorship</option>
-                <option value="scholarship">Scholarships</option>
-              </select>
-              <label for="location">Location (e.g., Johannesburg):</label>
-              <input type="text" id="location" class="form-input" placeholder="Enter city or province">
-              <label for="experience">Experience Level:</label>
-              <select id="experience" class="form-input">
-                <option value="entry">Entry-Level/Trainee</option>
-                <option value="experienced">Experienced Professional</option>
-              </select>
-              <button id="searchBtn" class="action-button action-button-primary"><i class="fas fa-search"></i>Search</button>
-            </div>
-          </div>
-          <div id="jobList" class="content-list">
-            <p>Search for the latest opportunities above!</p>
-          </div>
-        </section>
-
-        <section id="mentorshipSection">
-          <h2><i class="fas fa-hands-helping section-icon"></i>Mentorship and Participation Opportunities</h2>
-          <p>Be part of our mentorship program launching in 2026! Whether you want to mentor, be mentored, or participate as an employer, trainer, or partner, sign up now to express your interest. Your contributions will shape our community, and all members, including free tier, receive benefits like book vouchers.</p>
-          <div class="community-actions">
-            <a href="/SafetyHelp/login.html" class="action-button action-button-primary"><i class="fas fa-user-plus"></i>Sign Up to Participate</a>
-          </div>
-          <div id="mentorshipList" class="content-list">
-            <p>Be the first to join our mentorship program! Sign up above.</p>
-          </div>
-        </section>
-
-        <section id="articlesSection">
-          <h2><i class="fas fa-newspaper section-icon"></i>OHS Articles & Insights</h2>
-          <p>Share your expertise by submitting OHS articles and insights. Contribute to our growing knowledge base and help shape a safer South Africa. <a href="/SafetyHelp/contact.html">Contact us</a> to submit your article. All members, including free tier, receive book vouchers for contributions!</p>
-          <div class="community-actions">
-            <a href="/SafetyHelp/contact.html" class="action-button action-button-primary"><i class="fas fa-pen-alt"></i>Submit Article</a>
-          </div>
-          <div id="articleList" class="content-list">
-            <p>Be the first to contribute an article! Contact us to share your insights.</p>
-          </div>
-          <button id="loadMoreArticlesBtn" class="action-button action-button-secondary"><i class="fas fa-plus-circle"></i>Load More Articles</button>
-        </section>
-
-        <section id="futureFeaturesSection">
-          <h2><i class="fas fa-bullhorn section-icon"></i>Exciting Features Coming in 2026</h2>
-          <p>Starting in 2026, our community will launch discussion forums (monitored and unmonitored), training sessions, and community-driven initiatives. Members will have the freedom to initiate and lead these activities. Plus, look forward to our "OHS Professional of the Month," "Employer of the Month," and "Contractor of the Month" awards to celebrate your contributions! Sign up now to be part of this vibrant, self-sustaining community.</p>
-          <div class="community-actions">
-            <a href="/SafetyHelp/login.html" class="action-button action-button-primary"><i class="fas fa-sign-in-alt"></i>Sign Up to Stay Updated</a>
-          </div>
-        </section>
-
-        <section id="careerWizardSection">
-          <h2><i class="fas fa-map-signs section-icon"></i>Explore Your OHS Career Path</h2>
-          <p>Not sure where to start in OHS? Use our career wizard to find opportunities tailored to your stage, from high school students to experienced professionals. Inspired by the SafetyFirst series, this tool helps you discover jobs, training, and mentorships.</p>
-          <div class="community-actions">
-            <button id="startWizardBtn" class="action-button action-button-primary"><i class="fas fa-play"></i>Start Career Wizard</button>
-          </div>
-          <div id="careerWizard" class="career-wizard" style="display: none;">
-            <div id="step1" class="wizard-step active">
-              <label for="careerStage">Select Your Current Stage:</label>
-              <select id="careerStage" class="form-input">
-                <option value="none">No OHS Knowledge</option>
-                <option value="student">High School Student</option>
-                <option value="trainee">OHS Trainee</option>
-                <option value="professional">Experienced OHS Professional</option>
-              </select>
-              <button id="nextStep1" class="action-button action-button-primary"><i class="fas fa-arrow-right"></i>Next</button>
-            </div>
-            <div id="step2" class="wizard-step">
-              <label for="careerGoal">What’s Your Goal?</label>
-              <select id="careerGoal" class="form-input">
-                <option value="learn">Learn About OHS Careers</option>
-                <option value="train">Find Training or Courses</option>
-                <option value="job">Find a Job</option>
-                <option value="mentorship">Seek Mentorship</option>
-                <option value="diversify">Diversify Experience</option>
-              </select>
-              <button id="prevStep2" class="action-button action-button-secondary"><i class="fas fa-arrow-left"></i>Previous</button>
-              <button id="nextStep2" class="action-button action-button-primary"><i class="fas fa-arrow-right"></i>Next</button>
-            </div>
-            <div id="step3" class="wizard-step">
-              <p id="wizardResult">Based on your inputs, here are recommended opportunities:</p>
-              <div id="wizardRecommendations" class="content-list"></div>
-              <button id="prevStep3" class="action-button action-button-secondary"><i class="fas fa-arrow-left"></i>Previous</button>
-              <button id="restartWizard" class="action-button action-button-primary"><i class="fas fa-redo"></i>Restart</button>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <aside class="sidebar-milestones">
-        <h3 class="sidebar-heading"><i class="fas fa-flag-checkered heading-icon"></i>OHS Milestones</h3>
-        <div class="sidebar-list-container">
-          <ul id="ohs-milestones-list">
-            <li data-detail="Ancient Egyptians used linen strips to bind wounds, an early form of first aid, reflecting basic safety practices. <a href='https://www.history.com/topics/ancient-egypt' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>3000 BC: Early First Aid (Egypt)</li>
-            <li data-detail="Hippocrates documented lead poisoning effects, marking an early recognition of occupational health hazards. <a href='https://www.britannica.com/biography/Hippocrates' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>400 BC: Lead Poisoning (Greece)</li>
-            <li data-detail="Pliny the Elder recommended masks for workers exposed to dust, an early OHS intervention. <a href='https://www.britannica.com/biography/Pliny-the-Elder' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>50 AD: Protective Masks (Rome)</li>
-            <li data-detail="Khoisan people in South Africa used herbal remedies for injuries, laying foundations for traditional safety practices. <a href='https://www.sahistory.org.za/article/khoisan' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1000 AD: Khoisan Healing (SA)</li>
-            <li data-detail="Bantu-speaking peoples developed mining techniques, facing risks like cave-ins, early occupational hazards in SA. <a href='https://www.sahistory.org.za/article/bantu-migration' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1200 AD: Early Mining (SA)</li>
-            <li data-detail="The Industrial Revolution increased workplace hazards globally, influencing later OHS developments in SA. <a href='https://www.britannica.com/event/Industrial-Revolution' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1760: Industrial Revolution (Global)</li>
-            <li data-detail="UK's Health and Morals of Apprentices Act protected workers, setting a precedent for colonial SA laws. <a href='https://www.parliament.uk/about/living-heritage/transformingsociety/livinglearning/19thcentury' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1802: Apprentices Act (UK)</li>
-            <li data-detail="UK Factories Act regulated factory conditions, influencing colonial safety standards in SA. <a href='https://www.bl.uk/collection-items/factory-act-1833' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1833: Factories Act (UK)</li>
-            <li data-detail="Gold discovery in SA led to mining towns, increasing occupational risks and need for safety measures. <a href='https://www.sahistory.org.za/article/discovery-gold-1886' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1886: Gold Discovery (SA)</li>
-            <li data-detail="SA Mines and Works Act regulated mining safety under colonial rule, addressing rising hazards. <a href='https://www.gov.za/documents/mines-and-works-act' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1911: Mines and Works Act (SA)</li>
-            <li data-detail="ILO founded, promoting global workers' safety rights, influencing SA policies post-Union. <a href='https://www.ilo.org/global/about-the-ilo/history' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1919: ILO Founded (Global)</li>
-            <li data-detail="SA Workmen's Compensation Act provided injury compensation, a key OHS advancement. <a href='https://www.gov.za/documents/workmens-compensation-act' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1941: Workmen's Compensation (SA)</li>
-            <li data-detail="UK Factories Act update set new safety standards, impacting SA's colonial framework. <a href='https://www.legislation.gov.uk/ukpga/Geo6/11-12/55/contents' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1948: Factories Act Update (UK)</li>
-            <li data-detail="WHO established, promoting global health and safety, influencing SA's post-apartheid policies. <a href='https://www.who.int/about/history' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1948: WHO Founded (Global)</li>
-            <li data-detail="First OHS training programs introduced in SA mines, enhancing worker safety awareness. <a href='https://www.saimm.co.za/history' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1950: OHS Training (SA)</li>
-            <li data-detail="Safety audits began in SA mines, formalizing risk management practices. <a href='https://www.mhsc.org.za/about-us/history' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1960: Safety Audits (SA)</li>
-            <li data-detail="US OSHA Act set workplace safety standards, influencing SA's later OHS laws. <a href='https://www.osha.gov/laws-regs/oshact/completeoshact' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1970: OSHA (USA)</li>
-            <li data-detail="Global ergonomic standards emerged, later adopted in SA for workplace design. <a href='https://www.ergonomics.org/history' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1970: Ergonomics (Global)</li>
-            <li data-detail="UK Health and Safety at Work Act influenced SA's modern OHS framework. <a href='https://www.legislation.gov.uk/ukpga/1974/37/contents' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1974: HSWA (UK)</li>
-            <li data-detail="SA hosted first OHS conferences, fostering local safety knowledge exchange. <a href='https://www.iosh.com/about-us/our-history' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1980: OHS Conferences (SA)</li>
-            <li data-detail="Bhopal disaster highlighted chemical safety needs, prompting SA regulations. <a href='https://www.britannica.com/event/Bhopal-disaster' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1984: Bhopal Disaster (India)</li>
-            <li data-detail="Chernobyl accident emphasized high-risk industry safety, impacting SA mining. <a href='https://www.world-nuclear.org/information-library/safety-and-security/safety-of-plants/chernobyl-accident.aspx' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1986: Chernobyl (USSR)</li>
-            <li data-detail="Piper Alpha disaster led to offshore safety reforms, influencing SA's oil sector. <a href='https://www.hse.gov.uk/offshore/piper-alpha-disaster.htm' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1988: Piper Alpha (UK)</li>
-            <li data-detail="First OHS software tools developed globally, adopted later in SA for risk assessment. <a href='https://www.ehstoday.com/safety-technology/article/21917342/the-evolution-of-safety-technology' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1990: OHS Software (Global)</li>
-            <li data-detail="SA OHS Act No. 85 of 1993 established modern safety responsibilities post-apartheid. <a href='https://www.gov.za/documents/occupational-health-and-safety-act' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1993: OHS Act (SA)</li>
-            <li data-detail="SA COIDA amended, improving worker compensation and rehabilitation processes. <a href='https://www.gov.za/documents/compensation-occupational-injuries-and-diseases-act' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>2003: COIDA Amendment (SA)</li>
-            <li data-detail="First mobile OHS apps emerged globally, enhancing SA's safety management. <a href='https://www.safetyandhealthmagazine.com/articles/18647-safety-apps' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>2010: OHS Mobile Apps (Global)</li>
-            <li data-detail="SA Construction Regulations updated, improving site safety standards. <a href='https://www.labour.gov.za/DocumentCenter/Regulations%202014/Construction%20Regulations%202014.pdf' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>2014: Construction Regs (SA)</li>
-            <li data-detail="GHS adopted globally for chemical safety, implemented in SA industries. <a href='https://www.unece.org/trans/danger/publi/ghs/ghs_welcome.html' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>2015: Global Harmonization (GHS)</li>
-            <li data-detail="VR training programs introduced globally, later used in SA for safety education. <a href='https://www.osha.gov/virtual-reality' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>2015: VR Training (Global)</li>
-            <li data-detail="COVID-19 protocols introduced worldwide, reshaping SA workplace safety. <a href='https://www.who.int/emergencies/diseases/novel-coronavirus-2019' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>2020: COVID-19 Protocols</li>
-            <li data-detail="SA deployed AI-powered safety monitoring in mines, advancing risk prevention. <a href='https://www.miningreview.com/technology/ai-in-mining-safety/' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>2020: AI Safety Monitoring (SA)</li>
-            <li data-detail="Global focus on workplace mental health recognized in SA OHS policies. <a href='https://www.who.int/news-room/fact-sheets/detail/mental-health-at-work' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>2022: Mental Health Focus</li>
-            <li data-detail="Blockchain introduced for OHS records globally, adopted in SA for transparency. <a href='https://www.osha.gov/blockchain' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>2022: Blockchain OHS (Global)</li>
-            <li data-detail="SA mines used drones for safety inspections, improving hazard detection. <a href='https://www.mining-technology.com/features/drones-in-mining/' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>2023: Drone Inspections (SA)</li>
-            <li data-detail="5G enabled real-time safety monitoring globally, adopted in SA industries. <a href='https://www.safetyandhealthmagazine.com/articles/5g-safety' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>2024: 5G Safety Monitoring (Global)</li>
-            <li data-detail="Safety helmets introduced globally, widely used in SA construction. <a href='https://www.constructiondive.com/news/history-of-hard-hats/557118/' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1930: Safety Helmets (Global)</li>
-            <li data-detail="Steel-toe safety shoes developed globally, adopted in SA mining. <a href='https://www.ishn.com/articles/105586-the-evolution-of-safety-footwear' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1940: Safety Shoes (Global)</li>
-            <li data-detail="First aid formalized globally, influencing SA workplace emergency practices. <a href='https://www.redcross.org/about-us/who-we-are/history.html' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1863: First Aid (Global)</li>
-            <li data-detail="Dust masks introduced globally, used in SA mines to reduce respiratory risks. <a href='https://www.cdc.gov/niosh/topics/respirators/history.html' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1900: Dust Masks (Global)</li>
-            <li data-detail="SA mining regulations tightened post-apartheid, focusing on worker safety. <a href='https://www.mhsc.org.za/legislation' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1996: Mining Safety (SA)</li>
-            <li data-detail="SA introduced silica dust controls in mines, addressing health hazards. <a href='https://www.saimm.co.za/Journal/v115n10p885.pdf' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>2000: Silica Dust Control (SA)</li>
-            <li data-detail="SA adopted international noise control standards in workplaces. <a href='https://www.labourguide.co.za/noise-induced-hearing-loss' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>2005: Noise Control (SA)</li>
-            <li data-detail="Global push for green safety practices influenced SA's sustainability focus. <a href='https://www.un.org/sustainabledevelopment/' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>2010: Green Safety (Global)</li>
-            <li data-detail="SA implemented fatigue management in transport and mining sectors. <a href='https://www.rtms-sa.org/fatigue-management' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>2015: Fatigue Management (SA)</li>
-            <li data-detail="Wearable safety tech emerged globally, used in SA for worker monitoring. <a href='https://www.safetyandhealthmagazine.com/articles/wearable-technology' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>2018: Wearable Tech (Global)</li>
-            <li data-detail="SA enhanced construction crane safety regulations after incidents. <a href='https://www.labour.gov.za/construction-safety' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>2019: Crane Safety (SA)</li>
-            <li data-detail="Quantum computing explored for OHS risk modeling, future potential for SA. <a href='https://www.nature.com/articles/s41586-021-03398-4' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>2025: Quantum OHS (Global)</li>
-            <li data-detail="SA planned national OHS digital platform, aligning with SafetyHelp goals. <a href='https://www.gov.za/speeches/ohs-digitalisation' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>2025: OHS Digital Plan (SA)</li>
-          </ul>
-        </div>
-      </aside>
-    </div>
-  </div>
-
-  <footer>
-    <p>© <span id="copyright-year"></span> SafetyHelp. All rights reserved. Your Partner in Occupational Health and Safety Compliance.</p>
-    <p><a href="/SafetyHelp/privacy.html">Privacy Policy</a> | <a href="/SafetyHelp/terms.html">Terms of Service</a> | <a href="/SafetyHelp/contact.html">Contact Us</a></p>
-  </footer>
-
-  <div id="infoModal" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 id="modalTitle">Community Action</h4>
-        <span class="close-btn" onclick="closeModal()">×</span>
-      </div>
-      <div class="modal-body modal-form" id="modalBody"></div>
-      <div class="modal-footer" id="modalFooter">
-        <button onclick="closeModal()" class="action-button-secondary"><i class="fas fa-times btn-icon"></i>Close</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="chatbot-container">
-    <div id="chat-window" class="chat-hidden">
-      <div id="chat-header">
-        <span>Salatiso - Your OHS Assistant</span>
-        <button class="close-chat-btn" onclick="toggleChatbot(false)">×</button>
-      </div>
-      <div id="chat-output">
-        <p><strong>Salatiso:</strong> Hello! How can I help you with OHS today?</p>
-      </div>
-      <div id="chat-input-container">
-        <input id="chat-input" type="text" placeholder="Ask about OHS...">
-        <button id="chat-send"><i class="fas fa-paper-plane"></i></button>
-      </div>
-    </div>
-    <button id="chat-toggle" onclick="toggleChatbot()">
-      <i class="fas fa-headset"></i>
-    </button>
-  </div>
-
-  <script>
-    // Set current year in footer
-    document.getElementById('copyright-year').textContent = new Date().getFullYear();
-
-    // --- Sidebar Auto-Scrolling & Item Click ---
-    function setupScrollingSidebar(listId) {
-      const listElement = document.getElementById(listId);
-      if (!listElement || listElement.children.length === 0) return;
-      const originalItems = Array.from(listElement.children);
-      originalItems.forEach(item => {
-        const clone = item.cloneNode(true);
-        if (listId === 'ohs-milestones-list') {
-          clone.addEventListener('click', () => showMilestoneDetail(clone));
-        }
-        listElement.appendChild(clone);
-      });
-      originalItems.forEach(item => {
-        if (listId === 'ohs-milestones-list') {
-          item.addEventListener('click', () => showMilestoneDetail(item));
-        }
-      });
-    }
-
-    // --- Modal Functionality ---
-    const modal = document.getElementById('infoModal');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalBody = document.getElementById('modalBody');
-    const modalFooter = document.getElementById('modalFooter');
-
-    function showMilestoneDetail(element) {
-      const title = element.textContent.trim().replace(/^.*? /,'');
-      const detail = element.dataset.detail || "More information about this milestone will be available soon.";
-      modalTitle.textContent = `OHS Milestone: ${title}`;
-      modalBody.innerHTML = `<p>${detail}</p>`;
-      modalFooter.innerHTML = `<button onclick="closeModal()" class="action-button-secondary"><i class="fas fa-times btn-icon"></i>Close</button>`;
-      modal.style.display = 'block';
-    }
-
-    function closeModal() {
-      modal.style.display = 'none';
-      modalBody.innerHTML = '';
-      modalFooter.innerHTML = `<button onclick="closeModal()" class="action-button-secondary"><i class="fas fa-times btn-icon"></i>Close</button>`;
-    }
-
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        closeModal();
-      }
-    }
-
-    // --- Community Page Specific JS ---
-    // Mentorship
-    const offerMentorshipBtn = document.getElementById('offerMentorshipBtn');
-    const seekMentorshipBtn = document.getElementById('seekMentorshipBtn');
-    const mentorshipList = document.getElementById('mentorshipList');
-
-    if (offerMentorshipBtn) {
-      offerMentorshipBtn.addEventListener('click', () => {
-        modalTitle.textContent = "Offer Mentorship";
-        modalBody.innerHTML = `
-          <form id="offerMentorshipForm" class="modal-form">
-            <div class="form-group">
-              <label for="mentorName">Your Name:</label>
-              <input type="text" id="mentorName" name="mentorName" class="form-input" required>
-            </div>
-            <div class="form-group">
-              <label for="mentorExpertise">Area of Expertise:</label>
-              <input type="text" id="mentorExpertise" name="mentorExpertise" class="form-input" required>
-            </div>
-            <div class="form-group">
-              <label for="mentorContact">Contact (Email/Phone):</label>
-              <input type="text" id="mentorContact" name="mentorContact" class="form-input" required>
-            </div>
-            <button type="submit" class="action-button action-button-primary"><i class="fas fa-paper-plane"></i>Submit Offer</button>
-          </form>
-        `;
-        modalFooter.innerHTML = `<button onclick="closeModal()" class="action-button-secondary"><i class="fas fa-times btn-icon"></i>Cancel</button>`;
-        modal.style.display = 'block';
-        document.getElementById('offerMentorshipForm').addEventListener('submit', (e) => {
-          e.preventDefault();
-          console.log("Mentorship offer submitted:", Object.fromEntries(new FormData(e.target)));
-          alert("Thank you for offering to mentor! We'll contact you to finalize your role.");
-          closeModal();
-        });
-      });
-    }
-
-    if (seekMentorshipBtn) {
-      seekMentorshipBtn.addEventListener('click', () => {
-        modalTitle.textContent = "Seek Mentorship";
-        modalBody.innerHTML = `
-          <form id="seekMentorshipForm" class="modal-form">
-            <div class="form-group">
-              <label for="menteeName">Your Name:</label>
-              <input type="text" id="menteeName" name="menteeName" class="form-input" required>
-            </div>
-            <div class="form-group">
-              <label for="menteeNeed">What kind of mentorship are you seeking?</label>
-              <textarea id="menteeNeed" name="menteeNeed" class="form-textarea" required></textarea>
-            </div>
-            <div class="form-group">
-              <label for="menteeContact">Contact (Email/Phone):</label>
-              <input type="text" id="menteeContact" name="menteeContact" class="form-input" required>
-            </div>
-            <button type="submit" class="action-button action-button-primary"><i class="fas fa-paper-plane"></i>Submit Request</button>
-          </form>
-        `;
-        modalFooter.innerHTML = `<button onclick="closeModal()" class="action-button-secondary"><i class="fas fa-times btn-icon"></i>Cancel</button>`;
-        modal.style.display = 'block';
-        document.getElementById('seekMentorshipForm').addEventListener('submit', (e) => {
-          e.preventDefault();
-          console.log("Mentorship request submitted:", Object.fromEntries(new FormData(e.target)));
-          alert("Thank you for your mentorship request! We'll match you with a mentor soon.");
-          closeModal();
-        });
-      });
-    }
-
-    if (mentorshipList) mentorshipList.innerHTML = '<p class="list-item">Be the first to join our mentorship program! Sign up above.</p>';
-
-    // Careers
-    const postJobBtn = document.getElementById('postJobBtn');
-    const submitCvBtn = document.getElementById('submitCvBtn');
-    const jobList = document.getElementById('jobList');
-    const searchCareersBtn = document.getElementById('searchCareersBtn');
-    const careerSearchForm = document.getElementById('careerSearchForm');
-
-    if (searchCareersBtn) {
-      searchCareersBtn.addEventListener('click', () => {
-        careerSearchForm.style.display = careerSearchForm.style.display === 'none' ? 'block' : 'none';
-      });
-    }
-
-    if (postJobBtn) {
-      postJobBtn.addEventListener('click', () => {
-        modalTitle.textContent = "Post a Job Opening";
-        modalBody.innerHTML = `
-          <form id="postJobForm" class="modal-form">
-            <div class="form-group">
-              <label for="jobTitle">Job Title:</label>
-              <input type="text" id="jobTitle" name="jobTitle" class="form-input" required>
-            </div>
-            <div class="form-group">
-              <label for="jobCompany">Company Name:</label>
-              <input type="text" id="jobCompany" name="jobCompany" class="form-input" required>
-            </div>
-            <div class="form-group">
-              <label for="jobDescription">Job Description:</label>
-              <textarea id="jobDescription" name="jobDescription" class="form-textarea" required></textarea>
-            </div>
-            <div class="form-group">
-              <label for="jobContact">Application Contact/Link:</label>
-              <input type="text" id="jobContact" name="jobContact" class="form-input" required>
-            </div>
-            <button type="submit" class="action-button action-button-primary"><i class="fas fa-paper-plane"></i>Post Job</button>
-          </form>
-        `;
-        modalFooter.innerHTML = `<button onclick="closeModal()" class="action-button-secondary"><i class="fas fa-times btn-icon"></i>Cancel</button>`;
-        modal.style.display = 'block';
-        document.getElementById('postJobForm').addEventListener('submit', (e) => {
-          e.preventDefault();
-          console.log("Job posting submitted:", Object.fromEntries(new FormData(e.target)));
-          alert("Job posting submitted! We'll review and post it soon.");
-          closeModal();
-        });
-      });
-    }
-
-    if (submitCvBtn) {
-      submitCvBtn.addEventListener('click', () => {
-        modalTitle.textContent = "Submit Your CV";
-        modalBody.innerHTML = `
-          <form id="submitCvForm" class="modal-form">
-            <div class="form-group">
-              <label for="cvName">Your Name:</label>
-              <input type="text" id="cvName" name="cvName" class="form-input" required>
-            </div>
-            <div class="form-group">
-              <label for="cvSkills">Key Skills/Area of Interest:</label>
-              <input type="text" id="cvSkills" name="cvSkills" class="form-input" required>
-            </div>
-            <div class="form-group">
-              <label for="cvFile">Upload CV (PDF, DOCX):</label>
-              <input type="file" id="cvFile" name="cvFile" class="form-input" accept=".pdf,.doc,.docx" required>
-            </div>
-            <div class="form-group">
-              <label for="cvContact">Your Contact Email:</label>
-              <input type="email" id="cvContact" name="cvContact" class="form-input" required>
-            </div>
-            <button type="submit" class="action-button action-button-primary"><i class="fas fa-paper-plane"></i>Submit CV</button>
-          </form>
-        `;
-        modalFooter.innerHTML = `<button onclick="closeModal()" class="action-button-secondary"><i class="fas fa-times btn-icon"></i>Cancel</button>`;
-        modal.style.display = 'block';
-        document.getElementById('submitCvForm').addEventListener('submit', (e) => {
-          e.preventDefault();
-          console.log("CV submitted:", Object.fromEntries(new FormData(e.target)));
-          alert("CV submitted! We'll share it with relevant employers.");
-          closeModal();
-        });
-      });
-    }
-
-    // Adzuna API Integration
-    const searchBtn = document.getElementById('searchBtn');
-    if (searchBtn) {
-      searchBtn.addEventListener('click', async () => {
-        const searchType = document.getElementById('searchType').value;
-        const location = document.getElementById('location').value || 'South Africa';
-        const experience = document.getElementById('experience').value;
-        let query = '';
-        if (searchType === 'job') {
-          query = experience === 'entry' ? 'trainee occupational health safety' : 'occupational health safety';
-        } else if (searchType === 'training') {
-          query = 'occupational health safety training';
-        } else if (searchType === 'mentorship') {
-          query = 'occupational health safety mentorship';
-        } else if (searchType === 'scholarship') {
-          query = 'occupational health safety scholarship';
-        }
-        try {
-          const response = await fetch(`https://api.adzuna.com/v1/api/jobs/za/search/1?app_id=YOUR_ADZUNA_APP_ID&app_key=YOUR_ADZUNA_APP_KEY&what=${encodeURIComponent(query)}&where=${encodeURIComponent(location)}&content-type=application/json`);
-          const data = await response.json();
-          jobList.innerHTML = '';
-          if (data.results && data.results.length > 0) {
-            data.results.slice(0, 5).forEach(job => {
-              const item = document.createElement('div');
-              item.classList.add('list-item');
-              item.innerHTML = `
-                <h4>${job.title}</h4>
-                <p>${job.company.display_name} - ${job.location.display_name}</p>
-                <p>${job.description.substring(0, 100)}...</p>
-                <p class="item-meta"><a href="${job.redirect_url}" target="_blank">Apply Now</a></p>
-              `;
-              jobList.appendChild(item);
-            });
-          } else {
-            jobList.innerHTML = '<p class="list-item">No results found. Try a different search!</p>';
+      // --- Sidebar Auto-Scrolling & Item Click ---
+      function setupScrollingSidebar(listId) {
+        const listElement = document.getElementById(listId);
+        if (!listElement || listElement.children.length === 0) return;
+        const originalItems = Array.from(listElement.children);
+        originalItems.forEach(item => {
+          const clone = item.cloneNode(true);
+          if (listId === 'ohs-milestones-list') {
+            clone.addEventListener('click', () => showMilestoneDetail(clone));
           }
-        } catch (error) {
-          console.error('Error fetching jobs:', error);
-          jobList.innerHTML = '<p class="list-item">Error loading opportunities. Please try again later.</p>';
-        }
-      });
-    }
-
-    // Articles
-    const loadMoreArticlesBtn = document.getElementById('loadMoreArticlesBtn');
-    if (loadMoreArticlesBtn) {
-      loadMoreArticlesBtn.addEventListener('click', () => {
-        const newArticle = document.createElement('div');
-        newArticle.classList.add('list-item');
-        newArticle.innerHTML = `<p>Contact us to contribute the next article!</p><p class="item-meta"><a href="/SafetyHelp/contact.html">Submit Now</a></p>`;
-        document.getElementById('articleList').appendChild(newArticle);
-      });
-    }
-
-    // Career Wizard
-    const startWizardBtn = document.getElementById('startWizardBtn');
-    const careerWizard = document.getElementById('careerWizard');
-    const step1 = document.getElementById('step1');
-    const step2 = document.getElementById('step2');
-    const step3 = document.getElementById('step3');
-    const nextStep1 = document.getElementById('nextStep1');
-    const nextStep2 = document.getElementById('nextStep2');
-    const prevStep2 = document.getElementById('prevStep2');
-    const prevStep3 = document.getElementById('prevStep3');
-    const restartWizard = document.getElementById('restartWizard');
-
-    if (startWizardBtn) {
-      startWizardBtn.addEventListener('click', () => {
-        careerWizard.style.display = 'block';
-        step1.classList.add('active');
-        step2.classList.remove('active');
-        step3.classList.remove('active');
-      });
-    }
-
-    if (nextStep1) {
-      nextStep1.addEventListener('click', () => {
-        step1.classList.remove('active');
-        step2.classList.add('active');
-      });
-    }
-
-    if (prevStep2) {
-      prevStep2.addEventListener('click', () => {
-        step2.classList.remove('active');
-        step1.classList.add('active');
-      });
-    }
-
-    if (nextStep2) {
-      nextStep2.addEventListener('click', async () => {
-        const careerStage = document.getElementById('careerStage').value;
-        const careerGoal = document.getElementById('careerGoal').value;
-        const recommendations = document.getElementById('wizardRecommendations');
-        recommendations.innerHTML = '';
-        
-        let suggestions = [];
-        if (careerStage === 'none') {
-          suggestions = [
-            { title: 'Introduction to OHS', description: 'Learn the basics with NOSA’s Introduction to OHS course.', link: 'https://www.nosa.co.za/training/introduction-to-ohs/' },
-            { title: 'OHS Awareness', description: 'Free OHS awareness resources from SA Department of Labour.', link: 'https://www.labour.gov.za/' }
-          ];
-        } else if (careerStage === 'student') {
-          suggestions = [
-            { title: 'UNISA OHS Short Course', description: 'Explore OHS certificates at UNISA.', link: 'https://www.unisa.ac.za/sites/corporate/default/Apply-for-admission/Short-Learning-Programmes' },
-            { title: 'NOSA School Safety Program', description: 'Safety programs for students.', link: 'https://www.nosa.co.za/' }
-          ];
-        } else if (careerStage === 'trainee') {
-          suggestions = [
-            { title: 'TUT OHS Diploma', description: 'Enroll in Tshwane University of Technology’s OHS program.', link: 'https://www.tut.ac.za/' },
-            { title: 'OHS Trainee Jobs', description: 'Search for trainee positions in OHS.', link: '#' }
-          ];
-        } else if (careerStage === 'professional') {
-          suggestions = [
-            { title: 'Advanced OHS Certification', description: 'Upskill with NOSA’s advanced courses.', link: 'https://www.nosa.co.za/' },
-            { title: 'Mentorship Opportunities', description: 'Offer or seek mentorship to diversify your experience.', link: '/SafetyHelp/community.html#mentorshipSection' }
-          ];
-        }
-
-        suggestions.forEach(suggestion => {
-          const item = document.createElement('div');
-          item.classList.add('list-item');
-          item.innerHTML = `
-            <h4>${suggestion.title}</h4>
-            <p>${suggestion.description}</p>
-            <p class="item-meta"><a href="${suggestion.link}" target="_blank">Learn More</a></p>
-          `;
-          recommendations.appendChild(item);
+          listElement.appendChild(clone);
         });
-
-        step2.classList.remove('active');
-        step3.classList.add('active');
-      });
-    }
-
-    if (prevStep3) {
-      prevStep3.addEventListener('click', () => {
-        step3.classList.remove('active');
-        step2.classList.add('active');
-      });
-    }
-
-    if (restartWizard) {
-      restartWizard.addEventListener('click', () => {
-        step3.classList.remove('active');
-        step1.classList.add('active');
-        careerWizard.style.display = 'none';
-      });
-    }
-
-    // --- Chatbot Functionality ---
-    const chatWindow = document.getElementById('chat-window');
-    const chatToggleBtn = document.getElementById('chat-toggle');
-    const chatInputEl = document.getElementById('chat-input');
-    const chatSendBtn = document.getElementById('chat-send');
-    const chatOutputEl = document.getElementById('chat-output');
-
-    function toggleChatbot(forceOpen) {
-      const isHidden = chatWindow.classList.contains('chat-hidden');
-      if (forceOpen === true || isHidden) {
-        chatWindow.classList.remove('chat-hidden');
-        chatWindow.classList.add('chat-expanded');
-        chatToggleBtn.innerHTML = '<i class="fas fa-times"></i>';
-        if (chatInputEl) chatInputEl.focus();
-      } else if (forceOpen === false || !isHidden) {
-        chatWindow.classList.add('chat-hidden');
-        chatWindow.classList.remove('chat-expanded');
-        chatToggleBtn.innerHTML = '<i class="fas fa-headset"></i>';
+        originalItems.forEach(item => {
+          if (listId === 'ohs-milestones-list') {
+            item.addEventListener('click', () => showMilestoneDetail(item));
+          }
+        });
       }
-    }
 
-    function addChatMessageToUI(sender, message, isUser) {
-      if (!chatOutputEl) return;
-      const messageEl = document.createElement('p');
-      messageEl.innerHTML = `<strong>${sender}:</strong> ${message}`;
-      if (isUser) messageEl.style.textAlign = "right";
-      chatOutputEl.appendChild(messageEl);
-      chatOutputEl.scrollTop = chatOutputEl.scrollHeight;
-    }
+      // --- Modal Functionality ---
+      const modal = document.getElementById('infoModal');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalBody = document.getElementById('modalBody');
+      const modalFooter = document.getElementById('modalFooter');
 
-    async function handleChatSend() {
-      if (!chatInputEl || !chatOutputEl) return;
-      const message = chatInputEl.value.trim();
-      if (!message) return;
-      addChatMessageToUI("You", message, true);
-      chatInputEl.value = '';
-      let botResponse = "I'm still learning! For detailed OHS info, explore our resources or contact support.";
-      if (message.toLowerCase().includes("hello") || message.toLowerCase().includes("hi")) {
-        botResponse = "Hello there! How can I assist you with safety today?";
+      function showMilestoneDetail(element) {
+        const title = element.textContent.trim().replace(/^.*? /,'');
+        const detail = element.dataset.detail || "More information about this milestone will be available soon.";
+        modalTitle.textContent = `OHS Milestone: ${title}`;
+        modalBody.innerHTML = `<p>${detail}</p>`;
+        modalFooter.innerHTML = `<button onclick="closeModal()" class="action-button-secondary"><i class="fas fa-times btn-icon"></i>Close</button>`;
+        modal.style.display = 'block';
       }
-      setTimeout(() => {
-        addChatMessageToUI("Salatiso", botResponse, false);
-      }, 500);
-    }
 
-    if (chatSendBtn) {
-      chatSendBtn.addEventListener('click', handleChatSend);
-    }
-    if (chatInputEl) {
-      chatInputEl.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-          handleChatSend();
+      function closeModal() {
+        modal.style.display = 'none';
+        modalBody.innerHTML = '';
+        modalFooter.innerHTML = `<button onclick="closeModal()" class="action-button-secondary"><i class="fas fa-times btn-icon"></i>Close</button>`;
+      }
+
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          closeModal();
         }
-      });
-    }
+      }
 
-    // --- Initial calls ---
-    window.onload = function() {
-      setupScrollingSidebar('safetyhelp-tools-list');
-      setupScrollingSidebar('ohs-milestones-list');
-      if (chatWindow) chatWindow.classList.add('chat-hidden');
-      if (chatToggleBtn) chatToggleBtn.style.display = 'flex';
-    };
-  </script>
-</body>
-</html>
+      // --- Community Page Specific JS ---
+      // Mentorship
+      const offerMentorshipBtn = document.getElementById('offerMentorshipBtn');
+      const seekMentorshipBtn = document.getElementById('seekMentorshipBtn');
+      const mentorshipList = document.getElementById('mentorshipList');
+
+      if (offerMentorshipBtn) {
+        offerMentorshipBtn.addEventListener('click', () => {
+          modalTitle.textContent = "Offer Mentorship";
+          modalBody.innerHTML = `
+            <form id="offerMentorshipForm" class="modal-form">
+              <div class="form-group">
+                <label for="mentorName">Your Name:</label>
+                <input type="text" id="mentorName" name="mentorName" class="form-input" required>
+              </div>
+              <div class="form-group">
+                <label for="mentorExpertise">Area of Expertise:</label>
+                <input type="text" id="mentorExpertise" name="mentorExpertise" class="form-input" required>
+              </div>
+              <div class="form-group">
+                <label for="mentorContact">Contact (Email/Phone):</label>
+                <input type="text" id="mentorContact" name="mentorContact" class="form-input" required>
+              </div>
+              <button type="submit" class="action-button action-button-primary"><i class="fas fa-paper-plane"></i>Submit Offer</button>
+            </form>
+          `;
+          modalFooter.innerHTML = `<button onclick="closeModal()" class="action-button-secondary"><i class="fas fa-times btn-icon"></i>Cancel</button>`;
+          modal.style.display = 'block';
+          document.getElementById('offerMentorshipForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            console.log("Mentorship offer submitted:", Object.fromEntries(new FormData(e.target)));
+            alert("Thank you for offering to mentor! We'll contact you to finalize your role.");
+            closeModal();
+          });
+        });
+      }
+
+      if (seekMentorshipBtn) {
+        seekMentorshipBtn.addEventListener('click', () => {
+          modalTitle.textContent = "Seek Mentorship";
+          modalBody.innerHTML = `
+            <form id="seekMentorshipForm" class="modal-form">
+              <div class="form-group">
+                <label for="menteeName">Your Name:</label>
+                <input type="text" id="menteeName" name="menteeName" class="form-input" required>
+              </div>
+              <div class="form-group">
+                <label for="menteeNeed">What kind of mentorship are you seeking?</label>
+                <textarea id="menteeNeed" name="menteeNeed" class="form-textarea" required></textarea>
+              </div>
+              <div class="form-group">
+                <label for="menteeContact">Contact (Email/Phone):</label>
+                <input type="text" id="menteeContact" name="menteeContact" class="form-input" required>
+              </div>
+              <button type="submit" class="action-button action-button-primary"><i class="fas fa-paper-plane"></i>Submit Request</button>
+            </form>
+          `;
+          modalFooter.innerHTML = `<button onclick="closeModal()" class="action-button-secondary"><i class="fas fa-times btn-icon"></i>Cancel</button>`;
+          modal.style.display = 'block';
+          document.getElementById('seekMentorshipForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            console.log("Mentorship request submitted:", Object.fromEntries(new FormData(e.target)));
+            alert("Thank you for your mentorship request! We'll match you with a mentor soon.");
+            closeModal();
+          });
+        });
+      }
+
+      if (mentorshipList) mentorshipList.innerHTML = '<p class="list-item">Be the first to join our mentorship program! Sign up above.</p>';
+
+      // Careers
+      const postJobBtn = document.getElementById('postJobBtn');
+      const submitCvBtn = document.getElementById('submitCvBtn');
+      const jobList = document.getElementById('jobList');
+      const searchCareersBtn = document.getElementById('searchCareersBtn');
+      const careerSearchForm = document.getElementById('careerSearchForm');
+
+      if (searchCareersBtn) {
+        searchCareersBtn.addEventListener('click', () => {
+          careerSearchForm.style.display = careerSearchForm.style.display === 'none' ? 'block' : 'none';
+        });
+      }
+
+      if (postJobBtn) {
+        postJobBtn.addEventListener('click', () => {
+          modalTitle.textContent = "Post a Job Opening";
+          modalBody.innerHTML = `
+            <form id="postJobForm" class="modal-form">
+              <div class="form-group">
+                <label for="jobTitle">Job Title:</label>
+                <input type="text" id="jobTitle" name="jobTitle" class="form-input" required>
+              </div>
+              <div class="form-group">
+                <label for="jobCompany">Company Name:</label>
+                <input type="text" id="jobCompany" name="jobCompany" class="form-input" required>
+              </div>
+              <div class="form-group">
+                <label for="jobDescription">Job Description:</label>
+                <textarea id="jobDescription" name="jobDescription" class="form-textarea" required></textarea>
+              </div>
+              <div class="form-group">
+                <label for="jobContact">Application Contact/Link:</label>
+                <input type="text" id="jobContact" name="jobContact" class="form-input" required>
+              </div>
+              <button type="submit" class="action-button action-button-primary"><i class="fas fa-paper-plane"></i>Post Job</button>
+            </form>
+          `;
+          modalFooter.innerHTML = `<button onclick="closeModal()" class="action-button-secondary"><i class="fas fa-times btn-icon"></i>Cancel</button>`;
+          modal.style.display = 'block';
+          document.getElementById('postJobForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            console.log("Job posting submitted:", Object.fromEntries(new FormData(e.target)));
+            alert("Job posting submitted! We'll review and post it soon.");
+            closeModal();
+          });
+        });
+      }
+
+      if (submitCvBtn) {
+        submitCvBtn.addEventListener('click', () => {
+          modalTitle.textContent = "Submit Your CV";
+          modalBody.innerHTML = `
+            <form id="submitCvForm" class="modal-form">
+              <div class="form-group">
+                <label for="cvName">Your Name:</label>
+                <input type="text" id="cvName" name="cvName" class="form-input" required>
+              </div>
+              <div class="form-group">
+                <label for="cvSkills">Key Skills/Area of Interest:</label>
+                <input type="text" id="cvSkills" name="cvSkills" class="form-input" required>
+              </div>
+              <div class="form-group">
+                <label for="cvFile">Upload CV (PDF, DOCX):</label>
+                <input type="file" id="cvFile" name="cvFile" class="form-input" accept=".pdf,.doc,.docx" required>
+              </div>
+              <div class="form-group">
+                <label for="cvContact">Your Contact Email:</label>
+                <input type="email" id="cvContact" name="cvContact" class="form-input" required>
+              </div>
+              <button type="submit" class="action-button action-button-primary"><i class="fas fa-paper-plane"></i>Submit CV</button>
+            </form>
+          `;
+          modalFooter.innerHTML = `<button onclick="closeModal()" class="action-button-secondary"><i class="fas fa-times btn-icon"></i>Cancel</button>`;
+          modal.style.display = 'block';
+          document.getElementById('submitCvForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            console.log("CV submitted:", Object.fromEntries(new FormData(e.target)));
+            alert("CV submitted! We'll share it with relevant employers.");
+            closeModal();
+          });
+        });
+      }
+
+      // Adzuna API Integration
+      const searchBtn = document.getElementById('searchBtn');
+      if (searchBtn) {
+        searchBtn.addEventListener('click', async () => {
+          const searchType = document.getElementById('searchType').value;
+          const location = document.getElementById('location').value || 'South Africa';
+          const experience = document.getElementById('experience').value;
+          let query = '';
+          if (searchType === 'job') {
+            query = experience === 'entry' ? 'trainee occupational health safety' : 'occupational health safety';
+          } else if (searchType === 'training') {
+            query = 'occupational health safety training';
+          } else if (searchType === 'mentorship') {
+            query = 'occupational health safety mentorship';
+          } else if (searchType === 'scholarship') {
+            query = 'occupational health safety scholarship';
+          }
+          try {
+            const response = await fetch(`https://api.adzuna.com/v1/api/jobs/za/search/1?app_id=YOUR_ADZUNA_APP_ID&app_key=YOUR_ADZUNA_APP_KEY&what=${encodeURIComponent(query)}&where=${encodeURIComponent(location)}&content-type=application/json`);
+            const data = await response.json();
+            jobList.innerHTML = '';
+            if (data.results && data.results.length > 0)
