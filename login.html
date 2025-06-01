@@ -87,37 +87,9 @@
       gap: 1rem; 
       padding: 1rem; 
     }
-    @media (max-width: 1024px) { 
-        .container { grid-template-columns: 1fr 4fr 1fr; }
-    }
-    @media (max-width: 768px) { 
-        .container { grid-template-columns: 1fr; }
-        .sidebar-tools, .sidebar-milestones { display: none; } 
-    }
-    
-    .sidebar-tools, .sidebar-milestones { 
-      background: #fff; 
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden; 
-      max-height: calc(100vh - 120px); 
-    }
-    .sidebar-heading {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: #007BFF;
-      padding: 1rem;
-      border-bottom: 1px solid #e5e7eb;
-      background-color: #f9f9f9;
-      flex-shrink: 0;
-      border-top-left-radius: 8px;
-      border-top-right-radius: 8px;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
+    /* Sidebar styles (copied from previous template) */
+    .sidebar-tools, .sidebar-milestones { background: #fff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; flex-direction: column; overflow: hidden; max-height: calc(100vh - 120px); }
+    .sidebar-heading { font-size: 1.2rem; font-weight: 700; color: #007BFF; padding: 1rem; border-bottom: 1px solid #e5e7eb; background-color: #f9f9f9; flex-shrink: 0; border-top-left-radius: 8px; border-top-right-radius: 8px; display: flex; align-items: center; gap: 0.5rem; }
     .sidebar-heading .heading-icon { color: #FF8C00; }
     .sidebar-list-container { flex-grow: 1; overflow: hidden; position: relative; }
     .sidebar-tools ul, .sidebar-milestones ul { list-style: none; padding: 0; margin: 0; }
@@ -132,15 +104,15 @@
     .sidebar-tools li a .list-icon, .sidebar-milestones li .list-icon { color: #007BFF; font-size: 1em; width: 20px; text-align: center; }
     .sidebar-tools li a.active-tool-link { background-color: #ddeaff; font-weight: 600; color: #0056b3; }
     
-    /* Main content specific to Login/SignUp Page */
-    .main-login-signup { 
-      padding: 1rem; 
-      overflow-y: auto; 
-      background-color: transparent; 
+    /* Main content specific to Login/SignUp Page - Updated Layout */
+    .main-login-signup-wrapper { /* New wrapper for side-by-side layout */
       display: flex;
-      flex-direction: column;
-      align-items: center; 
+      flex-direction: row; /* Default for side-by-side */
+      align-items: flex-start; /* Align items to the top */
       gap: 2rem; 
+      width: 100%;
+      max-width: 1200px; /* Control overall max width */
+      margin: 0 auto; /* Center the wrapper */
     }
     .auth-container {
         background-color: white;
@@ -149,136 +121,55 @@
         box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         width: 100%;
         max-width: 480px; 
+        flex: 1; /* Allow auth container to take space */
     }
-    .auth-container h2 {
-        font-size: 1.8rem;
-        color: #0056b3; 
-        margin-bottom: 1.5rem; 
-        text-align: center;
-    }
-    .form-toggle-buttons {
-        display: flex;
-        margin-bottom: 1.5rem;
-        border-radius: 0.375rem;
-        overflow: hidden;
-        border: 1px solid #007BFF;
-    }
-    .form-toggle-buttons button {
-        flex: 1;
-        padding: 0.75rem;
-        background-color: white;
-        color: #007BFF;
-        border: none;
-        cursor: pointer;
-        font-weight: 600; /* Bolder for tabs */
-        transition: background-color 0.3s ease, color 0.3s ease;
-        font-size: 1rem; /* Slightly larger */
-        font-family: 'Montserrat', sans-serif;
-    }
-    .form-toggle-buttons button.active {
-        background-color: #007BFF;
-        color: white;
-    }
-    .form-toggle-buttons button:not(.active):hover {
-        background-color: #e8f0fe;
-    }
-
-    .input-group {
-        position: relative;
-        margin-bottom: 1.25rem;
-    }
-    .input-group .fa-icon {
-        position: absolute;
-        left: 0.875rem; 
-        top: 50%;
-        transform: translateY(-50%);
-        color: #9ca3af; 
-        font-size: 0.9em;
-    }
-    .form-input { 
-        padding-left: 2.75rem; 
-        width: 100%;
-        border-radius: 6px; /* Consistent with main template */
-        border: 1px solid #ccc; /* Consistent with main template */
-        padding-top: 0.75rem;
-        padding-bottom: 0.75rem;
-        padding-right: 0.75rem;
-        font-size: 1rem;
-        font-family: 'Montserrat', sans-serif;
-        color: #1f2937; 
-    }
-    .form-input::placeholder { color: #9ca3af; }
-    .form-input:focus {
-        outline: 2px solid transparent;
-        outline-offset: 2px;
-        border-color: #007BFF; 
-        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); 
-    }
-    .auth-button { 
-        background-color: #007BFF;
-        color: white;
-        padding: 0.75rem 1.5rem;
-        border-radius: 6px; /* Consistent */
-        font-weight: 600; 
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        transition: background-color 0.3s ease;
-        border: none;
-        font-size: 1rem;
-        font-family: 'Montserrat', sans-serif;
-    }
-    .auth-button:hover {
-        background-color: #0056b3; 
-    }
-    .auth-button .btn-icon { margin-right: 0.5rem; }
-    .auth-button.google-btn {
-        background-color: #fff;
-        color: #374151; 
-        border: 1px solid #d1d5db; 
-    }
-    .auth-button.google-btn:hover {
-        background-color: #f9fafb; 
-    }
-    .auth-links {
-        text-align: center;
-        font-size: 0.9rem;
-        color: #555;
-        margin-top: 1.5rem;
-    }
-    .auth-links a { color: #007BFF; font-weight: 500; text-decoration: underline; }
-    .auth-links a:hover { color: #0056b3; }
-    #auth-message {
-        width: 100%;
-        padding: 0.85rem; /* Slightly more padding */
-        margin-bottom: 1.25rem; 
-        border-radius: 6px; 
-        text-align: center;
-        font-size: 0.95rem; /* Slightly larger */
-        font-weight: 500;
-        border-width: 1px;
-        border-style: solid;
-    }
-    .message-success { background-color: #d1fae5; color: #065f46; border-color: #6ee7b7;}
-    .message-error { background-color: #fee2e2; color: #991b1b; border-color: #fca5a5;}
-    .hidden { display: none !important; }
-
-    /* Plans Comparison Table */
     .plans-container {
         background-color: white;
         padding: 2rem;
         border-radius: 0.5rem;
         box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         width: 100%;
-        max-width: 900px; 
+        flex: 1.5; /* Allow plans container to take more space */
     }
-    .plans-container h2 {
-        font-size: 1.8rem; color: #0056b3; margin-bottom: 1.5rem; text-align: center;
-        display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+     @media (max-width: 900px) { /* Stack on smaller screens */
+        .main-login-signup-wrapper {
+            flex-direction: column;
+            align-items: center; /* Center items when stacked */
+        }
+        .auth-container, .plans-container {
+            max-width: 600px; /* Allow them to be wider when stacked */
+        }
+         .sidebar-tools, .sidebar-milestones { display: none; } /* Hide sidebars on mobile for login page focus */
+         .container { grid-template-columns: 1fr; }
     }
-     .plans-container h2 .section-icon { color: #FF8C00; }
+
+
+    .auth-container h2 { font-size: 1.8rem; color: #0056b3; margin-bottom: 1.5rem; text-align: center; }
+    .form-toggle-buttons { display: flex; margin-bottom: 1.5rem; border-radius: 0.375rem; overflow: hidden; border: 1px solid #007BFF; }
+    .form-toggle-buttons button { flex: 1; padding: 0.75rem; background-color: white; color: #007BFF; border: none; cursor: pointer; font-weight: 600; transition: background-color 0.3s ease, color 0.3s ease; font-size: 1rem; font-family: 'Montserrat', sans-serif; }
+    .form-toggle-buttons button.active { background-color: #007BFF; color: white; }
+    .form-toggle-buttons button:not(.active):hover { background-color: #e8f0fe; }
+    .input-group { position: relative; margin-bottom: 1.25rem; }
+    .input-group .fa-icon { position: absolute; left: 0.875rem; top: 50%; transform: translateY(-50%); color: #9ca3af; font-size: 0.9em; }
+    .form-input { padding-left: 2.75rem; width: 100%; border-radius: 6px; border: 1px solid #ccc; padding-top: 0.75rem; padding-bottom: 0.75rem; padding-right: 0.75rem; font-size: 1rem; font-family: 'Montserrat', sans-serif; color: #1f2937; }
+    .form-input::placeholder { color: #9ca3af; }
+    .form-input:focus { outline: 2px solid transparent; outline-offset: 2px; border-color: #007BFF; box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); }
+    .auth-button { background-color: #007BFF; color: white; padding: 0.75rem 1.5rem; border-radius: 6px; font-weight: 600; width: 100%; display: flex; align-items: center; justify-content: center; gap: 0.5rem; transition: background-color 0.3s ease; border: none; font-size: 1rem; font-family: 'Montserrat', sans-serif; }
+    .auth-button:hover { background-color: #0056b3; }
+    .auth-button .btn-icon { margin-right: 0.5rem; }
+    .auth-button.google-btn { background-color: #fff; color: #374151; border: 1px solid #d1d5db; }
+    .auth-button.google-btn:hover { background-color: #f9fafb; }
+    .auth-links { text-align: center; font-size: 0.9rem; color: #555; margin-top: 1.5rem; }
+    .auth-links a { color: #007BFF; font-weight: 500; text-decoration: underline; }
+    .auth-links a:hover { color: #0056b3; }
+    #auth-message { width: 100%; padding: 0.85rem; margin-bottom: 1.25rem; border-radius: 6px; text-align: center; font-size: 0.95rem; font-weight: 500; border-width: 1px; border-style: solid; }
+    .message-success { background-color: #dcfce7; color: #166534; border-color: #86efac;} /* Brighter green */
+    .message-error { background-color: #fee2e2; color: #991b1b; border-color: #fca5a5;}
+    .hidden { display: none !important; }
+
+    /* Plans Comparison Table Styles (Copied and adapted) */
+    .plans-container h2 { font-size: 1.8rem; color: #0056b3; margin-bottom: 1.5rem; text-align: center; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
+    .plans-container h2 .section-icon { color: #FF8C00; }
     .plan-table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
     .plan-table th, .plan-table td { padding: 0.85rem 1rem; text-align: left; border-bottom: 1px solid #e5e7eb; font-size: 0.9rem; vertical-align: middle; font-family: 'Inter', sans-serif; }
     .plan-table th { background-color: #007BFF; color: white; font-weight: 600; font-family: 'Montserrat', sans-serif; }
@@ -293,16 +184,11 @@
     .encouragement-message p strong { font-weight: 600; }
     .encouragement-message a { color: #007BFF; text-decoration: underline; }
     .encouragement-message a:hover { color: #0056b3; }
-    .plans-container .action-button {
-        background-color: #FF8C00;
-        color: white;
-    }
-     .plans-container .action-button:hover {
-        background-color: #e07b00;
-    }
+    .plans-container .auth-button { background-color: #FF8C00; }
+    .plans-container .auth-button:hover { background-color: #e07b00; }
 
 
-    /* Footer (from established SafetyHelp template) */
+    /* Footer */
     footer {
       background: #343a40; 
       color: #adb5bd; 
@@ -316,7 +202,7 @@
     footer a { color: #FF8C00; transition: color 0.3s ease; }
     footer a:hover { color: #fff; }
     
-    /* Modal Styles (from established SafetyHelp template) */
+    /* Modal Styles */
     .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); padding-top: 60px; }
     .modal-content { background-color: #fefefe; margin: 5% auto; padding: 25px; border: 1px solid #888; width: 80%; max-width: 600px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative; }
     .modal-header { padding-bottom: 10px; border-bottom: 1px solid #eee; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
@@ -330,7 +216,7 @@
     .modal-footer button { background-color: #6c757d; color:white; border:none; padding: 0.7rem 1.3rem; border-radius:6px; cursor:pointer; } 
     .modal-footer button:hover { background-color: #5a6268; }
 
-    /* Chatbot Styles (from established SafetyHelp template) */
+    /* Chatbot Styles */
     .chatbot-container { position: fixed; bottom: 20px; right: 20px; z-index: 1050; }
     #chat-toggle { background-color: #FF8C00; color: white; border: none; border-radius: 50%; width: 60px; height: 60px; font-size: 1.8rem; box-shadow: 0 4px 8px rgba(0,0,0,0.2); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background-color 0.3s ease, transform 0.3s ease; }
     #chat-toggle:hover { background-color: #e07b00; transform: scale(1.1); }
@@ -370,7 +256,7 @@
         <option value="af" data-i18n="language_selector.af">Afrikaans</option>
         <option value="zu" data-i18n="language_selector.zu">isiZulu</option>
         <option value="xh" data-i18n="language_selector.xh">isiXhosa</option>
-         </select>
+      </select>
     </div>
   </header>
 
@@ -401,15 +287,14 @@
       </div>
     </aside>
 
-    <main class="main-login-signup">
-        <div class="auth-container">
+    <main class="main-login-signup-wrapper"> <div class="auth-container">
             <div class="form-toggle-buttons">
                 <button id="show-login-btn" class="active" data-i18n="login.tab">Log In</button>
                 <button id="show-signup-btn" data-i18n="signup.tab">Sign Up</button>
             </div>
             <div id="auth-message" class="hidden"></div> 
 
-            <form id="loginForm">
+            <form id="loginForm" class="auth-form">
                 <h2 data-i18n="login.title_form">Log In to Your Account</h2>
                 <div class="input-group">
                     <span class="fa-icon"><i class="fas fa-envelope"></i></span>
@@ -430,7 +315,7 @@
                 </div>
             </form>
 
-            <form id="signupForm" class="hidden">
+            <form id="signupForm" class="auth-form hidden">
                 <h2 data-i18n="signup.title_form">Create Your Free Account</h2>
                  <div class="input-group">
                     <span class="fa-icon"><i class="fas fa-user"></i></span>
@@ -533,7 +418,7 @@
                 </table>
             </div>
             <div class="mt-6 text-center">
-                <button onclick="document.getElementById('show-signup-btn').click();" class="auth-button" style="width:auto; background-color: #FF8C00;">
+                <button onclick="document.getElementById('show-signup-btn').click();" class="auth-button" style="width:auto;">
                      <i class="fas fa-user-plus"></i> <span data-i18n="login.plans.getStarted">Sign Up Now & Get Started</span>
                 </button>
             </div>
@@ -548,14 +433,12 @@
       <h3 class="sidebar-heading"><i class="fas fa-flag-checkered heading-icon"></i>OHS Milestones</h3>
       <div class="sidebar-list-container">
         <ul id="ohs-milestones-list">
-          <li data-detail="The Occupational Safety and Health Act was enacted in the USA, establishing standards for workplace safety and influencing global OHS practices."><i class="fas fa-landmark list-icon"></i>1970: OSHA (USA)</li>
-          <li data-detail="South Africa's Occupational Health and Safety Act No. 85 of 1993 was established, laying the groundwork for current OHS practices and emphasizing employer responsibility."><i class="fas fa-landmark list-icon"></i>1993: OHS Act (SA)</li>
-          <li data-detail="The Compensation for Occupational Injuries and Diseases Act (COIDA) was amended, refining worker compensation and rehabilitation processes."><i class="fas fa-landmark list-icon"></i>2003: COIDA Amendment (SA)</li>
-          <li data-detail="Specific regulations for construction work were updated in South Africa, enhancing safety on construction sites through detailed requirements for planning and execution."><i class="fas fa-landmark list-icon"></i>2014: Construction Regs (SA)</li>
-          <li data-detail="Adoption of the Globally Harmonized System (GHS) for classification and labeling of chemicals, promoting international consistency in hazard communication."><i class="fas fa-landmark list-icon"></i>2015: Global Harmonization (GHS)</li>
-          <li data-detail="Global and national directives for managing COVID-19 in the workplace were introduced, highlighting the importance of infectious disease preparedness."><i class="fas fa-landmark list-icon"></i>2020: COVID-19 Protocols</li>
-          <li data-detail="Increased emphasis on psychological health and safety in workplaces, recognizing mental well-being as a critical component of OHS."><i class="fas fa-landmark list-icon"></i>2022: Mental Health Focus</li>
-          <li data-detail="Ongoing development towards using AI and big data for predictive safety analytics and proactive risk mitigation, aiming to prevent incidents before they occur."><i class="fas fa-landmark list-icon"></i>Future: Predictive Safety & AI</li>
+          <li data-detail="The Occupational Safety and Health Act was enacted in the USA, establishing standards for workplace safety."><i class="fas fa-landmark list-icon"></i>1970: OSHA (USA)</li>
+          <li data-detail="South Africa's OHS Act No. 85 of 1993 was established, laying the groundwork for current practices."><i class="fas fa-landmark list-icon"></i>1993: OHS Act (SA)</li>
+          <li data-detail="The Compensation for Occupational Injuries and Diseases Act was amended."><i class="fas fa-landmark list-icon"></i>2003: COIDA Amendment</li>
+          <li data-detail="Adoption of the Globally Harmonized System for classification and labeling of chemicals."><i class="fas fa-landmark list-icon"></i>2015: Global Harmonization</li>
+          <li data-detail="Increased emphasis on psychological health and safety in workplaces."><i class="fas fa-landmark list-icon"></i>2022: Mental Health Focus</li>
+          <li data-detail="Ongoing development towards using AI for predictive safety analytics."><i class="fas fa-landmark list-icon"></i>Future: Predictive Safety</li>
         </ul>
       </div>
     </aside>
@@ -564,7 +447,7 @@
 </div> 
 
 <footer>
-  <p>&copy; <span id="copyright-year">2025</span> SafetyHelp. All rights reserved. Your Partner in Occupational Health and Safety Compliance.</p>
+  <p id="copyright-text">© 2025 SafetyHelp. All rights reserved. Your Partner in Occupational Health and Safety Compliance.</p>
   <p><a href="/SafetyHelp/privacy.html" data-i18n="footer.links.privacy">Privacy Policy</a> | <a href="/SafetyHelp/terms.html" data-i18n="footer.links.terms">Terms of Service</a> | <a href="/SafetyHelp/contact.html" data-i18n="footer.links.contact">Contact Us</a></p> 
   <div class="newsletter" style="margin-top: 1rem;">
       <h4 data-i18n="footer.newsletter.title_alt" style="font-size: 1rem; margin-bottom: 0.5rem;">Stay Updated with SafetyHelp</h4>
@@ -592,7 +475,7 @@
     <div id="chat-window" class="chat-hidden"> 
         <div id="chat-header">
             <span>Salatiso - Your OHS Assistant</span>
-            <button class="close-chat-btn" onclick="toggleChatbot(false)">&times;</button>
+            <button class="close-chat-btn" onclick="toggleChatbotUI(false)">&times;</button>
         </div>
         <div id="chat-output">
             <p><strong>Salatiso:</strong> Hello! How can I help you with OHS today?</p>
@@ -602,7 +485,7 @@
             <button id="chat-send"><i class="fas fa-paper-plane"></i></button>
         </div>
     </div>
-    <button id="chat-toggle" onclick="toggleChatbot()">
+    <button id="chat-toggle" onclick="toggleChatbotUI()">
         <i class="fas fa-headset"></i> 
     </button>
 </div>
@@ -642,51 +525,37 @@
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    // --- UI Management & Message Display ---
     function displayMessage(messageKey, type, elementId = "auth-message", persistShort = false) {
         const messageContainer = document.getElementById(elementId);
         if (messageContainer) {
             const translatedMessage = (typeof i18next !== 'undefined' && i18next.isInitialized) ? i18next.t(messageKey) : messageKey;
             messageContainer.textContent = translatedMessage;
-            messageContainer.className = ''; // Reset classes
+            messageContainer.className = 'hidden'; // Reset classes by hiding first
             messageContainer.classList.add('p-3', 'my-2', 'rounded-md', 'text-center', 'text-sm', 'border');
             if (type === 'success') {
-                messageContainer.classList.add('bg-green-100', 'text-green-700', 'border-green-300', 'message-success');
-            } else { // error
-                messageContainer.classList.add('bg-red-100', 'text-red-700', 'border-red-300', 'message-error');
+                messageContainer.classList.add('message-success');
+            } else {
+                messageContainer.classList.add('message-error');
             }
-            messageContainer.style.display = 'block';
-
+            messageContainer.style.display = 'block'; // Make visible
             if (!persistShort) {
                 setTimeout(() => { messageContainer.style.display = 'none'; }, 7000);
             }
-             // If persistShort is true, message remains until page navigation
         } else { console.warn(`Message container with ID '${elementId}' not found. Message: ${messageKey}`); }
     }
 
-    // --- Authentication Functions ---
     async function handleEmailPasswordSignUp(email, password, displayName, companyName = '') {
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
-            
-            // Update Firebase Auth profile (optional, but good for displayName)
             await updateFirebaseProfile(user, { displayName: displayName || email.split('@')[0] });
-
             await setDoc(doc(db, "users", user.uid), {
-                uid: user.uid,
-                email: user.email,
-                displayName: displayName || user.email.split('@')[0],
-                companyName: companyName,
-                membershipPlan: 'free',
-                role: 'client',
-                createdAt: new Date()
+                uid: user.uid, email: user.email, displayName: displayName || user.email.split('@')[0],
+                companyName: companyName, membershipPlan: 'free', role: 'client', createdAt: new Date()
             });
-            console.log("User registered:", user.uid);
             displayMessage("signup.emailSuccessRedirect", "success", "auth-message", true);
-            setTimeout(() => { window.location.href = '/SafetyHelp/secure/member-dashboard.html'; }, 2000);
+            // Redirection will be handled by onAuthStateChanged
         } catch (error) {
-            console.error("Error during sign up:", error);
             let errorMessageKey = "signup.errorGeneral";
             if (error.code === 'auth/email-already-in-use') errorMessageKey = "signup.errorEmailInUse";
             else if (error.code === 'auth/invalid-email') errorMessageKey = "signup.errorInvalidEmail";
@@ -698,11 +567,9 @@
     async function handleEmailPasswordSignIn(email, password) {
         try {
             await signInWithEmailAndPassword(auth, email, password);
-            console.log("User signed in!");
             displayMessage("login.emailSuccessRedirect", "success", "auth-message", true);
-            setTimeout(() => { window.location.href = '/SafetyHelp/secure/member-dashboard.html'; }, 2000);
+            // Redirection will be handled by onAuthStateChanged
         } catch (error) {
-            console.error("Error during sign in:", error);
             let errorMessageKey = "login.errorGeneral";
             if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
                 errorMessageKey = "login.errorInvalidCredentials";
@@ -713,36 +580,26 @@
         }
     }
 
-    async function handleGoogleAuth() { // Combined for login/signup via Google
+    async function handleGoogleAuth() {
         try {
             const provider = new GoogleAuthProvider();
             const userCredential = await signInWithPopup(auth, provider);
             const user = userCredential.user;
             const userDocRef = doc(db, "users", user.uid);
             const docSnap = await getDoc(userDocRef);
-
             let successMessageKey = "";
-            if (!docSnap.exists()) { // New user
+            if (!docSnap.exists()) {
                 await setDoc(userDocRef, {
-                    uid: user.uid,
-                    email: user.email,
-                    displayName: user.displayName || user.email.split('@')[0],
-                    companyName: '', 
-                    membershipPlan: 'free',
-                    role: 'client',
-                    createdAt: new Date(),
-                    authMethod: 'google'
+                    uid: user.uid, email: user.email, displayName: user.displayName || user.email.split('@')[0],
+                    companyName: '', membershipPlan: 'free', role: 'client', createdAt: new Date(), authMethod: 'google'
                 });
-                console.log("New user registered via Google:", user.uid);
                 successMessageKey = "signup.googleSuccessRedirect";
-            } else { // Existing user
-                console.log("Existing user signed in with Google:", user.uid);
+            } else {
                 successMessageKey = "login.googleSuccessRedirect";
             }
             displayMessage(successMessageKey, "success", "auth-message", true);
-            setTimeout(() => { window.location.href = '/SafetyHelp/secure/member-dashboard.html'; }, 2000);
+            // Redirection will be handled by onAuthStateChanged
         } catch (error) {
-            console.error("Error during Google sign in/up:", error);
             let errorMessageKey = "login.errorGoogleGeneral";
             if (error.code === 'auth/popup-closed-by-user') errorMessageKey = "login.errorGooglePopupClosed";
             else if (error.code === 'auth/cancelled-popup-request') errorMessageKey = "login.errorGoogleCancelled";
@@ -752,14 +609,12 @@
 
     async function handlePasswordReset(email) {
         if (!email || !email.trim()) {
-            displayMessage("login.errorEmailRequiredForReset", "error", "auth-message");
-            return;
+            displayMessage("login.errorEmailRequiredForReset", "error", "auth-message"); return;
         }
         try {
             await sendPasswordResetEmail(auth, email);
             displayMessage("login.passwordResetSent", "success", "auth-message");
         } catch (error) {
-            console.error("Error sending password reset email:", error);
             let errorMessageKey = "login.errorPasswordResetFailed";
             if (error.code === 'auth/user-not-found') errorMessageKey = "login.errorUserNotFoundForReset";
             else if (error.code === 'auth/invalid-email') errorMessageKey = "login.errorInvalidEmail";
@@ -767,15 +622,12 @@
         }
     }
 
-    // i18next Initialization
     async function initializeI18next() {
         if (typeof i18next !== 'undefined' && typeof i18nextHttpBackend !== 'undefined' && typeof i18nextBrowserLanguageDetector !== 'undefined') {
             try {
-                await i18next
-                    .use(i18nextHttpBackend)
-                    .use(i18nextBrowserLanguageDetector)
+                await i18next.use(i18nextHttpBackend).use(i18nextBrowserLanguageDetector)
                     .init({
-                        fallbackLng: 'en', debug: true, ns: ['translation'], defaultNS: 'translation',
+                        fallbackLng: 'en', debug: false, ns: ['translation'], defaultNS: 'translation',
                         backend: { loadPath: '/SafetyHelp/assets/locales/{{lng}}/{{ns}}.json' },
                         detection: { order: ['querystring', 'cookie', 'localStorage', 'sessionStorage', 'navigator', 'htmlTag'], caches: ['localStorage', 'cookie'] }
                     });
@@ -787,10 +639,7 @@
     function updateContent() {
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
-            const optionsAttr = el.getAttribute('data-i18n-options');
-            let options = {};
-            if (optionsAttr) { try { options = JSON.parse(optionsAttr); } catch (e) { console.error(`Error parsing i18n options for key "${key}":`, e); }}
-            let translation = i18next.t(key, options);
+            let translation = (typeof i18next !== 'undefined' && i18next.isInitialized) ? i18next.t(key) : key; // Fallback to key
             if (key.startsWith('[placeholder]')) { el.setAttribute('placeholder', translation); }
             else if (el.tagName === 'TITLE') { document.title = translation; }
             else {
@@ -803,20 +652,17 @@
                 } else { el.innerHTML = translation; }
             }
         });
-        const footerYearEl = document.getElementById('copyright-year');
-        if(footerYearEl && i18next.isInitialized) { // Ensure i18next is ready
-             footerYearEl.textContent = i18next.t('footer.copyright_year_full.year', { year: new Date().getFullYear() });
-        } else if (footerYearEl) { // Fallback if i18next not ready
-            footerYearEl.textContent = new Date().getFullYear();
+        const footerCopyrightEl = document.getElementById('copyright-text');
+        if (footerCopyrightEl) {
+             footerCopyrightEl.innerHTML = `&copy; ${new Date().getFullYear()} SafetyHelp. All rights reserved. Your Partner in Occupational Health and Safety Compliance.`;
         }
     }
-    function applyStaticTranslations() { /* Basic fallback */ document.title = "Login / SignUp | SafetyHelp"; }
+    function applyStaticTranslations() { document.title = "Login / SignUp | SafetyHelp"; }
 
-    // Form Toggling
     const loginFormEl = document.getElementById('loginForm');
     const signupFormEl = document.getElementById('signupForm');
-    const showLoginBtnEl = document.getElementById('show-login-btn'); // Renamed for clarity
-    const showSignupBtnEl = document.getElementById('show-signup-btn'); // Renamed
+    const showLoginBtnEl = document.getElementById('show-login-btn');
+    const showSignupBtnEl = document.getElementById('show-signup-btn');
     const authMessageDiv = document.getElementById('auth-message');
 
     if (showLoginBtnEl && showSignupBtnEl && loginFormEl && signupFormEl) {
@@ -832,15 +678,25 @@
         });
     }
 
-    // Event Listeners
     document.addEventListener('DOMContentLoaded', async () => {
         await initializeI18next();
         
-        onAuthStateChanged(auth, (user) => { // Redirect if already logged in
-            if (user && (window.location.pathname.endsWith('login.html') || window.location.pathname.endsWith('login'))) {
-                console.log("User already logged in, redirecting to dashboard.");
-                // displayMessage("login.alreadyLoggedIn", "success", "auth-message", true); // Optional: Show message
-                // setTimeout(() => { window.location.href = '/SafetyHelp/secure/member-dashboard.html'; }, 1000);
+        onAuthStateChanged(auth, (user) => {
+            const isOnLoginPage = window.location.pathname.includes('login.html');
+            if (user && isOnLoginPage) {
+                console.log("User authenticated on login page, redirecting to dashboard.");
+                // The individual auth functions already call displayMessage.
+                // This ensures redirection if user lands here while already logged in.
+                // Or if an auth function successfully completes and updates state.
+                if (!authMessageDiv.textContent || authMessageDiv.style.display === 'none' || authMessageDiv.classList.contains('message-error')) {
+                    // If no specific success message shown by the auth handlers, show a generic one
+                    displayMessage("login.genericSuccessRedirect", "success", "auth-message", true);
+                }
+                setTimeout(() => { window.location.href = '/SafetyHelp/secure/member-dashboard.html'; }, 1500); // slightly faster if already logged in
+            } else if (user) {
+                // User is logged in but not on login page - this case is handled by member-dashboard.js for example
+            } else {
+                // User is logged out.
             }
         });
 
@@ -876,16 +732,16 @@
         }
         
         const googleLoginButton = document.getElementById('google-login-btn');
-        if (googleLoginButton) googleLoginButton.addEventListener('click', () => handleGoogleAuth(false));
+        if (googleLoginButton) googleLoginButton.addEventListener('click', () => handleGoogleAuth());
         
         const googleSignupButton = document.getElementById('google-signup-btn');
-        if (googleSignupButton) googleSignupButton.addEventListener('click', () => handleGoogleAuth(true));
+        if (googleSignupButton) googleSignupButton.addEventListener('click', () => handleGoogleAuth());
 
         const forgotPasswordLink = document.getElementById('forgot-password-link');
         if (forgotPasswordLink) {
             forgotPasswordLink.addEventListener('click', (event) => {
                 event.preventDefault();
-                const promptMsg = i18next.isInitialized ? i18next.t('login.promptForgotPasswordEmail') : "Please enter your email address to reset your password:";
+                const promptMsg = (typeof i18next !== 'undefined' && i18next.isInitialized) ? i18next.t('login.promptForgotPasswordEmail') : "Please enter your email address for password reset:";
                 const email = prompt(promptMsg);
                 if (email) { handlePasswordReset(email); }
                 else if (email === "") { displayMessage("login.errorEmailRequiredForReset", "error", "auth-message");}
@@ -898,46 +754,45 @@
                 event.preventDefault();
                 const emailEl = document.getElementById('newsletterEmail');
                 if (emailEl && emailEl.value) {
-                    const successMsg = i18next.isInitialized ? i18next.t('footer.newsletter.success', {email: emailEl.value}) : `Subscribed ${emailEl.value}!`;
+                    const successMsg = (typeof i18next !== 'undefined' && i18next.isInitialized) ? i18next.t('footer.newsletter.success', {email: emailEl.value}) : `Subscribed ${emailEl.value}!`;
                     displayMessage(successMsg, "success", "auth-message"); 
                     emailEl.value = '';
                 } else {
-                    const errorMsg = i18next.isInitialized ? i18next.t('footer.newsletter.error') : "Please enter a valid email.";
+                    const errorMsg = (typeof i18next !== 'undefined' && i18next.isInitialized) ? i18next.t('footer.newsletter.error') : "Please enter a valid email.";
                     displayMessage(errorMsg, "error", "auth-message");
                 }
             });
         }
         
-        // Initial form display
         if (loginFormEl && showLoginBtnEl) { loginFormEl.classList.remove('hidden'); showLoginBtnEl.classList.add('active'); }
         if (signupFormEl && showSignupBtnEl) { signupFormEl.classList.add('hidden'); showSignupBtnEl.classList.remove('active'); }
     });
     
     // --- Standard Sidebar, Modal, Chatbot UI JS (from SafetyHelp template) ---
-    const copyrightYearEl = document.getElementById('copyright-year');
-    if(copyrightYearEl) copyrightYearEl.textContent = new Date().getFullYear();
+    const copyrightYearEl = document.getElementById('copyright-year'); // Assuming you meant to set the full text via i18n now
+    // if(copyrightYearEl) copyrightYearEl.textContent = new Date().getFullYear(); // This line will be handled by updateContent
 
-    function setupScrollingSidebar(listId) { // Adapted from template
+    function setupScrollingSidebar(listId) { 
         const listElement = document.getElementById(listId);
         if (!listElement || listElement.children.length === 0) return;
         const originalItems = Array.from(listElement.children);
         originalItems.forEach(item => {
             const clone = item.cloneNode(true);
-            if (listId === 'ohs-milestones-list') {
+            if (listId === 'ohs-milestones-list' && clone.tagName === 'LI') { // Ensure it's an LI for data-detail
                 clone.addEventListener('click', () => showMilestoneDetail(clone));
             }
             listElement.appendChild(clone);
         });
         originalItems.forEach(item => {
-            if (listId === 'ohs-milestones-list') {
+            if (listId === 'ohs-milestones-list' && item.tagName === 'LI') {
                 item.addEventListener('click', () => showMilestoneDetail(item));
             }
         });
     }
     
-    const infoModalEl = document.getElementById('infoModal'); // Renamed
-    const infoModalTitleEl = document.getElementById('modalTitle'); // Renamed
-    const infoModalBodyEl = document.getElementById('modalBody'); // Renamed
+    const infoModalEl = document.getElementById('infoModal'); 
+    const infoModalTitleEl = document.getElementById('modalTitle'); 
+    const infoModalBodyEl = document.getElementById('modalBody'); 
 
     function showMilestoneDetail(element) {
         if (!infoModalEl || !infoModalTitleEl || !infoModalBodyEl) return;
@@ -947,20 +802,20 @@
         infoModalBodyEl.innerHTML = `<p>${detail}</p>`;
         infoModalEl.style.display = 'block';
     }
-    function closeModal() { // General modal close
+    function closeModal() { 
         if (infoModalEl) infoModalEl.style.display = 'none';
     }
     window.onclick = function(event) {
         if (event.target == infoModalEl) { closeModal(); }
     }
     
-    const chatWindowGlobal = document.getElementById('chat-window'); // Renamed
-    const chatToggleBtnGlobal = document.getElementById('chat-toggle'); // Renamed
+    const chatWindowGlobal = document.getElementById('chat-window'); 
+    const chatToggleBtnGlobal = document.getElementById('chat-toggle'); 
     const chatInputGlobal = document.getElementById('chat-input');  
     const chatSendBtnGlobal = document.getElementById('chat-send');    
     const chatOutputGlobal = document.getElementById('chat-output'); 
 
-    function toggleChatbot(forceOpen) { // General toggle
+    function toggleChatbotUI(forceOpen) { // Renamed from toggleChatbot
         if (!chatWindowGlobal || !chatToggleBtnGlobal) return;
         const isHidden = chatWindowGlobal.classList.contains('chat-hidden');
         if (forceOpen === true || isHidden) {
@@ -969,13 +824,13 @@
             chatToggleBtnGlobal.innerHTML = '<i class="fas fa-times"></i>'; 
             if (chatInputGlobal) chatInputGlobal.focus();
         } else if (forceOpen === false || !isHidden) {
-            chatWindowGlobal.classList.add('hidden'); // Use hidden directly
+            chatWindowGlobal.classList.add('chat-hidden'); 
             chatWindowGlobal.classList.remove('chat-expanded');
             chatToggleBtnGlobal.innerHTML = '<i class="fas fa-headset"></i>'; 
         }
     }
 
-    function addChatMessageToUIChatbot(sender, message, isUser) {
+    function addChatMessageToUIChatbot(sender, message, isUser) { // Keep this distinct for chatbot
         if (!chatOutputGlobal) return;
         const p = document.createElement('p');
         p.innerHTML = `<strong>${sender}:</strong> ${message}`;
@@ -1004,7 +859,7 @@
     window.addEventListener('load', () => { 
         setupScrollingSidebar('safetyhelp-tools-list'); 
         setupScrollingSidebar('ohs-milestones-list'); 
-        if (chatWindowGlobal) chatWindowGlobal.classList.add('chat-hidden'); // Start hidden
+        if (chatWindowGlobal) chatWindowGlobal.classList.add('chat-hidden'); 
         if (chatToggleBtnGlobal) chatToggleBtnGlobal.style.display = 'flex'; 
     });
 
