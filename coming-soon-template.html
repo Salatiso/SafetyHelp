@@ -182,24 +182,47 @@
       color: #374151;
       margin-bottom: 1rem;
     }
-    .voting-options {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
+    .voting-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    .voting-list label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+    }
+    .bar-chart {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
       margin-top: 1rem;
     }
-    .voting-option {
+    .bar-item {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 0.75rem;
-      background: #f9f9f9;
-      border-radius: 6px;
-      transition: transform 0.2s ease;
+      gap: 0.5rem;
     }
-    .voting-option:hover { transform: translateY(-2px); }
-    .voting-option h4 { font-size: 1.1rem; color: #007BFF; }
-    .vote-btn {
+    .bar {
+      height: 20px;
+      background: #007BFF;
+      border-radius: 4px;
+      transition: width 0.3s ease;
+    }
+    .module-name {
+      flex-grow: 1;
+      font-weight: 500;
+    }
+    .percentage {
+      min-width: 50px;
+      text-align: right;
+      font-weight: 500;
+    }
+    #submit-vote {
+      margin-top: 1rem;
       padding: 0.5rem 1rem;
       background: #FF8C00;
       color: white;
@@ -208,18 +231,9 @@
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
-    .vote-btn:hover { background: #e07b00; }
-    .voting-dashboard { 
-      margin-top: 1.5rem; 
-      padding: 1rem; 
-      background: #f9f9f9; 
-      border-radius: 8px; 
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+    #submit-vote:hover {
+      background: #e07b00;
     }
-    .voting-dashboard h3 { font-size: 1.4rem; color: #0056b3; margin-bottom: 1rem; }
-    .voting-dashboard .module-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
-    .module-item .module-name { font-weight: 600; color: #333; }
-    .module-item .percentage { font-weight: 500; color: #007BFF; }
     .carousel-container { 
       display: flex; 
       overflow-x: auto; 
@@ -400,68 +414,63 @@
       <main class="main-coming-soon">
         <section id="upcoming-features">
           <h2><i class="fas fa-bullhorn section-icon"></i>Upcoming Features</h2>
-          <p>We’re working on several new modules to enhance your experience. Vote for your favorite below and let us know what you’d like to see next!</p>
-          <div class="voting-section">
-            <h3>Which SafetyHelp tool are you most excited about?</h3>
-            <div class="voting-options">
-              <div class="voting-option">
-                <h4>Construction Safety</h4>
-                <button class="vote-btn" data-module="construction-safety">Vote</button>
-              </div>
-              <div class="voting-option">
-                <h4>Emergency Planning</h4>
-                <button class="vote-btn" data-module="emergency-planning">Vote</button>
-              </div>
-              <div class="voting-option">
-                <h4>Risk Assessment</h4>
-                <button class="vote-btn" data-module="risk-assessment">Vote</button>
-              </div>
-              <div class="voting-option">
-                <h4>Legal Appointments</h4>
-                <button class="vote-btn" data-module="legal-appointments">Vote</button>
-              </div>
-              <div class="voting-option">
-                <h4>Incident Management</h4>
-                <button class="vote-btn" data-module="incident-management">Vote</button>
-              </div>
-              <div class="voting-option">
-                <h4>Training</h4>
-                <button class="vote-btn" data-module="training">Vote</button>
-              </div>
-              <div class="voting-option">
-                <h4>Inspections & Audits</h4>
-                <button class="vote-btn" data-module="inspections-audits">Vote</button>
-              </div>
-              <div class="voting-option">
-                <h4>Suppliers</h4>
-                <button class="vote-btn" data-module="suppliers">Vote</button>
-              </div>
-              <div class="voting-option">
-                <h4>Legislation</h4>
-                <button class="vote-btn" data-module="legislation">Vote</button>
-              </div>
-              <div class="voting-option">
-                <h4>Community Tools</h4>
-                <button class="vote-btn" data-module="community-tools">Vote</button>
-              </div>
-              <div class="voting-option">
-                <h4>Member Dashboard</h4>
-                <button class="vote-btn" data-module="member-dashboard">Vote</button>
-              </div>
-              <div class="voting-option">
-                <h4>OHS System Modules</h4>
-                <button class="vote-btn" data-module="ohs-system-modules">Vote</button>
-              </div>
-              <div class="voting-option">
-                <h4>Chatbot</h4>
-                <button class="vote-btn" data-module="chatbot">Vote</button>
-              </div>
-            </div>
+          <p>Select your top 3 modules you'd like to see next:</p>
+          <div class="voting-list">
+            <label>
+              <input type="checkbox" class="voting-checkbox" value="construction-safety">
+              <i class="fas fa-hard-hat"></i> Construction Safety
+            </label>
+            <label>
+              <input type="checkbox" class="voting-checkbox" value="emergency-planning">
+              <i class="fas fa-bell"></i> Emergency Planning
+            </label>
+            <label>
+              <input type="checkbox" class="voting-checkbox" value="risk-assessment">
+              <i class="fas fa-shield-alt"></i> Risk Assessment
+            </label>
+            <label>
+              <input type="checkbox" class="voting-checkbox" value="legal-appointments">
+              <i class="fas fa-gavel"></i> Legal Appointments
+            </label>
+            <label>
+              <input type="checkbox" class="voting-checkbox" value="incident-management">
+              <i class="fas fa-file-medical-alt"></i> Incident Management
+            </label>
+            <label>
+              <input type="checkbox" class="voting-checkbox" value="training">
+              <i class="fas fa-graduation-cap"></i> Training
+            </label>
+            <label>
+              <input type="checkbox" class="voting-checkbox" value="inspections-audits">
+              <i class="fas fa-clipboard-check"></i> Inspections & Audits
+            </label>
+            <label>
+              <input type="checkbox" class="voting-checkbox" value="suppliers">
+              <i class="fas fa-truck"></i> Suppliers
+            </label>
+            <label>
+              <input type="checkbox" class="voting-checkbox" value="legislation">
+              <i class="fas fa-balance-scale"></i> Legislation
+            </label>
+            <label>
+              <input type="checkbox" class="voting-checkbox" value="community-tools">
+              <i class="fas fa-users"></i> Community Tools
+            </label>
+            <label>
+              <input type="checkbox" class="voting-checkbox" value="member-dashboard">
+              <i class="fas fa-tachometer-alt"></i> Member Dashboard
+            </label>
+            <label>
+              <input type="checkbox" class="voting-checkbox" value="ohs-system-modules">
+              <i class="fas fa-cogs"></i> OHS System Modules
+            </label>
+            <label>
+              <input type="checkbox" class="voting-checkbox" value="chatbot">
+              <i class="fas fa-robot"></i> Chatbot
+            </label>
           </div>
-          <div class="voting-dashboard">
-            <h3>Top Voted Modules</h3>
-            <div id="top-modules"></div>
-          </div>
+          <button id="submit-vote">Submit Vote</button>
+          <div class="bar-chart" id="bar-chart"></div>
         </section>
 
         <section id="explore-tools">
@@ -597,43 +606,102 @@
   </div>
 
   <script>
-    const voteCounts = {
-      "construction-safety": 0,
-      "emergency-planning": 0,
-      "risk-assessment": 0,
-      "legal-appointments": 0,
-      "incident-management": 0,
-      "training": 0,
-      "inspections-audits": 0,
-      "suppliers": 0,
-      "legislation": 0,
-      "community-tools": 0,
-      "member-dashboard": 0,
-      "ohs-system-modules": 0,
-      "chatbot": 0
+    const moduleIcons = {
+      "construction-safety": "fa-hard-hat",
+      "emergency-planning": "fa-bell",
+      "risk-assessment": "fa-shield-alt",
+      "legal-appointments": "fa-gavel",
+      "incident-management": "fa-file-medical-alt",
+      "training": "fa-graduation-cap",
+      "inspections-audits": "fa-clipboard-check",
+      "suppliers": "fa-truck",
+      "legislation": "fa-balance-scale",
+      "community-tools": "fa-users",
+      "member-dashboard": "fa-tachometer-alt",
+      "ohs-system-modules": "fa-cogs",
+      "chatbot": "fa-robot"
     };
 
-    document.querySelectorAll('.vote-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const module = btn.getAttribute('data-module');
-        voteCounts[module]++;
-        updateDashboard();
-        alert("Thank you for your vote!");
+    const modules = Object.keys(moduleIcons);
+
+    const now = new Date();
+    const currentMonth = now.getMonth();
+    const currentYear = now.getFullYear();
+
+    // Check and reset votes if new month
+    const lastResetMonth = localStorage.getItem('lastResetMonth');
+    const lastResetYear = localStorage.getItem('lastResetYear');
+    if (!lastResetMonth || !lastResetYear || parseInt(lastResetYear) < currentYear || (parseInt(lastResetYear) === currentYear && parseInt(lastResetMonth) < currentMonth)) {
+      const moduleVotes = {};
+      modules.forEach(module => {
+        moduleVotes[module] = 0;
+      });
+      localStorage.setItem('moduleVotes', JSON.stringify(moduleVotes));
+      localStorage.setItem('lastResetMonth', currentMonth.toString());
+      localStorage.setItem('lastResetYear', currentYear.toString());
+      localStorage.removeItem('hasVotedMonth');
+      localStorage.removeItem('hasVotedYear');
+    }
+
+    // Limit checkbox selection to 3
+    document.querySelectorAll('.voting-checkbox').forEach(checkbox => {
+      checkbox.addEventListener('change', function() {
+        const checkedCount = document.querySelectorAll('.voting-checkbox:checked').length;
+        if (checkedCount > 3) {
+          this.checked = false;
+          alert('You can only select up to 3 modules.');
+        }
       });
     });
 
-    function updateDashboard() {
-      const totalVotes = Object.values(voteCounts).reduce((a, b) => a + b, 0);
-      const topModules = Object.entries(voteCounts)
-        .sort((a, b) => b[1] - a[1])
-        .slice(0, 3)
-        .map(([module, votes]) => {
-          const percentage = totalVotes > 0 ? ((votes / totalVotes) * 100).toFixed(1) : 0;
-          return `<div class="module-item"><span class="module-name">${module.replace(/-/g, ' ').toUpperCase()}</span><span class="percentage">${percentage}%</span></div>`;
-        });
-      document.getElementById('top-modules').innerHTML = topModules.join('');
+    // Submit vote
+    document.getElementById('submit-vote').addEventListener('click', () => {
+      const hasVotedMonth = localStorage.getItem('hasVotedMonth');
+      const hasVotedYear = localStorage.getItem('hasVotedYear');
+      if (hasVotedMonth && hasVotedYear && parseInt(hasVotedYear) === currentYear && parseInt(hasVotedMonth) === currentMonth) {
+        alert('You have already voted this month.');
+      } else {
+        const selectedModules = Array.from(document.querySelectorAll('.voting-checkbox:checked')).map(cb => cb.value);
+        if (selectedModules.length > 0) {
+          let moduleVotes = JSON.parse(localStorage.getItem('moduleVotes')) || {};
+          selectedModules.forEach(module => {
+            moduleVotes[module] = (moduleVotes[module] || 0) + 1;
+          });
+          localStorage.setItem('moduleVotes', JSON.stringify(moduleVotes));
+          localStorage.setItem('hasVotedMonth', currentMonth.toString());
+          localStorage.setItem('hasVotedYear', currentYear.toString());
+          updateBarChart();
+          alert('Thank you for your vote!');
+        } else {
+          alert('Please select at least one module.');
+        }
+      }
+    });
+
+    // Update bar chart
+    function updateBarChart() {
+      const moduleVotes = JSON.parse(localStorage.getItem('moduleVotes')) || {};
+      const totalVotes = Object.values(moduleVotes).reduce((a, b) => a + b, 0);
+      const sortedModules = Object.entries(moduleVotes).sort((a, b) => b[1] - a[1]);
+      const barChartHtml = sortedModules.map(([module, votes]) => {
+        const percentage = totalVotes > 0 ? ((votes / totalVotes) * 100).toFixed(1) : 0;
+        const iconClass = moduleIcons[module] || 'fa-question';
+        return `
+          <div class="bar-item">
+            <i class="fas ${iconClass}"></i>
+            <span class="module-name">${module.replace(/-/g, ' ')}</span>
+            <div class="bar" style="width: ${percentage}%"></div>
+            <span class="percentage">${percentage}%</span>
+          </div>
+        `;
+      }).join('');
+      document.getElementById('bar-chart').innerHTML = barChartHtml;
     }
 
+    // Initial bar chart load
+    updateBarChart();
+
+    // Chatbot functionality
     function toggleChatbot(forceOpen) {
       const chatWindow = document.getElementById('chat-window');
       const chatToggleBtn = document.getElementById('chat-toggle');
