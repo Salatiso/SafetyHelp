@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SafetyHelp | Exciting Modules Coming Soon!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+  <script src="https://unpkg.com/i18next@23.15.2/dist/umd/i18next.min.js"></script>
+  <script src="https://unpkg.com/i18next-http-backend@2.5.2/dist/umd/i18nextHttpBackend.min.js"></script>
+  <script src="https://unpkg.com/i18next-browser-languagedetector@8.0.0/dist/umd/i18nextBrowserLanguageDetector.min.js"></script>
+
+  <style>
+    /* Reset & Base (from established SafetyHelp template) */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { 
+      height: 100%; 
+      font-family: 'Montserrat', sans-serif; 
+      background: #E8F0FE; 
+      color: #333; 
+      display: flex;
+      flex-direction: column;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* Header (from established SafetyHelp template) */
+    header { 
+      background: #007BFF; 
+      color: #fff; 
+      padding: 0.8rem 2rem; 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between; 
+      flex-shrink: 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky; 
+      top: 0;
+      z-index: 1000; 
+    }
+    .logo-container { display: flex; align-items: center; color: #fff; }
+    .logo { font-weight: 700; font-size: 1.75rem; letter-spacing: -0.025em; } 
+    .logo .help { font-weight: 900; color: #FF8C00; }
+    nav { display: flex; gap: 0.5rem; }
+    nav a { 
+      color: white; 
+      font-weight: 500; 
+      padding: 0.6rem 1rem; 
+      border-radius: 6px; 
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid transparent; 
+    }
+    nav a:hover, nav a.active-nav-link { 
+      background-color: rgba(255,255,255,0.15); 
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,0.3);
+    }
+    nav a .nav-icon { font-size: 0.9em; }
+    .search-language { display: flex; align-items: center; gap: 1rem; }
+    .search-language input { padding: 0.6rem; border: 1px solid #ddd; border-radius: 6px; font-family: 'Montserrat', sans-serif; }
+    .search-language select { padding: 0.6rem; border-radius: 6px; border: 1px solid #ddd; font-family: 'Montserrat', sans-serif; background-color: white; color:#333; }
+
+    /* Page Title Area */
+    .page-title-section { 
+      background: #F3F4F6; 
+      padding: 1.5rem 2rem; 
+      text-align: center; 
+      border-bottom: 1px solid #e0e0e0;
+      flex-shrink: 0;
+    }
+    .page-title-section h1 { font-size: 2.2rem; color: #1f2937; margin-bottom: 0.5rem; }
+    .page-title-section p.subtitle { font-size: 1rem; color: #374151; max-width: 800px; margin-left: auto; margin-right: auto; }
+
+    /* Layout (from established SafetyHelp template) */
+    .page-content { display: flex; flex-direction: column; flex-grow: 1; overflow: auto; }
+    .container { 
+      display: grid; 
+      grid-template-columns: 1fr 3fr 1fr; /* Default for desktop */
+      flex-grow: 1; 
+      min-height: 0;
+      gap: 1rem; 
+      padding: 1rem; 
+    }
+     @media (max-width: 1024px) { /* For tablets and smaller, main content takes more space */
+        .container { grid-template-columns: 1fr 4fr 1fr; }
+    }
+    @media (max-width: 768px) { /* For mobile, sidebars might stack or hide */
+        .container { grid-template-columns: 1fr; }
+        .sidebar-tools, .sidebar-milestones { display: none; } 
+    }
+    
+    .sidebar-tools, .sidebar-milestones { background: #fff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; flex-direction: column; overflow: hidden; max-height: calc(100vh - 120px); }
+    .sidebar-heading { font-size: 1.2rem; font-weight: 700; color: #007BFF; padding: 1rem; border-bottom: 1px solid #e5e7eb; background-color: #f9f9f9; flex-shrink: 0; border-top-left-radius: 8px; border-top-right-radius: 8px; display: flex; align-items: center; gap: 0.5rem; }
+    .sidebar-heading .heading-icon { color: #FF8C00; }
+    .sidebar-list-container { flex-grow: 1; overflow: hidden; position: relative; }
+    .sidebar-tools ul, .sidebar-milestones ul { list-style: none; padding: 0; margin: 0; }
+    @keyframes alternatingScrollUp { 0% { transform: translateY(0%); } 100% { transform: translateY(-50%); } }
+    @keyframes alternatingScrollDown { 0% { transform: translateY(-50%); } 100% { transform: translateY(0%); } }
+    .sidebar-tools ul { animation: alternatingScrollDown 45s linear infinite alternate; }
+    .sidebar-milestones ul { animation: alternatingScrollUp 40s linear infinite alternate; }
+    .sidebar-tools:hover ul, .sidebar-milestones:hover ul { animation-play-state: paused; }
+    .sidebar-tools li, .sidebar-milestones li { padding: 0; border-bottom: 1px solid #e5e7eb; cursor: pointer; display: flex; }
+    .sidebar-tools li a, .sidebar-milestones li { display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; padding: 0.85rem 1rem; width: 100%; transition: background-color 0.3s ease; color: #333; }
+    .sidebar-tools li a:hover, .sidebar-milestones li:hover { background: #e8f0fe; }
+    .sidebar-tools li a .list-icon, .sidebar-milestones li .list-icon { color: #007BFF; font-size: 1em; width: 20px; text-align: center; }
+    .sidebar-tools li a.active-tool-link { background-color: #ddeaff; font-weight: 600; color: #0056b3; }
+    
+    /* Main content specific to Coming Soon Page */
+    .main-coming-soon { 
+      padding: 1.5rem; 
+      overflow-y: auto; 
+      background-color: #fff; 
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      grid-column: 1 / -1; /* Make main content span all columns if sidebars are hidden on mobile */
+    }
+    @media (min-width: 769px) { /* On desktop, main content is in the middle column */
+        .main-coming-soon { grid-column: 2 / 3; }
+    }
+
+    .main-coming-soon h2.page-section-title {
+        font-size: 1.8rem;
+        color: #0056b3;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 2px solid #FF8C00;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+    .main-coming-soon h2.page-section-title .section-icon { color: #FF8C00; }
+    .main-coming-soon p.intro-text { font-size: 1rem; line-height: 1.7; color: #374151; margin-bottom: 1rem; }
+    .main-coming-soon .section-block { margin-bottom: 2.5rem; padding: 1.5rem; background-color: #f9f9f9; border-radius: 8px; border: 1px solid #e0e0e0; }
+    .main-coming-soon .section-block h3 { font-size: 1.5rem; color: #007BFF; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+    .main-coming-soon .section-block h3 .fa-fw { width: 1.25em; text-align: center;}
+
+    /* Poll Styles */
+    .poll-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;}
+    .poll-option { background-color: #fff; border: 1px solid #e0e0e0; border-radius: 6px; padding: 1rem; display: flex; justify-content: space-between; align-items: center; transition: box-shadow 0.2s ease; }
+    .poll-option:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .poll-option label { font-weight: 500; color: #333; flex-grow: 1; cursor: pointer;}
+    .poll-option button { background-color: #FF8C00; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer; transition: background-color 0.2s ease; font-size: 0.9rem;}
+    .poll-option button:hover { background-color: #e07b00; }
+    .poll-option button:disabled { background-color: #ccc; cursor: not-allowed; }
+    #vote-feedback { margin-top: 1rem; font-size: 0.9rem; color: #166534; background-color: #dcfce7; padding: 0.75rem; border-radius: 6px; border: 1px solid #86efac; text-align:center;}
+
+    /* Graph Styles */
+    #popularityChartContainer { max-width: 700px; margin: 0 auto 2rem auto; background-color: #fff; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+
+    /* Carousel Styles */
+    .module-carousel-section { margin-top: 2rem; background-color: transparent; padding:0; border:none;}
+    .module-carousel-section h3 { text-align: center; padding-bottom: 0.5rem; border-bottom: 2px solid #FF8C00; display: block;}
+    .carousel-wrapper { position: relative; width: 100%; margin: 1.5rem auto 0 auto; overflow: hidden; }
+    .carousel-track { display: flex; transition: transform 0.5s ease-in-out; }
+    .carousel-slide { min-width: 300px; max-width: 300px; /* Fixed width for each slide */ margin: 0 10px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 1.5rem; text-align: center; cursor: pointer; border: 1px solid #e0e0e0; }
+    .carousel-slide h4 { font-size: 1.2rem; color: #007BFF; margin-bottom: 0.75rem; }
+    .carousel-slide p.summary { font-size: 0.9rem; color: #555; margin-bottom: 1rem; min-height: 60px; /* Ensure consistent height */}
+    .carousel-slide .details-icon { color: #FF8C00; font-size: 0.8rem; }
+    .module-details-content { display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #ccc; text-align: left; animation: fadeIn 0.5s; }
+    .module-details-content p {font-size: 0.85rem; line-height: 1.5; color: #444;}
+    .module-details-content strong { color: #0056b3;}
+    .carousel-slide.expanded .module-details-content { display: block; }
+    .carousel-slide.expanded { background-color: #f0f8ff; }
+
+    .carousel-arrow { position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(0, 123, 255, 0.7); color: white; border: none; padding: 0.8rem; border-radius: 50%; cursor: pointer; z-index: 10; font-size: 1.2rem; line-height: 1; }
+    .carousel-arrow:hover { background-color: #0056b3; }
+    .carousel-prev { left: 10px; }
+    .carousel-next { right: 10px; }
+
+
+    /* Footer */
+    footer {
+      background: #343a40; 
+      color: #adb5bd; 
+      text-align: center;
+      padding: 1.5rem 2rem;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      border-top: 3px solid #FF8C00;
+    }
+    footer p { margin-bottom: 0.5rem; }
+    footer a { color: #FF8C00; transition: color 0.3s ease; }
+    footer a:hover { color: #fff; }
+    
+    /* Modal Styles */
+    .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); padding-top: 60px; }
+    .modal-content { background-color: #fefefe; margin: 5% auto; padding: 25px; border: 1px solid #888; width: 80%; max-width: 600px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative; }
+    .modal-header { padding-bottom: 10px; border-bottom: 1px solid #eee; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
+    .modal-header h4 { margin: 0; font-size: 1.4rem; color: #007BFF; }
+    .close-btn { color: #aaa; font-size: 28px; font-weight: bold; cursor: pointer; transition: color 0.3s; }
+    .close-btn:hover, .close-btn:focus { color: #333; text-decoration: none; }
+    .modal-body p { font-size: 1rem; line-height: 1.6; margin-bottom: 1rem; }
+    .modal-body strong { color: #333; }
+    .modal-body ul { list-style-type: disc; margin-left: 20px; margin-bottom: 1rem;}
+    .modal-footer { padding-top: 15px; border-top: 1px solid #eee; margin-top: 20px; text-align: right; }
+    .modal-footer button { background-color: #6c757d; color:white; border:none; padding: 0.7rem 1.3rem; border-radius:6px; cursor:pointer; } 
+    .modal-footer button:hover { background-color: #5a6268; }
+
+    /* Chatbot Styles */
+    .chatbot-container { position: fixed; bottom: 20px; right: 20px; z-index: 1050; }
+    #chat-toggle { background-color: #FF8C00; color: white; border: none; border-radius: 50%; width: 60px; height: 60px; font-size: 1.8rem; box-shadow: 0 4px 8px rgba(0,0,0,0.2); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background-color 0.3s ease, transform 0.3s ease; }
+    #chat-toggle:hover { background-color: #e07b00; transform: scale(1.1); }
+    #chat-window { width: 320px; max-height: 450px; background-color: #fff; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); display: flex; flex-direction: column; overflow: hidden; transition: opacity 0.3s ease, transform 0.3s ease; position: absolute; bottom: 75px; right: 0; opacity: 0; transform: translateY(10px); pointer-events: none; }
+    #chat-window.chat-expanded { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .chat-hidden { display: none !important; }
+    #chat-header { background-color: #007BFF; color: white; padding: 10px 15px; font-weight: 600; border-top-left-radius: 10px; border-top-right-radius: 10px; display: flex; justify-content: space-between; align-items: center; }
+    #chat-header .close-chat-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; }
+    #chat-output { flex-grow: 1; padding: 15px; overflow-y: auto; font-size: 0.9rem; background-color: #f9f9f9; }
+    #chat-output p { margin-bottom: 0.8rem; line-height: 1.4; }
+    #chat-output p strong { color: #007BFF; }
+    #chat-output p strong:first-child { color: #FF8C00; } 
+    #chat-input-container { display: flex; border-top: 1px solid #eee; padding: 10px; background-color: #fff; }
+    #chat-input { flex-grow: 1; padding: 0.7rem; border: 1px solid #ddd; border-radius: 6px; margin-right: 8px; font-family: 'Montserrat', sans-serif; }
+    #chat-send { background-color: #007BFF; color: white; padding: 0.7rem 1rem; border: none; border-radius: 6px; cursor: pointer; font-weight: 500; transition: background-color 0.3s ease; }
+    #chat-send:hover { background-color: #0056b3; }
+
+  </style>
+</head><body>
+  <header>
+    <a href="/SafetyHelp/index.html" class="logo-container"> 
+        <div class="logo">Safety<span class="help">Help</span></div>
+    </a>
+    <nav>
+      <a href="/SafetyHelp/index.html"><i class="fas fa-home nav-icon"></i>Home</a>
+      <a href="/SafetyHelp/resources.html"><i class="fas fa-book nav-icon"></i>Resources</a>
+      <a href="/SafetyHelp/services.html"><i class="fas fa-concierge-bell nav-icon"></i>Services</a>
+      <a href="/SafetyHelp/community.html"><i class="fas fa-users nav-icon"></i>Community</a>
+      <a href="/SafetyHelp/about.html"><i class="fas fa-info-circle nav-icon"></i>About</a>
+      <a href="/SafetyHelp/contact.html"><i class="fas fa-envelope nav-icon"></i>Contact</a>
+      <a href="/SafetyHelp/login.html"><i class="fas fa-sign-in-alt nav-icon"></i>SignUp / Login</a>
+    </nav>
+    <div class="search-language">
+      <input type="text" placeholder="Search..." data-i18n="[placeholder]header.search_placeholder">
+      <select id="language-switcher-header" aria-label="Select language">
+        <option value="en" data-i18n="language_selector.en">English</option>
+        <option value="af" data-i18n="language_selector.af">Afrikaans</option>
+        <option value="zu" data-i18n="language_selector.zu">isiZulu</option>
+        <option value="xh" data-i18n="language_selector.xh">isiXhosa</option>
+      </select>
+    </div>
+  </header>
+
+  <div class="page-title-section">
+    <h1 data-i18n="coming_soon.page_title">Exciting Modules Coming Soon!</h1>
+    <p class="subtitle" data-i18n="coming_soon.page_subtitle">We're working hard to bring you a comprehensive suite of OHS tools. A new module will be unveiled each month! Help us decide what comes next.</p>
+  </div>
+
+<div class="page-content">
+  <div class="container">
+    <aside class="sidebar-tools">
+      <h3 class="sidebar-heading"><i class="fas fa-tools heading-icon"></i>SafetyHelp Tools</h3>
+      <div class="sidebar-list-container">
+        <ul id="safetyhelp-tools-list">
+            <li><a href="/SafetyHelp/pages/construction-compliance.html"><i class="fas fa-hard-hat list-icon"></i>Construction Safety</a></li>
+            <li><a href="/SafetyHelp/pages/emergency-response-plan.html"><i class="fas fa-bell list-icon"></i>Emergency Planning</a></li>
+            <li><a href="/SafetyHelp/pages/risk-assessment.html"><i class="fas fa-shield-alt list-icon"></i>Risk Assessment</a></li>
+            <li><a href="/SafetyHelp/pages/legal-appointments.html"><i class="fas fa-gavel list-icon"></i>Legal Appointments</a></li>
+            <li><a href="/SafetyHelp/pages/incident-management.html"><i class="fas fa-file-medical-alt list-icon"></i>Incident Management</a></li>
+            <li><a href="/SafetyHelp/pages/training.html"><i class="fas fa-graduation-cap list-icon"></i>Training</a></li>
+            <li><a href="/SafetyHelp/pages/inspections-audits.html"><i class="fas fa-clipboard-check list-icon"></i>Inspections & Audits</a></li>
+            <li><a href="/SafetyHelp/pages/suppliers.html"><i class="fas fa-truck list-icon"></i>Suppliers</a></li>
+            <li><a href="/SafetyHelp/pages/legislation.html"><i class="fas fa-balance-scale list-icon"></i>Legislation</a></li>
+            <li><a href="/SafetyHelp/pages/community-tools.html"><i class="fas fa-users list-icon"></i>Community Tools</a></li>
+            <li><a href="/SafetyHelp/secure/member-dashboard.html"><i class="fas fa-tachometer-alt list-icon"></i>Member Dashboard</a></li>
+            <li><a href="/SafetyHelp/pages/ohs-system.html"><i class="fas fa-cogs list-icon"></i>OHS System Modules</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <main class="main-coming-soon">
+        <p class="intro-text" data-i18n="coming_soon.intro_text">Our team is developing a range of specialized OHS modules to further simplify your safety management. Each month, we'll be launching a new one. You can influence our release schedule by voting for the module you'd like to see prioritized!</p>
+
+        <section class="section-block poll-section">
+            <h3 data-i18n="coming_soon.poll.title"><i class="fas fa-vote-yea fa-fw"></i>Vote for Next Month's Module!</h3>
+            <div id="poll-options" class="poll-options">
+                </div>
+            <p id="vote-feedback" class="hidden"></p>
+        </section>
+
+        <section class="section-block graph-section">
+            <h3 data-i18n="coming_soon.graph.title"><i class="fas fa-chart-bar fa-fw"></i>Module Popularity (This Month's Votes)</h3>
+            <div id="popularityChartContainer">
+                <canvas id="popularityChart"></canvas>
+            </div>
+             <p class="text-sm text-center text-slate-500" data-i18n="coming_soon.graph.note">Graph updates based on your votes. Results reset monthly.</p>
+        </section>
+        
+        <section class="module-carousel-section section-block">
+            <h3 data-i18n="coming_soon.carousel.title"><i class="fas fa-images fa-fw"></i>Sneak Peek: Upcoming Modules</h3>
+            <div class="carousel-wrapper">
+                <button class="carousel-arrow carousel-prev" aria-label="Previous Module"><i class="fas fa-chevron-left"></i></button>
+                <div class="carousel-track-container" style="overflow:hidden;"> <div class="carousel-track" id="moduleCarouselTrack">
+                        </div>
+                </div>
+                <button class="carousel-arrow carousel-next" aria-label="Next Module"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+    </main>
+
+    <aside class="sidebar-milestones">
+      <h3 class="sidebar-heading"><i class="fas fa-flag-checkered heading-icon"></i>OHS Milestones</h3>
+      <div class="sidebar-list-container">
+        <ul id="ohs-milestones-list">
+          <li data-detail="The Occupational Safety and Health Act was enacted in the USA, establishing standards for workplace safety."><i class="fas fa-landmark list-icon"></i>1970: OSHA (USA)</li>
+          <li data-detail="South Africa's OHS Act No. 85 of 1993 was established, laying the groundwork for current practices."><i class="fas fa-landmark list-icon"></i>1993: OHS Act (SA)</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+</div> 
+
+<footer>
+  <p id="copyright-text">© 2025 SafetyHelp. All rights reserved. Your Partner in Occupational Health and Safety Compliance.</p>
+  <p><a href="/SafetyHelp/privacy.html" data-i18n="footer.links.privacy">Privacy Policy</a> | <a href="/SafetyHelp/terms.html" data-i18n="footer.links.terms">Terms of Service</a> | <a href="/SafetyHelp/contact.html" data-i18n="footer.links.contact">Contact Us</a></p> 
+  <div class="newsletter" style="margin-top: 1rem;">
+      <h4 data-i18n="footer.newsletter.title_alt" style="font-size: 1rem; margin-bottom: 0.5rem;">Stay Updated with SafetyHelp</h4>
+      <form id="newsletterForm" style="display: flex; justify-content: center; gap: 0.5rem;">
+          <input type="email" id="newsletterEmail" class="form-input" style="width: auto; max-width: 250px; padding: 0.5rem 0.75rem; font-size:0.9rem;" data-i18n="[placeholder]footer.newsletter.placeholder" placeholder="Enter your email">
+          <button type="submit" class="auth-button" style="width: auto; padding: 0.5rem 1rem; font-size:0.9rem; background-color: #FF8C00;"><i class="fas fa-envelope-open-text"></i> <span data-i18n="footer.newsletter.button">Subscribe</span></button>
+      </form>
+  </div>
+</footer>
+
+<div id="infoModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 id="modalTitle">Milestone Detail</h4>
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-footer" id="modalFooter">
+      <button onclick="closeModal()"><i class="fas fa-times btn-icon"></i>Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="chatbot-container">
+    <div id="chat-window" class="chat-hidden"> 
+        <div id="chat-header">
+            <span>Salatiso - Your OHS Assistant</span>
+            <button class="close-chat-btn" onclick="toggleChatbotUI(false)">&times;</button>
+        </div>
+        <div id="chat-output">
+            <p><strong>Salatiso:</strong> Hello! How can I help you with OHS today?</p>
+        </div>
+        <div id="chat-input-container">
+            <input id="chat-input" type="text" placeholder="Ask about OHS...">
+            <button id="chat-send"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+    <button id="chat-toggle" onclick="toggleChatbotUI()">
+        <i class="fas fa-headset"></i> 
+    </button>
+</div>
+
+<script>
+  // --- Module Data ---
+  const modulesData = [
+    { id: 'construction-compliance', nameKey: 'module.construction.name', descriptionKey: 'module.construction.desc', icon: 'fa-hard-hat', path: '/SafetyHelp/pages/construction-compliance.html', features: 'module.construction.features' },
+    { id: 'emergency-response-plan', nameKey: 'module.emergency.name', descriptionKey: 'module.emergency.desc', icon: 'fa-bell', path: '/SafetyHelp/pages/emergency-response-plan.html', features: 'module.emergency.features' },
+    { id: 'risk-assessment', nameKey: 'module.risk.name', descriptionKey: 'module.risk.desc', icon: 'fa-shield-alt', path: '/SafetyHelp/pages/risk-assessment.html', features: 'module.risk.features' },
+    { id: 'legal-appointments', nameKey: 'module.legal.name', descriptionKey: 'module.legal.desc', icon: 'fa-gavel', path: '/SafetyHelp/pages/legal-appointments.html', features: 'module.legal.features' },
+    { id: 'incident-management', nameKey: 'module.incident.name', descriptionKey: 'module.incident.desc', icon: 'fa-file-medical-alt', path: '/SafetyHelp/pages/incident-management.html', features: 'module.incident.features' },
+    { id: 'training', nameKey: 'module.training.name', descriptionKey: 'module.training.desc', icon: 'fa-graduation-cap', path: '/SafetyHelp/pages/training.html', features: 'module.training.features' },
+    { id: 'inspections-audits', nameKey: 'module.inspections.name', descriptionKey: 'module.inspections.desc', icon: 'fa-clipboard-check', path: '/SafetyHelp/pages/inspections-audits.html', features: 'module.inspections.features' },
+    { id: 'suppliers', nameKey: 'module.suppliers.name', descriptionKey: 'module.suppliers.desc', icon: 'fa-truck', path: '/SafetyHelp/pages/suppliers.html', features: 'module.suppliers.features' },
+    { id: 'legislation', nameKey: 'module.legislation.name', descriptionKey: 'module.legislation.desc', icon: 'fa-balance-scale', path: '/SafetyHelp/pages/legislation.html', features: 'module.legislation.features' },
+    { id: 'community-tools', nameKey: 'module.community.name', descriptionKey: 'module.community.desc', icon: 'fa-users', path: '/SafetyHelp/pages/community-tools.html', features: 'module.community.features' },
+    { id: 'ohs-system', nameKey: 'module.ohs_system.name', descriptionKey: 'module.ohs_system.desc', icon: 'fa-cogs', path: '/SafetyHelp/pages/ohs-system.html', features: 'module.ohs_system.features' },
+    { id: 'member-dashboard', nameKey: 'module.dashboard.name', descriptionKey: 'module.dashboard.desc', icon: 'fa-tachometer-alt', path: '/SafetyHelp/secure/member-dashboard.html', features: 'module.dashboard.features' }
+  ];
+
+  let moduleVotes = {}; // Store votes like { 'module-id': count }
+  let popularityChartInstance = null;
+  const VOTE_STORAGE_KEY = 'safetyHelpModuleVotes';
+  const LAST_VOTE_RESET_KEY = 'safetyHelpVoteLastReset';
+
+  // --- i18next Initialization ---
+  async function initializeI18next() {
+    if (typeof i18next !== 'undefined' && typeof i18nextHttpBackend !== 'undefined' && typeof i18nextBrowserLanguageDetector !== 'undefined') {
+      try {
+        await i18next
+          .use(i18nextHttpBackend)
+          .use(i18nextBrowserLanguageDetector)
+          .init({
+            fallbackLng: 'en',
+            debug: false, 
+            ns: ['translation'],
+            defaultNS: 'translation',
+            backend: { loadPath: '/SafetyHelp/assets/locales/{{lng}}/{{ns}}.json' },
+            detection: { order: ['querystring', 'cookie', 'localStorage', 'sessionStorage', 'navigator', 'htmlTag'], caches: ['localStorage', 'cookie'] }
+          });
+        updateDynamicText(); // For poll options, carousel, etc.
+        updateStaticPageContent(); // For static text
+      } catch (error) { console.error("Error initializing i18next:", error); }
+    } else { console.error("i18next or plugins not loaded."); }
+  }
+
+  function updateStaticPageContent() {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        let translation = (typeof i18next !== 'undefined' && i18next.isInitialized) ? i18next.t(key) : key;
+        if (key.startsWith('[placeholder]')) { el.setAttribute('placeholder', translation); }
+        else if (el.tagName === 'TITLE') { document.title = translation; }
+        else {
+            const icon = el.querySelector('i.fas, i.fab');
+            if (icon && (el.classList.contains('sidebar-link') || el.classList.contains('auth-button') || el.closest('.accordion-button'))) { // Preserve icons in specific elements
+                let textNode = icon.nextSibling;
+                while(textNode && textNode.nodeType !== Node.TEXT_NODE) { textNode = textNode.nextSibling; }
+                if (textNode) { textNode.textContent = ' ' + translation; }
+                else { el.appendChild(document.createTextNode(' ' + translation));}
+            } else { el.innerHTML = translation; }
+        }
+    });
+    const footerCopyrightEl = document.getElementById('copyright-text');
+    if (footerCopyrightEl) {
+         footerCopyrightEl.innerHTML = `&copy; ${new Date().getFullYear()} SafetyHelp. All rights reserved. Your Partner in Occupational Health and Safety Compliance.`;
+    }
+  }
+
+
+  // --- Poll Functionality ---
+  function loadVotes() {
+    const storedVotes = localStorage.getItem(VOTE_STORAGE_KEY);
+    if (storedVotes) {
+      moduleVotes = JSON.parse(storedVotes);
+    } else {
+      modulesData.forEach(module => moduleVotes[module.id] = 0);
+    }
+  }
+
+  function saveVotes() {
+    localStorage.setItem(VOTE_STORAGE_KEY, JSON.stringify(moduleVotes));
+  }
+  
+  function checkAndResetVotesMonthly() {
+      const now = new Date();
+      const currentMonthYear = `${now.getFullYear()}-${now.getMonth()}`;
+      const lastReset = localStorage.getItem(LAST_VOTE_RESET_KEY);
+
+      if (lastReset !== currentMonthYear) {
+          console.log("Resetting votes for new month:", currentMonthYear);
+          modulesData.forEach(module => moduleVotes[module.id] = 0);
+          saveVotes();
+          localStorage.setItem(LAST_VOTE_RESET_KEY, currentMonthYear);
+      }
+  }
+
+
+  function renderPollOptions() {
+    const pollOptionsContainer = document.getElementById('poll-options');
+    if (!pollOptionsContainer) return;
+    pollOptionsContainer.innerHTML = '';
+    modulesData.forEach(module => {
+      const optionDiv = document.createElement('div');
+      optionDiv.className = 'poll-option';
+      optionDiv.innerHTML = `
+        <label for="vote-${module.id}">${i18next.t(module.nameKey, module.nameKey.split('.').pop().replace(/_/g, ' '))}</label>
+        <button data-module-id="${module.id}" class="vote-btn"><i class="fas fa-vote-yea"></i> Vote</button>
+      `;
+      pollOptionsContainer.appendChild(optionDiv);
+    });
+
+    document.querySelectorAll('.vote-btn').forEach(button => {
+      button.addEventListener('click', function() {
+        const moduleId = this.dataset.moduleId;
+        moduleVotes[moduleId]++;
+        saveVotes();
+        updatePopularityChart();
+        const feedbackEl = document.getElementById('vote-feedback');
+        const moduleName = i18next.t(modulesData.find(m=>m.id === moduleId).nameKey);
+        feedbackEl.textContent = i18next.t('coming_soon.poll.vote_cast', { module: moduleName });
+        feedbackEl.classList.remove('hidden');
+        setTimeout(() => feedbackEl.classList.add('hidden'), 3000);
+        // Disable all vote buttons for this session/month after one vote (optional)
+        document.querySelectorAll('.vote-btn').forEach(btn => btn.disabled = true);
+         feedbackEl.textContent += " " + i18next.t('coming_soon.poll.thanks_monthly_vote');
+      });
+    });
+  }
+
+  // --- Popularity Graph (Chart.js) ---
+  function renderPopularityChart() {
+    const ctx = document.getElementById('popularityChart')?.getContext('2d');
+    if (!ctx) return;
+
+    const labels = modulesData.map(module => i18next.t(module.nameKey, module.nameKey.split('.').pop().replace(/_/g, ' ')));
+    const data = modulesData.map(module => moduleVotes[module.id] || 0);
+
+    if (popularityChartInstance) {
+      popularityChartInstance.destroy();
+    }
+
+    popularityChartInstance = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: i18next.t('coming_soon.graph.dataset_label', 'Votes'),
+          data: data,
+          backgroundColor: 'rgba(0, 123, 255, 0.7)', // Primary Blue with opacity
+          borderColor: 'rgba(0, 123, 255, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        indexAxis: 'y', // Horizontal bar chart
+        responsive: true,
+        maintainAspectRatio: true, // Allow it to shrink
+        scales: {
+          x: { beginAtZero: true, ticks: { stepSize: 1 } }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return `${context.dataset.label}: ${context.raw}`;
+              }
+            }
+          }
+        }
+      }
+    });
+  }
+  function updatePopularityChart() {
+    if (!popularityChartInstance) {
+        renderPopularityChart(); // Initialize if not already
+        return;
+    }
+    popularityChartInstance.data.datasets[0].data = modulesData.map(module => moduleVotes[module.id] || 0);
+    popularityChartInstance.update();
+  }
+
+  // --- Module Preview Carousel ---
+  const carouselTrack = document.getElementById('moduleCarouselTrack');
+  const prevButton = document.querySelector('.carousel-prev');
+  const nextButton = document.querySelector('.carousel-next');
+  let currentCarouselIndex = 0;
+  let autoScrollInterval;
+  let itemsToShow = 3; // Default for desktop
+
+  function calculateItemsToShow() {
+      if (window.innerWidth < 768) itemsToShow = 1;
+      else if (window.innerWidth < 1024) itemsToShow = 2;
+      else itemsToShow = 3;
+  }
+
+  function renderCarousel() {
+    if (!carouselTrack) return;
+    carouselTrack.innerHTML = ''; // Clear existing
+    
+    // Duplicate items for continuous loop illusion (enough for smooth transition)
+    const extendedModules = [...modulesData, ...modulesData.slice(0, itemsToShow)]; 
+
+    extendedModules.forEach(module => {
+      const slide = document.createElement('div');
+      slide.className = 'carousel-slide';
+      slide.dataset.moduleId = module.id;
+      slide.innerHTML = `
+        <h4><i class="fas ${module.icon} fa-fw"></i> ${i18next.t(module.nameKey, module.nameKey.split('.').pop().replace(/_/g, ' '))}</h4>
+        <p class="summary">${i18next.t(module.descriptionKey, module.descriptionKey.split('.').pop().replace(/_/g, ' '))}</p>
+        <p class="details-icon"><i class="fas fa-info-circle"></i> <span data-i18n="coming_soon.carousel.click_details">Click for Details</span></p>
+        <div class="module-details-content">
+          <p><strong>Features:</strong></p>
+          <p>${i18next.t(module.features, "Detailed features list coming soon...")}</p>
+        </div>
+      `;
+      slide.addEventListener('click', function() {
+          this.classList.toggle('expanded');
+          // Pause autoscroll on expand, resume on collapse
+          if (this.classList.contains('expanded')) {
+              stopAutoScroll();
+          } else {
+              startAutoScroll();
+          }
+      });
+      carouselTrack.appendChild(slide);
+    });
+    updateCarouselPosition();
+  }
+
+  function updateCarouselPosition() {
+    if (!carouselTrack) return;
+    const slideWidth = carouselTrack.children[0]?.offsetWidth + 20; // slide width + margin
+    carouselTrack.style.transform = `translateX(-${currentCarouselIndex * slideWidth}px)`;
+  }
+
+  function moveCarousel(direction) {
+    const numOriginalSlides = modulesData.length;
+    currentCarouselIndex += direction;
+
+    if (direction === 1 && currentCarouselIndex >= numOriginalSlides) {
+        // Jump to the start of the cloned section seamlessly
+        carouselTrack.style.transition = 'none'; // Disable transition for the jump
+        currentCarouselIndex = 0; // This index is relative to the "original" set
+        updateCarouselPosition();
+        setTimeout(() => { // Re-enable transition after the jump
+            carouselTrack.style.transition = 'transform 0.5s ease-in-out';
+        }, 50); // Small delay
+    } else if (direction === -1 && currentCarouselIndex < 0) {
+        // Jump to the end of the cloned section (which looks like start)
+        carouselTrack.style.transition = 'none';
+        currentCarouselIndex = numOriginalSlides -1;
+         updateCarouselPosition();
+        setTimeout(() => {
+            carouselTrack.style.transition = 'transform 0.5s ease-in-out';
+        }, 50);
+    } else {
+       updateCarouselPosition();
+    }
+  }
+  
+  function startAutoScroll() {
+    if (autoScrollInterval) clearInterval(autoScrollInterval);
+    autoScrollInterval = setInterval(() => {
+      moveCarousel(1);
+    }, 5000); // Change slide every 5 seconds
+  }
+
+  function stopAutoScroll() {
+    clearInterval(autoScrollInterval);
+  }
+
+  if (prevButton && nextButton && carouselTrack) {
+    prevButton.addEventListener('click', () => {
+        moveCarousel(-1);
+        stopAutoScroll(); // Stop auto when manual nav is used
+        setTimeout(startAutoScroll, 10000); // Restart after 10s of inactivity
+    });
+    nextButton.addEventListener('click', () => {
+        moveCarousel(1);
+        stopAutoScroll();
+        setTimeout(startAutoScroll, 10000);
+    });
+    
+    const carouselWrapper = document.querySelector('.carousel-wrapper');
+    carouselWrapper.addEventListener('mouseenter', stopAutoScroll);
+    carouselWrapper.addEventListener('mouseleave', startAutoScroll);
+  }
+  
+  function updateDynamicText() { // Called after i18next is initialized
+    renderPollOptions();
+    renderPopularityChart();
+    calculateItemsToShow(); // Initial calculation
+    renderCarousel();
+    startAutoScroll(); // Start carousel after rendering
+  }
+  
+  window.addEventListener('resize', () => {
+      calculateItemsToShow();
+      renderCarousel(); // Re-render for new number of items if needed
+      // Chart.js is responsive by default if maintainAspectRatio is true and container resizes
+  });
+
+  // --- Standard Page JS (Sidebar, Modal, Chatbot UI) ---
+  document.getElementById('copyright-text').textContent = `© ${new Date().getFullYear()} SafetyHelp. All rights reserved. Your Partner in Occupational Health and Safety Compliance.`;
+
+  function setupScrollingSidebar(listId) { 
+    const listElement = document.getElementById(listId);
+    if (!listElement || listElement.children.length === 0) return;
+    const originalItems = Array.from(listElement.children);
+    originalItems.forEach(item => {
+        const clone = item.cloneNode(true);
+        if (listId === 'ohs-milestones-list' && clone.tagName === 'LI') {
+            clone.addEventListener('click', () => showMilestoneDetail(clone));
+        }
+        listElement.appendChild(clone);
+    });
+    originalItems.forEach(item => {
+        if (listId === 'ohs-milestones-list' && item.tagName === 'LI') {
+            item.addEventListener('click', () => showMilestoneDetail(item));
+        }
+    });
+  }
+  
+  const infoModalEl = document.getElementById('infoModal'); 
+  const infoModalTitleEl = document.getElementById('modalTitle'); 
+  const infoModalBodyEl = document.getElementById('modalBody'); 
+
+  function showMilestoneDetail(element) {
+    if (!infoModalEl || !infoModalTitleEl || !infoModalBodyEl) return;
+    const title = element.textContent.trim().replace(/^.*? /,''); 
+    const detail = element.dataset.detail || "More information about this milestone will be available soon.";
+    infoModalTitleEl.textContent = `OHS Milestone: ${title}`;
+    infoModalBodyEl.innerHTML = `<p>${detail}</p>`;
+    infoModalEl.style.display = 'block';
+  }
+  function closeModal() { 
+    if (infoModalEl) infoModalEl.style.display = 'none';
+  }
+  window.onclick = function(event) {
+    if (event.target == infoModalEl) { closeModal(); }
+  }
+  
+  const chatWindowGlobal = document.getElementById('chat-window'); 
+  const chatToggleBtnGlobal = document.getElementById('chat-toggle'); 
+  const chatInputGlobal = document.getElementById('chat-input');  
+  const chatSendBtnGlobal = document.getElementById('chat-send');    
+  const chatOutputGlobal = document.getElementById('chat-output'); 
+
+  function toggleChatbotUI(forceOpen) { 
+    if (!chatWindowGlobal || !chatToggleBtnGlobal) return;
+    const isHidden = chatWindowGlobal.classList.contains('chat-hidden');
+    if (forceOpen === true || isHidden) {
+        chatWindowGlobal.classList.remove('chat-hidden');
+        chatWindowGlobal.classList.add('chat-expanded');
+        chatToggleBtnGlobal.innerHTML = '<i class="fas fa-times"></i>'; 
+        if (chatInputGlobal) chatInputGlobal.focus();
+    } else if (forceOpen === false || !isHidden) {
+        chatWindowGlobal.classList.add('chat-hidden'); 
+        chatWindowGlobal.classList.remove('chat-expanded');
+        chatToggleBtnGlobal.innerHTML = '<i class="fas fa-headset"></i>'; 
+    }
+  }
+
+  function addChatMessageToUIChatbot(sender, message, isUser) { 
+    if (!chatOutputGlobal) return;
+    const p = document.createElement('p');
+    p.innerHTML = `<strong>${sender}:</strong> ${message}`;
+    if(isUser) p.style.textAlign = "right"; 
+    chatOutputGlobal.appendChild(p);
+    chatOutputGlobal.scrollTop = chatOutputGlobal.scrollHeight;
+  }
+
+  async function handleChatSendMain() {
+    if(!chatInputGlobal || !chatOutputGlobal) return;
+    const message = chatInputGlobal.value.trim();
+    if (message) {
+        addChatMessageToUIChatbot('You', message, true);
+        chatInputGlobal.value = '';
+        let botResponse = "Let me know which upcoming module you're most excited about! (Chatbot placeholder)";
+        if (message.toLowerCase().includes("when will") && message.toLowerCase().includes("launch")) {
+            botResponse = "We're launching one new module each month! Vote for your favorite to see it sooner.";
+        }
+        setTimeout(() => { addChatMessageToUIChatbot('Salatiso', botResponse, false); }, 500);
+    }
+  }
+
+  if(chatSendBtnGlobal) chatSendBtnGlobal.addEventListener('click', handleChatSendMain);
+  if(chatInputGlobal) chatInputGlobal.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleChatSendMain(); });
+  
+  // --- Initial calls ---
+  window.onload = async () => { // Make onload async for i18next
+    await initializeI18next(); // Wait for translations before rendering dynamic content
+    checkAndResetVotesMonthly();
+    loadVotes();
+    // Dynamic text update handled by initializeI18next calling updateDynamicText
+    
+    setupScrollingSidebar('safetyhelp-tools-list'); 
+    setupScrollingSidebar('ohs-milestones-list'); 
+    if (chatWindowGlobal) chatWindowGlobal.classList.add('chat-hidden'); 
+    if (chatToggleBtnGlobal) chatToggleBtnGlobal.style.display = 'flex'; 
+
+    // Language switcher in header
+    const langSelectHeader = document.getElementById('language-switcher-header');
+    if (langSelectHeader && typeof i18next !== 'undefined' && i18next.isInitialized) {
+        const currentLang = i18next.language.split('-')[0];
+        if (Array.from(langSelectHeader.options).some(opt => opt.value === currentLang)) { 
+            langSelectHeader.value = currentLang; 
+        }
+        langSelectHeader.addEventListener('change', (e) => {
+            i18next.changeLanguage(e.target.value, (err) => {
+                if (err) { console.error('Error changing language:', err); return; }
+                updateStaticPageContent(); // Update static text
+                updateDynamicText(); // Update poll, chart, carousel
+            });
+        });
+    }
+  };
+
+</script>
+</body>
+</html>
