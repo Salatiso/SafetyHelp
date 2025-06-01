@@ -391,10 +391,11 @@
       <main class="main-community">
         <section class="intro-community">
           <h2><i class="fas fa-users-cog section-icon"></i>Welcome to the SafetyHelp OHS Community</h2>
-          <p>Join a vibrant community dedicated to occupational health and safety (OHS) in South Africa. Whether you're a professional, employer, mentor, trainee, or passionate about safety, SafetyHelp connects you with opportunities to contribute and grow. Sign up today to showcase your skills, express interest in roles like employer, mentor, or partner, and receive benefits like free book vouchers, even with our free membership. Be part of shaping a community-driven platform, launching fully in 2026!</p>
+          <p>Join a vibrant community dedicated to advancing occupational health and safety (OHS) in South Africa. Whether you’re a professional, employer, pastor, CEO, or just starting out, SafetyHelp connects you with opportunities to grow, contribute, and make workplaces safer. Use our career wizard to explore free resources and tailored paths to build skills, boost your CV, or ensure compliance—perfect for everyone, from those with no budget to leaders scaling their organizations. Sign up to shape our platform, launching fully in 2026, and enjoy benefits like free book vouchers!</p>
           <div class="community-actions">
-            <a href="/SafetyHelp/login.html" class="action-button action-button-primary"><i class="fas fa-sign-in-alt"></i>Sign Up Now</a>
-            <a href="/SafetyHelp/contact.html" class="action-button action-button-secondary"><i class="fas fa-envelope"></i>Contact Us</a>
+            <button id="startWizardBtn" class="action-button action-button-primary"><i class="fas fa-play"></i> Start Career Wizard</button>
+            <a href="/SafetyHelp/login.html" class="action-button action-button-primary"><i class="fas fa-sign-in-alt"></i> Sign Up Now</a>
+            <a href="/SafetyHelp/contact.html" class="action-button action-button-secondary"><i class="fas fa-envelope"></i> Contact Us</a>
           </div>
         </section>
 
@@ -442,7 +443,7 @@
 
         <section id="articlesSection">
           <h2><i class="fas fa-newspaper section-icon"></i>OHS Articles & Insights</h2>
-          <p>Share your expertise by submitting OHS articles and insights. Contribute to our growing knowledge base and help shape a safer South Africa. <a href="/SafetyHelp/contact.html">Contact us</a> to submit your article. All members, including free tier, receive book vouchers for contributions!</p>
+          <p>Share your expertise by submitting OHS articles and insights. Contribute to our growing knowledge base and help shape a safer South Africa. <a href="/SafetyHelp/contact.html">Contact us</a> to submit your article. All members, including free tier, receive benefits like book vouchers for contributions!</p>
           <div class="community-actions">
             <a href="/SafetyHelp/contact.html" class="action-button action-button-primary"><i class="fas fa-pen-alt"></i>Submit Article</a>
           </div>
@@ -923,7 +924,7 @@
       careerWizard.style.display = 'block';
     });
 
-// --- Chatbot Functionality ---
+    // --- Chatbot Functionality ---
     const chatWindow = document.getElementById('chat-window');
     const chatToggleBtn = document.getElementById('chat-toggle');
     const chatInputEl = document.getElementById('chat-input');
