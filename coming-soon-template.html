@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SafetyHelp | Exciting Modules Coming Soon!</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
   <script src="https://unpkg.com/i18next@23.15.2/dist/umd/i18next.min.js"></script>
   <script src="https://unpkg.com/i18next-http-backend@2.5.2/dist/umd/i18nextHttpBackend.min.js"></script>
@@ -73,6 +73,7 @@
     }
     .page-title-section h1 { font-size: 2.2rem; color: #1f2937; margin-bottom: 0.5rem; }
     .page-title-section p.subtitle { font-size: 1rem; color: #374151; max-width: 800px; margin-left: auto; margin-right: auto; }
+
     /* Layout (from established SafetyHelp template) */
     .page-content { display: flex; flex-direction: column; flex-grow: 1; overflow: auto; }
     .container { 
@@ -83,13 +84,14 @@
       gap: 1rem; 
       padding: 1rem; 
     }
-    @media (max-width: 1024px) { 
-      .container { grid-template-columns: 1fr 4fr 1fr; }
+     @media (max-width: 1024px) { 
+        .container { grid-template-columns: 1fr 4fr 1fr; }
     }
     @media (max-width: 768px) { 
-      .container { grid-template-columns: 1fr; }
-      .sidebar-tools, .sidebar-milestones { display: none; } 
+        .container { grid-template-columns: 1fr; }
+        .sidebar-tools, .sidebar-milestones { display: none; } 
     }
+    
     .sidebar-tools, .sidebar-milestones { background: #fff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; flex-direction: column; overflow: hidden; max-height: calc(100vh - 120px); }
     .sidebar-heading { font-size: 1.2rem; font-weight: 700; color: #007BFF; padding: 1rem; border-bottom: 1px solid #e5e7eb; background-color: #f9f9f9; flex-shrink: 0; border-top-left-radius: 8px; border-top-right-radius: 8px; display: flex; align-items: center; gap: 0.5rem; }
     .sidebar-heading .heading-icon { color: #FF8C00; }
@@ -105,7 +107,7 @@
     .sidebar-tools li a:hover, .sidebar-milestones li:hover { background: #e8f0fe; }
     .sidebar-tools li a .list-icon, .sidebar-milestones li .list-icon { color: #007BFF; font-size: 1em; width: 20px; text-align: center; }
     .sidebar-tools li a.active-tool-link { background-color: #ddeaff; font-weight: 600; color: #0056b3; }
-
+    
     /* Main content specific to Coming Soon Page */
     .main-coming-soon { 
       padding: 1.5rem; 
@@ -116,20 +118,22 @@
       grid-column: 1 / -1; 
     }
     @media (min-width: 769px) { 
-      .main-coming-soon { grid-column: 2 / 3; }
+        .main-coming-soon { grid-column: 2 / 3; }
     }
+
     .main-coming-soon h2.page-section-title { font-size: 1.8rem; color: #0056b3; margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 2px solid #FF8C00; display: flex; align-items: center; gap: 0.75rem; }
     .main-coming-soon h2.page-section-title .section-icon { color: #FF8C00; }
     .main-coming-soon p.intro-text { font-size: 1rem; line-height: 1.7; color: #374151; margin-bottom: 1rem; }
     .main-coming-soon .section-block { margin-bottom: 2.5rem; padding: 1.5rem; background-color: #f9f9f9; border-radius: 8px; border: 1px solid #e0e0e0; }
     .main-coming-soon .section-block h3 { font-size: 1.5rem; color: #007BFF; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
-    .main-coming-soon .section-block h3 .fa-fw { width: 1.25em; text-align: center; }
+    .main-coming-soon .section-block h3 .fa-fw { width: 1.25em; text-align: center;}
 
     /* Poll Styles */
     .poll-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;}
     .poll-option { background-color: #fff; border: 1px solid #e0e0e0; border-radius: 6px; padding: 1rem; display: flex; justify-content: space-between; align-items: center; transition: box-shadow 0.2s ease; }
     .poll-option:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-    .poll-option label { font-weight: 500; color: #333; flex-grow: 1; cursor: pointer;}
+    .poll-option label { font-weight: 500; color: #333; flex-grow: 1; cursor: pointer; display:flex; align-items:center; gap: 0.5rem;}
+    .poll-option label .fas { color: #007BFF; }
     .poll-option button { background-color: #FF8C00; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer; transition: background-color 0.2s ease; font-size: 0.9rem;}
     .poll-option button:hover { background-color: #e07b00; }
     .poll-option button:disabled { background-color: #ccc; cursor: not-allowed; color: #666; }
@@ -140,30 +144,42 @@
 
     /* Carousel Styles */
     .module-carousel-section { margin-top: 2rem; background-color: transparent; padding:0; border:none;}
-    .module-carousel-section h3 { text-align: center; padding-bottom: 0.5rem; border-bottom: 2px solid #FF8C00; display: block;}
-    .carousel-wrapper { position: relative; width: 100%; margin: 1.5rem auto 0 auto; }
+    .module-carousel-section > h3 { /* Direct child h3 */
+      text-align: center; 
+      padding-bottom: 0.5rem; 
+      border-bottom: 2px solid #FF8C00; 
+      display: block; 
+      font-size: 1.5rem; 
+      color: #007BFF;
+      margin-bottom: 1.5rem;
+    }
+    .carousel-wrapper { position: relative; width: 100%; margin: 0 auto; }
     .carousel-track-container { overflow: hidden; width: 100%; }
     .carousel-track { display: flex; transition: transform 0.5s ease-in-out; }
     .carousel-slide { 
-      min-width: calc(33.333% - 20px); /* Show 3 slides by default, adjust for margins */
-      max-width: calc(33.333% - 20px);
-      margin: 0 10px; 
-      background-color: #fff; border-radius: 8px; 
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
-      padding: 1.5rem; text-align: center; cursor: pointer; 
-      border: 1px solid #e0e0e0;
-      display: flex; flex-direction: column; justify-content: space-between;
+        min-width: calc(33.333% - 20px); 
+        max-width: calc(33.333% - 20px);
+        margin: 0 10px; 
+        background-color: #fff; border-radius: 8px; 
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
+        padding: 1.5rem; text-align: center; cursor: pointer; 
+        border: 1px solid #e0e0e0;
+        display: flex; flex-direction: column; justify-content: space-between;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    @media (max-width: 900px) { /* 2 slides */
-      .carousel-slide { min-width: calc(50% - 20px); max-width: calc(50% - 20px); }
+    .carousel-slide:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(0,0,0,0.12); }
+    @media (max-width: 900px) { 
+        .carousel-slide { min-width: calc(50% - 20px); max-width: calc(50% - 20px); }
     }
-    @media (max-width: 600px) { /* 1 slide */
-      .carousel-slide { min-width: calc(100% - 20px); max-width: calc(100% - 20px); }
+    @media (max-width: 600px) { 
+        .carousel-slide { min-width: calc(100% - 20px); max-width: calc(100% - 20px); }
     }
-    .carousel-slide h4 { font-size: 1.2rem; color: #007BFF; margin-bottom: 0.75rem; }
+
+    .carousel-slide h4 { font-size: 1.2rem; color: #007BFF; margin-bottom: 0.75rem; display:flex; align-items:center; justify-content:center; gap: 0.5rem;}
+    .carousel-slide h4 .fa-fw { color: #FF8C00;}
     .carousel-slide p.summary { font-size: 0.9rem; color: #555; margin-bottom: 1rem; min-height: 60px; flex-grow: 1;}
-    .carousel-slide .details-icon-container { margin-top: auto; } /* Pushes icon to bottom */
-    .carousel-slide .details-icon { color: #FF8C00; font-size: 0.8rem; }
+    .carousel-slide .details-icon-container { margin-top: auto; } 
+    .carousel-slide .details-icon { color: #FF8C00; font-size: 0.8rem; text-decoration: underline; }
     .module-details-content { display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #ccc; text-align: left; animation: fadeIn 0.5s; }
     .module-details-content p {font-size: 0.85rem; line-height: 1.5; color: #444;}
     .module-details-content strong { color: #0056b3;}
@@ -172,9 +188,10 @@
 
     .carousel-arrow { position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(0, 123, 255, 0.7); color: white; border: none; padding: 0.8rem; border-radius: 50%; cursor: pointer; z-index: 10; font-size: 1.2rem; line-height: 1; }
     .carousel-arrow:hover { background-color: #0056b3; }
-    .carousel-prev { left: -10px; } /* Adjust for better visibility */
-    .carousel-next { right: -10px; } /* Adjust for better visibility */
+    .carousel-prev { left: -5px; } 
+    .carousel-next { right: -5px; } 
     .hidden { display: none !important; }
+
 
     /* Footer */
     footer {
@@ -189,7 +206,7 @@
     footer p { margin-bottom: 0.5rem; }
     footer a { color: #FF8C00; transition: color 0.3s ease; }
     footer a:hover { color: #fff; }
-
+    
     /* Modal Styles */
     .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); padding-top: 60px; }
     .modal-content { background-color: #fefefe; margin: 5% auto; padding: 25px; border: 1px solid #888; width: 80%; max-width: 600px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative; }
@@ -221,12 +238,12 @@
     #chat-input { flex-grow: 1; padding: 0.7rem; border: 1px solid #ddd; border-radius: 6px; margin-right: 8px; font-family: 'Montserrat', sans-serif; }
     #chat-send { background-color: #007BFF; color: white; padding: 0.7rem 1rem; border: none; border-radius: 6px; cursor: pointer; font-weight: 500; transition: background-color 0.3s ease; }
     #chat-send:hover { background-color: #0056b3; }
+
   </style>
-</head>
-<body>
+</head><body>
   <header>
-    <a href="/SafetyHelp/index.html" class="logo-container">
-      <div class="logo">Safety<span class="help">Help</span></div>
+    <a href="/SafetyHelp/index.html" class="logo-container"> 
+        <div class="logo">Safety<span class="help">Help</span></div>
     </a>
     <nav>
       <a href="/SafetyHelp/index.html"><i class="fas fa-home nav-icon"></i>Home</a>
@@ -235,439 +252,521 @@
       <a href="/SafetyHelp/community.html"><i class="fas fa-users nav-icon"></i>Community</a>
       <a href="/SafetyHelp/about.html"><i class="fas fa-info-circle nav-icon"></i>About</a>
       <a href="/SafetyHelp/contact.html"><i class="fas fa-envelope nav-icon"></i>Contact</a>
-      <a href="/SafetyHelp/login.html"><i class="fas fa-sign-in-alt nav-icon"></i>Sign In</a>
+      <a href="/SafetyHelp/login.html"><i class="fas fa-sign-in-alt nav-icon"></i>SignUp / Login</a>
     </nav>
     <div class="search-language">
-      <input type="search" placeholder="Search...">
-      <select>
-        <option value="en">English</option>
-        <option value="es">Español</option>
-        <option value="fr">Français</option>
+      <input type="text" placeholder="Search..." data-i18n="[placeholder]header.search_placeholder">
+      <select id="language-switcher-header" aria-label="Select language">
+        <option value="en" data-i18n="language_selector.en">English</option>
+        <option value="af" data-i18n="language_selector.af">Afrikaans</option>
+        <option value="zu" data-i18n="language_selector.zu">isiZulu</option>
+        <option value="xh" data-i18n="language_selector.xh">isiXhosa</option>
       </select>
     </div>
   </header>
 
-  <section class="page-title-section">
-    <h1>Exciting Modules Coming Soon!</h1>
-    <p class="subtitle">Discover what’s new and help shape our next features with your feedback.</p>
-  </section>
-
-  <div class="page-content">
-    <div class="container">
-      <aside class="sidebar-tools">
-  <div class="sidebar-heading">
-    <i class="fas fa-tools heading-icon"></i>SafetyHelp Tools
+  <div class="page-title-section">
+    <h1 data-i18n="coming_soon.page_title">Exciting Modules Coming Soon!</h1>
+    <p class="subtitle" data-i18n="coming_soon.page_subtitle">We're working hard to bring you a comprehensive suite of OHS tools. A new module will be unveiled each month! Help us decide what comes next.</p>
   </div>
-  <div class="sidebar-list-container">
-    <ul id="safetyhelp-tools-list">
-      <li><a href="/SafetyHelp/pages/construction-compliance.html" data-detail="Comprehensive safety management for construction projects, ensuring compliance with regulations."><i class="fas fa-hard-hat list-icon"></i>Construction Safety</a></li>
-      <li><a href="/SafetyHelp/pages/emergency-response-plan.html" data-detail="Develop and implement effective emergency preparedness and response plans."><i class="fas fa-bell list-icon"></i>Emergency Planning</a></li>
-      <li><a href="/SafetyHelp/pages/risk-assessment.html" data-detail="Identify, analyze, and control workplace hazards with our systematic risk assessment tools."><i class="fas fa-shield-alt list-icon"></i>Risk Assessment</a></li>
-      <li><a href="/SafetyHelp/pages/legal-appointments.html" data-detail="Manage and document all legally required OHS appointments for your organization."><i class="fas fa-gavel list-icon"></i>Legal Appointments</a></li>
-      <li><a href="/SafetyHelp/pages/incident-management.html" data-detail="Streamline the reporting, investigation, and prevention of workplace incidents."><i class="fas fa-file-medical-alt list-icon"></i>Incident Management</a></li>
-      <li><a href="/SafetyHelp/pages/training.html" data-detail="Access and manage OHS training programs and records for your workforce."><i class="fas fa-graduation-cap list-icon"></i>Training</a></li>
-      <li><a href="/SafetyHelp/pages/inspections-audits.html" data-detail="Conduct thorough workplace inspections and audits to ensure safety standards are met."><i class="fas fa-clipboard-check list-icon"></i>Inspections & Audits</a></li>
-      <li><a href="/SafetyHelp/pages/suppliers.html" data-detail="Manage OHS information and compliance for your suppliers and contractors."><i class="fas fa-truck list-icon"></i>Suppliers</a></li>
-      <li><a href="/SafetyHelp/pages/legislation.html" data-detail="Stay updated with the latest OHS acts, regulations, and legal requirements."><i class="fas fa-balance-scale list-icon"></i>Legislation</a></li>
-      <li><a href="/SafetyHelp/pages/community-tools.html" data-detail="Engage with the OHS community, share resources, and access forums."><i class="fas fa-users list-icon"></i>Community Tools</a></li>
-      <li><a href="/SafetyHelp/member-dashboard.html" data-detail="Your personalized dashboard for managing OHS activities, tracking progress, and accessing key information."><i class="fas fa-tachometer-alt list-icon"></i>Member Dashboard</a></li>
-      <li><a href="/SafetyHelp/pages/ohs-system.html" data-detail="Explore various modules to build and maintain a comprehensive OHS system."><i class="fas fa-cogs list-icon"></i>OHS System Modules</a></li>
-    </ul>
-  </div>
-</aside>
 
-
-      <main class="main-coming-soon">
-        <h2 class="page-section-title">
-          <i class="fas fa-rocket section-icon"></i>Upcoming Features
-        </h2>
-        <p class="intro-text">
-          We’re working on several new modules to enhance your experience. Vote for your favorite below and let us know what you’d like to see next!
-        </p>
-
-        <div class="section-block">
-  <h3><i class="fas fa-poll-h fa-fw"></i>Which SafetyHelp tool are you most excited about?</h3>
-  <div class="poll-options">
-    <div class="poll-option">
-      <label>
-        <input type="radio" name="feature" value="construction-safety">
-        <i class="fas fa-hard-hat"></i> Construction Safety
-      </label>
-      <button onclick="vote('construction-safety')">Vote</button>
-    </div>
-    <div class="poll-option">
-      <label>
-        <input type="radio" name="feature" value="emergency-planning">
-        <i class="fas fa-bell"></i> Emergency Planning
-      </label>
-      <button onclick="vote('emergency-planning')">Vote</button>
-    </div>
-    <div class="poll-option">
-      <label>
-        <input type="radio" name="feature" value="risk-assessment">
-        <i class="fas fa-shield-alt"></i> Risk Assessment
-      </label>
-      <button onclick="vote('risk-assessment')">Vote</button>
-    </div>
-    <div class="poll-option">
-      <label>
-        <input type="radio" name="feature" value="legal-appointments">
-        <i class="fas fa-gavel"></i> Legal Appointments
-      </label>
-      <button onclick="vote('legal-appointments')">Vote</button>
-    </div>
-    <div class="poll-option">
-      <label>
-        <input type="radio" name="feature" value="incident-management">
-        <i class="fas fa-file-medical-alt"></i> Incident Management
-      </label>
-      <button onclick="vote('incident-management')">Vote</button>
-    </div>
-    <div class="poll-option">
-      <label>
-        <input type="radio" name="feature" value="training">
-        <i class="fas fa-graduation-cap"></i> Training
-      </label>
-      <button onclick="vote('training')">Vote</button>
-    </div>
-    <div class="poll-option">
-      <label>
-        <input type="radio" name="feature" value="inspections-audits">
-        <i class="fas fa-clipboard-check"></i> Inspections & Audits
-      </label>
-      <button onclick="vote('inspections-audits')">Vote</button>
-    </div>
-    <div class="poll-option">
-      <label>
-        <input type="radio" name="feature" value="suppliers">
-        <i class="fas fa-truck"></i> Suppliers
-      </label>
-      <button onclick="vote('suppliers')">Vote</button>
-    </div>
-    <div class="poll-option">
-      <label>
-        <input type="radio" name="feature" value="legislation">
-        <i class="fas fa-balance-scale"></i> Legislation
-      </label>
-      <button onclick="vote('legislation')">Vote</button>
-    </div>
-    <div class="poll-option">
-      <label>
-        <input type="radio" name="feature" value="community-tools">
-        <i class="fas fa-users"></i> Community Tools
-      </label>
-      <button onclick="vote('community-tools')">Vote</button>
-    </div>
-    <div class="poll-option">
-      <label>
-        <input type="radio" name="feature" value="member-dashboard">
-        <i class="fas fa-tachometer-alt"></i> Member Dashboard
-      </label>
-      <button onclick="vote('member-dashboard')">Vote</button>
-    </div>
-    <div class="poll-option">
-      <label>
-        <input type="radio" name="feature" value="ohs-system-modules">
-        <i class="fas fa-cogs"></i> OHS System Modules
-      </label>
-      <button onclick="vote('ohs-system-modules')">Vote</button>
-    </div>
-  </div>
-  <div id="vote-feedback" class="hidden">Thank you for your vote! Your feedback helps us prioritize new features.</div>
-</div>
-
-
-        <div id="popularityChartContainer">
-          <canvas id="popularityChart"></canvas>
-        </div>
-
-        <div class="module-carousel-section">
-  <h3><i class="fas fa-th-large"></i> Explore SafetyHelp Tools</h3>
-  <div class="carousel-wrapper">
-    <button class="carousel-arrow carousel-prev" onclick="moveSlide(-1)"><i class="fas fa-chevron-left"></i></button>
-    <div class="carousel-track-container">
-      <div class="carousel-track" id="carousel-track">
-        <div class="carousel-slide" onclick="toggleDetails(this)" data-detail="Comprehensive safety management for construction projects, ensuring compliance with regulations.">
-          <h4><i class="fas fa-hard-hat"></i> Construction Safety</h4>
-          <p class="summary">Manage construction safety and compliance.</p>
-          <div class="details-icon-container"><i class="fas fa-info-circle details-icon"></i></div>
-          <div class="module-details-content"></div>
-        </div>
-        <div class="carousel-slide" onclick="toggleDetails(this)" data-detail="Develop and implement effective emergency preparedness and response plans.">
-          <h4><i class="fas fa-bell"></i> Emergency Planning</h4>
-          <p class="summary">Emergency preparedness and response.</p>
-          <div class="details-icon-container"><i class="fas fa-info-circle details-icon"></i></div>
-          <div class="module-details-content"></div>
-        </div>
-        <div class="carousel-slide" onclick="toggleDetails(this)" data-detail="Identify, analyze, and control workplace hazards with our systematic risk assessment tools.">
-          <h4><i class="fas fa-shield-alt"></i> Risk Assessment</h4>
-          <p class="summary">Identify and manage workplace hazards.</p>
-          <div class="details-icon-container"><i class="fas fa-info-circle details-icon"></i></div>
-          <div class="module-details-content"></div>
-        </div>
-        <div class="carousel-slide" onclick="toggleDetails(this)" data-detail="Manage and document all legally required OHS appointments for your organization.">
-          <h4><i class="fas fa-gavel"></i> Legal Appointments</h4>
-          <p class="summary">Document legal OHS appointments.</p>
-          <div class="details-icon-container"><i class="fas fa-info-circle details-icon"></i></div>
-          <div class="module-details-content"></div>
-        </div>
-        <div class="carousel-slide" onclick="toggleDetails(this)" data-detail="Streamline the reporting, investigation, and prevention of workplace incidents.">
-          <h4><i class="fas fa-file-medical-alt"></i> Incident Management</h4>
-          <p class="summary">Report and prevent workplace incidents.</p>
-          <div class="details-icon-container"><i class="fas fa-info-circle details-icon"></i></div>
-          <div class="module-details-content"></div>
-        </div>
-        <div class="carousel-slide" onclick="toggleDetails(this)" data-detail="Access and manage OHS training programs and records for your workforce.">
-          <h4><i class="fas fa-graduation-cap"></i> Training</h4>
-          <p class="summary">Manage OHS training and records.</p>
-          <div class="details-icon-container"><i class="fas fa-info-circle details-icon"></i></div>
-          <div class="module-details-content"></div>
-        </div>
-        <div class="carousel-slide" onclick="toggleDetails(this)" data-detail="Conduct thorough workplace inspections and audits to ensure safety standards are met.">
-          <h4><i class="fas fa-clipboard-check"></i> Inspections & Audits</h4>
-          <p class="summary">Conduct workplace inspections and audits.</p>
-          <div class="details-icon-container"><i class="fas fa-info-circle details-icon"></i></div>
-          <div class="module-details-content"></div>
-        </div>
-        <div class="carousel-slide" onclick="toggleDetails(this)" data-detail="Manage OHS information and compliance for your suppliers and contractors.">
-          <h4><i class="fas fa-truck"></i> Suppliers</h4>
-          <p class="summary">Manage supplier OHS compliance.</p>
-          <div class="details-icon-container"><i class="fas fa-info-circle details-icon"></i></div>
-          <div class="module-details-content"></div>
-        </div>
-        <div class="carousel-slide" onclick="toggleDetails(this)" data-detail="Stay updated with the latest OHS acts, regulations, and legal requirements.">
-          <h4><i class="fas fa-balance-scale"></i> Legislation</h4>
-          <p class="summary">Stay updated with OHS legislation.</p>
-          <div class="details-icon-container"><i class="fas fa-info-circle details-icon"></i></div>
-          <div class="module-details-content"></div>
-        </div>
-        <div class="carousel-slide" onclick="toggleDetails(this)" data-detail="Engage with the OHS community, share resources, and access forums.">
-          <h4><i class="fas fa-users"></i> Community Tools</h4>
-          <p class="summary">Engage with the OHS community.</p>
-          <div class="details-icon-container"><i class="fas fa-info-circle details-icon"></i></div>
-          <div class="module-details-content"></div>
-        </div>
-        <div class="carousel-slide" onclick="toggleDetails(this)" data-detail="Your personalized dashboard for managing OHS activities, tracking progress, and accessing key information.">
-          <h4><i class="fas fa-tachometer-alt"></i> Member Dashboard</h4>
-          <p class="summary">Your personalized OHS dashboard.</p>
-          <div class="details-icon-container"><i class="fas fa-info-circle details-icon"></i></div>
-          <div class="module-details-content"></div>
-        </div>
-        <div class="carousel-slide" onclick="toggleDetails(this)" data-detail="Explore various modules to build and maintain a comprehensive OHS system.">
-          <h4><i class="fas fa-cogs"></i> OHS System Modules</h4>
-          <p class="summary">Build your OHS system.</p>
-          <div class="details-icon-container"><i class="fas fa-info-circle details-icon"></i></div>
-          <div class="module-details-content"></div>
-        </div>
+<div class="page-content">
+  <div class="container">
+    <aside class="sidebar-tools">
+      <h3 class="sidebar-heading"><i class="fas fa-tools heading-icon"></i>SafetyHelp Tools</h3>
+      <div class="sidebar-list-container">
+        <ul id="safetyhelp-tools-list">
+            <li><a href="/SafetyHelp/pages/construction-compliance.html"><i class="fas fa-hard-hat list-icon"></i>Construction Safety</a></li>
+            <li><a href="/SafetyHelp/pages/emergency-response-plan.html"><i class="fas fa-bell list-icon"></i>Emergency Planning</a></li>
+            <li><a href="/SafetyHelp/pages/risk-assessment.html"><i class="fas fa-shield-alt list-icon"></i>Risk Assessment</a></li>
+            <li><a href="/SafetyHelp/pages/legal-appointments.html"><i class="fas fa-gavel list-icon"></i>Legal Appointments</a></li>
+            <li><a href="/SafetyHelp/pages/incident-management.html"><i class="fas fa-file-medical-alt list-icon"></i>Incident Management</a></li>
+            <li><a href="/SafetyHelp/pages/training.html"><i class="fas fa-graduation-cap list-icon"></i>Training</a></li>
+            <li><a href="/SafetyHelp/pages/inspections-audits.html"><i class="fas fa-clipboard-check list-icon"></i>Inspections & Audits</a></li>
+            <li><a href="/SafetyHelp/pages/suppliers.html"><i class="fas fa-truck list-icon"></i>Suppliers</a></li>
+            <li><a href="/SafetyHelp/pages/legislation.html"><i class="fas fa-balance-scale list-icon"></i>Legislation</a></li>
+            <li><a href="/SafetyHelp/pages/community-tools.html"><i class="fas fa-users list-icon"></i>Community Tools</a></li>
+            <li><a href="/SafetyHelp/secure/member-dashboard.html"><i class="fas fa-tachometer-alt list-icon"></i>Member Dashboard</a></li>
+            <li><a href="/SafetyHelp/pages/ohs-system.html"><i class="fas fa-cogs list-icon"></i>OHS System Modules</a></li>
+        </ul>
       </div>
+    </aside>
+
+    <main class="main-coming-soon">
+        <p class="intro-text" data-i18n="coming_soon.intro_text">Our team is developing a range of specialized OHS modules to further simplify your safety management. Each month, we'll be launching a new one. You can influence our release schedule by voting for the module you'd like to see prioritized!</p>
+
+        <section class="section-block poll-section">
+            <h3 data-i18n="coming_soon.poll.title"><i class="fas fa-vote-yea fa-fw"></i>Vote for Next Month's Module!</h3>
+            <div id="poll-options" class="poll-options">
+                </div>
+            <p id="vote-feedback" class="hidden"></p>
+        </section>
+
+        <section class="section-block graph-section">
+            <h3 data-i18n="coming_soon.graph.title"><i class="fas fa-chart-bar fa-fw"></i>Module Popularity</h3>
+            <div id="popularityChartContainer">
+                <canvas id="popularityChart"></canvas>
+            </div>
+             <p class="text-sm text-center text-slate-500" data-i18n="coming_soon.graph.note">Graph updates based on your votes. Results reset monthly.</p>
+        </section>
+        
+        <section class="module-carousel-section section-block">
+            <h3 data-i18n="coming_soon.carousel.title"><i class="fas fa-images fa-fw"></i>Sneak Peek: Upcoming Modules</h3>
+            <div class="carousel-wrapper">
+                <button class="carousel-arrow carousel-prev" aria-label="Previous Module"><i class="fas fa-chevron-left"></i></button>
+                <div class="carousel-track-container"> 
+                    <div class="carousel-track" id="moduleCarouselTrack">
+                        </div>
+                </div>
+                <button class="carousel-arrow carousel-next" aria-label="Next Module"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+    </main>
+
+    <aside class="sidebar-milestones">
+      <h3 class="sidebar-heading"><i class="fas fa-flag-checkered heading-icon"></i>OHS Milestones</h3>
+      <div class="sidebar-list-container">
+        <ul id="ohs-milestones-list">
+          <li data-detail="The Occupational Safety and Health Act was enacted in the USA, establishing standards for workplace safety."><i class="fas fa-landmark list-icon"></i>1970: OSHA (USA)</li>
+          <li data-detail="South Africa's OHS Act No. 85 of 1993 was established."><i class="fas fa-landmark list-icon"></i>1993: OHS Act (SA)</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+</div> 
+
+<footer>
+  <p id="copyright-text">© 2025 SafetyHelp. All rights reserved. Your Partner in Occupational Health and Safety Compliance.</p>
+  <p><a href="/SafetyHelp/privacy.html" data-i18n="footer.links.privacy">Privacy Policy</a> | <a href="/SafetyHelp/terms.html" data-i18n="footer.links.terms">Terms of Service</a> | <a href="/SafetyHelp/contact.html" data-i18n="footer.links.contact">Contact Us</a></p> 
+  <div class="newsletter" style="margin-top: 1rem;">
+      <h4 data-i18n="footer.newsletter.title_alt" style="font-size: 1rem; margin-bottom: 0.5rem;">Stay Updated with SafetyHelp</h4>
+      <form id="newsletterForm" style="display: flex; justify-content: center; gap: 0.5rem;">
+          <input type="email" id="newsletterEmail" class="form-input" style="width: auto; max-width: 250px; padding: 0.5rem 0.75rem; font-size:0.9rem;" data-i18n="[placeholder]footer.newsletter.placeholder" placeholder="Enter your email">
+          <button type="submit" class="auth-button" style="width: auto; padding: 0.5rem 1rem; font-size:0.9rem; background-color: #FF8C00;"><i class="fas fa-envelope-open-text"></i> <span data-i18n="footer.newsletter.button">Subscribe</span></button>
+      </form>
+  </div>
+</footer>
+
+<div id="infoModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 id="modalTitle">Milestone Detail</h4>
+      <span class="close-btn" onclick="closeModalUI()">&times;</span>
     </div>
-    <button class="carousel-arrow carousel-next" onclick="moveSlide(1)"><i class="fas fa-chevron-right"></i></button>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-footer" id="modalFooter">
+      <button onclick="closeModalUI()"><i class="fas fa-times btn-icon"></i>Close</button>
+    </div>
   </div>
 </div>
 
-      </main>
-
-      <aside class="sidebar-milestones">
-        <div class="sidebar-heading">
-          <i class="fas fa-flag-checkered heading-icon"></i>Milestones
+<div class="chatbot-container">
+    <div id="chat-window" class="chat-hidden"> 
+        <div id="chat-header">
+            <span>Salatiso - Your OHS Assistant</span>
+            <button class="close-chat-btn" onclick="toggleChatbotUI(false)">&times;</button>
         </div>
-        <div class="sidebar-list-container">
-          <ul>
-            <li><i class="fas fa-check-circle list-icon"></i>Incident Reporting (Q3)</li>
-            <li><i class="fas fa-check-circle list-icon"></i>Risk Assessment (Q4)</li>
-            <li><i class="fas fa-check-circle list-icon"></i>Training Portal (Q1)</li>
-            <li><i class="fas fa-check-circle list-icon"></i>Analytics Dashboard (Q2)</li>
-          </ul>
+        <div id="chat-output">
+            <p><strong>Salatiso:</strong> Hello! How can I help you with OHS today?</p>
         </div>
-      </aside>
+        <div id="chat-input-container">
+            <input id="chat-input" type="text" placeholder="Ask about OHS...">
+            <button id="chat-send"><i class="fas fa-paper-plane"></i></button>
+        </div>
     </div>
-  </div>
+    <button id="chat-toggle" onclick="toggleChatbotUI()">
+        <i class="fas fa-headset"></i> 
+    </button>
+</div>
 
-  <div class="modal" id="featureModal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4>Feature Details</h4>
-        <span class="close-btn" onclick="closeModal()">&times;</span>
-      </div>
-      <div class="modal-body" id="modalBody">
-        <p>Details about the selected feature will appear here.</p>
-      </div>
-      <div class="modal-footer">
-        <button onclick="closeModal()">Close</button>
-      </div>
-    </div>
-  </div>
+<script>
+  // --- Module Data ---
+  const modulesData = [
+    { id: 'construction-compliance', nameKey: 'module.construction.name', descriptionKey: 'module.construction.desc_short', icon: 'fa-hard-hat', path: '/SafetyHelp/pages/construction-compliance.html', featuresKey: 'module.construction.features_list' },
+    { id: 'emergency-response-plan', nameKey: 'module.emergency.name', descriptionKey: 'module.emergency.desc_short', icon: 'fa-bell', path: '/SafetyHelp/pages/emergency-response-plan.html', featuresKey: 'module.emergency.features_list' },
+    { id: 'risk-assessment', nameKey: 'module.risk.name', descriptionKey: 'module.risk.desc_short', icon: 'fa-shield-alt', path: '/SafetyHelp/pages/risk-assessment.html', featuresKey: 'module.risk.features_list' },
+    { id: 'legal-appointments', nameKey: 'module.legal.name', descriptionKey: 'module.legal.desc_short', icon: 'fa-gavel', path: '/SafetyHelp/pages/legal-appointments.html', featuresKey: 'module.legal.features_list' },
+    { id: 'incident-management', nameKey: 'module.incident.name', descriptionKey: 'module.incident.desc_short', icon: 'fa-file-medical-alt', path: '/SafetyHelp/pages/incident-management.html', featuresKey: 'module.incident.features_list' },
+    { id: 'training', nameKey: 'module.training.name', descriptionKey: 'module.training.desc_short', icon: 'fa-graduation-cap', path: '/SafetyHelp/pages/training.html', featuresKey: 'module.training.features_list' },
+    { id: 'inspections-audits', nameKey: 'module.inspections.name', descriptionKey: 'module.inspections.desc_short', icon: 'fa-clipboard-check', path: '/SafetyHelp/pages/inspections-audits.html', featuresKey: 'module.inspections.features_list' },
+    { id: 'suppliers', nameKey: 'module.suppliers.name', descriptionKey: 'module.suppliers.desc_short', icon: 'fa-truck', path: '/SafetyHelp/pages/suppliers.html', featuresKey: 'module.suppliers.features_list' },
+    { id: 'legislation', nameKey: 'module.legislation.name', descriptionKey: 'module.legislation.desc_short', icon: 'fa-balance-scale', path: '/SafetyHelp/pages/legislation.html', featuresKey: 'module.legislation.features_list' },
+    { id: 'community-tools', nameKey: 'module.community.name', descriptionKey: 'module.community.desc_short', icon: 'fa-users', path: '/SafetyHelp/pages/community-tools.html', featuresKey: 'module.community.features_list' },
+    { id: 'ohs-system', nameKey: 'module.ohs_system.name', descriptionKey: 'module.ohs_system.desc_short', icon: 'fa-cogs', path: '/SafetyHelp/pages/ohs-system.html', featuresKey: 'module.ohs_system.features_list' },
+    { id: 'member-dashboard', nameKey: 'module.dashboard.name', descriptionKey: 'module.dashboard.desc_short', icon: 'fa-tachometer-alt', path: '/SafetyHelp/secure/member-dashboard.html', featuresKey: 'module.dashboard.features_list' }
+  ];
 
-  <div class="chatbot-container">
-    <button id="chat-toggle" onclick="toggleChat()"><i class="fas fa-comment"></i></button>
-    <div id="chat-window">
-      <div id="chat-header">
-        <span>SafetyHelp Chat</span>
-        <button class="close-chat-btn" onclick="toggleChat()"><i class="fas fa-times"></i></button>
-      </div>
-      <div id="chat-output"></div>
-      <div id="chat-input-container">
-        <input type="text" id="chat-input" placeholder="Type your message...">
-        <button id="chat-send" onclick="sendMessage()">Send</button>
-      </div>
-    </div>
-  </div>
+  let moduleVotes = {}; 
+  let popularityChartInstance = null;
+  const VOTE_STORAGE_KEY = 'safetyHelpModuleVotes_v2'; // Use a new key if structure changes
+  const LAST_VOTE_RESET_KEY = 'safetyHelpVoteLastReset_v2';
+  const USER_VOTED_KEY_PREFIX = 'safetyHelpUserVotedMonth_'; // Prefix for monthly vote tracking
 
-  <footer>
-    <p>&copy; 2025 SafetyHelp. All rights reserved.</p>
-    <p><a href="/SafetyHelp/privacy.html">Privacy Policy</a> | <a href="/SafetyHelp/terms.html">Terms of Service</a></p>
-  </footer>
-
-  <script>
-    // Poll and feedback
-    function vote(feature) {
-      document.querySelectorAll('.poll-option button').forEach(btn => btn.disabled = true);
-      document.getElementById('vote-feedback').classList.remove('hidden');
-      updateChart();
-    }
-
-    // Carousel functionality
-    let currentIndex = 0;
-    const slides = document.querySelectorAll('.carousel-slide');
-    const track = document.getElementById('carousel-track');
-
-    function moveSlide(direction) {
-      currentIndex = (currentIndex + direction + slides.length) % slides.length;
-      updateCarousel();
-    }
-
-    function updateCarousel() {
-      const slideWidth = slides[0].offsetWidth + 20; // includes margin
-      track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-    }
-
-    function toggleDetails(slide) {
-      slide.classList.toggle('expanded');
-    }
-
-    // Modal
-    function closeModal() {
-      document.getElementById('featureModal').style.display = 'none';
-    }
-
-    // Chatbot
-    function toggleChat() {
-      document.getElementById('chat-window').classList.toggle('chat-expanded');
-    }
-
-    const moduleDetails = {
-  'construction safety': "Comprehensive safety management for construction projects, ensuring compliance with regulations.",
-  'emergency planning': "Develop and implement effective emergency preparedness and response plans.",
-  'risk assessment': "Identify, analyze, and control workplace hazards with our systematic risk assessment tools.",
-  'legal appointments': "Manage and document all legally required OHS appointments for your organization.",
-  'incident management': "Streamline the reporting, investigation, and prevention of workplace incidents.",
-  'training': "Access and manage OHS training programs and records for your workforce.",
-  'inspections & audits': "Conduct thorough workplace inspections and audits to ensure safety standards are met.",
-  'suppliers': "Manage OHS information and compliance for your suppliers and contractors.",
-  'legislation': "Stay updated with the latest OHS acts, regulations, and legal requirements.",
-  'community tools': "Engage with the OHS community, share resources, and access forums.",
-  'member dashboard': "Your personalized dashboard for managing OHS activities, tracking progress, and accessing key information.",
-  'ohs system modules': "Explore various modules to build and maintain a comprehensive OHS system."
-};
-
-function sendMessage() {
-  const input = document.getElementById('chat-input');
-  const output = document.getElementById('chat-output');
-  if (input.value.trim()) {
-    output.innerHTML += `<p><strong>You:</strong> ${input.value}</p>`;
-    // Check if message contains a module name
-    let foundModule = null;
-    for (const [module, detail] of Object.entries(moduleDetails)) {
-      if (input.value.toLowerCase().includes(module.toLowerCase())) {
-        foundModule = module;
-        break;
-      }
-    }
-    // Simulate bot response
-    setTimeout(() => {
-      if (foundModule) {
-        output.innerHTML += `<p><strong>SafetyHelp:</strong> ${moduleDetails[foundModule]}</p>`;
-      } else {
-        output.innerHTML += `<p><strong>SafetyHelp:</strong> Thanks for your message! How can I assist you today? Try asking about a specific SafetyHelp module (e.g., "Tell me about Construction Safety").</p>`;
-      }
-      output.scrollTop = output.scrollHeight;
-    }, 1000);
-    input.value = '';
-    output.scrollTop = output.scrollHeight;
+  // --- i18next Initialization ---
+  async function initializeI18next() {
+    console.log("Initializing i18next...");
+    if (typeof i18next !== 'undefined' && typeof i18nextHttpBackend !== 'undefined' && typeof i18nextBrowserLanguageDetector !== 'undefined') {
+      try {
+        await i18next.use(i18nextHttpBackend).use(i18nextBrowserLanguageDetector)
+          .init({
+            fallbackLng: 'en', debug: true, ns: ['translation'], defaultNS: 'translation',
+            backend: { loadPath: '/SafetyHelp/assets/locales/{{lng}}/{{ns}}.json' },
+            detection: { order: ['querystring', 'cookie', 'localStorage', 'sessionStorage', 'navigator', 'htmlTag'], caches: ['localStorage', 'cookie'] }
+          });
+        console.log("i18next initialized. Current language:", i18next.language);
+        updateStaticPageContent(); 
+        updateDynamicText(); 
+      } catch (error) { console.error("Error initializing i18next:", error); }
+    } else { console.error("i18next or plugins not loaded."); }
   }
-}
 
-
-    // Chart
-    function updateChart() {
-  const ctx = document.getElementById('popularityChart');
-  if (window.myChart) {
-    window.myChart.destroy();
-  }
-  window.myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: ['Construction Safety', 'Emergency Planning', 'Risk Assessment', 'Legal Appointments', 'Incident Management', 'Training', 'Inspections & Audits', 'Suppliers', 'Legislation', 'Community Tools', 'Member Dashboard', 'OHS System Modules'],
-      datasets: [{
-        label: 'Votes',
-        data: [
-          Math.floor(Math.random() * 100) + 30,
-          Math.floor(Math.random() * 100) + 20,
-          Math.floor(Math.random() * 100) + 40,
-          Math.floor(Math.random() * 100) + 25,
-          Math.floor(Math.random() * 100) + 35,
-          Math.floor(Math.random() * 100) + 45,
-          Math.floor(Math.random() * 100) + 30,
-          Math.floor(Math.random() * 100) + 20,
-          Math.floor(Math.random() * 100) + 25,
-          Math.floor(Math.random() * 100) + 15,
-          Math.floor(Math.random() * 100) + 40,
-          Math.floor(Math.random() * 100) + 20
-        ],
-        backgroundColor: [
-          'rgba(0, 123, 255, 0.7)', 'rgba(255, 140, 0, 0.7)', 'rgba(40, 167, 69, 0.7)', 'rgba(108, 117, 125, 0.7)',
-          'rgba(111, 66, 193, 0.7)', 'rgba(214, 51, 108, 0.7)', 'rgba(0, 123, 255, 0.7)', 'rgba(255, 140, 0, 0.7)',
-          'rgba(40, 167, 69, 0.7)', 'rgba(108, 117, 125, 0.7)', 'rgba(111, 66, 193, 0.7)', 'rgba(214, 51, 108, 0.7)'
-        ],
-        borderColor: [
-          'rgba(0, 123, 255, 1)', 'rgba(255, 140, 0, 1)', 'rgba(40, 167, 69, 1)', 'rgba(108, 117, 125, 1)',
-          'rgba(111, 66, 193, 1)', 'rgba(214, 51, 108, 1)', 'rgba(0, 123, 255, 1)', 'rgba(255, 140, 0, 1)',
-          'rgba(40, 167, 69, 1)', 'rgba(108, 117, 125, 1)', 'rgba(111, 66, 193, 1)', 'rgba(214, 51, 108, 1)'
-        ],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
+  function updateStaticPageContent() {
+    console.log("Updating static page content based on i18next language:", i18next.language);
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        let translation = (typeof i18next !== 'undefined' && i18next.isInitialized) ? i18next.t(key, { /* any options */ }) : `Fallback for ${key}`;
+        if (key.startsWith('[placeholder]')) { el.setAttribute('placeholder', translation); }
+        else if (el.tagName === 'TITLE') { document.title = translation; }
+        else {
+            const icon = el.querySelector('i.fas, i.fab');
+            if (icon && (el.classList.contains('sidebar-link') || el.classList.contains('auth-button') || el.classList.contains('accordion-button') || el.closest('.action-buttons') || el.closest('.submit-button'))) {
+                let textNode = icon.nextSibling;
+                while(textNode && textNode.nodeType !== Node.TEXT_NODE) { textNode = textNode.nextSibling; }
+                if (textNode) { textNode.textContent = ' ' + translation; }
+                else { el.appendChild(document.createTextNode(' ' + translation));}
+            } else { el.innerHTML = translation; }
         }
+    });
+    const footerCopyrightEl = document.getElementById('copyright-text');
+    if (footerCopyrightEl) {
+         footerCopyrightEl.innerHTML = `&copy; ${new Date().getFullYear()} SafetyHelp. All rights reserved. Your Partner in Occupational Health and Safety Compliance.`;
+    }
+  }
+  
+  function loadVotes() {
+    const storedVotes = localStorage.getItem(VOTE_STORAGE_KEY);
+    if (storedVotes) { moduleVotes = JSON.parse(storedVotes); }
+    else { modulesData.forEach(module => moduleVotes[module.id] = Math.floor(Math.random() * 20) + 1); } 
+    console.log("Votes loaded:", moduleVotes);
+  }
+
+  function saveVotes() { localStorage.setItem(VOTE_STORAGE_KEY, JSON.stringify(moduleVotes)); }
+  
+  function checkAndResetVotesMonthly() {
+      const now = new Date();
+      const currentMonthYearKey = `${now.getFullYear()}-${now.getMonth()}`;
+      const lastReset = localStorage.getItem(LAST_VOTE_RESET_KEY);
+      if (lastReset !== currentMonthYearKey) {
+          console.log("Resetting votes for new month:", currentMonthYearKey);
+          modulesData.forEach(module => moduleVotes[module.id] = Math.floor(Math.random() * 5)); 
+          saveVotes();
+          localStorage.setItem(LAST_VOTE_RESET_KEY, currentMonthYearKey);
+          // No need to remove USER_VOTED_KEY_PREFIX + currentMonthYearKey here, as new month means new key
       }
+  }
+
+  function renderPollOptions() {
+    console.log("Rendering poll options...");
+    const pollOptionsContainer = document.getElementById('poll-options');
+    const voteFeedbackEl = document.getElementById('vote-feedback');
+    if (!pollOptionsContainer || !voteFeedbackEl || !i18next.isInitialized) {
+        console.error("Poll container, feedback element, or i18next not ready for poll rendering.");
+        return;
+    }
+    pollOptionsContainer.innerHTML = '';
+    const currentMonthVoteKey = USER_VOTED_KEY_PREFIX + `${new Date().getFullYear()}-${new Date().getMonth()}`;
+    const userVotedThisMonth = localStorage.getItem(currentMonthVoteKey) === 'true';
+
+    modulesData.forEach(module => {
+      const optionDiv = document.createElement('div');
+      optionDiv.className = 'poll-option';
+      const translatedName = i18next.t(module.nameKey, module.nameKey.split('.').pop().replace(/_/g, ' '));
+      optionDiv.innerHTML = `
+        <label for="vote-${module.id}"><i class="fas ${module.icon} fa-fw"></i> ${translatedName}</label>
+        <button data-module-id="${module.id}" class="vote-btn" ${userVotedThisMonth ? 'disabled' : ''}><i class="fas fa-vote-yea"></i> Vote</button>
+      `;
+      pollOptionsContainer.appendChild(optionDiv);
+    });
+
+    document.querySelectorAll('.vote-btn').forEach(button => {
+      button.addEventListener('click', function() {
+        const moduleId = this.dataset.moduleId;
+        moduleVotes[moduleId] = (moduleVotes[moduleId] || 0) + 1;
+        saveVotes();
+        updatePopularityChart();
+        const moduleName = i18next.t(modulesData.find(m=>m.id === moduleId).nameKey);
+        voteFeedbackEl.textContent = i18next.t('coming_soon.poll.vote_cast', { module: moduleName });
+        voteFeedbackEl.classList.remove('hidden');
+        localStorage.setItem(currentMonthVoteKey, 'true');
+        document.querySelectorAll('.vote-btn').forEach(btn => btn.disabled = true);
+        setTimeout(() => voteFeedbackEl.classList.add('hidden'), 4000);
+      });
+    });
+    console.log("Poll options rendered.");
+  }
+
+  function renderPopularityChart() {
+    console.log("Rendering popularity chart...");
+    const ctx = document.getElementById('popularityChart')?.getContext('2d');
+    if (!ctx || !i18next.isInitialized) {
+        console.error("Chart canvas or i18next not ready for chart rendering.");
+        return;
+    }
+    const labels = modulesData.map(module => i18next.t(module.nameKey, module.nameKey.split('.').pop().replace(/_/g, ' ')));
+    const data = modulesData.map(module => moduleVotes[module.id] || 0);
+
+    if (popularityChartInstance) popularityChartInstance.destroy();
+    popularityChartInstance = new Chart(ctx, {
+      type: 'bar',
+      data: { labels: labels, datasets: [{ label: i18next.t('coming_soon.graph.dataset_label', 'Votes'), data: data, backgroundColor: 'rgba(0, 123, 255, 0.7)', borderColor: 'rgba(0, 123, 255, 1)', borderWidth: 1 }] },
+      options: { indexAxis: 'y', responsive: true, scales: { x: { beginAtZero: true, ticks: { stepSize: 1, precision: 0 } } }, plugins: { legend: { display: false } } }
+    });
+    console.log("Popularity chart rendered.");
+  }
+  function updatePopularityChart() {
+    if (!popularityChartInstance) { renderPopularityChart(); return; }
+    popularityChartInstance.data.datasets[0].data = modulesData.map(module => moduleVotes[module.id] || 0);
+    popularityChartInstance.update();
+    console.log("Popularity chart updated.");
+  }
+
+  const carouselTrackEl = document.getElementById('moduleCarouselTrack'); // Renamed for clarity
+  const prevButtonEl = document.querySelector('.carousel-prev'); // Renamed
+  const nextButtonEl = document.querySelector('.carousel-next'); // Renamed
+  let currentCarouselSlideIndex = 0; 
+  let carouselAutoScrollIntervalId;
+  let carouselItemsInView = 3; 
+
+  function calculateCarouselItemsInView() {
+      if (window.innerWidth < 600) carouselItemsInView = 1;
+      else if (window.innerWidth < 900) carouselItemsInView = 2;
+      else carouselItemsInView = 3;
+  }
+
+  function renderCarouselSlides() {
+    console.log("Rendering carousel slides...");
+    if (!carouselTrackEl || !i18next.isInitialized) {
+        console.error("Carousel track or i18next not ready for carousel rendering.");
+        return;
+    }
+    carouselTrackEl.innerHTML = '';
+    const slidesToRender = [...modulesData, ...modulesData.slice(0, carouselItemsInView * 2)]; 
+
+    slidesToRender.forEach(module => {
+        const slide = document.createElement('div');
+        slide.className = 'carousel-slide';
+        slide.innerHTML = `
+            <h4><i class="fas ${module.icon} fa-fw"></i> ${i18next.t(module.nameKey, module.nameKey.split('.').pop().replace(/_/g, ' '))}</h4>
+            <p class="summary">${i18next.t(module.descriptionKey, module.descriptionKey.split('.').pop().replace(/_/g, ' '))}</p>
+            <div class="details-icon-container">
+                <span class="details-icon"><i class="fas fa-info-circle"></i> <span data-i18n="coming_soon.carousel.click_details">Click for Details</span></span>
+            </div>
+            <div class="module-details-content">
+                <p><strong>${i18next.t('coming_soon.carousel.features_title', 'Upcoming Features:')}</strong></p>
+                <p>${i18next.t(module.featuresKey, "Detailed features list coming soon...")}</p>
+            </div>
+        `;
+        slide.addEventListener('click', function() {
+            this.classList.toggle('expanded');
+            if (this.classList.contains('expanded')) stopCarouselAutoScroll();
+            else startCarouselAutoScroll();
+        });
+        carouselTrackEl.appendChild(slide);
+    });
+    positionCarouselTrack(); // Initial position
+    console.log("Carousel slides rendered.");
+  }
+
+  function positionCarouselTrack() {
+    if (!carouselTrackEl || !carouselTrackEl.children.length) return;
+    const slideWidth = carouselTrackEl.children[0].offsetWidth;
+    const slideMargin = 10; // As per CSS .carousel-slide margin: 0 10px;
+    const totalSlideWidth = slideWidth + (slideMargin * 2);
+    carouselTrackEl.style.transform = `translateX(-${currentCarouselSlideIndex * totalSlideWidth}px)`;
+  }
+
+  function moveCarouselSlides(direction) { // Renamed
+    const numOriginalSlides = modulesData.length;
+    currentCarouselSlideIndex += direction;
+    
+    carouselTrackEl.style.transition = 'transform 0.5s ease-in-out';
+    positionCarouselTrack();
+
+    if (direction === 1 && currentCarouselSlideIndex >= numOriginalSlides) {
+        setTimeout(() => {
+            carouselTrackEl.style.transition = 'none';
+            currentCarouselSlideIndex = 0;
+            positionCarouselTrack();
+        }, 500); 
+    } else if (direction === -1 && currentCarouselSlideIndex < 0) {
+         setTimeout(() => {
+            carouselTrackEl.style.transition = 'none';
+            currentCarouselSlideIndex = numOriginalSlides -1;
+            positionCarouselTrack();
+        }, 500);
+    }
+  }
+  
+  function startCarouselAutoScroll() {
+    if (carouselAutoScrollIntervalId) clearInterval(carouselAutoScrollIntervalId);
+    carouselAutoScrollIntervalId = setInterval(() => moveCarouselSlides(1), 5000);
+  }
+  function stopCarouselAutoScroll() { clearInterval(carouselAutoScrollIntervalId); }
+
+  if (prevButtonEl && nextButtonEl && carouselTrackEl) {
+    prevButtonEl.addEventListener('click', () => { moveCarouselSlides(-1); stopCarouselAutoScroll(); setTimeout(startCarouselAutoScroll, 10000);});
+    nextButtonEl.addEventListener('click', () => { moveCarouselSlides(1); stopCarouselAutoScroll(); setTimeout(startCarouselAutoScroll, 10000); });
+    const carouselWrapper = document.querySelector('.carousel-wrapper');
+    if (carouselWrapper) {
+        carouselWrapper.addEventListener('mouseenter', stopCarouselAutoScroll);
+        carouselWrapper.addEventListener('mouseleave', startCarouselAutoScroll);
+    }
+  }
+  
+  function updateDynamicText() { 
+    console.log("Updating dynamic text (poll, chart, carousel)...");
+    renderPollOptions();
+    renderPopularityChart();
+    calculateCarouselItemsInView();
+    renderCarouselSlides(); 
+    startCarouselAutoScroll();
+  }
+  
+  window.addEventListener('resize', () => {
+      calculateCarouselItemsInView();
+      renderCarouselSlides();
+      if (popularityChartInstance) popularityChartInstance.resize(); // Ensure chart resizes too
+  });
+
+  // --- Standard Page JS (Sidebar, Modal, Chatbot UI) ---
+  // Copyright is now set directly in HTML, year updated by updateStaticPageContent or below
+  const copyrightTextEl = document.getElementById('copyright-text');
+   if (copyrightTextEl) {
+      copyrightTextEl.innerHTML = `&copy; ${new Date().getFullYear()} SafetyHelp. All rights reserved. Your Partner in Occupational Health and Safety Compliance.`;
+  }
+
+
+  function setupScrollingSidebar(listId) { 
+    const listElement = document.getElementById(listId);
+    if (!listElement || listElement.children.length === 0) return;
+    const originalItems = Array.from(listElement.children);
+    originalItems.forEach(item => {
+        const clone = item.cloneNode(true);
+        if (listId === 'ohs-milestones-list' && clone.tagName === 'LI') {
+            clone.addEventListener('click', () => showMilestoneDetail(clone));
+        }
+        listElement.appendChild(clone);
+    });
+    originalItems.forEach(item => {
+        if (listId === 'ohs-milestones-list' && item.tagName === 'LI') {
+            item.addEventListener('click', () => showMilestoneDetail(item));
+        }
+    });
+  }
+  
+  const infoModalEl = document.getElementById('infoModal'); 
+  const infoModalTitleEl = document.getElementById('modalTitle'); 
+  const infoModalBodyEl = document.getElementById('modalBody'); 
+
+  function showMilestoneDetail(element) {
+    if (!infoModalEl || !infoModalTitleEl || !infoModalBodyEl) return;
+    const title = element.textContent.trim().replace(/^.*? /,''); 
+    const detail = element.dataset.detail || "More information about this milestone will be available soon.";
+    infoModalTitleEl.textContent = `OHS Milestone: ${title}`;
+    infoModalBodyEl.innerHTML = `<p>${detail}</p>`;
+    infoModalEl.style.display = 'block';
+  }
+  function closeModalUI() { 
+    if (infoModalEl) infoModalEl.style.display = 'none';
+  }
+  window.onclick = function(event) {
+    if (event.target == infoModalEl) { closeModalUI(); }
+  }
+  
+  const modalCloseButtonInFooter = document.querySelector('#infoModal .modal-footer button');
+  if(modalCloseButtonInFooter) modalCloseButtonInFooter.onclick = closeModalUI;
+  const modalCloseButtonInHeader = document.querySelector('#infoModal .close-btn');
+  if(modalCloseButtonInHeader) modalCloseButtonInHeader.onclick = closeModalUI;
+  
+  const chatWindowGlobal = document.getElementById('chat-window'); 
+  const chatToggleBtnGlobal = document.getElementById('chat-toggle'); 
+  const chatInputGlobal = document.getElementById('chat-input');  
+  const chatSendBtnGlobal = document.getElementById('chat-send');    
+  const chatOutputGlobal = document.getElementById('chat-output'); 
+
+  function toggleChatbotUI(forceOpen) { 
+    if (!chatWindowGlobal || !chatToggleBtnGlobal) return;
+    const isHidden = chatWindowGlobal.classList.contains('chat-hidden');
+    if (forceOpen === true || isHidden) {
+        chatWindowGlobal.classList.remove('chat-hidden');
+        chatWindowGlobal.classList.add('chat-expanded');
+        chatToggleBtnGlobal.innerHTML = '<i class="fas fa-times"></i>'; 
+        if (chatInputGlobal) chatInputGlobal.focus();
+    } else if (forceOpen === false || !isHidden) {
+        chatWindowGlobal.classList.add('chat-hidden'); 
+        chatWindowGlobal.classList.remove('chat-expanded');
+        chatToggleBtnGlobal.innerHTML = '<i class="fas fa-headset"></i>'; 
+    }
+  }
+
+  function addChatMessageToUIChatbot(sender, message, isUser) { 
+    if (!chatOutputGlobal) return;
+    const p = document.createElement('p');
+    p.innerHTML = `<strong>${sender}:</strong> ${message}`;
+    if(isUser) p.style.textAlign = "right"; 
+    chatOutputGlobal.appendChild(p);
+    chatOutputGlobal.scrollTop = chatOutputGlobal.scrollHeight;
+  }
+
+  async function handleChatSendMain() {
+    if(!chatInputGlobal || !chatOutputGlobal) return;
+    const message = chatInputGlobal.value.trim();
+    if (message) {
+        addChatMessageToUIChatbot('You', message, true);
+        chatInputGlobal.value = '';
+        let botResponse = "Let me know which upcoming module you're most excited about! (Chatbot placeholder)";
+        if (message.toLowerCase().includes("when will") && message.toLowerCase().includes("launch")) {
+            botResponse = "We're launching one new module each month! Vote for your favorite to see it sooner.";
+        }
+        setTimeout(() => { addChatMessageToUIChatbot('Salatiso', botResponse, false); }, 500);
+    }
+  }
+
+  if(chatSendBtnGlobal) chatSendBtnGlobal.addEventListener('click', handleChatSendMain);
+  if(chatInputGlobal) chatInputGlobal.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleChatSendMain(); });
+  
+  // --- Initial calls ---
+  document.addEventListener('DOMContentLoaded', async () => { 
+    console.log("DOM fully loaded and parsed.");
+    await initializeI18next(); 
+    checkAndResetVotesMonthly();
+    loadVotes();
+    // updateDynamicText is called within initializeI18next's success callback
+    
+    setupScrollingSidebar('safetyhelp-tools-list'); 
+    setupScrollingSidebar('ohs-milestones-list'); 
+    if (chatWindowGlobal) chatWindowGlobal.classList.add('chat-hidden'); 
+    if (chatToggleBtnGlobal) chatToggleBtnGlobal.style.display = 'flex'; 
+
+    const langSelectHeader = document.getElementById('language-switcher-header');
+    if (langSelectHeader && typeof i18next !== 'undefined' && i18next.isInitialized) {
+        const currentLang = i18next.language.split('-')[0];
+        if (Array.from(langSelectHeader.options).some(opt => opt.value === currentLang)) { 
+            langSelectHeader.value = currentLang; 
+        }
+        langSelectHeader.addEventListener('change', (e) => {
+            i18next.changeLanguage(e.target.value, (err) => {
+                if (err) { console.error('Error changing language:', err); return; }
+                updateStaticPageContent(); 
+                updateDynamicText(); 
+            });
+        });
+    } else if (langSelectHeader) {
+         console.warn("i18next not ready when setting up language switcher listener or langSelectHeader is null.");
     }
   });
-}
 
-    function toggleDetails(slide) {
-  // Toggle expanded class
-  slide.classList.toggle('expanded');
-  // Update the details content if not already set
-  const detailsContent = slide.querySelector('.module-details-content');
-  if (slide.classList.contains('expanded') && !detailsContent.innerHTML) {
-    const detail = slide.getAttribute('data-detail');
-    detailsContent.innerHTML = `<p><strong>Details:</strong> ${detail}</p>`;
-  }
-}
-
-    // Initialize
-    window.onload = function() {
-      updateCarousel();
-      updateChart();
-      // Enable carousel keyboard navigation
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'ArrowLeft') moveSlide(-1);
-        if (e.key === 'ArrowRight') moveSlide(1);
-      });
-    };
-  </script>
+</script>
 </body>
 </html>
