@@ -42,7 +42,7 @@
 
 #company-profile-form button {
     padding: 8px 15px;
-    background-color: #3498db;
+    background-color: #007BFF;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -51,7 +51,7 @@
 }
 
 #company-profile-form button:hover {
-    background-color: #2980b9;
+    background-color: #0056b3;
 }
 
 .dashboard-section table {
@@ -83,7 +83,7 @@
 
 .dashboard-section button {
     padding: 5px 10px;
-    background-color: #3498db;
+    background-color: #007BFF;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -92,5 +92,5 @@
 }
 
 .dashboard-section button:hover {
-    background-color: #2980b9;
+    background-color: #0056b3;
 }
