@@ -15,9 +15,9 @@ body {
 
 /* Header */
 .header-container {
-    background-color: #1a2526;
+    background-color: #007BFF;
     color: white;
-    padding: 10px 15px; /* Reduced padding for a more compact look */
+    padding: 10px 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -30,7 +30,7 @@ body {
 
 .header-content h1 {
     font-family: 'Montserrat', sans-serif;
-    font-size: 20px; /* Adjusted for compactness */
+    font-size: 20px;
     margin-bottom: 5px;
 }
 
@@ -42,7 +42,7 @@ body {
 }
 
 .nav-links a:hover {
-    text-decoration: underline;
+    color: #FD7E14;
 }
 
 .search-bar {
@@ -54,12 +54,12 @@ body {
     border: none;
     border-radius: 2px;
     font-size: 14px;
-    width: 150px; /* Adjusted for compactness */
+    width: 150px;
 }
 
 .search-bar button {
     padding: 4px 8px;
-    background-color: #ff6f61;
+    background-color: #FD7E14;
     color: white;
     border: none;
     border-radius: 2px;
@@ -68,36 +68,38 @@ body {
 }
 
 .search-bar button:hover {
-    background-color: #e65a50;
+    background-color: #e06b00;
 }
 
 /* Sidebar */
 .sidebar {
     position: fixed;
     left: 0;
-    top: 0;
-    width: 200px;
-    background-color: #f4f4f4;
+    top: 100px;
+    width: 250px;
+    background-color: #F4F4F4;
     border-right: 1px solid #ddd;
-    padding: 10px; /* Reduced padding */
+    padding: 15px;
+    min-height: calc(100vh - 100px);
 }
 
 .sidebar-content h3 {
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     margin-bottom: 10px;
+    color: #007BFF;
 }
 
 .sidebar-content a {
     display: block;
-    padding: 6px 0; /* Adjusted for compactness */
-    color: #1a2526;
+    padding: 6px 0;
+    color: #333;
     text-decoration: none;
     font-size: 14px;
 }
 
 .sidebar-content a:hover {
-    background-color: #e0e0e0;
+    color: #28A745;
 }
 
 .sidebar-content a.disabled {
@@ -111,14 +113,14 @@ body {
 
 /* Main Content */
 .main-content {
-    margin-left: 200px;
+    margin-left: 250px;
     padding: 15px;
     min-height: 100vh;
 }
 
 .intro h2 {
     font-family: 'Montserrat', sans-serif;
-    font-size: 22px; /* Adjusted for compactness */
+    font-size: 22px;
     margin-bottom: 8px;
 }
 
@@ -129,19 +131,19 @@ body {
 
 /* Role Selection */
 .role-selection {
-    margin: 10px 0; /* Reduced margin */
+    margin: 10px 0;
 }
 
 .role-selection h3 {
     font-family: 'Montserrat', sans-serif;
-    font-size: 16px; /* Adjusted for compactness */
+    font-size: 16px;
     margin-bottom: 8px;
 }
 
 .role-btn {
-    padding: 6px 12px; /* Adjusted for compactness */
+    padding: 6px 12px;
     margin-right: 8px;
-    background-color: #1a2526;
+    background-color: #007BFF;
     color: white;
     border: none;
     border-radius: 3px;
@@ -150,22 +152,22 @@ body {
 }
 
 .role-btn:hover {
-    background-color: #2a3536;
+    background-color: #0056b3;
 }
 
 /* Forms */
 .form-container, #compliance-form {
-    margin: 10px 0; /* Reduced margin */
+    margin: 10px 0;
 }
 
 .form-container h3, #compliance-form h3 {
     font-family: 'Montserrat', sans-serif;
-    font-size: 16px; /* Adjusted for compactness */
+    font-size: 16px;
     margin-bottom: 10px;
 }
 
 .form-group {
-    margin-bottom: 8px; /* Reduced margin */
+    margin-bottom: 8px;
 }
 
 .form-group label {
@@ -179,7 +181,7 @@ body {
 .form-group select,
 .form-group textarea {
     width: 100%;
-    max-width: 300px; /* Adjusted for compactness */
+    max-width: 300px;
     padding: 5px;
     border: 1px solid #ddd;
     border-radius: 2px;
@@ -198,8 +200,8 @@ body {
 
 button[type="submit"],
 .back-btn {
-    padding: 6px 12px; /* Adjusted for compactness */
-    background-color: #ff6f61;
+    padding: 6px 12px;
+    background-color: #FD7E14;
     color: white;
     border: none;
     border-radius: 3px;
@@ -210,7 +212,7 @@ button[type="submit"],
 
 button[type="submit"]:hover,
 .back-btn:hover {
-    background-color: #e65a50;
+    background-color: #e06b00;
 }
 
 .back-btn {
@@ -228,7 +230,7 @@ button[type="submit"]:hover,
 /* Compliance Checklist Steps */
 .step h4 {
     font-family: 'Montserrat', sans-serif;
-    font-size: 14px; /* Adjusted for compactness */
+    font-size: 14px;
     margin-bottom: 8px;
 }
 
@@ -251,7 +253,7 @@ button[type="submit"]:hover,
 }
 
 .suggested-label {
-    color: #ff6f61;
+    color: #FD7E14;
     font-style: italic;
     margin-left: 5px;
 }
@@ -267,11 +269,11 @@ table td {
     border: 1px solid #ddd;
     padding: 5px;
     text-align: left;
-    font-size: 12px; /* Adjusted for compactness */
+    font-size: 12px;
 }
 
 table th {
-    background-color: #1a2526;
+    background-color: #007BFF;
     color: white;
 }
 
@@ -308,7 +310,7 @@ table th {
 
 /* Footer */
 footer {
-    background-color: #1a2526;
+    background-color: #007BFF;
     color: white;
     padding: 10px;
     text-align: center;
@@ -319,7 +321,7 @@ footer p {
 }
 
 footer a {
-    color: #ff6f61;
+    color: #FD7E14;
     text-decoration: none;
 }
 
@@ -347,7 +349,7 @@ footer a:hover {
 
 .newsletter button {
     padding: 5px 10px;
-    background-color: #ff6f61;
+    background-color: #FD7E14;
     color: white;
     border: none;
     border-radius: 2px;
@@ -356,7 +358,7 @@ footer a:hover {
 }
 
 .newsletter button:hover {
-    background-color: #e65a50;
+    background-color: #e06b00;
 }
 
 /* Chatbot */
@@ -368,7 +370,7 @@ footer a:hover {
 
 .chat-toggle-btn {
     padding: 6px 12px;
-    background-color: #ff6f61;
+    background-color: #FD7E14;
     color: white;
     border: none;
     border-radius: 3px;
@@ -377,7 +379,7 @@ footer a:hover {
 }
 
 .chat-toggle-btn:hover {
-    background-color: #e65a50;
+    background-color: #e06b00;
 }
 
 .chat-window {
@@ -412,7 +414,7 @@ footer a:hover {
 
 #chat-send {
     padding: 8px;
-    background-color: #1a2526;
+    background-color: #007BFF;
     color: white;
     border: none;
     cursor: pointer;
@@ -420,5 +422,5 @@ footer a:hover {
 }
 
 #chat-send:hover {
-    background-color: #2a3536;
+    background-color: #0056b3;
 }
