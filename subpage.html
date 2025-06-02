@@ -213,7 +213,6 @@
     .action-button-secondary { background-color: #FF8C00; color: white; }
     .action-button-secondary:hover { background-color: #e07b00; transform: translateY(-2px); }
     
-    /* Custom CSS for interaction buttons container (replaces Tailwind flex flex-col sm:flex-row gap-4 mt-4) */
     .interaction-buttons-container {
       display: flex;
       flex-direction: column; /* Mobile first */
@@ -231,11 +230,7 @@
     }
 
     .nav-buttons { margin-top: 1.5rem; display: flex; justify-content: space-between; gap: 1rem; }
-    .nav-buttons .action-button i { /* Ensure icon spacing if needed */
-        /* margin-left or margin-right can be adjusted if gap on button is not enough */
-    }
-
-
+    
     /* Wizard Steps Styling */
     .wizard-step { border: 1px solid #e0e0e0; border-radius: 8px; padding: 1.5rem; margin-top: 1.5rem; background-color: #f9fafb; }
     .wizard-step h3 { font-size: 1.5rem; color: #111827; margin-bottom: 1rem; }
@@ -263,14 +258,14 @@
     }
      .form-group .checkbox-group label { display: inline-block; margin-right: 1rem; font-weight: normal;}
 
-    /* Custom CSS for manual options list (replaces Tailwind grid classes) */
+    /* Manual Options Grid (from subpage) */
     .manual-options-grid {
       margin-top: 1rem; 
       display: grid;
       grid-template-columns: 1fr; /* Mobile first */
       gap: 1rem; 
     }
-    .manual-options-grid .manual-option-item { /* Style for individual items in the grid */
+    .manual-options-grid .manual-option-item {
         border: 1px solid #e0e0e0;
         padding: 1rem;
         border-radius: 8px;
@@ -292,36 +287,123 @@
         margin-bottom: 0.75rem;
     }
     .manual-options-grid .manual-option-item .action-button {
-        width: 100%; /* Make button full width of its container */
+        width: 100%; 
     }
 
-
-    @media (min-width: 768px) { /* md: breakpoint */
+    @media (min-width: 768px) { 
       .manual-options-grid {
         grid-template-columns: repeat(2, 1fr);
       }
     }
-    @media (min-width: 1024px) { /* lg: breakpoint */
+    @media (min-width: 1024px) { 
       .manual-options-grid {
         grid-template-columns: repeat(3, 1fr);
       }
     }
 
+    /* Accordion Styles (from resources.html, adapted for subpage) */
+    .accordion-container {
+        /* Simulating Tailwind's space-y-4, use margin-bottom on items */
+    }
+    .accordion-item {
+        margin-bottom: 1rem; /* Spacing between accordion items */
+    }
+    .accordion-button {
+        background-color: #007BFF; /* Primary Blue */
+        color: white;
+        padding: 1rem 1.5rem;
+        border-radius: 0.5rem;
+        font-weight: 700;
+        font-size: 1.1rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: none;
+        width: 100%;
+        text-align: left;
+        transition: background-color 0.2s ease;
+    }
+    .accordion-button:hover {
+        background-color: #0056b3; /* Darker Blue */
+    }
+    .accordion-button .fas.fa-chevron-down, .accordion-button .fas.fa-chevron-up { /* Specificity for chevron */
+        transition: transform 0.3s ease;
+        color: #FF8C00; /* Accent Orange for icon */
+    }
+    .accordion-button.expanded .fas.fa-chevron-down, .accordion-button.expanded .fas.fa-chevron-up {
+        transform: rotate(180deg);
+    }
+    .accordion-content {
+        display: none;
+        margin-top: 0; 
+        padding: 1.5rem;
+        background-color: #f9f9f9; 
+        border-radius: 0 0 0.5rem 0.5rem; 
+        border: 1px solid #e0e0e0;
+        border-top: none; 
+        animation: fadeIn 0.5s ease-out;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .resource-item { /* Style for items within an accordion panel */
+        padding: 1rem;
+        margin-bottom: 1rem;
+        background-color: #ffffff;
+        border: 1px solid #e0e0e0;
+        border-radius: 0.5rem;
+    }
+    .resource-item:last-child {
+        margin-bottom: 0;
+    }
+    .resource-item h4 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #0056b3; 
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+    }
+    .resource-item h4 .fas { /* Icon within resource item heading */
+        margin-right: 0.75rem;
+        color: #FF8C00; /* Using the site's accent orange */
+    }
+    .resource-item p {
+        font-size: 0.95rem;
+        color: #374151; /* Consistent paragraph color */
+        margin-bottom: 0.5rem;
+        line-height: 1.6;
+    }
+    .resource-item .links a {
+        margin-right: 1rem;
+        font-size: 0.9rem;
+        color: #007BFF;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+    .resource-item .links a:hover {
+        color: #0056b3;
+    }
+    .resource-item .links a i { /* Icon for download/view links */
+        margin-right: 0.3rem;
+    }
+
 
     footer {
-      background: #343a40; /* Dark grey from reference pages */
+      background: #343a40; 
       color: #adb5bd;
       text-align: center;
       padding: 1.5rem 2rem;
       font-size: 0.9rem;
       flex-shrink: 0;
-      border-top: 3px solid #FF8C00; /* Orange accent */
+      border-top: 3px solid #FF8C00; 
     }
     footer p { margin-bottom: 0.5rem; }
     footer a { color: #FF8C00; transition: color 0.3s ease; text-decoration: none;}
     footer a:hover { color: #fff; }
 
-    /* Modal Styles (from reference pages) */
     .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); padding-top: 60px; }
     .modal-content { background-color: #fefefe; margin: 5% auto; padding: 25px; border: 1px solid #888; width: 80%; max-width: 600px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative; }
     .modal-header { padding-bottom: 10px; border-bottom: 1px solid #eee; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
@@ -330,22 +412,19 @@
     .close-btn:hover, .close-btn:focus { color: #333; text-decoration: none; }
     .modal-body p { font-size: 1rem; line-height: 1.6; margin-bottom: 1rem; }
     .modal-footer { padding-top: 15px; border-top: 1px solid #eee; margin-top: 20px; text-align: right; }
-    .modal-footer button { /* Base styling covered by .action-button, specific modal footer button overrides if any */ }
-    .modal-footer .action-button-secondary { /* Example if you use specific button types */
-        background-color: #6c757d; /* A common close button color */
+    .modal-footer .action-button-secondary { 
+        background-color: #6c757d; 
     }
     .modal-footer .action-button-secondary:hover {
         background-color: #5a6268;
     }
 
-
-    /* Chatbot Styles (from reference pages) */
     .chatbot-container { position: fixed; bottom: 20px; right: 20px; z-index: 1050; }
     #chat-toggle { background-color: #FF8C00; color: white; border: none; border-radius: 50%; width: 60px; height: 60px; font-size: 1.8rem; box-shadow: 0 4px 8px rgba(0,0,0,0.2); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background-color 0.3s ease, transform 0.3s ease; }
     #chat-toggle:hover { background-color: #e07b00; transform: scale(1.1); }
     #chat-window { width: 320px; max-height: 450px; background-color: #fff; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); display: flex; flex-direction: column; overflow: hidden; transition: opacity 0.3s ease, transform 0.3s ease; position: absolute; bottom: 75px; right: 0; opacity: 0; transform: translateY(10px); pointer-events: none; }
     #chat-window.chat-expanded { opacity: 1; transform: translateY(0); pointer-events: auto; }
-    .chat-hidden { display: none !important; } /* Ensure hidden is effective */
+    .chat-hidden { display: none !important; } 
     #chat-header { background-color: #007BFF; color: white; padding: 10px 15px; font-weight: 600; border-top-left-radius: 10px; border-top-right-radius: 10px; display: flex; justify-content: space-between; align-items: center; }
     #chat-header .close-chat-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; }
     #chat-output { flex-grow: 1; padding: 15px; overflow-y: auto; font-size: 0.9rem; background-color: #f9f9f9; }
@@ -357,26 +436,24 @@
     #chat-send { background-color: #007BFF; color: white; padding: 0.7rem 1rem; border: none; border-radius: 6px; cursor: pointer; font-weight: 500; transition: background-color 0.3s ease; }
     #chat-send:hover { background-color: #0056b3; }
 
-    /* Hide elements by default */
     .hidden { display: none; }
 
-    /* Responsive adjustments (Retained from original subpage for improved UX) */
-    @media (max-width: 1024px) { /* Adjust for tablets and smaller */
+    @media (max-width: 1024px) { 
       .container-grid {
-        grid-template-columns: 1fr; /* Stack main content and sidebars */
+        grid-template-columns: 1fr; 
       }
       .sidebar-tools, .sidebar-milestones {
-        max-height: 300px; /* Limit height when stacked */
+        max-height: 300px; 
         margin-bottom: 1rem;
       }
        main.main-subpage-content {
-        order: -1; /* Show main content first on smaller screens */
+        order: -1; 
       }
     }
-    @media (max-width: 768px) { /* Adjust for mobile */
+    @media (max-width: 768px) { 
         header { flex-direction: column; gap: 0.5rem; padding: 0.8rem 1rem; }
-        nav { flex-wrap: wrap; justify-content: center; gap: 0.25rem; } /* Reduced gap for smaller screens */
-        nav a { padding: 0.5rem 0.8rem; } /* Slightly smaller padding for nav links */
+        nav { flex-wrap: wrap; justify-content: center; gap: 0.25rem; } 
+        nav a { padding: 0.5rem 0.8rem; } 
         .search-language { width: 100%; justify-content: space-between; margin-top: 0.5rem;}
         .search-language input { flex-grow: 1; margin-right: 0.5rem; }
         .page-title-section h1 { font-size: 1.8rem; }
@@ -413,8 +490,7 @@
   </header>
 
   <div class="page-title-section">
-    <h1 id="subpage-title">Subpage Module Title</h1>
-    <p class="subtitle" id="subpage-subtitle">A brief description of what this module offers and its importance.</p>
+    <h1 id="subpage-title">[Module Name]</h1> <p class="subtitle" id="subpage-subtitle">Tools and resources for managing [Module Name] effectively.</p>
   </div>
 
   <div class="page-content-container">
@@ -442,37 +518,37 @@
       <main class="main-subpage-content">
         <section id="introduction-section">
           <h2><i class="fas fa-info-circle section-icon"></i>Introduction to [Module Name]</h2>
-          <p>This module provides comprehensive tools and resources for [briefly explain module purpose, e.g., managing construction compliance, conducting risk assessments]. Understanding and implementing these practices is crucial for ensuring a safe and healthy work environment in line with South African OHS legislation.</p>
+          <p>This module provides comprehensive tools and resources for managing [Module Name]. Understanding and implementing these practices is crucial for ensuring a safe and healthy work environment in line with South African OHS legislation.</p>
           <p>Here, you can learn about your legal duties, access relevant documents, and utilize our wizards to streamline your OHS processes.</p>
         </section>
 
         <section id="legal-obligations-section">
-          <h2><i class="fas fa-balance-scale section-icon"></i>Key Legal Obligations</h2>
-          <p>Below are some of the key legal obligations relevant to [Module Name]. Click on each item to expand and see more details, including legislative references and links.</p>
+          <h2><i class="fas fa-balance-scale section-icon"></i>Key Legal Obligations for [Module Name]</h2>
+          <p>Below are some of the key legal obligations relevant to [Module Name]. Click on each item to expand and see more details.</p>
           <div class="legal-obligation-item">
             <details>
-              <summary>Obligation 1: [Brief Title of Obligation]</summary>
+              <summary>Obligation 1: Specific to [Module Name]</summary>
               <div>
                 <p><strong>Detailed Explanation:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <p><strong>Legal Reference:</strong> Occupational Health and Safety Act, No. 85 of 1993, Section X(Y).</p>
+                <p><strong>Legal Reference:</strong> Relevant Act/Regulation, Section for [Module Name].</p>
                 <p><a href="#" target="_blank" rel="noopener noreferrer">Link to relevant legislation/guideline</a></p>
               </div>
             </details>
           </div>
           <div class="legal-obligation-item">
             <details>
-              <summary>Obligation 2: [Brief Title of Obligation]</summary>
+              <summary>Obligation 2: Specific to [Module Name]</summary>
               <div>
                 <p><strong>Detailed Explanation:</strong> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <p><strong>Legal Reference:</strong> Construction Regulations, 2014, Regulation Z.</p>
+                <p><strong>Legal Reference:</strong> Relevant Act/Regulation, Section for [Module Name].</p>
                 <p><a href="#" target="_blank" rel="noopener noreferrer">Link to relevant legislation/guideline</a></p>
               </div>
             </details>
           </div>
-          </section>
+        </section>
 
         <section id="interaction-choice-section">
-          <h2><i class="fas fa-cogs section-icon"></i>How Would You Like to Proceed?</h2>
+          <h2><i class="fas fa-cogs section-icon"></i>How Would You Like to Proceed with [Module Name]?</h2>
           <p>Choose how you want to interact with the [Module Name] tools. You can use our automated wizard for a guided experience or manually select the specific documents and tools you need.</p>
           <div class="interaction-buttons-container">
             <button id="show-wizard-btn" class="action-button action-button-primary">
@@ -484,6 +560,116 @@
           </div>
         </section>
 
+        <section id="module-specific-resources-section">
+            <h2><i class="fas fa-folder-open section-icon"></i>Resources for [Module Name]</h2>
+            <p>Access policies, procedures, templates, and reporting guidelines relevant to [Module Name].</p>
+            <div class="accordion-container">
+                <div class="accordion-item">
+                  <button class="accordion-button">
+                    <span><i class="fas fa-file-contract fa-fw" style="color: #FF8C00;"></i>Policy Documents for [Module Name]</span>
+                    <i class="fas fa-chevron-down"></i>
+                  </button>
+                  <div class="accordion-content">
+                    <div class="resource-item">
+                      <h4><i class="fas fa-file-alt"></i>[Module Name] Policy Template</h4>
+                      <p>A comprehensive policy template to guide [Module Name] practices in your organization. This template helps establish clear guidelines and responsibilities.</p>
+                      <div class="links">
+                        <a href="/SafetyHelp/assets/templates/placeholder-[module]-policy.docx" download><i class="fas fa-download"></i>Download Template (DOCX)</a>
+                        <a href="#" onclick="showCustomMessage('Example PDF', 'This would show an example PDF of a completed [Module Name] policy.'); return false;"><i class="fas fa-eye"></i>View Example (PDF)</a>
+                      </div>
+                    </div>
+                    <div class="resource-item">
+                      <h4><i class="fas fa-balance-scale"></i>Legal Requirements for [Module Name] Policy</h4>
+                      <p>Summary of legal stipulations influencing the content and implementation of your [Module Name] policy.</p>
+                       <div class="links">
+                         <a href="#" onclick="showCustomMessage('Legal Requirements', 'Details on legal backing for [Module Name] policies would appear here.'); return false;"><i class="fas fa-info-circle"></i>Read More</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <button class="accordion-button">
+                    <span><i class="fas fa-list-check fa-fw" style="color: #FF8C00;"></i>Procedures & Standards for [Module Name]</span>
+                    <i class="fas fa-chevron-down"></i>
+                  </button>
+                  <div class="accordion-content">
+                    <div class="resource-item">
+                      <h4><i class="fas fa-clipboard-list"></i>Standard Operating Procedure (SOP) for [Key Module Task]</h4>
+                      <p>Template for developing an SOP related to a critical task within [Module Name], ensuring consistency and safety.</p>
+                      <div class="links">
+                        <a href="/SafetyHelp/assets/templates/placeholder-[module]-sop-template.docx" download><i class="fas fa-download"></i>Download SOP Template (DOCX)</a>
+                      </div>
+                    </div>
+                     <div class="resource-item">
+                      <h4><i class="fas fa-ruler-combined"></i>Industry Best Practices for [Module Name]</h4>
+                      <p>A guide to recognized industry standards and best practices relevant to [Module Name].</p>
+                       <div class="links">
+                        <a href="#" onclick="showCustomMessage('Best Practices', 'A document or link to industry best practices for [Module Name] would be here.'); return false;"><i class="fas fa-book-open"></i>View Guide</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <button class="accordion-button">
+                    <span><i class="fas fa-tools fa-fw" style="color: #FF8C00;"></i>Templates & Tools for [Module Name]</span>
+                    <i class="fas fa-chevron-down"></i>
+                  </button>
+                  <div class="accordion-content">
+                    <div class="resource-item">
+                      <h4><i class="fas fa-file-word"></i>Blank Document Template for [Module Name] Report</h4>
+                      <p>A blank, customizable Word document template to compile specific reports required for [Module Name] compliance or management.</p>
+                      <div class="links">
+                        <a href="/SafetyHelp/assets/templates/placeholder-[module]-blank-report.docx" download><i class="fas fa-download"></i>Download Blank Report (DOCX)</a>
+                      </div>
+                    </div>
+                    <div class="resource-item">
+                      <h4><i class="fas fa-check-square"></i>[Module Name] Checklist Template</h4>
+                      <p>A customizable checklist (e.g., Excel) for conducting inspections, audits, or ensuring compliance related to [Module Name].</p>
+                      <div class="links">
+                        <a href="/SafetyHelp/assets/templates/placeholder-[module]-checklist.xlsx" download><i class="fas fa-download"></i>Download Checklist (XLSX)</a>
+                      </div>
+                    </div>
+                     <div class="resource-item">
+                      <h4><i class="fas fa-calculator"></i>[Module Name] Risk Assessment Matrix</h4>
+                      <p>A template to assist in conducting risk assessments specific to [Module Name] activities.</p>
+                      <div class="links">
+                        <a href="/SafetyHelp/assets/templates/placeholder-[module]-risk-matrix.xlsx" download><i class="fas fa-download"></i>Download Risk Matrix (XLSX)</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <button class="accordion-button">
+                    <span><i class="fas fa-bullhorn fa-fw" style="color: #FF8C00;"></i>External Reporting for [Module Name]</span>
+                    <i class="fas fa-chevron-down"></i>
+                  </button>
+                  <div class="accordion-content">
+                    <div class="resource-item">
+                      <h4><i class="fas fa-building"></i>Reporting to Department of Labour (DoEL)</h4>
+                      <p>Guidelines and official forms/templates for submitting [Module Name]-related reports or notifications to the DoEL as required by legislation.</p>
+                      <div class="links">
+                        <a href="#" onclick="showCustomMessage('DoL Reporting', 'Link to official DoL page or specific forms for [Module Name] reporting.'); return false;"><i class="fas fa-external-link-alt"></i>Visit DoL Portal</a>
+                        <a href="/SafetyHelp/assets/templates/placeholder-dol-report-[module].pdf" download><i class="fas fa-download"></i>Download Example Form (PDF)</a>
+                      </div>
+                    </div>
+                    <div class="resource-item">
+                      <h4><i class="fas fa-city"></i>Reporting to Local Municipality</h4>
+                      <p>Information on [Module Name] reporting requirements for your local municipality (e.g., permits, notifications for specific activities).</p>
+                       <div class="links">
+                        <a href="#" onclick="showCustomMessage('Municipal Reporting', 'Guidance on finding municipal bylaws or reporting channels for [Module Name]. This would vary by municipality.'); return false;"><i class="fas fa-info-circle"></i>Municipal Reporting Info</a>
+                      </div>
+                    </div>
+                     <div class="resource-item">
+                      <h4><i class="fas fa-industry"></i>Reporting to Other Authorities (e.g., DMRE, NEMA)</h4>
+                      <p>Guidelines for reporting to other relevant authorities if [Module Name] falls under their jurisdiction (e.g., mining, environmental).</p>
+                       <div class="links">
+                        <a href="#" onclick="showCustomMessage('Other Authorities', 'Information on other specific authorities relevant to [Module Name].'); return false;"><i class="fas fa-info-circle"></i>Guidance on Other Authorities</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </section>
         <section id="automated-wizard-section" class="hidden">
           <h2><i class="fas fa-magic section-icon"></i>Automated Wizard: [Module Name]</h2>
           <p>Follow the steps below to generate your [Module Name] documents and plans.</p>
@@ -529,24 +715,20 @@
           </div>
 
           <div id="wizard-step-4" class="wizard-step hidden">
-            <h3>Step 4: Select Documents/Actions</h3>
-            <p id="role-specific-options-placeholder">Based on your role as a [Selected Role], you can compile the following: (This content will be dynamic based on role and module).</p>
+            <h3>Step 4: Select Documents/Actions for [Module Name]</h3>
+            <p id="role-specific-options-placeholder">Based on your role as a [Selected Role], you can compile the following for [Module Name]:</p>
             <div id="client-options" class="hidden">
-              <h4>Client Options:</h4>
+              <h4>Client Options for [Module Name]:</h4>
               <div class="form-group checkbox-group">
-                <input type="checkbox" id="compile-ohs-specs" name="client_docs" value="ohs_specs"><label for="compile-ohs-specs">Compile OHS Specifications</label><br>
-                <input type="checkbox" id="compile-baseline-risk" name="client_docs" value="baseline_risk"><label for="compile-baseline-risk">Compile Baseline Risk Assessment</label><br>
-                <input type="checkbox" id="compile-notification-work" name="client_docs" value="notification_work"><label for="compile-notification-work">Compile Notification of Construction Work</label><br>
-                <input type="checkbox" id="compile-mandatory-agreement" name="client_docs" value="mandatory_agreement"><label for="compile-mandatory-agreement">Compile Mandatory Agreement (Section 37(2))</label><br>
-                <input type="checkbox" id="compile-contractor-appointment" name="client_docs" value="contractor_appointment"><label for="compile-contractor-appointment">Compile Contractor Appointment Letter</label><br>
+                <input type="checkbox" id="compile-ohs-specs" name="client_docs" value="ohs_specs"><label for="compile-ohs-specs">Compile OHS Specifications for [Module Name]</label><br>
+                <input type="checkbox" id="compile-baseline-risk" name="client_docs" value="baseline_risk"><label for="compile-baseline-risk">Compile Baseline Risk Assessment for [Module Name]</label><br>
               </div>
             </div>
              <div id="contractor-options" class="hidden">
-              <h4>Contractor Options:</h4>
+              <h4>Contractor Options for [Module Name]:</h4>
               <div class="form-group checkbox-group">
-                <input type="checkbox" id="compile-hs-plan" name="contractor_docs" value="hs_plan"><label for="compile-hs-plan">Compile Health & Safety Plan</label><br>
-                <input type="checkbox" id="compile-hs-file" name="contractor_docs" value="hs_file"><label for="compile-hs-file">Compile Health & Safety File</label><br>
-                <input type="checkbox" id="compile-subcontractor-specs" name="contractor_docs" value="subcontractor_specs"><label for="compile-subcontractor-specs">Compile Specifications for Subcontractors</label><br>
+                <input type="checkbox" id="compile-hs-plan" name="contractor_docs" value="hs_plan"><label for="compile-hs-plan">Compile Health & Safety Plan for [Module Name]</label><br>
+                <input type="checkbox" id="compile-hs-file" name="contractor_docs" value="hs_file"><label for="compile-hs-file">Compile Health & Safety File for [Module Name]</label><br>
               </div>
             </div>
             <div class="form-group" style="margin-top: 1rem;"> <label for="compiling-for">Compiling for:</label>
@@ -565,8 +747,8 @@
           </div>
 
           <div id="wizard-step-5" class="wizard-step hidden">
-            <h3>Step 5: Provide Information for Selected Documents</h3>
-            <p id="document-fields-placeholder">Please fill in the required details for the documents you've selected. (This section will dynamically show forms based on selections).</p>
+            <h3>Step 5: Provide Information for Selected [Module Name] Documents</h3>
+            <p id="document-fields-placeholder">Please fill in the required details for the [Module Name] documents you've selected.</p>
             <div class="nav-buttons">
                 <button class="action-button action-button-secondary wizard-prev-btn"><i class="fas fa-arrow-left"></i>Back</button>
                 <button class="action-button action-button-primary wizard-next-btn">Next <i class="fas fa-arrow-right"></i></button>
@@ -574,8 +756,8 @@
           </div>
 
           <div id="wizard-step-6" class="wizard-step hidden">
-            <h3>Step 6: Review Your Document(s)</h3>
-            <p id="document-preview-placeholder">Here's a preview of your generated document(s). Please review carefully. (This will show a summary or a link to a preview).</p>
+            <h3>Step 6: Review Your [Module Name] Document(s)</h3>
+            <p id="document-preview-placeholder">Here's a preview of your generated [Module Name] document(s). Please review carefully.</p>
             <div class="nav-buttons">
                 <button class="action-button action-button-secondary wizard-prev-btn"><i class="fas fa-arrow-left"></i>Back</button>
                 <button class="action-button action-button-primary wizard-next-btn">Next <i class="fas fa-arrow-right"></i></button>
@@ -583,13 +765,13 @@
           </div>
 
           <div id="wizard-step-7" class="wizard-step hidden">
-            <h3>Step 7: Final Compilation Details</h3>
+            <h3>Step 7: Final Compilation Details for [Module Name]</h3>
              <div class="form-group">
-                <label for="confirm-compiling-for-name">Confirm who this document is for:</label>
+                <label for="confirm-compiling-for-name">Confirm who this [Module Name] document is for:</label>
                 <input type="text" id="confirm-compiling-for-name" name="confirm-compiling-for-name" placeholder="Name of person/company document is for">
             </div>
             <div class="form-group">
-                <label for="chso-agent-name">Certified CHSO/Agent Name (if applicable):</label>
+                <label for="chso-agent-name">Certified CHSO/Agent Name (if applicable for [Module Name]):</label>
                 <input type="text" id="chso-agent-name" name="chso-agent-name">
             </div>
             <div class="form-group">
@@ -603,8 +785,8 @@
           </div>
 
           <div id="wizard-step-8" class="wizard-step hidden">
-            <h3>Step 8: Checkout & Document Generation</h3>
-            <p>Your documents are ready for generation. Please proceed to checkout.</p>
+            <h3>Step 8: Checkout & Document Generation for [Module Name]</h3>
+            <p>Your [Module Name] documents are ready for generation. Please proceed to checkout.</p>
             <button id="generate-document-btn" class="action-button action-button-primary" style="margin-top: 1rem;"><i class="fas fa-file-pdf"></i>Generate Document(s)</button>
             <div class="nav-buttons">
                 <button class="action-button action-button-secondary wizard-prev-btn"><i class="fas fa-arrow-left"></i>Back</button>
@@ -617,20 +799,20 @@
           <p>Select the specific documents or tools you need for [Module Name].</p>
           <div id="manual-options-list" class="manual-options-grid">
             <div class="manual-option-item">
-              <h4>Compile OHS Plan</h4>
-              <p>Manually create a detailed Occupational Health and Safety Plan for your project.</p>
+              <h4>Compile OHS Plan for [Module Name]</h4>
+              <p>Manually create a detailed Occupational Health and Safety Plan specific to [Module Name].</p>
               <button class="action-button action-button-secondary manual-select-item-btn" data-item="ohs_plan">Select</button>
             </div>
             <div class="manual-option-item">
-              <h4>Compile Baseline Risk Assessment</h4>
-              <p>Develop a comprehensive baseline risk assessment for your site.</p>
+              <h4>Compile Baseline Risk Assessment for [Module Name]</h4>
+              <p>Develop a comprehensive baseline risk assessment tailored to [Module Name] activities.</p>
               <button class="action-button action-button-secondary manual-select-item-btn" data-item="baseline_risk_assessment">Select</button>
             </div>
              </div>
 
           <div id="manual-item-form-section" class="wizard-step hidden" style="margin-top: 1.5rem;"> <h3 id="manual-item-title">Provide Details for [Selected Item]</h3>
             <div id="manual-item-form-placeholder">
-                <p>Please fill in the required details for the selected document/tool.</p>
+                <p>Please fill in the required details for the selected [Module Name] document/tool.</p>
             </div>
             <div class="form-group">
                 <label for="manual-compiling-for">Compiling for:</label>
@@ -663,7 +845,7 @@
         <h3 class="sidebar-heading"><i class="fas fa-flag-checkered heading-icon"></i>OHS Milestones</h3>
         <div class="sidebar-list-container">
           <ul id="ohs-milestones-list">
-<li data-detail="Ancient Egyptians used linen strips to bind wounds, an early form of first aid, reflecting basic safety practices. <a href='https://www.history.com/topics/ancient-egypt' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>3000 BC: Early First Aid (Egypt)</li>
+            <li data-detail="Ancient Egyptians used linen strips to bind wounds, an early form of first aid, reflecting basic safety practices. <a href='https://www.history.com/topics/ancient-egypt' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>3000 BC: Early First Aid (Egypt)</li>
           <li data-detail="Hippocrates documented lead poisoning effects, marking an early recognition of occupational health hazards. <a href='https://www.britannica.com/biography/Hippocrates' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>400 BC: Lead Poisoning (Greece)</li>
           <li data-detail="Pliny the Elder recommended masks for workers exposed to dust, an early OHS intervention. <a href='https://www.britannica.com/biography/Pliny-the-Elder' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>50 AD: Protective Masks (Rome)</li>
           <li data-detail="Khoisan people in South Africa used herbal remedies for injuries, laying foundations for traditional safety practices. <a href='https://www.sahistory.org.za/article/khoisan' target='_blank'>Source</a>"><i class="fas fa-landmark list-icon"></i>1000 AD: Khoisan Healing (SA)</li>
@@ -757,52 +939,50 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    // Set current year in footer
     const copyrightYearEl = document.getElementById('copyright-year');
     if (copyrightYearEl) {
         copyrightYearEl.textContent = new Date().getFullYear();
     }
     
-
-    // --- Sidebar Milestone Modal Functionality ---
     const modal = document.getElementById('infoModal');
     const modalTitleEl = document.getElementById('modalTitle');
     const modalBodyEl = document.getElementById('modalBody');
 
     document.querySelectorAll('#ohs-milestones-list li').forEach(item => {
       item.addEventListener('click', () => {
-        const title = item.textContent.trim().replace(/^.*? /, ''); // Get text after icon
+        const title = item.textContent.trim().replace(/^.*? /, ''); 
         const detail = item.dataset.detail || "More information about this milestone will be available soon.";
         if (modalTitleEl) modalTitleEl.textContent = `OHS Milestone: ${title}`;
-        if (modalBodyEl) modalBodyEl.innerHTML = `<p>${detail.replace(/<a href=/g, '<a target="_blank" rel="noopener noreferrer" href=')}</p>`; // Ensure links open in new tab
+        if (modalBodyEl) modalBodyEl.innerHTML = `<p>${detail.replace(/<a href=/g, '<a target="_blank" rel="noopener noreferrer" href=')}</p>`;
         if (modal) modal.style.display = 'block';
       });
     });
 
-    // It's good practice to have only one global closeModal function
     window.closeModal = function() {
       if (modal) modal.style.display = 'none';
+      const customMsgModal = document.getElementById('customMessageModal');
+      if (customMsgModal) customMsgModal.remove();
     }
-    // Close modal if user clicks outside of it
     window.onclick = function(event) {
       if (event.target == modal) {
         closeModal();
       }
+      const customMsgModal = document.getElementById('customMessageModal');
+      if (event.target == customMsgModal) {
+        closeModal();
+      }
     }
 
-    // --- Chatbot Functionality ---
     const chatWindow = document.getElementById('chat-window');
     const chatToggleBtn = document.getElementById('chat-toggle');
     const chatInputEl = document.getElementById('chat-input');
     const chatSendBtn = document.getElementById('chat-send');
     const chatOutputEl = document.getElementById('chat-output');
-    let chatbotIsVisible = false; // To track chatbot state
+    let chatbotIsVisible = false; 
 
-    window.toggleChatbot = function(forceState) { // forceState can be true (open), false (close)
+    window.toggleChatbot = function(forceState) { 
       if (!chatWindow || !chatToggleBtn) return;
-      
       const shouldOpen = forceState !== undefined ? forceState : !chatbotIsVisible;
-
       if (shouldOpen) {
           chatWindow.classList.remove('chat-hidden');
           chatWindow.classList.add('chat-expanded');
@@ -823,23 +1003,20 @@
         messageEl.innerHTML = `<strong>${sender}:</strong> ${message}`;
         if(isUser) {
             messageEl.style.textAlign = "right"; 
-            messageEl.style.color = "#333"; // User message color
+            messageEl.style.color = "#333"; 
         } else {
-            messageEl.style.color = "#0056b3"; // Bot message color
+            messageEl.style.color = "#0056b3"; 
         }
         chatOutputEl.appendChild(messageEl);
-        chatOutputEl.scrollTop = chatOutputEl.scrollHeight; // Scroll to bottom
+        chatOutputEl.scrollTop = chatOutputEl.scrollHeight; 
     }
 
     async function handleChatSend() {
         if (!chatInputEl || !chatOutputEl) return;
         const message = chatInputEl.value.trim();
         if (!message) return;
-
         addChatMessageToUI("You", message, true);
         chatInputEl.value = '';
-
-        // Placeholder bot response
         let botResponse = "I'm processing your request... For complex queries, please refer to our detailed resources or contact support.";
         if (message.toLowerCase().includes("hello") || message.toLowerCase().includes("hi")) {
             botResponse = "Hello there! How can I assist you with your OHS needs today?";
@@ -848,8 +1025,7 @@
         } else if (message.toLowerCase().includes("risk assessment")) {
             botResponse = "Our Risk Assessment tool can be found in the 'SafetyHelp Tools' sidebar, or you can use the wizard on this page if it's related to the current module.";
         }
-        
-        setTimeout(() => { // Simulate API call delay
+        setTimeout(() => { 
             addChatMessageToUI("Salatiso", botResponse, false);
         }, 500 + Math.random() * 500);
     }
@@ -862,22 +1038,21 @@
           }
       });
     }
-    // Ensure chat is hidden initially by calling toggleChatbot(false) or relying on CSS
     if (chatWindow) {
-        chatWindow.classList.add('chat-hidden'); // Ensure it's hidden by default
+        chatWindow.classList.add('chat-hidden'); 
         chatWindow.classList.remove('chat-expanded');
     }
     if (chatToggleBtn) {
         chatToggleBtn.innerHTML = '<i class="fas fa-headset"></i>';
     }
 
-
-    // --- Subpage Specific Logic ---
     const showWizardBtn = document.getElementById('show-wizard-btn');
     const showManualBtn = document.getElementById('show-manual-btn');
     const automatedWizardSection = document.getElementById('automated-wizard-section');
     const manualSelectionSection = document.getElementById('manual-selection-section');
     const interactionChoiceSection = document.getElementById('interaction-choice-section');
+    const moduleSpecificResourcesSection = document.getElementById('module-specific-resources-section');
+
 
     const wizardSteps = document.querySelectorAll('.wizard-step');
     let currentWizardStep = 0;
@@ -887,20 +1062,17 @@
             step.classList.toggle('hidden', index !== stepIndex);
         });
         currentWizardStep = stepIndex;
-        
-        if (stepIndex === 3) { // Step 4: Module-Specific Options (index 3)
+        if (stepIndex === 3) { 
             const userRoleSelect = document.getElementById('user-role');
             const clientOptionsDiv = document.getElementById('client-options');
             const contractorOptionsDiv = document.getElementById('contractor-options');
             const rolePlaceholder = document.getElementById('role-specific-options-placeholder');
-
             if (userRoleSelect && clientOptionsDiv && contractorOptionsDiv) {
                 const userRole = userRoleSelect.value;
                 clientOptionsDiv.classList.toggle('hidden', userRole !== 'client');
                 contractorOptionsDiv.classList.toggle('hidden', userRole !== 'contractor');
-                // Add more conditions for other roles if necessary
                 if(rolePlaceholder) {
-                    rolePlaceholder.textContent = `Based on your role as a ${userRole ? userRole.charAt(0).toUpperCase() + userRole.slice(1) : 'selected role'}, you can compile the following:`;
+                    rolePlaceholder.textContent = `Based on your role as a ${userRole ? userRole.charAt(0).toUpperCase() + userRole.slice(1) : 'selected role'}, you can compile the following for [Module Name]:`;
                 }
             }
         }
@@ -910,8 +1082,9 @@
       showWizardBtn.addEventListener('click', () => {
         if (automatedWizardSection) automatedWizardSection.classList.remove('hidden');
         if (manualSelectionSection) manualSelectionSection.classList.add('hidden');
-        if (interactionChoiceSection) interactionChoiceSection.classList.add('hidden');
-        showWizardStep(0); // Show first step of wizard
+        if (interactionChoiceSection) interactionChoiceSection.style.display = 'none'; // Hide instead of adding class
+        if (moduleSpecificResourcesSection) moduleSpecificResourcesSection.style.display = 'none'; // Hide
+        showWizardStep(0); 
       });
     }
 
@@ -919,33 +1092,39 @@
       showManualBtn.addEventListener('click', () => {
         if (manualSelectionSection) manualSelectionSection.classList.remove('hidden');
         if (automatedWizardSection) automatedWizardSection.classList.add('hidden');
-        if (interactionChoiceSection) interactionChoiceSection.classList.add('hidden');
+        if (interactionChoiceSection) interactionChoiceSection.style.display = 'none'; // Hide
+        if (moduleSpecificResourcesSection) moduleSpecificResourcesSection.style.display = 'none'; // Hide
         
         const manualItemFormSect = document.getElementById('manual-item-form-section');
         const manualOptsList = document.getElementById('manual-options-list');
         if(manualItemFormSect) manualItemFormSect.classList.add('hidden');
         if(manualOptsList) manualOptsList.classList.remove('hidden');
-
       });
     }
+    
+    // Function to go back to the interaction choice view
+    function showInteractionChoice() {
+        if (automatedWizardSection) automatedWizardSection.classList.add('hidden');
+        if (manualSelectionSection) manualSelectionSection.classList.add('hidden');
+        if (manualItemFormSection) manualItemFormSection.classList.add('hidden');
+        if (interactionChoiceSection) interactionChoiceSection.style.display = 'block'; // Show
+        if (moduleSpecificResourcesSection) moduleSpecificResourcesSection.style.display = 'block'; // Show
+    }
 
-    // Wizard Navigation
-    document.querySelectorAll('.wizard-next-btn').forEach(button => {
-      button.addEventListener('click', () => {
-        // Add validation logic here for currentWizardStep if needed
-        if (currentWizardStep < wizardSteps.length - 1) {
-          showWizardStep(currentWizardStep + 1);
-        }
-      });
-    });
 
     document.querySelectorAll('.wizard-prev-btn').forEach(button => {
       button.addEventListener('click', () => {
         if (currentWizardStep > 0) {
           showWizardStep(currentWizardStep - 1);
         } else { 
-            if (automatedWizardSection) automatedWizardSection.classList.add('hidden');
-            if (interactionChoiceSection) interactionChoiceSection.classList.remove('hidden');
+            showInteractionChoice();
+        }
+      });
+    });
+     document.querySelectorAll('.wizard-next-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        if (currentWizardStep < wizardSteps.length - 1) {
+          showWizardStep(currentWizardStep + 1);
         }
       });
     });
@@ -971,22 +1150,18 @@
     const manualOptionsList = document.getElementById('manual-options-list');
     const manualItemFormPlaceholder = document.getElementById('manual-item-form-placeholder');
 
-
     document.querySelectorAll('.manual-select-item-btn').forEach(button => {
         button.addEventListener('click', function() {
             const itemContainer = this.closest('.manual-option-item');
             if (!itemContainer) return;
             const itemNameEl = itemContainer.querySelector('h4');
             const itemName = itemNameEl ? itemNameEl.textContent : "Selected Item";
-            
             if (manualItemTitle) manualItemTitle.textContent = `Provide Details for ${itemName}`;
-            
-            if (manualItemFormPlaceholder) { // Example dynamic form fields
+            if (manualItemFormPlaceholder) { 
                  manualItemFormPlaceholder.innerHTML = `
                     <div class="form-group"><label for="manual-project-name">Project Name:</label><input type="text" id="manual-project-name" name="manual-project-name"></div>
                     <div class="form-group"><label for="manual-site-details">Site Details:</label><textarea id="manual-site-details" name="manual-site-details" rows="3"></textarea></div>
-                    <p><em>More fields specific to "${itemName}" would appear here.</em></p>
-                    `;
+                    <p><em>More fields specific to "${itemName}" would appear here.</em></p>`;
             }
             if (manualItemFormSection) manualItemFormSection.classList.remove('hidden');
             if (manualOptionsList) manualOptionsList.classList.add('hidden');
@@ -996,46 +1171,37 @@
     const manualFormBackBtn = document.getElementById('manual-form-back-btn');
     if (manualFormBackBtn) {
         manualFormBackBtn.addEventListener('click', () => {
-            if (manualItemFormSection) manualItemFormSection.classList.add('hidden');
-            if (manualOptionsList) manualOptionsList.classList.remove('hidden');
+             showInteractionChoice(); // Go back to main choices
         });
     }
     
-    // Placeholder for Generate Document buttons - using a custom modal-like message
     function showCustomMessage(title, message) {
         const existingModal = document.getElementById('customMessageModal');
         if (existingModal) existingModal.remove();
-
         const msgModal = document.createElement('div');
         msgModal.id = 'customMessageModal';
         msgModal.style.cssText = 'display: block; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.5); padding-top: 100px;';
-        
         const msgModalContent = document.createElement('div');
         msgModalContent.style.cssText = 'background-color: #fff; margin: auto; padding: 20px; border-radius: 8px; width: 90%; max-width: 400px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.2);';
-        
         const msgModalHeader = document.createElement('h4');
         msgModalHeader.textContent = title;
         msgModalHeader.style.cssText = 'margin-top: 0; margin-bottom: 15px; font-size: 1.2rem; color: #007BFF;';
-        
         const msgModalBody = document.createElement('p');
         msgModalBody.textContent = message;
         msgModalBody.style.marginBottom = '20px';
-
         const closeMsgBtn = document.createElement('button');
         closeMsgBtn.textContent = 'OK';
-        closeMsgBtn.className = 'action-button action-button-primary'; // Use existing button style
+        closeMsgBtn.className = 'action-button action-button-primary'; 
         closeMsgBtn.onclick = function() {
             msgModal.style.display = 'none';
             msgModal.remove();
         };
-        
         msgModalContent.appendChild(msgModalHeader);
         msgModalContent.appendChild(msgModalBody);
         msgModalContent.appendChild(closeMsgBtn);
         msgModal.appendChild(msgModalContent);
         document.body.appendChild(msgModal);
     }
-
 
     const generateDocBtnWizard = document.getElementById('generate-document-btn');
     if(generateDocBtnWizard) {
@@ -1049,6 +1215,36 @@
             showCustomMessage('Manual Action', 'Manual Document Generation Initiated (Placeholder)! Data from the manual form would be processed here.');
         });
     }
+
+    // Accordion Functionality for Module-Specific Resources
+    document.querySelectorAll('#module-specific-resources-section .accordion-button').forEach(button => {
+        button.addEventListener('click', () => {
+            const accordionContent = button.nextElementSibling;
+            const icon = button.querySelector('.fas.fa-chevron-down, .fas.fa-chevron-up');
+            
+            button.classList.toggle('expanded');
+            
+            if (accordionContent.style.display === "block") {
+                accordionContent.style.display = "none";
+                if(icon) icon.classList.replace('fa-chevron-up', 'fa-chevron-down');
+            } else {
+                accordionContent.style.display = "block";
+                if(icon) icon.classList.replace('fa-chevron-down', 'fa-chevron-up');
+                // Optional: Close other accordions in this specific section
+                document.querySelectorAll('#module-specific-resources-section .accordion-content').forEach(content => {
+                   if (content !== accordionContent) {
+                       content.style.display = 'none';
+                       const prevButton = content.previousElementSibling;
+                       if (prevButton && prevButton.classList.contains('accordion-button')) {
+                           prevButton.classList.remove('expanded');
+                           const otherIcon = prevButton.querySelector('.fas.fa-chevron-down, .fas.fa-chevron-up');
+                           if(otherIcon) otherIcon.classList.replace('fa-chevron-up', 'fa-chevron-down');
+                       }
+                   }
+                });
+            }
+        });
+    });
 
   });
 </script>
