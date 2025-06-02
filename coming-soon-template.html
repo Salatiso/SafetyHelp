@@ -187,7 +187,7 @@
       justify-content: space-between;
       gap: 1rem;
     }
-    .voting-list, .site-milestones {
+    .voting-list, .safetyhelp-milestones {
       width: 48%;
     }
     .voting-list {
@@ -203,13 +203,18 @@
       gap: 0.5rem;
       font-size: 0.9rem;
     }
-    .site-milestones ul {
+    .safetyhelp-milestones ul {
       list-style: none;
       padding: 0;
     }
-    .site-milestones li {
+    .safetyhelp-milestones li {
       padding: 0.5rem 0;
       font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .safetyhelp-milestones li:hover {
+      background-color: #e8f0fe;
     }
     .bar-chart {
       display: flex;
@@ -251,11 +256,21 @@
       background: #e07b00;
     }
     .carousel-container { 
-      display: flex; 
-      overflow-x: auto; 
-      scroll-snap-type: x mandatory; 
-      gap: 1rem; 
-      padding: 1rem; 
+      position: relative;
+      overflow: hidden;
+      padding: 1rem;
+    }
+    .carousel-track {
+      display: flex;
+      gap: 1rem;
+      animation: scroll-left 30s linear infinite;
+    }
+    @keyframes scroll-left {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .carousel-container:hover .carousel-track {
+      animation-play-state: paused;
     }
     .carousel-item { 
       flex: 0 0 300px; 
@@ -264,21 +279,79 @@
       box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
       padding: 1rem; 
       text-align: center; 
-      scroll-snap-align: start; 
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .carousel-item:hover {
+      transform: scale(1.05);
     }
     .carousel-item i { font-size: 2rem; color: #007BFF; margin-bottom: 0.5rem; }
     .carousel-item h4 { font-size: 1.2rem; color: #333; margin-bottom: 0.5rem; }
     .carousel-item p { font-size: 0.9rem; color: #555; }
-    .carousel-item .learn-more { 
-      margin-top: 0.5rem; 
-      padding: 0.5rem 1rem; 
-      background: #007BFF; 
+    .carousel-nav { 
+      position: absolute; 
+      top: 50%; 
+      transform: translateY(-50%); 
+      background: rgba(0,0,0,0.5); 
       color: white; 
       border: none; 
-      border-radius: 4px; 
+      padding: 0.5rem; 
       cursor: pointer; 
+      z-index: 10; 
     }
-    .carousel-item .learn-more:hover { background: #0056b3; }
+    .carousel-nav.left { left: 0; }
+    .carousel-nav.right { right: 0; }
+    .most-popular {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: #f9f9f9;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .most-popular h3 {
+      font-size: 1.4rem;
+      color: #0056b3;
+      margin-bottom: 0.5rem;
+    }
+    .most-popular i {
+      font-size: 2rem;
+      color: #FF8C00;
+      margin-bottom: 0.5rem;
+    }
+    .most-popular p {
+      font-size: 1rem;
+      color: #374151;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+    }
+    .modal-content {
+      background-color: #fff;
+      margin: 15% auto;
+      padding: 20px;
+      border-radius: 8px;
+      width: 80%;
+      max-width: 600px;
+    }
+    .modal-content h3 {
+      margin-bottom: 1rem;
+    }
+    .modal-content p {
+      font-size: 1rem;
+      color: #333;
+    }
+    .modal-close {
+      float: right;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
     footer {
       background: #343a40; 
       color: #adb5bd; 
@@ -374,23 +447,20 @@
     }
     #chat-send:hover { background-color: #0056b3; }
   </style>
-  <!-- Firebase SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
 </head>
 <body>
   <header>
-    <a href="/safety-plans/index.html" class="logo-container"> 
+    <a href="/SafetyHelp/index.html" class="logo-container"> 
       <div class="logo">Safety<span class="help">Help</span></div>
     </a>
     <nav>
-      <a href="/safety-plans/index.html"><i class="fas fa-home nav-icon"></i>Home</a>
-      <a href="/safety-plans/resources.html"><i class="fas fa-book nav-icon"></i>Resources</a>
-      <a href="/safety-plans/services.html"><i class="fas fa-concierge-bell nav-icon"></i>Services</a>
-      <a href="/safety-plans/community.html"><i class="fas fa-users nav-icon"></i>Community</a>
-      <a href="/safety-plans/about.html"><i class="fas fa-info-circle nav-icon"></i>About</a>
-      <a href="/safety-plans/contact.html"><i class="fas fa-envelope nav-icon"></i>Contact</a>
-      <a href="/safety-plans/login.html"><i class="fas fa-sign-in-alt nav-icon"></i>SignUp / Login</a>
+      <a href="/SafetyHelp/index.html"><i class="fas fa-home nav-icon"></i>Home</a>
+      <a href="/SafetyHelp/resources.html"><i class="fas fa-book nav-icon"></i>Resources</a>
+      <a href="/SafetyHelp/services.html"><i class="fas fa-concierge-bell nav-icon"></i>Services</a>
+      <a href="/SafetyHelp/community.html"><i class="fas fa-users nav-icon"></i>Community</a>
+      <a href="/SafetyHelp/about.html"><i class="fas fa-info-circle nav-icon"></i>About</a>
+      <a href="/SafetyHelp/contact.html"><i class="fas fa-envelope nav-icon"></i>Contact</a>
+      <a href="/SafetyHelp/login.html्यादा="fas fa-sign-in-alt nav-icon"></i>SignUp / Login</a>
     </nav>
     <div class="search-language">
       <input type="text" placeholder="Search...">
@@ -489,110 +559,145 @@
                 <i class="fas fa-robot"></i> Chatbot
               </label>
             </div>
-            <div class="site-milestones">
-              <h3>Site Milestones</h3>
+            <div class="safetyhelp-milestones">
+              <h3>SafetyHelp Milestones</h3>
               <ul>
-                <li>Base Platform Launch (Completed)</li>
-                <li>Member Dashboard (In Progress - June 2025)</li>
-                <li>Chatbot (In Progress - June 2025)</li>
-                <li>Incident Management (July 2025)</li>
-                <li>Risk Assessment (August 2025)</li>
-                <li>Training (September 2025)</li>
-                <li>Inspections & Audits (October 2025)</li>
-                <li>Suppliers (November 2025)</li>
-                <li>Legislation (December 2025)</li>
-                <li>Community Tools (January 2026)</li>
-                <li>OHS System Modules (February 2026)</li>
-                <li>Construction Safety (March 2026)</li>
-                <li>Legal Appointments (April 2026)</li>
+                <li data-info="The base platform of SafetyHelp was launched, providing core safety tools and resources.">
+                  <i class="fas fa-check"></i> Base Platform Launch (Completed)
+                </li>
+                <li data-info="The Member Dashboard is currently being developed, scheduled for release in June 2025.">
+                  <i class="fas fa-hourglass-half"></i> Member Dashboard (In Progress - June 2025)
+                </li>
+                <li data-info="The Chatbot feature is under development and will be available in June 2025.">
+                  <i class="fas fa-hourglass-half"></i> Chatbot (In Progress - June 2025)
+                </li>
+                <li data-info="Incident Management tools will be launched in July 2025.">
+                  <i class="fas fa-calendar-alt"></i> Incident Management (July 2025)
+                </li>
+                <li data-info="Risk Assessment features will be available starting August 2025.">
+                  <i class="fas fa-calendar-alt"></i> Risk Assessment (August 2025)
+                </li>
+                <li data-info="Training modules are planned for September 2025.">
+                  <i class="fas fa-calendar-alt"></i> Training (September 2025)
+                </li>
+                <li data-info="Inspections & Audits tools will be launched in October 2025.">
+                  <i class="fas fa-calendar-alt"></i> Inspections & Audits (October 2025)
+                </li>
+                <li data-info="Suppliers management features will be available in November 2025.">
+                  <i class="fas fa-calendar-alt"></i> Suppliers (November 2025)
+                </li>
+                <li data-info="Legislation updates and tools will be launched in December 2025.">
+                  <i class="fas fa-calendar-alt"></i> Legislation (December 2025)
+                </li>
+                <li data-info="Community Tools will be available starting January 2026.">
+                  <i class="fas fa-calendar-alt"></i> Community Tools (January 2026)
+                </li>
+                <li data-info="OHS System Modules will be launched in February 2026.">
+                  <i class="fas fa-calendar-alt"></i> OHS System Modules (February 2026)
+                </li>
+                <li data-info="Construction Safety features will be available in March 2026.">
+                  <i class="fas fa-calendar-alt"></i> Construction Safety (March 2026)
+                </li>
+                <li data-info="Legal Appointments tools will be launched in April 2026.">
+                  <i class="fas fa-calendar-alt"></i> Legal Appointments (April 2026)
+                </li>
               </ul>
             </div>
           </div>
           <button id="submit-vote">Submit Vote</button>
+          <div class="most-popular" id="most-popular">
+            <h3>Most Popular Module</h3>
+            <i id="popular-icon" class="fas fa-star"></i>
+            <p id="popular-module">Loading...</p>
+          </div>
           <div class="bar-chart" id="bar-chart"></div>
         </section>
 
         <section id="explore-tools">
           <h2><i class="fas fa-tools section-icon"></i>Explore SafetyHelp Tools</h2>
           <div class="carousel-container">
-            <div class="carousel-item">
-              <i class="fas fa-hard-hat"></i>
-              <h4>Construction Safety</h4>
-              <p>Manage construction safety and compliance.</p>
-              <button class="learn-more">Learn More</button>
+            <button class="carousel-nav left"><i class="fas fa-chevron-left"></i></button>
+            <div class="carousel-track">
+              <div class="carousel-item" data-info="Manage construction safety and compliance with our comprehensive tools.">
+                <i class="fas fa-hard-hat"></i>
+                <h4>Construction Safety</h4>
+                <p>Manage construction safety and compliance.</p>
+                <button class="learn-more">Learn More</button>
+              </div>
+              <div class="carousel-item" data-info="Prepare for emergencies with our planning and response tools.">
+                <i class="fas fa-bell"></i>
+                <h4>Emergency Planning</h4>
+                <p>Emergency preparedness and response.</p>
+                <button class="learn-more">Learn More</button>
+              </div>
+              <div class="carousel-item" data-info="Identify and manage workplace hazards effectively.">
+                <i class="fas fa-shield-alt"></i>
+                <h4>Risk Assessment</h4>
+                <p>Identify and manage workplace hazards.</p>
+                <button class="learn-more">Learn More</button>
+              </div>
+              <div class="carousel-item" data-info="Document all legal OHS appointments with ease.">
+                <i class="fas fa-gavel"></i>
+                <h4>Legal Appointments</h4>
+                <p>Document legal OHS appointments.</p>
+                <button class="learn-more">Learn More</button>
+              </div>
+              <div class="carousel-item" data-info="Report and prevent workplace incidents efficiently.">
+                <i class="fas fa-file-medical-alt"></i>
+                <h4>Incident Management</h4>
+                <p>Report and prevent workplace incidents.</p>
+                <button class="learn-more">Learn More</button>
+              </div>
+              <div class="carousel-item" data-info="Manage OHS training and records for your team.">
+                <i class="fas fa-graduation-cap"></i>
+                <h4>Training</h4>
+                <p>Manage OHS training and records.</p>
+                <button class="learn-more">Learn More</button>
+              </div>
+              <div class="carousel-item" data-info="Conduct thorough workplace inspections and audits.">
+                <i class="fas fa-clipboard-check"></i>
+                <h4>Inspections & Audits</h4>
+                <p>Conduct workplace inspections and audits.</p>
+                <button class="learn-more">Learn More</button>
+              </div>
+              <div class="carousel-item" data-info="Manage supplier OHS compliance seamlessly.">
+                <i class="fas fa-truck"></i>
+                <h4>Suppliers</h4>
+                <p>Manage supplier OHS compliance.</p>
+                <button class="learn-more">Learn More</button>
+              </div>
+              <div class="carousel-item" data-info="Stay updated with the latest OHS legislation.">
+                <i class="fas fa-balance-scale"></i>
+                <h4>Legislation</h4>
+                <p>Stay updated with OHS legislation.</p>
+                <button class="learn-more">Learn More</button>
+              </div>
+              <div class="carousel-item" data-info="Engage with the OHS community for best practices.">
+                <i class="fas fa-users"></i>
+                <h4>Community Tools</h4>
+                <p>Engage with the OHS community.</p>
+                <button class="learn-more">Learn More</button>
+              </div>
+              <div class="carousel-item" data-info="Access your personalized OHS dashboard.">
+                <i class="fas fa-tachometer-alt"></i>
+                <h4>Member Dashboard</h4>
+                <p>Your personalized OHS dashboard.</p>
+                <button class="learn-more">Learn More</button>
+              </div>
+              <div class="carousel-item" data-info="Build and customize your OHS system.">
+                <i class="fas fa-cogs"></i>
+                <h4>OHS System Modules</h4>
+                <p>Build your OHS system.</p>
+                <button class="learn-more">Learn More</button>
+              </div>
+              <div class="carousel-item" data-info="Get instant OHS assistance with our chatbot.">
+                <i class="fas fa-robot"></i>
+                <h4>Chatbot</h4>
+                <p>Get instant OHS assistance.</p>
+                <button class="learn-more">Learn More</button>
+              </div>
             </div>
-            <div class="carousel-item">
-              <i class="fas fa-bell"></i>
-              <h4>Emergency Planning</h4>
-              <p>Emergency preparedness and response.</p>
-              <button class="learn-more">Learn More</button>
-            </div>
-            <div class="carousel-item">
-              <i class="fas fa-shield-alt"></i>
-              <h4>Risk Assessment</h4>
-              <p>Identify and manage workplace hazards.</p>
-              <button class="learn-more">Learn More</button>
-            </div>
-            <div class="carousel-item">
-              <i class="fas fa-gavel"></i>
-              <h4>Legal Appointments</h4>
-              <p>Document legal OHS appointments.</p>
-              <button class="learn-more">Learn More</button>
-            </div>
-            <div class="carousel-item">
-              <i class="fas fa-file-medical-alt"></i>
-              <h4>Incident Management</h4>
-              <p>Report and prevent workplace incidents.</p>
-              <button class="learn-more">Learn More</button>
-            </div>
-            <div class="carousel-item">
-              <i class="fas fa-graduation-cap"></i>
-              <h4>Training</h4>
-              <p>Manage OHS training and records.</p>
-              <button class="learn-more">Learn More</button>
-            </div>
-            <div class="carousel-item">
-              <i class="fas fa-clipboard-check"></i>
-              <h4>Inspections & Audits</h4>
-              <p>Conduct workplace inspections and audits.</p>
-              <button class="learn-more">Learn More</button>
-            </div>
-            <div class="carousel-item">
-              <i class="fas fa-truck"></i>
-              <h4>Suppliers</h4>
-              <p>Manage supplier OHS compliance.</p>
-              <button class="learn-more">Learn More</button>
-            </div>
-            <div class="carousel-item">
-              <i class="fas fa-balance-scale"></i>
-              <h4>Legislation</h4>
-              <p>Stay updated with OHS legislation.</p>
-              <button class="learn-more">Learn More</button>
-            </div>
-            <div class="carousel-item">
-              <i class="fas fa-users"></i>
-              <h4>Community Tools</h4>
-              <p>Engage with the OHS community.</p>
-              <button class="learn-more">Learn More</button>
-            </div>
-            <div class="carousel-item">
-              <i class="fas fa-tachometer-alt"></i>
-              <h4>Member Dashboard</h4>
-              <p>Your personalized OHS dashboard.</p>
-              <button class="learn-more">Learn More</button>
-            </div>
-            <div class="carousel-item">
-              <i class="fas fa-cogs"></i>
-              <h4>OHS System Modules</h4>
-              <p>Build your OHS system.</p>
-              <button class="learn-more">Learn More</button>
-            </div>
-            <div class="carousel-item">
-              <i class="fas fa-robot"></i>
-              <h4>Chatbot</h4>
-              <p>Get instant OHS assistance.</p>
-              <button class="learn-more">Learn More</button>
-            </div>
+            <button class="carousel-nav right"><i class="fas fa-chevron-right"></i></button>
           </div>
         </section>
       </main>
@@ -658,7 +763,7 @@
 
   <footer>
     <p>© 2025 SafetyHelp. All rights reserved.</p>
-    <p><a href="/safety-plans/privacy.html">Privacy Policy</a> | <a href="/safety-plans/terms.html">Terms of Service</a></p>
+    <p><a href="/SafetyHelp/privacy.html">Privacy Policy</a> | <a href="/SafetyHelp/terms.html">Terms of Service</a></p>
   </footer>
 
   <div class="chatbot-container">
@@ -680,20 +785,15 @@
     </button>
   </div>
 
-  <script>
-    // Firebase Configuration
-    const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_AUTH_DOMAIN",
-      projectId: "YOUR_PROJECT_ID",
-      storageBucket: "YOUR_STORAGE_BUCKET",
-      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-      appId: "YOUR_APP_ID",
-      measurementId: "YOUR_MEASUREMENT_ID"
-    };
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
+  <div id="info-modal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close">&times;</span>
+      <h3 id="modal-title"></h3>
+      <p id="modal-info"></p>
+    </div>
+  </div>
 
+  <script>
     const moduleIcons = {
       "construction-safety": "fa-hard-hat",
       "emergency-planning": "fa-bell",
@@ -712,11 +812,22 @@
 
     const modules = Object.keys(moduleIcons);
 
+    // Firebase configuration (replace with your actual config)
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT_ID.appspot.com",
+      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    // Check and reset votes if new month
     const now = new Date();
     const currentMonth = now.getMonth();
     const currentYear = now.getFullYear();
-
-    // Check and reset votes if new month
     const lastResetMonth = localStorage.getItem('lastResetMonth');
     const lastResetYear = localStorage.getItem('lastResetYear');
     if (!lastResetMonth || !lastResetYear || parseInt(lastResetYear) < currentYear || (parseInt(lastResetYear) === currentYear && parseInt(lastResetMonth) < currentMonth)) {
@@ -765,7 +876,7 @@
       }
     });
 
-    // Update bar chart
+    // Update bar chart and most popular module
     function updateBarChart() {
       db.collection("votes").doc("current").get().then(doc => {
         if (doc.exists) {
@@ -785,12 +896,85 @@
             `;
           }).join('');
           document.getElementById('bar-chart').innerHTML = barChartHtml;
+
+          // Update most popular module
+          if (sortedModules.length > 0) {
+            const [mostPopularModule, voteCount] = sortedModules[0];
+            const iconClass = moduleIcons[mostPopularModule] || 'fa-star';
+            document.getElementById('popular-icon').className = `fas ${iconClass}`;
+            document.getElementById('popular-module').textContent = mostPopularModule.replace(/-/g, ' ');
+          }
         }
       });
     }
 
-    // Initial bar chart load
+    // Initial load
     updateBarChart();
+
+    // Modal functionality
+    const modal = document.getElementById('info-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalInfo = document.getElementById('modal-info');
+    const closeModal = document.querySelector('.modal-close');
+
+    function showModal(title, info) {
+      modalTitle.textContent = title;
+      modalInfo.textContent = info;
+      modal.style.display = 'block';
+    }
+
+    closeModal.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (event) => {
+      if (event.target == modal) {
+        modal.style.display = 'none';
+      }
+    });
+
+    // SafetyHelp Milestones interactivity
+    document.querySelectorAll('.safetyhelp-milestones li').forEach(item => {
+      item.addEventListener('click', () => {
+        const title = item.textContent;
+        const info = item.getAttribute('data-info');
+        showModal(title, info);
+      });
+    });
+
+    // Carousel functionality
+    const carouselTrack = document.querySelector('.carousel-track');
+    const carouselItems = Array.from(carouselTrack.children);
+    carouselItems.forEach(item => {
+      const clone = item.cloneNode(true);
+      carouselTrack.appendChild(clone);
+    });
+
+    const leftNav = document.querySelector('.carousel-nav.left');
+    const rightNav = document.querySelector('.carousel-nav.right');
+
+    leftNav.addEventListener('click', () => {
+      carouselTrack.scrollBy({
+        left: -300,
+        behavior: 'smooth'
+      });
+    });
+
+    rightNav.addEventListener('click', () => {
+      carouselTrack.scrollBy({
+        left: 300,
+        behavior: 'smooth'
+      });
+    });
+
+    // Carousel item click
+    document.querySelectorAll('.carousel-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const title = item.querySelector('h4').textContent;
+        const info = item.getAttribute('data-info');
+        showModal(title, info);
+      });
+    });
 
     // Chatbot functionality
     function toggleChatbot(forceOpen) {
