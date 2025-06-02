@@ -3,791 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Manage your OHS compliance, RMPs, supplier reviews, and community reports with SafetyHelp's Member Dashboard.">
-    <title data-i18n="page_title.member_dashboard">SafetyHelp - Member Dashboard</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
-    <link
-      rel="stylesheet"
-      as="style"
-      onload="this.rel='stylesheet'"
-      href="https://fonts.googleapis.com/css2?display=swap&family=Montserrat:wght@400;500;600;700;900&family=Inter:wght@400;500;700"
-    />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://unpkg.com/i18next@23.15.2/dist/umd/i18next.min.js"></script>
-    <script src="https://unpkg.com/i18next-http-backend@2.5.2/dist/umd/i18nextHttpBackend.min.js"></script>
-    <script src="https://unpkg.com/i18next-browser-languagedetector@8.0.0/dist/umd/i18nextBrowserLanguageDetector.min.js"></script>
+    <title>SafetyHelp | Member Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="assets/css/main.css">
     <style>
-        /* Global Styles */
-        :root {
-            --primary-blue: #007BFF;
-            --primary-orange: #FF8C00; /* Deeper Orange from branding */
-            --secondary-orange: #FD7E14; /* Brighter Orange for CTA */
-            --text-dark: #1f2937; /* gray-800 */
-            --text-medium: #374151; /* gray-700 */
-            --text-light: #6b7280; /* gray-500 */
-            --bg-light: #E8F0FE;
-            --bg-white: #FFFFFF;
-            --sidebar-bg: #1e293b; /* Tailwind slate-800, darker for contrast */
-            --sidebar-text: #cbd5e1; /* slate-300 */
-            --sidebar-hover-bg: #334155; /* slate-700 */
-            --sidebar-active-bg: #0056b3; /* Darker primary blue for active */
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html, body { 
-          height: 100%; 
-          font-family: 'Inter', 'Montserrat', sans-serif; 
-          background-color: var(--bg-light); 
-          color: var(--text-medium); 
-          display: flex;
-          flex-direction: column;
-          overflow-x: hidden; /* Prevent horizontal scroll */
-        }
-        a { text-decoration: none; color: var(--primary-blue); }
-        a:hover { color: #0056b3; }
-        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; color: var(--text-dark); }
-
-        .dashboard-header {
-            background-color: var(--primary-blue);
-            color: white;
-            padding: 0 1rem; 
-            box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 1000;
-            height: 64px;
+        .dashboard-wrapper {
             display: flex;
-            align-items: center;
-        }
-        .dashboard-header .logo-container .logo { color: white; }
-        .dashboard-header .logo-container .help { color: var(--primary-orange); }
-
-        .dashboard-layout {
-            display: flex;
-            flex-grow: 1;
-            padding-top: 64px; /* Height of header */
+            min-height: calc(100vh - 60px - 60px);
         }
         .sidebar {
-            width: 260px;
-            background-color: var(--sidebar-bg);
-            color: var(--sidebar-text);
-            padding: 1.5rem 1rem;
-            height: calc(100vh - 64px);
-            position: fixed;
-            left: 0; top: 64px;
-            overflow-y: auto;
-            transition: width 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            z-index: 900; /* Below header, above main content overlay on small screens */
+            width: 250px;
+            background-color: #f8f9fa;
+            padding: 1rem;
         }
-        .sidebar.collapsed {
-            width: 70px;
+        .sidebar h3 {
+            margin-bottom: 1rem;
         }
-        .sidebar.collapsed .sidebar-text,
-        .sidebar.collapsed .sidebar-title-text,
-        .sidebar.collapsed .sidebar-user-info .sidebar-text,
-        .sidebar.collapsed .sidebar-user-info .fa-chevron-down,
-        .sidebar.collapsed .notification-badge-text {
-            display: none;
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
         }
-        .sidebar.collapsed .sidebar-link .fa-fw {
-            margin-right: 0;
-            font-size: 1.2rem; /* Make icons slightly larger when collapsed */
+        .sidebar li {
+            margin-bottom: 0.5rem;
         }
-        .sidebar.collapsed .notification-badge {
-            min-width: auto; padding: 0.2rem; font-size: 0.6rem; line-height: 1;
-            position: absolute; top: 8px; right: 8px;
+        main {
+            flex: 1;
+            padding: 2rem;
         }
-        .sidebar.collapsed .sidebar-title .fas { margin: 0 auto; font-size: 1.5rem; }
-
-
-        .sidebar-title {
-            display: flex; align-items: center; gap: 0.75rem;
-            font-size: 1.25rem; font-weight: 600; margin-bottom: 1.5rem;
-            color: white; padding: 0 0.5rem;
+        table {
+            width: 100%;
+            border-collapse: collapse;
         }
-        .sidebar nav { flex-grow: 1; }
-        .sidebar-link {
-            display: flex; align-items: center; padding: 0.875rem 1rem;
-            color: var(--sidebar-text); border-radius: 0.375rem;
-            margin-bottom: 0.5rem; transition: background-color 0.2s ease, color 0.2s ease;
-            white-space: nowrap; position: relative; /* For notification badge positioning */
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
         }
-        .sidebar-link:hover, .sidebar-link.active {
-            background-color: var(--sidebar-hover-bg); color: white;
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
         }
-        .sidebar-link.active { background-color: var(--sidebar-active-bg); }
-        .sidebar-link .fa-fw { margin-right: 0.875rem; width: 1.25em; text-align: center; }
-        
-        .main-content {
-            flex-grow: 1; padding: 1.5rem; 
-            margin-left: 260px; /* Default sidebar width */
-            transition: margin-left 0.3s ease;
-            background-color: var(--bg-light);
-            overflow-y: auto; /* Ensure main content area scrolls */
-        }
-        .main-content.sidebar-collapsed {
-            margin-left: 70px; /* Collapsed sidebar width */
-        }
-        .dashboard-section {
-            background-color: var(--bg-white); padding: 1.5rem; 
-            border-radius: 0.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
-            margin-bottom: 1.5rem; 
-        }
-        .dashboard-section h2 {
-            font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; 
-            color: var(--primary-blue); display: flex; align-items: center; gap: 0.75rem;
-            border-bottom: 1px solid #e0e0e0; padding-bottom: 0.75rem;
-        }
-        .dashboard-section h2 .fas, .dashboard-section h2 .far { color: var(--primary-orange); }
-        .dashboard-section h3 {
-            font-size: 1.25rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.75rem;
-            color: var(--text-dark);
-        }
-        .profile-completeness {
-            background-color: #e5e7eb; border-radius: 0.375rem;
-            height: 12px; overflow: hidden; 
-        }
-        .profile-completeness-bar {
-            background-color: var(--primary-blue); height: 100%;
-            border-radius: 0.375rem; transition: width 0.5s ease-in-out;
-        }
-        .language-selector-container {
-            position: absolute; top: 50%; right: 1rem;
-            transform: translateY(-50%); z-index: 1050;
-        }
-        .language-selector-container select {
-            background-color: rgba(255,255,255,0.1); color: white;
-            padding: 0.375rem 0.75rem; border-radius: 0.375rem;
-            border: 1px solid rgba(255,255,255,0.3); font-size: 0.875rem; 
-        }
-         .language-selector-container select option { background-color: var(--sidebar-bg); color: white; }
-        .sidebar-toggle {
-            background: none; border: none; color: white;
-            font-size: 1.5rem; cursor: pointer; padding: 0.5rem;
-        }
-        .sidebar-user-info {
-            margin-top: auto; padding-top: 1rem;
-            border-top: 1px solid #475569; /* slate-600 */
-        }
-        .notification-badge {
-            margin-left: auto; padding: 0.125rem 0.5rem;
-            font-size: 0.75rem; font-weight: bold;
-            border-radius: 9999px; background-color: var(--secondary-orange); color:white;
-        }
-        .btn {
-            padding: 0.625rem 1.25rem; border-radius: 0.375rem;
-            font-weight: 500; transition: background-color 0.2s ease, box-shadow 0.2s ease;
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05); border: none; cursor:pointer;
-        }
-        .btn:hover { box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06); }
-        .btn-sm { padding: 0.375rem 0.75rem; font-size: 0.875rem; }
-        .btn-primary { background-color: var(--primary-blue); color: white; }
-        .btn-primary:hover { background-color: #0056b3; }
-        .btn-secondary { background-color: #64748b; color: white; } /* slate-500 */
-        .btn-secondary:hover { background-color: #475569; } /* slate-600 */
-        .btn-success { background-color: #16a34a; color: white; } /* green-600 */
-        .btn-success:hover { background-color: #15803d; } /* green-700 */
-        .btn-danger { background-color: #dc2626; color: white; } /* red-600 */
-        .btn-danger:hover { background-color: #b91c1c; } /* red-700 */
-        .btn-warning { background-color: var(--primary-orange); color: white; }
-        .btn-warning:hover { background-color: #c2410c; } /* orange-700 */
-
-        .form-input, .form-select, .form-textarea {
-            width: 100%; padding: 0.625rem 0.875rem; 
-            border: 1px solid #d1d5db; /* gray-300 */
-            border-radius: 0.375rem; box-shadow: inset 0 1px 2px 0 rgb(0 0 0 / 0.05);
-            font-size: 0.875rem; color: var(--text-dark);
-            font-family: 'Inter', sans-serif;
-        }
-        .form-input::placeholder, .form-textarea::placeholder { color: #9ca3af; /* gray-400 */ }
-        .form-input:focus, .form-select:focus, .form-textarea:focus {
-            outline: 2px solid transparent; outline-offset: 2px;
-            border-color: var(--primary-blue); box-shadow: 0 0 0 2px #bfdbfe; /* blue-200 */
-        }
-        .form-label { display: block; margin-bottom: 0.375rem; font-weight: 500; color: var(--text-medium); font-size: 0.875rem; }
-        .form-checkbox {
-            height: 1rem; width: 1rem; border-radius: 0.25rem; 
-            border-color: #d1d5db; /* gray-300 */ color: var(--primary-blue);
-        }
-        .form-checkbox:focus { ring: 2px; ring-offset: 2px; ring-color: #93c5fd; /* blue-300 */ }
-
-        /* Modal Styles */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            background-color: rgba(17, 24, 39, 0.75); /* gray-900 with opacity */
-            display: flex; align-items: center; justify-content: center;
-            z-index: 2000; padding: 1rem;
-        }
-        .modal-content {
-            background-color: white; padding: 1.5rem; border-radius: 0.5rem;
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04); 
-            width: 100%; max-width: 560px; 
-            max-height: 90vh; overflow-y: auto;
-            position: relative; 
-        }
-        .modal-title {
-            font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;
-            color: var(--primary-blue);
-        }
-        .modal-close-btn {
-            position: absolute; top: 0.75rem; right: 0.75rem;
-            background: none; border: none; font-size: 1.75rem; 
-            line-height: 1; cursor: pointer; color: #9ca3af; /* gray-400 */
-        }
-        .modal-close-btn:hover { color: #1f2937; }
-
-        /* Chatbot Styles */
-        .chatbot-container { position: fixed; bottom: 1.25rem; right: 1.25rem; z-index: 1050; }
-        #chat-window {
-            width: 320px; max-height: 450px; overflow-y: auto; display: flex; flex-direction: column;
-            transition: all 0.3s ease; background-color: white; border-radius: 0.5rem;
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
-            position: absolute; bottom: calc(56px + 0.75rem); /* Button height + margin */ right: 0;
-        }
-        .chat-hidden { display: none !important; }
-        .chat-expanded { display: flex !important; }
-        #chat-header { 
-            background-color: var(--primary-blue); color: white; padding: 0.5rem 0.75rem; 
-            font-weight: 600; border-top-left-radius: 0.5rem; border-top-right-radius: 0.5rem;
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        #chat-header .close-chat-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; }
-        #chat-output { flex-grow: 1; padding: 0.75rem; overflow-y: auto; font-size: 0.875rem; background-color: #f9fafb; }
-        #chat-output p { margin-bottom: 0.5rem; line-height: 1.5; }
-        #chat-output p strong { color: var(--primary-blue); }
-        #chat-output p strong:first-child { color: var(--primary-orange); } 
-        #chat-input-container { display: flex; border-top: 1px solid #e5e7eb; }
-        #chat-input {
-            flex-grow: 1; border: none; padding: 0.75rem; border-bottom-left-radius: 0.5rem;
-            font-size: 0.875rem;
-        }
-        #chat-input:focus { outline: none; box-shadow: inset 0 0 0 2px var(--primary-blue); }
-        #chat-send {
-            border: none; padding: 0.75rem 1rem; cursor: pointer; background-color: var(--primary-blue);
-            color: white; border-bottom-right-radius: 0.5rem;
-        }
-        #chat-send:hover { background-color: #0056b3; }
-        #chat-toggle {
-            background-color: var(--primary-orange); color: white; border: none; 
-            border-radius: 9999px; cursor: pointer; font-size: 1.5rem; 
-            width: 56px; height: 56px; display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-        }
-        #chat-toggle:hover { background-color: #c2410c; }
-
-        .table-auto { width: 100%; border-collapse: collapse; }
-        .table-auto th, .table-auto td {
-            border: 1px solid #e5e7eb; /* gray-200 */
-            padding: 0.75rem; text-align: left;
-            font-size: 0.875rem; /* text-sm */
-        }
-        .table-auto th {
-            background-color: #f9fafb; /* gray-50 */
-            font-weight: 600; color: #374151; /* gray-700 */
-        }
-        .table-auto tbody tr:nth-child(odd) { background-color: white; }
-        .table-auto tbody tr:nth-child(even) { background-color: #f9fafb; }
-        .table-auto tbody tr:hover { background-color: #f3f4f6; /* gray-100 */ }
-        .table-actions button { margin-right: 0.5rem; }
-        .table-actions button:last-child { margin-right: 0; }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .sidebar { width: 70px; /* Start collapsed on small screens */ }
-            .sidebar .sidebar-text, .sidebar .sidebar-title-text, 
-            .sidebar .sidebar-user-info .sidebar-text, 
-            .sidebar .notification-badge-text { display: none; }
-            .main-content { margin-left: 70px; padding: 1rem; }
-            .dashboard-section h2 { font-size: 1.25rem; }
-            .dashboard-section h3 { font-size: 1.125rem; }
-            .dashboard-header .logo-container a { font-size: 1.25rem;}
-            .language-selector-container { display:none; } /* Hide header lang selector on mobile dashboard */
-            .dashboard-layout .container { grid-template-columns: 1fr; } /* Stack columns if needed */
-            .grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3 > div { margin-bottom: 1rem; } 
-            .md\\:col-span-2 { grid-column: span 1 / span 1; } 
+        button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-
-    <header class="dashboard-header">
-        <div class="container mx-auto flex justify-between items-center h-full" style="max-width: 100%; padding: 0 1rem;">
-            <div class="flex items-center">
-                <button id="sidebar-toggle" class="sidebar-toggle mr-2 text-xl" aria-label="Toggle sidebar">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <a href="/SafetyHelp/index.html" class="logo-container">
-                     <div class="logo">Safety<span class="help">Help</span></div>
-                </a>
-            </div>
-            <div id="user-welcome-container" class="text-sm hidden md:block">
-                <span data-i18n="dashboard.loggedInAs">Logged in as:</span> <strong id="user-display-name" class="font-medium">User</strong>
-            </div>
-            <div class="language-selector-container">
-                <select id="language-select" aria-label="Select language">
-                    <option value="en">EN</option>
-                    <option value="xh">XH</option>
-                    <option value="zu">ZU</option>
-                    <option value="af">AF</option>
-                    <option value="st">ST</option>
-                </select>
-            </div>
-        </div>
+    <header>
+        <a href="/SafetyHelp/index.html" class="logo">SafetyHelp</a>
+        <nav>
+            <a href="/SafetyHelp/index.html">Home</a>
+            <a href="/SafetyHelp/resources.html">Resources</a>
+            <a href="/SafetyHelp/services.html">Services</a>
+            <a href="/SafetyHelp/community.html">Community</a>
+            <a href="/SafetyHelp/about.html">About</a>
+            <a href="/SafetyHelp/contact.html">Contact</a>
+            <a href="/SafetyHelp/login.html">Logout</a>
+        </nav>
     </header>
 
-    <div class="dashboard-layout">
-        <aside class="sidebar" id="sidebar">
-            <div class="sidebar-title">
-                <i class="fas fa-tachometer-alt"></i>
-                <span class="sidebar-title-text" data-i18n="dashboard.sidebarTitle">Dashboard</span>
-            </div>
-            <nav class="flex-grow">
-                <a href="#welcome" class="sidebar-link active" data-section="welcome">
-                    <i class="fas fa-home fa-fw"></i> <span class="sidebar-text" data-i18n="dashboard.welcomeNav">Welcome</span>
-                </a>
-                <a href="#profile" class="sidebar-link" data-section="profile">
-                    <i class="fas fa-user fa-fw"></i> <span class="sidebar-text" data-i18n="dashboard.profileCV">Profile & CV</span>
-                </a>
-                <a href="#workspaces" class="sidebar-link" data-section="workspaces">
-                    <i class="fas fa-briefcase fa-fw"></i> <span class="sidebar-text" data-i18n="dashboard.workspaces">Workspaces</span>
-                </a>
-                <a href="#documents" class="sidebar-link" data-section="documents">
-                    <i class="fas fa-folder-open fa-fw"></i> <span class="sidebar-text" data-i18n="dashboard.documentControl">Document Control</span>
-                </a>
-                <a href="#incidents" class="sidebar-link" data-section="incidents">
-                    <i class="fas fa-triangle-exclamation fa-fw"></i> <span class="sidebar-text" data-i18n="dashboard.incidentManagement">Incident Management</span>
-                </a>
-                <a href="#risks" class="sidebar-link" data-section="risks">
-                    <i class="fas fa-shield-alt fa-fw"></i> <span class="sidebar-text" data-i18n="dashboard.riskAssessment">Risk Assessment (RMP)</span>
-                </a>
-                <a href="#training" class="sidebar-link" data-section="training">
-                    <i class="fas fa-graduation-cap fa-fw"></i> <span class="sidebar-text" data-i18n="dashboard.trainingManagement">Training Management</span>
-                </a>
-                <a href="#superuser" class="sidebar-link hidden" data-section="superuser" id="superuser-link">
-                    <i class="fas fa-star fa-fw"></i> <span class="sidebar-text" data-i18n="dashboard.superuserTools">Superuser Tools</span>
-                </a>
-                <a href="#community" class="sidebar-link" data-section="community">
-                    <i class="fas fa-users fa-fw"></i> <span class="sidebar-text" data-i18n="dashboard.communityHub">Community Hub</span>
-                </a>
-                <a href="#notifications" class="sidebar-link" data-section="notifications">
-                    <i class="fas fa-bell fa-fw"></i>
-                    <span class="sidebar-text" data-i18n="dashboard.notificationsTasks">Notifications</span>
-                    <span class="notification-badge" id="notification-count">
-                        <span class="notification-badge-text">3</span>
-                    </span>
-                </a>
-            </nav>
-            <div class="sidebar-user-info">
-                <a href="#settings" class="sidebar-link" data-section="settings">
-                    <i class="fas fa-cog fa-fw"></i> <span class="sidebar-text" data-i18n="dashboard.settings">Settings</span>
-                </a>
-                <a href="#" id="logout-button" class="sidebar-link">
-                    <i class="fas fa-sign-out-alt fa-fw"></i> <span class="sidebar-text" data-i18n="dashboard.logout">Logout</span>
-                </a>
-            </div>
+    <div class="dashboard-wrapper">
+        <aside class="sidebar">
+            <h3>Dashboard Navigation</h3>
+            <ul>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Workspaces</a></li>
+                <li><a href="#">Documents</a></li>
+                <li><a href="#">Incidents</a></li>
+                <li><a href="#">Risk Assessments</a></li>
+                <li><a href="#">Training</a></li>
+                <li><a href="#">Superuser Tools</a></li>
+                <li><a href="#">Community Hub</a></li>
+                <li><a href="#">Notifications</a></li>
+                <li><a href="#">Settings</a></li>
+            </ul>
         </aside>
-
-        <main class="main-content" id="main-content-area">
-            <section class="dashboard-section" id="welcome-section" data-title="Welcome">
-                <h2 id="welcome-user-heading"><i class="fas fa-hand-sparkles"></i> <span data-i18n="dashboard.welcome" data-i18n-options='{"name": "User"}'>Welcome, User!</span></h2>
-                <p class="text-slate-600" data-i18n="dashboard.welcomeMessage">Here's an overview of your safety management activities. Select an option from the sidebar to get started.</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-                    <div class="bg-blue-50 p-6 rounded-lg shadow-md border border-blue-200">
-                        <div class="flex items-center text-blue-600 mb-2">
-                            <i class="fas fa-briefcase fa-2x mr-3"></i>
-                            <h3 class="font-semibold text-lg" data-i18n="dashboard.quickStats.activeProjects">Active Workspaces</h3>
-                        </div>
-                        <p class="text-3xl font-bold text-blue-800" id="stats-active-workspaces">0</p>
-                    </div>
-                    <div class="bg-red-50 p-6 rounded-lg shadow-md border border-red-200">
-                         <div class="flex items-center text-red-600 mb-2">
-                            <i class="fas fa-exclamation-triangle fa-2x mr-3"></i>
-                            <h3 class="font-semibold text-lg" data-i18n="dashboard.quickStats.overdueTasks">Overdue Tasks</h3>
-                        </div>
-                        <p class="text-3xl font-bold text-red-800" id="stats-overdue-tasks">0</p>
-                    </div>
-                    <div class="bg-green-50 p-6 rounded-lg shadow-md border border-green-200">
-                        <div class="flex items-center text-green-600 mb-2">
-                            <i class="fas fa-shield-alt fa-2x mr-3"></i>
-                            <h3 class="font-semibold text-lg" data-i18n="dashboard.quickStats.complianceStatus">Compliance Status</h3>
-                        </div>
-                        <p class="text-xl font-bold text-green-800" id="stats-compliance-status" data-i18n="dashboard.quickStats.lookingGood">Looking Good!</p>
-                    </div>
-                </div>
+        <main>
+            <section class="dashboard">
+                <h2>Welcome, User!</h2>
+                <p>Manage your OHS compliance, RMPs, supplier reviews, and community reports here.</p>
             </section>
-
-            <section class="dashboard-section hidden" id="profile-section" data-title="Profile & CV">
-                <h2><i class="fas fa-user-edit"></i> <span data-i18n="dashboard.profileCVTitle">User Profile & CV</span></h2>
-                <p class="text-slate-600 mb-6" data-i18n="dashboard.profileCVDesc">Manage your professional OHS identity. Upload your CV, add certifications, and control your privacy settings.</p>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="md:col-span-2">
-                        <h3 data-i18n="dashboard.profile.yourInformation">Your Information</h3>
-                        <form id="profileForm" class="space-y-4">
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div>
-                                    <label for="profileFirstName" class="form-label" data-i18n="form.firstName">First Name</label>
-                                    <input type="text" id="profileFirstName" name="firstName" class="form-input" aria-required="true">
-                                </div>
-                                <div>
-                                    <label for="profileSurname" class="form-label" data-i18n="form.surname">Surname</label>
-                                    <input type="text" id="profileSurname" name="surname" class="form-input" aria-required="true">
-                                </div>
-                                <div>
-                                    <label for="profileEmail" class="form-label" data-i18n="form.email">Email Address</label>
-                                    <input type="email" id="profileEmail" name="email" class="form-input bg-slate-100 cursor-not-allowed" readonly aria-describedby="emailHelp">
-                                    <p id="emailHelp" class="text-xs text-slate-500 mt-1" data-i18n="form.emailCannotBeChanged">Email cannot be changed.</p>
-                                </div>
-                                <div>
-                                    <label for="profileContactNumber" class="form-label" data-i18n="form.contactNumber">Contact Number</label>
-                                    <input type="tel" id="profileContactNumber" name="contactNumber" class="form-input">
-                                </div>
-                                <div>
-                                    <label for="profileCompanyName" class="form-label" data-i18n="form.companyName">Company Name (Optional)</label>
-                                    <input type="text" id="profileCompanyName" name="companyName" class="form-input">
-                                </div>
-                                 <div>
-                                    <label for="profileOhsRole" class="form-label" data-i18n="form.ohsRole">OHS Role/Title</label>
-                                    <input type="text" id="profileOhsRole" name="ohsRole" class="form-input" placeholder="e.g., Safety Officer">
-                                </div>
-                            </div>
-                            <div>
-                                <label for="profileProfSummary" class="form-label" data-i18n="form.professionalSummary">Professional Summary/Biography</label>
-                                <textarea id="profileProfSummary" name="profSummary" rows="4" class="form-textarea" placeholder="Brief overview of your OHS expertise, experience, and career goals..."></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> <span data-i18n="button.saveProfile">Save Profile</span></button>
-                             <div id="profile-message" class="mt-3"></div>
-                        </form>
-                    </div>
-                    <div class="space-y-6">
-                        <div>
-                            <h3 data-i18n="dashboard.profile.profileStatus">Profile Status</h3>
-                            <label for="profile-completeness-text" class="form-label" data-i18n="dashboard.profileCompleteness">Profile Completeness: <span id="profile-completeness-value" class="font-bold">0</span>%</label>
-                            <div class="profile-completeness mt-1">
-                                <div class="profile-completeness-bar" id="profile-completeness-bar-element" style="width: 0%;"></div>
-                            </div>
-                            <p class="text-sm text-slate-500 mt-1" id="profile-completeness-prompt" data-i18n="dashboard.profile.completenessPromptStart">Fill in your details to complete your profile.</p>
-                        </div>
-                        <div>
-                            <h3 data-i18n="dashboard.profile.resumeCV">Resume/CV</h3>
-                            <label for="cvUpload" class="form-label" data-i18n="dashboard.uploadCVHelper">Upload CV (CSV, PDF)</label>
-                            <input type="file" id="cvUpload" name="cvUpload" class="form-input text-sm" accept=".csv,.pdf">
-                            <p class="text-xs text-slate-500 mt-1" data-i18n="dashboard.cvUploadNote">CSV recommended for best import. PDF text extraction is experimental.</p>
-                            <button id="uploadCvBtn" class="btn btn-success mt-2 w-full btn-sm"><i class="fas fa-upload"></i> <span data-i18n="button.uploadFile">Upload CV</span></button>
-                            <a href="/SafetyHelp/assets/templates/cv_template.csv" download="SafetyHelp_CV_Template.csv" class="text-xs text-blue-600 hover:underline mt-1 block" data-i18n="dashboard.downloadCsvTemplate">Download CSV Template</a>
-                        </div>
-                        <div>
-                            <h3 data-i18n="dashboard.profile.privacySettings">Privacy Settings</h3>
-                            <div class="space-y-2">
-                                <div>
-                                    <label for="profileVisibility" class="form-label" data-i18n="dashboard.profile.profileVisibility">Profile Visibility</label>
-                                    <select id="profileVisibility" name="profileVisibility" class="form-select">
-                                        <option value="private" data-i18n="privacy.private">Private (Only Me)</option>
-                                        <option value="connections" data-i18n="privacy.connections">Connections Only</option>
-                                        <option value="public" data-i18n="privacy.public">Public (All Registered Users)</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <h3 data-i18n="dashboard.profile.certificationsQualifications" class="mt-8">Certifications & Qualifications</h3>
-                <div id="certificationsList" class="space-y-3 mb-4">
-                    <p class="text-slate-500" id="no-certifications-message" data-i18n="dashboard.profile.noCertifications">No certifications added yet.</p>
-                </div>
-                <button id="addCertificationBtn" class="btn btn-secondary"><i class="fas fa-plus-circle"></i> <span data-i18n="button.addCertification">Add Certification</span></button>
+            <section class="company-profile">
+                <h2>Company Profile</h2>
+                <form id="company-profile-form">
+                    <label for="company-name">Company Name</label>
+                    <input type="text" id="company-name" required>
+                    <label for="industry">Industry</label>
+                    <input type="text" id="industry" required>
+                    <label for="location">Location</label>
+                    <input type="text" id="location" required>
+                    <label for="supervisor-name">Supervisor Name</label>
+                    <input type="text" id="supervisor-name" required>
+                    <label for="supervisor-contact">Supervisor Contact</label>
+                    <input type="tel" id="supervisor-contact" required>
+                    <label for="safety-rep-name">Safety Representative Name</label>
+                    <input type="text" id="safety-rep-name" required>
+                    <label for="safety-rep-contact">Safety Representative Contact</label>
+                    <input type="tel" id="safety-rep-contact" required>
+                    <button type="submit">Save Profile</button>
+                </form>
             </section>
-
-            <section class="dashboard-section hidden" id="workspaces-section" data-title="Workspaces">
-                <h2><i class="fas fa-building"></i> <span data-i18n="dashboard.workspacesTitle">Workspace Management</span></h2>
-                <p class="text-slate-600 mb-6" data-i18n="dashboard.workspacesDesc">Create and manage workspaces for your companies, projects, or schools. Organize your OHS systems efficiently.</p>
-                <button class="btn btn-primary mb-6" id="openCreateWorkspaceModalBtn">
-                    <i class="fas fa-plus-circle"></i> <span data-i18n="dashboard.createWorkspace">Create New Workspace</span>
-                </button>
-                <div id="workspaceListContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="bg-white p-4 rounded-lg shadow border border-slate-200">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h4 class="text-lg font-semibold text-purple-700">ABC Construction Ltd. (Demo)</h4>
-                                <p class="text-sm text-slate-500" data-i18n="dashboard.workspace.typeCompany">Type: Company</p>
-                            </div>
-                            <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full" data-i18n="dashboard.workspace.statusActive">Active</span>
-                        </div>
-                        <p class="text-sm text-slate-600 mt-2" data-i18n="dashboard.workspace.descriptionPlaceholder">Main OHS management for all construction sites.</p>
-                        <div class="mt-3 flex gap-2">
-                            <button class="btn btn-info btn-sm"><i class="fas fa-eye"></i> <span data-i18n="button.viewDetails">Details</span></button>
-                            <button class="btn btn-secondary btn-sm"><i class="fas fa-cog"></i> <span data-i18n="button.manage">Manage</span></button>
-                        </div>
-                    </div>
-                     <div class="mt-6 p-4 border rounded-md bg-slate-50 text-center hidden col-span-full" id="noWorkspacesMessage">
-                        <i class="fas fa-folder-minus fa-3x text-slate-400 mb-3"></i>
-                        <p class="text-slate-500" data-i18n="dashboard.noWorkspaces">No workspaces created yet. Click "Create New Workspace" to get started.</p>
-                    </div>
-                </div>
+            <section class="rmps">
+                <h2>Risk Management Plans (RMPs)</h2>
+                <table id="rmps-table">
+                    <tr><th>Date</th><th>Title</th><th>Actions</th></tr>
+                </table>
             </section>
-
-            <section class="dashboard-section hidden" id="documents-section" data-title="Document Control">
-                <h2><i class="fas fa-file-alt"></i> <span data-i18n="dashboard.documentControlTitle">Document Control</span></h2>
-                <p class="text-slate-600 mb-6" data-i18n="dashboard.documentControlDesc">Access, manage, and generate OHS documents. Ensure compliance with ISO 45001 and other standards.</p>
-                <div class="flex flex-col sm:flex-row justify-between items-center mb-4 gap-3">
-                    <a href="/SafetyHelp/pages/ohs-system.html" class="btn btn-primary w-full sm:w-auto"> <i class="fas fa-file-medical"></i> <span data-i18n="dashboard.generateDocument">Generate New Document</span>
-                    </a>
-                    <input type="search" class="form-input w-full sm:w-1/3" placeholder="Search documents..." aria-label="Search documents">
-                </div>
-                <div class="overflow-x-auto">
-                    <table class="table-auto w-full">
-                        <thead>
-                            <tr>
-                                <th data-i18n="table.docName">Document Name</th>
-                                <th data-i18n="table.version">Version</th>
-                                <th data-i18n="table.lastModified">Last Modified</th>
-                                <th data-i18n="table.status">Status</th>
-                                <th data-i18n="table.actions">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="documentList">
-                            <tr>
-                                <td>Site Safety Policy (Demo)</td>
-                                <td>v2.1</td>
-                                <td>2025-05-28</td>
-                                <td><span class="px-2 py-1 text-xs font-semibold text-green-700 bg-green-100 rounded-full" data-i18n="status.approved">Approved</span></td>
-                                <td class="table-actions">
-                                    <button class="btn btn-info btn-sm" aria-label="View Document"><i class="fas fa-eye"></i></button>
-                                    <button class="btn btn-secondary btn-sm" aria-label="Edit Document"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-danger btn-sm" aria-label="Delete Document"><i class="fas fa-trash"></i></button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="mt-4 text-center text-slate-500 hidden" id="noDocumentsMessage">
-                    <i class="fas fa-file-excel fa-3x text-slate-400 mb-3"></i>
-                    <p data-i18n="dashboard.noDocuments">No documents found for the current workspace/project.</p>
-                </div>
+            <section class="supplier-reviews">
+                <h2>Supplier Reviews</h2>
+                <table id="supplier-reviews-table">
+                    <tr><th>Supplier</th><th>Rating</th><th>Comment</th><th>Actions</th></tr>
+                </table>
             </section>
-
-            <section class="dashboard-section hidden" id="incidents-section" data-title="Incident Management">
-                <h2><i class="fas fa-medkit"></i> <span data-i18n="dashboard.incidentManagementTitle">Incident Management</span></h2>
-                <p class="text-slate-600 mb-6" data-i18n="dashboard.incidentManagementDesc">Report, track, and manage incidents. Implement corrective actions and analyze trends.</p>
-                <a href="/SafetyHelp/pages/incident-management.html" class="btn btn-danger mb-6"> <i class="fas fa-plus-circle"></i> <span data-i18n="dashboard.reportIncident">Report New Incident</span>
-                </a>
-                <div class="overflow-x-auto">
-                    <table class="table-auto w-full">
-                        <thead>
-                            <tr>
-                                <th data-i18n="table.incidentID">Incident ID</th>
-                                <th data-i18n="table.dateReported">Date Reported</th>
-                                <th data-i18n="table.type">Type</th>
-                                <th data-i18n="table.severity">Severity</th>
-                                <th data-i18n="table.status">Status</th>
-                                <th data-i18n="table.actions">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="incidentList">
-                             <tr>
-                                <td>INC-2025-001 (Demo)</td>
-                                <td>2025-05-20</td>
-                                <td data-i18n="incidentType.nearMiss">Near Miss</td>
-                                <td data-i18n="severity.low">Low</td>
-                                <td><span class="px-2 py-1 text-xs font-semibold text-blue-700 bg-blue-100 rounded-full" data-i18n="status.underInvestigation">Under Investigation</span></td>
-                                <td class="table-actions">
-                                    <button class="btn btn-info btn-sm" aria-label="View Incident"><i class="fas fa-eye"></i></button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                 <div class="mt-4 text-center text-slate-500 hidden" id="noIncidentsMessage">
-                    <i class="fas fa-shield-alt fa-3x text-slate-400 mb-3"></i>
-                    <p data-i18n="dashboard.noIncidents">No incidents reported recently. Keep up the safe work!</p>
-                </div>
-            </section>
-
-            <section class="dashboard-section hidden" id="risks-section" data-title="Risk Assessment (RMP)">
-                <h2><i class="fas fa-tasks"></i> <span data-i18n="dashboard.riskAssessmentTitle">Risk Assessment (RMP)</span></h2>
-                <p class="text-slate-600 mb-6" data-i18n="dashboard.riskAssessmentDesc">Conduct risk assessments using our guided wizard. Identify hazards and implement control measures.</p>
-                <a href="/SafetyHelp/pages/risk-assessment.html" class="btn btn-warning mb-6"> <i class="fas fa-clipboard-list"></i> <span data-i18n="dashboard.startNewRMP">Start New RMP</span>
-                </a>
-                <div class="mt-4 text-center text-slate-500" id="noRMPsMessage">
-                    <i class="fas fa-search-plus fa-3x text-slate-400 mb-3"></i>
-                    <p data-i18n="dashboard.noRMPs">No Risk Management Plans initiated yet for this workspace.</p>
-                </div>
-            </section>
-
-            <section class="dashboard-section hidden" id="training-section" data-title="Training Management">
-                <h2><i class="fas fa-chalkboard-teacher"></i> <span data-i18n="dashboard.trainingManagementTitle">Training Management</span></h2>
-                <p class="text-slate-600 mb-6" data-i18n="dashboard.trainingManagementDesc">Access training guides, track employee training records (future), and link to online training resources.</p>
-                 <a href="/SafetyHelp/pages/training.html" class="btn btn-info mb-6"> <i class="fas fa-book-open"></i> <span data-i18n="dashboard.accessTrainingWizard">Access Training Wizard</span>
-                </a>
-                 <div class="mt-4 text-center text-slate-500" id="noTrainingRecordsMessage">
-                    <i class="fas fa-user-graduate fa-3x text-slate-400 mb-3"></i>
-                    <p data-i18n="dashboard.noTrainingRecords">Training management features are evolving. Check back soon for updates on record tracking!</p>
-                </div>
-            </section>
-
-            <section class="dashboard-section hidden" id="superuser-section" data-title="Superuser Tools">
-                <h2><i class="fas fa-user-shield"></i> <span data-i18n="dashboard.superuserToolsTitle">Superuser Tools</span></h2>
-                <div id="superuser-content-area">
-                    <p class="text-slate-600 mb-4" data-i18n="dashboard.superuserToolsDesc">Access specialized tools and resources available for accredited superusers.</p>
-                    <div class="bg-teal-50 p-4 rounded-md border border-teal-200">
-                        <h4 class="font-semibold text-teal-700" data-i18n="dashboard.superuser.clientManagement">Client Engagement Management</h4>
-                        <p class="text-sm text-teal-600" data-i18n="dashboard.superuser.clientManagementDesc">Manage your OHS consultancy clients through SafetyHelp.</p>
-                        <button class="btn btn-primary mt-2" style="background-color: #0d9488; hover:background-color: #0f766e;"><i class="fas fa-users-cog"></i> <span data-i18n="button.manageClients">Manage Clients</span></button>
-                    </div>
-                    <div class="bg-orange-50 p-4 rounded-md border border-orange-200 mt-4">
-                        <h4 class="font-semibold text-orange-700" data-i18n="dashboard.superuser.accreditationHub">Accreditation & Resource Hub</h4>
-                        <p class="text-sm text-orange-600" data-i18n="dashboard.superuser.accreditationHubDesc">Manage your SafetyHelp accreditation and access exclusive resources.</p>
-                        <button class="btn btn-primary mt-2" style="background-color: #c2410c; hover:background-color: #9a3412;"><i class="fas fa-id-badge"></i> <span data-i18n="button.viewAccreditation">View Accreditation</span></button>
-                    </div>
-                </div>
-                 <div id="non-superuser-message-area" class="hidden">
-                    <p class="text-slate-500 p-4 bg-slate-100 rounded-md"><i class="fas fa-lock mr-2"></i><span data-i18n="dashboard.superuser.notAuthorized">This section is available for accredited superusers only. Contact support for more information on our Accreditation Program.</span></p>
-                </div>
-            </section>
-
-            <section class="dashboard-section hidden" id="community-section" data-title="Community Hub">
-                <h2><i class="fas fa-comments"></i> <span data-i18n="dashboard.communityHubTitle">Community Hub</span></h2>
-                <p class="text-slate-600 mb-6" data-i18n="dashboard.communityHubDesc">Connect with other OHS professionals, share best practices, and access community resources.</p>
-                <a href="/SafetyHelp/community.html" class="btn btn-primary" style="background-color: #0891b2; hover:background-color: #0e7490;">
-                    <i class="fas fa-external-link-alt"></i> <span data-i18n="dashboard.goToCommunity">Go to Community Page</span>
-                </a>
-                <div class="mt-6 border-t pt-4">
-                    <h4 class="font-semibold text-slate-700 mb-2" data-i18n="dashboard.community.recentActivity">Recent Activity (Demo)</h4>
-                    <ul class="list-disc list-inside text-slate-600 text-sm space-y-1">
-                        <li data-i18n="dashboard.community.activity1">New discussion: "Best practices for toolbox talks"</li>
-                        <li data-i18n="dashboard.community.activity2">Resource added: "Printable Fire Safety Checklist"</li>
-                    </ul>
-                </div>
-            </section>
-
-            <section class="dashboard-section hidden" id="notifications-section" data-title="Notifications & Tasks">
-                <h2><i class="fas fa-bell"></i> <span data-i18n="dashboard.notificationsTasksTitle">Notifications & Tasks</span></h2>
-                <p class="text-slate-600 mb-6" data-i18n="dashboard.notificationsTasksDesc">Stay updated with important alerts, task assignments, and system notifications.</p>
-                <div id="notificationListContainer" class="space-y-3">
-                    <div class="flex items-start p-3 bg-blue-50 border-l-4 border-blue-500 rounded-r-md shadow-sm">
-                        <i class="fas fa-info-circle text-blue-500 fa-lg mt-1 mr-3"></i>
-                        <div>
-                            <p class="font-semibold text-blue-700" data-i18n="notification.docReviewTitle">Document Review Required</p>
-                            <p class="text-sm text-slate-600" data-i18n="notification.docReviewDesc">"Site Safety Policy v2.2" is awaiting your approval in Workspace "ABC Construction".</p>
-                            <p class="text-xs text-slate-400">2 hours ago</p>
-                        </div>
-                        <button class="ml-auto text-slate-400 hover:text-slate-600 text-lg" aria-label="Dismiss notification">&times;</button>
-                    </div>
-                </div>
-                 <div class="mt-4 p-4 border rounded-md bg-slate-50 text-center hidden" id="noNotificationsMessage">
-                    <i class="fas fa-check-circle fa-3x text-slate-400 mb-3"></i>
-                    <p class="text-slate-500" data-i18n="dashboard.noNewNotifications">No new notifications or tasks at the moment.</p>
-                </div>
-            </section>
-
-            <section class="dashboard-section hidden" id="settings-section" data-title="Settings">
-                <h2><i class="fas fa-cogs"></i> <span data-i18n="dashboard.settingsTitle">Settings</span></h2>
-                <p class="text-slate-600 mb-6" data-i18n="dashboard.settingsDesc">Manage your account settings, preferences, and notification settings.</p>
-                <div class="space-y-6">
-                    <div>
-                        <h4 class="font-semibold text-lg mb-2" data-i18n="settings.account">Account Settings</h4>
-                        <button class="btn btn-secondary"><i class="fas fa-key"></i> <span data-i18n="settings.changePassword">Change Password</span></button>
-                        <button class="btn btn-danger ml-2"><i class="fas fa-trash-alt"></i> <span data-i18n="settings.deleteAccount">Delete Account</span></button>
-                    </div>
-                    <div>
-                        <h4 class="font-semibold text-lg mb-2" data-i18n="settings.notificationPrefs">Notification Preferences</h4>
-                        <label class="flex items-center mt-1">
-                            <input type="checkbox" id="emailNotificationsToggle" class="form-checkbox h-5 w-5 text-blue-600" checked>
-                            <span class="ml-2 text-slate-700" data-i18n="settings.emailNotifications">Receive Email Notifications</span>
-                        </label>
-                    </div>
-                </div>
+            <section class="incident-reports">
+                <h2>Incident Reports</h2>
+                <table id="incident-reports-table">
+                    <tr><th>Timestamp</th><th>Description</th><th>Location</th><th>Actions</th></tr>
+                </table>
             </section>
         </main>
     </div>
 
-    <div class="chatbot-container">
-        <div id="chat-window" class="chat-hidden">
-             <div id="chat-header">
-                <span>Salatiso - OHS Assistant</span>
-                <button class="close-chat-btn" onclick="toggleChatbot(false)">&times;</button>
-            </div>
-            <div id="chat-output" class="p-3">
-                <div class="mb-2 text-sm text-slate-600" data-i18n="chatbot.welcome">Welcome to Salatiso! How can I help you today?</div>
-            </div>
-            <div id="chat-input-container">
-                <input type="text" id="chat-input" placeholder="Type your message..." aria-label="Chat message input">
-                <button id="chat-send" aria-label="Send chat message"><i class="fas fa-paper-plane"></i></button>
-            </div>
-        </div>
-        <button id="chat-toggle" aria-label="Toggle Chatbot">
-            <i class="fas fa-headset"></i> <span class="sr-only" data-i18n="chatbot.toggle">Toggle Chat</span>
-        </button>
-    </div>
+    <footer>
+        <p>© 2025 SafetyHelp. All rights reserved. Your Partner in Occupational Health and Safety Compliance.</p>
+        <nav>
+            <a href="/SafetyHelp/privacy.html">Privacy Policy</a> |
+            <a href="/SafetyHelp/terms.html">Terms of Service</a> |
+            <a href="/SafetyHelp/contact.html">Contact Us</a>
+        </nav>
+    </footer>
 
-    <div id="createWorkspaceModal" class="modal-overlay hidden">
-        <div class="modal-content">
-            <button id="closeCreateWorkspaceModalBtn" class="modal-close-btn" aria-label="Close modal">&times;</button>
-            <h3 class="modal-title" data-i18n="modal.createWorkspace.title">Create New Workspace</h3>
-            <form id="createWorkspaceForm" class="space-y-4">
-                <div>
-                    <label for="workspaceName" class="form-label" data-i18n="modal.createWorkspace.name">Workspace Name</label>
-                    <input type="text" id="workspaceName" name="workspaceName" class="form-input" required>
-                </div>
-                <div>
-                    <label for="workspaceType" class="form-label" data-i18n="modal.createWorkspace.type">Workspace Type</label>
-                    <select id="workspaceType" name="workspaceType" class="form-select" required>
-                        <option value="" disabled selected data-i18n="modal.createWorkspace.selectType">Select type...</option>
-                        <option value="company" data-i18n="modal.createWorkspace.typeCompany">Company</option>
-                        <option value="project" data-i18n="modal.createWorkspace.typeProject">Project</option>
-                        <option value="school" data-i18n="modal.createWorkspace.typeSchool">School</option>
-                        <option value="other" data-i18n="modal.createWorkspace.typeOther">Other</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="workspaceDescription" class="form-label" data-i18n="modal.createWorkspace.description">Description (Optional)</label>
-                    <textarea id="workspaceDescription" name="workspaceDescription" rows="3" class="form-textarea"></textarea>
-                </div>
-                <div class="flex justify-end gap-3 pt-2">
-                    <button type="button" id="cancelCreateWorkspaceBtn" class="btn btn-light" data-i18n="button.cancel">Cancel</button>
-                    <button type="submit" class="btn btn-primary" data-i18n="button.create">Create Workspace</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div id="addCertificationModal" class="modal-overlay hidden">
-        <div class="modal-content">
-             <button id="closeAddCertificationModalBtn" class="modal-close-btn" aria-label="Close modal">&times;</button>
-            <h3 class="modal-title" data-i18n="modal.addCertification.title">Add Certification/Qualification</h3>
-            <form id="addCertificationForm" class="space-y-4">
-                <div>
-                    <label for="certName" class="form-label" data-i18n="modal.addCertification.name">Certification Name</label>
-                    <input type="text" id="certName" name="certName" class="form-input" required>
-                </div>
-                <div>
-                    <label for="certIssuer" class="form-label" data-i18n="modal.addCertification.issuer">Issuing Body</label>
-                    <input type="text" id="certIssuer" name="certIssuer" class="form-input" required>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label for="certIssueDate" class="form-label" data-i18n="modal.addCertification.issueDate">Issue Date</label>
-                        <input type="date" id="certIssueDate" name="certIssueDate" class="form-input">
-                    </div>
-                    <div>
-                        <label for="certExpiryDate" class="form-label" data-i18n="modal.addCertification.expiryDate">Expiry Date (Optional)</label>
-                        <input type="date" id="certExpiryDate" name="certExpiryDate" class="form-input">
-                    </div>
-                </div>
-                <div>
-                    <label for="certFile" class="form-label" data-i18n="modal.addCertification.uploadFile">Upload Certificate (Optional)</label>
-                    <input type="file" id="certFile" name="certFile" class="form-input text-sm" accept=".pdf,.jpg,.png">
-                </div>
-                <div class="flex justify-end gap-3 pt-2">
-                    <button type="button" id="cancelAddCertificationBtn" class="btn btn-light" data-i18n="button.cancel">Cancel</button>
-                    <button type="submit" class="btn btn-primary" data-i18n="button.add">Add Certification</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <script type="module" src="/SafetyHelp/assets/js/member-dashboard.js"></script>
-    </body>
+    <script src="assets/js/member-dashboard.js"></script>
+</body>
 </html>
