@@ -182,6 +182,14 @@
       color: #374151;
       margin-bottom: 1rem;
     }
+    .voting-section {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .voting-list, .site-milestones {
+      width: 48%;
+    }
     .voting-list {
       display: flex;
       flex-direction: column;
@@ -193,6 +201,14 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      font-size: 0.9rem;
+    }
+    .site-milestones ul {
+      list-style: none;
+      padding: 0;
+    }
+    .site-milestones li {
+      padding: 0.5rem 0;
       font-size: 0.9rem;
     }
     .bar-chart {
@@ -358,20 +374,23 @@
     }
     #chat-send:hover { background-color: #0056b3; }
   </style>
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
 </head>
 <body>
   <header>
-    <a href="/SafetyHelp/index.html" class="logo-container"> 
+    <a href="/safety-plans/index.html" class="logo-container"> 
       <div class="logo">Safety<span class="help">Help</span></div>
     </a>
     <nav>
-      <a href="/SafetyHelp/index.html"><i class="fas fa-home nav-icon"></i>Home</a>
-      <a href="/SafetyHelp/resources.html"><i class="fas fa-book nav-icon"></i>Resources</a>
-      <a href="/SafetyHelp/services.html"><i class="fas fa-concierge-bell nav-icon"></i>Services</a>
-      <a href="/SafetyHelp/community.html"><i class="fas fa-users nav-icon"></i>Community</a>
-      <a href="/SafetyHelp/about.html"><i class="fas fa-info-circle nav-icon"></i>About</a>
-      <a href="/SafetyHelp/contact.html"><i class="fas fa-envelope nav-icon"></i>Contact</a>
-      <a href="/SafetyHelp/login.html"><i class="fas fa-sign-in-alt nav-icon"></i>SignUp / Login</a>
+      <a href="/safety-plans/index.html"><i class="fas fa-home nav-icon"></i>Home</a>
+      <a href="/safety-plans/resources.html"><i class="fas fa-book nav-icon"></i>Resources</a>
+      <a href="/safety-plans/services.html"><i class="fas fa-concierge-bell nav-icon"></i>Services</a>
+      <a href="/safety-plans/community.html"><i class="fas fa-users nav-icon"></i>Community</a>
+      <a href="/safety-plans/about.html"><i class="fas fa-info-circle nav-icon"></i>About</a>
+      <a href="/safety-plans/contact.html"><i class="fas fa-envelope nav-icon"></i>Contact</a>
+      <a href="/safety-plans/login.html"><i class="fas fa-sign-in-alt nav-icon"></i>SignUp / Login</a>
     </nav>
     <div class="search-language">
       <input type="text" placeholder="Search...">
@@ -415,59 +434,79 @@
         <section id="upcoming-features">
           <h2><i class="fas fa-bullhorn section-icon"></i>Upcoming Features</h2>
           <p>Select your top 3 modules you'd like to see next:</p>
-          <div class="voting-list">
-            <label>
-              <input type="checkbox" class="voting-checkbox" value="construction-safety">
-              <i class="fas fa-hard-hat"></i> Construction Safety
-            </label>
-            <label>
-              <input type="checkbox" class="voting-checkbox" value="emergency-planning">
-              <i class="fas fa-bell"></i> Emergency Planning
-            </label>
-            <label>
-              <input type="checkbox" class="voting-checkbox" value="risk-assessment">
-              <i class="fas fa-shield-alt"></i> Risk Assessment
-            </label>
-            <label>
-              <input type="checkbox" class="voting-checkbox" value="legal-appointments">
-              <i class="fas fa-gavel"></i> Legal Appointments
-            </label>
-            <label>
-              <input type="checkbox" class="voting-checkbox" value="incident-management">
-              <i class="fas fa-file-medical-alt"></i> Incident Management
-            </label>
-            <label>
-              <input type="checkbox" class="voting-checkbox" value="training">
-              <i class="fas fa-graduation-cap"></i> Training
-            </label>
-            <label>
-              <input type="checkbox" class="voting-checkbox" value="inspections-audits">
-              <i class="fas fa-clipboard-check"></i> Inspections & Audits
-            </label>
-            <label>
-              <input type="checkbox" class="voting-checkbox" value="suppliers">
-              <i class="fas fa-truck"></i> Suppliers
-            </label>
-            <label>
-              <input type="checkbox" class="voting-checkbox" value="legislation">
-              <i class="fas fa-balance-scale"></i> Legislation
-            </label>
-            <label>
-              <input type="checkbox" class="voting-checkbox" value="community-tools">
-              <i class="fas fa-users"></i> Community Tools
-            </label>
-            <label>
-              <input type="checkbox" class="voting-checkbox" value="member-dashboard">
-              <i class="fas fa-tachometer-alt"></i> Member Dashboard
-            </label>
-            <label>
-              <input type="checkbox" class="voting-checkbox" value="ohs-system-modules">
-              <i class="fas fa-cogs"></i> OHS System Modules
-            </label>
-            <label>
-              <input type="checkbox" class="voting-checkbox" value="chatbot">
-              <i class="fas fa-robot"></i> Chatbot
-            </label>
+          <div class="voting-section">
+            <div class="voting-list">
+              <label>
+                <input type="checkbox" class="voting-checkbox" value="construction-safety">
+                <i class="fas fa-hard-hat"></i> Construction Safety
+              </label>
+              <label>
+                <input type="checkbox" class="voting-checkbox" value="emergency-planning">
+                <i class="fas fa-bell"></i> Emergency Planning
+              </label>
+              <label>
+                <input type="checkbox" class="voting-checkbox" value="risk-assessment">
+                <i class="fas fa-shield-alt"></i> Risk Assessment
+              </label>
+              <label>
+                <input type="checkbox" class="voting-checkbox" value="legal-appointments">
+                <i class="fas fa-gavel"></i> Legal Appointments
+              </label>
+              <label>
+                <input type="checkbox" class="voting-checkbox" value="incident-management">
+                <i class="fas fa-file-medical-alt"></i> Incident Management
+              </label>
+              <label>
+                <input type="checkbox" class="voting-checkbox" value="training">
+                <i class="fas fa-graduation-cap"></i> Training
+              </label>
+              <label>
+                <input type="checkbox" class="voting-checkbox" value="inspections-audits">
+                <i class="fas fa-clipboard-check"></i> Inspections & Audits
+              </label>
+              <label>
+                <input type="checkbox" class="voting-checkbox" value="suppliers">
+                <i class="fas fa-truck"></i> Suppliers
+              </label>
+              <label>
+                <input type="checkbox" class="voting-checkbox" value="legislation">
+                <i class="fas fa-balance-scale"></i> Legislation
+              </label>
+              <label>
+                <input type="checkbox" class="voting-checkbox" value="community-tools">
+                <i class="fas fa-users"></i> Community Tools
+              </label>
+              <label>
+                <input type="checkbox" class="voting-checkbox" value="member-dashboard">
+                <i class="fas fa-tachometer-alt"></i> Member Dashboard
+              </label>
+              <label>
+                <input type="checkbox" class="voting-checkbox" value="ohs-system-modules">
+                <i class="fas fa-cogs"></i> OHS System Modules
+              </label>
+              <label>
+                <input type="checkbox" class="voting-checkbox" value="chatbot">
+                <i class="fas fa-robot"></i> Chatbot
+              </label>
+            </div>
+            <div class="site-milestones">
+              <h3>Site Milestones</h3>
+              <ul>
+                <li>Base Platform Launch (Completed)</li>
+                <li>Member Dashboard (In Progress - June 2025)</li>
+                <li>Chatbot (In Progress - June 2025)</li>
+                <li>Incident Management (July 2025)</li>
+                <li>Risk Assessment (August 2025)</li>
+                <li>Training (September 2025)</li>
+                <li>Inspections & Audits (October 2025)</li>
+                <li>Suppliers (November 2025)</li>
+                <li>Legislation (December 2025)</li>
+                <li>Community Tools (January 2026)</li>
+                <li>OHS System Modules (February 2026)</li>
+                <li>Construction Safety (March 2026)</li>
+                <li>Legal Appointments (April 2026)</li>
+              </ul>
+            </div>
           </div>
           <button id="submit-vote">Submit Vote</button>
           <div class="bar-chart" id="bar-chart"></div>
@@ -559,22 +598,58 @@
       </main>
 
       <aside class="sidebar-milestones">
-        <h3 class="sidebar-heading"><i class="fas fa-flag-checkered heading-icon"></i>Milestones</h3>
+        <h3 class="sidebar-heading"><i class="fas fa-flag-checkered heading-icon"></i>OHS Milestones</h3>
         <div class="sidebar-list-container">
-          <ul id="milestones-list">
-            <li><i class="fas fa-check list-icon"></i>Base Platform Launch (Completed)</li>
-            <li><i class="fas fa-hourglass-half list-icon"></i>Member Dashboard (In Progress - June 2025)</li>
-            <li><i class="fas fa-hourglass-half list-icon"></i>Chatbot (In Progress - June 2025)</li>
-            <li><i class="fas fa-calendar-alt list-icon"></i>Incident Management (July 2025)</li>
-            <li><i class="fas fa-calendar-alt list-icon"></i>Risk Assessment (August 2025)</li>
-            <li><i class="fas fa-calendar-alt list-icon"></i>Training (September 2025)</li>
-            <li><i class="fas fa-calendar-alt list-icon"></i>Inspections & Audits (October 2025)</li>
-            <li><i class="fas fa-calendar-alt list-icon"></i>Suppliers (November 2025)</li>
-            <li><i class="fas fa-calendar-alt list-icon"></i>Legislation (December 2025)</li>
-            <li><i class="fas fa-calendar-alt list-icon"></i>Community Tools (January 2026)</li>
-            <li><i class="fas fa-calendar-alt list-icon"></i>OHS System Modules (February 2026)</li>
-            <li><i class="fas fa-calendar-alt list-icon"></i>Construction Safety (March 2026)</li>
-            <li><i class="fas fa-calendar-alt list-icon"></i>Legal Appointments (April 2026)</li>
+          <ul id="ohs-milestones-list">
+            <li><i class="fas fa-landmark list-icon"></i>3000 BC: Early First Aid (Egypt)</li>
+            <li><i class="fas fa-landmark list-icon"></i>400 BC: Lead Poisoning (Greece)</li>
+            <li><i class="fas fa-landmark list-icon"></i>50 AD: Protective Masks (Rome)</li>
+            <li><i class="fas fa-landmark list-icon"></i>1000 AD: Khoisan Healing (SA)</li>
+            <li><i class="fas fa-landmark list-icon"></i>1200 AD: Early Mining (SA)</li>
+            <li><i class="fas fa-landmark list-icon"></i>1760: Industrial Revolution (Global)</li>
+            <li><i class="fas fa-landmark list-icon"></i>1802: Apprentices Act (UK)</li>
+            <li><i class="fas fa-landmark list-icon"></i>1833: Factories Act (UK)</li>
+            <li><i class="fas fa-landmark list-icon"></i>1886: Gold Discovery (SA)</li>
+            <li><i class="fas fa-landmark list-icon"></i>1911: Mines and Works Act (SA)</li>
+            <li><i class="fas fa-landmark list-icon"></i>1919: ILO Founded (Global)</li>
+            <li><i class="fas fa-landmark list-icon"></i>1941: Workmen's Compensation (SA)</li>
+            <li><i class="fas fa-landmark list-icon"></i>1948: Factories Act Update (UK)</li>
+            <li><i class="fas fa-landmark list-icon"></i>1948: WHO Founded (Global)</li>
+            <li><i class="fas fa-landmark list-icon"></i>1950: OHS Training (SA)</li>
+            <li><i class="fas fa-landmark list-icon"></i>1960: Safety Audits (SA)</li>
+            <li><i class="fas fa-landmark list-icon"></i>1970: OSHA (USA)</li>
+            <li><i class="fas fa-landmark list-icon"></i>1970: Ergonomics (Global)</li>
+            <li><i class="fas fa-landmark list-icon"></i>1974: HSWA (UK)</li>
+            <li><i class="fas fa-landmark list-icon"></i>1980: OHS Conferences (SA)</li>
+            <li><i class="fas fa-landmark list-icon"></i>1984: Bhopal Disaster (India)</li>
+            <li><i class="fas fa-landmark list-icon"></i>1986: Chernobyl (USSR)</li>
+            <li><i class="fas fa-landmark list-icon"></i>1988: Piper Alpha (UK)</li>
+            <li><i class="fas fa-landmark list-icon"></i>1990: OHS Software (Global)</li>
+            <li><i class="fas fa-landmark list-icon"></i>1993: OHS Act (SA)</li>
+            <li><i class="fas fa-landmark list-icon"></i>2003: COIDA Amendment (SA)</li>
+            <li><i class="fas fa-landmark list-icon"></i>2010: OHS Mobile Apps (Global)</li>
+            <li><i class="fas fa-landmark list-icon"></i>2014: Construction Regs (SA)</li>
+            <li><i class="fas fa-landmark list-icon"></i>2015: Global Harmonization (GHS)</li>
+            <li><i class="fas fa-landmark list-icon"></i>2015: VR Training (Global)</li>
+            <li><i class="fas fa-landmark list-icon"></i>2020: COVID-19 Protocols</li>
+            <li><i class="fas fa-landmark list-icon"></i>2020: AI Safety Monitoring (SA)</li>
+            <li><i class="fas fa-landmark list-icon"></i>2022: Mental Health Focus</li>
+            <li><i class="fas fa-landmark list-icon"></i>2022: Blockchain OHS (Global)</li>
+            <li><i class="fas fa-landmark list-icon"></i>2023: Drone Inspections (SA)</li>
+            <li><i class="fas fa-landmark list-icon"></i>2024: 5G Safety Monitoring (Global)</li>
+            <li><i class="fas fa-landmark list-icon"></i>1930: Safety Helmets (Global)</li>
+            <li><i class="fas fa-landmark list-icon"></i>1940: Safety Shoes (Global)</li>
+            <li><i class="fas fa-landmark list-icon"></i>1863: First Aid (Global)</li>
+            <li><i class="fas fa-landmark list-icon"></i>1900: Dust Masks (Global)</li>
+            <li><i class="fas fa-landmark list-icon"></i>1996: Mining Safety (SA)</li>
+            <li><i class="fas fa-landmark list-icon"></i>2000: Silica Dust Control (SA)</li>
+            <li><i class="fas fa-landmark list-icon"></i>2005: Noise Control (SA)</li>
+            <li><i class="fas fa-landmark list-icon"></i>2010: Green Safety (Global)</li>
+            <li><i class="fas fa-landmark list-icon"></i>2015: Fatigue Management (SA)</li>
+            <li><i class="fas fa-landmark list-icon"></i>2018: Wearable Tech (Global)</li>
+            <li><i class="fas fa-landmark list-icon"></i>2019: Crane Safety (SA)</li>
+            <li><i class="fas fa-landmark list-icon"></i>2025: Quantum OHS (Global)</li>
+            <li><i class="fas fa-landmark list-icon"></i>2025: OHS Digital Plan (SA)</li>
           </ul>
         </div>
       </aside>
@@ -583,7 +658,7 @@
 
   <footer>
     <p>© 2025 SafetyHelp. All rights reserved.</p>
-    <p><a href="/SafetyHelp/privacy.html">Privacy Policy</a> | <a href="/SafetyHelp/terms.html">Terms of Service</a></p>
+    <p><a href="/safety-plans/privacy.html">Privacy Policy</a> | <a href="/safety-plans/terms.html">Terms of Service</a></p>
   </footer>
 
   <div class="chatbot-container">
@@ -606,6 +681,19 @@
   </div>
 
   <script>
+    // Firebase Configuration
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_AUTH_DOMAIN",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_STORAGE_BUCKET",
+      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+      appId: "YOUR_APP_ID",
+      measurementId: "YOUR_MEASUREMENT_ID"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
     const moduleIcons = {
       "construction-safety": "fa-hard-hat",
       "emergency-planning": "fa-bell",
@@ -632,15 +720,16 @@
     const lastResetMonth = localStorage.getItem('lastResetMonth');
     const lastResetYear = localStorage.getItem('lastResetYear');
     if (!lastResetMonth || !lastResetYear || parseInt(lastResetYear) < currentYear || (parseInt(lastResetYear) === currentYear && parseInt(lastResetMonth) < currentMonth)) {
-      const moduleVotes = {};
-      modules.forEach(module => {
-        moduleVotes[module] = 0;
+      db.collection("votes").doc("current").set({
+        month: currentMonth,
+        year: currentYear,
+        votes: modules.reduce((acc, module) => {
+          acc[module] = 0;
+          return acc;
+        }, {})
       });
-      localStorage.setItem('moduleVotes', JSON.stringify(moduleVotes));
       localStorage.setItem('lastResetMonth', currentMonth.toString());
       localStorage.setItem('lastResetYear', currentYear.toString());
-      localStorage.removeItem('hasVotedMonth');
-      localStorage.removeItem('hasVotedYear');
     }
 
     // Limit checkbox selection to 3
@@ -656,46 +745,48 @@
 
     // Submit vote
     document.getElementById('submit-vote').addEventListener('click', () => {
-      const hasVotedMonth = localStorage.getItem('hasVotedMonth');
-      const hasVotedYear = localStorage.getItem('hasVotedYear');
-      if (hasVotedMonth && hasVotedYear && parseInt(hasVotedYear) === currentYear && parseInt(hasVotedMonth) === currentMonth) {
-        alert('You have already voted this month.');
+      const selectedModules = Array.from(document.querySelectorAll('.voting-checkbox:checked')).map(cb => cb.value);
+      if (selectedModules.length > 0) {
+        db.collection("votes").doc("current").get().then(doc => {
+          if (doc.exists) {
+            const votes = doc.data().votes;
+            selectedModules.forEach(module => {
+              votes[module] = (votes[module] || 0) + 1;
+            });
+            db.collection("votes").doc("current").update({
+              votes: votes
+            });
+            updateBarChart();
+            alert('Thank you for your vote!');
+          }
+        });
       } else {
-        const selectedModules = Array.from(document.querySelectorAll('.voting-checkbox:checked')).map(cb => cb.value);
-        if (selectedModules.length > 0) {
-          let moduleVotes = JSON.parse(localStorage.getItem('moduleVotes')) || {};
-          selectedModules.forEach(module => {
-            moduleVotes[module] = (moduleVotes[module] || 0) + 1;
-          });
-          localStorage.setItem('moduleVotes', JSON.stringify(moduleVotes));
-          localStorage.setItem('hasVotedMonth', currentMonth.toString());
-          localStorage.setItem('hasVotedYear', currentYear.toString());
-          updateBarChart();
-          alert('Thank you for your vote!');
-        } else {
-          alert('Please select at least one module.');
-        }
+        alert('Please select at least one module.');
       }
     });
 
     // Update bar chart
     function updateBarChart() {
-      const moduleVotes = JSON.parse(localStorage.getItem('moduleVotes')) || {};
-      const totalVotes = Object.values(moduleVotes).reduce((a, b) => a + b, 0);
-      const sortedModules = Object.entries(moduleVotes).sort((a, b) => b[1] - a[1]);
-      const barChartHtml = sortedModules.map(([module, votes]) => {
-        const percentage = totalVotes > 0 ? ((votes / totalVotes) * 100).toFixed(1) : 0;
-        const iconClass = moduleIcons[module] || 'fa-question';
-        return `
-          <div class="bar-item">
-            <i class="fas ${iconClass}"></i>
-            <span class="module-name">${module.replace(/-/g, ' ')}</span>
-            <div class="bar" style="width: ${percentage}%"></div>
-            <span class="percentage">${percentage}%</span>
-          </div>
-        `;
-      }).join('');
-      document.getElementById('bar-chart').innerHTML = barChartHtml;
+      db.collection("votes").doc("current").get().then(doc => {
+        if (doc.exists) {
+          const votes = doc.data().votes;
+          const totalVotes = Object.values(votes).reduce((a, b) => a + b, 0);
+          const sortedModules = Object.entries(votes).sort((a, b) => b[1] - a[1]);
+          const barChartHtml = sortedModules.map(([module, voteCount]) => {
+            const percentage = totalVotes > 0 ? ((voteCount / totalVotes) * 100).toFixed(1) : 0;
+            const iconClass = moduleIcons[module] || 'fa-question';
+            return `
+              <div class="bar-item">
+                <i class="fas ${iconClass}"></i>
+                <span class="module-name">${module.replace(/-/g, ' ')}</span>
+                <div class="bar" style="width: ${percentage}%"></div>
+                <span class="percentage">${percentage}%</span>
+              </div>
+            `;
+          }).join('');
+          document.getElementById('bar-chart').innerHTML = barChartHtml;
+        }
+      });
     }
 
     // Initial bar chart load
@@ -758,7 +849,7 @@
 
     window.onload = function() {
       setupScrollingSidebar('safetyhelp-tools-list');
-      setupScrollingSidebar('milestones-list');
+      setupScrollingSidebar('ohs-milestones-list');
       document.getElementById('chat-window').classList.add('chat-hidden');
       document.getElementById('chat-toggle').style.display = 'flex';
     };
