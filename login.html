@@ -6,8 +6,10 @@
     <title>SafetyHelp | Login</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="assets/css/main.css">
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
     <style>
-        /* Existing styles assumed to be here */
         .success-message {
             background-color: #d4edda;
             color: #155724;
@@ -36,13 +38,12 @@
             <a href="/SafetyHelp/community.html">Community</a>
             <a href="/SafetyHelp/about.html">About</a>
             <a href="/SafetyHelp/contact.html">Contact</a>
-            <a href="/SafetyHelp/login.html" class="active">Login / SignUp</a>
+            <a href="/SafetyHelp/login.html" class="active">SignUp / Login</a>
         </nav>
         <select id="language-select">
             <option value="en">English</option>
-            <option value="af">Afrikaans</option>
-            <option value="zu">isiZulu</option>
             <option value="xh">isiXhosa</option>
+            <option value="af">Afrikaans</option>
         </select>
     </header>
 
@@ -106,10 +107,10 @@
             <div class="membership-info">
                 <h3>Choose the Right Plan for Your Needs</h3>
                 <table>
-                    <tr><th>Feature</th><th>Non-Registered User (Guest/Visitor)</th><th>Registered User (Free)</th><th>Subscribed Member (Paid)</th></tr>
+                    <tr><th>Feature</th><th>Non-Registered User</th><th>Registered User (Free)</th><th>Subscribed Member (Paid)</th></tr>
                     <tr><td>Access to Basic Tools</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
-                    <tr><td>Document Downloads</td><td>Limited (Temp. Access, 7 Days)</td><td>Permanent Access</td><td>Permanent Access</td></tr>
-                    <tr><td>Cost Per Document</td><td>Standard Price (No Discount)</td><td>Up to 5% Discount</td><td>Up to 25% Discount</td></tr>
+                    <tr><td>Document Downloads</td><td>Limited (7 Days)</td><td>Permanent Access</td><td>Permanent Access</td></tr>
+                    <tr><td>Cost Per Document</td><td>Standard Price</td><td>Up to 5% Discount</td><td>Up to 25% Discount</td></tr>
                     <tr><td>Early Access to New Features</td><td>No</td><td>Yes</td><td>Yes</td></tr>
                     <tr><td>Access to Book & Product Launches</td><td>No</td><td>Yes</td><td>Yes (Early Access)</td></tr>
                     <tr><td>Exclusive Discounts</td><td>No</td><td>No</td><td>Yes</td></tr>
@@ -119,52 +120,33 @@
                     <tr><td>Community Participation</td><td>Limited</td><td>Full Access</td><td>Full Access + Priority</td></tr>
                 </table>
                 <button>Sign Up Now & Get Started</button>
-                <p>Unlock More with a Free Account!<br>While guests can explore many of our resources, signing up for a free Registered User account grants you permanent access to downloaded documents, a personalized dashboard, and full community participation. It's quick, easy, and enhances your SafetyHelp experience!</p>
+                <p>Unlock More with a Free Account!<br>Signing up enhances your SafetyHelp experience with permanent document access and more!</p>
             </div>
-        </section>
-
-        <section class="milestones">
-            <h2>OHS Milestones</h2>
-            <ul>
-                <li>3000 BC: Early First Aid (Egypt)</li>
-                <li>400 BC: Lead Poisoning (Greece)</li>
-                <li>50 AD: Protective Masks (Rome)</li>
-                <!-- Other milestones as in original -->
-            </ul>
         </section>
     </main>
 
     <footer>
         <p>© 2025 SafetyHelp. All rights reserved. Your Partner in Occupational Health and Safety Compliance.</p>
         <nav>
-            <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Contact Us</a>
+            <a href="/SafetyHelp/privacy.html">Privacy Policy</a> |
+            <a href="/SafetyHelp/terms.html">Terms of Service</a> |
+            <a href="/SafetyHelp/contact.html">Contact Us</a>
         </nav>
-        <div class="subscribe">
-            <h4>Stay Updated with SafetyHelp</h4>
-            <input type="email" placeholder="Enter your email">
-            <button>Subscribe</button>
-        </div>
     </footer>
 
-    <div id="milestone-modal" class="modal">
-        <div class="modal-content">
-            <h2>Milestone Detail</h2>
-            <span class="close-modal">&times;</span>
-            <p></p>
-        </div>
-    </div>
-
-    <div id="chatbot-window" class="chatbot">
-        <h3>Salatiso - Your OHS Assistant</h3>
-        <span class="close-chatbot">&times;</span>
-        <div id="chat-output">
-            <p>Salatiso: Hello! How can I help you with OHS today?</p>
-        </div>
-        <textarea id="chat-input" placeholder="Type your message..."></textarea>
-        <button id="chat-send">Send</button>
-    </div>
-
     <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyDASGZnUyav23Mte5Q96H0j-T3LlGzVK-k",
+            authDomain: "safetyfirst2025-aea34.firebaseapp.com",
+            projectId: "safetyfirst2025-aea34",
+            storageBucket: "safetyfirst2025-aea34.firebasestorage.app",
+            messagingSenderId: "620306944192",
+            appId: "1:620306944192:web:ddadeef6825901068a9d25",
+            measurementId: "G-VQL1FCD8NN"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
         function showTab(tabName) {
             document.querySelectorAll('.form-content').forEach(form => form.classList.remove('active'));
             document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
@@ -175,99 +157,51 @@
         function displayMessage(message, type) {
             const messageContainer = document.getElementById('auth-message');
             messageContainer.innerHTML = `<div class="${type}-message">${message}</div>`;
-            setTimeout(() => {
-                messageContainer.innerHTML = '';
-            }, 5000);
+            setTimeout(() => messageContainer.innerHTML = '', 5000);
         }
 
-        // Placeholder authentication logic (to be replaced with Firebase later)
-        const mockAuth = {
-            signupWithEmail: (email, password, company, phone) => {
-                return new Promise((resolve, reject) => {
-                    setTimeout(() => {
-                        if (email && password && company && phone) {
-                            resolve({ email, company });
-                        } else {
-                            reject(new Error("Invalid signup details"));
-                        }
-                    }, 1000);
-                });
-            },
-            loginWithEmail: (email, password) => {
-                return new Promise((resolve, reject) => {
-                    setTimeout(() => {
-                        if (email && password) {
-                            resolve({ email });
-                        } else {
-                            reject(new Error("Invalid login details"));
-                        }
-                    }, 1000);
-                });
-            },
-            googleAuth: () => {
-                return new Promise((resolve) => {
-                    setTimeout(() => {
-                        resolve({ email: "googleuser@example.com" });
-                    }, 1000);
-                });
-            }
-        };
-
-        // Email Signup
         document.getElementById('signup-form').addEventListener('submit', async (event) => {
             event.preventDefault();
             const email = document.getElementById('signup-email').value;
             const password = document.getElementById('signup-password').value;
-            const company = document.getElementById('signup-company').value;
-            const phone = document.getElementById('signup-phone').value;
             try {
-                await mockAuth.signupWithEmail(email, password, company, phone);
-                displayMessage("Registration successful! Redirecting to dashboard...", "success");
-                setTimeout(() => {
-                    window.location.href = '/SafetyHelp/secure/member-dashboard.html';
-                }, 2000);
+                await auth.createUserWithEmailAndPassword(email, password);
+                displayMessage("Registration successful! Redirecting...", "success");
+                setTimeout(() => window.location.href = '/SafetyHelp/secure/member-dashboard.html', 2000);
             } catch (error) {
                 displayMessage(error.message, "error");
             }
         });
 
-        // Email Login
         document.getElementById('login-form').addEventListener('submit', async (event) => {
             event.preventDefault();
             const email = document.getElementById('login-email').value;
             const password = document.getElementById('login-password').value;
             try {
-                await mockAuth.loginWithEmail(email, password);
-                displayMessage("Login successful! Redirecting to dashboard...", "success");
-                setTimeout(() => {
-                    window.location.href = '/SafetyHelp/secure/member-dashboard.html';
-                }, 2000);
+                await auth.signInWithEmailAndPassword(email, password);
+                displayMessage("Login successful! Redirecting...", "success");
+                setTimeout(() => window.location.href = '/SafetyHelp/secure/member-dashboard.html', 2000);
             } catch (error) {
                 displayMessage(error.message, "error");
             }
         });
 
-        // Google Signup
+        const provider = new firebase.auth.GoogleAuthProvider();
         document.getElementById('google-signup').addEventListener('click', async () => {
             try {
-                await mockAuth.googleAuth();
-                displayMessage("Registration with Google successful! Redirecting to dashboard...", "success");
-                setTimeout(() => {
-                    window.location.href = '/SafetyHelp/secure/member-dashboard.html';
-                }, 2000);
+                await auth.signInWithPopup(provider);
+                displayMessage("Google signup successful! Redirecting...", "success");
+                setTimeout(() => window.location.href = '/SafetyHelp/secure/member-dashboard.html', 2000);
             } catch (error) {
                 displayMessage(error.message, "error");
             }
         });
 
-        // Google Login
         document.getElementById('google-login').addEventListener('click', async () => {
             try {
-                await mockAuth.googleAuth();
-                displayMessage("Login with Google successful! Redirecting to dashboard...", "success");
-                setTimeout(() => {
-                    window.location.href = '/SafetyHelp/secure/member-dashboard.html';
-                }, 2000);
+                await auth.signInWithPopup(provider);
+                displayMessage("Google login successful! Redirecting...", "success");
+                setTimeout(() => window.location.href = '/SafetyHelp/secure/member-dashboard.html', 2000);
             } catch (error) {
                 displayMessage(error.message, "error");
             }
