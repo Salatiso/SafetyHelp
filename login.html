@@ -6,74 +6,108 @@
     <title>SafetyHelp | Login</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="assets/css/main.css">
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
     <style>
-        .success-message {
-            background-color: #d4edda;
-            color: #155724;
-            padding: 10px;
-            margin-top: 10px;
-            border-radius: 5px;
-            text-align: center;
-        }
-        .error-message {
-            background-color: #f8d7da;
-            color: #721c24;
-            padding: 10px;
-            margin-top: 10px;
-            border-radius: 5px;
-            text-align: center;
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { height: 100%; font-family: 'Montserrat', sans-serif; background: #E8F0FE; color: #333; display: flex; flex-direction: column; }
+        a { text-decoration: none; color: inherit; }
+        header { background: #007BFF; color: #fff; padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .logo-container { display: flex; align-items: center; color: #fff; }
+        .logo { font-weight: 700; font-size: 1.75rem; letter-spacing: -0.025em; }
+        .logo .help { font-weight: 900; color: #FF8C00; }
+        nav { display: flex; gap: 0.5rem; }
+        nav a { color: white; font-weight: 500; padding: 0.6rem 1rem; border-radius: 6px; transition: background-color 0.3s ease, transform 0.2s ease; display: flex; align-items: center; gap: 0.5rem; border: 1px solid transparent; }
+        nav a:hover, nav a.active-nav-link { background-color: rgba(255,255,255,0.15); transform: translateY(-2px); border-color: rgba(255,255,255,0.3); }
+        nav a .nav-icon { font-size: 0.9em; }
+        .search-language { display: flex; align-items: center; gap: 1rem; }
+        .search-language input { padding: 0.6rem; border: 1px solid #ddd; border-radius: 6px; font-family: inherit; }
+        .search-language select { padding: 0.6rem; border-radius: 6px; border: 1px solid #ddd; font-family: inherit; }
+        .main-content { display: flex; flex-grow: 1; padding: 1.5rem; background: #fff; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin: 1rem auto; max-width: 1200px; }
+        .auth-hero { text-align: center; margin-bottom: 1.5rem; }
+        .auth-hero h1 { font-size: 2.2rem; color: #1f2937; margin-bottom: 0.5rem; }
+        .auth-hero p { font-size: 1rem; color: #374151; max-width: 600px; margin: 0 auto; }
+        .auth-main { display: flex; gap: 2rem; width: 100%; }
+        .auth-forms { flex: 1; max-width: 400px; }
+        .membership-comparison { flex: 2; }
+        .tabs { display: flex; justify-content: space-between; margin-bottom: 1rem; }
+        .tab { padding: 0.75rem 1.5rem; background: #f9f9f9; border: none; border-radius: 4px; cursor: pointer; font-weight: 500; }
+        .tab.active { background: #007BFF; color: white; }
+        .form-content { display: none; }
+        .form-content.active { display: block; }
+        .form-content h2 { font-size: 1.5rem; color: #0056b3; margin-bottom: 1rem; }
+        .form-content form { display: flex; flex-direction: column; gap: 1rem; }
+        .form-content input { padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem; }
+        .form-content button { padding: 0.75rem; background: #007BFF; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: 500; }
+        .form-content button:hover { background: #0056b3; }
+        .form-content .google-btn { background: #FF8C00; }
+        .form-content .google-btn:hover { background: #e07b00; }
+        .form-content a { color: #007BFF; text-decoration: none; }
+        .form-content a:hover { text-decoration: underline; }
+        #auth-message { text-align: center; margin-bottom: 1rem; }
+        .success-message { background-color: #d4edda; color: #155724; padding: 10px; border-radius: 5px; }
+        .error-message { background-color: #f8d7da; color: #721c24; padding: 10px; border-radius: 5px; }
+        .membership-comparison h2 { font-size: 1.8rem; color: #0056b3; margin-bottom: 1rem; text-align: center; }
+        .desktop-table { display: table; width: 100%; }
+        .mobile-cards { display: none; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 0.75rem; text-align: center; border: 1px solid #e5e7eb; }
+        th { background: #007BFF; color: white; font-weight: 600; }
+        tr:hover { background-color: #E8F0FE; }
+        .feature-name { text-align: left; }
+        .check { color: green; }
+        .cross { color: red; }
+        .cta { text-align: center; margin-top: 1rem; }
+        .cta a { color: #007BFF; font-weight: 600; }
+        .cta a:hover { text-decoration: underline; }
+        footer { background: #343a40; color: #adb5bd; text-align: center; padding: 1.5rem 2rem; font-size: 0.9rem; border-top: 3px solid #FF8C00; flex-shrink: 0; }
+        footer p { margin-bottom: 0.5rem; }
+        footer a { color: #FF8C00; transition: color 0.3s ease; }
+        footer a:hover { color: #fff; }
+        @media (max-width: 768px) {
+            .main-content { flex-direction: column; }
+            .auth-main { flex-direction: column; }
+            .auth-forms { max-width: 100%; }
+            .desktop-table { display: none; }
+            .mobile-cards { display: flex; flex-direction: column; gap: 1rem; }
+            .card { background: #fff; padding: 1rem; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+            .card h3 { font-size: 1.2rem; color: #0056b3; margin-bottom: 0.5rem; }
+            .card ul { list-style: none; padding: 0; }
+            .card li { margin-bottom: 0.5rem; }
         }
     </style>
 </head>
 <body>
     <header>
-        <a href="/SafetyHelp/index.html" class="logo">SafetyHelp</a>
+        <a href="/SafetyHelp/index.html" class="logo-container">
+            <div class="logo">Safety<span class="help">Help</span></div>
+        </a>
         <nav>
-            <a href="/SafetyHelp/index.html">Home</a>
-            <a href="/SafetyHelp/resources.html">Resources</a>
-            <a href="/SafetyHelp/services.html">Services</a>
-            <a href="/SafetyHelp/community.html">Community</a>
-            <a href="/SafetyHelp/about.html">About</a>
-            <a href="/SafetyHelp/contact.html">Contact</a>
-            <a href="/SafetyHelp/login.html" class="active">SignUp / Login</a>
+            <a href="/SafetyHelp/index.html"><i class="fas fa-home nav-icon"></i>Home</a>
+            <a href="/SafetyHelp/resources.html"><i class="fas fa-book nav-icon"></i>Resources</a>
+            <a href="/SafetyHelp/services.html"><i class="fas fa-concierge-bell nav-icon"></i>Services</a>
+            <a href="/SafetyHelp/community.html"><i class="fas fa-users nav-icon"></i>Community</a>
+            <a href="/SafetyHelp/about.html"><i class="fas fa-info-circle nav-icon"></i>About</a>
+            <a href="/SafetyHelp/contact.html"><i class="fas fa-envelope nav-icon"></i>Contact</a>
+            <a href="/SafetyHelp/login.html" class="active-nav-link"><i class="fas fa-sign-in-alt nav-icon"></i>SignUp / Login</a>
         </nav>
-        <select id="language-select">
-            <option value="en">English</option>
-            <option value="xh">isiXhosa</option>
-            <option value="af">Afrikaans</option>
-        </select>
+        <div class="search-language">
+            <input type="text" placeholder="Search...">
+            <select>
+                <option>English</option>
+                <option>isiXhosa</option>
+                <option>Afrikaans</option>
+            </select>
+        </div>
     </header>
 
-    <main>
+    <main class="main-content">
         <section class="auth-hero">
             <h1>Access Your SafetyHelp Account</h1>
-            <p>Log in to manage your OHS compliance, or sign up to unlock a suite of tools and resources designed for your safety needs.</p>
+            <p>Log in to manage your OHS compliance or sign up to unlock tools and resources.</p>
         </section>
 
         <div id="auth-message"></div>
 
-        <section class="auth-container">
-            <aside class="tools-sidebar">
-                <h3>SafetyHelp Tools</h3>
-                <ul>
-                    <li><a href="#">Construction Safety</a></li>
-                    <li><a href="#">Emergency Planning</a></li>
-                    <li><a href="#">Risk Assessment</a></li>
-                    <li><a href="#">Legal Appointments</a></li>
-                    <li><a href="#">Incident Management</a></li>
-                    <li><a href="#">Training</a></li>
-                    <li><a href="#">Inspections & Audits</a></li>
-                    <li><a href="#">Suppliers</a></li>
-                    <li><a href="#">Legislation</a></li>
-                    <li><a href="#">Community Tools</a></li>
-                    <li><a href="#">Member Dashboard</a></li>
-                    <li><a href="#">OHS System Modules</a></li>
-                </ul>
-            </aside>
-
+        <div class="auth-main">
             <div class="auth-forms">
                 <div class="tabs">
                     <button class="tab active" onclick="showTab('login')">Log In</button>
@@ -86,7 +120,7 @@
                         <input type="email" id="login-email" placeholder="Email" required>
                         <input type="password" id="login-password" placeholder="Password" required>
                         <button type="submit">Log In</button>
-                        <button type="button" id="google-login">Continue with Google</button>
+                        <button type="button" id="google-login" class="google-btn">Continue with Google</button>
                         <a href="#">Forgot your Password?</a>
                     </form>
                 </div>
@@ -99,30 +133,137 @@
                         <input type="text" id="signup-company" placeholder="Company Name" required>
                         <input type="tel" id="signup-phone" placeholder="Phone Number" required>
                         <button type="submit">Sign Up</button>
-                        <button type="button" id="google-signup">Sign Up with Google</button>
+                        <button type="button" id="google-signup" class="google-btn">Sign Up with Google</button>
                     </form>
                 </div>
             </div>
 
-            <div class="membership-info">
-                <h3>Choose the Right Plan for Your Needs</h3>
-                <table>
-                    <tr><th>Feature</th><th>Non-Registered User</th><th>Registered User (Free)</th><th>Subscribed Member (Paid)</th></tr>
-                    <tr><td>Access to Basic Tools</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
-                    <tr><td>Document Downloads</td><td>Limited (7 Days)</td><td>Permanent Access</td><td>Permanent Access</td></tr>
-                    <tr><td>Cost Per Document</td><td>Standard Price</td><td>Up to 5% Discount</td><td>Up to 25% Discount</td></tr>
-                    <tr><td>Early Access to New Features</td><td>No</td><td>Yes</td><td>Yes</td></tr>
-                    <tr><td>Access to Book & Product Launches</td><td>No</td><td>Yes</td><td>Yes (Early Access)</td></tr>
-                    <tr><td>Exclusive Discounts</td><td>No</td><td>No</td><td>Yes</td></tr>
-                    <tr><td>Website Trusted Seal</td><td>No</td><td>No</td><td>Yes</td></tr>
-                    <tr><td>Preference in Content Featuring</td><td>No</td><td>No</td><td>Yes</td></tr>
-                    <tr><td>Personalized Dashboard</td><td>No</td><td>Yes</td><td>Yes (Enhanced)</td></tr>
-                    <tr><td>Community Participation</td><td>Limited</td><td>Full Access</td><td>Full Access + Priority</td></tr>
-                </table>
-                <button>Sign Up Now & Get Started</button>
-                <p>Unlock More with a Free Account!<br>Signing up enhances your SafetyHelp experience with permanent document access and more!</p>
+            <div class="membership-comparison">
+                <h2>Why Register? Compare Your Benefits</h2>
+                <div class="desktop-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="feature-name">Feature</th>
+                                <th>Non-Registered User</th>
+                                <th>Registered User (Free)</th>
+                                <th>Subscribed Member (Paid)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="feature-name">Access to Basic Tools</td>
+                                <td><i class="fas fa-check check"></i></td>
+                                <td><i class="fas fa-check check"></i></td>
+                                <td><i class="fas fa-check check"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="feature-name">Document Downloads</td>
+                                <td>Limited (7 Days)</td>
+                                <td>Permanent Access</td>
+                                <td>Permanent Access</td>
+                            </tr>
+                            <tr>
+                                <td class="feature-name">Cost Per Document</td>
+                                <td>Standard Price</td>
+                                <td>Up to 5% Discount</td>
+                                <td>Up to 25% Discount</td>
+                            </tr>
+                            <tr>
+                                <td class="feature-name">Early Access to New Features</td>
+                                <td><i class="fas fa-times cross"></i></td>
+                                <td><i class="fas fa-check check"></i></td>
+                                <td><i class="fas fa-check check"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="feature-name">Access to Book & Product Launches</td>
+                                <td><i class="fas fa-times cross"></i></td>
+                                <td><i class="fas fa-check check"></i></td>
+                                <td>Yes (Early Access)</td>
+                            </tr>
+                            <tr>
+                                <td class="feature-name">Exclusive Discounts</td>
+                                <td><i class="fas fa-times cross"></i></td>
+                                <td><i class="fas fa-times cross"></i></td>
+                                <td><i class="fas fa-check check"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="feature-name">Website Trusted Seal</td>
+                                <td><i class="fas fa-times cross"></i></td>
+                                <td><i class="fas fa-times cross"></i></td>
+                                <td><i class="fas fa-check check"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="feature-name">Preference in Content Featuring</td>
+                                <td><i class="fas fa-times cross"></i></td>
+                                <td><i class="fas fa-times cross"></i></td>
+                                <td><i class="fas fa-check check"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="feature-name">Personalized Dashboard</td>
+                                <td><i class="fas fa-times cross"></i></td>
+                                <td><i class="fas fa-check check"></i></td>
+                                <td>Yes (Enhanced)</td>
+                            </tr>
+                            <tr>
+                                <td class="feature-name">Community Participation</td>
+                                <td>Limited</td>
+                                <td>Full Access</td>
+                                <td>Full Access + Priority</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mobile-cards">
+                    <div class="card non-registered">
+                        <h3>Non-Registered User</h3>
+                        <ul>
+                            <li>Access to Basic Tools: <i class="fas fa-check check"></i></li>
+                            <li>Document Downloads: Limited (7 Days)</li>
+                            <li>Cost Per Document: Standard Price</li>
+                            <li>Early Access to New Features: <i class="fas fa-times cross"></i></li>
+                            <li>Access to Book & Product Launches: <i class="fas fa-times cross"></i></li>
+                            <li>Exclusive Discounts: <i class="fas fa-times cross"></i></li>
+                            <li>Website Trusted Seal: <i class="fas fa-times cross"></i></li>
+                            <li>Preference in Content Featuring: <i class="fas fa-times cross"></i></li>
+                            <li>Personalized Dashboard: <i class="fas fa-times cross"></i></li>
+                            <li>Community Participation: Limited</li>
+                        </ul>
+                    </div>
+                    <div class="card registered-free">
+                        <h3>Registered User (Free)</h3>
+                        <ul>
+                            <li>Access to Basic Tools: <i class="fas fa-check check"></i></li>
+                            <li>Document Downloads: Permanent Access</li>
+                            <li>Cost Per Document: Up to 5% Discount</li>
+                            <li>Early Access to New Features: <i class="fas fa-check check"></i></li>
+                            <li>Access to Book & Product Launches: <i class="fas fa-check check"></i></li>
+                            <li>Exclusive Discounts: <i class="fas fa-times cross"></i></li>
+                            <li>Website Trusted Seal: <i class="fas fa-times cross"></i></li>
+                            <li>Preference in Content Featuring: <i class="fas fa-times cross"></i></li>
+                            <li>Personalized Dashboard: <i class="fas fa-check check"></i></li>
+                            <li>Community Participation: Full Access</li>
+                        </ul>
+                    </div>
+                    <div class="card subscribed-paid">
+                        <h3>Subscribed Member (Paid)</h3>
+                        <ul>
+                            <li>Access to Basic Tools: <i class="fas fa-check check"></i></li>
+                            <li>Document Downloads: Permanent Access</li>
+                            <li>Cost Per Document: Up to 25% Discount</li>
+                            <li>Early Access to New Features: <i class="fas fa-check check"></i></li>
+                            <li>Access to Book & Product Launches: Yes (Early Access)</li>
+                            <li>Exclusive Discounts: <i class="fas fa-check check"></i></li>
+                            <li>Website Trusted Seal: <i class="fas fa-check check"></i></li>
+                            <li>Preference in Content Featuring: <i class="fas fa-check check"></i></li>
+                            <li>Personalized Dashboard: Yes (Enhanced)</li>
+                            <li>Community Participation: Full Access + Priority</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="cta">Ready to get started? <a href="#" onclick="showTab('signup')">Sign up for free</a> and unlock these benefits today!</p>
             </div>
-        </section>
+        </div>
     </main>
 
     <footer>
@@ -134,6 +275,8 @@
         </nav>
     </footer>
 
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyDASGZnUyav23Mte5Q96H0j-T3LlGzVK-k",
@@ -146,6 +289,12 @@
         };
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
+
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                window.location.href = '/SafetyHelp/secure/member-dashboard.html';
+            }
+        });
 
         function showTab(tabName) {
             document.querySelectorAll('.form-content').forEach(form => form.classList.remove('active'));
@@ -164,9 +313,11 @@
             event.preventDefault();
             const email = document.getElementById('signup-email').value;
             const password = document.getElementById('signup-password').value;
+            const company = document.getElementById('signup-company').value;
+            const phone = document.getElementById('signup-phone').value;
             try {
-                await auth.createUserWithEmailAndPassword(email, password);
-                displayMessage("Registration successful! Redirecting...", "success");
+                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+                displayMessage("Registration successful! Redirecting to dashboard...", "success");
                 setTimeout(() => window.location.href = '/SafetyHelp/secure/member-dashboard.html', 2000);
             } catch (error) {
                 displayMessage(error.message, "error");
@@ -179,7 +330,7 @@
             const password = document.getElementById('login-password').value;
             try {
                 await auth.signInWithEmailAndPassword(email, password);
-                displayMessage("Login successful! Redirecting...", "success");
+                displayMessage("Login successful! Redirecting to dashboard...", "success");
                 setTimeout(() => window.location.href = '/SafetyHelp/secure/member-dashboard.html', 2000);
             } catch (error) {
                 displayMessage(error.message, "error");
@@ -187,25 +338,18 @@
         });
 
         const provider = new firebase.auth.GoogleAuthProvider();
-        document.getElementById('google-signup').addEventListener('click', async () => {
+        async function googleAuth() {
             try {
                 await auth.signInWithPopup(provider);
-                displayMessage("Google signup successful! Redirecting...", "success");
+                displayMessage("Google authentication successful! Redirecting to dashboard...", "success");
                 setTimeout(() => window.location.href = '/SafetyHelp/secure/member-dashboard.html', 2000);
             } catch (error) {
                 displayMessage(error.message, "error");
             }
-        });
+        }
 
-        document.getElementById('google-login').addEventListener('click', async () => {
-            try {
-                await auth.signInWithPopup(provider);
-                displayMessage("Google login successful! Redirecting...", "success");
-                setTimeout(() => window.location.href = '/SafetyHelp/secure/member-dashboard.html', 2000);
-            } catch (error) {
-                displayMessage(error.message, "error");
-            }
-        });
+        document.getElementById('google-signup').addEventListener('click', googleAuth);
+        document.getElementById('google-login').addEventListener('click', googleAuth);
     </script>
 </body>
 </html>
