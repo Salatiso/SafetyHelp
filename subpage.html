@@ -1,386 +1,436 @@
-### Refined Approach for SafetyHelp Subpages
-
-Based on your feedback and the screenshot of the OHS Management System page (`[invalid url, do not cite]), I’ve refined the approach for structuring subpages to ensure consistency across modules like Construction Compliance, Incident Management, and others. The goal is to maintain the aesthetic and functionality of the main pages while allowing module-specific content to vary. I’ve also reviewed similar websites offering occupational health and safety (OHS) compliance tools to inform the design. Below, I present three options for subpage structure, each with full code, followed by a recommendation. You can choose one to replicate across all subpages.
-
-### Insights from Similar Websites
-To refine the approach, I analyzed websites offering OHS compliance tools and resources, focusing on their structure and functionality:
-
-- **OSHA** provides extensive resources, including training tools and eTools, with a clean layout, consistent navigation, and downloadable resources ([OSHA](https://www.osha.gov/)).
-- **EcoOnline** offers a centralized EHS system with incident reporting and risk management, using a modern interface with clear calls-to-action ([EcoOnline](https://www.ecoonline.com/en-us/ehs-software/safety-management-software/)).
-- **Workhub** provides compliance software with tools for audits, training, and incident tracking, featuring a dashboard-like interface ([Workhub](https://www.workhub.com/)).
-- **SafetyCulture** highlights EHS software with centralized platforms for audits and risk assessments, using clear sections ([SafetyCulture](https://safetyculture.com/app/health-and-safety-software/)).
-- **EHS Insight** offers all-in-one EHS software with intuitive navigation for incident tracking and audits ([EHS Insight](https://www.ehsinsight.com/safety-management-software)).
-- **Praxis42** lists UK health and safety resources, emphasizing guidance and compliance ([Praxis42](https://praxis42.com/resources/health-and-safety/best-health-and-safety-websites/)).
-
-**Common Patterns**:
-- Consistent navigation and branding.
-- Clear sections for module-specific content (e.g., legal obligations, tools).
-- Interactive elements like wizards or forms.
-- Sidebars or dashboards for quick access to tools or milestones.
-- Links to legislation and resources.
-
-These insights inform the three options below, ensuring alignment with industry standards and your vision for SafetyHelp.
-
-### Option 1: Modular with Consistent Sections
-**Description**: This option closely follows the OHS Management System page, featuring:
-- A header with branding and navigation.
-- A left sidebar listing SafetyHelp tools.
-- A main content area with:
-  - An introduction to the module.
-  - Key legal obligations with references and links.
-  - Interactive tools (e.g., automated wizard or manual selection).
-  - Additional resources.
-- A right sidebar for module-specific milestones.
-- A footer with copyright and links.
-
-**Advantages**:
-- Matches the current design, ensuring a familiar user experience.
-- Clear separation of navigation and module-specific content.
-- Flexible for varying content per module.
-
-**Potential Drawback**:
-- Right sidebar content must be unique per module to avoid repetition.
-
-**Code for Option 1**:
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[Module Name] - SafetyHelp</title>
+    <title>Risk Assessment - SafetyHelp</title>
     <link rel="stylesheet" href="../css/main.css">
     <style>
-        .container { display: flex; }
-        .left-sidebar { width: 20%; background: #e6f0fa; padding: 20px; }
-        .main-content { width: 60%; padding: 20px; }
-        .right-sidebar { width: 20%; background: #f8f8f8; padding: 20px; }
-        .legal-obligations { display: flex; justify-content: space-between; }
-        .legal-obligations div { border: 1px solid #007bff; padding: 10px; width: 30%; }
-        button { background: #007bff; color: white; padding: 10px; margin: 5px; }
-        footer { background: #333; color: white; padding: 20px; }
-        footer ul { list-style: none; display: flex; }
-        footer ul li { margin-right: 20px; }
-        .chat-button { background: #ff6200; border-radius: 50%; padding: 10px; }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #FFFFFF;
+            color: #000000;
+            margin: 0;
+        }
+        header {
+            background-color: #FFFFFF;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo a {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: #003087;
+            text-decoration: none;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li a {
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            color: #000000;
+            text-decoration: none;
+        }
+        nav ul li a:hover {
+            color: #003087;
+            text-decoration: underline;
+        }
+        nav ul li a.active {
+            color: #003087;
+            text-decoration: underline;
+        }
+        .language-selector select {
+            border: 1px solid #D3D3D3;
+            padding: 5px;
+            background-color: #FFFFFF;
+            color: #000000;
+        }
+        .language-selector select:hover {
+            background-color: #E6F0FA;
+            color: #003087;
+        }
+        main {
+            padding: 20px;
+            margin-left: 25%;
+            margin-right: 25%;
+        }
+        .page-content h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 32px;
+            color: #000000;
+            border-bottom: 2px solid #003087;
+            padding-bottom: 10px;
+        }
+        .page-content p {
+            font-size: 16px;
+            color: #333333;
+        }
+        .legal-obligations h2 {
+            font-size: 20px;
+            color: #000000;
+        }
+        .legal-obligations .buttons {
+            display: flex;
+            gap: 10px;
+        }
+        .legal-obligations button {
+            background-color: #FFFFFF;
+            border: 1px solid #D3D3D3;
+            padding: 10px 20px;
+            color: #000000;
+            cursor: pointer;
+        }
+        .legal-obligations button:hover {
+            background-color: #E6F0FA;
+            color: #003087;
+        }
+        .document-compilation h2 {
+            font-size: 20px;
+            color: #000000;
+        }
+        .document-compilation p {
+            font-size: 16px;
+            color: #333333;
+        }
+        .document-compilation .options {
+            display: flex;
+            gap: 10px;
+        }
+        .document-compilation .automated-wizard {
+            background-color: #003087;
+            color: #FFFFFF;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        .document-compilation .automated-wizard:hover {
+            background-color: #005BB5;
+        }
+        .document-compilation .manual {
+            background-color: #FFFFFF;
+            border: 1px solid #003087;
+            color: #003087;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .document-compilation .manual:hover {
+            background-color: #E6F0FA;
+        }
+        .additional-resources a {
+            color: #003087;
+            text-decoration: none;
+        }
+        .additional-resources a:hover {
+            text-decoration: underline;
+            color: #00205B;
+        }
+        .left-sidebar {
+            background-color: #F5F5F5;
+            padding: 20px;
+            width: 20%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            overflow-y: auto;
+        }
+        .left-sidebar h2 {
+            font-size: 16px;
+            color: #000000;
+            text-transform: uppercase;
+        }
+        .left-sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .left-sidebar ul li a {
+            font-size: 14px;
+            color: #333333;
+            text-decoration: none;
+        }
+        .left-sidebar ul li a:hover {
+            color: #003087;
+        }
+        .left-sidebar ul li a.active {
+            color: #003087;
+            font-weight: bold;
+        }
+        .right-sidebar {
+            background-color: #FFFFFF;
+            border-left: 1px solid #D3D3D3;
+            padding: 20px;
+            width: 20%;
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100%;
+            overflow-y: auto;
+        }
+        .right-sidebar h2 {
+            font-size: 16px;
+            color: #000000;
+        }
+        .right-sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .right-sidebar ul li a {
+            font-size: 14px;
+            color: #333333;
+            text-decoration: none;
+        }
+        .right-sidebar ul li a:hover {
+            color: #003087;
+        }
+        footer {
+            background-color: #333333;
+            color: #FFFFFF;
+            padding: 20px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        footer p {
+            margin: 0;
+        }
+        footer ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 0;
+        }
+        footer ul li a {
+            color: #FFFFFF;
+            text-decoration: none;
+        }
+        footer ul li a:hover {
+            color: #E6F0FA;
+        }
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+        }
+        .chat-button {
+            background-color: #FF6200;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 50%;
+            padding: 15px;
+            cursor: pointer;
+        }
+        .chat-button:hover {
+            background-color: #FF8C00;
+            transform: scale(1.1);
+        }
+        .chat-window {
+            background-color: #FFFFFF;
+            border: 1px solid #D3D3D3;
+            padding: 10px;
+            width: 300px;
+            position: absolute;
+            bottom: 60px;
+            right: 0;
+            display: none;
+        }
+        .chat-window.hidden {
+            display: none;
+        }
+        .chat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .chat-header span {
+            font-size: 16px;
+            color: #000000;
+        }
+        .close-chat {
+            background: none;
+            border: none;
+            color: #000000;
+            cursor: pointer;
+        }
+        .chat-body p {
+            font-size: 14px;
+            color: #333333;
+        }
+        .chat-input {
+            display: flex;
+            gap: 10px;
+        }
+        .chat-input input {
+            flex: 1;
+            padding: 5px;
+            border: 1px solid #D3D3D3;
+        }
+        .send-button {
+            background-color: #003087;
+            color: #FFFFFF;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .send-button:hover {
+            background-color: #005BB5;
+        }
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+            }
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .left-sidebar, .right-sidebar {
+                width: 100%;
+                position: static;
+                height: auto;
+            }
+            main {
+                margin-left: 0;
+                margin-right: 0;
+            }
+            footer {
+                position: static;
+            }
+        }
     </style>
 </head>
 <body>
     <header>
-        <div class="logo">SafetyHelp</div>
+        <div class="logo"><a href="/">SafetyHelp</a></div>
         <nav>
             <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="/resources">Resources</a></li>
+                <li><a href="/resources" class="active">Resources</a></li>
                 <li><a href="/services">Services</a></li>
                 <li><a href="/community">Community</a></li>
                 <li><a href="/about">About</a></li>
                 <li><a href="/contact">Contact</a></li>
                 <li><a href="/signup">Sign Up</a></li>
                 <li><a href="/login">Login</a></li>
-                <li><a href="#">Search</a></li>
-                <li><select><option>English</option><option>isiXhosa</option><option>Afrikaans</option></select></li>
             </ul>
         </nav>
+        <div class="language-selector">
+            <select>
+                <option>English</option>
+                <option>isiXhosa</option>
+                <option>Afrikaans</option>
+            </select>
+        </div>
     </header>
-    <main class="container">
-        <aside class="left-sidebar">
-            <h2>SafetyHelp Tools</h2>
-            <ul>
-                <li><a href="/pages/risk-assessment.html">Risk Assessment</a></li>
-                <li><a href="/pages/legal-appointments.html">Legal Appointments</a></li>
-                <li><a href="/pages/incident-management.html">Incident Management</a></li>
-                <li><a href="/pages/training.html">Training</a></li>
-                <li><a href="/pages/inspections-audits.html">Inspections & Audits</a></li>
-                <li><a href="/pages/suppliers.html">Suppliers</a></li>
-                <li><a href="/pages/legislation.html">Legislation</a></li>
-                <li><a href="/pages/community-tools.html">Community Tools</a></li>
-            </ul>
-            <h2>Member Dashboard</h2>
-            <ul>
-                <li><a href="/dashboard/training-modules.html">Training Modules</a></li>
-            </ul>
-        </aside>
-        <section class="main-content">
-            <h1>[Module Name]</h1>
-            <p>[Introduction to the module, e.g., Ensure compliance with South African regulations for [Module Name].]</p>
-            <h2>Key Legal Obligations</h2>
+    <aside class="left-sidebar">
+        <h2>SafetyHelp Tools</h2>
+        <ul>
+            <li><a href="/pages/construction-safety.html">Construction Safety</a></li>
+            <li><a href="/pages/emergency-planning.html">Emergency Planning</a></li>
+            <li><a href="/pages/risk-assessment.html" class="active">Risk Assessment</a></li>
+            <li><a href="/pages/legal-appointments.html">Legal Appointments</a></li>
+            <li><a href="/pages/incident-management.html">Incident Management</a></li>
+            <li><a href="/pages/training.html">Training</a></li>
+            <li><a href="/pages/inspections-audits.html">Inspections & Audits</a></li>
+            <li><a href="/pages/suppliers.html">Suppliers</a></li>
+            <li><a href="/pages/legislation.html">Legislation</a></li>
+            <li><a href="/pages/community-tools.html">Community Tools</a></li>
+            <li><a href="/pages/member-dashboard.html">Member Dashboard</a></li>
+            <li><a href="/pages/ohs-system.html">OHS System Modules</a></li>
+        </ul>
+        <h2>Member Dashboard</h2>
+        <!-- Placeholder for user-specific links or widgets -->
+    </aside>
+    <main>
+        <section class="page-content">
+            <h1>Risk Assessment</h1>
+            <p>The Risk Assessment module helps you identify, evaluate, and mitigate workplace hazards in compliance with South Africa’s Occupational Health and Safety Act (OHS Act).</p>
             <div class="legal-obligations">
-                <div>[Obligation 1]<br><a href="#">[Link to Legislation]</a></div>
-                <div>[Obligation 2]<br><a href="#">[Link to Legislation]</a></div>
-                <div>[Obligation 3]<br><a href="#">[Link to Legislation]</a></div>
+                <h2>Key Legal Obligations</h2>
+                <div class="buttons">
+                    <button>Hazard Identification</button>
+                    <button>Risk Evaluation</button>
+                    <button>Control Measures</button>
+                </div>
             </div>
-            <h2>Compile Your [Module] Documents</h2>
-            <p>Select the documents needed for your [Module]. Choose from policies, procedures, standards, and more, tailored to your organization.</p>
-            <h3>Select Your Compilation Method</h3>
-            <button class="automated-wizard">Automated Wizard</button>
-            <button class="manual-selection">Manual Selection</button>
-            <p><a href="#">Additional Resources</a></p>
+            <div class="document-compilation">
+                <h2>Compile Your Risk Assessment Documents</h2>
+                <p>Select the documents needed for your Risk Assessment. Choose from policies, procedures, standards, and more, tailored to your organization.</p>
+                <div class="options">
+                    <button class="automated-wizard">Automated Wizard</button>
+                    <button class="manual">Manual</button>
+                </div>
+            </div>
+            <div class="additional-resources">
+                <a href="#">Additional Resources</a>
+            </div>
         </section>
-        <aside class="right-sidebar">
-            <h2>[Module] Milestones</h2>
-            <ul>
-                <li>[Milestone 1, e.g., 1993: OHS Act (SA)]</li>
-                <li>[Milestone 2]</li>
-                <li>[Milestone 3]</li>
-            </ul>
-        </aside>
     </main>
+    <aside class="right-sidebar">
+        <h2>OHS Milestones</h2>
+        <ul>
+            <li><a href="#" class="milestone-link">1993: OHS Act (SA)</a></li>
+            <li><a href="#" class="milestone-link">2014: Construction Regs (SA)</a></li>
+            <li><a href="#" class="milestone-link">2020: AI Safety Monitoring (SA)</a></li>
+        </ul>
+    </aside>
     <footer>
-        <p>&copy; 2023 SafetyHelp (Pty) Ltd. All rights reserved. Your Partner in Occupational Health and Safety.</p>
+        <p>© <span id="current-year"></span> SafetyHelp (Pty) Ltd. All rights reserved. Your Partner in Occupational Health and Safety Compliance.</p>
         <ul>
             <li><a href="/privacy-policy">Privacy Policy</a></li>
             <li><a href="/terms-of-service">Terms of Service</a></li>
             <li><a href="/contact">Contact Us</a></li>
         </ul>
-        <button class="chat-button">Chat</button>
     </footer>
-    <script src="../js/scripts.js"></script>
-</body>
-</html>
-```
-
-### Option 2: Tabbed Interface
-**Description**: This option organizes content into tabs for Introduction, Legal Obligations, Tools/Wizards, and Resources, reducing scrolling and enhancing interactivity. It includes a header, optional sidebars, and a footer.
-
-**Advantages**:
-- Dynamic and user-friendly, allowing quick section switching.
-- Compact layout suitable for complex modules.
-- Inspired by dashboard-like interfaces (e.g., Workhub, EHS Insight).
-
-**Potential Drawback**:
-- Requires JavaScript for tab functionality, which may add complexity.
-- Users may find tabs less intuitive than a linear layout.
-
-**Code for Option 2**:
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[Module Name] - SafetyHelp</title>
-    <link rel="stylesheet" href="../css/main.css">
-    <style>
-        .tabs { display: flex; border-bottom: 1px solid #ccc; }
-        .tab-button { background: #f8f8f8; padding: 10px 20px; border: none; cursor: pointer; }
-        .tab-button.active { background: #007bff; color: white; }
-        .tab-content { padding: 20px; display: none; }
-        .tab-content.active { display: block; }
-        .legal-obligations { display: flex; justify-content: space-between; }
-        .legal-obligations div { border: 1px solid #007bff; padding: 10px; width: 30%; }
-        button { background: #007bff; color: white; padding: 10px; margin: 5px; }
-        footer { background: #333; color: white; padding: 20px; }
-        footer ul { list-style: none; display: flex; }
-        footer ul li { margin-right: 20px; }
-        .chat-button { background: #ff6200; border-radius: 50%; padding: 10px; }
-    </style>
-</head>
-<body>
-    <header>
-        <div class="logo">SafetyHelp</div>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/resources">Resources</a></li>
-                <li><a href="/services">Services</a></li>
-                <li><a href="/community">Community</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/contact">Contact</a></li>
-                <li><a href="/signup">Sign Up</a></li>
-                <li><a href="/login">Login</a></li>
-                <li><a href="#">Search</a></li>
-                <li><select><option>English</option><option>isiXhosa</option><option>Afrikaans</option></select></li>
-            </ul>
-        </nav>
-    </header>
-    <main class="container">
-        <h1>[Module Name]</h1>
-        <div class="tabs">
-            <button class="tab-button active" onclick="openTab('introduction')">Introduction</button>
-            <button class="tab-button" onclick="openTab('legal')">Legal Obligations</button>
-            <button class="tab-button" onclick="openTab('tools')">Tools/Wizards</button>
-            <button class="tab-button" onclick="openTab('resources')">Resources</button>
-        </div>
-        <div id="introduction" class="tab-content active">
-            <p>[Introduction to the module, e.g., Ensure compliance with South African regulations for [Module Name].]</p>
-        </div>
-        <div id="legal" class="tab-content">
-            <h2>Key Legal Obligations</h2>
-            <div class="legal-obligations">
-                <div>[Obligation 1]<br><a href="#">[Link to Legislation]</a></div>
-                <div>[Obligation 2]<br><a href="#">[Link to Legislation]</a></div>
-                <div>[Obligation 3]<br><a href="#">[Link to Legislation]</a></div>
+    <div class="chat-widget">
+        <button class="chat-button">Chat</button>
+        <div class="chat-window hidden">
+            <div class="chat-header">
+                <span>Salatiso - Your OHS Assistant</span>
+                <button class="close-chat">X</button>
+            </div>
+            <div class="chat-body">
+                <p>Salatiso: Hello! How can I help you with OHS today?</p>
+            </div>
+            <div class="chat-input">
+                <input type="text" placeholder="Type your message...">
+                <button class="send-button">Send</button>
             </div>
         </div>
-        <div id="tools" class="tab-content">
-            <h2>Compile Your [Module] Documents</h2>
-            <p>Select the documents needed for your [Module]. Choose from policies, procedures, standards, and more, tailored to your organization.</p>
-            <button class="automated-wizard">Automated Wizard</button>
-            <button class="manual-selection">Manual Selection</button>
-        </div>
-        <div id="resources" class="tab-content">
-            <h2>Additional Resources</h2>
-            <p><a href="#">[Resource Link]</a></p>
-        </div>
-    </main>
-    <footer>
-        <p>&copy; 2023 SafetyHelp (Pty) Ltd. All rights reserved. Your Partner in Occupational Health and Safety.</p>
-        <ul>
-            <li><a href="/privacy-policy">Privacy Policy</a></li>
-            <li><a href="/terms-of-service">Terms of Service</a></li>
-            <li><a href="/contact">Contact Us</a></li>
-        </ul>
-        <button class="chat-button">Chat</button>
-    </footer>
+    </div>
     <script>
-        function openTab(tabName) {
-            var i, tabcontent, tabbuttons;
-            tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].className = tabcontent[i].className.replace(" active", "");
-            }
-            tabbuttons = document.getElementsByClassName("tab-button");
-            for (i = 0; i < tabbuttons.length; i++) {
-                tabbuttons[i].className = tabbuttons[i].className.replace(" active", "");
-            }
-            document.getElementById(tabName).className += " active";
-            tabbuttons.namedItem(tabName).className += " active";
-        }
-    </script>
-</body>
-</html>
-```
-
-### Option 3: Accordion Sections
-**Description**: This option uses expandable accordion sections for Introduction, Legal Obligations, Tools/Wizards, and Resources, saving space and focusing user attention. It includes a header, optional sidebars, and a footer.
-
-**Advantages**:
-- Compact and clean, ideal for sequential content exploration.
-- Simple to implement with minimal JavaScript.
-- Inspired by resource-heavy sites like OSHA.
-
-**Potential Drawback**:
-- Users may miss content if they don’t expand all sections.
-- Less dynamic than tabs for complex modules.
-
-**Code for Option 3**:
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[Module Name] - SafetyHelp</title>
-    <link rel="stylesheet" href="../css/main.css">
-    <style>
-        .accordion { background: #e6f0fa; color: #444; cursor: pointer; padding: 18px; width: 100%; text-align: left; border: none; outline: none; transition: 0.4s; }
-        .accordion.active { background: #007bff; color: white; }
-        .panel { padding: 0 18px; display: none; background: white; overflow: hidden; }
-        .legal-obligations { display: flex; justify-content: space-between; }
-        .legal-obligations div { border: 1px solid #007bff; padding: 10px; width: 30%; }
-        button { background: #007bff; color: white; padding: 10px; margin: 5px; }
-        footer { background: #333; color: white; padding: 20px; }
-        footer ul { list-style: none; display: flex; }
-        footer ul li { margin-right: 20px; }
-        .chat-button { background: #ff6200; border-radius: 50%; padding: 10px; }
-    </style>
-</head>
-<body>
-    <header>
-        <div class="logo">SafetyHelp</div>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/resources">Resources</a></li>
-                <li><a href="/services">Services</a></li>
-                <li><a href="/community">Community</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/contact">Contact</a></li>
-                <li><a href="/signup">Sign Up</a></li>
-                <li><a href="/login">Login</a></li>
-                <li><a href="#">Search</a></li>
-                <li><select><option>English</option><option>isiXhosa</option><option>Afrikaans</option></select></li>
-            </ul>
-        </nav>
-    </header>
-    <main class="container">
-        <h1>[Module Name]</h1>
-        <button class="accordion">Introduction</button>
-        <div class="panel">
-            <p>[Introduction to the module, e.g., Ensure compliance with South African regulations for [Module Name].]</p>
-        </div>
-        <button class="accordion">Key Legal Obligations</button>
-        <div class="panel">
-            <div class="legal-obligations">
-                <div>[Obligation 1]<br><a href="#">[Link to Legislation]</a></div>
-                <div>[Obligation 2]<br><a href="#">[Link to Legislation]</a></div>
-                <div>[Obligation 3]<br><a href="#">[Link to Legislation]</a></div>
-            </div>
-        </div>
-        <button class="accordion">Tools/Wizards</button>
-        <div class="panel">
-            <h2>Compile Your [Module] Documents</h2>
-            <p>Select the documents needed for your [Module]. Choose from policies, procedures, standards, and more, tailored to your organization.</p>
-            <button class="automated-wizard">Automated Wizard</button>
-            <button class="manual-selection">Manual Selection</button>
-        </div>
-        <button class="accordion">Additional Resources</button>
-        <div class="panel">
-            <h2>Additional Resources</h2>
-            <p><a href="#">[Resource Link]</a></p>
-        </div>
-    </main>
-    <footer>
-        <p>&copy; 2023 SafetyHelp (Pty) Ltd. All rights reserved. Your Partner in Occupational Health and Safety.</p>
-        <ul>
-            <li><a href="/privacy-policy">Privacy Policy</a></li>
-            <li><a href="/terms-of-service">Terms of Service</a></li>
-            <li><a href="/contact">Contact Us</a></li>
-        </ul>
-        <button class="chat-button">Chat</button>
-    </footer>
-    <script>
-        var acc = document.getElementsByClassName("accordion");
-        for (var i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", function() {
-                this.classList.toggle("active");
-                var panel = this.nextElementSibling;
-                if (panel.style.display === "block") {
-                    panel.style.display = "none";
-                } else {
-                    panel.style.display = "block";
-                }
+        document.addEventListener('DOMContentLoaded', function() {
+            // Chat widget functionality
+            const chatButton = document.querySelector('.chat-button');
+            const chatWindow = document.querySelector('.chat-window');
+            const closeChat = document.querySelector('.close-chat');
+            chatButton.addEventListener('click', function() {
+                chatWindow.classList.toggle('hidden');
             });
-        }
+            closeChat.addEventListener('click', function() {
+                chatWindow.classList.add('hidden');
+            });
+            // Milestone detail modal (placeholder)
+            const milestoneLinks = document.querySelectorAll('.milestone-link');
+            milestoneLinks.forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    alert('Milestone detail modal would open here.');
+                });
+            });
+            // Set current year in footer
+            const currentYear = new Date().getFullYear();
+            document.getElementById('current-year').textContent = currentYear;
+        });
     </script>
 </body>
 </html>
-```
-
-### Recommendation
-**Option 1 (Modular with Consistent Sections)** is recommended because it:
-- Closely aligns with the OHS Management System page, ensuring continuity.
-- Matches industry standards seen in OSHA and EHS Insight, with clear sections and sidebars.
-- Provides flexibility for module-specific content while maintaining a consistent user experience.
-
-**Table: Comparison of Options**
-
-| **Feature**                | **Option 1: Modular** | **Option 2: Tabbed** | **Option 3: Accordion** |
-|----------------------------|-----------------------|----------------------|-------------------------|
-| **Alignment with Current Design** | High                 | Moderate            | Moderate               |
-| **User Navigation**        | Linear, intuitive     | Tab-based, dynamic  | Sequential, compact    |
-| **Space Efficiency**       | Moderate              | High                | Very High              |
-| **Interactivity**          | Standard (buttons)    | High (tabs)         | Moderate (accordions)  |
-| **Implementation Complexity** | Low                 | Moderate            | Low                    |
-| **Best for**               | Familiarity, consistency | Dynamic navigation | Space-saving, focus    |
-
-### Next Steps
-Please review the three options and their code. Let me know which you prefer, and we can replicate it across all subpages (e.g., Construction Compliance, Incident Management), customizing only the content. If you need tweaks or have specific content for each module, I can assist with that too!
-
-### Key Citations
-- [OSHA Occupational Safety and Health Administration](https://www.osha.gov/)
-- [EcoOnline Safety Management Software](https://www.ecoonline.com/en-us/ehs-software/safety-management-software/)
-- [Workhub Workplace Compliance Software](https://www.workhub.com/)
-- [SafetyCulture Health and Safety Software](https://safetyculture.com/app/health-and-safety-software/)
-- [EHS Insight Safety Management Software](https://www.ehsinsight.com/safety-management-software)
-- [Praxis42 UK Health and Safety Resources](https://praxis42.com/resources/health-and-safety/best-health-and-safety-websites/)
