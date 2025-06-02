@@ -1,9 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Load user data (placeholder for actual user authentication)
-    const user = { name: "User Name" }; // Replace with actual user data
+    const user = { name: "User Name" };
     document.querySelector(".dashboard p").innerText = `Welcome, ${user.name}! Manage your OHS compliance, RMPs, supplier reviews, and community reports here.`;
 
-    // Load company profile
     const savedProfile = JSON.parse(localStorage.getItem("companyProfile")) || {};
     document.getElementById("company-name").value = savedProfile.companyName || "";
     document.getElementById("industry").value = savedProfile.industry || "";
@@ -13,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("safety-rep-name").value = savedProfile.safetyRepName || "";
     document.getElementById("safety-rep-contact").value = savedProfile.safetyRepContact || "";
 
-    // Load RMPs (placeholder for actual RMP data)
     const rmps = JSON.parse(localStorage.getItem("rmps")) || [];
     const rmpsTable = document.getElementById("rmps-table");
     rmps.forEach(rmp => {
@@ -29,7 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
         rmpsTable.appendChild(row);
     });
 
-    // Load supplier reviews
     const suppliers = JSON.parse(localStorage.getItem("suppliers")) || { suppliers: [] };
     const supplierReviewsTable = document.getElementById("supplier-reviews-table");
     suppliers.suppliers.forEach(supplier => {
@@ -45,7 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Load incident reports
     const incidentReports = JSON.parse(localStorage.getItem("incidentReports")) || [];
     const incidentReportsTable = document.getElementById("incident-reports-table");
     incidentReports.forEach(report => {
@@ -62,7 +57,6 @@ document.addEventListener("DOMContentLoaded", () => {
         incidentReportsTable.appendChild(row);
     });
 
-    // Handle company profile form submission
     document.getElementById("company-profile-form").addEventListener("submit", (event) => {
         event.preventDefault();
         const profile = {
@@ -77,33 +71,32 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("companyProfile", JSON.stringify(profile));
         alert("Profile saved successfully!");
     });
+
+    document.querySelectorAll('.modal').forEach(modal => {
+        modal.style.display = 'none';
+    });
 });
 
 function viewRMP(id) {
-    // Placeholder: Redirect to RMP details or display in modal
     alert(`Viewing RMP with ID: ${id}`);
 }
 
 function downloadRMP(id) {
-    // Placeholder: Download RMP (would typically fetch from storage or backend)
     alert(`Downloading RMP with ID: ${id}`);
 }
 
 function editReview(supplierName, rating, comment) {
-    // Placeholder: Open a form to edit the review
     alert(`Editing review for ${supplierName}: ${rating}/5 - ${comment}`);
 }
 
 function viewIncident(id) {
-    // Placeholder: Display incident details in a modal
     const report = JSON.parse(localStorage.getItem("incidentReports")).find(r => r.id === id);
     alert(`Incident Details:\nTimestamp: ${report.timestamp}\nDescription: ${report.description}\nLocation: https://www.google.com/maps?q=${report.location.lat},${report.location.lng}`);
 }
 
 function downloadIncident(id) {
-    // Placeholder: Download incident report as PDF
     const report = JSON.parse(localStorage.getItem("incidentReports")).find(r => r.id === id);
-    const reportText = `Incident Report\nTimestamp: ${report.timestamp}\nLocation: https://www.google.com/maps?q=${report.location.lat},${report.location.lng}\nwhat3words: ///${report.w3wAddress}\nWeather: ${report.weather}\nDescription: ${report.description}\nReported by: ${report.userName || "Anonymous"}\nService Provider: ${report.providerName}\n`;
+    const reportText = `Incident Report\nTimestamp: ${report.timestamp}\nLocation: https://www.google.com/maps?q=${report.location.lat},${report.location.lng}\nDescription: ${report.description}`;
     const blob = new Blob([reportText], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
