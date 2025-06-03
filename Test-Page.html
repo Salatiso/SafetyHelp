@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafetyHelp - OHS System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .sidebar {
+            width: 25%;
+            background-color: #e0e0e0;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .sidebar h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .sidebar ul {
+            list-style: none;
+        }
+        .sidebar ul li {
+            margin-bottom: 10px;
+        }
+        .sidebar ul li a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        .sidebar ul li a:hover {
+            text-decoration: underline;
+        }
+        .main-content {
+            width: 75%;
+            padding-left: 20px;
+        }
+        .main-content h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .main-content p {
+            margin-bottom: 15px;
+        }
+        .main-content h2 {
+            font-size: 20px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .main-content ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        details {
+            margin-bottom: 10px;
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        summary {
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        .proceed-options {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .proceed-options button {
+            padding: 10px 20px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .proceed-options button:hover {
+            background-color: #004d99;
+        }
+        .selection-method {
+            display: none;
+        }
+        .wizard-step {
+            display: none;
+        }
+        .wizard-step.active {
+            display: block;
+        }
+        .category-section {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        .category-section h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .document-list {
+            list-style: none;
+            padding: 0;
+        }
+        .document-list li {
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        .document-list input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        .select-all {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 5px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        .icon {
+            margin-right: 5px;
+            color: #0066cc;
+        }
+        .svg-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+        }
+        .explanatory-note {
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+        }
+        .milestones {
+            margin-top: 20px;
+        }
+        .milestones ul {
+            list-style-type: none;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #e0e0e0;
+            margin-top: 20px;
+        }
+        footer ul {
+=
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        footer a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h2>SafetyHelp Tools</h2>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="community-tools.html">Community Tools</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="signup.html">SignUp / Login</a></li>
+                <li><a href="construction-compliance.html">Construction Compliance</a></li>
+                <li><a href="emergency-response-plan.html">Emergency Response</a></li>
+                <li><a href="incident-management.html">Incident Management</a></li>
+                <li><a href="inspections-audits.html">Inspections & Audits</a></li>
+                <li><a href="legal-appointments.html">Legal Appointments</a></li>
+                <li><a href="legislation.html">Legislation</a></li>
+                <li><a href="risk-assessment.html">Risk Assessment</a></li>
+                <li><a href="suppliers.html">Suppliers</a></li>
+                <li><a href="training.html">Training</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <h1>OHS System</h1>
+            <p>Tools and resources for creating a comprehensive OHS management system compliant with South African legislation and ISO 45001.</p>
+
+            <article>
+                <h2>Introduction to OHS System</h2>
+                <p>This flagship module empowers you to build a tailored Occupational Health and Safety (OHS) management system that meets South African laws (e.g., OHS Act 85 of 1993, COIDA) and international standards like ISO 45001. Explore our interactive tools to generate customized policies, procedures, and forms while learning the "why" behind each step.</p>
+            </article>
+
+            <article>
+                <h2>Key Legal Obligations</h2>
+                <p>Understand the legal foundations of your OHS system. Expand for details:</p>
+                <details>
+                    <summary><i class="fas fa-gavel icon"></i> Section 7 of the OHS Act</summary>
+                    <p>The CEO must sign a Health and Safety Policy, setting the tone for safety commitment.</p>
+                </details>
+                <details>
+                    <summary><i class="fas fa-shield-alt icon"></i> Section 8 of the OHS Act</summary>
+                    <p>Employers are obligated to ensure a workplace free from health and safety risks.</p>
+                </details>
+                <details>
+                    <summary><i class="fas fa-globe icon"></i> ISO 45001 Clause 6.1.2</summary>
+                    <p>Identify hazards and assess risks to proactively manage safety.</p>
+                </details>
+            </article>
+
+            <article>
+                <h2>How Would You Like to Proceed?</h2>
+                <p>Choose your path to generate OHS documentation:</p>
+                <div class="proceed-options">
+                    <button onclick="showSection('automated-wizard')"><i class="fas fa-magic icon"></i> Automated Wizard</button>
+                    <button onclick="showSection('semi-automated')"><i class="fas fa-tools icon"></i> Semi-Automated Selection</button>
+                    <button onclick="showSection('manual-selection')"><i class="fas fa-hand-pointer icon"></i> Manual Selection</button>
+                </div>
+            </article>
+
+            <div id="automated-wizard" class="selection-method">
+                <h2><i class="fas fa-magic icon"></i> Automated Wizard</h2>
+                <div class="wizard-step active" id="step1">
+                    <h3>Step 1: Select Your Role</h3>
+                    <select id="role">
+                        <option value="">-- Select Role --</option>
+                        <option value="ceo">Company Owner/CEO/Director</option>
+                        <option value="ohs-pro">OHS Professional</option>
+                        <option value="contractor">Contractor</option>
+                        <option value="client">Client</option>
+                        <option value="employer">Employer</option>
+                        <option value="employee">Employee</option>
+                        <option value="community-leader">Community Leader</option>
+                        <option value="student">Student/Trainee</option>
+                    </select>
+                    <button onclick="nextStep(1)">Next</button>
+                </div>
+                <div class="wizard-step" id="step2">
+                    <h3>Step 2: Select Your Industry</h3>
+                    <select id="industry">
+                        <option value="">-- Select Industry --</option>
+                        <option value="construction">Construction</option>
+                        <option value="manufacturing">Manufacturing</option>
+                        <option value="mining">Mining</option>
+                        <option value="agriculture">Agriculture</option>
+                        <option value="healthcare">Healthcare</option>
+                        <option value="education">Education</option>
+                        <option value="retail">Retail</option>
+                        <option value="office">Office</option>
+                        <option value="hospitality">Hospitality</option>
+                        <option value="transport">Transport</option>
+                        <option value="spaza-shop">Spaza Shop</option>
+                        <option value="church">Church</option>
+                    </select>
+                    <button onclick="nextStep(2)">Next</button>
+                </div>
+                <div class="wizard-step" id="step3">
+                    <h3>Step 3: Provide Company Details</h3>
+                    <div>
+                        <label for="company-name">Company Name:</label>
+                        <input type="text" id="company-name"><br>
+                        <label for="address">Address:</label>
+                        <input type="text" id="address"><br>
+                        <label for="city">City:</label>
+                        <input type="text" id="city"><br>
+                        <label for="province">Province:</label>
+                        <input type="text" id="province"><br>
+                        <label for="country">Country:</label>
+                        <input type="text" id="country" value="South Africa"><br>
+                        <label for="employees">Number of Employees:</label>
+                        <input type="number" id="employees"><br>
+                        <label for="turnover">Annual Turnover (ZAR):</label>
+                        <input type="text" id="turnover"><br>
+                        <label for="established">Date Established:</label>
+                        <input type="date" id="established"><br>
+                        <label for="experience">Experience in Role:</label>
+                        <select id="experience">
+                            <option value="beginner">Beginner</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="expert">Expert</option>
+                        </select><br>
+                        <label for="ohs-knowledge">OHS Knowledge Level:</label>
+                        <select id="ohs-knowledge">
+                            <option value="novice">Novice</option>
+                            <option value="experienced">Experienced</option>
+                            <option value="advanced">Advanced</option>
+                        </select><br>
+                        <label for="company-status">Company Status:</label>
+                        <select id="company-status">
+                            <option value="new">New Company</option>
+                            <option value="established">Established Company</option>
+                        </select><br>
+                        <button onclick="nextStep(3)">Next</button>
+                    </div>
+                </div>
+                <div class="wizard-step" id="step4">
+                    <h3>Step 4: Recommended Documents</h3>
+                    <p>Based on your inputs, here are your recommended documents, categorized and auto-selected for your convenience.</p>
+                    <div id="recommended-feedback" class="explanatory-note"></div>
+                    <div id="recommended-documents"></div>
+                    <button onclick="nextStep(4)">Next</button>
+                </div>
+                <div class="wizard-step" id="step5">
+                    <h3>Step 5: Customize Documents</h3>
+                    <div>
+                        <label for="ceo-name">CEO Name:</label>
+                        <input type="text" id="ceo-name"><br>
+                        <label for="safety-officer">Safety Officer Name:</label>
+                        <input type="text" id="safety-officer"><br>
+                        <label for="emergency-contact">Emergency Contact:</label>
+                        <input type="text" id="emergency-contact"><br>
+                        <button onclick="nextStep(5)">Next</button>
+                    </div>
+                </div>
+                <div class="wizard-step" id="step6">
+                    <h3>Step 6: Review and Download</h3>
+                    <p>Review your final selections below and download as PDFs.</p>
+                    <ul id="final-documents"></ul>
+                    <button onclick="downloadDocuments()">Download</button>
+                </div>
+            </div>
+
+            <div id="semi-automated" class="selection-method">
+                <h2><i class="fas fa-tools icon"></i> Semi-Automated Selection</h2>
+                <p>Select categories to explore relevant documents:</p>
+                <div>
+                    <input type="checkbox" id="policies" name="category" value="Policies">
+                    <label for="policies"><svg class="svg-icon" viewBox="0 0 20 20"><path fill="#0066cc" d="M5 2h10v16H5z"/></svg> Policies</label><br>
+                    <input type="checkbox" id="procedures" name="category" value="Procedures">
+                    <label for="procedures"><svg class="svg-icon" viewBox="0 0 20 20"><circle fill="#0066cc" cx="10" cy="10" r="8"/></svg> Procedures</label><br>
+                    <input type="checkbox" id="standards" name="category" value="Standards/Guidelines">
+                    <label for="standards"><svg class="svg-icon" viewBox="0 0 20 20"><rect fill="#0066cc" x="4" y="4" width="12" height="12"/></svg> Standards/Guidelines</label><br>
+                    <input type="checkbox" id="registers" name="category" value="Registers and Logs">
+                    <label for="registers"><svg class="svg-icon" viewBox="0 0 20 20"><path fill="#0066cc" d="M2 2h16v2H2zM2 6h16v2H2zM2 10h16v2H2z"/></svg> Registers and Logs</label><br>
+                    <input type="checkbox" id="templates" name="category" value="Templates/Forms">
+                    <label for="templates"><svg class="svg-icon" viewBox="0 0 20 20"><path fill="#0066cc" d="M4 4h12v12H4zM6 6h8v8H6z"/></svg> Templates/Forms</label><br>
+                    <input type="checkbox" id="permits" name="category" value="Permits">
+                    <label for="permits"><svg class="svg-icon" viewBox="0 0 20 20"><polygon fill="#0066cc" points="10,2 18,18 2,18"/></svg> Permits</label><br>
+                    <input type="checkbox" id="records" name="category" value="Records">
+                    <label for="records"><svg class="svg-icon" viewBox="0 0 20 20"><path fill="#0066cc" d="M4 4h12v2H4zM4 8h12v2H4zM4 12h12v2H4z"/></svg> Records</label><br>
+                    <button onclick="showCategoryDocuments()">Next</button>
+                </div>
+                <div id="category-documents"></div>
+            </div>
+
+            <div id="manual-selection" class="selection-method">
+                <h2><i class="fas fa-hand-pointer icon"></i> Manual Selection</h2>
+                <p>Browse and select specific documents:</p>
+                <details>
+                    <summary><i class="fas fa-file-alt icon"></i> 1. OHS Policy</summary>
+                    <input type="checkbox" id="ohs-policy" name="document" value="OHS Policy">
+                    <label for="ohs-policy">OHS Policy Document</label><br>
+                </details>
+                <details>
+                    <summary><i class="fas fa-tasks icon"></i> 2. Planning</summary>
+                    <details>
+                        <summary>2.1 Hazard Identification, Risk Assessment, and Mitigation</summary>
+                        <input type="checkbox" id="hira-procedure" name="document" value="HIRA Procedure">
+                        <label for="hira-procedure">HIRA Procedure</label><br>
+                        <input type="checkbox" id="risk-register" name="document" value="Risk Register">
+                        <label for="risk-register">Risk Register</label><br>
+                    </details>
+                    <details>
+                        <summary>2.2 Legal and Other Requirements</summary>
+                        <input type="checkbox" id="legal-register" name="document" value="Legal Register">
+                        <label for="legal-register">Legal Register</label><br>
+                    </details>
+                    <details>
+                        <summary>2.3 OHS Objectives and Targets</summary>
+                        <input type="checkbox" id="objectives-targets" name="document" value="Objectives and Targets Document">
+                        <label for="objectives-targets">Objectives and Targets Document</label><br>
+                    </details>
+                </details>
+                <details>
+                    <summary><i class="fas fa-cogs icon"></i> 3. Implementation and Operation</summary>
+                    <details>
+                        <summary>3.1 Resources and Roles</summary>
+                        <input type="checkbox" id="ohs-organogram" name="document" value="OHS Organogram">
+                        <label for="ohs-organogram">OHS Organogram</label><br>
+                        <input type="checkbox" id="appointment-letters" name="document" value="Appointment Letters">
+                        <label for="appointment-letters">Appointment Letters</label><br>
+                    </details>
+                    <details>
+                        <summary>3.2 Training, Awareness, and Competence</summary>
+                        <input type="checkbox" id="training-matrix" name="document" value="Training Matrix">
+                        <label for="training-matrix">Training Matrix</label><br>
+                        <input type="checkbox" id="training-records" name="document" value="Training Records">
+                        <label for="training-records">Training Records</label><br>
+                    </details>
+                    <details>
+                        <summary>3.3 Communication, Participation, and Consultation</summary>
+                        <input type="checkbox" id="communication-plan" name="document" value="Communication Plan">
+                        <label for="communication-plan">Communication Plan</label><br>
+                    </details>
+                    <details>
+                        <summary>3.4 OHS Management System Documentation</summary>
+                        <input type="checkbox" id="ohs-manual" name="document" value="OHS Manual">
+                        <label for="ohs-manual">OHS Manual</label><br>
+                        <input type="checkbox" id="procedure-documents" name="document" value="Procedure Documents">
+                        <label for="procedure-documents">Procedure Documents</label><br>
+                    </details>
+                    <details>
+                        <summary>3.5 Emergency Preparedness and Response</summary>
+                        <input type="checkbox" id="emergency-plan" name="document" value="Emergency Response Plan">
+                        <label for="emergency-plan">Emergency Response Plan</label><br>
+                    </details>
+                    <details>
+                        <summary>3.6 Supplier/Contractor OHS Compliance</summary>
+                        <input type="checkbox" id="health-safety-spec" name="document" value="Health and Safety Specification">
+                        <label for="health-safety-spec">Health and Safety Specification</label><br>
+                        <input type="checkbox" id="contractor-plan" name="document" value="Contractor H&S Plan">
+                        <label for="contractor-plan">Contractor H&S Plan</label><br>
+                    </details>
+                </details>
+                <details>
+                    <summary><i class="fas fa-check-circle icon"></i> 4. Checking</summary>
+                    <details>
+                        <summary>4.1 Incident Management</summary>
+                        <input type="checkbox" id="incident-report" name="document" value="Incident Report Form">
+                        <label for="incident-report">Incident Report Form</label><br>
+                        <input type="checkbox" id="investigation-report" name="document" value="Investigation Report Template">
+                        <label for="investigation-report">Investigation Report Template</label><br>
+                    </details>
+                    <details>
+                        <summary>4.2 Non-Conformity, Corrective Action, and Preventative Action</summary>
+                        <input type="checkbox" id="car-form" name="document" value="Corrective Action Report (CAR)">
+                        <label for="car-form">Corrective Action Report (CAR)</label><br>
+                        <input type="checkbox" id="par-form" name="document" value="Preventative Action Request (PAR)">
+                        <label for="par-form">Preventative Action Request (PAR)</label><br>
+                    </details>
+                    <details>
+                        <summary>4.3 Records</summary>
+                        <input type="checkbox" id="record-templates" name="document" value="Record Templates">
+                        <label for="record-templates">Record Templates</label><br>
+                    </details>
+                    <details>
+                        <summary>4.4 Audits and Inspections</summary>
+                        <input type="checkbox" id="audit-checklist" name="document" value="Audit Checklist">
+                        <label for="audit-checklist">Audit Checklist</label><br>
+                        <input type="checkbox" id="inspection-schedule" name="document" value="Inspection Schedule">
+                        <label for="inspection-schedule">Inspection Schedule</label><br>
+                    </details>
+                </details>
+                <details>
+                    <summary><i class="fas fa-sync-alt icon"></i> 5. System Review</summary>
+                    <input type="checkbox" id="review-minutes" name="document" value="Management Review Minutes Template">
+                    <label for="review-minutes">Management Review Minutes Template</label><br>
+                </details>
+                <button onclick="proceedToCustomization()">Next</button>
+            </div>
+
+            <div id="customization" class="selection-method">
+    <h2><i class="fas fa-edit icon"></i> Customize Documents</h2>
+    <div>
+        <label for="custom-ceo-name">CEO Name:</label>
+        <input type="text" id="custom-ceo-name"><br>
+        <label for="custom-safety-officer">Safety Officer Name:</label>
+        <input type="text" id="custom-safety-officer"><br>
+        <label for="custom-company-name">Company Name:</label>
+        <input type="text" id="custom-company-name"><br>
+        <label for="custom-company-address">Company Address:</label>
+        <textarea id="custom-company-address"></textarea><br>
+        <label for="custom-emergency-contact">Emergency Contact Number:</label>
+        <input type="tel" id="custom-emergency-contact"><br>
+        <label for="custom-first-aider">First Aider Name:</label>
+        <input type="text" id="custom-first-aider"><br>
+        <label for="custom-fire-warden">Fire Warden Name:</label>
+        <input type="text" id="custom-fire-warden"><br>
+        <label for="custom-ohs-representative">OHS Representative Name:</label>
+        <input type="text" id="custom-ohs-representative"><br>
+        <label for="custom-document-language">Document Language:</label>
+        <select id="custom-document-language">
+            <option value="en">English</option>
+            <option value="af">Afrikaans</option>
+            <option value="xh">isiXhosa</option>
+            <option value="zu">isiZulu</option>
+        </select><br>
+        <label for="custom-include-logo">Include Company Logo:</label>
+        <input type="checkbox" id="custom-include-logo"><br>
+        <label for="custom-logo-upload">Upload Logo (if selected):</label>
+        <input type="file" id="custom-logo-upload" accept="image/*"><br>
+        <label for="custom-policy-options">Select Policy Options:</label>
+        <div>
+            <input type="checkbox" id="custom-policy-ohs" name="policy" value="ohs">
+            <label for="custom-policy-ohs">OHS Policy</label><br>
+            <input type="checkbox" id="custom-policy-environmental" name="policy" value="environmental">
+            <label for="custom-policy-environmental">Environmental Policy</label><br>
+            <input type="checkbox" id="custom-policy-quality" name="policy" value="quality">
+            <label for="custom-policy-quality">Quality Policy</label><br>
+        </div>
+        <button onclick="reviewDocuments()">Review Documents</button>
+    </div>
+</div>
+
+<div id="review-download" class="selection-method">
+    <h2><i class="fas fa-download icon"></i> Review and Download</h2>
+    <p>Review your customized documents below and proceed to download them as PDFs.</p>
+    <ul id="final-documents"></ul>
+    <button onclick="downloadDocuments()">Download Documents</button>
+</div>
+
+<article class="milestones">
+    <h2>OHS Milestones</h2>
+    <ul>
+        <li>3000 BC: Early First Aid (Egypt)</li>
+        <li>400 BC: Lead Poisoning (Greece)</li>
+        <li>1300 AD: Shoeing Smith (SA)</li>
+        <li>1833: Factories Act (UK)</li>
+        <li>1993: OHS Act (SA)</li>
+        <li>2010: OHS Mobile Apps (Global)</li>
+    </ul>
+</article>
+</main>
+</div>
+
+<footer>
+    <p>© SafetyHelp. All rights reserved. Your Partner in OHS Compliance.</p>
+    <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Contact Us</a></li>
+    </ul>
+</footer>
+
+<script>
+    const documentCategories = {
+        'Policies': ['OHS Policy', 'Environmental Policy'],
+        'Procedures': ['HIRA Procedure', 'Incident Management Procedure'],
+        'Standards/Guidelines': ['OHS Management System Standard'],
+        'Registers and Logs': ['Risk Register', 'Legal Register', 'Training Log'],
+        'Templates/Forms': ['HIRA Template', 'Incident Report Form', 'Audit Checklist'],
+        'Permits': ['Hot Work Permit', 'Confined Space Entry Permit'],
+        'Records': ['Signed Policies', 'Incident Investigation Reports']
+    };
+
+    function showSection(sectionId) {
+        document.querySelectorAll('.selection-method').forEach(el => el.style.display = 'none');
+        document.getElementById(sectionId).style.display = 'block';
+    }
+
+    function reviewDocuments() {
+        const selectedDocs = Array.from(document.querySelectorAll('input[name="document"]:checked')).map(input => input.value);
+        const list = document.getElementById('final-documents');
+        list.innerHTML = '';
+        selectedDocs.forEach(doc => {
+            const li = document.createElement('li');
+            li.textContent = doc;
+            list.appendChild(li);
+        });
+        showSection('review-download');
+    }
+
+    function downloadDocuments() {
+        alert('Documents will be downloaded as PDFs.');
+    }
+</script>
+</body>
+</html>
